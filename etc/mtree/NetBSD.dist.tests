@@ -1,0 +1,20 @@
+#	$NetBSD: NetBSD.dist.tests,v 1.108 2014/06/30 21:32:59 alnsn Exp $
+
+./usr/libdata/debug/usr/tests
+./usr/libdata/debug/usr/tests/atf
+./usr/libdata/debug/usr/tests/atf/atf-c
+./usr/libdata/debug/usr/tests/atf/atf-c/detail
+./usr/libdata/debug/usr/tests/atf/atf-c++
+./usr/libdata/debug/usr/tests/atf/atf-c++/detail
+./usr/libdata/debug/usr/tests/atf/formats
+./usr/libdata/debug/usr/tests/atf/test-programs
+./usr/libdata/debug/usr/tests/atf/tools
+./usr/tests
+./usr/tests/atf
+./usr/tests/atf/atf-c
+./usr/tests/atf/atf-c/detail
+./usr/tests/atf/atf-c++
+./usr/tests/atf/atf-c++/detail
+./usr/tests/atf/atf-sh
+./usr/tests/atf/test-programs
+./usr/tests/atf/tools

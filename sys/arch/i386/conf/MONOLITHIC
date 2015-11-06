@@ -1,0 +1,8 @@
+# $NetBSD: MONOLITHIC,v 1.16.28.1 2015/05/15 03:44:18 snj Exp $
+#
+# Non MODULAR
+#
+include "arch/i386/conf/GENERIC"
+
+no options	MODULAR
+no options	MODULAR_DEFAULT_AUTOLOAD
