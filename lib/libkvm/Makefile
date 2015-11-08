@@ -37,11 +37,6 @@ LINTFLAGS+=-w
 SRCS+=	kvm_i386pae.c # Hook PAE support in the i386 build
 .endif
 
-# Additional modules needed for m68k
-.if (${MACHINE_ARCH} == "m68k" || ${MACHINE_CPU} == "m68k")
-SRCS+=	kvm_m68k_cmn.c kvm_sun2.c kvm_sun3.c kvm_sun3x.c
-.endif
-
 MAN=	kvm.3 kvm_dump.3 kvm_geterr.3 kvm_getfiles.3 kvm_getloadavg.3 \
 	kvm_getkernelname.3 \
 	kvm_getprocs.3 kvm_nlist.3 kvm_open.3 kvm_read.3 kvm_getlwps.3

@@ -242,13 +242,6 @@ SUBDIR+=	lm_wbsio
 SUBDIR+=	wbsio
 .endif
 
-.if ${MACHINE_CPU} == "m68k"
-SUBDIR+=	compat_aoutm68k
-#SUBDIR+=	compat_linux
-#SUBDIR+=	compat_sunos
-#SUBDIR+=	compat_svr4
-.endif
-
 .if ${MACHINE_ARCH} == "i386" || \
     ${MACHINE_ARCH} == "x86_64" || \
     ${MACHINE_ARCH} == "sparc64"

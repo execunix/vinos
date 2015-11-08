@@ -9,7 +9,3 @@ ARCHDIR_SUBDIR=	x86/amd64-xen
 .if ${MACHINE} == "i386"
 ARCHDIR_SUBDIR=	x86/i386-xen x86/i386pae-xen
 .endif
-
-.if ${MACHINE_ARCH} == "powerpc"
-ARCHDIR_SUBDIR=	powerpc/powerpc-4xx powerpc/powerpc-booke
-.endif
