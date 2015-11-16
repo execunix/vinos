@@ -572,7 +572,7 @@ EXTRA_CLEAN+= .gdbinit
 # Their full name is noted as documentation.
 VARSTACK=kern/uipc_socket.c miscfs/genfs/genfs_vnops.c \
     nfs/nfs_bio.c uvm/uvm_bio.c \
-    uvm/uvm_pager.c dev/ic/aic7xxx.c dev/ic/aic79xx.c arch/xen/i386/gdt.c \
+    uvm/uvm_pager.c dev/ic/aic7xxx.c dev/ic/aic79xx.c \
     dev/ofw/ofw_subr.c
 
 .for __varstack in ${VARSTACK}

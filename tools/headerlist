@@ -15,5 +15,3 @@
 ./evbarm64/include/elf_machdep.h
 ./i386/include/disklabel.h
 ./i386/include/elf_machdep.h
-./usermode/include/disklabel.h
-./usermode/include/elf_machdep.h

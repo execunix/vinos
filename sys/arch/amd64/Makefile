@@ -37,7 +37,7 @@ links:
 	    (cd $$i && rm -f tags; ln -s ../tags tags); done
 
 
-SUBDIR=	compile include ../x86/include ../xen/include \
+SUBDIR=	compile include ../x86/include \
 	../i386/include ../i386/stand
 
 .include <bsd.subdir.mk>

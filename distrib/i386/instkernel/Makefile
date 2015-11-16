@@ -19,8 +19,6 @@ ${V}=		${${V}DIR}/${F}.fs
 # to update the release documentation in distrib/notes/common/contents
 MDSETTARGETS+=	GENERIC			${RAMDISK_B}	-
 MDSETTARGETS+=	INSTALL			${RAMDISK_B}	-
-MDSETTARGETS+=	INSTALL_XEN3_DOMU	${RAMDISK_B}	-
-MDSETTARGETS+=	INSTALL_XEN3PAE_DOMU	${RAMDISK_B}	-
 # MDSETTARGETS+=	INSTALL_FLOPPY		${RAMDISK_B}	-
 # MDSETTARGETS+=	INSTALL_SMALL		${RAMDISK_S}	-
 # MDSETTARGETS+=	INSTALL_TINY		${RAMDISK_T}	-
@@ -31,14 +29,9 @@ MDSET_RELEASEDIR=	binary/kernel
 # need symbols to load modules. don't actually want image inserted.
 MDSET_NOSTRIP.netbsd-GENERIC=
 MDSET_NOIMAGE.netbsd-GENERIC=
-# do not strip Xen kernels, there's no space constraints here.
-MDSET_NOSTRIP.netbsd-INSTALL_XEN3_DOMU=
-MDSET_NOSTRIP.netbsd-INSTALL_XEN3PAE_DOMU=
 # do not strip any other kernels, it is done by Makefile.tarfloppy before
 # they are written to a floppy.
 MDSET_NOSTRIP=
-MDSET_NOSYMBOLS.netbsd-INSTALL_XEN3_DOMU=
-MDSET_NOSYMBOLS.netbsd-INSTALL_XEN3PAE_DOMU=
 
 .include "${DISTRIBDIR}/common/Makefile.mdset"
 

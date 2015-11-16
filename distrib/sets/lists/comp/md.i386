@@ -292,9 +292,6 @@
 ./usr/include/x86/sysarch.h			comp-c-include
 ./usr/include/x86/trap.h			comp-c-include
 ./usr/include/x86/via_padlock.h			comp-c-include
-./usr/include/xen				comp-c-include
-./usr/include/xen/xenio.h			comp-c-include
-./usr/include/xen/xenio3.h			comp-c-include
 ./usr/include/xmmintrin.h			comp-obsolete		obsolete
 ./usr/lib/libi386.a				comp-c-lib
 ./usr/lib/libi386_p.a				comp-c-proflib		profile

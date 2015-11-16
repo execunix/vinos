@@ -18,12 +18,7 @@ SI386+=	${SYSDIR}/arch/x86/x86/*.[ch] \
 	${SYSDIR}/arch/x86/acpi/*.[ch] \
 	${SYSDIR}/arch/x86/include/*.h \
 	${SYSDIR}/arch/x86/isa/*.[ch] \
-	${SYSDIR}/arch/x86/pci/*.[ch] \
-	${SYSDIR}/arch/xen/include/*.h \
-	${SYSDIR}/arch/xen/i386/*.[ch] \
-	${SYSDIR}/arch/xen/x86/*.[ch] \
-	${SYSDIR}/arch/xen/xen/*.[ch] \
-	${SYSDIR}/arch/xen/xenbus/*.[ch]
+	${SYSDIR}/arch/x86/pci/*.[ch]
 AI386=	${SYSDIR}/arch/i386/i386/*.S \
 	${SYSDIR}/../common/lib/libc/arch/i386/*/*.S
 
@@ -49,6 +44,6 @@ links:
 	    (cd $$i && rm -f tags; ln -s ../tags tags); done
 
 
-SUBDIR=	compile include stand ../x86/include ../xen/include
+SUBDIR=	compile include stand ../x86/include
 
 .include <bsd.subdir.mk>

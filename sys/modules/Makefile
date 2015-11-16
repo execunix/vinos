@@ -255,7 +255,7 @@ SUBDIR+=	pwdog
 #
 .if ${MACHINE_ARCH} == "i386" || \
     ${MACHINE_ARCH} == "x86_64"
-SUBDIR+=	../arch/usermode/modules/syscallemu
+#SUBDIR+=	../arch/usermode/modules/syscallemu
 .endif
 
 # we need our device mapper for LVM

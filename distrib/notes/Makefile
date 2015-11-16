@@ -13,7 +13,6 @@ SUBDIR=	${RELEASEMACHINE}
 SUBDIR+= amd64
 SUBDIR+= evbarm
 SUBDIR+= i386
-SUBDIR+= xen
 .endif
 
 .include <bsd.subdir.mk>

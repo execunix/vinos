@@ -145,9 +145,6 @@ MAN+=	daic.4 isdntrc.4 isdntel.4 isdnbchan.4 ippp.4 irip.4 isdnctl.4 isdn.4 \
 # onewire bus and devices
 MAN+=	gpioow.4 onewire.4 owtemp.4
 
-# machine-independent Xen devices
-MAN+=	pciback.4 xbd.4 xbdback.4 xenbus.4 xennet.4 xpci.4 xvif.4
-
 # DTV drivers
 MAN+=	auvitek.4 \
 	emdtv.4

@@ -25,14 +25,11 @@ SUBDIR+= ${ARCHSUBDIR}
 .if ${MACHINE_CPU} == "aarch64"
 SUBDIR+= arm
 .endif
-.if defined(XEN_BUILD)
-SUBDIR+= xen
-.endif
 
 #SUBDIR=arm \
 #	evbarm \
 #	i386 \
-#	x86_64 xen
+#	x86_64
 
 .if ${MACHINE_CPU} == aarch64 || ${MACHINE_CPU} == "arm"
 INCSYMLINKS= ${MACHINE_CPU} /usr/include/machine

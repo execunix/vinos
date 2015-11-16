@@ -417,9 +417,6 @@
 ./usr/include/x86/sysarch.h			comp-c-include
 ./usr/include/x86/trap.h			comp-c-include
 ./usr/include/x86/via_padlock.h			comp-c-include
-./usr/include/xen				comp-c-include
-./usr/include/xen/xenio.h			comp-c-include
-./usr/include/xen/xenio3.h			comp-c-include
 ./usr/include/xmmintrin.h			comp-obsolete		obsolete
 ./usr/lib/i386/crt0.o				comp-c-lib		compat
 ./usr/lib/i386/crtbegin.o			comp-c-lib		compat

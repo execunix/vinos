@@ -25,14 +25,6 @@ CLEANFILES+=	x86 i386
 CLEANFILES+=	arm
 .endif
 
-.if defined(XEN_BUILD) || ${KLINK_MACHINE} == "xen"
-CLEANFILES+=	xen xen-ma/machine # xen-ma
-CPPFLAGS+=	-I${.OBJDIR}/xen-ma
-.if ${MACHINE_CPU} == "i386"
-CLEANFILES+=	x86
-.endif
-.endif
-
 # XXX.  This should be done a better way.  It's @'d to reduce visual spew.
 # XXX   .BEGIN is used to make sure the links are done before anything else.
 .if !make(obj) && !make(clean) && !make(cleandir)
@@ -57,11 +49,5 @@ CLEANFILES+=	x86
 .if ${MACHINE_CPU} == "aarch64"
 	-@rm -f arm && \
 	    ln -s $S/arch/arm/include arm
-.endif
-.if defined(XEN_BUILD) || ${KLINK_MACHINE} == "xen"
-	-@rm -f xen && \
-	    ln -s $S/arch/xen/include xen
-	-@rm -rf xen-ma && mkdir xen-ma && \
-	    ln -s ../${XEN_BUILD:U${MACHINE_ARCH}} xen-ma/machine
 .endif
 .endif
