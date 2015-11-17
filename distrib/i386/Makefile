@@ -8,7 +8,6 @@ SUBDIR+=	kmod
 SUBDIR+=	kmod-cgdroot
 SUBDIR+=	.WAIT
 SUBDIR+=	cdroms
-SUBDIR+=	floppies
 SUBDIR+=	liveimage
 SUBDIR+=	installimage
 TARGETS+=	release
