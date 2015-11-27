@@ -84,7 +84,7 @@ unchanged.
 static inline void
 unlock_1 (FILE *const fp ATTRIBUTE_UNUSED)
 {
-#if 0//defined(HAVE___FSETLOCKING) && defined(FSETLOCKING_BYCALLER)
+#if defined(HAVE___FSETLOCKING) && defined(FSETLOCKING_BYCALLER)
   if (fp)
     __fsetlocking (fp, FSETLOCKING_BYCALLER);
 #endif
