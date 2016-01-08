@@ -84,7 +84,7 @@ unchanged.
 static inline void
 unlock_1 (FILE *const fp ATTRIBUTE_UNUSED)
 {
-#if defined(HAVE___FSETLOCKING) && defined(FSETLOCKING_BYCALLER)
+#if 0//defined(HAVE___FSETLOCKING) && defined(FSETLOCKING_BYCALLER)
   if (fp)
     __fsetlocking (fp, FSETLOCKING_BYCALLER);
 #endif
@@ -105,7 +105,7 @@ unlock_std_streams (void)
 }
 
 FILE *
-fopen_unlocked (const char *path, const char *mode)		
+fopen_unlocked (const char *path, const char *mode)
 {
   FILE *const fp = fopen (path, mode);
   unlock_1 (fp);
