@@ -192,7 +192,7 @@ USETOOLS?=	no
 # Provide a default for TOOLDIR.
 #
 .if !defined(TOOLDIR)
-TOOLDIR:=	${_SRC_TOP_OBJ_}/tooldir.${HOST_OSTYPE}
+TOOLDIR:=	${_SRC_TOP_}/tooldir/${HOST_OSTYPE}
 .MAKEOVERRIDES+= TOOLDIR
 .endif
 

@@ -1394,7 +1394,7 @@ print_tooldir_make()
 	#
 	# In the usual case (without interference from environment
 	# variables or /etc/mk.conf), <bsd.own.mk> should set TOOLDIR to
-	# "${_SRC_TOP_OBJ_}/tooldir.${host_ostype}".
+	# "${_SRC_TOP_}/tooldir/${host_ostype}".
 	#
 	# In practice it's difficult to figure out the correct value
 	# for _SRC_TOP_OBJ_.  In the easiest case, when the -M or -O
@@ -1403,14 +1403,11 @@ print_tooldir_make()
 	# we do not replicate all the logic of <bsd.obj.mk>.
 	#
 	for possible_TOP_OBJ in \
-		"${TOP_objdir}" \
-		"${MAKEOBJDIRPREFIX:+${MAKEOBJDIRPREFIX}${TOP}}" \
-		"${TOP}" \
-		"${TOP}/obj" \
-		"${TOP}/obj.${MACHINE}"
+		"${TOP}/tooldir" \
+		"${TOP}/tooldir.${MACHINE}"
 	do
 		[ -n "${possible_TOP_OBJ}" ] || continue
-		possible_TOOLDIR="${possible_TOP_OBJ}/tooldir.${host_ostype}"
+		possible_TOOLDIR="${possible_TOP_OBJ}/${host_ostype}"
 		possible_make="${possible_TOOLDIR}/bin/${toolprefix}make"
 		if [ -x "${possible_make}" ]; then
 			break
@@ -2105,5 +2102,5 @@ main()
 
 main "$@"
 
-echo nbmake=${makewrapper}
-alias nbmake=${makewrapper}
+echo nbmk=${makewrapper}
+alias nbmk=${makewrapper}

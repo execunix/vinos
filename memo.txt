@@ -1,4 +1,6 @@
 execunix@xmtlinux1:/mnt/mbs2/netbsd/vinos$ . bldenv.sh -U -x -u -m amd64 -j4
+execunix@xmtlinux1:/mnt/mbs2/netbsd/vinos$ nbmk -j4 release
+
 execunix@xmtlinux1:/mnt/mbs2/netbsd/vinos$ ./build.sh -U -x -r -n -m amd64 -j4 release
 
 ##############################################################################
@@ -126,7 +128,7 @@ Usage: bash [-EhnorUuxy] [-a arch] [-B buildid] [-C cdextras]
 	 Updated makewrapper: /mnt/mbs2/netbsd/vinos/obj/tooldir.Linux-3.13.0-74-generic-x86_64/bin/nbmake-amd64
 	 bash ended:          Fri Jan  8 21:44:21 KST 2016
 ===> .
-nbmake=/mnt/mbs2/netbsd/vinos/obj/tooldir.Linux-3.13.0-74-generic-x86_64/bin/nbmake-amd64
+nbmk=/mnt/mbs2/netbsd/vinos/obj/tooldir.Linux-3.13.0-74-generic-x86_64/bin/nbmake-amd64
 execunix@xmtlinux1:/mnt/mbs2/netbsd/vinos$ 
 ##############################################################################
 execunix@xmtlinux1:/mnt/mbs2/netbsd/vinos$ ./build.sh -U -x -r -n -m amd64 -j4 release
