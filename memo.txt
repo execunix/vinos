@@ -4,7 +4,7 @@ execunix@xmtlinux1:/mnt/mbs2/netbsd/vinos$ nbmk -j4 release
 execunix@xmtlinux1:/mnt/mbs2/netbsd/vinos$ ./build.sh -U -x -r -n -m amd64 -j4 release
 
 ##############################################################################
-execunix@xmtlinux1:/mnt/mbs2/netbsd/vinos$ . bldenv.sh -U -x -u -m amd64 -j4
+execunix@xmtlinux1:/mnt/mbs2/netbsd/vinos$ . bldenv.sh -U -x -u -m amd64
 
 bash: Missing operation to perform.
 
@@ -100,36 +100,60 @@ Usage: bash [-EhnorUuxy] [-a arch] [-B buildid] [-C cdextras]
     -y             Set MKEXTSRC=yes; build extsrc from EXTSRCSRCDIR
     -Z var         Unset ("zap") variable `var'.
 
-===> bash command:        bash -U -x -u -m amd64 -j4
-===> bash started:        Fri Jan  8 21:44:20 KST 2016
+===> bash command:        bash -U -x -u -m amd64
+===> bash started:        Wed Jan 13 10:10:54 KST 2016
 ===> NetBSD version:      7.0
 ===> MACHINE:             amd64
 ===> MACHINE_ARCH:        x86_64
 ===> Build platform:      Linux 3.13.0-74-generic x86_64
 ===> HOST_SH:             /bin/bash
 ===> MAKECONF file:       /etc/mk.conf (File not found)
-===> TOOLDIR path:        /mnt/mbs2/netbsd/vinos/obj/tooldir.Linux-3.13.0-74-generic-x86_64
+===> TOOLDIR path:        /mnt/mbs2/netbsd/vinos/tooldir/Linux-3.13.0-74-generic-x86_64
 ===> DESTDIR path:        /mnt/mbs2/netbsd/vinos/obj/destdir.amd64
 ===> RELEASEDIR path:     /mnt/mbs2/netbsd/vinos/obj/releasedir
-===> Updated makewrapper: /mnt/mbs2/netbsd/vinos/obj/tooldir.Linux-3.13.0-74-generic-x86_64/bin/nbmake-amd64
-===> bash ended:          Fri Jan  8 21:44:21 KST 2016
+===> Updated makewrapper: /mnt/mbs2/netbsd/vinos/tooldir/Linux-3.13.0-74-generic-x86_64/bin/nbmake-amd64
+===> bash ended:          Wed Jan 13 10:10:57 KST 2016
 ===> Summary of results:
-	 bash command:        bash -U -x -u -m amd64 -j4
-	 bash started:        Fri Jan  8 21:44:20 KST 2016
+	 bash command:        bash -U -x -u -m amd64
+	 bash started:        Wed Jan 13 10:10:54 KST 2016
 	 NetBSD version:      7.0
 	 MACHINE:             amd64
 	 MACHINE_ARCH:        x86_64
 	 Build platform:      Linux 3.13.0-74-generic x86_64
 	 HOST_SH:             /bin/bash
 	 MAKECONF file:       /etc/mk.conf (File not found)
-	 TOOLDIR path:        /mnt/mbs2/netbsd/vinos/obj/tooldir.Linux-3.13.0-74-generic-x86_64
+	 TOOLDIR path:        /mnt/mbs2/netbsd/vinos/tooldir/Linux-3.13.0-74-generic-x86_64
 	 DESTDIR path:        /mnt/mbs2/netbsd/vinos/obj/destdir.amd64
 	 RELEASEDIR path:     /mnt/mbs2/netbsd/vinos/obj/releasedir
-	 Updated makewrapper: /mnt/mbs2/netbsd/vinos/obj/tooldir.Linux-3.13.0-74-generic-x86_64/bin/nbmake-amd64
-	 bash ended:          Fri Jan  8 21:44:21 KST 2016
+	 Updated makewrapper: /mnt/mbs2/netbsd/vinos/tooldir/Linux-3.13.0-74-generic-x86_64/bin/nbmake-amd64
+	 bash ended:          Wed Jan 13 10:10:57 KST 2016
 ===> .
-nbmk=/mnt/mbs2/netbsd/vinos/obj/tooldir.Linux-3.13.0-74-generic-x86_64/bin/nbmake-amd64
+PATH=/mnt/mbs2/netbsd/vinos/tooldir/Linux-3.13.0-74-generic-x86_64/bin:/usr/jdk1.6.0_45/bin:/usr/jdk1.6.0_45/jre/bin:/mnt/work/bin/arm-2013.05/bin:/mnt/work/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+nbmk=/mnt/mbs2/netbsd/vinos/tooldir/Linux-3.13.0-74-generic-x86_64/bin/nbmake-amd64
 execunix@xmtlinux1:/mnt/mbs2/netbsd/vinos$ 
+##############################################################################
+execunix@xmtlinux1:/mnt/mbs2/netbsd/vinos$ env
+MAKEWRAPPERMACHINE=amd64
+NETBSDSRCDIR=/mnt/mbs2/netbsd/vinos
+RELEASEDIR=/mnt/mbs2/netbsd/vinos/obj/releasedir
+HOST_SH=/bin/bash
+MAKEFLAGS=-de -m /mnt/mbs2/netbsd/vinos/share/mk  MKOBJDIRS=yes
+BSHELL=/bin/bash
+DESTDIR=/mnt/mbs2/netbsd/vinos/obj/destdir.amd64
+VINOS_TOOL_PATH=/mnt/mbs2/netbsd/vinos/tooldir/Linux-3.13.0-74-generic-x86_64/bin:
+LC_ALL=C
+TOOLDIR=/mnt/mbs2/netbsd/vinos/tooldir/Linux-3.13.0-74-generic-x86_64
+PATH=/mnt/mbs2/netbsd/vinos/tooldir/Linux-3.13.0-74-generic-x86_64/bin:/usr/jdk1.6.0_45/bin:/usr/jdk1.6.0_45/jre/bin:/mnt/work/bin/arm-2013.05/bin:/mnt/work/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+USETOOLS=yes
+MKX11=yes
+MACHINE=amd64
+MKUNPRIVED=yes
+CONFIG_SHELL=/bin/bash
+MACHINE_ARCH=x86_64
+MKARZERO=yes
+MKUPDATE=yes
+BUILDSEED=NetBSD-7
+execunix@xmtlinux1:/mnt/mbs2/netbsd/vinos$
 ##############################################################################
 execunix@xmtlinux1:/mnt/mbs2/netbsd/vinos$ ./build.sh -U -x -r -n -m amd64 -j4 release
 echo ===> build.sh command:    ./build.sh -U -x -r -n -m amd64 -j4 release

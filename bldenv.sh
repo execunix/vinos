@@ -2102,5 +2102,16 @@ main()
 
 main "$@"
 
+# out with the old
+if [ -n "$VINOS_TOOL_PATH" ] ; then
+	export PATH=${PATH/$VINOS_TOOL_PATH/}
+	# strip leading ':', if any
+	export PATH=${PATH/:%/}
+fi
+
+export VINOS_TOOL_PATH=${TOOLDIR}/bin:
+export PATH=$VINOS_TOOL_PATH$PATH
+
+echo PATH=${PATH}
 echo nbmk=${makewrapper}
 alias nbmk=${makewrapper}
