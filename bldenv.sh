@@ -1,4 +1,4 @@
-#! /usr/bin/env sh
+#!/bin/sh
 #	$NetBSD: build.sh,v 1.294.2.3 2014/11/14 14:58:27 martin Exp $
 #
 # Copyright (c) 2001-2011 The NetBSD Foundation, Inc.
@@ -265,7 +265,7 @@ results=/dev/null
 tab='	'
 nl='
 '
-trap "exit 1" 1 2 3 15
+#trap "exit 1" 1 2 3 15
 
 bomb()
 {
@@ -563,6 +563,9 @@ initdefaults()
 	# Create scratch directory
 	#
 	tmpdir="${TMPDIR-/tmp}/nbbuild$$"
+	if [ -w "${tmpdir}" ]; then
+		rm -r -f "${tmpdir}"
+	fi
 	mkdir "${tmpdir}" || bomb "Cannot mkdir: ${tmpdir}"
 	trap "cd /; rm -r -f \"${tmpdir}\"" 0
 	results="${tmpdir}/build.sh.results"
@@ -2100,17 +2103,15 @@ main()
 	fi
 }
 
-main "$@"
+#main "$@"
+main -U -x -u -m amd64
 
-# out with the old
-if [ -n "$VINOS_TOOL_PATH" ] ; then
-	export PATH=${PATH/$VINOS_TOOL_PATH/}
-	# strip leading ':', if any
-	export PATH=${PATH/:%/}
+if [ -n "$PATH_OLD" ] ; then
+	export PATH=${PATH_OLD}
 fi
 
-export VINOS_TOOL_PATH=${TOOLDIR}/bin:
-export PATH=$VINOS_TOOL_PATH$PATH
+export PATH_OLD=$PATH
+export PATH=${TOOLDIR}/bin:$PATH
 
 echo PATH=${PATH}
 echo nbmk=${makewrapper}
