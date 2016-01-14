@@ -362,10 +362,10 @@
 ./usr/libexec/ld.elf_so-oabi			base-sysutil-bin	compat,pic
 ./usr/libexec/ld.so				base-sys-shlib		pic,endian=1234
 ./usr/mdec/BBBB					base-obsolete		obsolete
-./usr/mdec/boot26				base-sysutil-bin	endian=1234,!eabi
-./usr/mdec/boot26,ffa				base-sysutil-bin	endian=1234,!eabi
-./usr/mdec/boot32				base-sysutil-bin	endian=1234,!eabi
-./usr/mdec/boot32,ffa				base-sysutil-bin	endian=1234,!eabi
+./usr/mdec/boot26				base-sysutil-bin	obsolete
+./usr/mdec/boot26,ffa				base-sysutil-bin	obsolete
+./usr/mdec/boot32				base-sysutil-bin	obsolete
+./usr/mdec/boot32,ffa				base-sysutil-bin	obsolete
 ./usr/mdec/bootimx23				base-sysutil-bin	endian=1234
 ./usr/mdec/bootmini2440				base-sysutil-bin
 ./usr/mdec/gzboot_ADI_BRH_0x00140000.bin	base-sysutil-bin
@@ -375,11 +375,11 @@
 ./usr/mdec/gzboot_SMDK2410_0x00000000.bin	base-sysutil-bin	endian=1234
 ./usr/mdec/gzboot_SMDK2800_0x00000000.bin	base-sysutil-bin	endian=1234
 ./usr/mdec/gzboot_SMDK2800_0x00100000.bin	base-sysutil-bin	endian=1234
-./usr/mdec/gzboot_TS7200_0x60660000.bin		base-sysutil-bin	endian=1234
-./usr/mdec/nbfs					base-sysutil-bin	endian=1234,!eabi
-./usr/mdec/nbfs,ffa				base-sysutil-bin	endian=1234,!eabi
-./usr/mdec/zboot				base-sysutil-bin	endian=1234
-./usr/mdec/zbsdmod.o				base-sysutil-bin	endian=1234
+./usr/mdec/gzboot_TS7200_0x60660000.bin		base-sysutil-bin	obsolete
+./usr/mdec/nbfs					base-sysutil-bin	obsolete
+./usr/mdec/nbfs,ffa				base-sysutil-bin	obsolete
+./usr/mdec/zboot				base-sysutil-bin	obsolete
+./usr/mdec/zbsdmod.o				base-sysutil-bin	obsolete
 ./usr/sbin/apm					base-sysutil-bin
 ./usr/sbin/apmd					base-sysutil-bin
 ./usr/sbin/eeprom				base-sysutil-bin

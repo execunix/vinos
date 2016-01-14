@@ -615,9 +615,9 @@ initdefaults()
 #
 valid_MACHINE_ARCH='
 MACHINE=amd64		MACHINE_ARCH=x86_64
-MACHINE=evbarm		MACHINE_ARCH=arm	ALIAS=evboarm-el
+MACHINE=evbarm		MACHINE_ARCH=arm	ALIAS=evboarm-el DEFAULT
 MACHINE=evbarm		MACHINE_ARCH=armeb	ALIAS=evboarm-eb
-MACHINE=evbarm		MACHINE_ARCH=earm	ALIAS=evbearm-el DEFAULT
+MACHINE=evbarm		MACHINE_ARCH=earm	ALIAS=evbearm-el
 MACHINE=evbarm		MACHINE_ARCH=earmeb	ALIAS=evbearm-eb
 MACHINE=evbarm		MACHINE_ARCH=earmhf	ALIAS=evbearmhf-el
 MACHINE=evbarm		MACHINE_ARCH=earmhfeb	ALIAS=evbearmhf-eb
@@ -2104,7 +2104,10 @@ main()
 }
 
 #main "$@"
-main -U -x -u -m amd64
+#main -U -x -u -m i386
+#main -U -x -u -m amd64
+main -U -x -u -m evbarm
+#main -U -x -u -m evbarm64
 
 if [ -n "$PATH_OLD" ] ; then
 	export PATH=${PATH_OLD}
