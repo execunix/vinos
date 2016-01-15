@@ -148,11 +148,12 @@ _SRC_TOP_!= cd "${.CURDIR}"; while :; do \
 NETBSDSRCDIR?=	${_SRC_TOP_}
 
 .if !defined(_SRC_TOP_OBJ_)
-_SRC_TOP_OBJ_!=		cd "${_SRC_TOP_}" && ${PRINTOBJDIR}
+_SRC_TOP_OBJ_!=		cd "${_SRC_TOP_}" && echo "${_SRC_TOP_}/out"
 .MAKEOVERRIDES+=	_SRC_TOP_OBJ_
 .endif
 
-_NETBSD_VERSION_DEPENDS=	${_SRC_TOP_OBJ_}/params
+_NETBSD_OUT_PARAMS=		${NETBSDSRCDIR}/out/params
+_NETBSD_VERSION_DEPENDS=	${NETBSDSRCDIR}/out/params
 _NETBSD_VERSION_DEPENDS+=	${NETBSDSRCDIR}/sys/sys/param.h
 _NETBSD_VERSION_DEPENDS+=	${NETBSDSRCDIR}/sys/conf/newvers.sh
 _NETBSD_VERSION_DEPENDS+=	${NETBSDSRCDIR}/sys/conf/osrelease.sh
@@ -192,7 +193,7 @@ USETOOLS?=	no
 # Provide a default for TOOLDIR.
 #
 .if !defined(TOOLDIR)
-TOOLDIR:=	${_SRC_TOP_}/tooldir/${HOST_OSTYPE}
+TOOLDIR:=	${_SRC_TOP_OBJ_}/tooldir.${HOST_OSTYPE}
 .MAKEOVERRIDES+= TOOLDIR
 .endif
 
