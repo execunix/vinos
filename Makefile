@@ -139,7 +139,7 @@ _SRC_TOP_OBJ_=
 #
 _SUBDIR=	tools lib include gnu external crypto/external bin games
 _SUBDIR+=	libexec sbin usr.bin
-_SUBDIR+=	usr.sbin share sys etc tests compat
+_SUBDIR+=	usr.sbin share sys etc compat
 _SUBDIR+=	.WAIT rescue .WAIT distrib regress
 
 .for dir in ${_SUBDIR}

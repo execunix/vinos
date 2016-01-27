@@ -18,35 +18,8 @@
 #	
 .if ${MACHINE_ARCH} == "arm"
 # Little endian platforms.
-ARCH_TARGETS=	ADI_BRH		ADI_BRH		ADI_BRH_sd0	\
-		0x00140000	netbsd-sd0			\
-								\
-		ADI_BRH		ADI_BRH		ADI_BRH_wd0	\
-		0x00140000	netbsd-wd0			\
-								\
-		CP3100		IQ80321		CP3100_sd0	\
-		0xf0080000	netbsd-sd0			\
-								\
-		CP3100		IQ80321		CP3100_wd0	\
-		0xf0080000	netbsd-wd0			\
-								\
-		GEMINI		GEMINI		GEMINI		\
+ARCH_TARGETS=	GEMINI		GEMINI		GEMINI		\
 		0x01600000	netbsd				\
-								\
-		IQ80310		IQ80310		IQ80310_sd0	\
-		0x00080000	netbsd-sd0			\
-								\
-		IQ80310		IQ80310		IQ80310_wd0	\
-		0x00080000	netbsd-wd0			\
-								\
-		IQ80321		IQ80321		IQ80321_sd0	\
-		0xf0080000	netbsd-sd0			\
-								\
-		IQ80321		IQ80321		IQ80321_wd0	\
-		0xf0080000	netbsd-wd0			\
-								\
-		TEAMASA_NPWR	IQ80310		TEAMASA_NPWR_sd0 \
-		0x00080000	netbsd-sd0			\
 								\
 		SMDK2800	SMDK2800	SMDK2800	\
 		0x00000000	netbsd

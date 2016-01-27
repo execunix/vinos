@@ -2107,8 +2107,8 @@ main()
 
 #main "$@"
 #main -U -x -u -m i386
-#main -U -x -u -m amd64
-main -U -x -u -m evbarm
+main -U -x -u -m amd64
+#main -U -x -u -m evbarm
 #main -U -x -u -m evbarm64
 
 if [ -n "$PATH_OLD" ] ; then
