@@ -13,9 +13,6 @@
 ./dev/MAKEDEV					etc-sys-etc
 ./dev/MAKEDEV.local				etc-sys-etc
 ./dev/MAKEDEV.subr				etc-obsolete		obsolete
-./etc/atf/NetBSD.conf				etc-atf-etc		atf
-./etc/atf/atf-run.hooks				etc-atf-etc		atf
-./etc/atf/common.conf				etc-atf-etc		atf
 ./etc/audit-packages.conf			etc-obsolete		obsolete
 ./etc/bluetooth					etc-sys-etc
 ./etc/bluetooth/bluetooth.conf			etc-obsolete		obsolete
@@ -74,7 +71,6 @@
 ./etc/inetd.conf				etc-netutil-etc
 ./etc/iscsi/auths				etc-iscsi-etc		iscsi
 ./etc/iscsi/targets				etc-iscsi-etc		iscsi
-./etc/kyua/kyua.conf				etc-kyua-etc		kyua
 ./etc/lkm.conf					etc-obsolete		obsolete
 ./etc/localtime					etc-sys-etc
 ./etc/locate.conf				etc-sys-etc

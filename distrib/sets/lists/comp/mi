@@ -8,7 +8,6 @@
 ./usr/bin/ar					comp-util-bin		binutils
 ./usr/bin/as					comp-util-bin		binutils
 ./usr/bin/asa					comp-fortran-bin
-./usr/bin/atf-compile				comp-obsolete		obsolete
 ./usr/bin/c++					comp-cxx-bin		gcccmds
 ./usr/bin/c++filt				comp-cxx-bin		binutils
 ./usr/bin/c89					comp-c-bin
@@ -130,77 +129,6 @@
 ./usr/include/arpa/telnet.h			comp-c-include
 ./usr/include/arpa/tftp.h			comp-c-include
 ./usr/include/assert.h				comp-c-include
-./usr/include/atf				comp-obsolete		obsolete
-./usr/include/atf-c				comp-atf-include
-./usr/include/atf-c++				comp-atf-include
-./usr/include/atf-c++.hpp			comp-atf-include	atf
-./usr/include/atf-c++/application.hpp		comp-obsolete		obsolete
-./usr/include/atf-c++/atffile.hpp		comp-obsolete		obsolete
-./usr/include/atf-c++/build.hpp			comp-atf-include	atf
-./usr/include/atf-c++/check.hpp			comp-atf-include	atf
-./usr/include/atf-c++/config.hpp		comp-atf-include	atf
-./usr/include/atf-c++/env.hpp			comp-obsolete		obsolete
-./usr/include/atf-c++/exceptions.hpp		comp-obsolete		obsolete
-./usr/include/atf-c++/expand.hpp		comp-obsolete		obsolete
-./usr/include/atf-c++/formats.hpp		comp-obsolete		obsolete
-./usr/include/atf-c++/fs.hpp			comp-obsolete		obsolete
-./usr/include/atf-c++/io.hpp			comp-obsolete		obsolete
-./usr/include/atf-c++/macros.hpp		comp-atf-include	atf
-./usr/include/atf-c++/noncopyable.hpp		comp-obsolete		obsolete
-./usr/include/atf-c++/parser.hpp		comp-obsolete		obsolete
-./usr/include/atf-c++/process.hpp		comp-obsolete		obsolete
-./usr/include/atf-c++/sanity.hpp		comp-obsolete		obsolete
-./usr/include/atf-c++/signals.hpp		comp-obsolete		obsolete
-./usr/include/atf-c++/tests.hpp			comp-atf-include	atf
-./usr/include/atf-c++/text.hpp			comp-obsolete		obsolete
-./usr/include/atf-c++/ui.hpp			comp-obsolete		obsolete
-./usr/include/atf-c++/user.hpp			comp-obsolete		obsolete
-./usr/include/atf-c++/utils.hpp			comp-atf-include	atf
-./usr/include/atf-c.h				comp-atf-include	atf
-./usr/include/atf-c/build.h			comp-atf-include	atf
-./usr/include/atf-c/check.h			comp-atf-include	atf
-./usr/include/atf-c/config.h			comp-atf-include	atf
-./usr/include/atf-c/defs.h			comp-atf-include	atf
-./usr/include/atf-c/dynstr.h			comp-obsolete		obsolete
-./usr/include/atf-c/env.h			comp-obsolete		obsolete
-./usr/include/atf-c/error.h			comp-atf-include	atf
-./usr/include/atf-c/error_fwd.h			comp-atf-include	atf
-./usr/include/atf-c/expand.h			comp-obsolete		obsolete
-./usr/include/atf-c/fs.h			comp-obsolete		obsolete
-./usr/include/atf-c/io.h			comp-obsolete		obsolete
-./usr/include/atf-c/list.h			comp-obsolete		obsolete
-./usr/include/atf-c/macros.h			comp-atf-include	atf
-./usr/include/atf-c/map.h			comp-obsolete		obsolete
-./usr/include/atf-c/object.h			comp-obsolete		obsolete
-./usr/include/atf-c/process.h			comp-obsolete		obsolete
-./usr/include/atf-c/sanity.h			comp-obsolete		obsolete
-./usr/include/atf-c/signals.h			comp-obsolete		obsolete
-./usr/include/atf-c/tc.h			comp-atf-include	atf
-./usr/include/atf-c/tcr.h			comp-obsolete		obsolete
-./usr/include/atf-c/text.h			comp-obsolete		obsolete
-./usr/include/atf-c/tp.h			comp-atf-include	atf
-./usr/include/atf-c/ui.h			comp-obsolete		obsolete
-./usr/include/atf-c/user.h			comp-obsolete		obsolete
-./usr/include/atf-c/utils.h			comp-atf-include	atf
-./usr/include/atf.hpp				comp-obsolete		obsolete
-./usr/include/atf/application.hpp		comp-obsolete		obsolete
-./usr/include/atf/atffile.hpp			comp-obsolete		obsolete
-./usr/include/atf/config.hpp			comp-obsolete		obsolete
-./usr/include/atf/env.hpp			comp-obsolete		obsolete
-./usr/include/atf/exceptions.hpp		comp-obsolete		obsolete
-./usr/include/atf/expand.hpp			comp-obsolete		obsolete
-./usr/include/atf/formats.hpp			comp-obsolete		obsolete
-./usr/include/atf/fs.hpp			comp-obsolete		obsolete
-./usr/include/atf/io.hpp			comp-obsolete		obsolete
-./usr/include/atf/macros.hpp			comp-obsolete		obsolete
-./usr/include/atf/parser.hpp			comp-obsolete		obsolete
-./usr/include/atf/sanity.hpp			comp-obsolete		obsolete
-./usr/include/atf/signals.hpp			comp-obsolete		obsolete
-./usr/include/atf/tests.hpp			comp-obsolete		obsolete
-./usr/include/atf/text.hpp			comp-obsolete		obsolete
-./usr/include/atf/ui.hpp			comp-obsolete		obsolete
-./usr/include/atf/user.hpp			comp-obsolete		obsolete
-./usr/include/atf/utils.hpp			comp-obsolete		obsolete
 ./usr/include/atomic.h				comp-c-include
 ./usr/include/bfd				comp-obsolete		obsolete
 ./usr/include/bfd/ansidecl.h			comp-obsolete		obsolete
@@ -2479,15 +2407,6 @@
 ./usr/include/lua.hpp				comp-c-include
 ./usr/include/luaconf.h				comp-c-include
 ./usr/include/lualib.h				comp-c-include
-./usr/include/lutok				comp-c-include
-./usr/include/lutok/c_gate.hpp			comp-c-include		kyua
-./usr/include/lutok/debug.hpp			comp-c-include		kyua
-./usr/include/lutok/exceptions.hpp		comp-c-include		kyua
-./usr/include/lutok/operations.hpp		comp-c-include		kyua
-./usr/include/lutok/stack_cleaner.hpp		comp-c-include		kyua
-./usr/include/lutok/state.hpp			comp-c-include		kyua
-./usr/include/lutok/state.ipp			comp-c-include		kyua
-./usr/include/lutok/test_utils.hpp		comp-c-include		kyua
 ./usr/include/lwp.h				comp-c-include
 ./usr/include/lzf.h				comp-c-include
 ./usr/include/lzfP.h				comp-c-include
@@ -3482,12 +3401,6 @@
 ./usr/lib/libasan_p.a				comp-c-proflib		profile,gcc=48
 ./usr/lib/libasn1.a				comp-krb5-lib		kerberos
 ./usr/lib/libasn1_p.a				comp-krb5-proflib	profile,kerberos
-./usr/lib/libatf-c++.a				comp-atf-lib		atf
-./usr/lib/libatf-c++_p.a			comp-atf-lib		atf,profile
-./usr/lib/libatf-c.a				comp-atf-lib		atf
-./usr/lib/libatf-c_p.a				comp-atf-lib		atf,profile
-./usr/lib/libatf.a				comp-obsolete		obsolete
-./usr/lib/libatf_p.a				comp-obsolete		obsolete
 ./usr/lib/libavl.a				comp-zfs-lib		zfs
 ./usr/lib/libavl_p.a				comp-zfs-proflib	profile,zfs
 ./usr/lib/libbfd.a				comp-obsolete		obsolete
@@ -3638,8 +3551,6 @@
 ./usr/lib/libldap_r_p.a				comp-ldap-proflib	profile,ldap
 ./usr/lib/liblua.a				comp-c-lib
 ./usr/lib/liblua_p.a				comp-c-proflib		profile
-./usr/lib/liblutok.a				comp-c-lib		kyua
-./usr/lib/liblutok_p.a				comp-c-proflib		profile,kyua
 ./usr/lib/liblwres.a				comp-bind-lib
 ./usr/lib/liblwres_p.a				comp-bind-proflib	profile
 ./usr/lib/liblzf.a				comp-c-lib
@@ -3782,14 +3693,8 @@
 ./usr/lib/libzpool.a				comp-zfs-lib		zfs
 ./usr/lib/libzpool_p.a				comp-zfs-proflib	profile,zfs
 ./usr/lib/pkgconfig				comp-c-lib
-./usr/lib/pkgconfig/atf-c++.pc			comp-atf-lib		atf,share
-./usr/lib/pkgconfig/atf-c.pc			comp-atf-lib		atf,share
-./usr/lib/pkgconfig/atf-sh.pc			comp-atf-lib		atf,share
-./usr/lib/pkgconfig/atf.pc			comp-obsolete		obsolete
-./usr/lib/pkgconfig/kyua-testers.pc		comp-kyua-lib		kyua,share
 ./usr/lib/pkgconfig/libcrypto.pc		comp-crypto-lib		crypto,share
 ./usr/lib/pkgconfig/libssl.pc			comp-crypto-lib		crypto,share
-./usr/lib/pkgconfig/lutok.pc			comp-crypto-lib		kyua,share
 ./usr/lib/pkgconfig/openssl.pc			comp-crypto-lib		crypto,share
 ./usr/lib/pkgconfig/sqlite3.pc			comp-c-lib
 ./usr/lib/pkgconfig/zlib.pc			comp-c-lib
@@ -5280,9 +5185,6 @@
 ./usr/share/man/cat3/atanh.0			comp-c-catman		.cat
 ./usr/share/man/cat3/atanhf.0			comp-c-catman		.cat
 ./usr/share/man/cat3/atexit.0			comp-c-catman		.cat
-./usr/share/man/cat3/atf-c++-api.0		comp-atf-catman		.cat,atf
-./usr/share/man/cat3/atf-c-api.0		comp-atf-catman		.cat,atf
-./usr/share/man/cat3/atf-sh-api.0		comp-atf-catman		.cat,atf
 ./usr/share/man/cat3/atof.0			comp-c-catman		.cat
 ./usr/share/man/cat3/atoi.0			comp-c-catman		.cat
 ./usr/share/man/cat3/atol.0			comp-c-catman		.cat
@@ -12168,9 +12070,6 @@
 ./usr/share/man/html3/atanh.html		comp-c-htmlman		html
 ./usr/share/man/html3/atanhf.html		comp-c-htmlman		html
 ./usr/share/man/html3/atexit.html		comp-c-htmlman		html
-./usr/share/man/html3/atf-c++-api.html		comp-atf-htmlman	html,atf
-./usr/share/man/html3/atf-c-api.html		comp-atf-htmlman	html,atf
-./usr/share/man/html3/atf-sh-api.html		comp-atf-htmlman	html,atf
 ./usr/share/man/html3/atof.html			comp-c-htmlman		html
 ./usr/share/man/html3/atoi.html			comp-c-htmlman		html
 ./usr/share/man/html3/atol.html			comp-c-htmlman		html
@@ -18877,9 +18776,6 @@
 ./usr/share/man/man3/atanh.3			comp-c-man		.man
 ./usr/share/man/man3/atanhf.3			comp-c-man		.man
 ./usr/share/man/man3/atexit.3			comp-c-man		.man
-./usr/share/man/man3/atf-c++-api.3		comp-atf-man		.man,atf
-./usr/share/man/man3/atf-c-api.3		comp-atf-man		.man,atf
-./usr/share/man/man3/atf-sh-api.3		comp-atf-man		.man,atf
 ./usr/share/man/man3/atof.3			comp-c-man		.man
 ./usr/share/man/man3/atoi.3			comp-c-man		.man
 ./usr/share/man/man3/atol.3			comp-c-man		.man

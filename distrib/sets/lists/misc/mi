@@ -14,12 +14,6 @@
 ./usr/share/dict/web2				misc-reference-share	share
 ./usr/share/dict/web2a				misc-reference-share	share
 ./usr/share/dict/words				misc-reference-share	share
-./usr/share/doc/atf				misc-obsolete		obsolete
-./usr/share/doc/atf/AUTHORS			misc-obsolete		obsolete
-./usr/share/doc/atf/COPYING			misc-obsolete		obsolete
-./usr/share/doc/atf/NEWS			misc-obsolete		obsolete
-./usr/share/doc/atf/README			misc-obsolete		obsolete
-./usr/share/doc/atf/ROADMAP			misc-obsolete		obsolete
 ./usr/share/doc/html/bind9/arm/Bv9ARM.ch01.html	misc-obsolete		obsolete
 ./usr/share/doc/html/bind9/arm/Bv9ARM.ch02.html	misc-obsolete		obsolete
 ./usr/share/doc/html/bind9/arm/Bv9ARM.ch03.html	misc-obsolete		obsolete
@@ -422,21 +416,6 @@
 ./usr/share/doc/html/postfix/verify.8.html	misc-obsolete	obsolete
 ./usr/share/doc/html/postfix/virtual.5.html	misc-obsolete	obsolete
 ./usr/share/doc/html/postfix/virtual.8.html	misc-obsolete	obsolete
-./usr/share/doc/kyua-atf-compat			misc-obsolete	obsolete
-./usr/share/doc/kyua-atf-compat/AUTHORS		misc-obsolete	obsolete
-./usr/share/doc/kyua-atf-compat/COPYING		misc-obsolete	obsolete
-./usr/share/doc/kyua-atf-compat/NEWS		misc-obsolete	obsolete
-./usr/share/doc/kyua-atf-compat/README		misc-obsolete	obsolete
-./usr/share/doc/kyua-cli			misc-obsolete	obsolete
-./usr/share/doc/kyua-cli/AUTHORS		misc-obsolete	obsolete
-./usr/share/doc/kyua-cli/COPYING		misc-obsolete	obsolete
-./usr/share/doc/kyua-cli/NEWS			misc-obsolete	obsolete
-./usr/share/doc/kyua-cli/README			misc-obsolete	obsolete
-./usr/share/doc/kyua-testers			misc-obsolete	obsolete
-./usr/share/doc/kyua-testers/AUTHORS		misc-obsolete	obsolete
-./usr/share/doc/kyua-testers/COPYING		misc-obsolete	obsolete
-./usr/share/doc/kyua-testers/NEWS		misc-obsolete	obsolete
-./usr/share/doc/kyua-testers/README		misc-obsolete	obsolete
 ./usr/share/doc/papers/mckusick84-ffs/mckusick84-ffs-9.png	misc-smm-doc		doc,html,groffhtmldoc
 ./usr/share/doc/papers/mckusick84-ffs/mckusick84-ffs.html	misc-smm-doc		doc,html,groffhtmldoc
 ./usr/share/doc/papers/mckusick84-ffs/mckusick84-ffs.ps.gz	misc-smm-doc		doc
@@ -558,11 +537,6 @@
 ./usr/share/doc/psd/title.html					misc-psd-doc		doc,html,groffhtmldoc
 ./usr/share/doc/psd/title.ps.gz					misc-psd-doc		doc
 ./usr/share/doc/psd/title.txt					misc-psd-doc		doc
-./usr/share/doc/reference/ref1/atf				misc-atf-doc
-./usr/share/doc/reference/ref1/atf/AUTHORS			misc-atf-doc		doc,atf
-./usr/share/doc/reference/ref1/atf/COPYING			misc-atf-doc		doc,atf
-./usr/share/doc/reference/ref1/atf/NEWS				misc-atf-doc		doc,atf
-./usr/share/doc/reference/ref1/atf/README			misc-atf-doc		doc,atf
 ./usr/share/doc/reference/ref1/bzip2/manual.html		misc-util-htmldoc	share
 ./usr/share/doc/reference/ref1/config/config.html		misc-usd-doc		doc,html,groffhtmldoc
 ./usr/share/doc/reference/ref1/config/config.ps.gz		misc-usd-doc		doc
@@ -643,22 +617,6 @@
 ./usr/share/doc/reference/ref1/gprof/gprof.html			misc-psd-doc		doc,html,groffhtmldoc
 ./usr/share/doc/reference/ref1/gprof/gprof.ps.gz		misc-psd-doc		doc
 ./usr/share/doc/reference/ref1/gprof/gprof.txt			misc-psd-doc		doc
-./usr/share/doc/reference/ref1/kyua				misc-kyua-doc
-./usr/share/doc/reference/ref1/kyua/kyua-atf-compat		misc-kyua-doc
-./usr/share/doc/reference/ref1/kyua/kyua-atf-compat/AUTHORS	misc-kyua-doc		doc,kyua
-./usr/share/doc/reference/ref1/kyua/kyua-atf-compat/COPYING	misc-kyua-doc		doc,kyua
-./usr/share/doc/reference/ref1/kyua/kyua-atf-compat/NEWS	misc-kyua-doc		doc,kyua
-./usr/share/doc/reference/ref1/kyua/kyua-atf-compat/README	misc-kyua-doc		doc,kyua
-./usr/share/doc/reference/ref1/kyua/kyua-cli			misc-kyua-doc
-./usr/share/doc/reference/ref1/kyua/kyua-cli/AUTHORS		misc-kyua-doc		doc,kyua
-./usr/share/doc/reference/ref1/kyua/kyua-cli/COPYING		misc-kyua-doc		doc,kyua
-./usr/share/doc/reference/ref1/kyua/kyua-cli/NEWS		misc-kyua-doc		doc,kyua
-./usr/share/doc/reference/ref1/kyua/kyua-cli/README		misc-kyua-doc		doc,kyua
-./usr/share/doc/reference/ref1/kyua/kyua-testers		misc-kyua-doc
-./usr/share/doc/reference/ref1/kyua/kyua-testers/AUTHORS	misc-kyua-doc		doc,kyua
-./usr/share/doc/reference/ref1/kyua/kyua-testers/COPYING	misc-kyua-doc		doc,kyua
-./usr/share/doc/reference/ref1/kyua/kyua-testers/NEWS		misc-kyua-doc		doc,kyua
-./usr/share/doc/reference/ref1/kyua/kyua-testers/README		misc-kyua-doc		doc,kyua
 ./usr/share/doc/reference/ref1/mail/mail.html			misc-usd-doc		doc,html,groffhtmldoc
 ./usr/share/doc/reference/ref1/mail/mail.ps.gz			misc-usd-doc		doc
 ./usr/share/doc/reference/ref1/mail/mail.txt			misc-usd-doc		doc
@@ -1354,11 +1312,6 @@
 ./usr/share/examples/asm/hello			misc-asm-examples
 ./usr/share/examples/asm/hello/Makefile		misc-asm-examples	share
 ./usr/share/examples/asm/hello/powerpc.s	misc-asm-examples	share
-./usr/share/examples/atf			misc-atf-examples
-./usr/share/examples/atf/atf-run.hooks		misc-atf-examples	share,atf,!kyua
-./usr/share/examples/atf/atf-run.hooks		misc-obsolete		share,kyua,obsolete
-./usr/share/examples/atf/tests-results.css	misc-atf-examples	share,atf,!kyua
-./usr/share/examples/atf/tests-results.css	misc-obsolete		share,kyua,obsolete
 ./usr/share/examples/dhcp/dhcpd.conf		misc-dhcpd-examples	share
 ./usr/share/examples/disktab/disktab		misc-sys-examples	share
 ./usr/share/examples/emul/linux/etc/LINUX_MAKEDEV	misc-sys-examples	share
@@ -1424,9 +1377,6 @@
 ./usr/share/examples/isdn/isdnd.rates.UK.BT	misc-isdn-examples	share
 ./usr/share/examples/isdn/isdnd.rc.sample	misc-isdn-examples	share
 ./usr/share/examples/kerberos/krb5.conf		misc-krb5-examples	kerberos,share
-./usr/share/examples/kyua-cli			misc-kyua-examples
-./usr/share/examples/kyua-cli/Kyuafile.top	misc-kyua-examples	share,kyua
-./usr/share/examples/kyua-cli/kyua.conf		misc-kyua-examples	share,kyua
 ./usr/share/examples/libsaslc			misc-libsaslc-examples
 ./usr/share/examples/libsaslc/README		misc-libsaslc-examples	share
 ./usr/share/examples/libsaslc/mech		misc-libsaslc-examples
@@ -1438,11 +1388,6 @@
 ./usr/share/examples/libsaslc/mech/LOGIN.conf	misc-libsaslc-examples	share
 ./usr/share/examples/libsaslc/mech/PLAIN.conf	misc-libsaslc-examples	share
 ./usr/share/examples/libsaslc/saslc.conf	misc-libsaslc-examples	share
-./usr/share/examples/lutok			misc-lutok-examples
-./usr/share/examples/lutok/bindings.cpp		misc-lutok-examples	share,kyua
-./usr/share/examples/lutok/hello.cpp		misc-lutok-examples	share,kyua
-./usr/share/examples/lutok/interpreter.cpp	misc-lutok-examples	share,kyua
-./usr/share/examples/lutok/raii.cpp		misc-lutok-examples	share,kyua
 ./usr/share/examples/mount_portal/advanced.1	misc-sys-examples	share
 ./usr/share/examples/mount_portal/advanced.1.conf	misc-sys-examples	share
 ./usr/share/examples/mount_portal/cvs.1		misc-sys-examples	share
@@ -1626,12 +1571,4 @@
 ./usr/share/misc/zipcodes			misc-reference-share	share
 ./usr/share/postfix				misc-obsolete		obsolete
 ./usr/share/xml					misc-xml-share
-./usr/share/xml/atf				misc-atf-share
-./usr/share/xml/atf/tests-results.dtd		misc-atf-share		share,atf,!kyua
-./usr/share/xml/atf/tests-results.dtd		misc-obsolete		share,kyua,obsolete
-./usr/share/xml/catalog				misc-obsolete		share,kyua,obsolete
-./usr/share/xml/catalog				misc-xml-share		share,!kyua
 ./usr/share/xsl					misc-xml-share
-./usr/share/xsl/atf				misc-atf-share
-./usr/share/xsl/atf/tests-results.xsl		misc-atf-share		share,atf,!kyua
-./usr/share/xsl/atf/tests-results.xsl		misc-obsolete		share,kyua,obsolete

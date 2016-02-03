@@ -7,8 +7,6 @@
 ##### Basic targets
 
 ##### Default values
-LIBATF_C?=	/usr/lib/libatf-c.a
-LIBATF_CXX?=	/usr/lib/libatf-c++.a
 LIBBLUETOOTH?=	/usr/lib/libbluetooth.a
 LIBBZ2?=	/usr/lib/libbz2.a
 LIBC?=		/usr/lib/libc.a
@@ -32,7 +30,6 @@ LIBINTL?=	/usr/lib/libintl.a
 LIBIPSEC?=	/usr/lib/libipsec.a
 LIBKVM?=	/usr/lib/libkvm.a
 LIBL?=		/usr/lib/libl.a
-LIBLUTOK?=	/usr/lib/liblutok.a
 LIBLZMA?=	/usr/lib/liblzma.a
 LIBM?=		/usr/lib/libm.a
 LIBMAGIC?=	/usr/lib/libmagic.a

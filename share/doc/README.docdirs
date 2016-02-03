@@ -19,7 +19,6 @@ Reference docs (in /usr/share/doc/reference/ref[1-9])
 	ref1/csh		src/bin/csh/USD.doc
 	ref1/ex			src/external/bsd/nvi/docs/USD.doc/exref
 	ref1/gprof		src/usr.bin/gprof/PSD.doc
-	ref1/kyua/*		src/external/bsd/kyua-*/share/doc/kyua-*
 	ref1/mail		src/usr.bin/mail/USD.doc
 	ref1/make		src/usr.bin/make/USD.doc
 	ref1/roff/memacros	src/share/doc/usd/19.memacros

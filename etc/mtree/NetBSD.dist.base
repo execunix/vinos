@@ -27,7 +27,6 @@
 ./etc/X11/xinit
 ./etc/X11/xserver
 ./etc/X11/xsm
-./etc/atf
 ./etc/bluetooth
 ./etc/cgd			mode=0700
 ./etc/defaults
@@ -36,7 +35,6 @@
 ./etc/fonts/conf.d
 ./etc/iscsi
 ./etc/kerberosV
-./etc/kyua
 ./etc/mail
 ./etc/mtree
 ./etc/namedb
@@ -96,8 +94,6 @@
 ./usr/include/adosfs
 ./usr/include/altq
 ./usr/include/arpa
-./usr/include/atf-c
-./usr/include/atf-c++
 ./usr/include/c++
 ./usr/include/c++/experimental
 ./usr/include/c++/ext
@@ -178,7 +174,6 @@
 ./usr/include/isofs/cd9660
 ./usr/include/kadm5
 ./usr/include/krb5
-./usr/include/lutok
 ./usr/include/lzma
 ./usr/include/miscfs
 ./usr/include/miscfs/fdesc
@@ -264,7 +259,6 @@
 ./usr/pkg			ignore optional
 ./usr/sbin
 ./usr/share
-./usr/share/atf
 ./usr/share/calendar
 ./usr/share/dhcpd
 ./usr/share/dict
@@ -278,16 +272,11 @@
 ./usr/share/doc/psd
 ./usr/share/doc/reference
 ./usr/share/doc/reference/ref1
-./usr/share/doc/reference/ref1/atf
 ./usr/share/doc/reference/ref1/bzip2
 ./usr/share/doc/reference/ref1/config
 ./usr/share/doc/reference/ref1/csh
 ./usr/share/doc/reference/ref1/ex
 ./usr/share/doc/reference/ref1/gprof
-./usr/share/doc/reference/ref1/kyua
-./usr/share/doc/reference/ref1/kyua/kyua-atf-compat
-./usr/share/doc/reference/ref1/kyua/kyua-cli
-./usr/share/doc/reference/ref1/kyua/kyua-testers
 ./usr/share/doc/reference/ref1/mail
 ./usr/share/doc/reference/ref1/make
 ./usr/share/doc/reference/ref1/roff
@@ -337,7 +326,6 @@
 ./usr/share/examples/apm
 ./usr/share/examples/asm
 ./usr/share/examples/asm/hello
-./usr/share/examples/atf
 ./usr/share/examples/dhcp
 ./usr/share/examples/disktab
 ./usr/share/examples/emul
@@ -355,11 +343,9 @@
 ./usr/share/examples/ipf
 ./usr/share/examples/isdn
 ./usr/share/examples/kerberos
-./usr/share/examples/kyua-cli
 ./usr/share/examples/libsaslc
 ./usr/share/examples/libsaslc/mech
 ./usr/share/examples/lua
-./usr/share/examples/lutok
 ./usr/share/examples/mount_portal
 ./usr/share/examples/npf
 ./usr/share/examples/openssl
@@ -447,10 +433,6 @@
 ./usr/share/keymaps/amiga
 ./usr/share/keymaps/atari
 ./usr/share/keymaps/x68k
-./usr/share/kyua-atf-compat
-./usr/share/kyua-cli
-./usr/share/kyua-cli/misc
-./usr/share/kyua-cli/store
 ./usr/share/legal
 ./usr/share/locale
 ./usr/share/locale/af_ZA.ISO8859-1
@@ -1211,9 +1193,7 @@
 ./usr/share/wscons/fonts
 ./usr/share/wscons/keymaps
 ./usr/share/xml
-./usr/share/xml/atf
 ./usr/share/xsl
-./usr/share/xsl/atf
 ./usr/share/zoneinfo
 ./usr/share/zoneinfo/Africa
 ./usr/share/zoneinfo/America

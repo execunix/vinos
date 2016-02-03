@@ -26,8 +26,6 @@
 ./usr/lib/i386/libarchive_g.a			comp-c-debuglib		compat,debuglib
 ./usr/lib/i386/libasan_g.a			comp-c-debuglib		compat,debuglib,gcc=48
 ./usr/lib/i386/libasn1_g.a			comp-c-debuglib		compat,debuglib,kerberos
-./usr/lib/i386/libatf-c++_g.a			comp-c-debuglib		compat,debuglib,atf
-./usr/lib/i386/libatf-c_g.a			comp-c-debuglib		compat,debuglib,atf
 ./usr/lib/i386/libbfd_g.a			comp-c-debuglib		compat,debuglib
 ./usr/lib/i386/libbind9_g.a			comp-c-debuglib		compat,debuglib
 ./usr/lib/i386/libblacklist_g.a			comp-c-debuglib		compat,debuglib
@@ -93,8 +91,6 @@
 ./usr/lib/i386/libldap_g.a			comp-c-debuglib		compat,debuglib,ldap
 ./usr/lib/i386/libldap_r_g.a			comp-c-debuglib		compat,debuglib,ldap
 ./usr/lib/i386/liblua_g.a			comp-c-debuglib		compat,debuglib
-./usr/lib/i386/liblutok_g.a			comp-c-debuglib		compat,debuglib,kyua
-./usr/lib/i386/liblutok_g.a			comp-c-debuglib		compat,debuglib,kyua
 ./usr/lib/i386/liblwres_g.a			comp-c-debuglib		compat,debuglib
 ./usr/lib/i386/liblzf_g.a			comp-c-debuglib		compat,debuglib
 ./usr/lib/i386/liblzma_g.a			comp-c-debuglib		compat,debuglib
@@ -184,9 +180,6 @@
 ./usr/libdata/debug/usr/lib/i386/libasn1.so.8.0.debug	comp-compat-shlib	compat,pic,kerberos,debug,obsolete
 ./usr/libdata/debug/usr/lib/i386/libasan.so.0.0.debug	comp-compat-shlib	compat,pic,debug,gcc=48
 ./usr/libdata/debug/usr/lib/i386/libasn1.so.9.0.debug	comp-compat-shlib	compat,pic,kerberos,debug
-./usr/libdata/debug/usr/lib/i386/libatf-c++.so.0.0.debug	comp-compat-shlib	compat,pic,atf,debug,obsolete
-./usr/libdata/debug/usr/lib/i386/libatf-c++.so.1.0.debug	comp-compat-shlib	compat,pic,atf,debug
-./usr/libdata/debug/usr/lib/i386/libatf-c.so.0.0.debug	comp-compat-shlib	compat,pic,atf,debug
 ./usr/libdata/debug/usr/lib/i386/libbfd.so.13.0.debug	comp-compat-shlib	compat,pic,binutils,debug
 ./usr/libdata/debug/usr/lib/i386/libbind9.so.8.2.debug	comp-compat-shlib	compat,pic,debug
 ./usr/libdata/debug/usr/lib/i386/libblacklist.so.0.0.debug	comp-compat-shlib	compat,pic,debug
@@ -255,8 +248,6 @@
 ./usr/libdata/debug/usr/lib/i386/libldap.so.4.3.debug	comp-compat-shlib	compat,pic,ldap,debug
 ./usr/libdata/debug/usr/lib/i386/libldap_r.so.4.3.debug	comp-compat-shlib	compat,pic,ldap,debug
 ./usr/libdata/debug/usr/lib/i386/liblua.so.5.3.debug	comp-compat-shlib	compat,pic,debug
-./usr/libdata/debug/usr/lib/i386/liblutok.so.1.0.debug	comp-obsolete		obsolete
-./usr/libdata/debug/usr/lib/i386/liblutok.so.2.0.debug	comp-compat-shlib	compat,pic,debug,kyua
 ./usr/libdata/debug/usr/lib/i386/liblwres.so.6.0.debug	comp-compat-shlib	compat,pic,debug,obsolete
 ./usr/libdata/debug/usr/lib/i386/liblwres.so.8.2.debug	comp-compat-shlib	compat,pic,debug
 ./usr/libdata/debug/usr/lib/i386/liblzf.so.1.0.debug	comp-compat-shlib	compat,pic,debug

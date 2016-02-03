@@ -56,8 +56,6 @@
 ./usr/libdata/debug/usr/lib/eabi/libarchive.so.3.1.debug	comp-sys-debug	debug,compat,pic
 ./usr/libdata/debug/usr/lib/eabi/libarm.so.0.0.debug		comp-sys-debug	debug,compat,pic
 ./usr/libdata/debug/usr/lib/eabi/libasn1.so.9.0.debug		comp-compat-shlib	compat,pic,kerberos,debug
-./usr/libdata/debug/usr/lib/eabi/libatf-c++.so.1.0.debug		comp-compat-shlib	compat,pic,atf,debug
-./usr/libdata/debug/usr/lib/eabi/libatf-c.so.0.0.debug		comp-compat-shlib	compat,pic,atf,debug
 ./usr/libdata/debug/usr/lib/eabi/libavl.so.0.0.debug		comp-zfs-debug	zfs,dynamicroot,debug,compat
 ./usr/libdata/debug/usr/lib/eabi/libbfd.so.13.0.debug	comp-sys-debug	binutils,debug,compat
 ./usr/libdata/debug/usr/lib/eabi/libbind9.so.8.2.debug	comp-bind-debug	debug,compat
@@ -117,7 +115,6 @@
 ./usr/libdata/debug/usr/lib/eabi/libldap.so.4.3.debug	comp-ldap-debug	ldap,debug,compat
 ./usr/libdata/debug/usr/lib/eabi/libldap_r.so.4.3.debug	comp-ldap-debug	ldap,debug,compat
 ./usr/libdata/debug/usr/lib/eabi/liblua.so.5.3.debug		comp-sys-debug	debug,compat
-./usr/libdata/debug/usr/lib/eabi/liblutok.so.2.0.debug		comp-kyua-debug	kyua,debug,compat
 ./usr/libdata/debug/usr/lib/eabi/liblwres.so.8.2.debug	comp-bind-debug	debug,compat
 ./usr/libdata/debug/usr/lib/eabi/liblzf.so.1.0.debug		comp-sys-debug	debug,compat
 ./usr/libdata/debug/usr/lib/eabi/liblzma.so.1.1.debug	comp-sys-debug	debug,compat
@@ -200,8 +197,6 @@
 #./usr/libdata/debug/usr/lib/eabihf/libarchive.so.3.1.debug	comp-sys-debug	debug,compat
 #./usr/libdata/debug/usr/lib/eabihf/libarm.so.0.0.debug		comp-sys-debug	debug,compat,pic
 #./usr/libdata/debug/usr/lib/eabihf/libasn1.so.9.0.debug		comp-compat-shlib	compat,pic,kerberos,debug
-#./usr/libdata/debug/usr/lib/eabihf/libatf-c++.so.1.0.debug		comp-compat-shlib	compat,pic,atf,debug
-#./usr/libdata/debug/usr/lib/eabihf/libatf-c.so.0.0.debug		comp-compat-shlib	compat,pic,atf,debug
 #./usr/libdata/debug/usr/lib/eabihf/libavl.so.0.0.debug		comp-zfs-debug	zfs,dynamicroot,debug,compat
 #./usr/libdata/debug/usr/lib/eabihf/libbfd.so.13.0.debug	comp-sys-debug	binutils,debug,compat
 #./usr/libdata/debug/usr/lib/eabihf/libbind9.so.7.0.debug	comp-bind-debug	debug,compat
@@ -260,7 +255,6 @@
 #./usr/libdata/debug/usr/lib/eabihf/libldap.so.4.2.debug	comp-ldap-debug	ldap,debug,compat
 #./usr/libdata/debug/usr/lib/eabihf/libldap_r.so.4.2.debug	comp-ldap-debug	ldap,debug,compat
 #./usr/libdata/debug/usr/lib/eabihf/liblua.so.1.0.debug		comp-sys-debug	debug,compat
-#./usr/libdata/debug/usr/lib/eabihf/liblutok.so.2.0.debug		comp-kyua-debug	kyua,debug,compat
 #./usr/libdata/debug/usr/lib/eabihf/liblwres.so.7.0.debug	comp-bind-debug	debug,compat
 #./usr/libdata/debug/usr/lib/eabihf/liblzf.so.1.0.debug		comp-sys-debug	debug,compat
 #./usr/libdata/debug/usr/lib/eabihf/liblzma.so.1.1.debug	comp-sys-debug	debug,compat
@@ -343,8 +337,6 @@
 ./usr/libdata/debug/usr/lib/oabi/libarchive.so.3.1.debug	comp-sys-debug	debug,compat,pic
 ./usr/libdata/debug/usr/lib/oabi/libarm.so.0.0.debug		comp-sys-debug	debug,compat,pic
 ./usr/libdata/debug/usr/lib/oabi/libasn1.so.9.0.debug		comp-compat-shlib	compat,pic,kerberos,debug
-./usr/libdata/debug/usr/lib/oabi/libatf-c++.so.1.0.debug	comp-compat-shlib	compat,pic,atf,debug
-./usr/libdata/debug/usr/lib/oabi/libatf-c.so.0.0.debug		comp-compat-shlib	compat,pic,atf,debug
 ./usr/libdata/debug/usr/lib/oabi/libavl.so.0.0.debug		comp-zfs-debug	zfs,dynamicroot,debug,compat
 ./usr/libdata/debug/usr/lib/oabi/libbfd.so.13.0.debug		comp-sys-debug	binutils,debug,compat
 ./usr/libdata/debug/usr/lib/oabi/libbind9.so.8.2.debug		comp-bind-debug	debug,compat
@@ -404,7 +396,6 @@
 ./usr/libdata/debug/usr/lib/oabi/libldap.so.4.3.debug		comp-ldap-debug	ldap,debug,compat
 ./usr/libdata/debug/usr/lib/oabi/libldap_r.so.4.3.debug		comp-ldap-debug	ldap,debug,compat
 ./usr/libdata/debug/usr/lib/oabi/liblua.so.5.3.debug		comp-sys-debug	debug,compat
-./usr/libdata/debug/usr/lib/oabi/liblutok.so.2.0.debug		comp-kyua-debug	kyua,debug,compat
 ./usr/libdata/debug/usr/lib/oabi/liblwres.so.8.2.debug		comp-bind-debug	debug,compat
 ./usr/libdata/debug/usr/lib/oabi/liblzf.so.1.0.debug		comp-sys-debug	debug,compat
 ./usr/libdata/debug/usr/lib/oabi/liblzma.so.1.1.debug		comp-sys-debug	debug,compat

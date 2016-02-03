@@ -91,10 +91,6 @@
 ./usr/lib/eabi/libarchive.so.3.1		base-compat-shlib	compat,pic
 ./usr/lib/eabi/libasn1.so.9			base-compat-shlib	compat,pic,kerberos
 ./usr/lib/eabi/libasn1.so.9.0			base-compat-shlib	compat,pic,kerberos
-./usr/lib/eabi/libatf-c++.so.1			base-compat-shlib	compat,pic,atf
-./usr/lib/eabi/libatf-c++.so.1.0		base-compat-shlib	compat,pic,atf
-./usr/lib/eabi/libatf-c.so.0			base-compat-shlib	compat,pic,atf
-./usr/lib/eabi/libatf-c.so.0.0			base-compat-shlib	compat,pic,atf
 ./usr/lib/eabi/libbfd.so.13			base-compat-shlib	compat,pic,binutils
 ./usr/lib/eabi/libbfd.so.13.0			base-compat-shlib	compat,pic,binutils
 ./usr/lib/eabi/libbind9.so.8			base-compat-shlib	compat,pic
@@ -205,8 +201,6 @@
 ./usr/lib/eabi/libldap_r.so.4.3			base-compat-shlib	compat,pic,ldap
 ./usr/lib/eabi/liblua.so.5			base-compat-shlib	compat,pic
 ./usr/lib/eabi/liblua.so.5.3			base-compat-shlib	compat,pic
-./usr/lib/eabi/liblutok.so.2			base-compat-shlib	compat,pic,kyua
-./usr/lib/eabi/liblutok.so.2.0			base-compat-shlib	compat,pic,kyua
 ./usr/lib/eabi/liblwres.so.8			base-compat-shlib	compat,pic
 ./usr/lib/eabi/liblwres.so.8.2			base-compat-shlib	compat,pic
 ./usr/lib/eabi/liblzf.so.1			base-compat-shlib	compat,pic
@@ -389,10 +383,6 @@
 #./usr/lib/eabihf/libarchive.so.3.1			base-compat-shlib	compat,pic
 #./usr/lib/eabihf/libasn1.so.9			base-compat-shlib	compat,pic,kerberos
 #./usr/lib/eabihf/libasn1.so.9.0			base-compat-shlib	compat,pic,kerberos
-#./usr/lib/eabihf/libatf-c++.so.1			base-compat-shlib	compat,pic,atf
-#./usr/lib/eabihf/libatf-c++.so.1.0			base-compat-shlib	compat,pic,atf
-#./usr/lib/eabihf/libatf-c.so.0			base-compat-shlib	compat,pic,atf
-#./usr/lib/eabihf/libatf-c.so.0.0			base-compat-shlib	compat,pic,atf
 #./usr/lib/eabihf/libbfd.so.13			base-compat-shlib	compat,pic,binutils
 #./usr/lib/eabihf/libbfd.so.13.0			base-compat-shlib	compat,pic,binutils
 #./usr/lib/eabihf/libbind9.so.8			base-compat-shlib	compat,pic
@@ -501,8 +491,6 @@
 #./usr/lib/eabihf/libldap_r.so.4.3			base-compat-shlib	compat,pic,ldap
 #./usr/lib/eabihf/liblua.so.5			base-compat-shlib	compat,pic
 #./usr/lib/eabihf/liblua.so.5.3			base-compat-shlib	compat,pic
-#./usr/lib/eabihf/liblutok.so.2			base-compat-shlib	compat,pic,kyua
-#./usr/lib/eabihf/liblutok.so.2.0			base-compat-shlib	compat,pic,kyua
 #./usr/lib/eabihf/liblwres.so.8			base-compat-shlib	compat,pic
 #./usr/lib/eabihf/liblwres.so.8.2			base-compat-shlib	compat,pic
 #./usr/lib/eabihf/liblzf.so.1			base-compat-shlib	compat,pic
@@ -685,10 +673,6 @@
 ./usr/lib/oabi/libarm.so.0.0			base-compat-shlib	compat,pic
 ./usr/lib/oabi/libasn1.so.9			base-compat-shlib	compat,pic,kerberos
 ./usr/lib/oabi/libasn1.so.9.0			base-compat-shlib	compat,pic,kerberos
-./usr/lib/oabi/libatf-c++.so.1			base-compat-shlib	compat,pic,atf
-./usr/lib/oabi/libatf-c++.so.1.0		base-compat-shlib	compat,pic,atf
-./usr/lib/oabi/libatf-c.so.0			base-compat-shlib	compat,pic,atf
-./usr/lib/oabi/libatf-c.so.0.0			base-compat-shlib	compat,pic,atf
 ./usr/lib/oabi/libbfd.so.13			base-compat-shlib	compat,pic,binutils
 ./usr/lib/oabi/libbfd.so.13.0			base-compat-shlib	compat,pic,binutils
 ./usr/lib/oabi/libbind9.so.8			base-compat-shlib	compat,pic
@@ -797,8 +781,6 @@
 ./usr/lib/oabi/libldap_r.so.4.3			base-compat-shlib	compat,pic,ldap
 ./usr/lib/oabi/liblua.so.5			base-compat-shlib	compat,pic
 ./usr/lib/oabi/liblua.so.5.3			base-compat-shlib	compat,pic
-./usr/lib/oabi/liblutok.so.1			base-compat-shlib	compat,pic,kyua
-./usr/lib/oabi/liblutok.so.1.0			base-compat-shlib	compat,pic,kyua
 ./usr/lib/oabi/liblwres.so.8			base-compat-shlib	compat,pic
 ./usr/lib/oabi/liblwres.so.8.2			base-compat-shlib	compat,pic
 ./usr/lib/oabi/liblzf.so.1			base-compat-shlib	compat,pic

@@ -9,9 +9,6 @@
 ./usr/lib/libarchive_pic.a			comp-c-piclib	picinstall
 ./usr/lib/libasan_pic.a				comp-c-piclib		picinstall,gcc=48
 ./usr/lib/libasn1_pic.a				comp-c-piclib		kerberos,picinstall
-./usr/lib/libatf-c++_pic.a			comp-atf-piclib		atf,picinstall
-./usr/lib/libatf-c_pic.a			comp-atf-piclib		atf,picinstall
-./usr/lib/libatf_pic.a				comp-obsolete		obsolete
 ./usr/lib/libavl_pic.a				comp-zfs-piclib		zfs,picinstall
 ./usr/lib/libbind9_pic.a			comp-bind-piclib	picinstall
 ./usr/lib/libblacklist_pic.a			comp-c-piclib	picinstall
@@ -86,7 +83,6 @@
 ./usr/lib/libldap_pic.a				comp-ldap-piclib	ldap,picinstall
 ./usr/lib/libldap_r_pic.a			comp-ldap-piclib	ldap,picinstall
 ./usr/lib/liblua_pic.a				comp-c-piclib	picinstall
-./usr/lib/liblutok_pic.a			comp-c-piclib		kyua,picinstall
 ./usr/lib/liblwres_pic.a			comp-bind-piclib	picinstall
 ./usr/lib/liblzf_pic.a				comp-c-piclib	picinstall
 ./usr/lib/liblzma_pic.a				comp-c-piclib	picinstall

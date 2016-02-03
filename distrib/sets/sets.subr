@@ -139,11 +139,6 @@ else
 	module=yes
 	modset="modules"
 fi
-if [ "${MKATF}" = "no" ]; then
-	testset=""
-else
-	testset="tests"
-fi
 if [ "${MKDEBUG}" = "no" ]; then
 	debugset=""
 	xdebugset=""
@@ -162,7 +157,7 @@ stlib=$shlib
 if [ "${MKPIC}" = "no" ]; then
 	shlib=no
 fi
-nlists="base comp $debugset etc games man misc $modset $testset text"
+nlists="base comp $debugset etc games man misc $modset text"
 xlists="xbase xcomp $xdebugset xetc xfont xserver"
 extlists="extbase extcomp extetc"
 
@@ -199,7 +194,6 @@ SUBST="${SUBST};s#@MACHINE@#${MACHINE}#g"
 #	obsolete		file is obsolete, and only printed if 
 #				${obsolete} != 0
 #
-#	atf			${MKATF} != no
 #	bfd			obsolete, use binutils.
 #	binutils		${MKBINUTILS} != no
 #	bsdgrep			${MKBSDGREP} != no
@@ -225,7 +219,6 @@ SUBST="${SUBST};s#@MACHINE@#${MACHINE}#g"
 #	iscsi			${MKISCSI} != no
 #	kerberos		${MKKERBEROS} != no
 #	kmod			${MKKMOD} != no
-#	kyua			${MKKYUA} != no
 #	ldap			${MKLDAP} != no
 #	lint			${MKLINT} != no
 #	libcxx			${MKLIBCXX} != no

@@ -81,10 +81,6 @@
 ./usr/lib/oabi/libasan.so.0.0			base-compat-shlib	compat,pic,gcc=48
 ./usr/lib/oabi/libasn1.so.9			base-compat-shlib	compat,pic,kerberos
 ./usr/lib/oabi/libasn1.so.9.0			base-compat-shlib	compat,pic,kerberos
-./usr/lib/oabi/libatf-c++.so.1			base-compat-shlib	compat,pic,atf
-./usr/lib/oabi/libatf-c++.so.1.0		base-compat-shlib	compat,pic,atf
-./usr/lib/oabi/libatf-c.so.0			base-compat-shlib	compat,pic,atf
-./usr/lib/oabi/libatf-c.so.0.0			base-compat-shlib	compat,pic,atf
 ./usr/lib/oabi/libbfd.so.13			base-compat-shlib	compat,pic,binutils
 ./usr/lib/oabi/libbfd.so.13.0			base-compat-shlib	compat,pic,binutils
 ./usr/lib/oabi/libbind9.so.8			base-compat-shlib	compat,pic
@@ -203,10 +199,6 @@
 ./usr/lib/oabi/libldap_r.so.4.3			base-compat-shlib	compat,pic,ldap
 ./usr/lib/oabi/liblua.so.5			base-compat-shlib	compat,pic
 ./usr/lib/oabi/liblua.so.5.3			base-compat-shlib	compat,pic
-./usr/lib/oabi/liblutok.so.1			base-obsolete		obsolete
-./usr/lib/oabi/liblutok.so.1.0			base-obsolete		obsolete
-./usr/lib/oabi/liblutok.so.2			base-compat-shlib	compat,pic,kyua
-./usr/lib/oabi/liblutok.so.2.0			base-compat-shlib	compat,pic,kyua
 ./usr/lib/oabi/liblwres.so.8			base-compat-shlib	compat,pic
 ./usr/lib/oabi/liblwres.so.8.2			base-compat-shlib	compat,pic
 ./usr/lib/oabi/liblzf.so.1			base-compat-shlib	compat,pic

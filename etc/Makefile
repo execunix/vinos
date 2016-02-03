@@ -350,12 +350,6 @@ install-etc-files: .PHONY .MAKE check_DESTDIR MAKEDEV
 .if (${MKPOSTFIX} != "no")
 	${MAKEDIRTARGET} ${NETBSDSRCDIR}/external/ibm-public/postfix configinstall
 .endif
-.if (${MKATF} != "no")
-	${MAKEDIRTARGET} ${NETBSDSRCDIR}/external/bsd/atf/etc/atf configinstall
-.endif
-.if (${MKKYUA} != "no")
-	${MAKEDIRTARGET} ${NETBSDSRCDIR}/external/bsd/kyua-cli/etc/kyua configinstall
-.endif
 
 
 # install-obsolete-lists --
@@ -368,9 +362,6 @@ OBSOLETE.files+=	debug
 .endif
 .if ${MKKMOD} != "no"
 OBSOLETE.files+=	modules
-.endif
-.if ${MKATF} != "no"
-OBSOLETE.files+=	tests
 .endif
 .if ${MKX11} != "no"
 OBSOLETE.files+=	xbase xcomp xetc xfont xserver

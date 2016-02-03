@@ -20,10 +20,6 @@ EXTRA_DIST_FILES+=	${.CURDIR}/NetBSD.dist.earm
 .endif
 .endif
 
-.if ${MKATF} != "no"
-EXTRA_DIST_FILES+=	${.CURDIR}/NetBSD.dist.tests
-.endif
-
 .if ${MKEXTSRC} != "no"
 EXTRA_DIST_FILES+=	${.CURDIR}/NetBSD.dist.extsrc
 .endif

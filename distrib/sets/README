@@ -62,9 +62,6 @@ the sets are as follows:
 
 	modules:	stand/${MACHINE}/${OSRELEASE}/modules kernel modules
 
-	tests:	unit, regression, integration and stress tests for the
-		whole system.
-
 	text:	text processing tools.  groff and all of its friends.
 		includes man pages for all bins contained within.
 

@@ -88,7 +88,6 @@
 ./etc/X11/xinit					base-x11-root
 ./etc/X11/xserver				base-x11-root
 ./etc/X11/xsm					base-x11-root
-./etc/atf					base-atf-bin
 ./etc/cgd					base-sys-root
 ./etc/defaults					base-sys-root
 ./etc/disklabels				base-obsolete		obsolete
@@ -98,7 +97,6 @@
 ./etc/iscsi					base-sysutil-root
 ./etc/kerberosIV				base-obsolete		obsolete
 ./etc/kerberosV					base-krb5-root
-./etc/kyua					base-kyua-root
 ./etc/mail					base-postfix-bin
 ./etc/mtree					base-sys-root
 ./etc/mtree/set.base				base-sys-root
@@ -564,17 +562,6 @@
 ./usr/bin/apropos				base-man-bin
 ./usr/bin/arpaname				base-bind-bin
 ./usr/bin/at					base-cron-bin
-./usr/bin/atf-check				base-obsolete		obsolete
-./usr/bin/atf-config				base-atf-bin		atf,!kyua
-./usr/bin/atf-config				base-obsolete		kyua,obsolete
-./usr/bin/atf-report				base-atf-bin		atf
-./usr/bin/atf-report				base-kyua-bin		kyua
-./usr/bin/atf-run				base-atf-bin		atf
-./usr/bin/atf-run				base-kyua-bin		kyua
-./usr/bin/atf-sh				base-atf-bin		atf
-./usr/bin/atf-version				base-atf-bin		atf,!kyua
-./usr/bin/atf-version				base-obsolete		kyua,obsolete
-./usr/bin/atf2kyua				base-kyua-bin		kyua
 ./usr/bin/atq					base-cron-bin
 ./usr/bin/atrm					base-cron-bin
 ./usr/bin/audiocfg				base-audio-bin
@@ -704,7 +691,6 @@
 ./usr/bin/ktrace				base-debug-bin
 ./usr/bin/ktruss				base-debug-bin
 ./usr/bin/kvno					base-krb5-bin		kerberos
-./usr/bin/kyua					base-kyua-bin		kyua
 ./usr/bin/lam					base-util-bin
 ./usr/bin/last					base-util-bin
 ./usr/bin/lastcomm				base-util-bin
@@ -1373,11 +1359,6 @@
 ./usr/libdata/ldscripts				base-c-usr
 ./usr/libdata/lint				base-c-usr
 ./usr/libexec					base-sys-usr
-./usr/libexec/atf-check				base-atf-bin		atf
-./usr/libexec/atf-cleanup			base-obsolete		obsolete
-./usr/libexec/atf-exec				base-atf-bin		obsolete
-./usr/libexec/atf-format			base-obsolete		obsolete
-./usr/libexec/atf-killpg			base-obsolete		obsolete
 ./usr/libexec/atrun				base-cron-bin
 ./usr/libexec/bozohttpd				base-netutil-bin
 ./usr/libexec/ching				base-games-usr
@@ -1400,8 +1381,6 @@
 ./usr/libexec/kdc				base-obsolete		obsolete
 ./usr/libexec/kfd				base-obsolete		obsolete
 ./usr/libexec/kpasswdd				base-krb5-bin		kerberos
-./usr/libexec/kyua-atf-tester			base-kyua-bin		kyua
-./usr/libexec/kyua-plain-tester			base-kyua-bin		kyua
 ./usr/libexec/lfs_cleanerd			base-obsolete		obsolete
 ./usr/libexec/locate.bigram			base-sysutil-bin
 ./usr/libexec/locate.code			base-sysutil-bin
@@ -1893,14 +1872,6 @@
 ./usr/sbin/zdump				base-sysutil-bin
 ./usr/sbin/zic					base-sysutil-bin
 ./usr/share					base-sys-share
-./usr/share/atf					base-atf-share
-./usr/share/atf/atf-run.hooks			base-atf-bin		share,atf,!kyua
-./usr/share/atf/atf-run.hooks			base-obsolete		share,kyua,obsolete
-./usr/share/atf/atf.config.subr			base-obsolete		obsolete
-./usr/share/atf/atf.footer.subr			base-obsolete		obsolete
-./usr/share/atf/atf.header.subr			base-obsolete		obsolete
-./usr/share/atf/atf.init.subr			base-obsolete		obsolete
-./usr/share/atf/libatf-sh.subr			base-atf-share		atf,share
 ./usr/share/calendar				base-calendar-share
 ./usr/share/calendar/calendar.birthday		base-calendar-share	share
 ./usr/share/calendar/calendar.christian		base-calendar-share	share
@@ -2895,18 +2866,6 @@
 ./usr/share/keymaps/amiga			base-sys-share
 ./usr/share/keymaps/atari			base-sys-share
 ./usr/share/keymaps/x68k			base-sys-share
-./usr/share/kyua-atf-compat			base-kyua-bin
-./usr/share/kyua-atf-compat/lib.subr		base-kyua-bin		kyua
-./usr/share/kyua-atf-compat/tests_lib.subr	base-kyua-bin		kyua
-./usr/share/kyua-cli				base-kyua-bin
-./usr/share/kyua-cli/misc			base-kyua-bin
-./usr/share/kyua-cli/misc/context.html		base-kyua-bin		share,kyua
-./usr/share/kyua-cli/misc/index.html		base-kyua-bin		share,kyua
-./usr/share/kyua-cli/misc/report.css		base-kyua-bin		share,kyua
-./usr/share/kyua-cli/misc/test_result.html	base-kyua-bin		share,kyua
-./usr/share/kyua-cli/store			base-kyua-bin
-./usr/share/kyua-cli/store/migrate_v1_v2.sql	base-kyua-bin		share,kyua
-./usr/share/kyua-cli/store/schema_v2.sql	base-kyua-bin		share,kyua
 ./usr/share/ldscripts				base-obsolete		obsolete
 ./usr/share/legal				base-sys-share
 ./usr/share/legal/COPYRIGHT			base-sys-share		share
@@ -4656,7 +4615,6 @@
 ./usr/share/mk/bsd.subdir.mk			base-mk-share		share
 ./usr/share/mk/bsd.sys.mk			base-mk-share		share
 ./usr/share/mk/bsd.syscall.mk			base-mk-share		share
-./usr/share/mk/bsd.test.mk			base-mk-share		share
 ./usr/share/mk/bsd.x11.mk			base-mk-share		share
 ./usr/share/mk/sys.mk				base-mk-share		share
 ./usr/share/ms					base-groff-share
@@ -5838,7 +5796,6 @@
 ./var/db/obsolete/games				base-sys-root
 ./var/db/obsolete/man				base-sys-root
 ./var/db/obsolete/misc				base-sys-root
-./var/db/obsolete/tests				base-sys-root		atf
 ./var/db/obsolete/text				base-sys-root
 ./var/db/postfix				base-postfix-root
 ./var/db/xdm					base-sys-root

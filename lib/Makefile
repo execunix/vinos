@@ -148,14 +148,6 @@ SUBDIR+=	.WAIT
 SUBDIR+=	npf		# depends on libnpf
 .endif
 
-.if (${MKATF} != "no")
-SUBDIR+=	../external/bsd/atf/lib		# depends on libstdc++
-.endif
-
-.if (${MKKYUA} != "no")
-SUBDIR+=	../external/bsd/lutok/lib	# depends on lua and libstdc++
-.endif
-
 SUBDIR+=	libform		# depends on libcurses
 SUBDIR+=	libmenu		# depends on libcurses
 SUBDIR+=	libradius	# depends on libcrypto if (${MKCRYPTO} != "no")

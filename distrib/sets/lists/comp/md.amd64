@@ -534,14 +534,6 @@
 ./usr/lib/i386/libasn1.so			comp-sys-shlib		compat,pic,kerberos
 ./usr/lib/i386/libasn1_p.a			comp-c-proflib		compat,profile,kerberos
 ./usr/lib/i386/libasn1_pic.a			comp-c-piclib		compat,pic,kerberos,picinstall
-./usr/lib/i386/libatf-c++.a			comp-c-lib		compat,atf
-./usr/lib/i386/libatf-c++.so			comp-sys-shlib		compat,pic,atf
-./usr/lib/i386/libatf-c++_p.a			comp-c-proflib		compat,profile,atf
-./usr/lib/i386/libatf-c++_pic.a			comp-c-piclib		compat,pic,atf,picinstall
-./usr/lib/i386/libatf-c.a			comp-c-lib		compat,atf
-./usr/lib/i386/libatf-c.so			comp-sys-shlib		compat,pic,atf
-./usr/lib/i386/libatf-c_p.a			comp-c-proflib		compat,profile,atf
-./usr/lib/i386/libatf-c_pic.a			comp-c-piclib		compat,pic,atf,picinstall
 ./usr/lib/i386/libbfd.a				comp-obsolete		obsolete
 ./usr/lib/i386/libbfd.so			comp-obsolete		obsolete
 ./usr/lib/i386/libbfd_p.a			comp-obsolete		obsolete
@@ -797,9 +789,6 @@
 ./usr/lib/i386/liblua.a				comp-c-lib		compat
 ./usr/lib/i386/liblua_p.a			comp-c-proflib		compat,profile
 ./usr/lib/i386/liblua_pic.a			comp-c-piclib		compat,pic,picinstall
-./usr/lib/i386/liblutok.a			comp-c-lib		compat,kyua
-./usr/lib/i386/liblutok_p.a			comp-c-proflib		compat,profile,kyua
-./usr/lib/i386/liblutok_pic.a			comp-c-piclib		compat,pic,kyua,picinstall
 ./usr/lib/i386/liblwres.a			comp-c-lib		compat
 ./usr/lib/i386/liblwres.so			comp-sys-shlib		compat,pic
 ./usr/lib/i386/liblwres_p.a			comp-c-proflib		compat,profile

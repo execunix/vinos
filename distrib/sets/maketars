@@ -6,7 +6,7 @@
 # maketars [-b] [-x] [-i installdir] [-a arch] [-m machine] [-s setsdir]
 #	[-M metalog] [-N etcdir] [-d destdir] [-t tardir] [setname ...]
 #
-# The default sets are "base comp debug etc games man misc tests text"
+# The default sets are "base comp debug etc games man misc text"
 # The X sets are "xbase xcomp xdebug xetc xfont xserver"
 # The extsrc sets are "extbase extcomp extetc"
 #

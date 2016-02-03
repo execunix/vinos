@@ -7,9 +7,6 @@ SUBDIR=	acpica am-utils bind byacc cron dhcpcd ekermit elftosb \
 	libarchive libevent liblzf libpcap mdocml ntp openresolv tcpdump \
 	tmux top tre wpa
 
-.if (${MKATF} != "no")
-SUBDIR+= atf
-.endif
 .if (${MKCRYPTO} != "no")
 SUBDIR+= pkg_install
 .endif
@@ -19,9 +16,6 @@ SUBDIR+=ipf
 .endif
 .if (${MKISCSI} != "no")
 SUBDIR+= iscsi 
-.endif
-.if (${MKKYUA} != "no")
-SUBDIR+= lutok kyua-testers kyua-cli kyua-atf-compat
 .endif
 .if (${MKLDAP} != "no")
 SUBDIR+= openldap

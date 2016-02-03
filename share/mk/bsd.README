@@ -113,13 +113,6 @@ MAKEVERBOSE	Control how "verbose" the standard make(1) rules are.
 		    3	Ignore the effect of the "@" prefix in make commands
 		    4	Trace shell commands using the shell's -x flag
 
-MKATF		If "no", don't build the Automated Testing Framework (ATF),
-		which includes the libatf-c, libatf-c++ and libatf-sh libraries
-		and the various command line tools.  Also, because the build of
-		the libraries is disabled, don't build the NetBSD test suite
-		either.
-		Default: yes
-
 MKBFD		Obsolete, use MKBINUTILS
 
 MKBINUTILS	If "no", don't build binutils (gas, ld, etc and libbfd,
@@ -250,12 +243,6 @@ MKKERBEROS	If "no", disables building of Kerberos v5
 
 MKKMOD		If "no", disables building of kernel modules.
 		Default: yes
-
-MKKYUA		If "no", don't build Kyua nor its dependent library Lutok.
-		Note that setting this to "no" does not disable the build of
-		the NetBSD test suite itself; the build of the tests is
-		controlled by the MKATF knob.
-		Default: no (until the import is done and validated)
 
 MKLDAP		If "no", disables building of LDAP infrastructure
 		(libraries and support programs).
@@ -1519,8 +1506,6 @@ DPADD		Additional dependencies for the program.  Usually used for
 
 		LIBARCHIVE?=	${DESTDIR}/usr/lib/libarchive.a
 		LIBASN1?=	${DESTDIR}/usr/lib/libasn1.a
-		LIBATF_C?=	${DESTDIR}/usr/lib/libatf-c.a
-		LIBATF_CXX?=	${DESTDIR}/usr/lib/libatf-c++.a
 		LIBBIND9?=	${DESTDIR}/usr/lib/libbind9.a
 		LIBBLUETOOTH?=	${DESTDIR}/usr/lib/libbluetooth.a
 		LIBBSDMALLOC?=	${DESTDIR}/usr/lib/libbsdmalloc.a
@@ -1571,7 +1556,6 @@ DPADD		Additional dependencies for the program.  Usually used for
 		LIBLDAP?=	${DESTDIR}/usr/lib/libldap.a
 		LIBLDAP_R?=	${DESTDIR}/usr/lib/libldap_r.a
 		LIBLUA?=	${DESTDIR}/usr/lib/liblua.a
-		LIBLUTOK?=	${DESTDIR}/usr/lib/liblutok.a
 		LIBLWRES?=	${DESTDIR}/usr/lib/liblwres.a
 		LIBM?=		${DESTDIR}/usr/lib/libm.a
 		LIBMAGIC?=	${DESTDIR}/usr/lib/libmagic.a
@@ -1593,21 +1577,6 @@ DPADD		Additional dependencies for the program.  Usually used for
 		LIBROKEN?=	${DESTDIR}/usr/lib/libroken.a
 		LIBRPCSVC?=	${DESTDIR}/usr/lib/librpcsvc.a
 		LIBRT?=		${DESTDIR}/usr/lib/librt.a
-		LIBRUMP?=	${DESTDIR}/usr/lib/librump.a
-		LIBRUMPFS_CD9660FS?=${DESTDIR}/usr/lib/librumpfs_cd9660fs.a
-		LIBRUMPFS_EFS?=	${DESTDIR}/usr/lib/librumpfs_efs.a
-		LIBRUMPFS_EXT2FS?=${DESTDIR}/usr/lib/librumpfs_ext2fs.a
-		LIBRUMPFS_FFS?=	${DESTDIR}/usr/lib/librumpfs_ffs.a
-		LIBRUMPFS_HFS?=	${DESTDIR}/usr/lib/librumpfs_hfs.a
-		LIBRUMPFS_LFS?=	${DESTDIR}/usr/lib/librumpfs_lfs.a
-		LIBRUMPFS_MSDOSFS?=${DESTDIR}/usr/lib/librumpfs_msdosfs.a
-		LIBRUMPFS_NFS?=	${DESTDIR}/usr/lib/librumpfs_nfs.a
-		LIBRUMPFS_NTFS?=${DESTDIR}/usr/lib/librumpfs_ntfs.a
-		LIBRUMPFS_SYSPUFFS?=${DESTDIR}/usr/lib/librumpfs_syspuffs.a
-		LIBRUMPFS_TMPFS?=${DESTDIR}/usr/lib/librumpfs_tmpfs.a
-		LIBRUMPFS_UDF?=	${DESTDIR}/usr/lib/librumpfs_udf.a
-		LIBRUMPFS_UFS?=	${DESTDIR}/usr/lib/librumpfs_ufs.a
-		LIBRUMPUSER?=	${DESTDIR}/usr/lib/librumpuser.a
 		LIBSASLC?=	${DESTDIR}/usr/lib/libsaslc.a
 		LIBSKEY?=	${DESTDIR}/usr/lib/libskey.a
 		LIBSL?=		${DESTDIR}/usr/lib/libsl.a
