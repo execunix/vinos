@@ -44,10 +44,6 @@ LDFLAGS?=
 COMPILE.c?=	${CC} ${CFLAGS} ${CPPFLAGS} -c
 LINK.c?=	${CC} ${CFLAGS} ${CPPFLAGS} ${LDFLAGS}
 
-# C Type Format data is required for DTrace
-CTFFLAGS	?=	-g -L VERSION
-CTFMFLAGS	?=	-t -g -L VERSION
-
 CXX?=		c++
 CXXFLAGS?=	${CFLAGS:N-Wno-traditional:N-Wstrict-prototypes:N-Wmissing-prototypes:N-Wno-pointer-sign:N-ffreestanding:N-std=gnu[0-9][0-9]:N-Wold-style-definition:N-Wno-format-zero-length}
 
@@ -113,11 +109,8 @@ YACC.y?=	${YACC} ${YFLAGS}
 # C
 .c:
 	${LINK.c} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
-# XXX: disable for now
-#	${defined(CTFCONVERT):?${CTFCONVERT} ${CTFFLAGS} ${.TARGET}:}
 .c.o:
 	${COMPILE.c} ${.IMPSRC}
-	${defined(CTFCONVERT):?${CTFCONVERT} ${CTFFLAGS} ${.TARGET}:}
 .c.a:
 	${COMPILE.c} ${.IMPSRC}
 	${AR} ${ARFLAGS} ${.TARGET} ${.PREFIX}.o
@@ -142,7 +135,6 @@ YACC.y?=	${YACC} ${YFLAGS}
 	${LINK.f} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
 .f.o:
 	${COMPILE.f} ${.IMPSRC}
-	${defined(CTFCONVERT):?${CTFCONVERT} ${CTFFLAGS} ${.TARGET}:}
 .f.a:
 	${COMPILE.f} ${.IMPSRC}
 	${AR} ${ARFLAGS} ${.TARGET} ${.PREFIX}.o
@@ -150,10 +142,8 @@ YACC.y?=	${YACC} ${YFLAGS}
 
 .F:
 	${LINK.F} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
-	${defined(CTFCONVERT):?${CTFCONVERT} ${CTFFLAGS} ${.TARGET}:}
 .F.o:
 	${COMPILE.F} ${.IMPSRC}
-	${defined(CTFCONVERT):?${CTFCONVERT} ${CTFFLAGS} ${.TARGET}:}
 .F.a:
 	${COMPILE.F} ${.IMPSRC}
 	${AR} ${ARFLAGS} ${.TARGET} ${.PREFIX}.o
@@ -163,7 +153,6 @@ YACC.y?=	${YACC} ${YFLAGS}
 	${LINK.r} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
 .r.o:
 	${COMPILE.r} ${.IMPSRC}
-	${defined(CTFCONVERT):?${CTFCONVERT} ${CTFFLAGS} ${.TARGET}:}
 .r.a:
 	${COMPILE.r} ${.IMPSRC}
 	${AR} ${ARFLAGS} ${.TARGET} ${.PREFIX}.o
@@ -172,10 +161,8 @@ YACC.y?=	${YACC} ${YFLAGS}
 # Pascal
 .p:
 	${LINK.p} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
-	${defined(CTFCONVERT):?${CTFCONVERT} ${CTFFLAGS} ${.TARGET}:}
 .p.o:
 	${COMPILE.p} ${.IMPSRC}
-	${defined(CTFCONVERT):?${CTFCONVERT} ${CTFFLAGS} ${.TARGET}:}
 .p.a:
 	${COMPILE.p} ${.IMPSRC}
 	${AR} ${ARFLAGS} ${.TARGET} ${.PREFIX}.o
@@ -184,20 +171,16 @@ YACC.y?=	${YACC} ${YFLAGS}
 # Assembly
 .s:
 	${LINK.s} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
-	${defined(CTFCONVERT):?${CTFCONVERT} ${CTFFLAGS} ${.TARGET}:}
 .s.o:
 	${COMPILE.s} ${.IMPSRC}
-	${defined(CTFCONVERT):?${CTFCONVERT} ${CTFFLAGS} ${.TARGET}:}
 .s.a:
 	${COMPILE.s} ${.IMPSRC}
 	${AR} ${ARFLAGS} ${.TARGET} ${.PREFIX}.o
 	rm -f ${.PREFIX}.o
 .S:
 	${LINK.S} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
-	${defined(CTFCONVERT):?${CTFCONVERT} ${CTFFLAGS} ${.TARGET}:}
 .S.o:
 	${COMPILE.S} ${.IMPSRC}
-	${defined(CTFCONVERT):?${CTFCONVERT} ${CTFFLAGS} ${.TARGET}:}
 .S.a:
 	${COMPILE.S} ${.IMPSRC}
 	${AR} ${ARFLAGS} ${.TARGET} ${.PREFIX}.o
@@ -214,7 +197,6 @@ YACC.y?=	${YACC} ${YFLAGS}
 .l.o:
 	${LEX.l} ${.IMPSRC}
 	${COMPILE.c} -o ${.TARGET} lex.yy.c
-	${defined(CTFCONVERT):?${CTFCONVERT} ${CTFFLAGS} ${.TARGET}:}
 	rm -f lex.yy.c
 
 # Yacc
@@ -228,7 +210,6 @@ YACC.y?=	${YACC} ${YFLAGS}
 .y.o:
 	${YACC.y} ${.IMPSRC}
 	${COMPILE.c} -o ${.TARGET} y.tab.c
-	${defined(CTFCONVERT):?${CTFCONVERT} ${CTFFLAGS} ${.TARGET}:}
 	rm -f y.tab.c
 
 # Shell

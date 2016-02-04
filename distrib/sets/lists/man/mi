@@ -106,9 +106,6 @@
 ./usr/share/man/cat1/csh.0			man-util-catman		.cat
 ./usr/share/man/cat1/csplit.0			man-util-catman		.cat
 ./usr/share/man/cat1/ctags.0			man-c-catman		.cat
-./usr/share/man/cat1/ctfconvert.0		man-util-catman		.cat,ctf
-./usr/share/man/cat1/ctfdump.0			man-util-catman		.cat,ctf
-./usr/share/man/cat1/ctfmerge.0			man-util-catman		.cat,ctf
 ./usr/share/man/cat1/cu.0			man-util-catman		.cat
 ./usr/share/man/cat1/cut.0			man-util-catman		.cat
 ./usr/share/man/cat1/daicctl.0			man-sysutil-catman	.cat
@@ -130,7 +127,6 @@
 ./usr/share/man/cat1/domainname.0		man-nis-catman		.cat
 ./usr/share/man/cat1/download-vulnerability-list.0	man-obsolete		obsolete
 ./usr/share/man/cat1/dtmfdecode.0		man-isdn-catman		.cat
-./usr/share/man/cat1/dtrace.0			man-debug-catman	dtrace,.cat
 ./usr/share/man/cat1/du.0			man-util-catman		.cat
 ./usr/share/man/cat1/echo.0			man-util-catman		.cat
 ./usr/share/man/cat1/ed.0			man-util-catman		.cat
@@ -472,7 +468,6 @@
 ./usr/share/man/cat1/sha1.0			man-util-catman		.cat
 ./usr/share/man/cat1/shar.0			man-util-catman		.cat
 ./usr/share/man/cat1/shlock.0			man-util-catman		.cat
-./usr/share/man/cat1/shmif_dumpbus.0		man-util-catman		rump,.cat
 ./usr/share/man/cat1/shuffle.0			man-util-catman		.cat
 ./usr/share/man/cat1/skey.0			man-util-catman		skey,.cat
 ./usr/share/man/cat1/skeyaudit.0		man-util-catman		skey,.cat
@@ -2502,9 +2497,6 @@
 ./usr/share/man/html1/csh.html			man-util-htmlman	html
 ./usr/share/man/html1/csplit.html		man-util-htmlman	html
 ./usr/share/man/html1/ctags.html		man-c-htmlman		html
-./usr/share/man/html1/ctfconvert.html		man-util-htmlman	html,ctf
-./usr/share/man/html1/ctfdump.html		man-util-htmlman	html,ctf
-./usr/share/man/html1/ctfmerge.html		man-util-htmlman	html,ctf
 ./usr/share/man/html1/cu.html			man-util-htmlman	html
 ./usr/share/man/html1/cut.html			man-util-htmlman	html
 ./usr/share/man/html1/daicctl.html		man-sysutil-htmlman	html
@@ -2524,7 +2516,6 @@
 ./usr/share/man/html1/domainname.html		man-nis-htmlman		html
 ./usr/share/man/html1/download-vulnerability-list.html	man-obsolete		obsolete
 ./usr/share/man/html1/dtmfdecode.html		man-isdn-htmlman	html
-./usr/share/man/html1/dtrace.html		man-debug-htmlman	dtrace,html
 ./usr/share/man/html1/du.html			man-util-htmlman	html
 ./usr/share/man/html1/echo.html			man-util-htmlman	html
 ./usr/share/man/html1/ed.html			man-util-htmlman	html
@@ -2847,7 +2838,6 @@
 ./usr/share/man/html1/sha1.html			man-util-htmlman	html
 ./usr/share/man/html1/shar.html			man-util-htmlman	html
 ./usr/share/man/html1/shlock.html		man-util-htmlman	html
-./usr/share/man/html1/shmif_dumpbus.html	man-util-htmlman	rump,html
 ./usr/share/man/html1/shuffle.html		man-util-htmlman	html
 ./usr/share/man/html1/skey.html			man-util-htmlman	skey,html
 ./usr/share/man/html1/skeyaudit.html		man-util-htmlman	skey,html
@@ -4716,9 +4706,6 @@
 ./usr/share/man/man1/csh.1			man-util-man		.man
 ./usr/share/man/man1/csplit.1			man-util-man		.man
 ./usr/share/man/man1/ctags.1			man-c-man		.man
-./usr/share/man/man1/ctfconvert.1		man-util-man		.man,ctf
-./usr/share/man/man1/ctfdump.1			man-util-man		.man,ctf
-./usr/share/man/man1/ctfmerge.1			man-util-man		.man,ctf
 ./usr/share/man/man1/cu.1			man-util-man		.man
 ./usr/share/man/man1/cut.1			man-util-man		.man
 ./usr/share/man/man1/daicctl.1			man-sysutil-man		.man
@@ -4740,7 +4727,6 @@
 ./usr/share/man/man1/domainname.1		man-nis-man		.man
 ./usr/share/man/man1/download-vulnerability-list.1	man-obsolete		obsolete
 ./usr/share/man/man1/dtmfdecode.1		man-isdn-man		.man
-./usr/share/man/man1/dtrace.1			man-debug-man		dtrace,.man
 ./usr/share/man/man1/du.1			man-util-man		.man
 ./usr/share/man/man1/echo.1			man-util-man		.man
 ./usr/share/man/man1/ed.1			man-util-man		.man
@@ -5082,7 +5068,6 @@
 ./usr/share/man/man1/sha1.1			man-util-man		.man
 ./usr/share/man/man1/shar.1			man-util-man		.man
 ./usr/share/man/man1/shlock.1			man-util-man		.man
-./usr/share/man/man1/shmif_dumpbus.1		man-util-man		rump,.man
 ./usr/share/man/man1/shuffle.1			man-util-man		.man
 ./usr/share/man/man1/skey.1			man-util-man		skey,.man
 ./usr/share/man/man1/skeyaudit.1		man-util-man		skey,.man

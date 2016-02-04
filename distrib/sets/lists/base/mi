@@ -838,7 +838,6 @@
 ./usr/bin/sha1					base-util-bin
 ./usr/bin/shar					base-util-bin
 ./usr/bin/shlock				base-util-bin
-./usr/bin/shmif_dumpbus				base-util-bin		rump
 ./usr/bin/showmount				base-nfsclient-bin
 ./usr/bin/shuffle				base-util-bin
 ./usr/bin/skey					base-util-bin		skey
@@ -1549,7 +1548,6 @@
 ./usr/sbin/dnssec-verify			base-bind-bin
 ./usr/sbin/download-vulnerability-list		base-pkgutil-bin	crypto
 ./usr/sbin/dtmfdecode				base-isdn-bin
-./usr/sbin/dtrace				base-debug-bin		dtrace
 ./usr/sbin/dumpfs				base-sysutil-bin
 ./usr/sbin/dumplfs				base-sysutil-bin
 ./usr/sbin/eaytest				base-obsolete		obsolete

@@ -219,9 +219,6 @@
 ./usr/lib/libcrypto_rc5.so.7			base-crypto-shlib	crypto,crypto_rc5
 ./usr/lib/libcrypto_rc5.so.7.0			base-crypto-shlib	crypto,crypto_rc5
 ./usr/lib/libcrypto_rc5_pic.a			base-crypto-shlib	crypto,crypto_rc5,picinstall
-./usr/lib/libctf.so				base-sys-shlib		dtrace
-./usr/lib/libctf.so.2				base-sys-shlib		dtrace
-./usr/lib/libctf.so.2.0				base-sys-shlib		dtrace
 ./usr/lib/libcurses.so				base-sys-shlib
 ./usr/lib/libcurses.so.7			base-sys-shlib
 ./usr/lib/libcurses.so.7.0			base-sys-shlib
@@ -240,9 +237,6 @@
 ./usr/lib/libdns_sd.so				base-mdns-shlib		mdns
 ./usr/lib/libdns_sd.so.0			base-mdns-shlib		mdns
 ./usr/lib/libdns_sd.so.0.0			base-mdns-shlib		mdns
-./usr/lib/libdtrace.so				base-sys-shlib		dtrace
-./usr/lib/libdtrace.so.2			base-sys-shlib		dtrace
-./usr/lib/libdtrace.so.2.0			base-sys-shlib		dtrace
 ./usr/lib/libdwarf.so				base-sys-shlib
 ./usr/lib/libdwarf.so.1				base-sys-shlib
 ./usr/lib/libdwarf.so.1.0			base-sys-shlib

@@ -169,12 +169,6 @@
 ./usr/share/doc/html/ntp/hints/rs6000		misc-obsolete		obsolete
 ./usr/share/doc/html/ntp/hints/sco.htm		misc-obsolete		obsolete
 ./usr/share/doc/html/ntp/hints/sgi		misc-obsolete		obsolete
-./usr/share/doc/html/ntp/hints/solaris-dosynctodr.html	misc-obsolete		obsolete
-./usr/share/doc/html/ntp/hints/solaris.html		misc-obsolete		obsolete
-./usr/share/doc/html/ntp/hints/solaris.xtra.4023118	misc-obsolete		obsolete
-./usr/share/doc/html/ntp/hints/solaris.xtra.4095849	misc-obsolete		obsolete
-./usr/share/doc/html/ntp/hints/solaris.xtra.S99ntpd	misc-obsolete		obsolete
-./usr/share/doc/html/ntp/hints/solaris.xtra.patchfreq	misc-obsolete		obsolete
 ./usr/share/doc/html/ntp/hints/sun4		misc-obsolete		obsolete
 ./usr/share/doc/html/ntp/hints/svr4-dell	misc-obsolete		obsolete
 ./usr/share/doc/html/ntp/hints/svr4_package	misc-obsolete		obsolete

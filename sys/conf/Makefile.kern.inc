@@ -130,27 +130,18 @@ COPTS.${j}+=-g
 #
 COPTS.debugsyms.c+=	-g
 
-# Add CTF sections for DTrace
-.if defined(CTFCONVERT)
-COMPILE_CTFCONVERT=	${_MKSHECHO}\
-			${CTFCONVERT} ${CTFFLAGS} ${.TARGET} && \
-			${CTFCONVERT} ${CTFFLAGS} ${.TARGET}
-.else
-COMPILE_CTFCONVERT=	${_MKSHNOECHO}
-.endif
-
 # compile rules: rules are named ${TYPE}_${SUFFIX} where TYPE is NORMAL or
 # NOPROF and SUFFIX is the file suffix, capitalized (e.g. C for a .c file).
 NORMAL_C?=	@${_MKSHMSG} "compile  ${.CURDIR:T}/${.TARGET}" && \
 		${_MKSHECHO}\
 		${CC} ${COPTS.${<:T}} ${CFLAGS} ${CPPFLAGS} ${PROF} -c $< && \
 		${CC} ${COPTS.${<:T}} ${CFLAGS} ${CPPFLAGS} ${PROF} -c $< && \
-		${COMPILE_CTFCONVERT}
+		${_MKSHNOECHO}
 NOPROF_C?=	@${_MKSHMSG} "compile  ${.CURDIR:T}/${.TARGET}" && \
 		${_MKSHECHO}\
 		${CC} ${COPTS.${<:T}} ${CFLAGS} ${CPPFLAGS} -c $< && \
 		${CC} ${COPTS.${<:T}} ${CFLAGS} ${CPPFLAGS} -c $< && \
-		${COMPILE_CTFCONVERT}
+		${_MKSHNOECHO}
 NORMAL_S?=	@${_MKSHMSG} "compile  ${.CURDIR:T}/${.TARGET}" && \
 		${_MKSHECHO}\
 		${CC} ${AFLAGS} ${AFLAGS.${<:T}} ${CPPFLAGS} -c $< && \
@@ -223,11 +214,6 @@ SYSTEM_DEP+=	Makefile ${SYSTEM_OBJ:O} .gdbinit
 .if defined(KERNLDSCRIPT)
 SYSTEM_DEP+=	${KERNLDSCRIPT}
 .endif
-.if defined(CTFMERGE)
-SYSTEM_CTFMERGE= ${CTFMERGE} ${CTFMFLAGS} -o ${.TARGET} ${SYSTEM_OBJ} ${EXTRA_OBJ} vers.o
-.else
-SYSTEM_CTFMERGE= ${_MKSHECHO}
-.endif
 SYSTEM_LD_HEAD?=@rm -f $@
 SYSTEM_LD?=	@${_MKSHMSG} "   link  ${.CURDIR:T}/${.TARGET}"; \
 		${_MKSHECHO}\
@@ -283,7 +269,7 @@ SYSTEM_LD_TAIL_DEBUG?=true
 SYSTEM_LD_TAIL?=@${SYSTEM_LD_TAIL_DBSYM} ; \
 		${TOOL_SED} '/const char sccs/!d;s/.*@(.)//;s/" "//;s/\\.*//' vers.c; \
 		${SIZE} $@; chmod 755 $@; \
-		${SYSTEM_CTFMERGE}
+		${_MKSHECHO}
 SYSTEM_LD_TAIL_DEBUG?=; \
 		echo mv -f $@ $@.gdb; mv -f $@ $@.gdb; \
 		echo ${STRIP} ${STRIPFLAGS} -o $@ $@.gdb; \
@@ -297,7 +283,6 @@ DEBUG?=
 SYSTEM_LD_TAIL+=${SYSTEM_LD_TAIL_DEBUG}
 LINKFLAGS+=	${LINKFLAGS_DEBUG}
 EXTRA_KERNELS+= ${KERNELS:@.KERNEL.@${.KERNEL.}.gdb@}
-CTFFLAGS+=	-g
 .if !defined(_SYMTAB_SPACE_ADJUSTED)
 SYSTEM_LD_TAIL+=; \
 	if grep '^\#define.*SYMTAB_SPACE' opt_ksyms.h > /dev/null; then \
@@ -353,7 +338,7 @@ vers.o: ${SYSTEM_DEP} ${SYSTEM_SWAP_DEP} $S/conf/newvers.sh \
 	${HOST_SH} $S/conf/newvers.sh ${_NVFLAGS}
 	${_MKTARGET_COMPILE}
 	${CC} ${CFLAGS} ${CPPFLAGS} ${PROF} -c vers.c
-	${COMPILE_CTFCONVERT}
+	${_MKSHNOECHO}
 .endif
 
 .if defined(MEMORY_DISK_IMAGE)

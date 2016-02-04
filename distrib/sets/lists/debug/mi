@@ -43,14 +43,12 @@
 ./usr/lib/libcrypto_idea_g.a			comp-obsolete		obsolete
 ./usr/lib/libcrypto_mdc2_g.a			comp-obsolete		obsolete
 ./usr/lib/libcrypto_rc5_g.a			comp-c-debuglib		debuglib,crypto_rc5
-./usr/lib/libctf_g.a				comp-c-debuglib		dtrace,debuglib
 ./usr/lib/libcurses_g.a				comp-c-debuglib		debuglib
 ./usr/lib/libdes_g.a				comp-c-debuglib		debuglib,crypto
 ./usr/lib/libdevmapper_g.a			comp-c-debuglib		debuglib,lvm
 ./usr/lib/libdm_g.a				comp-c-debuglib		debuglib
 ./usr/lib/libdns_g.a				comp-c-debuglib		debuglib
 ./usr/lib/libdns_sd_g.a				comp-c-debuglib		debuglib,mdns
-./usr/lib/libdtrace_g.a				comp-c-debuglib		dtrace,debuglib
 ./usr/lib/libdwarf_g.a				comp-c-debuglib		debuglib
 ./usr/lib/libedit_g.a				comp-c-debuglib		debuglib
 ./usr/lib/libelf_g.a				comp-c-debuglib		debuglib
@@ -366,9 +364,6 @@
 ./usr/libdata/debug/usr/bin/crunchide.debug	comp-c-debug		debug
 ./usr/libdata/debug/usr/bin/csplit.debug	comp-c-debug		debug
 ./usr/libdata/debug/usr/bin/ctags.debug		comp-c-debug		debug
-./usr/libdata/debug/usr/bin/ctfconvert.debug	comp-util-debug		ctf,debug
-./usr/libdata/debug/usr/bin/ctfdump.debug	comp-util-debug		ctf,debug
-./usr/libdata/debug/usr/bin/ctfmerge.debug	comp-util-debug		ctf,debug
 ./usr/libdata/debug/usr/bin/cut.debug		comp-util-debug		debug
 ./usr/libdata/debug/usr/bin/cvs.debug		comp-cvs-debug		cvs,debug
 ./usr/libdata/debug/usr/bin/db.debug		comp-util-debug		debug
@@ -614,7 +609,6 @@
 ./usr/libdata/debug/usr/bin/seq.debug		comp-util-debug		debug
 ./usr/libdata/debug/usr/bin/sftp.debug		comp-secsh-debug	crypto,debug
 ./usr/libdata/debug/usr/bin/shlock.debug	comp-util-debug		debug
-./usr/libdata/debug/usr/bin/shmif_dumpbus.debug	comp-util-debug		debug,rump
 ./usr/libdata/debug/usr/bin/showmount.debug	comp-nfsclient-debug	debug
 ./usr/libdata/debug/usr/bin/shuffle.debug	comp-util-debug		debug
 ./usr/libdata/debug/usr/bin/size.debug		comp-util-debug		binutils,debug
@@ -900,7 +894,6 @@
 ./usr/libdata/debug/usr/sbin/dnssec-signzone.debug	comp-bind-debug		debug
 ./usr/libdata/debug/usr/sbin/dnssec-verify.debug	comp-bind-debug		debug
 ./usr/libdata/debug/usr/sbin/dtmfdecode.debug	comp-isdn-debug		debug
-./usr/libdata/debug/usr/sbin/dtrace.debug	comp-util-debug		dtrace,debug
 ./usr/libdata/debug/usr/sbin/dumpfs.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/usr/sbin/dumplfs.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/usr/sbin/edquota.debug	comp-sysutil-debug	debug

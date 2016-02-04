@@ -68,7 +68,6 @@
 ./usr/libdata/debug/usr/lib/eabi/libcrypt.so.1.0.debug	comp-sys-debug	debug,compat
 ./usr/libdata/debug/usr/lib/eabi/libcrypto.so.8.4.debug	comp-crypto-debug	crypto,debug,compat
 ./usr/libdata/debug/usr/lib/eabi/libcrypto_rc5.so.7.0.debug	comp-crypto-debug	crypto,crypto_rc5,debug,compat
-./usr/libdata/debug/usr/lib/eabi/libctf.so.2.0.debug		comp-sys-debug	dtrace,debug,compat
 ./usr/libdata/debug/usr/lib/eabi/libcurses.so.7.0.debug	comp-sys-debug	debug,compat
 ./usr/libdata/debug/usr/lib/eabi/libc++.so.1.0.debug	comp-sys-debug	debug,compat,libcxx
 ./usr/libdata/debug/usr/lib/eabi/libdes.so.8.2.debug		comp-crypto-debug	crypto,debug,compat
@@ -76,7 +75,6 @@
 ./usr/libdata/debug/usr/lib/eabi/libdm.so.0.0.debug 		comp-sys-debug	debug,compat
 ./usr/libdata/debug/usr/lib/eabi/libdns.so.8.2.debug		comp-bind-debug	debug,compat
 ./usr/libdata/debug/usr/lib/eabi/libdns_sd.so.0.0.debug	comp-mdns-debug	mdns,debug,compat
-./usr/libdata/debug/usr/lib/eabi/libdtrace.so.2.0.debug	comp-sys-debug	dtrace,debug,compat
 ./usr/libdata/debug/usr/lib/eabi/libdwarf.so.1.0.debug	comp-sys-debug	debug,compat
 ./usr/libdata/debug/usr/lib/eabi/libedit.so.3.1.debug	comp-sys-debug	debug,compat
 ./usr/libdata/debug/usr/lib/eabi/libelf.so.1.0.debug		comp-sys-debug	debug,compat
@@ -208,7 +206,6 @@
 #./usr/libdata/debug/usr/lib/eabihf/libcrypt.so.1.0.debug	comp-sys-debug	debug,compat
 #./usr/libdata/debug/usr/lib/eabihf/libcrypto.so.8.4.debug	comp-crypto-debug	crypto,debug,compat
 #./usr/libdata/debug/usr/lib/eabihf/libcrypto_rc5.so.7.0.debug	comp-crypto-debug	crypto,crypto_rc5,debug,compat
-#./usr/libdata/debug/usr/lib/eabihf/libctf.so.2.0.debug		comp-sys-debug	dtrace,debug,compat
 #./usr/libdata/debug/usr/lib/eabihf/libcurses.so.7.0.debug	comp-sys-debug	debug,compat
 #./usr/libdata/debug/usr/lib/eabihf/libc++.so.1.0.debug	comp-sys-debug	debug,compat,libcxx
 #./usr/libdata/debug/usr/lib/eabihf/libdes.so.8.2.debug		comp-crypto-debug	crypto,debug,compat
@@ -216,7 +213,6 @@
 #./usr/libdata/debug/usr/lib/eabihf/libdm.so.0.0.debug 		comp-sys-debug	debug,compat
 #./usr/libdata/debug/usr/lib/eabihf/libdns.so.8.2.debug		comp-bind-debug	debug,compat
 #./usr/libdata/debug/usr/lib/eabihf/libdns_sd.so.0.0.debug	comp-mdns-debug	mdns,debug,compat
-#./usr/libdata/debug/usr/lib/eabihf/libdtrace.so.2.0.debug	comp-sys-debug	dtrace,debug,compat
 #./usr/libdata/debug/usr/lib/eabihf/libdwarf.so.1.1.debug	comp-sys-debug	debug,compat
 #./usr/libdata/debug/usr/lib/eabihf/libedit.so.3.1.debug	comp-sys-debug	debug,compat
 #./usr/libdata/debug/usr/lib/eabihf/libelf.so.1.0.debug		comp-sys-debug	debug,compat
@@ -349,7 +345,6 @@
 ./usr/libdata/debug/usr/lib/oabi/libcrypt.so.1.0.debug		comp-sys-debug	debug,compat
 ./usr/libdata/debug/usr/lib/oabi/libcrypto.so.8.4.debug		comp-crypto-debug	crypto,debug,compat
 ./usr/libdata/debug/usr/lib/oabi/libcrypto_rc5.so.7.0.debug	comp-crypto-debug	crypto,crypto_rc5,debug,compat
-./usr/libdata/debug/usr/lib/oabi/libctf.so.2.0.debug		comp-sys-debug	dtrace,debug,compat
 ./usr/libdata/debug/usr/lib/oabi/libcurses.so.7.0.debug		comp-sys-debug	debug,compat
 ./usr/libdata/debug/usr/lib/oabi/libc++.so.1.0.debug		comp-sys-debug	debug,compat,libcxx
 ./usr/libdata/debug/usr/lib/oabi/libdes.so.8.2.debug		comp-crypto-debug	crypto,debug,compat
@@ -357,7 +352,6 @@
 ./usr/libdata/debug/usr/lib/oabi/libdm.so.0.0.debug 		comp-sys-debug	debug,compat
 ./usr/libdata/debug/usr/lib/oabi/libdns.so.8.2.debug		comp-bind-debug	debug,compat
 ./usr/libdata/debug/usr/lib/oabi/libdns_sd.so.0.0.debug		comp-mdns-debug	mdns,debug,compat
-./usr/libdata/debug/usr/lib/oabi/libdtrace.so.2.0.debug		comp-sys-debug	dtrace,debug,compat
 ./usr/libdata/debug/usr/lib/oabi/libdwarf.so.1.0.debug		comp-sys-debug	debug,compat
 ./usr/libdata/debug/usr/lib/oabi/libedit.so.3.1.debug		comp-sys-debug	debug,compat
 ./usr/libdata/debug/usr/lib/oabi/libelf.so.1.0.debug		comp-sys-debug	debug,compat

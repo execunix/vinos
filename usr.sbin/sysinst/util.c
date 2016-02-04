@@ -129,7 +129,9 @@ distinfo dist_list[] = {
 	{"games",		SET_GAMES,		MSG_set_games, NULL},
 	{"man",			SET_MAN_PAGES,		MSG_set_man_pages, NULL},
 	{"misc",		SET_MISC,		MSG_set_misc, NULL},
+#if 0
 	{"tests",		SET_TESTS,		MSG_set_tests, NULL},
+#endif
 	{"text",		SET_TEXT_TOOLS,		MSG_set_text_tools, NULL},
 
 	{NULL,			SET_GROUP,		MSG_set_X11, NULL},

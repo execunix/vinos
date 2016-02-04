@@ -68,7 +68,7 @@ ARCH64=no
 
 #####
 
-mkvars: mkvarsyesno mkextravars mksolaris .PHONY
+mkvars: mkvarsyesno mkextravars .PHONY
 
 mkvarsyesno: .PHONY
 .for i in ${_MKVARS.yes}
@@ -82,12 +82,5 @@ mkextravars: .PHONY
 .for i in ${MKEXTRAVARS}
 	@echo $i="${$i}"
 .endfor
-
-mksolaris: .PHONY
-.if (${MKDTRACE} != "no" || ${MKZFS} != "no")
-	@echo MKSOLARIS="yes"
-.else
-	@echo MKSOLARIS="no"
-.endif
 
 .include <bsd.files.mk>

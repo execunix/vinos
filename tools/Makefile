@@ -53,16 +53,6 @@ TOOLCHAIN_BITS+= pcc
 TOOLCHAIN_BITS+= dbsym mdsetimage
 .endif
 
-DTRACE_BITS=
-.if ${MKDTRACE} != "no" || ${MKCTF} != "no"
-DTRACE_BITS+= .WAIT libelf
-DTRACE_BITS+= .WAIT libdwarf
-DTRACE_BITS+= .WAIT libctf
-.endif
-.if ${MKCTF} != "no"
-DTRACE_BITS+= .WAIT ctfconvert ctfmerge
-.endif
-
 LINT_BITS=
 .if ${MKLINT} != "no"
 LINT_BITS= lint lint2
@@ -100,7 +90,6 @@ SUBDIR += .WAIT texinfo \
 	.WAIT tic \
 	.WAIT pax \
 	.WAIT ${TOOLCHAIN_BITS} \
-	${DTRACE_BITS} \
 		asn1_compile cksum compile_et db \
 		file lint1 slc \
 		makefs .WAIT menuc mkcsmapper mkesdb mklocale mknod msgc \

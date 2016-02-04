@@ -33,18 +33,12 @@ CLEANFILES+=strings
 .c.o:
 	${CC} -E ${CPPFLAGS} ${CFLAGS} ${.IMPSRC} | xstr -c -
 	@${CC} ${CPPFLAGS} ${CFLAGS} -c x.c -o ${.TARGET}
-.if defined(CTFCONVERT)
-	${CTFCONVERT} ${CTFFLAGS} ${.TARGET}
-.endif
 	@rm -f x.c
 
 .cc.o .cpp.o .cxx.o .C.o:
 	${CXX} -E ${CPPFLAGS} ${CXXFLAGS} ${.IMPSRC} | xstr -c -
 	@mv -f x.c x.cc
 	@${CXX} ${CPPFLAGS} ${CXXFLAGS} -c x.cc -o ${.TARGET}
-.if defined(CTFCONVERT)
-	${CTFCONVERT} ${CTFFLAGS} ${.TARGET}
-.endif
 	@rm -f x.cc
 .endif
 
@@ -60,15 +54,6 @@ CFLAGS+=	-g
 .endif
 OBJCFLAGS+=	${OBJCOPTS}
 MKDEP_SUFFIXES?=	.o .ln
-
-# CTF preserve debug symbols
-.if (${MKCTF:Uno} != "no") && (${CFLAGS:M-g} != "")
-CTFFLAGS+= -g
-CTFMFLAGS+= -g
-.if defined(HAVE_GCC) && ${HAVE_GCC} >= 48
-#CFLAGS+=-gdwarf-2
-.endif
-.endif
 
 # ELF platforms depend on crti.o, crtbegin.o, crtend.o, and crtn.o
 .ifndef LIBCRTBEGIN
@@ -450,9 +435,6 @@ ${_P}: .gdbinit ${LIBCRT0} ${LIBCRTI} ${XOBJS.${_P}} ${SRCS.${_P}} \
 	    ${XSRCS.${_P}:@.SRC.@${.ALLSRC:M*.c:M*${.SRC.}}@:O:u} ${XOBJS.${_P}} \
 	    ${_LDADD.${_P}}
 .endif	# defined(DESTDIR)
-.if defined(CTFMERGE)
-	${CTFMERGE} ${CTFMFLAGS} -o ${.TARGET} ${OBJS.${_P}}
-.endif
 .if defined(PAXCTL_FLAGS.${_P})
 	${PAXCTL} ${PAXCTL_FLAGS.${_P}} ${.TARGET}
 .endif
@@ -475,9 +457,6 @@ ${_P}: .gdbinit ${LIBCRT0} ${LIBCRTI} ${OBJS.${_P}} ${LIBC} ${LIBCRTBEGIN} \
 	${_CCLINK.${_P}} \
 	    ${_LDFLAGS.${_P}} ${_LDSTATIC.${_P}} -o ${.TARGET} \
 	    ${OBJS.${_P}} ${_PROGLDOPTS} ${_LDADD.${_P}}
-.if defined(CTFMERGE)
-	${CTFMERGE} ${CTFMFLAGS} -o ${.TARGET} ${OBJS.${_P}}
-.endif
 .if defined(PAXCTL_FLAGS.${_P})
 	${PAXCTL} ${PAXCTL_FLAGS.${_P}} ${.TARGET}
 .endif

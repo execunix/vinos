@@ -263,20 +263,6 @@ SUBDIR+=	pwdog
 SUBDIR+= 	dm
 .endif
 
-.if (${MKDTRACE} != "no")
-SUBDIR+=	cyclic
-SUBDIR+=	dtrace
-.endif
-
-# we need solaris for the dtrace and zfs modules
-.if (${MKDTRACE} != "no" || ${MKZFS} != "no")
-SUBDIR+=        solaris
-.endif
-
-.if (${MKZFS} != "no")
-SUBDIR+=	zfs
-.endif
-
 .if (${MKCOMPATMODULES} != "no")
 SUBDIR+=	arch
 .endif

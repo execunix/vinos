@@ -302,8 +302,6 @@ TOOL_COMPILE_ET=	${TOOLDIR}/bin/${_TOOL_PREFIX}compile_et
 TOOL_CONFIG=		${TOOLDIR}/bin/${_TOOL_PREFIX}config
 TOOL_CRUNCHGEN=		MAKE=${.MAKE:Q} ${TOOLDIR}/bin/${_TOOL_PREFIX}crunchgen
 TOOL_CTAGS=		${TOOLDIR}/bin/${_TOOL_PREFIX}ctags
-TOOL_CTFCONVERT=	${TOOLDIR}/bin/${_TOOL_PREFIX}ctfconvert
-TOOL_CTFMERGE=		${TOOLDIR}/bin/${_TOOL_PREFIX}ctfmerge
 TOOL_DB=		${TOOLDIR}/bin/${_TOOL_PREFIX}db
 TOOL_DISKLABEL=		${TOOLDIR}/bin/nbdisklabel
 TOOL_EQN=		${TOOLDIR}/bin/${_TOOL_PREFIX}eqn
@@ -406,8 +404,6 @@ TOOL_COMPILE_ET=	compile_et
 TOOL_CONFIG=		config
 TOOL_CRUNCHGEN=		crunchgen
 TOOL_CTAGS=		ctags
-TOOL_CTFCONVERT=	ctfconvert
-TOOL_CTFMERGE=		ctfmerge
 TOOL_DB=		db
 TOOL_DISKLABEL=		disklabel
 TOOL_EQN=		eqn
@@ -497,12 +493,6 @@ CPP=		${TOOL_CPP.${ACTIVE_CPP}}
 CXX=		${TOOL_CXX.${ACTIVE_CXX}}
 FC=		${TOOL_FC.${ACTIVE_FC}}
 OBJC=		${TOOL_OBJC.${ACTIVE_OBJC}}
-
-# Override with tools versions if needed
-.if ${MKCTF:Uno} != "no" && !defined(NOCTF)
-CTFCONVERT=	${TOOL_CTFCONVERT}
-CTFMERGE=	${TOOL_CTFMERGE}
-.endif
 
 # For each ${MACHINE_CPU}, list the ports that use it.
 MACHINES.aarch64=	evbarm64
@@ -844,13 +834,6 @@ MKBINUTILS?=	${MKBFD}
 .endif
 
 #
-# We want to build zfs only for i386 and amd64 by default for now.
-#
-.if ${MACHINE} == "amd64" || ${MACHINE} == "i386"
-MKZFS?=		yes
-.endif
-
-#
 # MK* options which default to "yes".
 #
 _MKVARS.yes= \
@@ -885,20 +868,19 @@ _MKVARS.yes += MKGCCCMDS
 MKGCCCMDS?=	${MKGCC}
 
 #
-# MK* options which default to "no".  Note that MKZFS has a different
-# default for some platforms, see above.
+# MK* options which default to "no".
 #
 _MKVARS.no= \
 	MKBSDGREP MKBSDTAR \
-	MKCATPAGES MKCRYPTO_RC5 MKCTF MKDEBUG \
-	MKDEBUGLIB MKDTRACE MKEXTSRC MKGROFFHTMLDOC \
+	MKCATPAGES MKCRYPTO_RC5 MKDEBUG \
+	MKDEBUGLIB MKEXTSRC MKGROFFHTMLDOC \
 	MKLLD MKLLDB MKLINT \
 	MKMANZ MKMCLINKER MKOBJDIRS \
 	MKLIBCXX MKLLVM MKPCC \
 	MKPIGZGZIP \
 	MKREPRO \
 	MKSOFTFLOAT MKSTRIPIDENT \
-	MKUNPRIVED MKUPDATE MKX11 MKX11MOTIF MKZFS
+	MKUNPRIVED MKUPDATE MKX11 MKX11MOTIF
 .for var in ${_MKVARS.no}
 ${var}?=no
 .endfor
