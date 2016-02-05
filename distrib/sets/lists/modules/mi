@@ -224,8 +224,6 @@
 ./@MODULEDIR@/vcoda/vcoda.kmod			base-kernel-modules	kmod
 ./@MODULEDIR@/vnd 				base-kernel-modules	kmod
 ./@MODULEDIR@/vnd/vnd.kmod		        base-kernel-modules	kmod
-./@MODULEDIR@/zfs				base-kernel-modules     kmod,zfs
-./@MODULEDIR@/zfs/zfs.kmod			base-kernel-modules     kmod,zfs
 ./@MODULEDIR@/zlib				base-kernel-modules     kmod
 ./@MODULEDIR@/zlib/zlib.kmod			base-kernel-modules     kmod
 ./etc/mtree/set.modules				modules-sys-root	kmod

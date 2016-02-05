@@ -37,7 +37,6 @@
 ./usr/X11R6/lib/libdmx_g.a				-unknown-	debuglib,x11
 ./usr/X11R6/lib/libdps_g.a				-unknown-	debuglib,x11
 ./usr/X11R6/lib/libdpstk_g.a				-unknown-	debuglib,x11
-./usr/X11R6/lib/libexpat_g.a				-obsolete-	obsolete
 ./usr/X11R6/lib/libfntstubs_g.a				-unknown-	debuglib,x11
 ./usr/X11R6/lib/libfontconfig_g.a			-unknown-	debuglib,x11
 ./usr/X11R6/lib/libfontenc_g.a				-unknown-	debuglib,x11
@@ -52,7 +51,6 @@
 ./usr/X11R7/lib/libGL_g.a				-unknown-	debuglib,xorg
 ./usr/X11R7/lib/libGLw_g.a				-unknown-	debuglib,xorg
 ./usr/X11R7/lib/libICE_g.a				-unknown-	debuglib,xorg
-./usr/X11R7/lib/libOSMesa_g.a				-unknown-	obsolete
 ./usr/X11R7/lib/libglapi_g.a				-unknown-	debuglib,xorg
 ./usr/X11R7/lib/libSM_g.a				-unknown-	debuglib,xorg
 ./usr/X11R7/lib/libX11-xcb_g.a				-unknown-	debuglib,xorg
@@ -62,7 +60,6 @@
 ./usr/X11R7/lib/libXau_g.a				-unknown-	debuglib,xorg
 ./usr/X11R7/lib/libXaw6_g.a				-unknown-	debuglib,xorg
 ./usr/X11R7/lib/libXaw7_g.a				-unknown-	debuglib,xorg
-./usr/X11R7/lib/libXaw8_g.a				-obsolete-	obsolete
 ./usr/X11R7/lib/libXcomposite_g.a			-unknown-	debuglib,xorg
 ./usr/X11R7/lib/libXcursor_g.a				-unknown-	debuglib,xorg
 ./usr/X11R7/lib/libXdamage_g.a				-unknown-	debuglib,xorg
@@ -78,13 +75,9 @@
 ./usr/X11R7/lib/libXinerama_g.a				-unknown-	debuglib,xorg
 ./usr/X11R7/lib/libXmu_g.a				-unknown-	debuglib,xorg
 ./usr/X11R7/lib/libXmuu_g.a				-unknown-	debuglib,xorg
-./usr/X11R7/lib/libXp_g.a				-obsolete-	obsolete
 ./usr/X11R7/lib/libXpm_g.a				-unknown-	debuglib,xorg
-./usr/X11R7/lib/libXprintAppUtil_g.a			-obsolete-	obsolete
-./usr/X11R7/lib/libXprintUtil_g.a			-obsolete-	obsolete
 ./usr/X11R7/lib/libXrandr_g.a				-unknown-	debuglib,xorg
 ./usr/X11R7/lib/libXrender_g.a				-unknown-	debuglib,xorg
-./usr/X11R7/lib/libXres_g.a				-obsolete-	obsolete
 ./usr/X11R7/lib/libXss_g.a				-unknown-	debuglib,xorg
 ./usr/X11R7/lib/libXt_g.a				-unknown-	debuglib,xorg
 ./usr/X11R7/lib/libXtst_g.a				-unknown-	debuglib,xorg
@@ -96,12 +89,10 @@
 ./usr/X11R7/lib/libXxf86vm_g.a				-unknown-	debuglib,xorg
 ./usr/X11R7/lib/libdrm_g.a				-unknown-	debuglib,xorg
 ./usr/X11R7/lib/libdrm_radeon_g.a			-unknown-	debuglib,xorg
-./usr/X11R7/lib/libexpat_g.a				-unknown-	obsolete
 ./usr/X11R7/lib/libfontconfig_g.a			-unknown-	debuglib,xorg
 ./usr/X11R7/lib/libfontenc_g.a				-unknown-	debuglib,xorg
 ./usr/X11R7/lib/libfreetype_g.a				-unknown-	debuglib,xorg
 ./usr/X11R7/lib/libglut_g.a				-unknown-	debuglib,xorg
-./usr/X11R7/lib/liblbxutil_g.a				-obsolete-	obsolete
 ./usr/X11R7/lib/liblisp_g.a				-unknown-	debuglib,xorg
 ./usr/X11R7/lib/libmp_g.a				-unknown-	debuglib,xorg
 ./usr/X11R7/lib/libpciaccess_g.a			-unknown-	debuglib,xorg
@@ -219,7 +210,6 @@
 ./usr/libdata/debug/usr/X11R6/bin/xcutsel.debug		-unknown-	debug,x11
 ./usr/libdata/debug/usr/X11R6/bin/xditview.debug	-unknown-	debug,x11
 ./usr/libdata/debug/usr/X11R6/bin/xdm.debug		-unknown-	debug,x11
-./usr/libdata/debug/usr/X11R6/bin/xdmx.debug		xcomp-obsolete	obsolete
 ./usr/libdata/debug/usr/X11R6/bin/xdmxconfig.debug	-unknown-	debug,x11
 ./usr/libdata/debug/usr/X11R6/bin/xdpyinfo.debug	-unknown-	debug,x11
 ./usr/libdata/debug/usr/X11R6/bin/xedit.debug		-unknown-	debug,x11
@@ -264,7 +254,6 @@
 ./usr/libdata/debug/usr/X11R6/bin/xsetroot.debug	-unknown-	debug,x11
 ./usr/libdata/debug/usr/X11R6/bin/xsm.debug		-unknown-	debug,x11
 ./usr/libdata/debug/usr/X11R6/bin/xstdcmap.debug	-unknown-	debug,x11
-./usr/libdata/debug/usr/X11R6/bin/xsystrace.debug	xcomp-obsolete	obsolete
 ./usr/libdata/debug/usr/X11R6/bin/xterm.debug		-unknown-	debug,x11
 ./usr/libdata/debug/usr/X11R6/bin/xtest.debug		-unknown-	debug,x11
 ./usr/libdata/debug/usr/X11R6/bin/xtrapchar.debug	-unknown-	debug,x11
@@ -309,7 +298,6 @@
 ./usr/libdata/debug/usr/X11R7/bin/iceauth.debug		-unknown-	debug,xorg
 ./usr/libdata/debug/usr/X11R7/bin/ico.debug		-unknown-	debug,xorg
 ./usr/libdata/debug/usr/X11R7/bin/imake.debug		-unknown-	debug,xorg
-./usr/libdata/debug/usr/X11R7/bin/lbxproxy.debug	-obsolete-	obsolete
 ./usr/libdata/debug/usr/X11R7/bin/listres.debug		-unknown-	debug,xorg
 ./usr/libdata/debug/usr/X11R7/bin/lndir.debug		-unknown-	debug,xorg
 ./usr/libdata/debug/usr/X11R7/bin/luit.debug		-unknown-	debug,xorg
@@ -317,11 +305,9 @@
 ./usr/libdata/debug/usr/X11R7/bin/makestrs.debug	-unknown-	debug,xorg
 ./usr/libdata/debug/usr/X11R7/bin/mkfontscale.debug	-unknown-	debug,xorg
 ./usr/libdata/debug/usr/X11R7/bin/oclock.debug		-unknown-	debug,xorg
-./usr/libdata/debug/usr/X11R7/bin/pcitweak.debug	-unknown-	obsolete
 ./usr/libdata/debug/usr/X11R7/bin/proxymngr.debug	-unknown-	debug,xorg
 ./usr/libdata/debug/usr/X11R7/bin/resize.debug		-unknown-	debug,xorg
 ./usr/libdata/debug/usr/X11R7/bin/revpath.debug		-unknown-	debug,xorg
-./usr/libdata/debug/usr/X11R7/bin/scanpci.debug		-unknown-	obsolete
 ./usr/libdata/debug/usr/X11R7/bin/sessreg.debug		-unknown-	debug,xorg
 ./usr/libdata/debug/usr/X11R7/bin/setxkbmap.debug	-unknown-	debug,xorg
 ./usr/libdata/debug/usr/X11R7/bin/showrgb.debug		-unknown-	debug,xorg
@@ -374,15 +360,9 @@
 ./usr/libdata/debug/usr/X11R7/bin/xman.debug		-unknown-	debug,xorg
 ./usr/libdata/debug/usr/X11R7/bin/xmessage.debug	-unknown-	debug,xorg
 ./usr/libdata/debug/usr/X11R7/bin/xmh.debug		-unknown-	debug,xorg
-./usr/libdata/debug/usr/X11R7/bin/xmlwf.debug		-obsolete-	obsolete
 ./usr/libdata/debug/usr/X11R7/bin/xmodmap.debug		-unknown-	debug,xorg
 ./usr/libdata/debug/usr/X11R7/bin/xmore.debug		-unknown-	debug,xorg
-./usr/libdata/debug/usr/X11R7/bin/xphelloworld.debug	-obsolete-	obsolete
-./usr/libdata/debug/usr/X11R7/bin/xplsprinters.debug	-obsolete-	obsolete
-./usr/libdata/debug/usr/X11R7/bin/xprehashprinterlist.debug	-obsolete-	obsolete
 ./usr/libdata/debug/usr/X11R7/bin/xprop.debug		-unknown-	debug,xorg
-./usr/libdata/debug/usr/X11R7/bin/xpsimplehelloworld.debug	-obsolete-	obsolete
-./usr/libdata/debug/usr/X11R7/bin/xpxthelloworld.debug	-obsolete-	obsolete
 ./usr/libdata/debug/usr/X11R7/bin/xrandr.debug		-unknown-	debug,xorg
 ./usr/libdata/debug/usr/X11R7/bin/xrdb.debug		-unknown-	debug,xorg
 ./usr/libdata/debug/usr/X11R7/bin/xrefresh.debug	-unknown-	debug,xorg

@@ -221,10 +221,8 @@
 ./usr/lib/eabi/libnetpgpverify.so.4.0		base-compat-shlib	compat,pic,crypto
 ./usr/lib/eabi/libnpf.so.0			base-compat-shlib	compat,pic,npf
 ./usr/lib/eabi/libnpf.so.0.0			base-compat-shlib	compat,pic,npf
-./usr/lib/eabi/libobjc.so.3			base-compat-shlib	compat,pic,gcccmds,gcc=4
 ./usr/lib/eabi/libobjc.so.3			base-compat-shlib	compat,pic,gcccmds,gcc=45
 ./usr/lib/eabi/libobjc.so.4			base-compat-shlib	compat,pic,gcccmds,gcc=48
-./usr/lib/eabi/libobjc.so.3.0			base-compat-shlib	compat,pic,gcccmds,gcc=4
 ./usr/lib/eabi/libobjc.so.3.0			base-compat-shlib	compat,pic,gcccmds,gcc=45
 ./usr/lib/eabi/libobjc.so.4.0			base-compat-shlib	compat,pic,gcccmds,gcc=48
 ./usr/lib/eabi/libopcodes.so.6			base-compat-shlib	compat,pic,binutils
@@ -278,7 +276,6 @@
 ./usr/lib/eabi/libssl.so.10			base-compat-shlib	compat,pic,crypto
 ./usr/lib/eabi/libssl.so.10.5			base-compat-shlib	compat,pic,crypto
 ./usr/lib/eabi/libstdc++.so.7			base-compat-shlib	compat,pic,cxx,gcccmds,libstdcxx
-./usr/lib/eabi/libstdc++.so.7.0			base-compat-shlib	gcc=4,compat,pic,cxx,libstdcxx
 ./usr/lib/eabi/libstdc++.so.7.1			base-compat-shlib	gcc=45,compat,pic,cxx,libstdcxx
 ./usr/lib/eabi/libstdc++.so.7.2			base-compat-shlib	gcc=48,compat,pic,cxx,libstdcxx
 ./usr/lib/eabi/libtermcap.so.0			base-compat-shlib	compat,pic
@@ -511,10 +508,8 @@
 #./usr/lib/eabihf/libnetpgpverify.so.4.0		base-compat-shlib	compat,pic,crypto
 #./usr/lib/eabihf/libnpf.so.0			base-compat-shlib	compat,pic,npf
 #./usr/lib/eabihf/libnpf.so.0.0			base-compat-shlib	compat,pic,npf
-#./usr/lib/eabihf/libobjc.so.3			base-compat-shlib	compat,pic,gcccmds,gcc=4
 #./usr/lib/eabihf/libobjc.so.3			base-compat-shlib	compat,pic,gcccmds,gcc=45
 #./usr/lib/eabihf/libobjc.so.4			base-compat-shlib	compat,pic,gcccmds,gcc=48
-#./usr/lib/eabihf/libobjc.so.3.0			base-compat-shlib	compat,pic,gcccmds,gcc=4
 #./usr/lib/eabihf/libobjc.so.3.0			base-compat-shlib	compat,pic,gcccmds,gcc=45
 #./usr/lib/eabihf/libobjc.so.4.0			base-compat-shlib	compat,pic,gcccmds,gcc=48
 #./usr/lib/eabihf/libopcodes.so.6			base-compat-shlib	compat,pic,binutils
@@ -568,7 +563,6 @@
 #./usr/lib/eabihf/libssl.so.10			base-compat-shlib	compat,pic,crypto
 #./usr/lib/eabihf/libssl.so.10.5			base-compat-shlib	compat,pic,crypto
 #./usr/lib/eabihf/libstdc++.so.7			base-compat-shlib	compat,pic,cxx,gcccmds,libstdcxx
-#./usr/lib/eabihf/libstdc++.so.7.0			base-compat-shlib	gcc=4,compat,pic,cxx,libstdcxx
 #./usr/lib/eabihf/libstdc++.so.7.1			base-compat-shlib	gcc=45,compat,pic,cxx,libstdcxx
 #./usr/lib/eabihf/libstdc++.so.7.2			base-compat-shlib	gcc=48,compat,pic,cxx,libstdcxx
 #./usr/lib/eabihf/libtermcap.so.0			base-compat-shlib	compat,pic
@@ -801,10 +795,8 @@
 ./usr/lib/oabi/libnetpgpverify.so.4.0		base-compat-shlib	compat,pic,crypto
 ./usr/lib/oabi/libnpf.so.0			base-compat-shlib	compat,pic,npf
 ./usr/lib/oabi/libnpf.so.0.0			base-compat-shlib	compat,pic,npf
-./usr/lib/oabi/libobjc.so.3			base-compat-shlib	compat,pic,gcccmds,gcc=4
 ./usr/lib/oabi/libobjc.so.3			base-compat-shlib	compat,pic,gcccmds,gcc=45
 ./usr/lib/oabi/libobjc.so.4			base-compat-shlib	compat,pic,gcccmds,gcc=48
-./usr/lib/oabi/libobjc.so.3.0			base-compat-shlib	compat,pic,gcccmds,gcc=4
 ./usr/lib/oabi/libobjc.so.3.0			base-compat-shlib	compat,pic,gcccmds,gcc=45
 ./usr/lib/oabi/libobjc.so.4.0			base-compat-shlib	compat,pic,gcccmds,gcc=48
 ./usr/lib/oabi/libopcodes.so.6			base-compat-shlib	compat,pic,binutils
@@ -858,7 +850,6 @@
 ./usr/lib/oabi/libssl.so.10			base-compat-shlib	compat,pic,crypto
 ./usr/lib/oabi/libssl.so.10.5			base-compat-shlib	compat,pic,crypto
 ./usr/lib/oabi/libstdc++.so.7			base-compat-shlib	compat,pic,cxx,gcccmds,libstdcxx
-./usr/lib/oabi/libstdc++.so.7.0			base-compat-shlib	gcc=4,compat,pic,cxx,libstdcxx
 ./usr/lib/oabi/libstdc++.so.7.1			base-compat-shlib	gcc=45,compat,pic,cxx,libstdcxx
 ./usr/lib/oabi/libstdc++.so.7.2			base-compat-shlib	gcc=48,compat,pic,cxx,libstdcxx
 ./usr/lib/oabi/libtermcap.so.0			base-compat-shlib	compat,pic

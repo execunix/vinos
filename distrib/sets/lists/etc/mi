@@ -12,13 +12,9 @@
 ./.profile					etc-util-etc
 ./dev/MAKEDEV					etc-sys-etc
 ./dev/MAKEDEV.local				etc-sys-etc
-./dev/MAKEDEV.subr				etc-obsolete		obsolete
-./etc/audit-packages.conf			etc-obsolete		obsolete
 ./etc/bluetooth					etc-sys-etc
-./etc/bluetooth/bluetooth.conf			etc-obsolete		obsolete
 ./etc/bluetooth/btattach.conf			etc-sys-etc
 ./etc/bluetooth/btdevctl.conf			etc-sys-etc
-./etc/bluetooth/btuartd.conf			etc-obsolete		obsolete
 ./etc/bluetooth/hosts				etc-sys-etc
 ./etc/bluetooth/protocols			etc-sys-etc
 ./etc/bootptab					etc-bootserver-etc
@@ -28,12 +24,6 @@
 ./etc/csh.logout				etc-util-etc
 ./etc/daily					etc-sys-etc
 ./etc/daily.conf				etc-sys-etc
-./etc/default					etc-obsolete		obsolete
-./etc/default/daily.conf			etc-obsolete		obsolete
-./etc/default/monthly.conf			etc-obsolete		obsolete
-./etc/default/rc.conf				etc-obsolete		obsolete
-./etc/default/security.conf			etc-obsolete		obsolete
-./etc/default/weekly.conf			etc-obsolete		obsolete
 ./etc/defaults/daily.conf			etc-sys-defaults
 ./etc/defaults/monthly.conf			etc-sys-defaults
 ./etc/defaults/pf.boot.conf			etc-pf-defaults		pf
@@ -41,25 +31,12 @@
 ./etc/defaults/rc.conf				etc-sys-defaults
 ./etc/defaults/security.conf			etc-sys-defaults
 ./etc/defaults/weekly.conf			etc-sys-defaults
-./etc/dhclient-script				etc-obsolete		obsolete
 ./etc/dhcpcd.conf				etc-dhcpcd-etc
 ./etc/disktab					etc-sysutil-etc
 ./etc/dm.conf					etc-games-etc
 ./etc/dumpdates					etc-sysutil-etc
 ./etc/envsys.conf				etc-sysutil-etc
 ./etc/floppytab					etc-sysutil-etc
-./etc/fstab.nfs					etc-obsolete		obsolete
-./etc/fstab.sd					etc-obsolete		obsolete
-./etc/fstab.sd0					etc-obsolete		obsolete
-./etc/fstab.sd1					etc-obsolete		obsolete
-./etc/fstab.sd2					etc-obsolete		obsolete
-./etc/fstab.sd3					etc-obsolete		obsolete
-./etc/fstab.sd4					etc-obsolete		obsolete
-./etc/fstab.sd5					etc-obsolete		obsolete
-./etc/fstab.sd6					etc-obsolete		obsolete
-./etc/fstab.sd7					etc-obsolete		obsolete
-./etc/fstab.tmp					etc-obsolete		obsolete
-./etc/fstab.wd					etc-obsolete		obsolete
 ./etc/ftpchroot					etc-netutil-etc
 ./etc/ftpusers					etc-netutil-etc
 ./etc/gettytab					etc-sysutil-etc
@@ -71,7 +48,6 @@
 ./etc/inetd.conf				etc-netutil-etc
 ./etc/iscsi/auths				etc-iscsi-etc		iscsi
 ./etc/iscsi/targets				etc-iscsi-etc		iscsi
-./etc/lkm.conf					etc-obsolete		obsolete
 ./etc/localtime					etc-sys-etc
 ./etc/locate.conf				etc-sys-etc
 ./etc/login.conf				etc-sys-etc
@@ -99,13 +75,6 @@
 ./etc/newsyslog.conf				etc-sysutil-etc
 ./etc/nsswitch.conf				etc-net-etc
 ./etc/ntp.conf					etc-ntp-etc
-./etc/obsolete/base				etc-obsolete		obsolete
-./etc/obsolete/comp				etc-obsolete		obsolete
-./etc/obsolete/etc				etc-obsolete		obsolete
-./etc/obsolete/games				etc-obsolete		obsolete
-./etc/obsolete/man				etc-obsolete		obsolete
-./etc/obsolete/misc				etc-obsolete		obsolete
-./etc/obsolete/text				etc-obsolete		obsolete
 ./etc/pam.d/README				etc-sys-etc
 ./etc/pam.d/display_manager			etc-sys-etc
 ./etc/pam.d/ftpd				etc-sys-etc
@@ -134,10 +103,6 @@
 ./etc/postfix/README				etc-postfix-etc		postfix
 ./etc/postfix/main.cf				etc-postfix-etc		postfix
 ./etc/postfix/master.cf				etc-postfix-etc		postfix
-./etc/postfix/post-install			etc-obsolete		obsolete
-./etc/postfix/postfix-files			etc-obsolete		obsolete
-./etc/postfix/postfix-script			etc-obsolete		obsolete
-./etc/postinstall				etc-obsolete		obsolete
 ./etc/powerd/scripts/acadapter			etc-sysutil-etc
 ./etc/powerd/scripts/hotkey_button		etc-sysutil-etc
 ./etc/powerd/scripts/lid_switch			etc-sysutil-etc
@@ -152,7 +117,6 @@
 ./etc/powerd/scripts/sensor_temperature		etc-sysutil-etc
 ./etc/powerd/scripts/sensor_voltage		etc-sysutil-etc
 ./etc/powerd/scripts/sleep_button		etc-sysutil-etc
-./etc/primes					etc-obsolete		obsolete
 ./etc/printcap					etc-lpr-etc
 ./etc/profile					etc-util-etc
 ./etc/protocols					etc-net-etc
@@ -163,7 +127,6 @@
 ./etc/rc.d/DAEMON				etc-sys-rc
 ./etc/rc.d/DISKS				etc-sys-rc
 ./etc/rc.d/LOGIN				etc-sys-rc
-./etc/rc.d/NETWORK				etc-obsolete		obsolete
 ./etc/rc.d/NETWORKING				etc-sys-rc
 ./etc/rc.d/SERVERS				etc-sys-rc
 ./etc/rc.d/accounting				etc-sys-rc
@@ -174,12 +137,6 @@
 ./etc/rc.d/bluetooth				etc-sys-rc
 ./etc/rc.d/bootconf.sh				etc-sys-rc
 ./etc/rc.d/bootparams				etc-bootserver-rc
-./etc/rc.d/btattach				etc-obsolete		obsolete
-./etc/rc.d/btconfig				etc-obsolete		obsolete
-./etc/rc.d/btcontrol				etc-obsolete		obsolete
-./etc/rc.d/btdevctl				etc-obsolete		obsolete
-./etc/rc.d/bthcid				etc-obsolete		obsolete
-./etc/rc.d/btuartd				etc-obsolete		obsolete
 ./etc/rc.d/ccd					etc-sys-rc
 ./etc/rc.d/cgd					etc-sys-rc
 ./etc/rc.d/cleartmp				etc-sys-rc
@@ -192,13 +149,10 @@
 ./etc/rc.d/dmesg				etc-sys-rc
 ./etc/rc.d/downinterfaces			etc-sys-rc
 ./etc/rc.d/envsys				etc-sys-rc
-./etc/rc.d/fixsb				etc-obsolete		obsolete
 ./etc/rc.d/fsck					etc-sys-rc
-./etc/rc.d/fsck.sh				etc-obsolete		obsolete
 ./etc/rc.d/fsck_root				etc-sys-rc
 ./etc/rc.d/ftp_proxy				etc-net-rc
 ./etc/rc.d/ftpd					etc-net-rc
-./etc/rc.d/gated				etc-obsolete		obsolete
 ./etc/rc.d/gpio					etc-sys-rc
 ./etc/rc.d/hostapd				etc-net-rc
 ./etc/rc.d/httpd				etc-net-rc
@@ -215,12 +169,8 @@
 ./etc/rc.d/isdnd				etc-isdn-rc
 ./etc/rc.d/isibootd				etc-bootserver-rc
 ./etc/rc.d/kdc					etc-krb5-rc
-./etc/rc.d/kerberos				etc-obsolete		obsolete
 ./etc/rc.d/ldconfig				etc-sys-rc
 ./etc/rc.d/ldpd					etc-router-rc
-./etc/rc.d/lkm1					etc-obsolete		obsolete
-./etc/rc.d/lkm2					etc-obsolete		obsolete
-./etc/rc.d/lkm3					etc-obsolete		obsolete
 ./etc/rc.d/local				etc-sys-rc
 ./etc/rc.d/lpd					etc-lpr-rc
 ./etc/rc.d/lvm					etc-sys-rc
@@ -249,7 +199,6 @@
 ./etc/rc.d/pf					etc-net-rc
 ./etc/rc.d/pf_boot				etc-net-rc
 ./etc/rc.d/pflogd				etc-net-rc
-./etc/rc.d/poffd				etc-obsolete		obsolete
 ./etc/rc.d/postfix				etc-postfix-rc
 ./etc/rc.d/powerd				etc-sysutil-rc
 ./etc/rc.d/ppp					etc-ppp-rc
@@ -273,7 +222,6 @@
 ./etc/rc.d/rwho					etc-net-rc
 ./etc/rc.d/savecore				etc-sys-rc
 ./etc/rc.d/screenblank				etc-sys-rc
-./etc/rc.d/sdpd					etc-obsolete		obsolete
 ./etc/rc.d/securelevel				etc-sys-rc
 ./etc/rc.d/sshd					etc-secsh-rc
 ./etc/rc.d/staticroute				etc-sys-rc
@@ -282,7 +230,6 @@
 ./etc/rc.d/sysctl				etc-sys-rc
 ./etc/rc.d/sysdb				etc-sys-rc
 ./etc/rc.d/syslogd				etc-sys-rc
-./etc/rc.d/systemfs				etc-obsolete		obsolete
 ./etc/rc.d/timed				etc-timed-rc
 ./etc/rc.d/tpctl				etc-sys-rc
 ./etc/rc.d/ttys					etc-sys-rc
@@ -292,22 +239,16 @@
 ./etc/rc.d/wpa_supplicant			etc-net-rc
 ./etc/rc.d/wscons				etc-sys-rc
 ./etc/rc.d/wsmoused				etc-sys-rc
-./etc/rc.d/xntpd				etc-obsolete		obsolete
 ./etc/rc.d/ypbind				etc-nis-rc
 ./etc/rc.d/yppasswdd				etc-nis-rc
 ./etc/rc.d/ypserv				etc-nis-rc
-./etc/rc.d/ypset				etc-obsolete		obsolete
-./etc/rc.lkm					etc-obsolete		obsolete
 ./etc/rc.local					etc-sys-rc
 ./etc/rc.shutdown				etc-sys-rc
 ./etc/rc.subr					etc-sys-rc
-./etc/rc.wscons					etc-obsolete		obsolete
-./etc/release-info				etc-obsolete		obsolete
 ./etc/remote					etc-sys-etc
 ./etc/rmt					etc-sysutil-etc
 ./etc/rpc					etc-net-etc
 ./etc/saslc.d					etc-libsaslc-etc
-./etc/saslc.d/mech				obsolete		obsolete
 ./etc/saslc.d/postfix				etc-libsaslc-postfix
 ./etc/saslc.d/postfix/mech			etc-libsaslc-postfix
 ./etc/saslc.d/saslc				etc-libsaslc-etc
@@ -323,7 +264,6 @@
 ./etc/skel/.profile				etc-sys-etc
 ./etc/skel/.shrc				etc-sys-etc
 ./etc/skeykeys					etc-sys-etc
-./etc/spamd.conf				etc-obsolete		obsolete
 ./etc/spwd.db					etc-sys-etc
 ./etc/ssh/ssh_config				etc-secsh-etc		crypto
 ./etc/ssh/ssh_known_hosts			etc-secsh-etc		crypto

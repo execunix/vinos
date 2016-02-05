@@ -45,34 +45,18 @@
 ./bin/ps					base-util-root
 ./bin/pwd					base-util-root
 ./bin/rcmd					base-netutil-root
-./bin/rcorder					base-obsolete		obsolete
 ./bin/rcp					base-netutil-root
 ./bin/rm					base-util-root
-./bin/rmail					base-obsolete		obsolete
 ./bin/rmdir					base-util-root
 ./bin/sh					base-util-root
 ./bin/sleep					base-util-root
 ./bin/stty					base-util-root
 ./bin/sync					base-util-root
-./bin/systrace					base-obsolete		obsolete
 ./bin/tar					base-util-root
 ./bin/test					base-util-root
 ./dev						base-sys-root
 ./dev/altq					base-sys-root
-./dev/btdev0					base-obsolete		obsolete
-./dev/btdev1					base-obsolete		obsolete
-./dev/btdev2					base-obsolete		obsolete
-./dev/btdev3					base-obsolete		obsolete
-./dev/bthubctl					base-obsolete		obsolete
 ./dev/fd					base-sys-root
-./dev/i4b					base-obsolete		obsolete
-./dev/i4bctl					base-obsolete		obsolete
-./dev/i4brbch0					base-obsolete		obsolete
-./dev/i4brbch1					base-obsolete		obsolete
-./dev/i4btel0					base-obsolete		obsolete
-./dev/i4btel1					base-obsolete		obsolete
-./dev/i4btrc0					base-obsolete		obsolete
-./dev/i4btrc1					base-obsolete		obsolete
 ./dev/log					base-sys-root
 ./etc						base-sys-root
 ./etc/X11					base-x11-root
@@ -90,18 +74,15 @@
 ./etc/X11/xsm					base-x11-root
 ./etc/cgd					base-sys-root
 ./etc/defaults					base-sys-root
-./etc/disklabels				base-obsolete		obsolete
 ./etc/fonts					base-x11-root
 ./etc/fonts/conf.avail				base-x11-root
 ./etc/fonts/conf.d				base-x11-root
 ./etc/iscsi					base-sysutil-root
-./etc/kerberosIV				base-obsolete		obsolete
 ./etc/kerberosV					base-krb5-root
 ./etc/mail					base-postfix-bin
 ./etc/mtree					base-sys-root
 ./etc/mtree/set.base				base-sys-root
 ./etc/namedb					base-bind-root
-./etc/obsolete					base-obsolete		obsolete
 ./etc/openldap					base-ldap-root
 ./etc/openssl					base-crypto-root
 ./etc/openssl/certs				base-crypto-root
@@ -118,12 +99,7 @@
 ./etc/skel					base-sys-root
 ./etc/sliphome					base-slip-root
 ./etc/ssh					base-sys-root
-./etc/systrace					base-obsolete		obsolete
-./etc/uucp					base-obsolete		obsolete
-./etc/zfs					base-zfs-root
 ./lib						base-sys-root
-./lib/libdes.so					base-obsolete		obsolete
-./lib/libssp.so					base-obsolete		obsolete
 ./lib/npf					base-sys-root
 ./libdata					base-sys-root
 ./libdata/firmware				base-firmware-root
@@ -175,9 +151,7 @@
 ./libdata/firmware/if_iwn/iwlwifi-135-6.ucode	base-firmware-root
 ./libdata/firmware/if_iwn/iwlwifi-2000-6.ucode	base-firmware-root
 ./libdata/firmware/if_iwn/iwlwifi-2030-6.ucode	base-firmware-root
-./libdata/firmware/if_iwn/iwlwifi-4965-1.ucode	base-obsolete		obsolete
 ./libdata/firmware/if_iwn/iwlwifi-4965-2.ucode	base-firmware-root
-./libdata/firmware/if_iwn/iwlwifi-5000-1.ucode	base-obsolete		obsolete
 ./libdata/firmware/if_iwn/iwlwifi-5000-2.ucode	base-firmware-root
 ./libdata/firmware/if_iwn/iwlwifi-5150-2.ucode	base-firmware-root
 ./libdata/firmware/if_iwn/iwlwifi-6000-4.ucode	base-firmware-root
@@ -194,11 +168,8 @@
 ./libdata/firmware/if_urtwn/rtl8192cfw.bin	base-firmware-root
 ./libdata/firmware/if_urtwn/rtl8192cfwU.bin	base-firmware-root
 ./libdata/firmware/if_wpi			base-firmware-root
-./libdata/firmware/if_wpi/LICENSE.ipw3945-ucode	base-obsolete	obsolete
 ./libdata/firmware/if_wpi/LICENSE.iwlwifi-3945-ucode	base-firmware-root
-./libdata/firmware/if_wpi/README.ipw3945-ucode	base-obsolete	obsolete
 ./libdata/firmware/if_wpi/README.iwlwifi-3945-ucode	base-firmware-root
-./libdata/firmware/if_wpi/ipw3945.ucode		base-obsolete	obsolete
 ./libdata/firmware/if_wpi/iwlwifi-3945.ucode		base-firmware-root
 ./libdata/firmware/radeon			base-firmware-usr
 ./libdata/firmware/radeon/ARUBA_me.bin		base-firmware-usr	radeonfirmware
@@ -363,16 +334,12 @@
 ./libdata/firmware/rum				base-firmware-root
 ./libdata/firmware/rum/rum-license		base-firmware-root
 ./libdata/firmware/rum/rum-rt2573		base-firmware-root
-./libdata/firmware/rum/run-rt2870		base-obsolete	obsolete
-./libdata/firmware/rum/run-rt3071		base-obsolete	obsolete
 ./libdata/firmware/run				base-firmware-root
 ./libdata/firmware/run/run-license		base-firmware-root
 ./libdata/firmware/run/run-rt2870		base-firmware-root
 ./libdata/firmware/run/run-rt3071		base-firmware-root
 ./libdata/firmware/upgt				base-firmware-root
-./libdata/firmware/urtwn			base-firmware-root obsolete
 ./libdata/firmware/zyd				base-firmware-root
-./libdata/firmware/zyd/zd1211-licence		base-obsolete			obsolete
 ./libdata/firmware/zyd/zd1211-license		base-firmware-root
 ./libdata/firmware/zyd/zyd-zd1211		base-firmware-root
 ./libdata/firmware/zyd/zyd-zd1211b		base-firmware-root
@@ -386,10 +353,7 @@
 ./libexec/dhcpcd-hooks/01-test			base-dhcpcd-root
 ./libexec/dhcpcd-hooks/02-dump			base-dhcpcd-root
 ./libexec/dhcpcd-hooks/10-mtu			base-dhcpcd-root
-./libexec/dhcpcd-hooks/10-resolv.conf		base-obsolete			obsolete
 ./libexec/dhcpcd-hooks/10-wpa_supplicant	base-dhcpcd-root
-./libexec/dhcpcd-hooks/14-lookup-hostname	base-obsolete			obsolete
-./libexec/dhcpcd-hooks/15-hostname		base-obsolete			obsolete
 ./libexec/dhcpcd-hooks/15-timezone		base-dhcpcd-root
 ./libexec/dhcpcd-hooks/20-resolv.conf		base-dhcpcd-root
 ./libexec/dhcpcd-hooks/29-lookup-hostname	base-dhcpcd-root
@@ -431,8 +395,6 @@
 ./sbin/drvctl					base-sysutil-root
 ./sbin/dump					base-sysutil-root
 ./sbin/dump_lfs					base-sysutil-root
-./sbin/dumpfs					base-obsolete		obsolete
-./sbin/dumplfs					base-obsolete		obsolete
 ./sbin/fastboot					base-sysutil-root
 ./sbin/fasthalt					base-sysutil-root
 ./sbin/fdisk					base-sysutil-root
@@ -452,8 +414,6 @@
 ./sbin/ipppctl					base-netutil-root
 ./sbin/iscsictl					base-iscsi-bin		iscsi
 ./sbin/iscsid					base-iscsi-bin		iscsi
-./sbin/ispppcontrol				base-obsolete		obsolete
-./sbin/lmcctl					base-obsolete		obsolete
 ./sbin/luactl					base-sysutil-root
 ./sbin/lvm					base-lvm-root		lvm
 ./sbin/mbrlabel					base-sysutil-root
@@ -471,7 +431,6 @@
 ./sbin/mount_ffs				base-sysutil-root
 ./sbin/mount_filecore				base-filecorefs-root
 ./sbin/mount_hfs				base-hfs-root
-./sbin/mount_hfsp				base-obsolete		obsolete
 ./sbin/mount_kernfs				base-sysutil-root
 ./sbin/mount_lfs				base-sysutil-root
 ./sbin/mount_mfs				base-sysutil-root
@@ -493,7 +452,6 @@
 ./sbin/mount_umap				base-miscfs-root
 ./sbin/mount_union				base-miscfs-root
 ./sbin/mount_v7fs				base-sysutil-root
-./sbin/mountd					base-obsolete		obsolete
 ./sbin/newbtconf				base-sysutil-root
 ./sbin/newfs					base-sysutil-root
 ./sbin/newfs_ext2fs				base-sysutil-root
@@ -502,9 +460,6 @@
 ./sbin/newfs_sysvbfs				base-sysutil-root
 ./sbin/newfs_udf				base-sysutil-root
 ./sbin/newfs_v7fs				base-sysutil-root
-./sbin/newlfs					base-obsolete		obsolete
-./sbin/nfsd					base-obsolete		obsolete
-./sbin/nfsiod					base-obsolete		obsolete
 ./sbin/nologin					base-sysutil-root
 ./sbin/npfctl					base-npf-bin		npf
 ./sbin/pdisk					base-sysutil-root
@@ -515,7 +470,6 @@
 ./sbin/ping6					base-netutil-root	use_inet6
 ./sbin/poweroff					base-sysutil-root
 ./sbin/pppoectl					base-netutil-root
-./sbin/quotacheck				base-obsolete		obsolete
 ./sbin/raidctl					base-sysutil-root
 ./sbin/rcorder					base-sysutil-root
 ./sbin/rdump					base-sysutil-root
@@ -546,12 +500,8 @@
 ./sbin/tunefs					base-sysutil-root
 ./sbin/umount					base-sysutil-root
 ./sbin/veriexecctl				base-sysutil-root
-./sbin/verifiedexec_load			base-obsolete		obsolete
-./sbin/vinum					base-obsolete		obsolete
 ./sbin/wdogctl					base-sysutil-root
 ./sbin/wsconsctl				base-sysutil-root
-./sbin/zfs					base-zfs-bin            zfs
-./sbin/zpool					base-zfs-bin            zfs
 ./stand						base-sys-root
 ./tmp						base-sys-root
 ./usr						base-sys-root
@@ -602,7 +552,6 @@
 ./usr/bin/colrm					base-util-bin
 ./usr/bin/column				base-util-bin
 ./usr/bin/comm					base-util-bin
-./usr/bin/compile_et				base-obsolete		obsolete
 ./usr/bin/compress				base-util-bin
 ./usr/bin/cpio					base-util-bin
 ./usr/bin/cpp					base-util-bin		gcccmds
@@ -620,7 +569,6 @@
 ./usr/bin/dig					base-netutil-bin
 ./usr/bin/dirname				base-util-bin
 ./usr/bin/dns-sd				base-mdns-bin		mdns
-./usr/bin/dnsquery				base-obsolete	obsolete
 ./usr/bin/du					base-util-bin
 ./usr/bin/egrep					base-util-bin
 ./usr/bin/eject					base-util-bin
@@ -650,10 +598,8 @@
 ./usr/bin/getent				base-util-bin
 ./usr/bin/getextattr				base-util-bin
 ./usr/bin/getopt				base-util-bin
-./usr/bin/gkermit				base-obsolete		obsolete
 ./usr/bin/grep					base-util-bin
 ./usr/bin/groups				base-util-bin
-./usr/bin/gss					base-obsolete		obsolete
 ./usr/bin/gsstool				base-krb5-bin		kerberos
 ./usr/bin/gunzip				base-util-bin
 ./usr/bin/gzcat					base-util-bin
@@ -682,7 +628,6 @@
 ./usr/bin/kcc					base-krb5-bin		kerberos
 ./usr/bin/kdestroy				base-krb5-bin		kerberos
 ./usr/bin/kdump					base-debug-bin
-./usr/bin/kf					base-obsolete		obsolete
 ./usr/bin/kgetcred				base-krb5-bin		kerberos
 ./usr/bin/kinit					base-krb5-bin		kerberos
 ./usr/bin/klist					base-krb5-bin		kerberos
@@ -744,16 +689,13 @@
 ./usr/bin/midiplay				base-audio-bin
 ./usr/bin/midirecord				base-audio-bin
 ./usr/bin/mixerctl				base-audio-bin
-./usr/bin/mk_cmds				base-obsolete		obsolete
 ./usr/bin/mkcsmapper				base-util-bin
 ./usr/bin/mkdep					base-c-bin
 ./usr/bin/mkesdb				base-util-bin
 ./usr/bin/mkfifo				base-util-bin
 ./usr/bin/mklocale				base-locale-bin
 ./usr/bin/mktemp				base-util-bin
-./usr/bin/modstat				base-obsolete		obsolete
 ./usr/bin/more					base-util-bin
-./usr/bin/mset					base-obsolete		obsolete
 ./usr/bin/msgs					base-util-bin
 ./usr/bin/nbsvtool				base-crypto-bin		crypto
 ./usr/bin/netgroup				base-nis-bin
@@ -764,17 +706,13 @@
 ./usr/bin/newaliases				base-mailwrapper-bin
 ./usr/bin/newgrp				base-util-bin
 ./usr/bin/newsyslog				base-util-bin
-./usr/bin/nex					base-obsolete		obsolete
 ./usr/bin/nfsstat				base-nfsclient-bin
 ./usr/bin/nice					base-util-bin
 ./usr/bin/nl					base-util-bin
 ./usr/bin/nohup					base-util-bin
 ./usr/bin/nslookup				base-netutil-bin
 ./usr/bin/nsupdate				base-netutil-bin
-./usr/bin/nvi					base-obsolete		obsolete
-./usr/bin/nview					base-obsolete		obsolete
 ./usr/bin/od					base-util-bin
-./usr/bin/openpgp				base-obsolete		obsolete
 ./usr/bin/openssl				base-crypto-bin		crypto
 ./usr/bin/page					base-util-bin
 ./usr/bin/pagesize				base-util-bin
@@ -783,7 +721,6 @@
 ./usr/bin/patch					base-util-bin
 ./usr/bin/pathchk				base-util-bin
 ./usr/bin/pawd					base-amd-bin
-./usr/bin/paxctl				base-obsolete		obsolete
 ./usr/bin/pcap-config				base-util-bin
 ./usr/bin/pgrep					base-util-bin
 ./usr/bin/pigz					base-util-bin
@@ -875,7 +812,6 @@
 ./usr/bin/timeout				base-util-bin
 ./usr/bin/tip					base-util-bin
 ./usr/bin/tmux					base-util-bin
-./usr/bin/tn3270				base-obsolete		obsolete
 ./usr/bin/top					base-util-bin
 ./usr/bin/touch					base-util-bin
 ./usr/bin/tpfmt					base-util-bin
@@ -903,17 +839,9 @@
 ./usr/bin/usbhidctl				base-util-bin
 ./usr/bin/users					base-util-bin
 ./usr/bin/utoppya				base-util-bin
-./usr/bin/uucp					base-obsolete		obsolete
 ./usr/bin/uudecode				base-util-bin
 ./usr/bin/uuencode				base-util-bin
 ./usr/bin/uuidgen				base-util-bin
-./usr/bin/uulog					base-obsolete		obsolete
-./usr/bin/uuname				base-obsolete		obsolete
-./usr/bin/uupick				base-obsolete		obsolete
-./usr/bin/uusched				base-obsolete		obsolete
-./usr/bin/uustat				base-obsolete		obsolete
-./usr/bin/uuto					base-obsolete		obsolete
-./usr/bin/uux					base-obsolete		obsolete
 ./usr/bin/vacation				base-mail-bin
 ./usr/bin/verify_krb5_conf			base-krb5-bin		kerberos
 ./usr/bin/vi					base-util-bin
@@ -933,7 +861,6 @@
 ./usr/bin/who					base-util-bin
 ./usr/bin/whoami				base-util-bin
 ./usr/bin/whois					base-netutil-bin
-./usr/bin/window				base-obsolete		obsolete
 ./usr/bin/write					base-util-bin
 ./usr/bin/xargs					base-util-bin
 ./usr/bin/xmlwf					base-util-bin
@@ -954,7 +881,6 @@
 ./usr/bin/zless					base-util-bin
 ./usr/bin/zmore					base-util-bin
 ./usr/bin/znew					base-util-bin
-./usr/bin/ztest					base-zfs-bin		zfs
 ./usr/games					base-games-usr
 ./usr/games/hide				base-games-usr
 ./usr/include					base-c-usr
@@ -964,11 +890,7 @@
 ./usr/include/c++				base-cxx-usr
 ./usr/include/c++/experimental			base-cxx-usr
 ./usr/include/c++/ext				base-cxx-usr
-./usr/include/cdk				base-obsolete		obsolete
-./usr/include/clang-3.4				base-obsolete		obsolete
-./usr/include/clang-3.5				base-obsolete		obsolete
 ./usr/include/clang-3.6				base-c-usr
-./usr/include/compat				base-obsolete		obsolete
 ./usr/include/crypto				base-c-usr
 ./usr/include/dev				base-c-usr
 ./usr/include/dev/apm				base-c-usr
@@ -977,7 +899,6 @@
 ./usr/include/dev/dm	                        base-c-usr
 ./usr/include/dev/dmover			base-c-usr
 ./usr/include/dev/dtv				base-c-usr
-./usr/include/dev/eisa				base-obsolete		obsolete
 ./usr/include/dev/filemon			base-c-usr
 ./usr/include/dev/hpc				base-c-usr
 ./usr/include/dev/i2c				base-c-usr
@@ -986,13 +907,7 @@
 ./usr/include/dev/ieee1394			base-c-usr
 ./usr/include/dev/ir				base-c-usr
 ./usr/include/dev/isa				base-c-usr
-./usr/include/dev/isapnp			base-obsolete		obsolete
 ./usr/include/dev/iscsi				base-c-usr		iscsi
-./usr/include/dev/microcode			base-obsolete		obsolete
-./usr/include/dev/microcode/aic7xxx		base-obsolete		obsolete
-./usr/include/dev/microcode/isp			base-obsolete		obsolete
-./usr/include/dev/mii				base-obsolete		obsolete
-./usr/include/dev/ofisa				base-obsolete		obsolete
 ./usr/include/dev/ofw				base-c-usr
 ./usr/include/dev/pci				base-c-usr
 ./usr/include/dev/pci/hdaudio			base-c-usr
@@ -1001,13 +916,11 @@
 ./usr/include/dev/pud				base-c-usr
 ./usr/include/dev/putter			base-c-usr
 ./usr/include/dev/raidframe			base-c-usr
-./usr/include/dev/rcons				base-obsolete		obsolete
 ./usr/include/dev/sbus				base-c-usr
 ./usr/include/dev/scsipi			base-c-usr
 ./usr/include/dev/sun				base-c-usr
 ./usr/include/dev/tc				base-c-usr
 ./usr/include/dev/usb				base-c-usr
-./usr/include/dev/vinum				base-obsolete		obsolete
 ./usr/include/dev/vme				base-c-usr
 ./usr/include/dev/wscons			base-c-usr
 ./usr/include/event2				base-c-usr
@@ -1015,7 +928,6 @@
 ./usr/include/fs				base-c-usr
 ./usr/include/fs/efs				base-c-usr
 ./usr/include/fs/hfs				base-c-usr
-./usr/include/fs/hfsp				base-obsolete		obsolete
 ./usr/include/fs/nilfs				base-c-usr
 ./usr/include/fs/ptyfs				base-c-usr
 ./usr/include/fs/puffs				base-puffs-usr
@@ -1055,31 +967,21 @@
 ./usr/include/g++/ext/pb_ds/detail/tree_policy		base-cxx-usr
 ./usr/include/g++/ext/pb_ds/detail/trie_policy		base-cxx-usr
 ./usr/include/g++/ext/pb_ds/detail/unordered_iterator	base-cxx-usr
-./usr/include/g++/gen				base-obsolete		obsolete
 ./usr/include/g++/parallel			base-cxx-usr
 ./usr/include/g++/profile			base-cxx-usr
 ./usr/include/g++/profile/impl			base-cxx-usr
-./usr/include/g++/std				base-obsolete		obsolete
 ./usr/include/g++/tr1				base-cxx-usr
 ./usr/include/g++/tr1_impl			base-cxx-usr
 ./usr/include/g++/tr2				base-cxx-usr
-./usr/include/gcc-4.1				base-c-usr		gcc=4
-./usr/include/gcc-4.1				base-obsolete		!gcc,obsolete
-./usr/include/gcc-4.1				base-obsolete		gcc=45,obsolete
-./usr/include/gcc-4.1				base-obsolete		gcc=48,obsolete
 ./usr/include/gcc-4.5				base-c-usr
 ./usr/include/gcc-4.8				base-c-usr
 ./usr/include/gssapi				base-c-usr
-./usr/include/gssapi/rpc			base-obsolete		obsolete
 ./usr/include/isofs				base-c-usr
 ./usr/include/isofs/cd9660			base-c-usr
 ./usr/include/kadm5				base-c-usr
-./usr/include/kerberosIV			base-obsolete		obsolete
 ./usr/include/krb5				base-c-usr
-./usr/include/libmilter				base-obsolete		obsolete
 ./usr/include/lzma				base-c-usr
 ./usr/include/machine				base-c-usr
-./usr/include/milter				base-obsolete		obsolete
 ./usr/include/miscfs				base-c-usr
 ./usr/include/miscfs/fdesc			base-c-usr
 ./usr/include/miscfs/fifofs			base-c-usr
@@ -1087,9 +989,7 @@
 ./usr/include/miscfs/kernfs			base-c-usr
 ./usr/include/miscfs/nullfs			base-c-usr
 ./usr/include/miscfs/overlay			base-c-usr
-./usr/include/miscfs/portal			base-obsolete		obsolete
 ./usr/include/miscfs/procfs			base-c-usr
-./usr/include/miscfs/ptyfs			base-obsolete		obsolete
 ./usr/include/miscfs/specfs			base-c-usr
 ./usr/include/miscfs/syncfs			base-c-usr
 ./usr/include/miscfs/umapfs			base-c-usr
@@ -1100,33 +1000,27 @@
 ./usr/include/net80211				base-c-usr
 ./usr/include/netatalk				base-c-usr
 ./usr/include/netbt				base-c-usr
-./usr/include/netccitt				base-obsolete		obsolete
 ./usr/include/netinet				base-c-usr
 ./usr/include/netinet6				base-c-usr
 ./usr/include/netipsec				base-c-usr
 ./usr/include/netisdn				base-c-usr
-./usr/include/netiso				base-obsolete		obsolete
 ./usr/include/netkey				base-c-usr
 ./usr/include/netmpls				base-c-usr
 ./usr/include/netnatm				base-c-usr
-./usr/include/netns				base-obsolete		obsolete
 ./usr/include/netpgp				base-c-usr
 ./usr/include/netsmb				base-c-usr
 ./usr/include/nfs				base-c-usr
 ./usr/include/ntfs				base-c-usr
 ./usr/include/objc				base-objc-usr
-./usr/include/openpgpsdk			base-obsolete		obsolete
 ./usr/include/openssl				base-c-usr
 ./usr/include/pcap				base-c-usr
 ./usr/include/ppath				base-c-usr
 ./usr/include/prop				base-c-usr
 ./usr/include/protocols				base-c-usr
-./usr/include/quota				base-obsolete		obsolete
 ./usr/include/readline				base-c-usr
 ./usr/include/rpc				base-c-usr
 ./usr/include/rpcsvc				base-c-usr
 ./usr/include/security				base-c-usr
-./usr/include/ss				base-obsolete		obsolete
 ./usr/include/ssp				base-c-usr
 ./usr/include/sys				base-c-usr
 ./usr/include/trousers				base-c-usr
@@ -1138,46 +1032,10 @@
 ./usr/include/ufs/mfs				base-c-usr
 ./usr/include/ufs/ufs				base-c-usr
 ./usr/include/uvm				base-c-usr
-./usr/include/vm				base-obsolete		obsolete
 ./usr/lib					base-sys-usr
 ./usr/lib/i18n					base-i18n-root
-./usr/lib/libntp.so				base-obsolete		obsolete
-./usr/lib/libssp.so				base-obsolete		obsolete
-./usr/lib/libusb.a				base-obsolete		obsolete
-./usr/lib/libusb.so				base-obsolete		obsolete
 ./usr/lib/lua					base-sys-usr
-./usr/lib/lua/5.1				base-obsolete		obsolete
 ./usr/lib/lua/5.3				base-sys-usr
-./usr/lib/npf					base-obsolete		obsolete
-./usr/lib/runemodule				base-obsolete		obsolete
-./usr/lib/runemodule/libBIG5.a			base-obsolete		obsolete
-./usr/lib/runemodule/libBIG5.so			base-obsolete		obsolete
-./usr/lib/runemodule/libBIG5.so.3		base-obsolete		obsolete
-./usr/lib/runemodule/libBIG5.so.3.0		base-obsolete		obsolete
-./usr/lib/runemodule/libEUC.a			base-obsolete		obsolete
-./usr/lib/runemodule/libEUC.so			base-obsolete		obsolete
-./usr/lib/runemodule/libEUC.so.3		base-obsolete		obsolete
-./usr/lib/runemodule/libEUC.so.3.0		base-obsolete		obsolete
-./usr/lib/runemodule/libEUCTW.a			base-obsolete		obsolete
-./usr/lib/runemodule/libEUCTW.so		base-obsolete		obsolete
-./usr/lib/runemodule/libEUCTW.so.3		base-obsolete		obsolete
-./usr/lib/runemodule/libEUCTW.so.3.0		base-obsolete		obsolete
-./usr/lib/runemodule/libISO2022.a		base-obsolete		obsolete
-./usr/lib/runemodule/libISO2022.so		base-obsolete		obsolete
-./usr/lib/runemodule/libISO2022.so.3		base-obsolete		obsolete
-./usr/lib/runemodule/libISO2022.so.3.0		base-obsolete		obsolete
-./usr/lib/runemodule/libMSKanji.a		base-obsolete		obsolete
-./usr/lib/runemodule/libMSKanji.so		base-obsolete		obsolete
-./usr/lib/runemodule/libMSKanji.so.3		base-obsolete		obsolete
-./usr/lib/runemodule/libMSKanji.so.3.0		base-obsolete		obsolete
-./usr/lib/runemodule/libUTF2.a			base-obsolete		obsolete
-./usr/lib/runemodule/libUTF2.so			base-obsolete		obsolete
-./usr/lib/runemodule/libUTF2.so.3		base-obsolete		obsolete
-./usr/lib/runemodule/libUTF2.so.3.0		base-obsolete		obsolete
-./usr/lib/runemodule/libUTF8.a			base-obsolete		obsolete
-./usr/lib/runemodule/libUTF8.so			base-obsolete		obsolete
-./usr/lib/runemodule/libUTF8.so.3		base-obsolete		obsolete
-./usr/lib/runemodule/libUTF8.so.3.0		base-obsolete		obsolete
 ./usr/lib/security				base-sys-usr
 ./usr/libdata					base-sys-usr
 ./usr/libdata/debug				base-sys-usr
@@ -1191,170 +1049,13 @@
 ./usr/libdata/debug/usr/games			base-sys-usr
 ./usr/libdata/debug/usr/lib			base-sys-usr
 ./usr/libdata/debug/usr/lib/i18n		base-i18n-root
-./usr/libdata/debug/usr/lib/npf			base-obsolete		obsolete
 ./usr/libdata/debug/usr/libexec			base-sys-usr
 ./usr/libdata/debug/usr/libexec/ching		base-sys-usr
 ./usr/libdata/debug/usr/libexec/lpr		base-sys-usr
 ./usr/libdata/debug/usr/libexec/postfix		base-sys-usr
-./usr/libdata/debug/usr/libexec/uucp		base-obsolete		obsolete
 ./usr/libdata/debug/usr/mdec			base-sys-usr
 ./usr/libdata/debug/usr/sbin			base-sys-usr
 ./usr/libdata/firmware				base-firmware-usr
-./usr/libdata/firmware/radeon			base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/ARUBA_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/ARUBA_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/ARUBA_rlc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/BARTS_mc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/BARTS_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/BARTS_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/BARTS_smc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/BONAIRE_ce.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/BONAIRE_mc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/BONAIRE_mc2.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/BONAIRE_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/BONAIRE_mec.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/BONAIRE_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/BONAIRE_rlc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/BONAIRE_sdma.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/BONAIRE_smc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/BONAIRE_uvd.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/BONAIRE_vce.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/BTC_rlc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/CAICOS_mc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/CAICOS_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/CAICOS_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/CAICOS_smc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/CAYMAN_mc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/CAYMAN_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/CAYMAN_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/CAYMAN_rlc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/CAYMAN_smc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/CEDAR_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/CEDAR_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/CEDAR_rlc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/CEDAR_smc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/CYPRESS_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/CYPRESS_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/CYPRESS_rlc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/CYPRESS_smc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/CYPRESS_uvd.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/HAINAN_ce.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/HAINAN_mc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/HAINAN_mc2.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/HAINAN_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/HAINAN_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/HAINAN_rlc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/HAINAN_smc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/HAWAII_ce.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/HAWAII_mc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/HAWAII_mc2.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/HAWAII_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/HAWAII_mec.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/HAWAII_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/HAWAII_rlc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/HAWAII_sdma.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/HAWAII_smc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/JUNIPER_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/JUNIPER_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/JUNIPER_rlc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/JUNIPER_smc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/KABINI_ce.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/KABINI_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/KABINI_mec.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/KABINI_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/KABINI_rlc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/KABINI_sdma.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/KAVERI_ce.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/KAVERI_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/KAVERI_mec.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/KAVERI_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/KAVERI_rlc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/KAVERI_sdma.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/MULLINS_ce.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/MULLINS_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/MULLINS_mec.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/MULLINS_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/MULLINS_rlc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/MULLINS_sdma.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/OLAND_ce.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/OLAND_mc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/OLAND_mc2.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/OLAND_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/OLAND_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/OLAND_rlc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/OLAND_smc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/PALM_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/PALM_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/PITCAIRN_ce.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/PITCAIRN_mc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/PITCAIRN_mc2.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/PITCAIRN_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/PITCAIRN_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/PITCAIRN_rlc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/PITCAIRN_smc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/R100_cp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/R200_cp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/R300_cp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/R420_cp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/R520_cp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/R600_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/R600_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/R600_rlc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/R700_rlc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/REDWOOD_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/REDWOOD_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/REDWOOD_rlc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/REDWOOD_smc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/RS600_cp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/RS690_cp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/RS780_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/RS780_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/RV610_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/RV610_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/RV620_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/RV620_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/RV630_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/RV630_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/RV635_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/RV635_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/RV670_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/RV670_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/RV710_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/RV710_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/RV710_smc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/RV710_uvd.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/RV730_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/RV730_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/RV730_smc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/RV740_smc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/RV770_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/RV770_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/RV770_smc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/SUMO2_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/SUMO2_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/SUMO_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/SUMO_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/SUMO_rlc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/SUMO_uvd.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/TAHITI_ce.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/TAHITI_mc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/TAHITI_mc2.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/TAHITI_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/TAHITI_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/TAHITI_rlc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/TAHITI_smc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/TAHITI_uvd.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/TURKS_mc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/TURKS_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/TURKS_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/TURKS_smc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/VERDE_ce.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/VERDE_mc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/VERDE_mc2.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/VERDE_me.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/VERDE_pfp.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/VERDE_rlc.bin	base-firmware-usr	obsolete
-./usr/libdata/firmware/radeon/VERDE_smc.bin	base-firmware-usr	obsolete
 ./usr/libdata/ldscripts				base-c-usr
 ./usr/libdata/lint				base-c-usr
 ./usr/libexec					base-sys-usr
@@ -1362,25 +1063,18 @@
 ./usr/libexec/bozohttpd				base-netutil-bin
 ./usr/libexec/ching				base-games-usr
 ./usr/libexec/comsat				base-mail-bin
-./usr/libexec/cpp0				base-obsolete		obsolete
 ./usr/libexec/digest-service			base-krb5-bin		kerberos
-./usr/libexec/dnskeygen				base-obsolete		obsolete
 ./usr/libexec/fingerd				base-netutil-bin
-./usr/libexec/ftp-proxy				base-obsolete		obsolete
 ./usr/libexec/ftpd				base-netutil-bin
 ./usr/libexec/getNAME				base-man-bin		!makemandb
 ./usr/libexec/getty				base-sysutil-bin
-./usr/libexec/hprop				base-obsolete		obsolete
 ./usr/libexec/hpropd				base-krb5-bin		kerberos
 ./usr/libexec/httpd				base-netutil-bin
 ./usr/libexec/identd				base-netutil-bin
 ./usr/libexec/ipropd-master			base-krb5-bin		kerberos
 ./usr/libexec/ipropd-slave			base-krb5-bin		kerberos
 ./usr/libexec/kadmind				base-krb5-bin		kerberos
-./usr/libexec/kdc				base-obsolete		obsolete
-./usr/libexec/kfd				base-obsolete		obsolete
 ./usr/libexec/kpasswdd				base-krb5-bin		kerberos
-./usr/libexec/lfs_cleanerd			base-obsolete		obsolete
 ./usr/libexec/locate.bigram			base-sysutil-bin
 ./usr/libexec/locate.code			base-sysutil-bin
 ./usr/libexec/locate.updatedb			base-sysutil-bin
@@ -1390,11 +1084,7 @@
 ./usr/libexec/mail.local			base-mail-bin
 ./usr/libexec/makekey				base-crypto-bin
 ./usr/libexec/makewhatis			base-man-bin		!makemandb
-./usr/libexec/named-xfer			base-obsolete		obsolete
 ./usr/libexec/ntalkd				base-netutil-bin
-./usr/libexec/pfspamd				base-obsolete		obsolete
-./usr/libexec/pfspamd-setup			base-obsolete		obsolete
-./usr/libexec/pfspamlogd			base-obsolete		obsolete
 ./usr/libexec/postfix				base-postfix-usr
 ./usr/libexec/postfix/anvil			base-postfix-bin	postfix
 ./usr/libexec/postfix/bounce			base-postfix-bin	postfix
@@ -1406,7 +1096,6 @@
 ./usr/libexec/postfix/lmtp			base-postfix-bin	postfix
 ./usr/libexec/postfix/local			base-postfix-bin	postfix
 ./usr/libexec/postfix/master			base-postfix-bin	postfix
-./usr/libexec/postfix/nqmgr			base-obsolete		obsolete
 ./usr/libexec/postfix/oqmgr			base-postfix-bin	postfix
 ./usr/libexec/postfix/pickup			base-postfix-bin	postfix
 ./usr/libexec/postfix/pipe			base-postfix-bin	postfix
@@ -1418,7 +1107,6 @@
 ./usr/libexec/postfix/postscreen		base-postfix-bin	postfix,crypto
 ./usr/libexec/postfix/proxymap			base-postfix-bin	postfix
 ./usr/libexec/postfix/qmgr			base-postfix-bin	postfix
-./usr/libexec/postfix/qmqpd			base-obsolete		obsolete
 ./usr/libexec/postfix/scache			base-postfix-bin	postfix
 ./usr/libexec/postfix/sendmail			base-postfix-bin	postfix
 ./usr/libexec/postfix/showq			base-postfix-bin	postfix
@@ -1432,21 +1120,13 @@
 ./usr/libexec/postfix/virtual			base-postfix-bin	postfix
 ./usr/libexec/rexecd				base-netutil-bin
 ./usr/libexec/rlogind				base-netutil-bin
-./usr/libexec/rmail				base-obsolete		obsolete
 ./usr/libexec/rpc.rquotad			base-nfsserver-bin
 ./usr/libexec/rpc.rstatd			base-rpcserver-bin
 ./usr/libexec/rpc.rusersd			base-rpcserver-bin
 ./usr/libexec/rpc.rwalld			base-rpcserver-bin
 ./usr/libexec/rpc.sprayd			base-rpcserver-bin
 ./usr/libexec/rshd				base-netutil-bin
-./usr/libexec/sendmail				base-obsolete		obsolete
-./usr/libexec/sendmail/sendmail			base-obsolete		obsolete
 ./usr/libexec/sftp-server			base-secsh-bin		crypto
-./usr/libexec/sm.bin				base-obsolete		obsolete
-./usr/libexec/smrsh				base-obsolete		obsolete
-./usr/libexec/spamd				base-obsolete		obsolete
-./usr/libexec/spamd-setup			base-obsolete		obsolete
-./usr/libexec/spamlogd				base-obsolete		obsolete
 ./usr/libexec/spellprog				base-util-bin
 ./usr/libexec/ssh-keysign			base-secsh-bin		crypto
 ./usr/libexec/ssh-pkcs11-helper			base-secsh-bin		crypto
@@ -1454,47 +1134,7 @@
 ./usr/libexec/tftp-proxy			base-pf-bin		pf
 ./usr/libexec/tftpd				base-netutil-bin
 ./usr/libexec/utmp_update			base-sysutil-bin
-./usr/libexec/uucp				base-obsolete		obsolete
-./usr/libexec/uucp/uuchk			base-obsolete		obsolete
-./usr/libexec/uucp/uucico			base-obsolete		obsolete
-./usr/libexec/uucp/uuconv			base-obsolete		obsolete
-./usr/libexec/uucp/uuxqt			base-obsolete		obsolete
-./usr/libexec/uucpd				base-obsolete		obsolete
-./usr/libexec/uugetty				base-obsolete		obsolete
 ./usr/libexec/virecover				base-util-bin
-./usr/lkm					base-obsolete		obsolete
-./usr/lkm/adosfs.o				base-obsolete		obsolete
-./usr/lkm/bsdcomp.o				base-obsolete		obsolete
-./usr/lkm/cd9660.o				base-obsolete		obsolete
-./usr/lkm/coda.o				base-obsolete		obsolete
-./usr/lkm/coda5.o				base-obsolete		obsolete
-./usr/lkm/deflate.o				base-obsolete		obsolete
-./usr/lkm/efs.o					base-obsolete		obsolete
-./usr/lkm/ext2fs.o				base-obsolete		obsolete
-./usr/lkm/fdesc.o				base-obsolete		obsolete
-./usr/lkm/filecorefs.o				base-obsolete		obsolete
-./usr/lkm/hfs.o					base-obsolete		obsolete
-./usr/lkm/hfsp.o				base-obsolete		obsolete
-./usr/lkm/if_ipl.o				base-obsolete		obsolete
-./usr/lkm/kernfs.o				base-obsolete		obsolete
-./usr/lkm/lfs.o					base-obsolete		obsolete
-./usr/lkm/mfs.o					base-obsolete		obsolete
-./usr/lkm/msdosfs.o				base-obsolete		obsolete
-./usr/lkm/ntfs.o				base-obsolete		obsolete
-./usr/lkm/nullfs.o				base-obsolete		obsolete
-./usr/lkm/overlay.o				base-obsolete		obsolete
-./usr/lkm/pf.o					base-obsolete		obsolete
-./usr/lkm/portal.o				base-obsolete		obsolete
-./usr/lkm/procfs.o				base-obsolete		obsolete
-./usr/lkm/ptyfs.o				base-obsolete		obsolete
-./usr/lkm/puffs.o				base-obsolete		obsolete
-./usr/lkm/smbfs.o				base-obsolete		obsolete
-./usr/lkm/tap.o					base-obsolete		obsolete
-./usr/lkm/tmpfs.o				base-obsolete		obsolete
-./usr/lkm/udf.o					base-obsolete		obsolete
-./usr/lkm/umapfs.o				base-obsolete		obsolete
-./usr/lkm/union.o				base-obsolete		obsolete
-./usr/lkm/vnd.o					base-obsolete		obsolete
 ./usr/mdec					base-sys-usr
 ./usr/sbin					base-sys-usr
 ./usr/sbin/ac					base-sysutil-bin
@@ -1513,16 +1153,13 @@
 ./usr/sbin/bpm					base-pkgutil-bin	crypto
 ./usr/sbin/btattach				base-sysutil-bin
 ./usr/sbin/btconfig				base-sysutil-bin
-./usr/sbin/btcontrol				base-obsolete		obsolete
 ./usr/sbin/btdevctl				base-sysutil-bin
 ./usr/sbin/bthcid				base-sysutil-bin
 ./usr/sbin/btpand				base-sysutil-bin
-./usr/sbin/btuartd				base-obsolete		obsolete
 ./usr/sbin/catman				base-man-bin
 ./usr/sbin/chat					base-ppp-bin
 ./usr/sbin/chown				base-sysutil-bin
 ./usr/sbin/chroot				base-sysutil-bin
-./usr/sbin/chrtbl				base-obsolete		obsolete
 ./usr/sbin/cnwctl				base-netutil-bin
 ./usr/sbin/cpuctl				base-sysutil-bin
 ./usr/sbin/crash				base-sysutil-bin
@@ -1533,25 +1170,19 @@
 ./usr/sbin/dev_mkdb				base-sysutil-bin
 ./usr/sbin/dhcpd				base-dhcpd-bin
 ./usr/sbin/dhcrelay				base-dhcpd-bin
-./usr/sbin/dig					base-obsolete		obsolete
 ./usr/sbin/diskpart				base-sysutil-bin
-./usr/sbin/dnsquery				base-obsolete		obsolete
 ./usr/sbin/dnssec-dsfromkey			base-bind-bin
 ./usr/sbin/dnssec-importkey			base-bind-bin
 ./usr/sbin/dnssec-keyfromlabel			base-bind-bin
 ./usr/sbin/dnssec-keygen			base-bind-bin
-./usr/sbin/dnssec-makekeyset			base-obsolete		obsolete
 ./usr/sbin/dnssec-revoke			base-bind-bin
 ./usr/sbin/dnssec-settime			base-bind-bin
-./usr/sbin/dnssec-signkey			base-obsolete		obsolete
 ./usr/sbin/dnssec-signzone			base-bind-bin
 ./usr/sbin/dnssec-verify			base-bind-bin
 ./usr/sbin/download-vulnerability-list		base-pkgutil-bin	crypto
 ./usr/sbin/dtmfdecode				base-isdn-bin
 ./usr/sbin/dumpfs				base-sysutil-bin
 ./usr/sbin/dumplfs				base-sysutil-bin
-./usr/sbin/eaytest				base-obsolete		obsolete
-./usr/sbin/editmap				base-obsolete		obsolete
 ./usr/sbin/edquota				base-sysutil-bin
 ./usr/sbin/envstat				base-sysutil-bin
 ./usr/sbin/eshconfig				base-sysutil-bin
@@ -1560,18 +1191,13 @@
 ./usr/sbin/faithd				base-router-bin		inet6
 ./usr/sbin/fixmount				base-nfsclient-bin
 ./usr/sbin/flashctl				base-sysutil-bin
-./usr/sbin/flush				base-obsolete		obsolete
 ./usr/sbin/fsinfo				base-sysutil-bin
 ./usr/sbin/fssconfig				base-sysutil-bin
 ./usr/sbin/ftp-proxy				base-pf-bin		pf
 ./usr/sbin/fusermount				base-refuse-bin
 ./usr/sbin/fwctl				base-sysutil-bin
-./usr/sbin/g711conv				base-obsolete		obsolete
 ./usr/sbin/getencstat				base-sysutil-bin
-./usr/sbin/gettable				base-obsolete		obsolete
-./usr/sbin/gifconfig				base-obsolete		obsolete
 ./usr/sbin/gpioctl				base-sysutil-bin
-./usr/sbin/greconfig				base-obsolete		obsolete
 ./usr/sbin/group				base-sysutil-bin
 ./usr/sbin/groupadd				base-sysutil-bin
 ./usr/sbin/groupdel				base-sysutil-bin
@@ -1579,11 +1205,9 @@
 ./usr/sbin/groupmod				base-sysutil-bin
 ./usr/sbin/hdaudioctl				base-sysutil-bin
 ./usr/sbin/hlfsd				base-amd-bin
-./usr/sbin/host					base-obsolete		obsolete
 ./usr/sbin/hostapd				base-sysutil-bin
 ./usr/sbin/hostapd_cli				base-sysutil-bin
 ./usr/sbin/hprop				base-krb5-bin		kerberos
-./usr/sbin/htable				base-obsolete		obsolete
 ./usr/sbin/i2cscan				base-sysutil-bin
 ./usr/sbin/ifmcstat				base-netutil-bin	inet6
 ./usr/sbin/ifwatchd				base-netutil-bin
@@ -1610,36 +1234,28 @@
 ./usr/sbin/isdntelctl				base-isdn-bin
 ./usr/sbin/isdntrace				base-isdn-bin
 ./usr/sbin/isibootd				base-bootserver-bin
-./usr/sbin/ispppcontrol				base-obsolete		obsolete
 ./usr/sbin/iwictl				base-sysutil-bin
 ./usr/sbin/kadmin				base-krb5-bin		kerberos
 ./usr/sbin/kcm					base-krb5-bin		kerberos
 ./usr/sbin/kdc					base-krb5-bin		kerberos
 ./usr/sbin/kdigest				base-krb5-bin		kerberos
 ./usr/sbin/kimpersonate				base-krb5-bin		kerberos
-./usr/sbin/kmpstat				base-obsolete		obsolete
 ./usr/sbin/kstash				base-krb5-bin		kerberos
 ./usr/sbin/ktutil				base-krb5-bin		kerberos
-./usr/sbin/kvm_mkdb				base-obsolete		obsolete
 ./usr/sbin/lastlogin				base-sysutil-bin
 ./usr/sbin/ldpd					base-router-bin
 ./usr/sbin/link					base-sysutil-bin
-./usr/sbin/linkfarm				base-obsolete		obsolete
 ./usr/sbin/lmcconfig				base-netutil-bin
-./usr/sbin/lmtp					base-obsolete		obsolete
 ./usr/sbin/lockstat				base-sysutil-bin
 ./usr/sbin/lpc					base-lpr-bin
 ./usr/sbin/lpd					base-lpr-bin
 ./usr/sbin/lptest				base-lpr-bin
 ./usr/sbin/lwresd				base-bind-bin
-./usr/sbin/mailstats				base-obsolete		obsolete
 ./usr/sbin/mailwrapper				base-mailwrapper-bin
 ./usr/sbin/makedbm				base-nis-bin		yp
 ./usr/sbin/makefs				base-sysutil-bin
 ./usr/sbin/makemandb				base-man-bin		makemandb
-./usr/sbin/makemap				base-obsolete		obsolete
 ./usr/sbin/map-mbone				base-netutil-bin
-./usr/sbin/mbrlabel				base-obsolete		obsolete
 ./usr/sbin/mdconfig				base-sysutil-bin
 ./usr/sbin/mdnsd				base-mdns-bin		mdns
 ./usr/sbin/mdsetimage				base-sysutil-bin	binutils
@@ -1649,65 +1265,46 @@
 ./usr/sbin/mld6query				base-netutil-bin	use_inet6
 ./usr/sbin/mlxctl				base-sysutil-bin
 ./usr/sbin/mmcformat				base-sysutil-bin
-./usr/sbin/mopa.out				base-obsolete		obsolete
 ./usr/sbin/mopchk				base-bootserver-bin
 ./usr/sbin/mopcopy				base-bootserver-bin
 ./usr/sbin/mopd					base-bootserver-bin
 ./usr/sbin/mopprobe				base-bootserver-bin
 ./usr/sbin/moptrace				base-bootserver-bin
-./usr/sbin/mount_puffsportal			base-obsolete		obsolete
 ./usr/sbin/mountd				base-nfsserver-bin
 ./usr/sbin/moused				base-sysutil-bin
 ./usr/sbin/mrinfo				base-router-bin
 ./usr/sbin/mrouted				base-router-bin
 ./usr/sbin/mscdlabel				base-sysutil-bin
 ./usr/sbin/mtrace				base-netutil-bin
-./usr/sbin/mtrace6				base-obsolete		obsolete
 ./usr/sbin/mtree				base-sysutil-bin
 ./usr/sbin/named				base-bind-bin
-./usr/sbin/named-bootconf			base-obsolete		obsolete
 ./usr/sbin/named-checkconf			base-bind-bin
 ./usr/sbin/named-checkzone			base-bind-bin
 ./usr/sbin/named-compilezone			base-bind-bin
 ./usr/sbin/named-journalprint			base-bind-bin
-./usr/sbin/named.reload				base-obsolete		obsolete
-./usr/sbin/named.restart			base-obsolete		obsolete
 ./usr/sbin/ncdcs				base-sysutil-root	binutils
 ./usr/sbin/ndbootd				base-bootserver-bin
-./usr/sbin/ndc					base-obsolete		obsolete
 ./usr/sbin/ndp					base-netutil-bin	inet6
 ./usr/sbin/netgroup_mkdb			base-nis-bin
 ./usr/sbin/nfsd					base-nfsserver-bin
-./usr/sbin/nfsiod				base-obsolete		obsolete
-./usr/sbin/npfctl				base-obsolete		obsolete
 ./usr/sbin/nsec3hash				base-bind-bin
-./usr/sbin/nslookup				base-obsolete		obsolete
-./usr/sbin/nsquery				base-obsolete		obsolete
-./usr/sbin/nstest				base-obsolete		obsolete
 ./usr/sbin/ntp-keygen				base-ntp-bin		crypto
 ./usr/sbin/ntpd					base-ntp-bin
 ./usr/sbin/ntpdate				base-ntp-bin
 ./usr/sbin/ntpdc				base-ntp-bin
 ./usr/sbin/ntpq					base-ntp-bin
 ./usr/sbin/ntptime				base-ntp-bin
-./usr/sbin/ntptimeset				base-obsolete		obsolete
 ./usr/sbin/ntptrace				base-ntp-bin
 ./usr/sbin/omshell				base-dhcpd-bin
 ./usr/sbin/pac					base-sysutil-bin
 ./usr/sbin/paxctl				base-sysutil-bin
 ./usr/sbin/pcictl				base-sysutil-bin
 ./usr/sbin/perfused				base-perfuse-bin
-./usr/sbin/pfspamdb				base-obsolete		obsolete
-./usr/sbin/pim6dd				base-obsolete		obsolete
-./usr/sbin/pim6sd				base-obsolete		obsolete
-./usr/sbin/pim6stat				base-obsolete		obsolete
 ./usr/sbin/pkg_add				base-pkgutil-bin	crypto
 ./usr/sbin/pkg_admin				base-pkgutil-bin	crypto
 ./usr/sbin/pkg_create				base-pkgutil-bin	crypto
 ./usr/sbin/pkg_delete				base-pkgutil-bin	crypto
 ./usr/sbin/pkg_info				base-pkgutil-bin	crypto
-./usr/sbin/pkg_view				base-obsolete		obsolete
-./usr/sbin/portmap				base-obsolete		obsolete
 ./usr/sbin/postalias				base-postfix-bin	postfix
 ./usr/sbin/postcat				base-postfix-bin	postfix
 ./usr/sbin/postconf				base-postfix-bin	postfix
@@ -1725,9 +1322,7 @@
 ./usr/sbin/powerd				base-sysutil-bin
 ./usr/sbin/pppd					base-ppp-bin
 ./usr/sbin/pppdump				base-ppp-bin
-./usr/sbin/pppoectl				base-obsolete		obsolete
 ./usr/sbin/pppstats				base-ppp-bin
-./usr/sbin/praliases				base-obsolete		obsolete
 ./usr/sbin/psrset				base-sysutil-bin
 ./usr/sbin/pstat				base-sysutil-bin
 ./usr/sbin/pvcsif				base-netutil-bin
@@ -1735,7 +1330,6 @@
 ./usr/sbin/pwd_mkdb				base-sysutil-bin
 ./usr/sbin/quot					base-sysutil-bin
 ./usr/sbin/quotacheck				base-sysutil-bin
-./usr/sbin/quotactl				base-obsolete		obsolete
 ./usr/sbin/quotadump				base-sysutil-bin
 ./usr/sbin/quotaoff				base-sysutil-bin
 ./usr/sbin/quotaon				base-sysutil-bin
@@ -1745,7 +1339,6 @@
 ./usr/sbin/rarpd				base-bootserver-bin
 ./usr/sbin/rbootd				base-bootserver-bin
 ./usr/sbin/rdate				base-netutil-bin
-./usr/sbin/rdconfig				base-obsolete		obsolete
 ./usr/sbin/repquota				base-sysutil-bin
 ./usr/sbin/revnetgroup				base-nis-bin		yp
 ./usr/sbin/rip6query				base-netutil-bin	inet6
@@ -1766,25 +1359,19 @@
 ./usr/sbin/sa					base-sysutil-bin
 ./usr/sbin/schedctl				base-sysutil-bin
 ./usr/sbin/screenblank				base-sysutil-bin
-./usr/sbin/scriptdump				base-obsolete		obsolete
 ./usr/sbin/sdpd					base-sysutil-bin
 ./usr/sbin/sendmail				base-mailwrapper-bin
 ./usr/sbin/service				base-sysutil-bin
 ./usr/sbin/services_mkdb			base-sysutil-bin
 ./usr/sbin/sesd					base-sysutil-bin
 ./usr/sbin/setencstat				base-sysutil-bin
-./usr/sbin/setkey				base-obsolete		obsolete
 ./usr/sbin/setobjstat				base-sysutil-bin
 ./usr/sbin/sliplogin				base-slip-bin
 ./usr/sbin/slstats				base-slip-bin
-./usr/sbin/smrsh				base-obsolete		obsolete
 ./usr/sbin/sntp					base-ntp-bin
-./usr/sbin/spamdb				base-obsolete		obsolete
-./usr/sbin/spawn				base-obsolete		obsolete
 ./usr/sbin/spray				base-rpcutil-bin
 ./usr/sbin/srtconfig				base-netutil-bin
 ./usr/sbin/sshd					base-secsh-bin		crypto
-./usr/sbin/statmsg				base-obsolete		obsolete
 ./usr/sbin/stdethers				base-nis-bin		yp
 ./usr/sbin/stdhosts				base-nis-bin		yp
 ./usr/sbin/sti					base-sysutil-bin
@@ -1792,12 +1379,8 @@
 ./usr/sbin/sup					base-sup-bin
 ./usr/sbin/supfilesrv				base-sup-bin
 ./usr/sbin/supscan				base-sup-bin
-./usr/sbin/sushi				base-obsolete		obsolete
-./usr/sbin/sysconfd				base-obsolete		obsolete
 ./usr/sbin/sysinst				base-sysutil-bin
-./usr/sbin/sysctl				base-obsolete		obsolete
 ./usr/sbin/syslogd				base-sysutil-bin
-./usr/sbin/tbrconfig				base-obsolete		obsolete
 ./usr/sbin/tcpdchk				base-netutil-bin
 ./usr/sbin/tcpdmatch				base-netutil-bin
 ./usr/sbin/tcpdrop				base-netutil-bin
@@ -1830,21 +1413,17 @@
 ./usr/sbin/traceroute				base-netutil-bin
 ./usr/sbin/traceroute6				base-netutil-bin	use_inet6
 ./usr/sbin/trpt					base-netutil-bin
-./usr/sbin/trsp					base-obsolete		obsolete
 ./usr/sbin/unlink				base-sysutil-bin
-./usr/sbin/update				base-obsolete		obsolete
 ./usr/sbin/usbdevs				base-sysutil-bin
 ./usr/sbin/user					base-sysutil-bin
 ./usr/sbin/useradd				base-sysutil-bin
 ./usr/sbin/userdel				base-sysutil-bin
 ./usr/sbin/userinfo				base-sysutil-bin
 ./usr/sbin/usermod				base-sysutil-bin
-./usr/sbin/uuchk				base-obsolete		obsolete
 ./usr/sbin/veriexecgen				base-sysutil-bin
 ./usr/sbin/vipw					base-sysutil-bin
 ./usr/sbin/vnconfig				base-sysutil-bin
 ./usr/sbin/vndconfig				base-sysutil-bin
-./usr/sbin/wake					base-obsolete		obsolete
 ./usr/sbin/wakeonlan				base-netutil-bin
 ./usr/sbin/wiconfig				base-sysutil-bin
 ./usr/sbin/wire-test				base-netutil-bin
@@ -1856,8 +1435,6 @@
 ./usr/sbin/wsfontload				base-sysutil-bin
 ./usr/sbin/wsmoused				base-sysutil-bin
 ./usr/sbin/wsmuxctl				base-sysutil-bin
-./usr/sbin/xntpd				base-obsolete		obsolete
-./usr/sbin/xntpdc				base-obsolete		obsolete
 ./usr/sbin/ypbind				base-nis-bin		yp
 ./usr/sbin/ypinit				base-nis-bin		yp
 ./usr/sbin/yppoll				base-nis-bin		yp
@@ -1866,7 +1443,6 @@
 ./usr/sbin/ypset				base-nis-bin		yp
 ./usr/sbin/yptest				base-nis-bin		yp
 ./usr/sbin/ypxfr				base-nis-bin		yp
-./usr/sbin/zdb					base-zfs-bin		zfs
 ./usr/sbin/zdump				base-sysutil-bin
 ./usr/sbin/zic					base-sysutil-bin
 ./usr/share					base-sys-share
@@ -1887,38 +1463,11 @@
 ./usr/share/dict/papers				base-reference-share
 ./usr/share/dict/special			base-reference-share
 ./usr/share/doc					base-sys-share
-./usr/share/doc/html				base-obsolete		obsolete
-./usr/share/doc/html/bind9			base-obsolete		obsolete
-./usr/share/doc/html/bind9/arm			base-obsolete		obsolete
-./usr/share/doc/html/bzip2			base-obsolete		obsolete
-./usr/share/doc/html/ntp/hints			base-obsolete		obsolete
-./usr/share/doc/html/postfix			base-obsolete		obsolete
 ./usr/share/doc/papers				base-smm-share
 ./usr/share/doc/papers/mckusick84-ffs		base-smm-share
 ./usr/share/doc/papers/mckusick85-fsck		base-smm-share
 ./usr/share/doc/papers/morris78-password	base-smm-share
 ./usr/share/doc/psd				base-psd-share
-./usr/share/doc/psd/01.cacm			base-obsolete		obsolete
-./usr/share/doc/psd/02.implement		base-obsolete		obsolete
-./usr/share/doc/psd/03.iosys			base-obsolete		obsolete
-./usr/share/doc/psd/04.uprog			base-obsolete		obsolete
-./usr/share/doc/psd/05.sysman			base-obsolete		obsolete
-./usr/share/doc/psd/06.Clang			base-obsolete		obsolete
-./usr/share/doc/psd/07.pascal			base-obsolete		obsolete
-./usr/share/doc/psd/08.f77			base-obsolete		obsolete
-./usr/share/doc/psd/09.f77io			base-obsolete		obsolete
-./usr/share/doc/psd/10.gdb			base-obsolete		obsolete
-./usr/share/doc/psd/11.adb			base-obsolete		obsolete
-./usr/share/doc/psd/12.make			base-obsolete		obsolete
-./usr/share/doc/psd/13.rcs			base-obsolete		obsolete
-./usr/share/doc/psd/14.sccs			base-obsolete		obsolete
-./usr/share/doc/psd/15.yacc			base-obsolete		obsolete
-./usr/share/doc/psd/16.lex			base-obsolete		obsolete
-./usr/share/doc/psd/17.m4			base-obsolete		obsolete
-./usr/share/doc/psd/18.gprof			base-obsolete		obsolete
-./usr/share/doc/psd/19.curses			base-obsolete		obsolete
-./usr/share/doc/psd/20.ipctut			base-obsolete		obsolete
-./usr/share/doc/psd/21.ipc			base-obsolete		obsolete
 ./usr/share/doc/reference			base-sys-share
 ./usr/share/doc/reference/ref1			base-sys-share
 ./usr/share/doc/reference/ref1/bzip2		base-htmldoc-share
@@ -1959,64 +1508,8 @@
 ./usr/share/doc/reference/ref9/net		base-smm-share
 ./usr/share/doc/reference/ref9/nfs		base-smm-share
 ./usr/share/doc/smm				base-smm-share
-./usr/share/doc/smm/01.setup			base-obsolete		obsolete
-./usr/share/doc/smm/01.setup/tahoe		base-obsolete		obsolete
-./usr/share/doc/smm/01.setup/vax		base-obsolete		obsolete
-./usr/share/doc/smm/02.config			base-obsolete		obsolete
-./usr/share/doc/smm/03.fsck_ffs			base-obsolete		obsolete
-./usr/share/doc/smm/04.quotas			base-obsolete		obsolete
-./usr/share/doc/smm/05.fastfs			base-obsolete		obsolete
-./usr/share/doc/smm/06.nfs			base-obsolete		obsolete
-./usr/share/doc/smm/07.lpd			base-obsolete		obsolete
-./usr/share/doc/smm/08.sendmailop		base-obsolete		obsolete
-./usr/share/doc/smm/09.sendmail			base-obsolete		obsolete
-./usr/share/doc/smm/10.named			base-obsolete		obsolete
-./usr/share/doc/smm/11.timedop			base-obsolete		obsolete
-./usr/share/doc/smm/12.timed			base-obsolete		obsolete
-./usr/share/doc/smm/13.amd			base-obsolete		obsolete
-./usr/share/doc/smm/14.uucpimpl			base-obsolete		obsolete
-./usr/share/doc/smm/15.uucpnet			base-obsolete		obsolete
-./usr/share/doc/smm/16.security			base-obsolete		obsolete
-./usr/share/doc/smm/17.password			base-obsolete		obsolete
-./usr/share/doc/smm/18.net			base-obsolete		obsolete
 ./usr/share/doc/smm/setup			base-smm-share
 ./usr/share/doc/usd				base-usd-share
-./usr/share/doc/usd/01.begin			base-obsolete		obsolete
-./usr/share/doc/usd/02.learn			base-obsolete		obsolete
-./usr/share/doc/usd/03.shell			base-obsolete		obsolete
-./usr/share/doc/usd/04.csh			base-obsolete		obsolete
-./usr/share/doc/usd/05.dc			base-obsolete		obsolete
-./usr/share/doc/usd/06.bc			base-obsolete		obsolete
-./usr/share/doc/usd/07.mail			base-obsolete		obsolete
-./usr/share/doc/usd/08.mh			base-obsolete		obsolete
-./usr/share/doc/usd/09.edtut			base-obsolete		obsolete
-./usr/share/doc/usd/10.edadv			base-obsolete		obsolete
-./usr/share/doc/usd/11.edit			base-obsolete		obsolete
-./usr/share/doc/usd/12.ex			base-obsolete		obsolete
-./usr/share/doc/usd/12.vi			base-obsolete		obsolete
-./usr/share/doc/usd/13.ex			base-obsolete		obsolete
-./usr/share/doc/usd/13.ex/Makefile		base-obsolete		obsolete
-./usr/share/doc/usd/13.ex/ex.rm			base-obsolete		obsolete
-./usr/share/doc/usd/13.ex/ex.summary		base-obsolete		obsolete
-./usr/share/doc/usd/13.viref			base-obsolete		obsolete
-./usr/share/doc/usd/14.jove			base-obsolete		obsolete
-./usr/share/doc/usd/15.sed			base-obsolete		obsolete
-./usr/share/doc/usd/16.awk			base-obsolete		obsolete
-./usr/share/doc/usd/17.msmacros			base-obsolete		obsolete
-./usr/share/doc/usd/18.msdiffs			base-obsolete		obsolete
-./usr/share/doc/usd/19.memacros			base-obsolete		obsolete
-./usr/share/doc/usd/20.meref			base-obsolete		obsolete
-./usr/share/doc/usd/21.troff			base-obsolete		obsolete
-./usr/share/doc/usd/22.trofftut			base-obsolete		obsolete
-./usr/share/doc/usd/23.eqn			base-obsolete		obsolete
-./usr/share/doc/usd/24.eqnguide			base-obsolete		obsolete
-./usr/share/doc/usd/25.tbl			base-obsolete		obsolete
-./usr/share/doc/usd/26.refer			base-obsolete		obsolete
-./usr/share/doc/usd/27.invert			base-obsolete		obsolete
-./usr/share/doc/usd/28.bib			base-obsolete		obsolete
-./usr/share/doc/usd/29.diction			base-obsolete		obsolete
-./usr/share/doc/usd/30.rogue			base-obsolete		obsolete
-./usr/share/doc/usd/31.trek			base-obsolete		obsolete
 ./usr/share/doc/usd/begin			base-usd-share
 ./usr/share/doc/usd/edit			base-usd-share
 ./usr/share/doc/usd/vi				base-usd-share
@@ -2047,7 +1540,6 @@
 ./usr/share/examples/lua/gpio.lua		base-sys-examples	share
 ./usr/share/examples/lua/sqlite.lua		base-sys-examples	share
 ./usr/share/examples/mount_portal		base-miscfs-examples
-./usr/share/examples/named			base-obsolete	obsolete
 ./usr/share/examples/npf			base-netutil-examples
 ./usr/share/examples/npf/hashtablefile		base-netutil-examples   share
 ./usr/share/examples/npf/host-npf.conf		base-netutil-examples   share
@@ -2065,14 +1557,6 @@
 ./usr/share/examples/smbfs			base-sysutil-examples
 ./usr/share/examples/supfiles			base-sup-examples
 ./usr/share/examples/syslogd			base-sysutil-examples
-./usr/share/examples/veriexecctl		base-obsolete	obsolete
-./usr/share/examples/veriexecctl/fpgen.sh	base-obsolete	obsolete
-./usr/share/examples/veriexecctl/gen_md5	base-obsolete	obsolete
-./usr/share/examples/veriexecctl/gen_rmd160	base-obsolete	obsolete
-./usr/share/examples/veriexecctl/gen_sha1	base-obsolete	obsolete
-./usr/share/examples/verifiedexec_load		base-obsolete		obsolete
-./usr/share/examples/verifiedexec_load/gen_md5	base-obsolete		obsolete
-./usr/share/examples/verifiedexec_load/gen_sha1	base-obsolete		obsolete
 ./usr/share/examples/wpa_supplicant		base-netutil-examples
 ./usr/share/examples/wpa_supplicant/wpa_supplicant.conf		base-netutil-examples	share
 ./usr/share/examples/wsmoused			base-sysutil-examples
@@ -2145,7 +1629,6 @@
 ./usr/share/i18n/csmapper/BIG5/Big5@1984%UCS.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/BIG5/Big5EXT@2003%UCS.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/BIG5/Big5EXT@E%UCS.mps	base-sysutil-share	nls
-./usr/share/i18n/csmapper/BIG5/Big5EXT@ETen%UCS.mps	base-obsolete	obsolete
 ./usr/share/i18n/csmapper/BIG5/Big5EXT@IBM%UCS.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/BIG5/Big5EXT@Plus%UCS.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/BIG5/Big5UDA%UCS.mps		base-sysutil-share	nls
@@ -2156,7 +1639,6 @@
 ./usr/share/i18n/csmapper/BIG5/UCS%Big5@1984.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/BIG5/UCS%Big5EXT@2003.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/BIG5/UCS%Big5EXT@E.mps	base-sysutil-share	nls
-./usr/share/i18n/csmapper/BIG5/UCS%Big5EXT@ETen.mps	base-obsolete	obsolete
 ./usr/share/i18n/csmapper/BIG5/UCS%Big5EXT@IBM.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/BIG5/UCS%Big5EXT@Plus.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/BIG5/UCS%Big5UDA.mps		base-sysutil-share	nls
@@ -2170,7 +1652,6 @@
 ./usr/share/i18n/csmapper/CNS			base-sysutil-share
 ./usr/share/i18n/csmapper/CNS/CNS11643-1%UCS.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/CNS/CNS11643-2%UCS.mps	base-sysutil-share	nls
-./usr/share/i18n/csmapper/CNS/CNS11643-3%UCS.mps	base-obsolete	obsolete
 ./usr/share/i18n/csmapper/CNS/CNS11643-3%UCS@BMP.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/CNS/CNS11643-3%UCS@SIP.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/CNS/CNS11643-4%UCS@BMP.mps	base-sysutil-share	nls
@@ -2183,7 +1664,6 @@
 ./usr/share/i18n/csmapper/CNS/CNS11643-7%UCS@SIP.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/CNS/UCS%CNS11643-1.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/CNS/UCS%CNS11643-2.mps	base-sysutil-share	nls
-./usr/share/i18n/csmapper/CNS/UCS%CNS11643-3.mps	base-obsolete	obsolete
 ./usr/share/i18n/csmapper/CNS/UCS@BMP%CNS11643-3.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/CNS/UCS@BMP%CNS11643-4.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/CNS/UCS@BMP%CNS11643-5.mps	base-sysutil-share	nls
@@ -2279,13 +1759,11 @@
 ./usr/share/i18n/csmapper/CP/CP905%UCS.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/CP/CP918%UCS.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/CP/CP922%UCS.mps	base-sysutil-share	nls
-./usr/share/i18n/csmapper/CP/CP932EXT%UCS.mps	base-obsolete		obsolete
 ./usr/share/i18n/csmapper/CP/CP932UDA%UCS.mps		base-sysutil-share	nls
 ./usr/share/i18n/csmapper/CP/CP932VDC@IBM%UCS.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/CP/CP932VDC@NEC_IBM%UCS.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/CP/CP936EXT%UCS.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/CP/CP942EXT%UCS.mps	base-sysutil-share	nls
-./usr/share/i18n/csmapper/CP/CP942VDC@IBM%UCS.mps	base-obsolete	obsolete
 ./usr/share/i18n/csmapper/CP/CP949EXT%UCS.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/CP/CP950%UCS.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/CP/UCS%CP037.mps	base-sysutil-share	nls
@@ -2372,13 +1850,11 @@
 ./usr/share/i18n/csmapper/CP/UCS%CP905.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/CP/UCS%CP918.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/CP/UCS%CP922.mps	base-sysutil-share	nls
-./usr/share/i18n/csmapper/CP/UCS%CP932EXT.mps	base-obsolete		obsolete
 ./usr/share/i18n/csmapper/CP/UCS%CP932UDA.mps		base-sysutil-share	nls
 ./usr/share/i18n/csmapper/CP/UCS%CP932VDC@IBM.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/CP/UCS%CP932VDC@NEC_IBM.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/CP/UCS%CP936EXT.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/CP/UCS%CP942EXT.mps	base-sysutil-share	nls
-./usr/share/i18n/csmapper/CP/UCS%CP942VDC@IBM.mps	base-obsolete	obsolete
 ./usr/share/i18n/csmapper/CP/UCS%CP949EXT.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/CP/UCS%CP950.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/EBCDIC		base-sysutil-share
@@ -2535,7 +2011,6 @@
 ./usr/share/i18n/csmapper/KOI/ISO-5427%UCS.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/KOI/KOI7%UCS.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/KOI/KOI8%UCS.mps	base-sysutil-share	nls
-./usr/share/i18n/csmapper/KOI/KOI8-BASE%UCS.mps	base-obsolete		obsolete
 ./usr/share/i18n/csmapper/KOI/KOI8-C%UCS.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/KOI/KOI8-E%UCS.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/KOI/KOI8-R%UCS.mps	base-sysutil-share	nls
@@ -2545,7 +2020,6 @@
 ./usr/share/i18n/csmapper/KOI/UCS%GOST19768-74.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/KOI/UCS%ISO-5427.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/KOI/UCS%KOI7.mps	base-sysutil-share	nls
-./usr/share/i18n/csmapper/KOI/UCS%KOI8-BASE.mps	base-obsolete		obsolete
 ./usr/share/i18n/csmapper/KOI/UCS%KOI8-C.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/KOI/UCS%KOI8-E.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/KOI/UCS%KOI8-R.mps	base-sysutil-share	nls
@@ -2555,34 +2029,24 @@
 ./usr/share/i18n/csmapper/KOI/UCS%KOI8.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/KS			base-sysutil-share
 ./usr/share/i18n/csmapper/KS/JOHAB%UCS.mps	base-sysutil-share	nls
-./usr/share/i18n/csmapper/KS/KSC5601%UCS.mps	base-obsolete		obsolete
 ./usr/share/i18n/csmapper/KS/KSC5601HANGUL%UCS.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/KS/KSC5601HANJA%UCS.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/KS/UCS%JOHAB.mps	base-sysutil-share	nls
-./usr/share/i18n/csmapper/KS/UCS%KSC5601.mps	base-obsolete		obsolete
 ./usr/share/i18n/csmapper/KS/UCS%KSC5601HANGUL.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/KS/UCS%KSC5601HANJA.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/MISC			base-sysutil-share
 ./usr/share/i18n/csmapper/MISC/ATARIST%UCS.mps	base-sysutil-share	nls
-./usr/share/i18n/csmapper/MISC/Big5%UCS.mps	base-obsolete		obsolete
 ./usr/share/i18n/csmapper/MISC/DECMCS%UCS.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/MISC/HP-ROMAN8%UCS.mps	base-sysutil-share	nls
-./usr/share/i18n/csmapper/MISC/KOI8-R%UCS.mps	base-obsolete		obsolete
-./usr/share/i18n/csmapper/MISC/KOI8-U%UCS.mps	base-obsolete		obsolete
 ./usr/share/i18n/csmapper/MISC/MULELAO-1%UCS.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/MISC/NEXTSTEP%UCS.mps	base-sysutil-share	nls
-./usr/share/i18n/csmapper/MISC/PTCP154%UCS.mps	base-obsolete		obsolete
 ./usr/share/i18n/csmapper/MISC/RISCOS-LATIN1%UCS.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/MISC/TDS565%UCS.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/MISC/UCS%ATARIST.mps	base-sysutil-share	nls
-./usr/share/i18n/csmapper/MISC/UCS%Big5.mps	base-obsolete		obsolete
 ./usr/share/i18n/csmapper/MISC/UCS%DECMCS.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/MISC/UCS%HP-ROMAN8.mps	base-sysutil-share	nls
-./usr/share/i18n/csmapper/MISC/UCS%KOI8-R.mps	base-obsolete		obsolete
-./usr/share/i18n/csmapper/MISC/UCS%KOI8-U.mps	base-obsolete		obsolete
 ./usr/share/i18n/csmapper/MISC/UCS%MULELAO-1.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/MISC/UCS%NEXTSTEP.mps	base-sysutil-share	nls
-./usr/share/i18n/csmapper/MISC/UCS%PTCP154.mps	base-obsolete		obsolete
 ./usr/share/i18n/csmapper/MISC/UCS%RISCOS-LATIN1.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/MISC/UCS%TDS565.mps	base-sysutil-share	nls
 ./usr/share/i18n/csmapper/TCVN			base-sysutil-share
@@ -2820,21 +2284,15 @@
 ./usr/share/i18n/esdb/KOI/KOI8.esdb		base-sysutil-share	nls
 ./usr/share/i18n/esdb/MISC			base-sysutil-share
 ./usr/share/i18n/esdb/MISC/ATARIST.esdb		base-sysutil-share	nls
-./usr/share/i18n/esdb/MISC/Big5.esdb		base-obsolete		obsolete
 ./usr/share/i18n/esdb/MISC/C99.esdb		base-sysutil-share	nls
 ./usr/share/i18n/esdb/MISC/CTEXT.esdb		base-sysutil-share	nls
-./usr/share/i18n/esdb/MISC/GB18030.esdb		base-obsolete		obsolete
-./usr/share/i18n/esdb/MISC/GBK.esdb		base-obsolete		obsolete
 ./usr/share/i18n/esdb/MISC/HP-ROMAN8.esdb	base-sysutil-share	nls
 ./usr/share/i18n/esdb/MISC/HZ.esdb		base-sysutil-share	nls
 ./usr/share/i18n/esdb/MISC/HZ8.esdb		base-sysutil-share	nls
 ./usr/share/i18n/esdb/MISC/JAVA.esdb		base-sysutil-share	nls
 ./usr/share/i18n/esdb/MISC/JOHAB.esdb		base-sysutil-share	nls
-./usr/share/i18n/esdb/MISC/KOI8-R.esdb		base-obsolete		obsolete
-./usr/share/i18n/esdb/MISC/KOI8-U.esdb		base-obsolete		obsolete
 ./usr/share/i18n/esdb/MISC/MULELAO-1.esdb	base-sysutil-share	nls
 ./usr/share/i18n/esdb/MISC/NEXTSTEP.esdb	base-sysutil-share	nls
-./usr/share/i18n/esdb/MISC/PTCP154.esdb		base-obsolete		obsolete
 ./usr/share/i18n/esdb/MISC/RISCOS-LATIN1.esdb	base-sysutil-share	nls
 ./usr/share/i18n/esdb/MISC/Shift_JIS-2004.esdb	base-sysutil-share	nls
 ./usr/share/i18n/esdb/MISC/Shift_JIS.esdb	base-sysutil-share	nls
@@ -2864,37 +2322,8 @@
 ./usr/share/keymaps/amiga			base-sys-share
 ./usr/share/keymaps/atari			base-sys-share
 ./usr/share/keymaps/x68k			base-sys-share
-./usr/share/ldscripts				base-obsolete		obsolete
 ./usr/share/legal				base-sys-share
 ./usr/share/legal/COPYRIGHT			base-sys-share		share
-./usr/share/lkm					base-obsolete		obsolete
-./usr/share/lkm/README				base-obsolete		obsolete
-./usr/share/lkm/misc				base-obsolete		obsolete
-./usr/share/lkm/misc/Makefile			base-obsolete		obsolete
-./usr/share/lkm/misc/README			base-obsolete		obsolete
-./usr/share/lkm/misc/module			base-obsolete		obsolete
-./usr/share/lkm/misc/module/Makefile		base-obsolete		obsolete
-./usr/share/lkm/misc/module/misccall.c		base-obsolete		obsolete
-./usr/share/lkm/misc/module/miscmod.c		base-obsolete		obsolete
-./usr/share/lkm/misc/test			base-obsolete		obsolete
-./usr/share/lkm/misc/test/Makefile		base-obsolete		obsolete
-./usr/share/lkm/misc/test/testmisc.c		base-obsolete		obsolete
-./usr/share/lkm/syscall				base-obsolete		obsolete
-./usr/share/lkm/syscall/Makefile		base-obsolete		obsolete
-./usr/share/lkm/syscall/README			base-obsolete		obsolete
-./usr/share/lkm/syscall/module			base-obsolete		obsolete
-./usr/share/lkm/syscall/module/Makefile		base-obsolete		obsolete
-./usr/share/lkm/syscall/module/mycall.c		base-obsolete		obsolete
-./usr/share/lkm/syscall/module/newsyscall.c	base-obsolete		obsolete
-./usr/share/lkm/syscall/test			base-obsolete		obsolete
-./usr/share/lkm/syscall/test/Makefile		base-obsolete		obsolete
-./usr/share/lkm/syscall/test/testsyscall.c	base-obsolete		obsolete
-./usr/share/lkm/vfs				base-obsolete		obsolete
-./usr/share/lkm/vfs/Makefile			base-obsolete		obsolete
-./usr/share/lkm/vfs/README			base-obsolete		obsolete
-./usr/share/lkm/vfs/module			base-obsolete		obsolete
-./usr/share/lkm/vfs/module/Makefile		base-obsolete		obsolete
-./usr/share/lkm/vfs/module/kernfsmod.c		base-obsolete		obsolete
 ./usr/share/locale				base-locale-share
 ./usr/share/locale/af_ZA.ISO8859-1		base-locale-af
 ./usr/share/locale/af_ZA.ISO8859-1/LC_CTYPE	base-locale-af		nls
@@ -2980,7 +2409,6 @@
 ./usr/share/locale/cs				base-locale-cs
 ./usr/share/locale/cs/LC_MESSAGES		base-locale-cs
 ./usr/share/locale/cs/LC_MESSAGES/grep.mo	base-util_locale-cs	nls,!bsdgrep
-./usr/share/locale/cs/LC_MESSAGES/tar.mo	base-obsolete		obsolete
 ./usr/share/locale/cs/LC_MESSAGES/texinfo.mo	base-texinfo_locale-cs	nls
 ./usr/share/locale/cs/LC_MESSAGES/xz.mo	base-util_locale-cs	nls
 ./usr/share/locale/cs_CZ.ISO8859-2		base-locale-cs
@@ -2999,7 +2427,6 @@
 ./usr/share/locale/cs_CZ.UTF-8/LC_TIME		base-locale-cs		nls
 ./usr/share/locale/da				base-locale-da
 ./usr/share/locale/da/LC_MESSAGES		base-locale-da
-./usr/share/locale/da/LC_MESSAGES/tar.mo	base-obsolete		obsolete
 ./usr/share/locale/da/LC_MESSAGES/texinfo.mo	base-texinfo_locale-da	nls
 ./usr/share/locale/da_DK.ISO8859-1		base-locale-da
 ./usr/share/locale/da_DK.ISO8859-1/LC_CTYPE	base-locale-da		nls
@@ -3025,7 +2452,6 @@
 ./usr/share/locale/de				base-locale-de
 ./usr/share/locale/de/LC_MESSAGES		base-locale-de
 ./usr/share/locale/de/LC_MESSAGES/grep.mo	base-util_locale-de	nls,!bsdgrep
-./usr/share/locale/de/LC_MESSAGES/tar.mo	base-obsolete		obsolete
 ./usr/share/locale/de/LC_MESSAGES/texinfo.mo	base-texinfo_locale-de	nls
 ./usr/share/locale/de/LC_MESSAGES/xz.mo		base-util_locale-de	nls
 ./usr/share/locale/de_AT			base-locale-de
@@ -3220,8 +2646,6 @@
 ./usr/share/locale/en_US.US-ASCII/LC_MONETARY	base-locale-en		nls
 ./usr/share/locale/en_US.US-ASCII/LC_NUMERIC	base-locale-en		nls
 ./usr/share/locale/en_US.US-ASCII/LC_TIME	base-locale-en		nls
-./usr/share/locale/en_US.UTF-2			base-obsolete		obsolete
-./usr/share/locale/en_US.UTF-2/LC_CTYPE		base-obsolete		obsolete
 ./usr/share/locale/en_US.UTF-8			base-locale-en
 ./usr/share/locale/en_US.UTF-8/LC_CTYPE		base-locale-en		nls
 ./usr/share/locale/en_US.UTF-8/LC_MESSAGES	base-locale-en
@@ -3236,7 +2660,6 @@
 ./usr/share/locale/es				base-locale-es
 ./usr/share/locale/es/LC_MESSAGES		base-locale-es
 ./usr/share/locale/es/LC_MESSAGES/grep.mo	base-util_locale-es	nls,!bsdgrep
-./usr/share/locale/es/LC_MESSAGES/tar.mo	base-obsolete		obsolete
 ./usr/share/locale/es_ES.ISO8859-1		base-locale-es
 ./usr/share/locale/es_ES.ISO8859-1/LC_CTYPE	base-locale-es		nls
 ./usr/share/locale/es_ES.ISO8859-1/LC_MESSAGES	base-locale-es
@@ -3261,7 +2684,6 @@
 ./usr/share/locale/et				base-locale-et
 ./usr/share/locale/et/LC_MESSAGES		base-locale-et
 ./usr/share/locale/et/LC_MESSAGES/grep.mo	base-util_locale-et	nls,!bsdgrep
-./usr/share/locale/et/LC_MESSAGES/tar.mo	base-obsolete		obsolete
 ./usr/share/locale/et_EE.ISO8859-15		base-locale-et
 ./usr/share/locale/et_EE.ISO8859-15/LC_CTYPE	base-locale-et		nls
 ./usr/share/locale/et_EE.ISO8859-15/LC_MESSAGES	base-locale-et
@@ -3323,7 +2745,6 @@
 ./usr/share/locale/fr				base-locale-fr
 ./usr/share/locale/fr/LC_MESSAGES		base-locale-fr
 ./usr/share/locale/fr/LC_MESSAGES/grep.mo	base-util_locale-fr	nls,!bsdgrep
-./usr/share/locale/fr/LC_MESSAGES/tar.mo	base-obsolete		obsolete
 ./usr/share/locale/fr/LC_MESSAGES/texinfo.mo	base-texinfo_locale-fr	nls
 ./usr/share/locale/fr_BE.ISO8859-1		base-locale-fr
 ./usr/share/locale/fr_BE.ISO8859-1/LC_CTYPE	base-locale-fr		nls
@@ -3464,7 +2885,6 @@
 ./usr/share/locale/id				base-locale-id
 ./usr/share/locale/id/LC_MESSAGES		base-locale-id
 ./usr/share/locale/id/LC_MESSAGES/grep.mo	base-util_locale-id	nls,!bsdgrep
-./usr/share/locale/id/LC_MESSAGES/tar.mo	base-obsolete		obsolete
 ./usr/share/locale/is_IS.ISO8859-1		base-locale-is
 ./usr/share/locale/is_IS.ISO8859-1/LC_CTYPE	base-locale-is		nls
 ./usr/share/locale/is_IS.ISO8859-1/LC_MESSAGES	base-locale-is
@@ -3489,7 +2909,6 @@
 ./usr/share/locale/it				base-locale-it
 ./usr/share/locale/it/LC_MESSAGES		base-locale-it
 ./usr/share/locale/it/LC_MESSAGES/grep.mo	base-util_locale-it	nls,!bsdgrep
-./usr/share/locale/it/LC_MESSAGES/tar.mo	base-obsolete		obsolete
 ./usr/share/locale/it/LC_MESSAGES/xz.mo		base-util_locale-it	nls
 ./usr/share/locale/it_CH.ISO8859-1		base-locale-it
 ./usr/share/locale/it_CH.ISO8859-1/LC_CTYPE	base-locale-it		nls
@@ -3536,7 +2955,6 @@
 ./usr/share/locale/ja				base-locale-ja
 ./usr/share/locale/ja/LC_MESSAGES		base-locale-ja
 ./usr/share/locale/ja/LC_MESSAGES/grep.mo	base-util_locale-ja	nls,!bsdgrep
-./usr/share/locale/ja/LC_MESSAGES/tar.mo	base-obsolete		obsolete
 ./usr/share/locale/ja/LC_MESSAGES/texinfo.mo	base-texinfo_locale-ja	nls
 ./usr/share/locale/ja_JP.ISO-2022-JP			base-locale-ja
 ./usr/share/locale/ja_JP.ISO-2022-JP-2			base-locale-ja
@@ -3552,10 +2970,6 @@
 ./usr/share/locale/ja_JP.ISO-2022-JP/LC_MONETARY	base-locale-ja		nls
 ./usr/share/locale/ja_JP.ISO-2022-JP/LC_NUMERIC		base-locale-ja		nls
 ./usr/share/locale/ja_JP.ISO-2022-JP/LC_TIME		base-locale-ja		nls
-./usr/share/locale/ja_JP.ISO2022-JP		base-obsolete		obsolete
-./usr/share/locale/ja_JP.ISO2022-JP/LC_CTYPE	base-obsolete		obsolete
-./usr/share/locale/ja_JP.ISO2022-JP2		base-obsolete		obsolete
-./usr/share/locale/ja_JP.ISO2022-JP2/LC_CTYPE	base-obsolete		obsolete
 ./usr/share/locale/ja_JP.SJIS			base-locale-ja
 ./usr/share/locale/ja_JP.SJIS/LC_CTYPE		base-locale-ja		nls
 ./usr/share/locale/ja_JP.SJIS/LC_MESSAGES	base-locale-ja
@@ -3601,7 +3015,6 @@
 ./usr/share/locale/ko				base-locale-ko
 ./usr/share/locale/ko/LC_MESSAGES		base-locale-ko
 ./usr/share/locale/ko/LC_MESSAGES/grep.mo	base-locale-ko		nls,!bsdgrep
-./usr/share/locale/ko/LC_MESSAGES/tar.mo	base-obsolete		obsolete
 ./usr/share/locale/ko_KR.UTF-8			base-locale-ko		nls
 ./usr/share/locale/ko_KR.UTF-8/LC_CTYPE		base-locale-ko		nls
 ./usr/share/locale/ko_KR.UTF-8/LC_MESSAGES	base-locale-ko		nls
@@ -3665,7 +3078,6 @@
 ./usr/share/locale/nl				base-locale-nl
 ./usr/share/locale/nl/LC_MESSAGES		base-locale-nl
 ./usr/share/locale/nl/LC_MESSAGES/grep.mo	base-locale-nl		nls,!bsdgrep
-./usr/share/locale/nl/LC_MESSAGES/tar.mo	base-obsolete		obsolete
 ./usr/share/locale/nl/LC_MESSAGES/texinfo.mo	base-texinfo_locale-nl	nls
 ./usr/share/locale/nl_BE.ISO8859-1		base-locale-nl
 ./usr/share/locale/nl_BE.ISO8859-1/LC_CTYPE	base-locale-nl		nls
@@ -3735,28 +3147,12 @@
 ./usr/share/locale/no				base-locale-no
 ./usr/share/locale/no/LC_MESSAGES		base-locale-no
 ./usr/share/locale/no/LC_MESSAGES/grep.mo	base-locale-no		nls,!bsdgrep
-./usr/share/locale/no/LC_MESSAGES/tar.mo	base-obsolete		obsolete
 ./usr/share/locale/no/LC_MESSAGES/texinfo.mo	base-texinfo_locale-no	nls
 ./usr/share/locale/no@nynorsk			base-locale-no
 ./usr/share/locale/no@nynorsk/LC_MESSAGES	base-locale-no
-./usr/share/locale/no_NO.ISO8859-1		base-obsolete		obsolete
-./usr/share/locale/no_NO.ISO8859-1/LC_CTYPE	base-obsolete		obsolete
-./usr/share/locale/no_NO.ISO8859-1/LC_MESSAGES	base-obsolete		obsolete
-./usr/share/locale/no_NO.ISO8859-1/LC_MESSAGES/SYS_LC_MESSAGES		base-obsolete		obsolete
-./usr/share/locale/no_NO.ISO8859-1/LC_MONETARY	base-obsolete		obsolete
-./usr/share/locale/no_NO.ISO8859-1/LC_NUMERIC	base-obsolete		obsolete
-./usr/share/locale/no_NO.ISO8859-1/LC_TIME	base-obsolete		obsolete
-./usr/share/locale/no_NO.ISO8859-15		base-obsolete		obsolete
-./usr/share/locale/no_NO.ISO8859-15/LC_CTYPE	base-obsolete		obsolete
-./usr/share/locale/no_NO.ISO8859-15/LC_MESSAGES	base-obsolete		obsolete
-./usr/share/locale/no_NO.ISO8859-15/LC_MESSAGES/SYS_LC_MESSAGES		base-obsolete		obsolete
-./usr/share/locale/no_NO.ISO8859-15/LC_MONETARY	base-obsolete		obsolete
-./usr/share/locale/no_NO.ISO8859-15/LC_NUMERIC	base-obsolete		obsolete
-./usr/share/locale/no_NO.ISO8859-15/LC_TIME	base-obsolete		obsolete
 ./usr/share/locale/pl				base-locale-pl
 ./usr/share/locale/pl/LC_MESSAGES		base-locale-pl
 ./usr/share/locale/pl/LC_MESSAGES/grep.mo	base-locale-pl		nls,!bsdgrep
-./usr/share/locale/pl/LC_MESSAGES/tar.mo	base-obsolete		obsolete
 ./usr/share/locale/pl/LC_MESSAGES/texinfo.mo	base-texinfo_locale-pl	nls
 ./usr/share/locale/pl_PL.ISO8859-2		base-locale-pl
 ./usr/share/locale/pl_PL.ISO8859-2/LC_CTYPE	base-locale-pl		nls
@@ -3774,7 +3170,6 @@
 ./usr/share/locale/pl_PL.UTF-8/LC_TIME		base-locale-pl		nls
 ./usr/share/locale/pt				base-locale-pt
 ./usr/share/locale/pt/LC_MESSAGES		base-locale-pt
-./usr/share/locale/pt/LC_MESSAGES/tar.mo	base-obsolete		obsolete
 ./usr/share/locale/pt_BR			base-locale-pt
 ./usr/share/locale/pt_BR.ISO8859-1		base-locale-pt
 ./usr/share/locale/pt_BR.ISO8859-1/LC_CTYPE	base-locale-pt		nls
@@ -3792,7 +3187,6 @@
 ./usr/share/locale/pt_BR.UTF-8/LC_TIME		base-locale-pt		nls
 ./usr/share/locale/pt_BR/LC_MESSAGES		base-locale-pt
 ./usr/share/locale/pt_BR/LC_MESSAGES/grep.mo	base-locale-pt		nls,!bsdgrep
-./usr/share/locale/pt_BR/LC_MESSAGES/tar.mo	base-obsolete		obsolete
 ./usr/share/locale/pt_PT.ISO8859-1		base-locale-pt
 ./usr/share/locale/pt_PT.ISO8859-1/LC_CTYPE	base-locale-pt		nls
 ./usr/share/locale/pt_PT.ISO8859-1/LC_MESSAGES	base-locale-pt
@@ -3834,7 +3228,6 @@
 ./usr/share/locale/ru				base-locale-ru
 ./usr/share/locale/ru/LC_MESSAGES		base-locale-ru
 ./usr/share/locale/ru/LC_MESSAGES/grep.mo	base-locale-ru		nls,!bsdgrep
-./usr/share/locale/ru/LC_MESSAGES/tar.mo	base-obsolete		obsolete
 ./usr/share/locale/ru/LC_MESSAGES/texinfo.mo	base-texinfo_locale-ru	nls
 ./usr/share/locale/ru_BY.CP1251			base-locale-ru
 ./usr/share/locale/ru_BY.CP1251/LC_CTYPE	base-locale-ru		nls
@@ -3885,12 +3278,6 @@
 ./usr/share/locale/ru_RU.UTF-8/LC_MONETARY	base-locale-ru		nls
 ./usr/share/locale/ru_RU.UTF-8/LC_NUMERIC	base-locale-ru		nls
 ./usr/share/locale/ru_RU.UTF-8/LC_TIME		base-locale-ru		nls
-./usr/share/locale/ru_SU.CP866			base-obsolete		obsolete
-./usr/share/locale/ru_SU.CP866/LC_CTYPE		base-obsolete		obsolete
-./usr/share/locale/ru_SU.ISO8859-5		base-obsolete		obsolete
-./usr/share/locale/ru_SU.ISO8859-5/LC_CTYPE	base-obsolete		obsolete
-./usr/share/locale/ru_SU.KOI8-R			base-obsolete		obsolete
-./usr/share/locale/ru_SU.KOI8-R/LC_CTYPE	base-obsolete		obsolete
 ./usr/share/locale/sk				base-locale-sk
 ./usr/share/locale/sk/LC_MESSAGES		base-locale-sk
 ./usr/share/locale/sk_SK.ISO8859-2		base-locale-sk
@@ -3910,7 +3297,6 @@
 ./usr/share/locale/sl				base-locale-sl
 ./usr/share/locale/sl/LC_MESSAGES		base-locale-sl
 ./usr/share/locale/sl/LC_MESSAGES/grep.mo	base-locale-sl		nls,!bsdgrep
-./usr/share/locale/sl/LC_MESSAGES/tar.mo	base-obsolete		obsolete
 ./usr/share/locale/sl_SI.ISO8859-2		base-locale-sl
 ./usr/share/locale/sl_SI.ISO8859-2/LC_CTYPE	base-locale-sl		nls
 ./usr/share/locale/sl_SI.ISO8859-2/LC_MESSAGES	base-locale-sl
@@ -3983,42 +3369,9 @@
 ./usr/share/locale/sr_Latn_RS.UTF-8/LC_MONETARY	base-locale-sr		nls
 ./usr/share/locale/sr_Latn_RS.UTF-8/LC_NUMERIC	base-locale-sr		nls
 ./usr/share/locale/sr_Latn_RS.UTF-8/LC_TIME		base-locale-sr		nls
-./usr/share/locale/sr_ME.ISO8859-2		base-obsolete		obsolete
-./usr/share/locale/sr_ME.ISO8859-2/LC_CTYPE	base-obsolete		obsolete
-./usr/share/locale/sr_ME.ISO8859-2/LC_MESSAGES	base-obsolete		obsolete
-./usr/share/locale/sr_ME.ISO8859-2/LC_MESSAGES/SYS_LC_MESSAGES	base-obsolete		obsolete
-./usr/share/locale/sr_ME.ISO8859-2/LC_MONETARY	base-obsolete		obsolete
-./usr/share/locale/sr_ME.ISO8859-2/LC_NUMERIC	base-obsolete		obsolete
-./usr/share/locale/sr_ME.ISO8859-2/LC_TIME	base-obsolete		obsolete
-./usr/share/locale/sr_ME.ISO8859-5		base-obsolete		obsolete
-./usr/share/locale/sr_ME.ISO8859-5/LC_CTYPE	base-obsolete		obsolete
-./usr/share/locale/sr_ME.ISO8859-5/LC_MESSAGES	base-obsolete		obsolete
-./usr/share/locale/sr_ME.ISO8859-5/LC_MESSAGES/SYS_LC_MESSAGES	base-obsolete		obsolete
-./usr/share/locale/sr_ME.ISO8859-5/LC_MONETARY	base-obsolete		obsolete
-./usr/share/locale/sr_ME.ISO8859-5/LC_NUMERIC	base-obsolete		obsolete
-./usr/share/locale/sr_ME.ISO8859-5/LC_TIME	base-obsolete		obsolete
-./usr/share/locale/sr_RS.ISO8859-2		base-obsolete		obsolete
-./usr/share/locale/sr_RS.ISO8859-2/LC_CTYPE	base-obsolete		obsolete
-./usr/share/locale/sr_RS.ISO8859-2/LC_MESSAGES	base-obsolete		obsolete
-./usr/share/locale/sr_RS.ISO8859-2/LC_MESSAGES/SYS_LC_MESSAGES	base-obsolete		obsolete
-./usr/share/locale/sr_RS.ISO8859-2/LC_MONETARY	base-obsolete		obsolete
-./usr/share/locale/sr_RS.ISO8859-2/LC_NUMERIC	base-obsolete		obsolete
-./usr/share/locale/sr_RS.ISO8859-2/LC_TIME	base-obsolete		obsolete
-./usr/share/locale/sr_RS.ISO8859-5		base-obsolete		obsolete
-./usr/share/locale/sr_RS.ISO8859-5/LC_CTYPE	base-obsolete		obsolete
-./usr/share/locale/sr_RS.ISO8859-5/LC_MESSAGES	base-obsolete		obsolete
-./usr/share/locale/sr_RS.ISO8859-5/LC_MESSAGES/SYS_LC_MESSAGES	base-obsolete		obsolete
-./usr/share/locale/sr_RS.ISO8859-5/LC_MONETARY	base-obsolete		obsolete
-./usr/share/locale/sr_RS.ISO8859-5/LC_NUMERIC	base-obsolete		obsolete
-./usr/share/locale/sr_RS.ISO8859-5/LC_TIME	base-obsolete		obsolete
-./usr/share/locale/sr_YU.ISO8859-2		base-obsolete		obsolete
-./usr/share/locale/sr_YU.ISO8859-2/LC_CTYPE	base-obsolete		obsolete
-./usr/share/locale/sr_YU.ISO8859-5		base-obsolete		obsolete
-./usr/share/locale/sr_YU.ISO8859-5/LC_CTYPE	base-obsolete		obsolete
 ./usr/share/locale/sv				base-locale-sv
 ./usr/share/locale/sv/LC_MESSAGES		base-locale-sv
 ./usr/share/locale/sv/LC_MESSAGES/grep.mo	base-util_locale-sv	nls,!bsdgrep
-./usr/share/locale/sv/LC_MESSAGES/tar.mo	base-obsolete		obsolete
 ./usr/share/locale/sv/LC_MESSAGES/texinfo.mo	base-texinfo_locale-sv	nls
 ./usr/share/locale/sv_SE.ISO8859-1		base-locale-sv
 ./usr/share/locale/sv_SE.ISO8859-1/LC_CTYPE	base-locale-sv		nls
@@ -4043,7 +3396,6 @@
 ./usr/share/locale/sv_SE.UTF-8/LC_TIME		base-locale-sv		nls
 ./usr/share/locale/tr				base-locale-tr
 ./usr/share/locale/tr/LC_MESSAGES		base-locale-tr
-./usr/share/locale/tr/LC_MESSAGES/tar.mo	base-obsolete		obsolete
 ./usr/share/locale/tr/LC_MESSAGES/texinfo.mo	base-texinfo_locale-tr	nls
 ./usr/share/locale/tr_TR.ISO8859-9		base-locale-tr
 ./usr/share/locale/tr_TR.ISO8859-9/LC_CTYPE	base-locale-tr		nls
@@ -4113,8 +3465,6 @@
 ./usr/share/locale/zh_CN.eucCN/LC_TIME		base-locale-zh		nls
 ./usr/share/locale/zh_CN/LC_MESSAGES		base-locale-zh
 ./usr/share/locale/zh_CN/LC_MESSAGES/texinfo.mo	base-texinfo_locale-zh	nls
-./usr/share/locale/zh_HK.Big5-HKSCS		base-obsolete		obsolete
-./usr/share/locale/zh_HK.Big5-HKSCS/LC_CTYPE	base-obsolete		obsolete
 ./usr/share/locale/zh_HK.Big5hkscs		base-locale-zh
 ./usr/share/locale/zh_HK.Big5hkscs/LC_CTYPE	base-locale-zh		nls
 ./usr/share/locale/zh_HK.Big5hkscs/LC_MESSAGES	base-locale-zh
@@ -4130,8 +3480,6 @@
 ./usr/share/locale/zh_HK.UTF-8/LC_NUMERIC	base-locale-zh		nls
 ./usr/share/locale/zh_HK.UTF-8/LC_TIME		base-locale-zh		nls
 ./usr/share/locale/zh_TW			base-locale-zh
-./usr/share/locale/zh_TW.BIG5			base-obsolete		obsolete
-./usr/share/locale/zh_TW.BIG5/LC_CTYPE		base-obsolete		obsolete
 ./usr/share/locale/zh_TW.Big5			base-locale-zh
 ./usr/share/locale/zh_TW.Big5/LC_CTYPE		base-locale-zh		nls
 ./usr/share/locale/zh_TW.Big5/LC_MESSAGES	base-locale-zh
@@ -4156,18 +3504,14 @@
 ./usr/share/locale/zh_TW/LC_MESSAGES		base-locale-zh
 ./usr/share/locale/zh_TW/LC_MESSAGES/texinfo.mo	base-texinfo_locale-zh	nls
 ./usr/share/lua					base-sys-root
-./usr/share/lua/5.1				base-obsolete		obsolete
 ./usr/share/lua/5.3				base-sys-root
 ./usr/share/man					base-man-share
-./usr/share/man/COPYRIGHT			base-obsolete		obsolete
 ./usr/share/man/cat1				base-man-share
 ./usr/share/man/cat1/atari			base-man-share
 ./usr/share/man/cat1/hp300			base-man-share
 ./usr/share/man/cat1/x68k			base-man-share
 ./usr/share/man/cat2				base-man-share
 ./usr/share/man/cat3				base-man-share
-./usr/share/man/cat3/atari			base-obsolete		obsolete
-./usr/share/man/cat3f				base-obsolete		obsolete
 ./usr/share/man/cat3lua				base-man-share
 ./usr/share/man/cat4				base-man-share
 ./usr/share/man/cat4/acorn26			base-man-share
@@ -4175,8 +3519,6 @@
 ./usr/share/man/cat4/alpha			base-man-share
 ./usr/share/man/cat4/amiga			base-man-share
 ./usr/share/man/cat4/arc			base-man-share
-./usr/share/man/cat4/arm26			base-obsolete		obsolete
-./usr/share/man/cat4/arm32			base-obsolete		obsolete
 ./usr/share/man/cat4/atari			base-man-share
 ./usr/share/man/cat4/cobalt			base-man-share
 ./usr/share/man/cat4/dreamcast			base-man-share
@@ -4185,7 +3527,6 @@
 ./usr/share/man/cat4/evbmips			base-man-share
 ./usr/share/man/cat4/evbppc			base-man-share
 ./usr/share/man/cat4/hp300			base-man-share
-./usr/share/man/cat4/hp700			base-obsolete		obsolete
 ./usr/share/man/cat4/hpcarm			base-man-share
 ./usr/share/man/cat4/hpcmips			base-man-share
 ./usr/share/man/cat4/hpcsh			base-man-share
@@ -4194,9 +3535,7 @@
 ./usr/share/man/cat4/mac68k			base-man-share
 ./usr/share/man/cat4/macppc			base-man-share
 ./usr/share/man/cat4/mvme68k			base-man-share
-./usr/share/man/cat4/pc532			base-obsolete		obsolete
 ./usr/share/man/cat4/pmax			base-man-share
-./usr/share/man/cat4/pmppc			base-obsolete		obsolete
 ./usr/share/man/cat4/prep			base-man-share
 ./usr/share/man/cat4/sandpoint			base-man-share
 ./usr/share/man/cat4/sgimips			base-man-share
@@ -4204,7 +3543,6 @@
 ./usr/share/man/cat4/sparc64			base-man-share
 ./usr/share/man/cat4/sun2			base-man-share
 ./usr/share/man/cat4/sun3			base-man-share
-./usr/share/man/cat4/tahoe			base-obsolete		obsolete
 ./usr/share/man/cat4/vax			base-man-share
 ./usr/share/man/cat4/x68k			base-man-share
 ./usr/share/man/cat4/x86			base-man-share
@@ -4219,8 +3557,6 @@
 ./usr/share/man/cat8/amd64			base-man-share
 ./usr/share/man/cat8/amiga			base-man-share
 ./usr/share/man/cat8/arc			base-man-share
-./usr/share/man/cat8/arm26			base-obsolete		obsolete
-./usr/share/man/cat8/arm32			base-obsolete		obsolete
 ./usr/share/man/cat8/atari			base-man-share
 ./usr/share/man/cat8/bebox			base-man-share
 ./usr/share/man/cat8/cats			base-man-share
@@ -4232,9 +3568,7 @@
 ./usr/share/man/cat8/evbmips			base-man-share
 ./usr/share/man/cat8/evbppc			base-man-share
 ./usr/share/man/cat8/evbsh3			base-man-share
-./usr/share/man/cat8/evbsh5			base-obsolete		obsolete
 ./usr/share/man/cat8/hp300			base-man-share
-./usr/share/man/cat8/hp700			base-obsolete		obsolete
 ./usr/share/man/cat8/hpcarm			base-man-share
 ./usr/share/man/cat8/hpcmips			base-man-share
 ./usr/share/man/cat8/hpcsh			base-man-share
@@ -4253,10 +3587,8 @@
 ./usr/share/man/cat8/newsmips			base-man-share
 ./usr/share/man/cat8/next68k			base-man-share
 ./usr/share/man/cat8/ofppc			base-man-share
-./usr/share/man/cat8/pc532			base-obsolete		obsolete
 ./usr/share/man/cat8/playstation2		base-man-share
 ./usr/share/man/cat8/pmax			base-man-share
-./usr/share/man/cat8/pmppc			base-obsolete		obsolete
 ./usr/share/man/cat8/prep			base-man-share
 ./usr/share/man/cat8/sandpoint			base-man-share
 ./usr/share/man/cat8/sbmips			base-man-share
@@ -4266,24 +3598,18 @@
 ./usr/share/man/cat8/sparc64			base-man-share
 ./usr/share/man/cat8/sun2			base-man-share
 ./usr/share/man/cat8/sun3			base-man-share
-./usr/share/man/cat8/tahoe			base-obsolete		obsolete
 ./usr/share/man/cat8/vax			base-man-share
-./usr/share/man/cat8/walnut			base-obsolete		obsolete
 ./usr/share/man/cat8/x68k			base-man-share
 ./usr/share/man/cat8/x86			base-man-share
-./usr/share/man/cat8/x86_64			base-obsolete		obsolete
 ./usr/share/man/cat9				base-man-share
 ./usr/share/man/cat9/acorn26			base-man-share
 ./usr/share/man/cat9/alpha			base-man-share
 ./usr/share/man/cat9/amiga			base-man-share
-./usr/share/man/cat9/arm26			base-obsolete		obsolete
-./usr/share/man/cat9/arm32			base-obsolete		obsolete
 ./usr/share/man/cat9/atari			base-man-share
 ./usr/share/man/cat9/emips			base-man-share
 ./usr/share/man/cat9/hp300			base-man-share
 ./usr/share/man/cat9/i386			base-man-share
 ./usr/share/man/cat9/mac68k			base-man-share
-./usr/share/man/cat9/pc532			base-obsolete		obsolete
 ./usr/share/man/cat9/pmax			base-man-share
 ./usr/share/man/cat9/sparc			base-man-share
 ./usr/share/man/cat9/sun3			base-man-share
@@ -4305,8 +3631,6 @@
 ./usr/share/man/html4/alpha			base-man-share
 ./usr/share/man/html4/amiga			base-man-share
 ./usr/share/man/html4/arc			base-man-share
-./usr/share/man/html4/arm26			base-obsolete		obsolete
-./usr/share/man/html4/arm32			base-obsolete		obsolete
 ./usr/share/man/html4/atari			base-man-share
 ./usr/share/man/html4/cobalt			base-man-share
 ./usr/share/man/html4/dreamcast			base-man-share
@@ -4315,7 +3639,6 @@
 ./usr/share/man/html4/evbmips			base-man-share
 ./usr/share/man/html4/evbppc			base-man-share
 ./usr/share/man/html4/hp300			base-man-share
-./usr/share/man/html4/hp700			base-obsolete		obsolete
 ./usr/share/man/html4/hpcarm			base-man-share
 ./usr/share/man/html4/hpcmips			base-man-share
 ./usr/share/man/html4/hpcsh			base-man-share
@@ -4324,9 +3647,7 @@
 ./usr/share/man/html4/mac68k			base-man-share
 ./usr/share/man/html4/macppc			base-man-share
 ./usr/share/man/html4/mvme68k			base-man-share
-./usr/share/man/html4/pc532			base-obsolete		obsolete
 ./usr/share/man/html4/pmax			base-man-share
-./usr/share/man/html4/pmppc			base-obsolete		obsolete
 ./usr/share/man/html4/prep			base-man-share
 ./usr/share/man/html4/sandpoint			base-man-share
 ./usr/share/man/html4/sgimips			base-man-share
@@ -4348,8 +3669,6 @@
 ./usr/share/man/html8/amd64			base-man-share
 ./usr/share/man/html8/amiga			base-man-share
 ./usr/share/man/html8/arc			base-man-share
-./usr/share/man/html8/arm26			base-obsolete		obsolete
-./usr/share/man/html8/arm32			base-obsolete		obsolete
 ./usr/share/man/html8/atari			base-man-share
 ./usr/share/man/html8/bebox			base-man-share
 ./usr/share/man/html8/cats			base-man-share
@@ -4361,9 +3680,7 @@
 ./usr/share/man/html8/evbmips			base-man-share
 ./usr/share/man/html8/evbppc			base-man-share
 ./usr/share/man/html8/evbsh3			base-man-share
-./usr/share/man/html8/evbsh5			base-obsolete		obsolete
 ./usr/share/man/html8/hp300			base-man-share
-./usr/share/man/html8/hp700			base-obsolete		obsolete
 ./usr/share/man/html8/hpcarm			base-man-share
 ./usr/share/man/html8/hpcmips			base-man-share
 ./usr/share/man/html8/hpcsh			base-man-share
@@ -4382,11 +3699,8 @@
 ./usr/share/man/html8/newsmips			base-man-share
 ./usr/share/man/html8/next68k			base-man-share
 ./usr/share/man/html8/ofppc			base-man-share
-./usr/share/man/html8/pc532			base-obsolete		obsolete
-./usr/share/man/html8/playstation		base-obsolete		obsolete
 ./usr/share/man/html8/playstation2		base-man-share
 ./usr/share/man/html8/pmax			base-man-share
-./usr/share/man/html8/pmppc			base-obsolete		obsolete
 ./usr/share/man/html8/prep			base-man-share
 ./usr/share/man/html8/sandpoint			base-man-share
 ./usr/share/man/html8/sbmips			base-man-share
@@ -4397,22 +3711,17 @@
 ./usr/share/man/html8/sun2			base-man-share
 ./usr/share/man/html8/sun3			base-man-share
 ./usr/share/man/html8/vax			base-man-share
-./usr/share/man/html8/walnut			base-obsolete		obsolete
 ./usr/share/man/html8/x68k			base-man-share
 ./usr/share/man/html8/x86			base-man-share
-./usr/share/man/html8/x86_64			base-obsolete		obsolete
 ./usr/share/man/html9				base-man-share
 ./usr/share/man/html9/acorn26			base-man-share
 ./usr/share/man/html9/alpha			base-man-share
 ./usr/share/man/html9/amiga			base-man-share
-./usr/share/man/html9/arm26			base-obsolete		obsolete
-./usr/share/man/html9/arm32			base-obsolete		obsolete
 ./usr/share/man/html9/atari			base-man-share
 ./usr/share/man/html9/emips			base-man-share
 ./usr/share/man/html9/hp300			base-man-share
 ./usr/share/man/html9/i386			base-man-share
 ./usr/share/man/html9/mac68k			base-man-share
-./usr/share/man/html9/pc532			base-obsolete		obsolete
 ./usr/share/man/html9/pmax			base-man-share
 ./usr/share/man/html9/sparc			base-man-share
 ./usr/share/man/html9/sun3			base-man-share
@@ -4427,7 +3736,6 @@
 ./usr/share/man/man1/x68k			base-man-share
 ./usr/share/man/man2				base-man-share
 ./usr/share/man/man3				base-man-share
-./usr/share/man/man3/atari			base-obsolete		obsolete
 ./usr/share/man/man3f				base-man-share
 ./usr/share/man/man3lua				base-man-share
 ./usr/share/man/man4				base-man-share
@@ -4436,8 +3744,6 @@
 ./usr/share/man/man4/alpha			base-man-share
 ./usr/share/man/man4/amiga			base-man-share
 ./usr/share/man/man4/arc			base-man-share
-./usr/share/man/man4/arm26			base-obsolete		obsolete
-./usr/share/man/man4/arm32			base-obsolete		obsolete
 ./usr/share/man/man4/atari			base-man-share
 ./usr/share/man/man4/cobalt			base-man-share
 ./usr/share/man/man4/dreamcast			base-man-share
@@ -4446,7 +3752,6 @@
 ./usr/share/man/man4/evbmips			base-man-share
 ./usr/share/man/man4/evbppc			base-man-share
 ./usr/share/man/man4/hp300			base-man-share
-./usr/share/man/man4/hp700			base-obsolete		obsolete
 ./usr/share/man/man4/hpcarm			base-man-share
 ./usr/share/man/man4/hpcmips			base-man-share
 ./usr/share/man/man4/hpcsh			base-man-share
@@ -4455,9 +3760,7 @@
 ./usr/share/man/man4/mac68k			base-man-share
 ./usr/share/man/man4/macppc			base-man-share
 ./usr/share/man/man4/mvme68k			base-man-share
-./usr/share/man/man4/pc532			base-obsolete		obsolete
 ./usr/share/man/man4/pmax			base-man-share
-./usr/share/man/man4/pmppc			base-obsolete		obsolete
 ./usr/share/man/man4/prep			base-man-share
 ./usr/share/man/man4/sandpoint			base-man-share
 ./usr/share/man/man4/sgimips			base-man-share
@@ -4465,7 +3768,6 @@
 ./usr/share/man/man4/sparc64			base-man-share
 ./usr/share/man/man4/sun2			base-man-share
 ./usr/share/man/man4/sun3			base-man-share
-./usr/share/man/man4/tahoe			base-obsolete		obsolete
 ./usr/share/man/man4/vax			base-man-share
 ./usr/share/man/man4/x68k			base-man-share
 ./usr/share/man/man4/x86			base-man-share
@@ -4480,8 +3782,6 @@
 ./usr/share/man/man8/amd64			base-man-share
 ./usr/share/man/man8/amiga			base-man-share
 ./usr/share/man/man8/arc			base-man-share
-./usr/share/man/man8/arm26			base-obsolete		obsolete
-./usr/share/man/man8/arm32			base-obsolete		obsolete
 ./usr/share/man/man8/atari			base-man-share
 ./usr/share/man/man8/bebox			base-man-share
 ./usr/share/man/man8/cats			base-man-share
@@ -4493,9 +3793,7 @@
 ./usr/share/man/man8/evbmips			base-man-share
 ./usr/share/man/man8/evbppc			base-man-share
 ./usr/share/man/man8/evbsh3			base-man-share
-./usr/share/man/man8/evbsh5			base-obsolete		obsolete
 ./usr/share/man/man8/hp300			base-man-share
-./usr/share/man/man8/hp700			base-obsolete		obsolete
 ./usr/share/man/man8/hpcarm			base-man-share
 ./usr/share/man/man8/hpcmips			base-man-share
 ./usr/share/man/man8/hpcsh			base-man-share
@@ -4514,10 +3812,8 @@
 ./usr/share/man/man8/newsmips			base-man-share
 ./usr/share/man/man8/next68k			base-man-share
 ./usr/share/man/man8/ofppc			base-man-share
-./usr/share/man/man8/pc532			base-obsolete		obsolete
 ./usr/share/man/man8/playstation2		base-man-share
 ./usr/share/man/man8/pmax			base-man-share
-./usr/share/man/man8/pmppc			base-obsolete		obsolete
 ./usr/share/man/man8/prep			base-man-share
 ./usr/share/man/man8/sandpoint			base-man-share
 ./usr/share/man/man8/sbmips			base-man-share
@@ -4527,24 +3823,18 @@
 ./usr/share/man/man8/sparc64			base-man-share
 ./usr/share/man/man8/sun2			base-man-share
 ./usr/share/man/man8/sun3			base-man-share
-./usr/share/man/man8/tahoe			base-obsolete		obsolete
 ./usr/share/man/man8/vax			base-man-share
-./usr/share/man/man8/walnut			base-obsolete		obsolete
 ./usr/share/man/man8/x68k			base-man-share
 ./usr/share/man/man8/x86			base-man-share
-./usr/share/man/man8/x86_64			base-obsolete		obsolete
 ./usr/share/man/man9				base-man-share
 ./usr/share/man/man9/acorn26			base-man-share
 ./usr/share/man/man9/alpha			base-man-share
 ./usr/share/man/man9/amiga			base-man-share
-./usr/share/man/man9/arm26			base-obsolete		obsolete
-./usr/share/man/man9/arm32			base-obsolete		obsolete
 ./usr/share/man/man9/atari			base-man-share
 ./usr/share/man/man9/emips			base-man-share
 ./usr/share/man/man9/hp300			base-man-share
 ./usr/share/man/man9/i386			base-man-share
 ./usr/share/man/man9/mac68k			base-man-share
-./usr/share/man/man9/pc532			base-obsolete		obsolete
 ./usr/share/man/man9/pmax			base-man-share
 ./usr/share/man/man9/sparc			base-man-share
 ./usr/share/man/man9/sun3			base-man-share
@@ -4559,16 +3849,9 @@
 ./usr/share/misc/acronyms.comp			base-reference-share	share
 ./usr/share/misc/ascii				base-reference-share	share
 ./usr/share/misc/bsd-family-tree		base-reference-share	share
-./usr/share/misc/getopt				base-obsolete		obsolete
-./usr/share/misc/magic				base-obsolete		obsolete
 ./usr/share/misc/magic.mgc			base-magic-share	share
-./usr/share/misc/magic.mime			base-obsolete		obsolete
-./usr/share/misc/magic.mime.mgc			base-obsolete		obsolete
 ./usr/share/misc/mail.help			base-reference-share	share
 ./usr/share/misc/mail.tildehelp			base-reference-share	share
-./usr/share/misc/map3270			base-obsolete		obsolete
-./usr/share/misc/more.help			base-obsolete		obsolete
-./usr/share/misc/nslookup.help			base-obsolete		obsolete
 ./usr/share/misc/terminfo			base-terminfo-share	share
 ./usr/share/misc/terminfo.cdb			base-terminfo-share	share
 ./usr/share/misc/units.lib			base-reference-share	share
@@ -4579,9 +3862,7 @@
 ./usr/share/mk/bsd.buildinstall.mk			base-mk-share		share
 ./usr/share/mk/bsd.clang-analyze.mk		base-mk-share		share
 ./usr/share/mk/bsd.clean.mk			base-mk-share		share
-./usr/share/mk/bsd.crypto.mk			base-obsolete		obsolete
 ./usr/share/mk/bsd.dep.mk			base-mk-share		share
-./usr/share/mk/bsd.depall.mk			base-obsolete		obsolete
 ./usr/share/mk/bsd.doc.mk			base-mk-share		share
 ./usr/share/mk/bsd.endian.mk			base-mk-share		share
 ./usr/share/mk/bsd.files.mk			base-mk-share		share
@@ -4596,7 +3877,6 @@
 ./usr/share/mk/bsd.kernobj.mk			base-mk-share		share
 ./usr/share/mk/bsd.kinc.mk			base-mk-share		share
 ./usr/share/mk/bsd.klinks.mk			base-mk-share		share
-./usr/share/mk/bsd.kmod.mk			base-obsolete		obsolete
 ./usr/share/mk/bsd.kmodule.mk			base-mk-share		share
 ./usr/share/mk/bsd.lib.mk			base-mk-share		share
 ./usr/share/mk/bsd.links.mk			base-mk-share		share
@@ -4605,8 +3885,6 @@
 ./usr/share/mk/bsd.nls.mk			base-mk-share		share
 ./usr/share/mk/bsd.obj.mk			base-mk-share		share
 ./usr/share/mk/bsd.own.mk			base-mk-share		share
-./usr/share/mk/bsd.port.mk			base-obsolete		obsolete
-./usr/share/mk/bsd.port.subdir.mk		base-obsolete		obsolete
 ./usr/share/mk/bsd.prog.mk			base-mk-share		share
 ./usr/share/mk/bsd.rpc.mk			base-mk-share		share
 ./usr/share/mk/bsd.shlib.mk			base-mk-share		share
@@ -4620,7 +3898,6 @@
 ./usr/share/nls/C				base-locale-share
 ./usr/share/nls/C/grep.cat			base-locale-share	nls,bsdgrep
 ./usr/share/nls/C/libc.cat			base-locale-share	nls
-./usr/share/nls/C/sushi.cat			base-obsolete		obsolete
 ./usr/share/nls/Pig				base-locale-Pig
 ./usr/share/nls/Pig/libc.cat			base-locale-Pig		nls
 ./usr/share/nls/ca				base-locale-ca
@@ -4675,324 +3952,8 @@
 ./usr/share/nvi/catalog/ru_RU.KOI8-R		base-util-share		share
 ./usr/share/nvi/catalog/spanish			base-util-share		share
 ./usr/share/nvi/catalog/swedish			base-util-share		share
-./usr/share/sushi				base-obsolete	obsolete
-./usr/share/sushi/help				base-obsolete	obsolete
-./usr/share/sushi/index				base-obsolete	obsolete
-./usr/share/sushi/info				base-obsolete	obsolete
-./usr/share/sushi/info/index			base-obsolete	obsolete
-./usr/share/sushi/info/programming		base-obsolete	obsolete
-./usr/share/sushi/info/programming/basics	base-obsolete	obsolete
-./usr/share/sushi/info/programming/basics/help	base-obsolete	obsolete
-./usr/share/sushi/info/programming/execapi	base-obsolete	obsolete
-./usr/share/sushi/info/programming/execapi/help	base-obsolete	obsolete
-./usr/share/sushi/info/programming/formapi	base-obsolete	obsolete
-./usr/share/sushi/info/programming/formapi/help	base-obsolete	obsolete
-./usr/share/sushi/info/programming/help		base-obsolete	obsolete
-./usr/share/sushi/info/programming/helpapi	base-obsolete	obsolete
-./usr/share/sushi/info/programming/helpapi/help	base-obsolete	obsolete
-./usr/share/sushi/info/programming/i18n		base-obsolete	obsolete
-./usr/share/sushi/info/programming/i18n/help	base-obsolete	obsolete
-./usr/share/sushi/info/programming/index	base-obsolete	obsolete
-./usr/share/sushi/info/programming/indexapi	base-obsolete	obsolete
-./usr/share/sushi/info/programming/indexapi/help	base-obsolete	obsolete
-./usr/share/sushi/info/programming/scriptapi	base-obsolete	obsolete
-./usr/share/sushi/info/programming/scriptapi/help	base-obsolete	obsolete
-./usr/share/sushi/info/programming/searchpaths	base-obsolete	obsolete
-./usr/share/sushi/info/programming/searchpaths/help	base-obsolete	obsolete
-./usr/share/sushi/install			base-obsolete	obsolete
-./usr/share/sushi/install/help			base-obsolete	obsolete
-./usr/share/sushi/install/index			base-obsolete	obsolete
-./usr/share/sushi/install/install		base-obsolete	obsolete
-./usr/share/sushi/install/install/form		base-obsolete	obsolete
-./usr/share/sushi/install/install/preform	base-obsolete	obsolete
-./usr/share/sushi/install/install/script	base-obsolete	obsolete
-./usr/share/sushi/install/install/script1	base-obsolete	obsolete
-./usr/share/sushi/install/install/script2	base-obsolete	obsolete
-./usr/share/sushi/install/installb		base-obsolete	obsolete
-./usr/share/sushi/install/installb/form		base-obsolete	obsolete
-./usr/share/sushi/install/installb/preform	base-obsolete	obsolete
-./usr/share/sushi/install/installb/script	base-obsolete	obsolete
-./usr/share/sushi/install/list			base-obsolete	obsolete
-./usr/share/sushi/install/list/exec		base-obsolete	obsolete
-./usr/share/sushi/install/remove		base-obsolete	obsolete
-./usr/share/sushi/install/remove/form		base-obsolete	obsolete
-./usr/share/sushi/install/remove/script		base-obsolete	obsolete
-./usr/share/sushi/install/remove/script1	base-obsolete	obsolete
-./usr/share/sushi/network			base-obsolete	obsolete
-./usr/share/sushi/network/exports		base-obsolete	obsolete
-./usr/share/sushi/network/exports/addexport	base-obsolete	obsolete
-./usr/share/sushi/network/exports/addexport/form	base-obsolete	obsolete
-./usr/share/sushi/network/exports/addexport/help	base-obsolete	obsolete
-./usr/share/sushi/network/exports/addexport/preform	base-obsolete	obsolete
-./usr/share/sushi/network/exports/addexport/script	base-obsolete	obsolete
-./usr/share/sushi/network/exports/addexport/script1	base-obsolete	obsolete
-./usr/share/sushi/network/exports/addexport/script2	base-obsolete	obsolete
-./usr/share/sushi/network/exports/addexport/script3	base-obsolete	obsolete
-./usr/share/sushi/network/exports/addexport/script4	base-obsolete	obsolete
-./usr/share/sushi/network/exports/addexport/script5	base-obsolete	obsolete
-./usr/share/sushi/network/exports/addexport/script6	base-obsolete	obsolete
-./usr/share/sushi/network/exports/addexport/script7	base-obsolete	obsolete
-./usr/share/sushi/network/exports/addexport/script8	base-obsolete	obsolete
-./usr/share/sushi/network/exports/addexport/script9	base-obsolete	obsolete
-./usr/share/sushi/network/exports/addexport/scripta	base-obsolete	obsolete
-./usr/share/sushi/network/exports/addexport/scriptb	base-obsolete	obsolete
-./usr/share/sushi/network/exports/delexport	base-obsolete	obsolete
-./usr/share/sushi/network/exports/delexport/form	base-obsolete	obsolete
-./usr/share/sushi/network/exports/delexport/help	base-obsolete	obsolete
-./usr/share/sushi/network/exports/delexport/script	base-obsolete	obsolete
-./usr/share/sushi/network/exports/delexport/script1	base-obsolete	obsolete
-./usr/share/sushi/network/exports/help		base-obsolete	obsolete
-./usr/share/sushi/network/exports/index		base-obsolete	obsolete
-./usr/share/sushi/network/help			base-obsolete	obsolete
-./usr/share/sushi/network/hostname		base-obsolete	obsolete
-./usr/share/sushi/network/hostname/form		base-obsolete	obsolete
-./usr/share/sushi/network/hostname/help		base-obsolete	obsolete
-./usr/share/sushi/network/hostname/script	base-obsolete	obsolete
-./usr/share/sushi/network/hostname/script1	base-obsolete	obsolete
-./usr/share/sushi/network/hosts			base-obsolete	obsolete
-./usr/share/sushi/network/hosts/addhost		base-obsolete	obsolete
-./usr/share/sushi/network/hosts/addhost/form	base-obsolete	obsolete
-./usr/share/sushi/network/hosts/addhost/help	base-obsolete	obsolete
-./usr/share/sushi/network/hosts/addhost/script	base-obsolete	obsolete
-./usr/share/sushi/network/hosts/addv6host	base-obsolete	obsolete
-./usr/share/sushi/network/hosts/addv6host/form	base-obsolete	obsolete
-./usr/share/sushi/network/hosts/addv6host/help	base-obsolete	obsolete
-./usr/share/sushi/network/hosts/addv6host/script	base-obsolete	obsolete
-./usr/share/sushi/network/hosts/delhost		base-obsolete	obsolete
-./usr/share/sushi/network/hosts/delhost/form	base-obsolete	obsolete
-./usr/share/sushi/network/hosts/delhost/help	base-obsolete	obsolete
-./usr/share/sushi/network/hosts/delhost/script	base-obsolete	obsolete
-./usr/share/sushi/network/hosts/delhost/script1	base-obsolete	obsolete
-./usr/share/sushi/network/hosts/help		base-obsolete	obsolete
-./usr/share/sushi/network/hosts/index		base-obsolete	obsolete
-./usr/share/sushi/network/hosts/modhost		base-obsolete	obsolete
-./usr/share/sushi/network/hosts/modhost/form	base-obsolete	obsolete
-./usr/share/sushi/network/hosts/modhost/help	base-obsolete	obsolete
-./usr/share/sushi/network/hosts/modhost/preform	base-obsolete	obsolete
-./usr/share/sushi/network/hosts/modhost/script	base-obsolete	obsolete
-./usr/share/sushi/network/hosts/modhost/script1	base-obsolete	obsolete
-./usr/share/sushi/network/hosts/modhost/script2	base-obsolete	obsolete
-./usr/share/sushi/network/hosts/modv6host	base-obsolete	obsolete
-./usr/share/sushi/network/hosts/modv6host/form	base-obsolete	obsolete
-./usr/share/sushi/network/hosts/modv6host/help	base-obsolete	obsolete
-./usr/share/sushi/network/hosts/modv6host/preform	base-obsolete	obsolete
-./usr/share/sushi/network/hosts/modv6host/script	base-obsolete	obsolete
-./usr/share/sushi/network/hosts/modv6host/script1	base-obsolete	obsolete
-./usr/share/sushi/network/hosts/modv6host/script2	base-obsolete	obsolete
-./usr/share/sushi/network/index			base-obsolete	obsolete
-./usr/share/sushi/network/interfaces		base-obsolete	obsolete
-./usr/share/sushi/network/interfaces/help	base-obsolete	obsolete
-./usr/share/sushi/network/interfaces/index	base-obsolete	obsolete
-./usr/share/sushi/network/interfaces/interface	base-obsolete	obsolete
-./usr/share/sushi/network/interfaces/interface/form	base-obsolete	obsolete
-./usr/share/sushi/network/interfaces/interface/help	base-obsolete	obsolete
-./usr/share/sushi/network/interfaces/interface/nwid.sed	base-obsolete	obsolete
-./usr/share/sushi/network/interfaces/interface/preform	base-obsolete	obsolete
-./usr/share/sushi/network/interfaces/interface/script	base-obsolete	obsolete
-./usr/share/sushi/network/interfaces/interface/script1	base-obsolete	obsolete
-./usr/share/sushi/network/interfaces/interface/script2	base-obsolete	obsolete
-./usr/share/sushi/network/interfaces/listif	base-obsolete	obsolete
-./usr/share/sushi/network/interfaces/listif/script	base-obsolete	obsolete
-./usr/share/sushi/network/routing		base-obsolete	obsolete
-./usr/share/sushi/network/routing/default	base-obsolete	obsolete
-./usr/share/sushi/network/routing/default/form	base-obsolete	obsolete
-./usr/share/sushi/network/routing/default/help	base-obsolete	obsolete
-./usr/share/sushi/network/routing/default/script	base-obsolete	obsolete
-./usr/share/sushi/network/routing/default/script1	base-obsolete	obsolete
-./usr/share/sushi/network/routing/help		base-obsolete	obsolete
-./usr/share/sushi/network/routing/index		base-obsolete	obsolete
-./usr/share/sushi/network/routing/ipv4table	base-obsolete	obsolete
-./usr/share/sushi/network/routing/ipv4table/exec	base-obsolete	obsolete
-./usr/share/sushi/network/yp			base-obsolete	obsolete
-./usr/share/sushi/network/yp/client		base-obsolete	obsolete
-./usr/share/sushi/network/yp/client/form	base-obsolete	obsolete
-./usr/share/sushi/network/yp/client/help	base-obsolete	obsolete
-./usr/share/sushi/network/yp/client/script	base-obsolete	obsolete
-./usr/share/sushi/network/yp/client/script1	base-obsolete	obsolete
-./usr/share/sushi/network/yp/domainname		base-obsolete	obsolete
-./usr/share/sushi/network/yp/domainname/form	base-obsolete	obsolete
-./usr/share/sushi/network/yp/domainname/help	base-obsolete	obsolete
-./usr/share/sushi/network/yp/domainname/script	base-obsolete	obsolete
-./usr/share/sushi/network/yp/domainname/script1	base-obsolete	obsolete
-./usr/share/sushi/network/yp/help		base-obsolete	obsolete
-./usr/share/sushi/network/yp/index		base-obsolete	obsolete
-./usr/share/sushi/network/yp/master		base-obsolete	obsolete
-./usr/share/sushi/network/yp/master/form	base-obsolete	obsolete
-./usr/share/sushi/network/yp/master/help	base-obsolete	obsolete
-./usr/share/sushi/network/yp/master/script	base-obsolete	obsolete
-./usr/share/sushi/network/yp/master/script1	base-obsolete	obsolete
-./usr/share/sushi/network/yp/slave		base-obsolete	obsolete
-./usr/share/sushi/network/yp/slave/form		base-obsolete	obsolete
-./usr/share/sushi/network/yp/slave/help		base-obsolete	obsolete
-./usr/share/sushi/network/yp/slave/script	base-obsolete	obsolete
-./usr/share/sushi/network/yp/slave/script1	base-obsolete	obsolete
-./usr/share/sushi/procs				base-obsolete	obsolete
-./usr/share/sushi/procs/help			base-obsolete	obsolete
-./usr/share/sushi/procs/index			base-obsolete	obsolete
-./usr/share/sushi/procs/restartallprocs		base-obsolete	obsolete
-./usr/share/sushi/procs/restartallprocs/form	base-obsolete	obsolete
-./usr/share/sushi/procs/restartallprocs/help	base-obsolete	obsolete
-./usr/share/sushi/procs/restartallprocs/script	base-obsolete	obsolete
-./usr/share/sushi/procs/restartallprocs/script1	base-obsolete	obsolete
-./usr/share/sushi/procs/restartprocs		base-obsolete	obsolete
-./usr/share/sushi/procs/restartprocs/form	base-obsolete	obsolete
-./usr/share/sushi/procs/restartprocs/help	base-obsolete	obsolete
-./usr/share/sushi/procs/restartprocs/script	base-obsolete	obsolete
-./usr/share/sushi/procs/restartprocs/script1	base-obsolete	obsolete
-./usr/share/sushi/procs/showallprocs		base-obsolete	obsolete
-./usr/share/sushi/procs/showallprocs/script	base-obsolete	obsolete
-./usr/share/sushi/procs/showprocs		base-obsolete	obsolete
-./usr/share/sushi/procs/showprocs/script	base-obsolete	obsolete
-./usr/share/sushi/procs/startallprocs		base-obsolete	obsolete
-./usr/share/sushi/procs/startallprocs/form	base-obsolete	obsolete
-./usr/share/sushi/procs/startallprocs/help	base-obsolete	obsolete
-./usr/share/sushi/procs/startallprocs/script	base-obsolete	obsolete
-./usr/share/sushi/procs/startallprocs/script1	base-obsolete	obsolete
-./usr/share/sushi/procs/startprocs		base-obsolete	obsolete
-./usr/share/sushi/procs/startprocs/form		base-obsolete	obsolete
-./usr/share/sushi/procs/startprocs/help		base-obsolete	obsolete
-./usr/share/sushi/procs/startprocs/script	base-obsolete	obsolete
-./usr/share/sushi/procs/startprocs/script1	base-obsolete	obsolete
-./usr/share/sushi/procs/stopallprocs		base-obsolete	obsolete
-./usr/share/sushi/procs/stopallprocs/form	base-obsolete	obsolete
-./usr/share/sushi/procs/stopallprocs/help	base-obsolete	obsolete
-./usr/share/sushi/procs/stopallprocs/script	base-obsolete	obsolete
-./usr/share/sushi/procs/stopallprocs/script1	base-obsolete	obsolete
-./usr/share/sushi/procs/stopprocs		base-obsolete	obsolete
-./usr/share/sushi/procs/stopprocs/form		base-obsolete	obsolete
-./usr/share/sushi/procs/stopprocs/help		base-obsolete	obsolete
-./usr/share/sushi/procs/stopprocs/script	base-obsolete	obsolete
-./usr/share/sushi/procs/stopprocs/script1	base-obsolete	obsolete
-./usr/share/sushi/procs/topcpu			base-obsolete	obsolete
-./usr/share/sushi/procs/topcpu/script		base-obsolete	obsolete
-./usr/share/sushi/procs/topmem			base-obsolete	obsolete
-./usr/share/sushi/procs/topmem/script		base-obsolete	obsolete
-./usr/share/sushi/procs/toptime			base-obsolete	obsolete
-./usr/share/sushi/procs/toptime/script		base-obsolete	obsolete
-./usr/share/sushi/scriptoff			base-obsolete	obsolete
-./usr/share/sushi/scriptoff/func		base-obsolete	obsolete
-./usr/share/sushi/scripton			base-obsolete	obsolete
-./usr/share/sushi/scripton/func			base-obsolete	obsolete
-./usr/share/sushi/system			base-obsolete	obsolete
-./usr/share/sushi/system/dailyconf		base-obsolete	obsolete
-./usr/share/sushi/system/dailyconf/form		base-obsolete	obsolete
-./usr/share/sushi/system/dailyconf/help		base-obsolete	obsolete
-./usr/share/sushi/system/dailyconf/script	base-obsolete	obsolete
-./usr/share/sushi/system/dailyconf/script1	base-obsolete	obsolete
-./usr/share/sushi/system/dailyconf/script2	base-obsolete	obsolete
-./usr/share/sushi/system/dailyconf/script3	base-obsolete	obsolete
-./usr/share/sushi/system/help			base-obsolete	obsolete
-./usr/share/sushi/system/index			base-obsolete	obsolete
-./usr/share/sushi/system/inetdconf		base-obsolete	obsolete
-./usr/share/sushi/system/inetdconf/form		base-obsolete	obsolete
-./usr/share/sushi/system/inetdconf/script	base-obsolete	obsolete
-./usr/share/sushi/system/inetdconf/script1	base-obsolete	obsolete
-./usr/share/sushi/system/localtime		base-obsolete	obsolete
-./usr/share/sushi/system/localtime/form		base-obsolete	obsolete
-./usr/share/sushi/system/localtime/help		base-obsolete	obsolete
-./usr/share/sushi/system/localtime/script	base-obsolete	obsolete
-./usr/share/sushi/system/localtime/script1	base-obsolete	obsolete
-./usr/share/sushi/system/mailerconf		base-obsolete	obsolete
-./usr/share/sushi/system/mailerconf/form	base-obsolete	obsolete
-./usr/share/sushi/system/mailerconf/script	base-obsolete	obsolete
-./usr/share/sushi/system/mailerconf/script1	base-obsolete	obsolete
-./usr/share/sushi/system/rcconf			base-obsolete	obsolete
-./usr/share/sushi/system/rcconf/form		base-obsolete	obsolete
-./usr/share/sushi/system/rcconf/script		base-obsolete	obsolete
-./usr/share/sushi/system/rcconf/script1		base-obsolete	obsolete
-./usr/share/sushi/system/rcconf/script2		base-obsolete	obsolete
-./usr/share/sushi/system/rcconf/script3		base-obsolete	obsolete
-./usr/share/sushi/system/rcconf/script4		base-obsolete	obsolete
-./usr/share/sushi/system/securityconf		base-obsolete	obsolete
-./usr/share/sushi/system/securityconf/form	base-obsolete	obsolete
-./usr/share/sushi/system/securityconf/help	base-obsolete	obsolete
-./usr/share/sushi/system/securityconf/script	base-obsolete	obsolete
-./usr/share/sushi/system/securityconf/script1	base-obsolete	obsolete
-./usr/share/sushi/system/securityconf/script2	base-obsolete	obsolete
-./usr/share/sushi/system/securityconf/script3	base-obsolete	obsolete
-./usr/share/sushi/system/sshdconf		base-obsolete	obsolete
-./usr/share/sushi/system/sshdconf/defaults	base-obsolete	obsolete
-./usr/share/sushi/system/sshdconf/form		base-obsolete	obsolete
-./usr/share/sushi/system/sshdconf/help		base-obsolete	obsolete
-./usr/share/sushi/system/sshdconf/script	base-obsolete	obsolete
-./usr/share/sushi/system/sshdconf/script1	base-obsolete	obsolete
-./usr/share/sushi/system/sshdconf/script2	base-obsolete	obsolete
-./usr/share/sushi/system/sshdconf/script3	base-obsolete	obsolete
-./usr/share/sushi/system/sshdconf/script4	base-obsolete	obsolete
-./usr/share/sushi/system/sshdconf/script5	base-obsolete	obsolete
-./usr/share/sushi/system/sshdconf/script6	base-obsolete	obsolete
-./usr/share/sushi/system/sshdconf/script7	base-obsolete	obsolete
-./usr/share/sushi/system/sysctl			base-obsolete	obsolete
-./usr/share/sushi/system/sysctl/form		base-obsolete	obsolete
-./usr/share/sushi/system/sysctl/help		base-obsolete	obsolete
-./usr/share/sushi/system/sysctl/preform		base-obsolete	obsolete
-./usr/share/sushi/system/sysctl/script		base-obsolete	obsolete
-./usr/share/sushi/system/sysctl/script1		base-obsolete	obsolete
-./usr/share/sushi/system/sysctl/script2		base-obsolete	obsolete
-./usr/share/sushi/system/sysctl/sysctls		base-obsolete	obsolete
-./usr/share/sushi/system/usermgmtconf		base-obsolete	obsolete
-./usr/share/sushi/system/usermgmtconf/form	base-obsolete	obsolete
-./usr/share/sushi/system/usermgmtconf/help	base-obsolete	obsolete
-./usr/share/sushi/system/usermgmtconf/script	base-obsolete	obsolete
-./usr/share/sushi/system/usermgmtconf/script1	base-obsolete	obsolete
-./usr/share/sushi/system/weeklyconf		base-obsolete	obsolete
-./usr/share/sushi/system/weeklyconf/form	base-obsolete	obsolete
-./usr/share/sushi/system/weeklyconf/help	base-obsolete	obsolete
-./usr/share/sushi/system/weeklyconf/script	base-obsolete	obsolete
-./usr/share/sushi/system/weeklyconf/script1	base-obsolete	obsolete
-./usr/share/sushi/system/weeklyconf/script3	base-obsolete	obsolete
-./usr/share/sushi/users				base-obsolete	obsolete
-./usr/share/sushi/users/addgroup		base-obsolete	obsolete
-./usr/share/sushi/users/addgroup/form		base-obsolete	obsolete
-./usr/share/sushi/users/addgroup/script		base-obsolete	obsolete
-./usr/share/sushi/users/adduser			base-obsolete	obsolete
-./usr/share/sushi/users/adduser/form		base-obsolete	obsolete
-./usr/share/sushi/users/adduser/script		base-obsolete	obsolete
-./usr/share/sushi/users/adduser/script1		base-obsolete	obsolete
-./usr/share/sushi/users/adduser/script2		base-obsolete	obsolete
-./usr/share/sushi/users/adduser/script3		base-obsolete	obsolete
-./usr/share/sushi/users/delgroup		base-obsolete	obsolete
-./usr/share/sushi/users/delgroup/form		base-obsolete	obsolete
-./usr/share/sushi/users/delgroup/script		base-obsolete	obsolete
-./usr/share/sushi/users/delgroup/script1	base-obsolete	obsolete
-./usr/share/sushi/users/deluser			base-obsolete	obsolete
-./usr/share/sushi/users/deluser/form		base-obsolete	obsolete
-./usr/share/sushi/users/deluser/preform		base-obsolete	obsolete
-./usr/share/sushi/users/deluser/script		base-obsolete	obsolete
-./usr/share/sushi/users/deluser/script1		base-obsolete	obsolete
-./usr/share/sushi/users/deluser/script2		base-obsolete	obsolete
-./usr/share/sushi/users/disuser			base-obsolete	obsolete
-./usr/share/sushi/users/disuser/form		base-obsolete	obsolete
-./usr/share/sushi/users/disuser/script		base-obsolete	obsolete
-./usr/share/sushi/users/disuser/script1		base-obsolete	obsolete
-./usr/share/sushi/users/index			base-obsolete	obsolete
-./usr/share/sushi/users/listgroup		base-obsolete	obsolete
-./usr/share/sushi/users/listgroup/script	base-obsolete	obsolete
-./usr/share/sushi/users/listuser		base-obsolete	obsolete
-./usr/share/sushi/users/listuser/script		base-obsolete	obsolete
-./usr/share/sushi/users/moduser			base-obsolete	obsolete
-./usr/share/sushi/users/moduser/form		base-obsolete	obsolete
-./usr/share/sushi/users/moduser/preform		base-obsolete	obsolete
-./usr/share/sushi/users/moduser/script		base-obsolete	obsolete
-./usr/share/sushi/users/moduser/script1		base-obsolete	obsolete
-./usr/share/sushi/users/moduser/script2		base-obsolete	obsolete
-./usr/share/sushi/users/passwd			base-obsolete	obsolete
-./usr/share/sushi/users/passwd/form		base-obsolete	obsolete
-./usr/share/sushi/users/passwd/script		base-obsolete	obsolete
-./usr/share/sushi/users/passwd/script1		base-obsolete	obsolete
-./usr/share/sushi/util				base-obsolete	obsolete
-./usr/share/sushi/util/help			base-obsolete	obsolete
-./usr/share/sushi/util/index			base-obsolete	obsolete
-./usr/share/sushi/util/logging			base-obsolete	obsolete
-./usr/share/sushi/util/logging/func		base-obsolete	obsolete
-./usr/share/sushi/util/scripting		base-obsolete	obsolete
-./usr/share/sushi/util/scripting/func		base-obsolete	obsolete
 ./usr/share/sysinst				base-util-share
 ./usr/share/sysinst/catalog			base-util-share
-./usr/share/sysinst/catalog/sysinstmsgs.de	base-util-share		obsolete
-./usr/share/sysinst/catalog/sysinstmsgs.es	base-util-share		obsolete
-./usr/share/sysinst/catalog/sysinstmsgs.fr	base-util-share		obsolete
-./usr/share/sysinst/catalog/sysinstmsgs.pl	base-util-share		obsolete
 ./usr/share/tabset				base-util-share		share
 ./usr/share/tabset/3101				base-util-share		share
 ./usr/share/tabset/9837				base-util-share		share
@@ -5017,16 +3978,6 @@
 ./usr/share/tmac				base-groff-share
 ./usr/share/tmac/mdoc				base-groff-share
 ./usr/share/tmac/mm				base-groff-share
-./usr/share/vi					base-obsolete		obsolete
-./usr/share/vi/catalog				base-obsolete		obsolete
-./usr/share/vi/catalog/dutch			base-obsolete		obsolete
-./usr/share/vi/catalog/english			base-obsolete		obsolete
-./usr/share/vi/catalog/french			base-obsolete		obsolete
-./usr/share/vi/catalog/german			base-obsolete		obsolete
-./usr/share/vi/catalog/ru_RU.KOI8-R		base-obsolete		obsolete
-./usr/share/vi/catalog/ru_SU.KOI8-R		base-obsolete		obsolete
-./usr/share/vi/catalog/spanish			base-obsolete		obsolete
-./usr/share/vi/catalog/swedish			base-obsolete		obsolete
 ./usr/share/wscons				base-util-share
 ./usr/share/wscons/fonts			base-util-share
 ./usr/share/wscons/fonts/donna.816		base-util-share		share
@@ -5046,7 +3997,6 @@
 ./usr/share/wscons/keymaps			base-util-share
 ./usr/share/wscons/keymaps/amikbd.pl.qwertz.iso8859-2	base-util-share		share
 ./usr/share/wscons/keymaps/mkbd.pt.iso8859-1	base-util-share		share
-./usr/share/wscons/keymaps/mkbd.pt.iso8859-2	base-obsolete		obsolete
 ./usr/share/wscons/keymaps/pckbd.be.azerty	base-util-share		share
 ./usr/share/wscons/keymaps/pckbd.bg.bds.cp1251	base-util-share		share
 ./usr/share/wscons/keymaps/pckbd.bg.bds.iso8859-5	base-util-share		share
@@ -5055,10 +4005,8 @@
 ./usr/share/wscons/keymaps/pckbd.bg.qwerty.koi8-r	base-util-share		share
 ./usr/share/wscons/keymaps/pckbd.br.abnt2	base-util-share		share
 ./usr/share/wscons/keymaps/pckbd.de_CH.iso8859-1	base-util-share		share
-./usr/share/wscons/keymaps/pckbd.de_CH.iso8859-2	base-obsolete	obsolete
 ./usr/share/wscons/keymaps/pckbd.fr_CA.iso8859-1	base-util-share 	share
 ./usr/share/wscons/keymaps/pckbd.fr_CH.iso8859-1	base-util-share		share
-./usr/share/wscons/keymaps/pckbd.fr_CH.iso8859-2	base-obsolete	obsolete
 ./usr/share/wscons/keymaps/pckbd.hu.iso8859-2	base-util-share		share
 ./usr/share/wscons/keymaps/pckbd.pl.iso8859-2	base-util-share		share
 ./usr/share/wscons/keymaps/pckbd.ru.koi8-r	base-util-share		share
@@ -5103,7 +4051,6 @@
 ./usr/share/zoneinfo/Africa/Lome		base-sys-share		share
 ./usr/share/zoneinfo/Africa/Luanda		base-sys-share		share
 ./usr/share/zoneinfo/Africa/Lubumbashi		base-sys-share		share
-./usr/share/zoneinfo/Africa/Lumumbashi		base-obsolete		obsolete
 ./usr/share/zoneinfo/Africa/Lusaka		base-sys-share		share
 ./usr/share/zoneinfo/Africa/Malabo		base-sys-share		share
 ./usr/share/zoneinfo/Africa/Maputo		base-sys-share		share
@@ -5155,11 +4102,9 @@
 ./usr/share/zoneinfo/America/Boa_Vista		base-sys-share		share
 ./usr/share/zoneinfo/America/Bogota		base-sys-share		share
 ./usr/share/zoneinfo/America/Boise		base-sys-share		share
-./usr/share/zoneinfo/America/Brazil		base-obsolete		obsolete
 ./usr/share/zoneinfo/America/Buenos_Aires	base-sys-share		share
 ./usr/share/zoneinfo/America/Cambridge_Bay	base-sys-share		share
 ./usr/share/zoneinfo/America/Campo_Grande	base-sys-share		share
-./usr/share/zoneinfo/America/Canada		base-obsolete		obsolete
 ./usr/share/zoneinfo/America/Cancun		base-sys-share		share
 ./usr/share/zoneinfo/America/Caracas		base-sys-share		share
 ./usr/share/zoneinfo/America/Catamarca		base-sys-share		share
@@ -5167,7 +4112,6 @@
 ./usr/share/zoneinfo/America/Cayman		base-sys-share		share
 ./usr/share/zoneinfo/America/Chicago		base-sys-share		share
 ./usr/share/zoneinfo/America/Chihuahua		base-sys-share		share
-./usr/share/zoneinfo/America/Chile		base-obsolete		obsolete
 ./usr/share/zoneinfo/America/Coral_Harbour	base-sys-share		share
 ./usr/share/zoneinfo/America/Cordoba		base-sys-share		share
 ./usr/share/zoneinfo/America/Costa_Rica		base-sys-share		share
@@ -5311,8 +4255,6 @@
 ./usr/share/zoneinfo/Arctic/Longyearbyen	base-sys-share		share
 ./usr/share/zoneinfo/Asia			base-sys-share
 ./usr/share/zoneinfo/Asia/Aden			base-sys-share		share
-./usr/share/zoneinfo/Asia/Aktau			base-obsolete		obsolete
-./usr/share/zoneinfo/Asia/Alma-Ata		base-obsolete		obsolete
 ./usr/share/zoneinfo/Asia/Almaty		base-sys-share		share
 ./usr/share/zoneinfo/Asia/Amman			base-sys-share		share
 ./usr/share/zoneinfo/Asia/Anadyr		base-sys-share		share
@@ -5346,7 +4288,6 @@
 ./usr/share/zoneinfo/Asia/Hong_Kong		base-sys-share		share
 ./usr/share/zoneinfo/Asia/Hovd			base-sys-share		share
 ./usr/share/zoneinfo/Asia/Irkutsk		base-sys-share		share
-./usr/share/zoneinfo/Asia/Ishigaki		base-obsolete		obsolete
 ./usr/share/zoneinfo/Asia/Istanbul		base-sys-share		share
 ./usr/share/zoneinfo/Asia/Jakarta		base-sys-share		share
 ./usr/share/zoneinfo/Asia/Jayapura		base-sys-share		share
@@ -5381,9 +4322,6 @@
 ./usr/share/zoneinfo/Asia/Qyzylorda		base-sys-share		share
 ./usr/share/zoneinfo/Asia/Rangoon		base-sys-share		share
 ./usr/share/zoneinfo/Asia/Riyadh		base-sys-share		share
-./usr/share/zoneinfo/Asia/Riyadh87		base-obsolete		obsolete
-./usr/share/zoneinfo/Asia/Riyadh88		base-obsolete		obsolete
-./usr/share/zoneinfo/Asia/Riyadh89		base-obsolete		obsolete
 ./usr/share/zoneinfo/Asia/Saigon		base-sys-share		share
 ./usr/share/zoneinfo/Asia/Sakhalin		base-sys-share		share
 ./usr/share/zoneinfo/Asia/Samarkand		base-sys-share		share
@@ -5399,7 +4337,6 @@
 ./usr/share/zoneinfo/Asia/Thimbu		base-sys-share		share
 ./usr/share/zoneinfo/Asia/Thimphu		base-sys-share		share
 ./usr/share/zoneinfo/Asia/Tokyo			base-sys-share		share
-./usr/share/zoneinfo/Asia/Tomsk			base-obsolete		obsolete
 ./usr/share/zoneinfo/Asia/Ujung_Pandang		base-sys-share		share
 ./usr/share/zoneinfo/Asia/Ulaanbaatar		base-sys-share		share
 ./usr/share/zoneinfo/Asia/Ulan_Bator		base-sys-share		share
@@ -5532,7 +4469,6 @@
 ./usr/share/zoneinfo/Europe/Jersey		base-sys-share		share
 ./usr/share/zoneinfo/Europe/Kaliningrad		base-sys-share		share
 ./usr/share/zoneinfo/Europe/Kiev		base-sys-share		share
-./usr/share/zoneinfo/Europe/Kuybyshev		base-obsolete		obsolete
 ./usr/share/zoneinfo/Europe/Lisbon		base-sys-share		share
 ./usr/share/zoneinfo/Europe/Ljubljana		base-sys-share		share
 ./usr/share/zoneinfo/Europe/London		base-sys-share		share
@@ -5575,46 +4511,8 @@
 ./usr/share/zoneinfo/GB-Eire			base-sys-share		share
 ./usr/share/zoneinfo/GMT			base-sys-share		share
 ./usr/share/zoneinfo/GMT+0			base-sys-share		share
-./usr/share/zoneinfo/GMT+1			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT+10			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT+11			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT+12			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT+13			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT+2			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT+3			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT+4			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT+5			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT+6			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT+7			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT+8			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT+9			base-obsolete		obsolete
 ./usr/share/zoneinfo/GMT-0			base-sys-share		share
-./usr/share/zoneinfo/GMT-1			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT-10			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT-11			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT-12			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT-2			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT-3			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT-4			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT-5			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT-6			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT-7			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT-8			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT-9			base-obsolete		obsolete
 ./usr/share/zoneinfo/GMT0			base-sys-share		share
-./usr/share/zoneinfo/GMT1			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT10			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT11			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT12			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT13			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT2			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT3			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT4			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT5			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT6			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT7			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT8			base-obsolete		obsolete
-./usr/share/zoneinfo/GMT9			base-obsolete		obsolete
 ./usr/share/zoneinfo/Greenwich			base-sys-share		share
 ./usr/share/zoneinfo/HST			base-sys-share		share
 ./usr/share/zoneinfo/Hongkong			base-sys-share		share
@@ -5644,11 +4542,6 @@
 ./usr/share/zoneinfo/Mexico/BajaNorte		base-sys-share		share
 ./usr/share/zoneinfo/Mexico/BajaSur		base-sys-share		share
 ./usr/share/zoneinfo/Mexico/General		base-sys-share		share
-./usr/share/zoneinfo/Mideast			base-obsolete		obsolete
-./usr/share/zoneinfo/Mideast/Riyadh87		base-obsolete		obsolete
-./usr/share/zoneinfo/Mideast/Riyadh88		base-obsolete		obsolete
-./usr/share/zoneinfo/Mideast/Riyadh89		base-obsolete		obsolete
-./usr/share/zoneinfo/Moscow			base-obsolete		obsolete
 ./usr/share/zoneinfo/NZ				base-sys-share		share
 ./usr/share/zoneinfo/NZ-CHAT			base-sys-share		share
 ./usr/share/zoneinfo/Navajo			base-sys-share		share
@@ -5703,20 +4596,6 @@
 ./usr/share/zoneinfo/ROC			base-sys-share		share
 ./usr/share/zoneinfo/ROK			base-sys-share		share
 ./usr/share/zoneinfo/Singapore			base-sys-share		share
-./usr/share/zoneinfo/SystemV			base-obsolete		obsolete
-./usr/share/zoneinfo/SystemV/AST4		base-obsolete		obsolete
-./usr/share/zoneinfo/SystemV/AST4ADT		base-obsolete		obsolete
-./usr/share/zoneinfo/SystemV/CST6		base-obsolete		obsolete
-./usr/share/zoneinfo/SystemV/CST6CDT		base-obsolete		obsolete
-./usr/share/zoneinfo/SystemV/EST5		base-obsolete		obsolete
-./usr/share/zoneinfo/SystemV/EST5EDT		base-obsolete		obsolete
-./usr/share/zoneinfo/SystemV/HST10		base-obsolete		obsolete
-./usr/share/zoneinfo/SystemV/MST7		base-obsolete		obsolete
-./usr/share/zoneinfo/SystemV/MST7MDT		base-obsolete		obsolete
-./usr/share/zoneinfo/SystemV/PST8		base-obsolete		obsolete
-./usr/share/zoneinfo/SystemV/PST8PDT		base-obsolete		obsolete
-./usr/share/zoneinfo/SystemV/YST9		base-obsolete		obsolete
-./usr/share/zoneinfo/SystemV/YST9YDT		base-obsolete		obsolete
 ./usr/share/zoneinfo/Turkey			base-sys-share		share
 ./usr/share/zoneinfo/UCT			base-sys-share		share
 ./usr/share/zoneinfo/US				base-sys-share
@@ -5770,16 +4649,12 @@
 ./var/chroot/ntpd/var/db			base-ntp-root
 ./var/chroot/ntpd/var/run			base-ntp-root
 ./var/chroot/pflogd				base-sys-root
-./var/chroot/pfspamd				base-obsolete		obsolete
 ./var/chroot/rtadvd				base-sys-root
 ./var/chroot/rtadvd/etc				base-sys-root
 ./var/chroot/rtadvd/var				base-sys-root
 ./var/chroot/rtadvd/var/run			base-sys-root
-./var/chroot/spamd				base-obsolete		obsolete
 ./var/chroot/sshd				base-sys-root
 ./var/chroot/tcpdump				base-sys-root
-./var/chroot/tcpdump/etc			base-obsolete		obsolete
-./var/chroot/tcpdump/etc/protocols		base-obsolete		obsolete
 ./var/chroot/tftp-proxy				base-sys-root
 ./var/crash					base-sys-root
 ./var/cron					base-cron-root
@@ -5798,31 +4673,17 @@
 ./var/db/postfix				base-postfix-root
 ./var/db/xdm					base-sys-root
 ./var/db/xkb					base-sys-root
-./var/empty					base-obsolete		obsolete
 ./var/games					base-games-root
 ./var/games/hackdir				base-games-root
 ./var/games/hackdir/save			base-games-root
 ./var/games/larn				base-games-root
 ./var/games/phantasia				base-games-root
 ./var/games/sail				base-games-root
-./var/games/save				base-obsolete		obsolete
 ./var/heimdal					base-krb5-root
-./var/lock					base-sys-root		obsolete
-./var/lock/lvm					base-sys-root		obsolete
 ./var/log					base-sys-root
 ./var/log/rdist					base-netutil-root
 ./var/mail					base-mail-root
 ./var/msgs					base-util-root
-./var/named					base-obsolete		obsolete
-./var/named/dev					base-obsolete		obsolete
-./var/named/etc					base-obsolete		obsolete
-./var/named/etc/namedb				base-obsolete		obsolete
-./var/named/etc/namedb/cache			base-obsolete		obsolete
-./var/named/usr					base-obsolete		obsolete
-./var/named/usr/libexec				base-obsolete		obsolete
-./var/named/var					base-obsolete		obsolete
-./var/named/var/run				base-obsolete		obsolete
-./var/named/var/tmp				base-obsolete		obsolete
 ./var/preserve					base-util-root
 ./var/quotas					base-util-root
 ./var/run					base-sys-root
@@ -5841,8 +4702,6 @@
 ./var/spool/postfix				base-postfix-root
 ./var/spool/postfix/etc				base-postfix-root
 ./var/spool/sockets				base-sys-root
-./var/spool/uucp				base-obsolete		obsolete
-./var/spool/uucppublic				base-obsolete		obsolete
 ./var/tmp					base-sys-root
 ./var/tmp/vi.recover				base-util-root
 ./var/tpm					base-sys-root

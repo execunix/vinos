@@ -71,7 +71,6 @@
 ./usr/X11R6/man/man3/XF86VidModeSwitchToMode.3		-unknown-	.man,x11
 ./usr/X11R6/man/man3/XF86VidModeValidateModeLine.3	-unknown-	.man,x11
 ./usr/X11R6/man/man4/fpit.4				-unknown-	.man,x11
-./usr/X11R7/include/intel_bufmgr.h			-unknown-	obsolete
 ./usr/X11R7/lib/libI810XvMC.a				-unknown-	xorg
 ./usr/X11R7/lib/libI810XvMC_p.a				-unknown-	profile,xorg
 ./usr/X11R7/lib/libI810XvMC_pic.a			-unknown-	xorg,picinstall

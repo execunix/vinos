@@ -5,7 +5,6 @@
 ./etc/drirc						-unknown-	xorg
 ./etc/X11/fs/config					-unknown-	x11
 ./etc/X11/fs/config					-unknown-	xorg
-./etc/X11/lbxproxy/AtomControl				-obsolete-	obsolete,xorg
 ./etc/X11/lbxproxy/AtomControl				-unknown-	x11
 ./etc/X11/proxymngr/pmconfig				-unknown-	x11
 ./etc/X11/proxymngr/pmconfig				-unknown-	xorg
@@ -49,8 +48,6 @@
 ./etc/X11/xdm/Xwilling					-unknown-	xorg
 ./etc/X11/xdm/xdm-config				-unknown-	x11
 ./etc/X11/xdm/xdm-config				-unknown-	xorg
-./etc/X11/xdm/xorg-bw.xpm				xetc-obsolete	obsolete
-./etc/X11/xdm/xorg.xpm					xetc-obsolete	obsolete
 ./etc/X11/xinit/xinitrc					-unknown-	x11
 ./etc/X11/xinit/xinitrc					-unknown-	xorg
 ./etc/X11/xserver/SecurityPolicy			-unknown-	x11
@@ -67,7 +64,6 @@
 ./etc/fonts/conf.avail/11-lcdfilter-default.conf	-unknown-	xorg
 ./etc/fonts/conf.avail/11-lcdfilter-legacy.conf		-unknown-	xorg
 ./etc/fonts/conf.avail/11-lcdfilter-light.conf		-unknown-	xorg
-./etc/fonts/conf.avail/20-fix-globaladvance.conf	-unknown-	obsolete
 ./etc/fonts/conf.avail/20-unhint-small-vera.conf	-unknown-	xorg
 ./etc/fonts/conf.avail/25-unhint-nonlatin.conf		-unknown-	xorg
 ./etc/fonts/conf.avail/30-metric-aliases.conf		-unknown-	xorg
@@ -87,7 +83,6 @@
 ./etc/fonts/conf.avail/80-delicious.conf		-unknown-	xorg
 ./etc/fonts/conf.avail/90-synthetic.conf		-unknown-	xorg
 ./etc/fonts/conf.d/10-scale-bitmap-fonts.conf		-unknown-	xorg
-./etc/fonts/conf.d/20-fix-globaladvance.conf		-unknown-	obsolete
 ./etc/fonts/conf.d/20-unhint-small-vera.conf		-unknown-	xorg
 ./etc/fonts/conf.d/30-metric-aliases.conf		-unknown-	xorg
 ./etc/fonts/conf.d/30-urw-aliases.conf			-unknown-	xorg

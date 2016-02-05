@@ -21,7 +21,6 @@
 ./usr/X11R6/bin/res					-unknown-	x11
 ./usr/X11R6/bin/vdltodmx				-unknown-	x11
 ./usr/X11R6/bin/xbell					-unknown-	x11
-./usr/X11R6/bin/xdmx					-obsolete-	obsolete
 ./usr/X11R6/bin/xdmxconfig				-unknown-	x11
 ./usr/X11R6/bin/xinput					-unknown-	x11
 ./usr/X11R6/bin/xled					-unknown-	x11
@@ -58,8 +57,6 @@
 ./usr/X11R7/lib/modules/dri/libmesa_dri.so.0		-unknown-	xorg,machine=i386
 ./usr/X11R7/lib/modules/dri/libmesa_dri.so		-unknown-	xorg,machine=amd64
 ./usr/X11R7/lib/modules/dri/libmesa_dri.so.0		-unknown-	xorg,machine=amd64
-./usr/X11R7/lib/modules/dri/libmesa_dri.so		-unknown-	obsolete,xorg,!machine=amd64,!machine=i386
-./usr/X11R7/lib/modules/dri/libmesa_dri.so.0		-unknown-	obsolete,xorg,!machine=amd64,!machine=i386
 ./usr/X11R7/lib/modules/dri/swrast_dri.so		-unknown-	xorg
 ./usr/X11R7/lib/modules/dri/swrast_dri.so.0		-unknown-	xorg
 ./usr/X11R7/lib/modules/dri/gallium_dri.so		-unknown-	xorg
@@ -70,14 +67,11 @@
 ./usr/X11R7/man/cat1/Xnest.0				-unknown-	.cat,xorg
 ./usr/X11R7/man/cat1/Xserver.0				-unknown-	.cat,xorg
 ./usr/X11R7/man/cat1/Xvfb.0				-unknown-	.cat,xorg
-./usr/X11R7/man/cat5/SecurityPolicy.0			-unknown-	obsolete
 ./usr/X11R7/man/html1/Xmark.html			-unknown-	html,xorg
 ./usr/X11R7/man/html1/Xnest.html			-unknown-	html,xorg
 ./usr/X11R7/man/html1/Xserver.html			-unknown-	html,xorg
 ./usr/X11R7/man/html1/Xvfb.html				-unknown-	html,xorg
-./usr/X11R7/man/html5/SecurityPolicy.html		-unknown-	obsolete
 ./usr/X11R7/man/man1/Xmark.1				-unknown-	.man,xorg
 ./usr/X11R7/man/man1/Xnest.1				-unknown-	.man,xorg
 ./usr/X11R7/man/man1/Xserver.1				-unknown-	.man,xorg
 ./usr/X11R7/man/man1/Xvfb.1				-unknown-	.man,xorg
-./usr/X11R7/man/man5/SecurityPolicy.5			-unknown-	obsolete

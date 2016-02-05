@@ -38,7 +38,6 @@
 ./usr/libdata/debug/usr/X11R6/lib/libdmx.so.1.0.debug			-unknown-		x11,debug
 ./usr/libdata/debug/usr/X11R6/lib/libdps.so.1.0.debug			-unknown-		x11,debug
 ./usr/libdata/debug/usr/X11R6/lib/libdpstk.so.1.0.debug			-unknown-		x11,debug
-./usr/libdata/debug/usr/X11R6/lib/libexpat.so.4.0.debug			-obsolete-		obsolete
 ./usr/libdata/debug/usr/X11R6/lib/libfontconfig.so.1.0.debug		-unknown-		x11,debug
 ./usr/libdata/debug/usr/X11R6/lib/libfontenc.so.1.0.debug		-unknown-		x11,debug
 ./usr/libdata/debug/usr/X11R6/lib/libfreetype.so.9.0.debug		-unknown-		x11,debug
@@ -46,12 +45,6 @@
 ./usr/libdata/debug/usr/X11R6/lib/libpsres.so.1.0.debug			-unknown-		x11,debug
 ./usr/libdata/debug/usr/X11R6/lib/libxkbfile.so.1.0.debug		-unknown-		x11,debug
 ./usr/libdata/debug/usr/X11R6/lib/libxkbui.so.1.0.debug			-unknown-		x11,debug
-./usr/libdata/debug/usr/X11R7/lib/X11/locale/lib/common/libximcp.so.2.0.debug	obsolete		xorg,obsolete
-./usr/libdata/debug/usr/X11R7/lib/X11/locale/lib/common/libxlcDef.so.2.0.debug	obsolete		xorg,obsolete
-./usr/libdata/debug/usr/X11R7/lib/X11/locale/lib/common/libxlcUTF8Load.so.2.0.debug	obsolete		xorg,obsolete
-./usr/libdata/debug/usr/X11R7/lib/X11/locale/lib/common/libxlibi18n.so.2.0.debug	obsolete		xorg,obsolete
-./usr/libdata/debug/usr/X11R7/lib/X11/locale/lib/common/libxlocale.so.2.0.debug	obsolete		xorg,obsolete
-./usr/libdata/debug/usr/X11R7/lib/X11/locale/lib/common/libxomGeneric.so.2.0.debug	obsolete		xorg,obsolete
 ./usr/libdata/debug/usr/X11R7/lib/X11/locale/lib/common/ximcp.so.2.0.debug	-unknown-		xorg,debug
 ./usr/libdata/debug/usr/X11R7/lib/X11/locale/lib/common/xlcDef.so.2.0.debug	-unknown-		xorg,debug
 ./usr/libdata/debug/usr/X11R7/lib/X11/locale/lib/common/xlcUTF8Load.so.2.0.debug	-unknown-		xorg,debug
@@ -63,7 +56,6 @@
 ./usr/libdata/debug/usr/X11R7/lib/libGLU.so.2.0.debug	-unknown-		xorg,debug
 ./usr/libdata/debug/usr/X11R7/lib/libGLw.so.2.0.debug	-unknown-		xorg,debug
 ./usr/libdata/debug/usr/X11R7/lib/libICE.so.7.0.debug	-unknown-		xorg,debug
-./usr/libdata/debug/usr/X11R7/lib/libOSMesa.so.7.0.debug	-unknown-		obsolete
 ./usr/libdata/debug/usr/X11R7/lib/libglapi.so.0.0.debug	-unknown-		xorg,debug
 ./usr/libdata/debug/usr/X11R7/lib/libSM.so.7.0.debug	-unknown-		xorg,debug
 ./usr/libdata/debug/usr/X11R7/lib/libX11-xcb.so.1.0.debug	-unknown-		xorg,debug
@@ -102,7 +94,6 @@
 ./usr/libdata/debug/usr/X11R7/lib/libXxf86vm.so.2.0.debug	-unknown-		xorg,debug
 ./usr/libdata/debug/usr/X11R7/lib/libdrm.so.3.2.debug	-unknown-		xorg,debug
 ./usr/libdata/debug/usr/X11R7/lib/libdrm_radeon.so.0.0.debug	-unknown-		xorg,debug
-./usr/libdata/debug/usr/X11R7/lib/libexpat.so.2.0.debug	-obsolete-		obsolete
 ./usr/libdata/debug/usr/X11R7/lib/libfontconfig.so.2.2.debug	-unknown-		xorg,debug
 ./usr/libdata/debug/usr/X11R7/lib/libfontenc.so.2.0.debug	-unknown-		xorg,debug
 ./usr/libdata/debug/usr/X11R7/lib/libfreetype.so.17.4.11.debug	-unknown-		xorg,debug
@@ -146,6 +137,4 @@
 ./usr/libdata/debug/usr/X11R7/lib/libxkbui.so.2.0.debug		-unknown-		xorg,debug
 ./usr/libdata/debug/usr/X11R7/lib/modules/dri/libmesa_dri.so.0.debug	-unknown-	xorg,debug,machine=i386
 ./usr/libdata/debug/usr/X11R7/lib/modules/dri/libmesa_dri.so.0.debug	-unknown-	xorg,debug,machine=amd64
-./usr/libdata/debug/usr/X11R7/lib/modules/dri/libmesa_dri.so.0.debug	obsolete	obsolete,xorg,debug,!machine=i386,!machine=amd64
-./usr/libdata/debug/usr/X11R7/lib/modules/dri/libswrast_dri.so.0.debug	obsolete	xorg,obsolete
 ./usr/libdata/debug/usr/X11R7/lib/modules/dri/swrast_dri.so.0.debug	-unknown-	xorg,debug
