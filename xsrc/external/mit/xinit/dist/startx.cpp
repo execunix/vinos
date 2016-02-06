@@ -133,7 +133,7 @@ if defaults read $X11_PREFS_DOMAIN 2> /dev/null | grep -q 'dpi' && defaults read
 fi
 
 #else
-enable_xauth=1
+enable_xauth=0
 #endif
 
 XCOMM Automatically determine an unused $DISPLAY

@@ -5954,7 +5954,7 @@
 ./usr/X11R7/lib/libICE.a				-unknown-	xorg
 ./usr/X11R7/lib/libICE_p.a				-unknown-	profile,xorg
 ./usr/X11R7/lib/libglapi.a				-unknown-	xorg
-./usr/X11R7/lib/libglapi_p.a				-unknown-	xorg
+./usr/X11R7/lib/libglapi_p.a				-unknown-	profile,xorg
 ./usr/X11R7/lib/libSM.a					-unknown-	xorg
 ./usr/X11R7/lib/libSM_p.a				-unknown-	profile,xorg
 ./usr/X11R7/lib/libX11-xcb.a				-unknown-	xorg
