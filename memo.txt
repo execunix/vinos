@@ -1,149 +1,21 @@
-execunix@xmtlinux1:/mnt/mbs2/netbsd/vinos$ . bldenv.sh -U -x -u -m amd64 -j4
-execunix@xmtlinux1:/mnt/mbs2/netbsd/vinos$ nbmk -j4 release
+execunix@xmtlinux1:/mnt/hdd1/vinos$ ./build.sh -U -x -r -n -m amd64 -j4 release
 
-execunix@xmtlinux1:/mnt/mbs2/netbsd/vinos$ ./build.sh -U -x -r -n -m amd64 -j4 release
+execunix@xmtlinux1:/mnt/hdd1/vinos$ . bldenv.sh
+execunix@xmtlinux1:/mnt/hdd1/vinos$ nbmk -j4 release
 
 ##############################################################################
-execunix@xmtlinux1:/mnt/mbs2/netbsd/vinos$ . bldenv.sh -U -x -u -m amd64
-
-bash: Missing operation to perform.
-
-Usage: bash [-EhnorUuxy] [-a arch] [-B buildid] [-C cdextras]
-                [-D dest] [-j njob] [-M obj] [-m mach] [-N noisy]
-                [-O obj] [-R release] [-S seed] [-T tools]
-                [-V var=[value]] [-w wrapper] [-X x11src] [-Y extsrcsrc]
-                [-Z var]
-                operation [...]
-
- Build operations (all imply "obj" and "tools"):
-    build               Run "make build".
-    distribution        Run "make distribution" (includes DESTDIR/etc/ files).
-    release             Run "make release" (includes kernels & distrib media).
-
- Other operations:
-    help                Show this message and exit.
-    makewrapper         Create nbmake-${MACHINE} wrapper and nbmake.
-                        Always performed.
-    cleandir            Run "make cleandir".  [Default unless -u is used]
-    obj                 Run "make obj".  [Default unless -o is used]
-    tools               Build and install tools.
-    install=idir        Run "make installworld" to `idir' to install all sets
-                        except `etc'.  Useful after "distribution" or "release"
-    kernel=conf         Build kernel with config file `conf'
-    kernel.gdb=conf     Build kernel (including netbsd.gdb) with config
-    			file `conf'
-    releasekernel=conf  Install kernel built by kernel=conf to RELEASEDIR.
-    installmodules=idir Run "make installmodules" to `idir' to install all
-                        kernel modules.
-    modules             Build kernel modules.
-    sets                Create binary sets in
-                        RELEASEDIR/RELEASEMACHINEDIR/binary/sets.
-                        DESTDIR should be populated beforehand.
-    sourcesets          Create source sets in RELEASEDIR/source/sets.
-    syspkgs             Create syspkgs in
-                        RELEASEDIR/RELEASEMACHINEDIR/binary/syspkgs.
-    iso-image           Create CD-ROM image in RELEASEDIR/images.
-    iso-image-source    Create CD-ROM image with source in RELEASEDIR/images.
-    live-image          Create bootable live image in
-                        RELEASEDIR/RELEASEMACHINEDIR/installation/liveimage.
-    install-image       Create bootable installation image in
-                        RELEASEDIR/RELEASEMACHINEDIR/installation/installimage.
-    disk-image=target	Creae bootable disk image in
-			RELEASEDIR/RELEASEMACHINEDIR/binary/gzimg/target.img.gz.
-    params              Display various make(1) parameters.
-    list-arch           Display a list of valid MACHINE/MACHINE_ARCH values,
-                        and exit.  The list may be narrowed by passing glob
-                        patterns or exact values in MACHINE or MACHINE_ARCH.
-
- Options:
-    -a arch        Set MACHINE_ARCH to arch.  [Default: deduced from MACHINE]
-    -B buildid     Set BUILDID to buildid.
-    -C cdextras    Append cdextras to CDEXTRA variable for inclusion on CD-ROM.
-    -D dest        Set DESTDIR to dest.  [Default: destdir.MACHINE]
-    -E             Set "expert" mode; disables various safety checks.
-                   Should not be used without expert knowledge of the build system.
-    -h             Print this help message.
-    -j njob        Run up to njob jobs in parallel; see make(1) -j.
-    -M obj         Set obj root directory to obj; sets MAKEOBJDIRPREFIX.
-                   Unsets MAKEOBJDIR.
-    -m mach        Set MACHINE to mach.  Some mach values are actually
-                   aliases that set MACHINE/MACHINE_ARCH pairs.
-                   [Default: deduced from the host system if the host
-                   OS is NetBSD]
-    -N noisy       Set the noisyness (MAKEVERBOSE) level of the build:
-                       0   Minimal output ("quiet")
-                       1   Describe what is occurring
-                       2   Describe what is occurring and echo the actual command
-                       3   Ignore the effect of the "@" prefix in make commands
-                       4   Trace shell commands using the shell's -x flag
-                   [Default: 2]
-    -n             Show commands that would be executed, but do not execute them.
-    -O obj         Set obj root directory to obj; sets a MAKEOBJDIR pattern.
-                   Unsets MAKEOBJDIRPREFIX.
-    -o             Set MKOBJDIRS=no; do not create objdirs at start of build.
-    -R release     Set RELEASEDIR to release.  [Default: releasedir]
-    -r             Remove contents of TOOLDIR and DESTDIR before building.
-    -S seed        Set BUILDSEED to seed.  [Default: NetBSD-majorversion]
-    -T tools       Set TOOLDIR to tools.  If unset, and TOOLDIR is not set in
-                   the environment, nbmake will be (re)built
-                   unconditionally.
-    -U             Set MKUNPRIVED=yes; build without requiring root privileges,
-                   install from an UNPRIVED build with proper file permissions.
-    -u             Set MKUPDATE=yes; do not run "make cleandir" first.
-                   Without this, everything is rebuilt, including the tools.
-    -V var=[value] Set variable `var' to `value'.
-    -w wrapper     Create nbmake script as wrapper.
-                   [Default: ${TOOLDIR}/bin/nbmake-${MACHINE}]
-    -X x11src      Set X11SRCDIR to x11src.  [Default: /usr/xsrc]
-    -x             Set MKX11=yes; build X11 from X11SRCDIR
-    -Y extsrcsrc   Set EXTSRCSRCDIR to extsrcsrc.  [Default: /usr/extsrc]
-    -y             Set MKEXTSRC=yes; build extsrc from EXTSRCSRCDIR
-    -Z var         Unset ("zap") variable `var'.
-
-===> bash command:        bash -U -x -u -m amd64
-===> bash started:        Wed Jan 13 10:10:54 KST 2016
-===> NetBSD version:      7.0
-===> MACHINE:             amd64
-===> MACHINE_ARCH:        x86_64
-===> Build platform:      Linux 3.13.0-74-generic x86_64
-===> HOST_SH:             /bin/bash
-===> MAKECONF file:       /etc/mk.conf (File not found)
-===> TOOLDIR path:        /mnt/mbs2/netbsd/vinos/tooldir/Linux-3.13.0-74-generic-x86_64
-===> DESTDIR path:        /mnt/mbs2/netbsd/vinos/obj/destdir.amd64
-===> RELEASEDIR path:     /mnt/mbs2/netbsd/vinos/obj/releasedir
-===> Updated makewrapper: /mnt/mbs2/netbsd/vinos/tooldir/Linux-3.13.0-74-generic-x86_64/bin/nbmake-amd64
-===> bash ended:          Wed Jan 13 10:10:57 KST 2016
-===> Summary of results:
-	 bash command:        bash -U -x -u -m amd64
-	 bash started:        Wed Jan 13 10:10:54 KST 2016
-	 NetBSD version:      7.0
-	 MACHINE:             amd64
-	 MACHINE_ARCH:        x86_64
-	 Build platform:      Linux 3.13.0-74-generic x86_64
-	 HOST_SH:             /bin/bash
-	 MAKECONF file:       /etc/mk.conf (File not found)
-	 TOOLDIR path:        /mnt/mbs2/netbsd/vinos/tooldir/Linux-3.13.0-74-generic-x86_64
-	 DESTDIR path:        /mnt/mbs2/netbsd/vinos/obj/destdir.amd64
-	 RELEASEDIR path:     /mnt/mbs2/netbsd/vinos/obj/releasedir
-	 Updated makewrapper: /mnt/mbs2/netbsd/vinos/tooldir/Linux-3.13.0-74-generic-x86_64/bin/nbmake-amd64
-	 bash ended:          Wed Jan 13 10:10:57 KST 2016
-===> .
-PATH=/mnt/mbs2/netbsd/vinos/tooldir/Linux-3.13.0-74-generic-x86_64/bin:/usr/jdk1.6.0_45/bin:/usr/jdk1.6.0_45/jre/bin:/mnt/work/bin/arm-2013.05/bin:/mnt/work/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
-nbmk=/mnt/mbs2/netbsd/vinos/tooldir/Linux-3.13.0-74-generic-x86_64/bin/nbmake-amd64
-execunix@xmtlinux1:/mnt/mbs2/netbsd/vinos$ 
-##############################################################################
-execunix@xmtlinux1:/mnt/mbs2/netbsd/vinos$ env
+execunix@xmtlinux1:/mnt/hdd1/vinos$ env
 MAKEWRAPPERMACHINE=amd64
-NETBSDSRCDIR=/mnt/mbs2/netbsd/vinos
-RELEASEDIR=/mnt/mbs2/netbsd/vinos/obj/releasedir
+NETBSDSRCDIR=/mnt/hdd1/vinos
+RELEASEDIR=/mnt/hdd1/vinos/obj/releasedir
 HOST_SH=/bin/bash
-MAKEFLAGS=-de -m /mnt/mbs2/netbsd/vinos/share/mk  MKOBJDIRS=yes
+MAKEFLAGS=-de -m /mnt/hdd1/vinos/share/mk  MKOBJDIRS=yes
 BSHELL=/bin/bash
-DESTDIR=/mnt/mbs2/netbsd/vinos/obj/destdir.amd64
-VINOS_TOOL_PATH=/mnt/mbs2/netbsd/vinos/tooldir/Linux-3.13.0-74-generic-x86_64/bin:
+DESTDIR=/mnt/hdd1/vinos/obj/destdir.amd64
+VINOS_TOOL_PATH=/mnt/hdd1/vinos/tooldir/Linux-3.13.0-74-generic-x86_64/bin:
 LC_ALL=C
-TOOLDIR=/mnt/mbs2/netbsd/vinos/tooldir/Linux-3.13.0-74-generic-x86_64
-PATH=/mnt/mbs2/netbsd/vinos/tooldir/Linux-3.13.0-74-generic-x86_64/bin:/usr/jdk1.6.0_45/bin:/usr/jdk1.6.0_45/jre/bin:/mnt/work/bin/arm-2013.05/bin:/mnt/work/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+TOOLDIR=/mnt/hdd1/vinos/tooldir/Linux-3.13.0-74-generic-x86_64
+PATH=/mnt/hdd1/vinos/tooldir/Linux-3.13.0-74-generic-x86_64/bin:/usr/jdk1.6.0_45/bin:/usr/jdk1.6.0_45/jre/bin:/mnt/work/bin/arm-2013.05/bin:/mnt/work/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 USETOOLS=yes
 MKX11=yes
 MACHINE=amd64
@@ -153,9 +25,9 @@ MACHINE_ARCH=x86_64
 MKARZERO=yes
 MKUPDATE=yes
 BUILDSEED=NetBSD-7
-execunix@xmtlinux1:/mnt/mbs2/netbsd/vinos$
+execunix@xmtlinux1:/mnt/hdd1/vinos$
 ##############################################################################
-execunix@xmtlinux1:/mnt/mbs2/netbsd/vinos$ ./build.sh -U -x -r -n -m amd64 -j4 release
+execunix@xmtlinux1:/mnt/hdd1/vinos$ ./build.sh -U -x -r -n -m amd64 -j4 release
 echo ===> build.sh command:    ./build.sh -U -x -r -n -m amd64 -j4 release
 echo ===> build.sh started:    Thu Jan  7 21:12:47 KST 2016
 echo ===> NetBSD version:      7.0
@@ -165,15 +37,15 @@ echo ===> Build platform:      Linux 3.13.0-74-generic x86_64
 echo ===> HOST_SH:             /bin/sh
 echo ===> Bootstrapping nbmake
 cd /tmp/nbbuild9325
-env CC=cc CPPFLAGS= CFLAGS=-O LDFLAGS= /bin/sh /mnt/mbs2/netbsd/vinos/tools/make/configure
+env CC=cc CPPFLAGS= CFLAGS=-O LDFLAGS= /bin/sh /mnt/hdd1/vinos/tools/make/configure
 /bin/sh buildmake.sh
-cd /mnt/mbs2/netbsd/vinos
+cd /mnt/hdd1/vinos
 rm -f usr.bin/make/*.o usr.bin/make/lst.lib/*.o
 echo ===> MAKECONF file:       $MAKECONF (File not found)
-/tmp/nbbuild9325/nbmake -m /mnt/mbs2/netbsd/vinos/share/mk obj NOSUBDIR=
+/tmp/nbbuild9325/nbmake -m /mnt/hdd1/vinos/share/mk obj NOSUBDIR=
 cd tools
-/tmp/nbbuild9325/nbmake -m /mnt/mbs2/netbsd/vinos/share/mk obj NOSUBDIR=
-cd /mnt/mbs2/netbsd/vinos
+/tmp/nbbuild9325/nbmake -m /mnt/hdd1/vinos/share/mk obj NOSUBDIR=
+cd /mnt/hdd1/vinos
 echo ===> TOOLDIR path:        $TOOLDIR
 echo ===> DESTDIR path:        $DESTDIR
 echo ===> RELEASEDIR path:     $RELEASEDIR
@@ -203,12 +75,12 @@ LC_ALL=C; export LC_ALL
 unset LESSCHARSET
 MACHINE=amd64; export MACHINE
 MACHINE_ARCH='x86_64'; export MACHINE_ARCH
-MAKEFLAGS='-de -m /mnt/mbs2/netbsd/vinos/share/mk  MKOBJDIRS=yes'; export MAKEFLAGS
+MAKEFLAGS='-de -m /mnt/hdd1/vinos/share/mk  MKOBJDIRS=yes'; export MAKEFLAGS
 MAKEWRAPPERMACHINE=amd64; export MAKEWRAPPERMACHINE
 MKARZERO=yes; export MKARZERO
 MKUNPRIVED='$MKUNPRIVED'; export MKUNPRIVED
 MKX11=yes; export MKX11
-NETBSDSRCDIR=/mnt/mbs2/netbsd/vinos; export NETBSDSRCDIR
+NETBSDSRCDIR=/mnt/hdd1/vinos; export NETBSDSRCDIR
 RELEASEDIR='$RELEASEDIR'; export RELEASEDIR
 unset TERMINFO
 TOOLDIR='$TOOLDIR'; export TOOLDIR
@@ -241,4 +113,4 @@ echo ===> build.sh ended:      Thu Jan  7 21:12:47 KST 2016
 	echo ===> Successful make release
 	echo ===> build.sh ended:      Thu Jan  7 21:12:47 KST 2016
 ===> .
-execunix@xmtlinux1:/mnt/mbs2/netbsd/vinos$ 
+execunix@xmtlinux1:/mnt/hdd1/vinos$ 

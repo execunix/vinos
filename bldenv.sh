@@ -1407,9 +1407,10 @@ print_tooldir_make()
 	#
 	for possible_TOP_OBJ in \
 		"${TOP_objdir}" \
+		"${MAKEOBJDIRPREFIX:+${MAKEOBJDIRPREFIX}${TOP}}" \
 		"${TOP}" \
-		"${TOP}/out" \
-		"${TOP}/out.${MACHINE}"
+		"${TOP}/obj" \
+		"${TOP}/obj.${MACHINE}"
 	do
 		[ -n "${possible_TOP_OBJ}" ] || continue
 		possible_TOOLDIR="${possible_TOP_OBJ}/tooldir.${host_ostype}"
@@ -2107,8 +2108,8 @@ main()
 
 #main "$@"
 #main -U -x -u -m i386
-main -U -x -u -m amd64
-#main -U -x -u -m evbarm
+main -U -x -u -m amd64 -M ../tmp
+#main -U -x -u -m evbarm -M ../tmp
 #main -U -x -u -m evbarm64
 
 if [ -n "$PATH_OLD" ] ; then

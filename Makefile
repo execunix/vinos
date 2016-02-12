@@ -268,13 +268,13 @@ includes-gnu:	.PHONY includes-lib
 CLEANDIRFILES+= params
 params: .EXEC
 	${_MKMSG_CREATE} params
-	@${PRINT_PARAMS} >${_NETBSD_OUT_PARAMS}.new
-	@if cmp -s ${_NETBSD_OUT_PARAMS}.new ${_NETBSD_OUT_PARAMS} > /dev/null 2>&1; then \
+	@${PRINT_PARAMS} >${.TARGET}.new
+	@if cmp -s ${.TARGET}.new ${.TARGET} > /dev/null 2>&1; then \
 		: "params is unchanged" ; \
-		rm ${_NETBSD_OUT_PARAMS}.new ; \
+		rm ${.TARGET}.new ; \
 	else \
 		: "params has changed or is new" ; \
-		mv ${_NETBSD_OUT_PARAMS}.new ${_NETBSD_OUT_PARAMS} ; \
+		mv ${.TARGET}.new ${.TARGET} ; \
 	fi
 
 #

@@ -13,7 +13,6 @@ sources, which are usually somewhere somewhat different.
 Reference docs (in /usr/share/doc/reference/ref[1-9])
 ------------------------------------------------------------
 
-	ref1/atf		src/external/bsd/atf
 	ref1/bzip		src/lib/libbz2
 	ref1/config		src/share/doc/smm/config
 	ref1/csh		src/bin/csh/USD.doc
