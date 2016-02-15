@@ -45,10 +45,6 @@ __KERNEL_RCSID(0, "$NetBSD: cpu_exec.c,v 1.9 2014/02/20 15:45:20 matt Exp $");
 #include <compat/common/compat_util.h>
 #include <sys/exec_elf.h>			/* mandatory */
 
-#ifdef COMPAT_NETBSD32
-#include <compat/netbsd32/netbsd32_exec.h>
-#endif
-
 #include <arm/locore.h>
 
 #if EXEC_ELF32
@@ -60,11 +56,7 @@ arm_netbsd_elf32_probe(struct lwp *l, struct exec_package *epp, void *eh0,
 	const Elf_Ehdr * const eh = eh0;
 	const bool elf_aapcs_p =
 	    (eh->e_flags & EF_ARM_EABIMASK) >= EF_ARM_EABI_VER4;
-#ifdef COMPAT_NETBSD32
-	const bool netbsd32_p = (epp->ep_esch->es_emul == &emul_netbsd32);
-#else
 	const bool netbsd32_p = false;
-#endif
 #ifdef __ARM_EABI__
 	const bool aapcs_p = true;
 #else

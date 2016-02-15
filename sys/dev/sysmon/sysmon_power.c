@@ -295,16 +295,6 @@ sysmon_power_daemon_task(struct power_event_dictionary *ped,
 		    (struct sysmon_pswitch *)pev_data;
 
 		pev.pev_type = POWER_EVENT_SWITCH_STATE_CHANGE;
-#ifdef COMPAT_40
-		pev.pev_switch.psws_state = event;
-		pev.pev_switch.psws_type = pswitch->smpsw_type;
-
-		if (pswitch->smpsw_name) {
-			(void)strlcpy(pev.pev_switch.psws_name,
-			          pswitch->smpsw_name,
-			          sizeof(pev.pev_switch.psws_name));
-		}
-#endif
 		error = sysmon_power_make_dictionary(ped->dict,
 						     pswitch,
 						     event,

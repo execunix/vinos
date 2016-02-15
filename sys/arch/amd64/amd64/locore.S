@@ -159,8 +159,6 @@
 #include "opt_realmem.h"
 
 #include "opt_compat_netbsd.h"
-#include "opt_compat_netbsd32.h"
-#include "opt_compat_ibcs2.h"
 #include "opt_xen.h"
 
 #include "assym.h"

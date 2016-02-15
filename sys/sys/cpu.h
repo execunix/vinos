@@ -45,9 +45,6 @@ void cpu_idle(void);
 #ifdef CPU_UCODE
 #include <sys/cpuio.h>
 #include <dev/firmload.h>
-#ifdef COMPAT_60
-#include <compat/sys/cpuio.h>
-#endif
 #endif
 
 /*
@@ -121,10 +118,6 @@ struct cpu_ucode_softc {
 
 int cpu_ucode_get_version(struct cpu_ucode_version *);
 int cpu_ucode_apply(const struct cpu_ucode *);
-#ifdef COMPAT_60
-int compat6_cpu_ucode_get_version(struct compat6_cpu_ucode *);
-int compat6_cpu_ucode_apply(const struct compat6_cpu_ucode *);
-#endif
 int cpu_ucode_load(struct cpu_ucode_softc *, const char *);
 int cpu_ucode_md_open(firmware_handle_t *, int, const char *);
 #endif

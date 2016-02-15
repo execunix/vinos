@@ -648,13 +648,6 @@ uhid_do_ioctl(struct uhid_softc *sc, u_long cmd, void *addr,
 		usbd_fill_deviceinfo(sc->sc_hdev.sc_parent->sc_udev,
 			             (struct usb_device_info *)addr, 0);
 		break;
-#ifdef COMPAT_30
-	case USB_GET_DEVICEINFO_OLD:
-		usbd_fill_deviceinfo_old(sc->sc_hdev.sc_parent->sc_udev,
-					 (struct usb_device_info_old *)addr, 0);
-
-		break;
-#endif
         case USB_GET_STRING_DESC:
 	    {
                 struct usb_string_desc *si = (struct usb_string_desc *)addr;

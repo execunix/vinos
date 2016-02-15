@@ -1074,46 +1074,6 @@ ccdioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 		return ENOENT;
 	uc = kauth_cred_get();
 
-/*
- * Compat code must not be called if on a platform where
- * sizeof (size_t) == sizeof (uint64_t) as CCDIOCSET will
- * be the same as CCDIOCSET_60
- */
-#if defined(COMPAT_60) && !defined(_LP64)
-	switch (cmd) {
-	case CCDIOCSET_60: {
-		struct ccd_ioctl ccionew;
-       		struct ccd_ioctl_60 *ccio60 =
-       		    (struct ccd_ioctl_60 *)data;
-		ccionew.ccio_disks = ccio->ccio_disks;
-		ccionew.ccio_ndisks = ccio->ccio_ndisks;
-		ccionew.ccio_ileave = ccio->ccio_ileave;
-		ccionew.ccio_flags = ccio->ccio_flags;
-		ccionew.ccio_unit = ccio->ccio_unit;
-		error = ccdioctl(dev, CCDIOCSET, &ccionew, flag, l);
-		if (!error) {
-			/* Copy data back, adjust types if necessary */
-			ccio60->ccio_disks = ccionew.ccio_disks;
-			ccio60->ccio_ndisks = ccionew.ccio_ndisks;
-			ccio60->ccio_ileave = ccionew.ccio_ileave;
-			ccio60->ccio_flags = ccionew.ccio_flags;
-			ccio60->ccio_unit = ccionew.ccio_unit;
-			ccio60->ccio_size = (size_t)ccionew.ccio_size;
-		}
-		return error;
-		}
-		break;
-
-	case CCDIOCCLR_60:
-		/*
-		 * ccio_size member not used, so existing struct OK
-		 * drop through to existing non-compat version
-		 */
-		cmd = CCDIOCCLR;
-		break;
-	}
-#endif /* COMPAT_60 && !_LP64*/
-
 	/* Must be open for writes for these commands... */
 	switch (cmd) {
 	case CCDIOCSET:

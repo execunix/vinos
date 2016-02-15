@@ -19,8 +19,6 @@ SUBDIR+=	chfs
 SUBDIR+=	crypto
 SUBDIR+=	coda
 SUBDIR+=	coda5
-SUBDIR+=	compat
-SUBDIR+=	compat_ossaudio
 SUBDIR+=	coredump
 SUBDIR+=	dbcool
 SUBDIR+=	des
@@ -195,16 +193,8 @@ SUBDIR+=	wmihp
 SUBDIR+=	wmimsi
 .endif
 
-.if ${MACHINE_ARCH} == "x86_64"
-SUBDIR+=	compat_linux32
-SUBDIR+=	compat_netbsd32
-.endif
-
 .if ${MACHINE_ARCH} == "i386"
 SUBDIR+=	ati_pcigart
-SUBDIR+=	compat_freebsd
-SUBDIR+=	compat_ibcs2
-SUBDIR+=	compat_svr4
 SUBDIR+=	mach64drm
 SUBDIR+=	mgadrm
 SUBDIR+=	nsclpcsio
@@ -221,7 +211,6 @@ SUBDIR+=	viadrm
 .if ${MACHINE_ARCH} == "i386" || \
     ${MACHINE_ARCH} == "x86_64"
 SUBDIR+=	azalia
-SUBDIR+=	compat_linux
 SUBDIR+=	drm
 SUBDIR+=	drmkms
 SUBDIR+=	drmkms_linux

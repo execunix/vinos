@@ -1233,16 +1233,5 @@ usbd_get_string0(usbd_device_handle dev, int si, char *buf, int unicode)
 		}
 		*s++ = 0;
 	}
-#ifdef COMPAT_30
-	else {
-		for (i = 0; i < n; i++) {
-			c = UGETW(us.bString[i]);
-			if (swap)
-				c = (c >> 8) | (c << 8);
-			*s++ = (c < 0x80) ? c : '?';
-		}
-		*s++ = 0;
-	}
-#endif
 	return (USBD_NORMAL_COMPLETION);
 }

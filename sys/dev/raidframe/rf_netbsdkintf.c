@@ -147,10 +147,6 @@ __KERNEL_RCSID(0, "$NetBSD: rf_netbsdkintf.c,v 1.312.2.4 2014/12/22 02:19:32 msa
 #include "rf_parityscan.h"
 #include "rf_threadstuff.h"
 
-#ifdef COMPAT_50
-#include "rf_compat50.h"
-#endif
-
 #ifdef DEBUG
 int     rf_kdebug_level = 0;
 #define db1_printf(a) if (rf_kdebug_level > 0) printf a
@@ -1153,15 +1149,6 @@ raidioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 	}
 
 	switch (cmd) {
-#ifdef COMPAT_50
-	case RAIDFRAME_GET_INFO50:
-		return rf_get_info50(raidPtr, data);
-
-	case RAIDFRAME_CONFIGURE50:
-		if ((retcode = rf_config50(raidPtr, unit, data, &k_cfg)) != 0)
-			return retcode;
-		goto config;
-#endif
 		/* configure the system */
 	case RAIDFRAME_CONFIGURE:
 

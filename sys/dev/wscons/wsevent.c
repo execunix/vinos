@@ -186,7 +186,7 @@ wsevent_fini(struct wseventvar *ev)
 	softint_disestablish(ev->sih);
 }
 
-#if defined(COMPAT_50) || defined(MODULAR)
+#if defined(MODULAR)
 static int
 wsevent_copyout_events50(const struct wscons_event *events, int cnt,
     struct uio *uio)
@@ -209,7 +209,7 @@ wsevent_copyout_events50(const struct wscons_event *events, int cnt,
 	}
 	return 0;
 }
-#else /* defined(COMPAT_50) || defined(MODULAR) */
+#else /* defined(MODULAR) */
 static int
 wsevent_copyout_events50(const struct wscons_event *events, int cnt,
     struct uio *uio)
@@ -217,7 +217,7 @@ wsevent_copyout_events50(const struct wscons_event *events, int cnt,
 
 	return EINVAL;
 }
-#endif /* defined(COMPAT_50) || defined(MODULAR) */
+#endif /* defined(MODULAR) */
 
 static int
 wsevent_copyout_events(const struct wscons_event *events, int cnt,

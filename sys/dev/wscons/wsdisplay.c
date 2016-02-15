@@ -1385,9 +1385,6 @@ wsdisplay_cfg_ioctl(struct wsdisplay_softc *sc, u_long cmd, void *data,
 	char *type, typebuf[16], *emul, emulbuf[16];
 	void *tbuf;
 	u_int fontsz;
-#if defined(COMPAT_14) && NWSKBD > 0
-	struct wsmux_device wsmuxdata;
-#endif
 #if NWSKBD > 0
 	struct wsevsrc *inp;
 #endif
@@ -1448,34 +1445,6 @@ wsdisplay_cfg_ioctl(struct wsdisplay_softc *sc, u_long cmd, void *data,
 		return (error);
 
 #if NWSKBD > 0
-#ifdef COMPAT_14
-	case _O_WSDISPLAYIO_SETKEYBOARD:
-#define d ((struct wsdisplay_kbddata *)data)
-		inp = sc->sc_input;
-		if (inp == NULL)
-			return (ENXIO);
-		switch (d->op) {
-		case _O_WSDISPLAY_KBD_ADD:
-			if (d->idx == -1) {
-				d->idx = wskbd_pickfree();
-				if (d->idx == -1)
-					return (ENXIO);
-			}
-			wsmuxdata.type = WSMUX_KBD;
-			wsmuxdata.idx = d->idx;
-			return (wsevsrc_ioctl(inp, WSMUX_ADD_DEVICE,
-					      &wsmuxdata, flag, l));
-		case _O_WSDISPLAY_KBD_DEL:
-			wsmuxdata.type = WSMUX_KBD;
-			wsmuxdata.idx = d->idx;
-			return (wsevsrc_ioctl(inp, WSMUX_REMOVE_DEVICE,
-					      &wsmuxdata, flag, l));
-		default:
-			return (EINVAL);
-		}
-#undef d
-#endif
-
 	case WSMUXIO_ADD_DEVICE:
 #define d ((struct wsmux_device *)data)
 		if (d->idx == -1 && d->type == WSMUX_KBD)

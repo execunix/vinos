@@ -485,12 +485,6 @@ sys_swapctl(struct lwp *l, const struct sys_swapctl_args *uap, register_t *retva
 	 * copyout() and we don't want to be holding that lock then!
 	 */
 	if (SCARG(uap, cmd) == SWAP_STATS
-#if defined(COMPAT_50)
-	    || SCARG(uap, cmd) == SWAP_STATS50
-#endif
-#if defined(COMPAT_13)
-	    || SCARG(uap, cmd) == SWAP_STATS13
-#endif
 	    ) {
 		if (misc < 0) {
 			error = EINVAL;
@@ -504,16 +498,6 @@ sys_swapctl(struct lwp *l, const struct sys_swapctl_args *uap, register_t *retva
 		if ((size_t)misc > (size_t)uvmexp.nswapdev)
 			misc = uvmexp.nswapdev;
 		KASSERT(misc > 0);
-#if defined(COMPAT_13)
-		if (SCARG(uap, cmd) == SWAP_STATS13)
-			len = sizeof(struct swapent13) * misc;
-		else
-#endif
-#if defined(COMPAT_50)
-		if (SCARG(uap, cmd) == SWAP_STATS50)
-			len = sizeof(struct swapent50) * misc;
-		else
-#endif
 			len = sizeof(struct swapent) * misc;
 		sep = (struct swapent *)kmem_alloc(len, KM_SLEEP);
 
@@ -757,48 +741,15 @@ uvm_swap_stats(int cmd, struct swapent *sep, int sec, register_t *retval)
 			inuse = btodb((uint64_t)sdp->swd_npginuse <<
 			    PAGE_SHIFT);
 
-#if defined(COMPAT_13) || defined(COMPAT_50)
-			if (cmd == SWAP_STATS) {
-#endif
-				sep->se_dev = sdp->swd_dev;
-				sep->se_flags = sdp->swd_flags;
-				sep->se_nblks = sdp->swd_nblks;
-				sep->se_inuse = inuse;
-				sep->se_priority = sdp->swd_priority;
-				KASSERT(sdp->swd_pathlen <
-				    sizeof(sep->se_path));
-				strcpy(sep->se_path, sdp->swd_path);
-				sep++;
-#if defined(COMPAT_13)
-			} else if (cmd == SWAP_STATS13) {
-				struct swapent13 *sep13 =
-				    (struct swapent13 *)sep;
-
-				sep13->se13_dev = sdp->swd_dev;
-				sep13->se13_flags = sdp->swd_flags;
-				sep13->se13_nblks = sdp->swd_nblks;
-				sep13->se13_inuse = inuse;
-				sep13->se13_priority = sdp->swd_priority;
-				sep = (struct swapent *)(sep13 + 1);
-#endif
-#if defined(COMPAT_50)
-			} else if (cmd == SWAP_STATS50) {
-				struct swapent50 *sep50 =
-				    (struct swapent50 *)sep;
-
-				sep50->se50_dev = sdp->swd_dev;
-				sep50->se50_flags = sdp->swd_flags;
-				sep50->se50_nblks = sdp->swd_nblks;
-				sep50->se50_inuse = inuse;
-				sep50->se50_priority = sdp->swd_priority;
-				KASSERT(sdp->swd_pathlen <
-				    sizeof(sep50->se50_path));
-				strcpy(sep50->se50_path, sdp->swd_path);
-				sep = (struct swapent *)(sep50 + 1);
-#endif
-#if defined(COMPAT_13) || defined(COMPAT_50)
-			}
-#endif
+			sep->se_dev = sdp->swd_dev;
+			sep->se_flags = sdp->swd_flags;
+			sep->se_nblks = sdp->swd_nblks;
+			sep->se_inuse = inuse;
+			sep->se_priority = sdp->swd_priority;
+			KASSERT(sdp->swd_pathlen <
+			    sizeof(sep->se_path));
+			strcpy(sep->se_path, sdp->swd_path);
+			sep++;
 			count++;
 		}
 	}

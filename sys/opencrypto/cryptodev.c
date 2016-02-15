@@ -191,10 +191,6 @@ static int 	cryptodev_getmstatus(struct fcrypt *, struct crypt_result *,
     int);
 static int	cryptodev_getstatus(struct fcrypt *, struct crypt_result *);
 
-#ifdef COMPAT_50
-extern int	ocryptof_ioctl(struct file *, u_long, void *);
-#endif
-
 /*
  * sysctl-able control variables for /dev/crypto now defined in crypto.c:
  * crypto_usercrypto, crypto_userasmcrypto, crypto_devallowsoft.
@@ -411,12 +407,7 @@ reterr:
 		error = cryptodev_getstatus(fcr, (struct crypt_result *)data); 
 		break;
 	default:
-#ifdef COMPAT_50
-		/* Check for backward compatible commands */
-		error = ocryptof_ioctl(fp, cmd, data);
-#else
 		return EINVAL;
-#endif
 	}
 	return error;
 }

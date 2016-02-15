@@ -48,9 +48,6 @@ struct cpu_ucode_version_intel1 {
 #include <dev/firmload.h>
 
 int cpu_ucode_amd_get_version(struct cpu_ucode_version *);
-#ifdef COMPAT_60
-int compat6_cpu_ucode_amd_get_version(struct compat6_cpu_ucode *);
-#endif
 int cpu_ucode_amd_firmware_open(firmware_handle_t *, const char *);
 int cpu_ucode_amd_apply(struct cpu_ucode_softc *, int);
 

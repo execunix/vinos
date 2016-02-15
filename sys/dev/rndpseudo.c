@@ -60,9 +60,6 @@ __KERNEL_RCSID(0, "$NetBSD: rndpseudo.c,v 1.21.2.1 2014/11/02 09:47:04 martin Ex
 #include <sys/percpu.h>
 
 #include <sys/rnd.h>
-#ifdef COMPAT_50
-#include <compat/sys/rnd.h>
-#endif
 
 #include <dev/rnd_private.h>
 
@@ -588,11 +585,7 @@ rnd_ioctl(struct file *fp, u_long cmd, void *addr)
 		break;
 
 	default:
-#ifdef COMPAT_50
-		return compat_50_rnd_ioctl(fp, cmd, addr);
-#else
 		return ENOTTY;
-#endif
 	}
 
 	switch (cmd) {

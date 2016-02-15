@@ -100,32 +100,3 @@ netbsd32_vm_default_addr(struct proc *p, vaddr_t base, vsize_t sz)
 	else    
 		return VM_DEFAULT_ADDRESS_BOTTOMUP(base, sz);
 }
-
-
-#ifdef COMPAT_13
-int
-compat_13_netbsd32_sigreturn(struct lwp *l,
-	const struct compat_13_netbsd32_sigreturn_args *uap,
-	register_t *retval)
-{
-	struct compat_13_sys_sigreturn_args ua;
-
-	NETBSD32TOP_UAP(sigcntxp, struct sigcontext13 *);
-
-	return compat_13_sys_sigreturn(l, &ua, retval);
-}
-#endif
-
-#ifdef COMPAT_16
-int
-compat_16_netbsd32___sigreturn14(struct lwp *l,
-	const struct compat_16_netbsd32___sigreturn14_args *uap,
-	register_t *retval)
-{
-	struct compat_16_sys___sigreturn14_args ua;
-
-	NETBSD32TOP_UAP(sigcntxp, struct sigcontext *);
-
-	return compat_16_sys___sigreturn14(l, &ua, retval);
-}
-#endif

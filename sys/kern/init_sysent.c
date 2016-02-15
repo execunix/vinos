@@ -27,83 +27,31 @@ __KERNEL_RCSID(0, "$NetBSD: init_sysent.c,v 1.287.2.1 2015/02/24 10:52:43 martin
 #define	compat_43(func) sys_nosys
 #endif
 
-#ifdef COMPAT_09
-#define	compat_09(func) __CONCAT(compat_09_,func)
-#else
 #define	compat_09(func) sys_nosys
-#endif
 
-#ifdef COMPAT_10
-#define	compat_10(func) __CONCAT(compat_10_,func)
-#else
 #define	compat_10(func) sys_nosys
-#endif
 
-#ifdef COMPAT_11
-#define	compat_11(func) __CONCAT(compat_11_,func)
-#else
 #define	compat_11(func) sys_nosys
-#endif
 
-#ifdef COMPAT_12
-#define	compat_12(func) __CONCAT(compat_12_,func)
-#else
 #define	compat_12(func) sys_nosys
-#endif
 
-#ifdef COMPAT_13
-#define	compat_13(func) __CONCAT(compat_13_,func)
-#else
 #define	compat_13(func) sys_nosys
-#endif
 
-#ifdef COMPAT_14
-#define	compat_14(func) __CONCAT(compat_14_,func)
-#else
 #define	compat_14(func) sys_nosys
-#endif
 
-#ifdef COMPAT_15
-#define	compat_15(func) __CONCAT(compat_15_,func)
-#else
 #define	compat_15(func) sys_nosys
-#endif
 
-#ifdef COMPAT_16
-#define	compat_16(func) __CONCAT(compat_16_,func)
-#else
 #define	compat_16(func) sys_nosys
-#endif
 
-#ifdef COMPAT_20
-#define	compat_20(func) __CONCAT(compat_20_,func)
-#else
 #define	compat_20(func) sys_nosys
-#endif
 
-#ifdef COMPAT_30
-#define	compat_30(func) __CONCAT(compat_30_,func)
-#else
 #define	compat_30(func) sys_nosys
-#endif
 
-#ifdef COMPAT_40
-#define	compat_40(func) __CONCAT(compat_40_,func)
-#else
 #define	compat_40(func) sys_nosys
-#endif
 
-#ifdef COMPAT_50
-#define	compat_50(func) __CONCAT(compat_50_,func)
-#else
 #define	compat_50(func) sys_nosys
-#endif
 
-#ifdef COMPAT_60
-#define	compat_60(func) __CONCAT(compat_60_,func)
-#else
 #define	compat_60(func) sys_nosys
-#endif
 
 #define	s(type)	sizeof(type)
 #define	n(type)	(sizeof(type)/sizeof (register_t))

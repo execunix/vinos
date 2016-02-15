@@ -103,13 +103,8 @@ EMULNAME(syscall)(struct trapframe *tf)
 
 	switch (code) {
 	case EMULNAMEU(SYS_syscall):
-#if !defined(COMPAT_LINUX)
 	case EMULNAMEU(SYS___syscall):
 		code = tf->tf_reg[17];
-#else
-		code = *params++;
-		nargs -= 1;
-#endif
 		/*
 		 * code is first argument,
 		 * followed by actual args.

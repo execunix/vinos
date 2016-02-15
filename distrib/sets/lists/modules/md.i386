@@ -47,14 +47,6 @@
 ./@MODULEDIR@/azalia/azalia.kmod		base-kernel-modules	kmod
 ./@MODULEDIR@/bpfjit				base-kernel-modules	kmod,sljit
 ./@MODULEDIR@/bpfjit/bpfjit.kmod		base-kernel-modules	kmod,sljit
-./@MODULEDIR@/compat_freebsd			base-kernel-modules	kmod
-./@MODULEDIR@/compat_freebsd/compat_freebsd.kmod	base-kernel-modules	kmod
-./@MODULEDIR@/compat_ibcs2			base-kernel-modules	kmod
-./@MODULEDIR@/compat_ibcs2/compat_ibcs2.kmod	base-kernel-modules	kmod
-./@MODULEDIR@/compat_linux			base-kernel-modules	kmod
-./@MODULEDIR@/compat_linux/compat_linux.kmod	base-kernel-modules	kmod
-./@MODULEDIR@/compat_svr4			base-kernel-modules	kmod
-./@MODULEDIR@/compat_svr4/compat_svr4.kmod	base-kernel-modules	kmod
 ./@MODULEDIR@/coram				base-kernel-modules	kmod
 ./@MODULEDIR@/coram/coram.kmod			base-kernel-modules	kmod
 ./@MODULEDIR@/coretemp				base-kernel-modules	kmod

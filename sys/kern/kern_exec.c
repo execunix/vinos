@@ -566,17 +566,6 @@ exec_autoload(void)
 		"exec_aout",
 		"exec_coff",
 		"exec_ecoff",
-		"compat_aoutm68k",
-		"compat_freebsd",
-		"compat_ibcs2",
-		"compat_linux",
-		"compat_linux32",
-		"compat_netbsd32",
-		"compat_sunos",
-		"compat_sunos32",
-		"compat_svr4",
-		"compat_svr4_32",
-		"compat_ultrix",
 		NULL
 	};
 	char const * const *list;

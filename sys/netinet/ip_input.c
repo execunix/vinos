@@ -169,11 +169,6 @@ __KERNEL_RCSID(0, "$NetBSD: ip_input.c,v 1.319 2014/06/16 00:33:39 ozaki-r Exp $
 #define IPMTUDISCTIMEOUT (10 * 60)	/* as per RFC 1191 */
 #endif
 
-#ifdef COMPAT_50
-#include <compat/sys/time.h>
-#include <compat/sys/socket.h>
-#endif
-
 /*
  * Note: DIRECTED_BROADCAST is handled this way so that previous
  * configuration using this option will Just Work.

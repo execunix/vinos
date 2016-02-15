@@ -64,9 +64,6 @@
 #
 
 if defined(_KERNEL_OPT)
-include "opt_compat_netbsd32.h"
-include "opt_compat_linux32.h"
-include "opt_xen.h"
 endif
 
 quote #define __MUTEX_PRIVATE
@@ -96,14 +93,6 @@ include <machine/vmparam.h>
 include <machine/intr.h>
 include <machine/types.h>
 include <machine/cpufunc.h>
-
-if defined(COMPAT_NETBSD32)
-include <machine/netbsd32_machdep.h>
-endif
-
-if defined(COMPAT_LINUX32)
-include <machine/linux32_machdep.h>
-endif
 
 if defined(_KERNEL) && defined(_KERNEL_OPT)
 include "isa.h"
@@ -280,21 +269,6 @@ ifdef XEN
 define IH_IPL_NEXT		offsetof(struct intrhand, ih_ipl_next)
 else
 define	IH_NEXT			offsetof(struct intrhand, ih_next)
-endif
-
-ifdef COMPAT_NETBSD32
-define	SC_FS32			offsetof(struct netbsd32_sigcontext, sc_fs)
-define	SC_GS32			offsetof(struct netbsd32_sigcontext, sc_gs)
-endif
-
-ifdef COMPAT_LINUX32
-define  LINUX32_SF_HANDLER	offsetof(struct linux32_sigframe, sf_handler)
-define  LINUX32_SF_SC		offsetof(struct linux32_sigframe, sf_sc)
-define  LINUX32_RT_SF_HANDLER	offsetof(struct linux32_rt_sigframe, sf_handler)
-define  LINUX32_RT_SF_UC	offsetof(struct linux32_rt_sigframe, sf_uc)
-define  LINUX32_SYS_rt_sigreturn	LINUX32_SYS_rt_sigreturn
-define  LINUX32_SYS_sigreturn		LINUX32_SYS_sigreturn
-define  LINUX32_SYS_exit		LINUX32_SYS_exit
 endif
 
 ifdef XEN

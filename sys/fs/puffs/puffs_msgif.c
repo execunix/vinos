@@ -335,8 +335,7 @@ void
 puffs_msg_enqueue(struct puffs_mount *pmp, struct puffs_msgpark *park)
 {
 	struct lwp *l = curlwp;
-	struct puffs_req *preq, *creq;
-	ssize_t delta;
+	struct puffs_req *preq;
 
 	/*
 	 * Some clients reuse a park, so reset some flags.  We might
@@ -347,18 +346,6 @@ puffs_msg_enqueue(struct puffs_mount *pmp, struct puffs_msgpark *park)
 	KASSERT((park->park_flags & PARKFLAG_WAITERGONE) == 0);
 
 	preq = park->park_preq;
-
-#if 1
-	/* check if we do compat adjustments */
-	if (pmp->pmp_docompat && puffs_compat_outgoing(preq, &creq, &delta)) {
-		park->park_creq = park->park_preq;
-		park->park_creqlen = park->park_maxlen;
-
-		park->park_maxlen += delta;
-		park->park_copylen += delta;
-		park->park_preq = preq = creq;
-	}
-#endif
 
 	preq->preq_buflen = park->park_maxlen;
 	KASSERT(preq->preq_id == 0
@@ -801,26 +788,7 @@ puffsop_msg(void *this, struct puffs_req *preq)
 		DPRINTF(("puffsop_msg: bad service - waiter gone for "
 		    "park %p\n", park));
 	} else {
-#if 1
-		if (park->park_creq) {
-			struct puffs_req *creq;
-			size_t csize;
-
-			KASSERT(pmp->pmp_docompat);
-			puffs_compat_incoming(preq, park->park_creq);
-			creq = park->park_creq;
-			csize = park->park_creqlen;
-			park->park_creq = park->park_preq;
-			park->park_creqlen = park->park_maxlen;
-
-			park->park_preq = creq;
-			park->park_maxlen = csize;
-
-			memcpy(park->park_creq, preq, pth->pth_framelen);
-		} else {
-#endif
-			memcpy(park->park_preq, preq, pth->pth_framelen);
-		}
+		memcpy(park->park_preq, preq, pth->pth_framelen);
 
 		if (park->park_flags & PARKFLAG_CALL) {
 			DPRINTF(("puffsop_msg: call for %p, arg %p\n",

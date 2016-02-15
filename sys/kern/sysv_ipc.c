@@ -55,10 +55,6 @@ __KERNEL_RCSID(0, "$NetBSD: sysv_ipc.c,v 1.25 2014/02/25 18:30:11 pooka Exp $");
 #include <sys/sysctl.h>
 #include <sys/kauth.h>
 
-#ifdef COMPAT_50
-#include <compat/sys/ipc.h>
-#endif
-
 static kauth_listener_t sysvipc_listener = NULL;
 
 static int
@@ -168,16 +164,6 @@ sysctl_kern_sysvipc(SYSCTLFN_ARGS)
 	int32_t nds;
 	int i, error, ret;
 
-#ifdef COMPAT_50
-	switch ((error = sysctl_kern_sysvipc50(SYSCTLFN_CALL(rnode)))) {
-	case 0:
-		return 0;
-	case EPASSTHROUGH:
-		break;
-	default:
-		return error;
-	}
-#endif
 	if (namelen != 1)
 		return EINVAL;
 

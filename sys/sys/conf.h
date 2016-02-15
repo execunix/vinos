@@ -232,9 +232,6 @@ int	seltrue_kqfilter(dev_t, struct knote *);
 #define	DEV_MEM		0	/* minor device 0 is physical memory */
 #define	DEV_KMEM	1	/* minor device 1 is kernel memory */
 #define	DEV_NULL	2	/* minor device 2 is EOF/rathole */
-#ifdef COMPAT_16
-#define	_DEV_ZERO_oARM	3	/* reserved: old ARM /dev/zero minor */
-#endif
 #define	DEV_ZERO	12	/* minor device 12 is '\0'/rathole */
 
 enum devnode_class {

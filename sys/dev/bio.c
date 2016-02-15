@@ -126,10 +126,6 @@ bioioctl(dev_t dev, u_long cmd, void *addr, int flag, struct  lwp *l)
 	case BIOCDISK:
 	case BIOCDISK_NOVOL:
 	case BIOCVOL:
-#ifdef COMPAT_30
-	case OBIOCDISK:
-	case OBIOCVOL:
-#endif
 		error = kauth_authorize_device_passthru(l->l_cred, dev,
 		    KAUTH_REQ_DEVICE_RAWIO_PASSTHRU_READCONF, addr);
 		if (error)
@@ -189,42 +185,6 @@ bioioctl(dev_t dev, u_long cmd, void *addr, int flag, struct  lwp *l)
 			return ENOENT;
 		}
 		mutex_exit(&bio_lock);
-#ifdef COMPAT_30
-		switch (cmd) {
-		case OBIOCDISK: {
-			struct bioc_disk *bd =
-			    malloc(sizeof(*bd), M_DEVBUF, M_WAITOK|M_ZERO);
-
-			(void)memcpy(bd, addr, sizeof(struct obioc_disk));
-			error = bio_delegate_ioctl(common->bc_cookie,
-			    BIOCDISK, bd);
-			if (error) {
-				free(bd, M_DEVBUF);
-				return error;
-			}
-
-			(void)memcpy(addr, bd, sizeof(struct obioc_disk));
-			free(bd, M_DEVBUF);
-			return 0;
-		}
-		case OBIOCVOL: {
-			struct bioc_vol *bv =
-			    malloc(sizeof(*bv), M_DEVBUF, M_WAITOK|M_ZERO);
-
-			(void)memcpy(bv, addr, sizeof(struct obioc_vol));
-			error = bio_delegate_ioctl(common->bc_cookie,
-			    BIOCVOL, bv);
-			if (error) {
-				free(bv, M_DEVBUF);
-				return error;
-			}
-
-			(void)memcpy(addr, bv, sizeof(struct obioc_vol));
-			free(bv, M_DEVBUF);
-			return 0;
-		}
-		}
-#endif
 		error = bio_delegate_ioctl(common->bc_cookie, cmd, addr);
 		return error;
 	}

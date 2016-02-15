@@ -125,10 +125,6 @@ __KERNEL_RCSID(0, "$NetBSD: udp_usrreq.c,v 1.217 2014/08/09 05:33:01 rtr Exp $")
 #endif
 #endif	/* IPSEC */
 
-#ifdef COMPAT_50
-#include <compat/sys/socket.h>
-#endif
-
 #ifdef IPKDB
 #include <ipkdb/ipkdb.h>
 #endif

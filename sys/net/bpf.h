@@ -128,11 +128,6 @@ struct bpf_version {
 #define BIOCGDLT	 _IOR('B',106, u_int)
 #define BIOCGETIF	 _IOR('B',107, struct ifreq)
 #define BIOCSETIF	 _IOW('B',108, struct ifreq)
-#ifdef COMPAT_50
-#include <compat/sys/time.h>
-#define BIOCSORTIMEOUT	 _IOW('B',109, struct timeval50)
-#define BIOCGORTIMEOUT	 _IOR('B',110, struct timeval50)
-#endif
 #define BIOCGSTATS	 _IOR('B',111, struct bpf_stat)
 #define BIOCGSTATSOLD	 _IOR('B',111, struct bpf_stat_old)
 #define BIOCIMMEDIATE	 _IOW('B',112, u_int)

@@ -50,9 +50,6 @@ __KERNEL_RCSID(0, "$NetBSD: clockctl.c,v 1.32 2014/07/25 08:10:35 dholland Exp $
 #include <sys/kauth.h>
 
 #include <sys/clockctl.h>
-#ifdef COMPAT_50
-#include <compat/sys/clockctl.h>
-#endif
 
 dev_type_ioctl(clockctlioctl);
 
@@ -167,11 +164,7 @@ clockctlioctl(
 	}
 #endif /* NTP */
 	default:
-#ifdef COMPAT_50
-		error = compat50_clockctlioctl(dev, cmd, data, flags, l);
-#else
 		error = EINVAL;
-#endif
 	}
 
 	return (error);

@@ -117,11 +117,6 @@ __KERNEL_RCSID(0, "$NetBSD: ip6_input.c,v 1.149.2.1 2015/01/23 09:27:15 martin E
 #include <netipsec/key.h>
 #endif /* IPSEC */
 
-#ifdef COMPAT_50
-#include <compat/sys/time.h>
-#include <compat/sys/socket.h>
-#endif
-
 #include <netinet6/ip6protosw.h>
 
 #include "faith.h"

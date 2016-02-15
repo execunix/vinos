@@ -82,35 +82,4 @@ struct gpio_attach {
 #define GPIOTOGGLE		_IOWR('G', 9, struct gpio_req)
 #define GPIOATTACH		_IOWR('G', 10, struct gpio_attach)
 
-#ifdef COMPAT_50
-/* Old structure to attach/detach devices */
-struct gpio_attach50 {
-	char		ga_dvname[16];	/* device name */
-	int		ga_offset;	/* pin number */
-	uint32_t	ga_mask;	/* binary mask */
-};
-
-/* GPIO pin control (old API) */
-struct gpio_pin_ctl {
-	int gp_pin;		/* pin number */
-	int gp_caps;		/* pin capabilities (read-only) */
-	int gp_flags;		/* pin configuration flags */
-};
-
-/* GPIO pin operation (read/write/toggle) (old API) */
-struct gpio_pin_op {
-	int gp_pin;		/* pin number */
-	int gp_value;		/* value */
-};
-
-/* the old API */
-#define GPIOPINREAD		_IOWR('G', 1, struct gpio_pin_op)
-#define GPIOPINWRITE		_IOWR('G', 2, struct gpio_pin_op)
-#define GPIOPINTOGGLE		_IOWR('G', 3, struct gpio_pin_op)
-#define GPIOPINCTL		_IOWR('G', 4, struct gpio_pin_ctl)
-#define GPIOATTACH50		_IOWR('G', 10, struct gpio_attach50)
-#define GPIODETACH50		_IOWR('G', 11, struct gpio_attach50)
-#define GPIODETACH		_IOWR('G', 11, struct gpio_attach)
-#endif	/* COMPAT_50 */
-
 #endif	/* !_SYS_GPIO_H_ */

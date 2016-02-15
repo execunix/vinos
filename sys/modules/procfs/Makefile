@@ -11,7 +11,7 @@
 
 KMOD=	procfs
 SRCS=	procfs_ctl.c procfs_note.c procfs_status.c procfs_subr.c \
-	procfs_vfsops.c procfs_vnops.c procfs_cmdline.c procfs_linux.c \
+	procfs_vfsops.c procfs_vnops.c procfs_cmdline.c \
 	procfs_machdep.c procfs_map.c procfs_regs.c procfs_fpregs.c \
 	procfs_mem.c procfs_fd.c
 

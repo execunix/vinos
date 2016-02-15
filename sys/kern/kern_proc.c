@@ -102,10 +102,6 @@ __KERNEL_RCSID(0, "$NetBSD: kern_proc.c,v 1.193 2014/07/12 09:57:25 njoly Exp $"
 
 #include <uvm/uvm_extern.h>
 
-#ifdef COMPAT_NETBSD32
-#include <compat/netbsd32/netbsd32.h>
-#endif
-
 /*
  * Process lists.
  */
@@ -1843,22 +1839,6 @@ sysctl_doeproc(SYSCTLFN_ARGS)
 int
 copyin_psstrings(struct proc *p, struct ps_strings *arginfo)
 {
-
-#ifdef COMPAT_NETBSD32
-	if (p->p_flag & PK_32) {
-		struct ps_strings32 arginfo32;
-
-		int error = copyin_proc(p, (void *)p->p_psstrp, &arginfo32,
-		    sizeof(arginfo32));
-		if (error)
-			return error;
-		arginfo->ps_argvstr = (void *)(uintptr_t)arginfo32.ps_argvstr;
-		arginfo->ps_nargvstr = arginfo32.ps_nargvstr;
-		arginfo->ps_envstr = (void *)(uintptr_t)arginfo32.ps_envstr;
-		arginfo->ps_nenvstr = arginfo32.ps_nenvstr;
-		return 0;
-	}
-#endif
 	return copyin_proc(p, (void *)p->p_psstrp, arginfo, sizeof(*arginfo));
 }
 
@@ -2035,12 +2015,7 @@ copy_procargs(struct proc *p, int oid, size_t *limit,
 		goto done;
 	}
 
-#ifdef COMPAT_NETBSD32
-	if (p->p_flag & PK_32)
-		entry_len = sizeof(netbsd32_charp);
-	else
-#endif
-		entry_len = sizeof(char *);
+	entry_len = sizeof(char *);
 
 	/*
 	 * Now copy each string.
@@ -2066,15 +2041,7 @@ copy_procargs(struct proc *p, int oid, size_t *limit,
 			i = 0;
 		}
 
-#ifdef COMPAT_NETBSD32
-		if (p->p_flag & PK_32) {
-			netbsd32_charp *argv32;
-
-			argv32 = (netbsd32_charp *)argv;
-			base = (vaddr_t)NETBSD32PTR64(argv32[i++]);
-		} else
-#endif
-			base = (vaddr_t)argv[i++];
+		base = (vaddr_t)argv[i++];
 		loaded -= entry_len;
 
 		/*

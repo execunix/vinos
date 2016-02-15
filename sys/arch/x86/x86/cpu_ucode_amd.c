@@ -114,21 +114,6 @@ cpu_ucode_amd_get_version(struct cpu_ucode_version *ucode)
 	return copyout(&data, ucode->data, sizeof(data));
 }
 
-#ifdef COMPAT_60
-int
-compat6_cpu_ucode_amd_get_version(struct compat6_cpu_ucode *ucode)
-{
-	uint64_t uclevel;
-
-	if (amd_cpufamily() < 0x10)
-		return EOPNOTSUPP;
-
-	uclevel = rdmsr(MSR_UCODE_AMD_PATCHLEVEL);
-	ucode->version = uclevel;
-	return 0;
-}
-#endif /* COMPAT60 */
-
 int
 cpu_ucode_amd_firmware_open(firmware_handle_t *fwh, const char *fwname)
 {

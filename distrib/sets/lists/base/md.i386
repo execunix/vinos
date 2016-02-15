@@ -41,5 +41,4 @@
 ./usr/sbin/apmd					base-sysutil-bin
 ./usr/sbin/bad144				base-sysutil-bin
 ./usr/sbin/ipwctl				base-sysutil-bin
-./usr/sbin/ndiscvt				base-sysutil-bin
 ./usr/sbin/zzz					base-sysutil-bin

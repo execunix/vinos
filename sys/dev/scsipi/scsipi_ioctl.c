@@ -396,22 +396,6 @@ scsipi_do_ioctl(struct scsipi_periph *periph, dev_t dev, u_long cmd,
 		}
 		return (ENXIO);
 	}
-#if defined(COMPAT_12) || defined(COMPAT_FREEBSD)
-	/* SCIOCIDENTIFY before ATAPI staff merge */
-	case OSCIOCIDENTIFY: {
-		struct oscsi_addr *sca = (struct oscsi_addr *)addr;
-
-		switch (SCSIPI_BUSTYPE_TYPE(scsipi_periph_bustype(periph))) {
-		case SCSIPI_BUSTYPE_SCSI:
-			sca->scbus =
-			    device_unit(device_parent(periph->periph_dev));
-			sca->target = periph->periph_target;
-			sca->lun = periph->periph_lun;
-			return (0);
-		}
-		return (ENODEV);
-	}
-#endif
 	default:
 		return (ENOTTY);
 	}

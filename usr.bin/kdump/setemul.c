@@ -81,50 +81,10 @@ __RCSID("$NetBSD: setemul.c,v 1.29 2011/04/26 16:57:42 joerg Exp $");
 
 #include <sys/syscall.h>
 
-#include "../../sys/compat/netbsd32/netbsd32_syscall.h"
-#include "../../sys/compat/freebsd/freebsd_syscall.h"
-#include "../../sys/compat/ibcs2/ibcs2_syscall.h"
-#include "../../sys/compat/linux/linux_syscall.h"
-#include "../../sys/compat/linux32/linux32_syscall.h"
-#include "../../sys/compat/osf1/osf1_syscall.h"
-#include "../../sys/compat/sunos32/sunos32_syscall.h"
-#include "../../sys/compat/sunos/sunos_syscall.h"
-#include "../../sys/compat/svr4/svr4_syscall.h"
-#include "../../sys/compat/svr4_32/svr4_32_syscall.h"
-#include "../../sys/compat/ultrix/ultrix_syscall.h"
-#ifdef __m68k__
-#include "../../sys/compat/aoutm68k/aoutm68k_syscall.h"
-#endif
-
 #define KTRACE
 #include "../../sys/kern/syscalls.c"
 
-#include "../../sys/compat/netbsd32/netbsd32_syscalls.c"
-#include "../../sys/compat/freebsd/freebsd_syscalls.c"
-#include "../../sys/compat/ibcs2/ibcs2_syscalls.c"
-#include "../../sys/compat/linux/linux_syscalls.c"
-#include "../../sys/compat/linux32/linux32_syscalls.c"
-#include "../../sys/compat/osf1/osf1_syscalls.c"
-#include "../../sys/compat/sunos/sunos_syscalls.c"
-#include "../../sys/compat/sunos32/sunos32_syscalls.c"
-#include "../../sys/compat/svr4/svr4_syscalls.c"
-#include "../../sys/compat/svr4_32/svr4_32_syscalls.c"
-#include "../../sys/compat/ultrix/ultrix_syscalls.c"
-#ifdef __m68k__
-#include "../../sys/compat/aoutm68k/aoutm68k_syscalls.c"
-#endif
-
-#include "../../sys/compat/svr4/svr4_errno.c"
-#include "../../sys/compat/ibcs2/ibcs2_errno.c"
-#include "../../sys/compat/osf1/osf1_errno.c"
-#include "../../sys/compat/linux/common/linux_errno.c"
 #undef KTRACE
-
-#define SIGRTMIN	33	/* XXX */
-#include "../../sys/compat/svr4/svr4_signo.c"
-#include "../../sys/compat/ibcs2/ibcs2_signo.c"
-#include "../../sys/compat/osf1/osf1_signo.c"
-#include "../../sys/compat/linux/common/linux_signo.c"
 
 #define NELEM(a) (sizeof(a) / sizeof(a[0]))
 
@@ -133,56 +93,6 @@ const struct emulation emulations[] = {
 	{ "netbsd",	syscallnames,		SYS_MAXSYSCALL,
 	  NULL,				0,
 	  NULL,				0,	0 },
-
-	{ "netbsd32",	netbsd32_syscallnames,	SYS_MAXSYSCALL,
-	  NULL,				0,
-	  NULL,				0,	EMUL_FLAG_NETBSD32 },
-
-	{ "freebsd",	freebsd_syscallnames,	FREEBSD_SYS_MAXSYSCALL,
-	  NULL,				0,
-	  NULL,				0,	0 },
-
-	{ "ibcs2",	ibcs2_syscallnames,	IBCS2_SYS_MAXSYSCALL,
-	  native_to_ibcs2_errno,	NELEM(native_to_ibcs2_errno),
-	  ibcs2_to_native_signo,	NSIG,	0 },
-
-	{ "linux",	linux_syscallnames,	LINUX_SYS_MAXSYSCALL,
-	  native_to_linux_errno,	NELEM(native_to_linux_errno),
-	  linux_to_native_signo,	NSIG,	0 },
-
-	{ "linux32",	linux32_syscallnames,	LINUX32_SYS_MAXSYSCALL,
-	  native_to_linux_errno,	NELEM(native_to_linux_errno),
-	  linux_to_native_signo,	NSIG,	EMUL_FLAG_NETBSD32 },
-
-	{ "osf1",	osf1_syscallnames,	OSF1_SYS_MAXSYSCALL,
-	  native_to_osf1_errno,		NELEM(native_to_osf1_errno),
-	  osf1_to_native_signo,		NSIG,	0 },
-
-	{ "sunos32",	sunos32_syscallnames,	SUNOS32_SYS_MAXSYSCALL,
-	  NULL,				0,
-	  NULL,				0,	EMUL_FLAG_NETBSD32 },
-
-	{ "sunos",	sunos_syscallnames,	SUNOS_SYS_MAXSYSCALL,
-	  NULL,				0,
-	  NULL,				0,	0 },
-
-	{ "svr4",	svr4_syscallnames,	SVR4_SYS_MAXSYSCALL,
-	  native_to_svr4_errno,		NELEM(native_to_svr4_errno),
-	  svr4_to_native_signo,		NSIG,	0 },
-
-	{ "svr4_32",	svr4_syscallnames,	SVR4_SYS_MAXSYSCALL,
-	  native_to_svr4_errno,		NELEM(native_to_svr4_errno),
-	  svr4_to_native_signo,		NSIG,	EMUL_FLAG_NETBSD32 },
-
-	{ "ultrix",	ultrix_syscallnames,	ULTRIX_SYS_MAXSYSCALL,
-	  NULL,				0,
-	  NULL,				0,	0 },
-
-#ifdef __m68k__
-	{ "aoutm68k",	aoutm68k_syscallnames,	AOUTM68K_SYS_MAXSYSCALL,
-	  NULL,				0,
-	  NULL,				0,	0 },
-#endif
 
 	{ NULL,		NULL,			0,
 	  NULL,				0,

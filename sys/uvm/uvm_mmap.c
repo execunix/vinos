@@ -321,14 +321,6 @@ sys_mmap(struct lwp *l, const struct sys_mmap_args *uap, register_t *retval)
 	 */
 	if (flags & MAP_COPY) {
 		flags = (flags & ~MAP_COPY) | MAP_PRIVATE;
-#if defined(COMPAT_10) && defined(__i386__)
-		/*
-		 * Ancient kernel on x86 did not obey PROT_EXEC on i386 at least
-		 * and ld.so did not turn it on. We take care of this on amd64
-		 * in compat32.
-		 */
-		prot |= PROT_EXEC;
-#endif
 	}
 	if ((flags & (MAP_SHARED|MAP_PRIVATE)) == (MAP_SHARED|MAP_PRIVATE))
 		return (EINVAL);

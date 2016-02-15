@@ -103,10 +103,6 @@ __KERNEL_RCSID(0, "$NetBSD: raw_ip.c,v 1.145.2.1 2015/01/17 12:10:53 martin Exp 
 #include <netipsec/ipsec_private.h>
 #endif	/* IPSEC */
 
-#ifdef COMPAT_50
-#include <compat/sys/socket.h>
-#endif
-
 struct inpcbtable rawcbtable;
 
 int	 rip_pcbnotify(struct inpcbtable *, struct in_addr,

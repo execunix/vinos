@@ -148,10 +148,6 @@ usbd_status usbd_set_interface(usbd_interface_handle, int);
 int usbd_get_no_alts(usb_config_descriptor_t *, int);
 usbd_status  usbd_get_interface(usbd_interface_handle, u_int8_t *);
 void usbd_fill_deviceinfo(usbd_device_handle, struct usb_device_info *, int);
-#ifdef COMPAT_30
-void usbd_fill_deviceinfo_old(usbd_device_handle, struct usb_device_info_old *,
-    int);
-#endif
 int usbd_get_interface_altindex(usbd_interface_handle);
 
 usb_interface_descriptor_t *usbd_find_idesc(usb_config_descriptor_t *,

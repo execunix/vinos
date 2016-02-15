@@ -17,7 +17,7 @@ SUBDIR=	ac accton acpitools altq apm apmd arp \
 	lastlogin ldpd link lmcconfig lockstat lpr \
 	mailwrapper makefs map-mbone mdconfig mlxctl mmcformat \
 	mopd mountd moused mrinfo mrouted mscdlabel mtrace mtree \
-	ndbootd ndiscvt netgroup_mkdb nfsd \
+	ndbootd netgroup_mkdb nfsd \
 	ofctl \
 	paxctl pcictl perfused psrset pstat pwd_mkdb postinstall \
 	powerd \

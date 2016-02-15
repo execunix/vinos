@@ -70,13 +70,6 @@ __KERNEL_RCSID(0, "$NetBSD: ieee80211_ioctl.c,v 1.59 2014/01/25 00:59:44 christo
 
 #include <dev/ic/wi_ieee.h>
 
-#if defined(COMPAT_09) || defined(COMPAT_10) || defined(COMPAT_11) || \
-    defined(COMPAT_12) || defined(COMPAT_13) || defined(COMPAT_14) || \
-    defined(COMPAT_15) || defined(COMPAT_16) || defined(COMPAT_20) || \
-    defined(COMPAT_30) || defined(COMPAT_40)
-#include <compat/sys/sockio.h>
-#endif
-
 #ifdef __FreeBSD__
 #define	IS_UP(_ic) \
 	(((_ic)->ic_ifp->if_flags & IFF_UP) &&			\
@@ -1316,96 +1309,6 @@ ieee80211_ioctl_getmaccmd(struct ieee80211com *ic, struct ieee80211req *ireq)
 	return (acl == NULL ? EINVAL : acl->iac_getioctl(ic, ireq));
 }
 
-#if defined(COMPAT_FREEBSD_NET80211)
-static int
-ieee80211_ioctl_get80211_fbsd(struct ieee80211com *ic, u_long cmd,
-    struct ieee80211req *ireq)
-{
-	u_int kid, len;
-	u_int8_t tmpkey[IEEE80211_KEYBUF_SIZE];
-	char tmpssid[IEEE80211_NWID_LEN];
-	struct ifnet *ifp = ic->ic_ifp;
-
-	int error = 0;
-
-	switch (ireq->i_type) {
-	case IEEE80211_IOC_SSID:
-		switch (ic->ic_state) {
-		case IEEE80211_S_INIT:
-		case IEEE80211_S_SCAN:
-			ireq->i_len = ic->ic_des_esslen;
-			memcpy(tmpssid, ic->ic_des_essid, ireq->i_len);
-			break;
-		default:
-			ireq->i_len = ic->ic_bss->ni_esslen;
-			memcpy(tmpssid, ic->ic_bss->ni_essid,
-				ireq->i_len);
-			break;
-		}
-		error = copyout(tmpssid, ireq->i_data, ireq->i_len);
-		break;
-	case IEEE80211_IOC_NUMSSIDS:
-		ireq->i_val = 1;
-		break;
-	case IEEE80211_IOC_WEP:
-		if ((ic->ic_flags & IEEE80211_F_PRIVACY) == 0)
-			ireq->i_val = IEEE80211_WEP_OFF;
-		else if (ic->ic_flags & IEEE80211_F_DROPUNENC)
-			ireq->i_val = IEEE80211_WEP_ON;
-		else
-			ireq->i_val = IEEE80211_WEP_MIXED;
-		break;
-	case IEEE80211_IOC_WEPKEY:
-		kid = (u_int) ireq->i_val;
-		if (kid >= IEEE80211_WEP_NKID)
-			return EINVAL;
-		len = (u_int) ic->ic_nw_keys[kid].wk_keylen;
-		/* NB: only root can read WEP keys */
-		if (kauth_authorize_network(curlwp->l_cred,
-		    KAUTH_NETWORK_INTERFACE,
-		    KAUTH_REQ_NETWORK_INTERFACE_GETPRIV, ifp, NULL,
-		    NULL) == 0) {
-			memcpy(tmpkey, ic->ic_nw_keys[kid].wk_key, len);
-		} else {
-			memset(tmpkey, 0, len);
-		}
-		ireq->i_len = len;
-		error = copyout(tmpkey, ireq->i_data, len);
-		break;
-	case IEEE80211_IOC_NUMWEPKEYS:
-		ireq->i_val = IEEE80211_WEP_NKID;
-		break;
-	case IEEE80211_IOC_WEPTXKEY:
-		ireq->i_val = ic->ic_def_txkey;
-		break;
-	case IEEE80211_IOC_CHANNEL:
-		ireq->i_val = ieee80211_chan2ieee(ic, ic->ic_curchan);
-		break;
-	case IEEE80211_IOC_POWERSAVE:
-		if (ic->ic_flags & IEEE80211_F_PMGTON)
-			ireq->i_val = IEEE80211_POWERSAVE_ON;
-		else
-			ireq->i_val = IEEE80211_POWERSAVE_OFF;
-		break;
-	case IEEE80211_IOC_POWERSAVESLEEP:
-		ireq->i_val = ic->ic_lintval;
-		break;
-	case IEEE80211_IOC_BSSID:
-		if (ireq->i_len != IEEE80211_ADDR_LEN)
-			return EINVAL;
-		error = copyout(ic->ic_state == IEEE80211_S_RUN ?
-					ic->ic_bss->ni_bssid :
-					ic->ic_des_bssid,
-				ireq->i_data, ireq->i_len);
-		break;
-	default:
-		error = EINVAL;
-		break;
-	}
-	return error;
-}
-#endif /* COMPAT_FREEBSD_NET80211 */
-
 /*
  * When building the kernel with -O2 on the i386 architecture, gcc
  * seems to want to inline this function into ieee80211_ioctl()
@@ -1579,11 +1482,7 @@ ieee80211_ioctl_get80211(struct ieee80211com *ic, u_long cmd,
 		error = ieee80211_ioctl_getmaccmd(ic, ireq);
 		break;
 	default:
-#if defined(COMPAT_FREEBSD_NET80211)
-		error = ieee80211_ioctl_get80211_fbsd(ic, cmd, ireq);
-#else
 		error = EINVAL;
-#endif /* COMPAT_FREEBSD_NET80211 */
 		break;
 	}
 	return error;
@@ -2043,14 +1942,6 @@ static int
 ieee80211_ioctl_set80211(struct ieee80211com *ic, u_long cmd,
     struct ieee80211req *ireq)
 {
-#if defined(__FreeBSD__) || defined(COMPAT_FREEBSD_NET80211)
-	static const u_int8_t zerobssid[IEEE80211_ADDR_LEN];
-	u_int8_t tmpkey[IEEE80211_KEYBUF_SIZE];
-	char tmpssid[IEEE80211_NWID_LEN];
-	u_int8_t tmpbssid[IEEE80211_ADDR_LEN];
-	struct ieee80211_key *k;
-	u_int kid;
-#endif /* __FreeBSD__ || COMPAT_FREEBSD_NET80211 */
 	struct ieee80211_rsnparms *rsn = &ic->ic_bss->ni_rsn;
 	int error;
 	const struct ieee80211_authenticator *auth;
@@ -2058,20 +1949,6 @@ ieee80211_ioctl_set80211(struct ieee80211com *ic, u_long cmd,
 
 	error = 0;
 	switch (ireq->i_type) {
-#if defined(__FreeBSD__) || defined(COMPAT_FREEBSD_NET80211)
-	case IEEE80211_IOC_SSID:
-		if (ireq->i_val != 0 ||
-		    ireq->i_len > IEEE80211_NWID_LEN)
-			return EINVAL;
-		error = copyin(ireq->i_data, tmpssid, ireq->i_len);
-		if (error)
-			break;
-		memset(ic->ic_des_essid, 0, IEEE80211_NWID_LEN);
-		ic->ic_des_esslen = ireq->i_len;
-		memcpy(ic->ic_des_essid, tmpssid, ireq->i_len);
-		error = ENETRESET;
-		break;
-#endif /* __FreeBSD__ || COMPAT_FREEBSD_NET80211 */
 	case IEEE80211_IOC_WEP:
 		switch (ireq->i_val) {
 		case IEEE80211_WEP_OFF:
@@ -2089,46 +1966,6 @@ ieee80211_ioctl_set80211(struct ieee80211com *ic, u_long cmd,
 		}
 		error = ENETRESET;
 		break;
-#if defined(__FreeBSD__) || defined(COMPAT_FREEBSD_NET80211)
-	case IEEE80211_IOC_WEPKEY:
-		kid = (u_int) ireq->i_val;
-		if (kid >= IEEE80211_WEP_NKID)
-			return EINVAL;
-		k = &ic->ic_nw_keys[kid];
-		if (ireq->i_len == 0) {
-			/* zero-len =>'s delete any existing key */
-			(void) ieee80211_crypto_delkey(ic, k);
-			break;
-		}
-		if (ireq->i_len > sizeof(tmpkey))
-			return EINVAL;
-		memset(tmpkey, 0, sizeof(tmpkey));
-		error = copyin(ireq->i_data, tmpkey, ireq->i_len);
-		if (error)
-			break;
-		ieee80211_key_update_begin(ic);
-		k->wk_keyix = kid;	/* NB: force fixed key id */
-		if (ieee80211_crypto_newkey(ic, IEEE80211_CIPHER_WEP,
-		    IEEE80211_KEY_XMIT | IEEE80211_KEY_RECV, k)) {
-			k->wk_keylen = ireq->i_len;
-			memcpy(k->wk_key, tmpkey, sizeof(tmpkey));
-			if  (!ieee80211_crypto_setkey(ic, k, ic->ic_myaddr))
-				error = EINVAL;
-		} else
-			error = EINVAL;
-		ieee80211_key_update_end(ic);
-		if (!error)			/* NB: for compatibility */
-			error = ENETRESET;
-		break;
-	case IEEE80211_IOC_WEPTXKEY:
-		kid = (u_int) ireq->i_val;
-		if (kid >= IEEE80211_WEP_NKID &&
-		    (u_int16_t) kid != IEEE80211_KEYIX_NONE)
-			return EINVAL;
-		ic->ic_def_txkey = kid;
-		error = ENETRESET;	/* push to hardware */
-		break;
-#endif /* __FreeBSD__ || COMPAT_FREEBSD_NET80211 */
 	case IEEE80211_IOC_AUTHMODE:
 		switch (ireq->i_val) {
 		case IEEE80211_AUTH_WPA:
@@ -2169,76 +2006,6 @@ ieee80211_ioctl_set80211(struct ieee80211com *ic, u_long cmd,
 		ic->ic_auth = auth;
 		error = ENETRESET;
 		break;
-#if defined(__FreeBSD__) || defined(COMPAT_FREEBSD_NET80211)
-	case IEEE80211_IOC_CHANNEL:
-		/* XXX 0xffff overflows 16-bit signed */
-		if (ireq->i_val == 0 ||
-		    ireq->i_val == (int16_t) IEEE80211_CHAN_ANY)
-			ic->ic_des_chan = IEEE80211_CHAN_ANYC;
-		else if ((u_int) ireq->i_val > IEEE80211_CHAN_MAX ||
-		    isclr(ic->ic_chan_active, ireq->i_val)) {
-			return EINVAL;
-		} else
-			ic->ic_ibss_chan = ic->ic_des_chan =
-				&ic->ic_channels[ireq->i_val];
-		switch (ic->ic_state) {
-		case IEEE80211_S_INIT:
-		case IEEE80211_S_SCAN:
-			error = ENETRESET;
-			break;
-		default:
-			/*
-			 * If the desired channel has changed (to something
-			 * other than any) and we're not already scanning,
-			 * then kick the state machine.
-			 */
-			if (ic->ic_des_chan != IEEE80211_CHAN_ANYC &&
-			    ic->ic_bss->ni_chan != ic->ic_des_chan &&
-			    (ic->ic_flags & IEEE80211_F_SCAN) == 0)
-				error = ENETRESET;
-			break;
-		}
-		if (error == ENETRESET &&
-			ic->ic_opmode == IEEE80211_M_MONITOR) {
-			if (IS_UP(ic)) {
-				/*
-				 * Monitor mode can switch directly.
-				 */
-				if (ic->ic_des_chan != IEEE80211_CHAN_ANYC)
-					ic->ic_curchan = ic->ic_des_chan;
-				error = ic->ic_reset(ic->ic_ifp);
-			} else
-				error = 0;
-		}
-		break;
-	case IEEE80211_IOC_POWERSAVE:
-		switch (ireq->i_val) {
-		case IEEE80211_POWERSAVE_OFF:
-			if (ic->ic_flags & IEEE80211_F_PMGTON) {
-				ic->ic_flags &= ~IEEE80211_F_PMGTON;
-				error = ENETRESET;
-			}
-			break;
-		case IEEE80211_POWERSAVE_ON:
-			if ((ic->ic_caps & IEEE80211_C_PMGT) == 0)
-				error = EINVAL;
-			else if ((ic->ic_flags & IEEE80211_F_PMGTON) == 0) {
-				ic->ic_flags |= IEEE80211_F_PMGTON;
-				error = ENETRESET;
-			}
-			break;
-		default:
-			error = EINVAL;
-			break;
-		}
-		break;
-	case IEEE80211_IOC_POWERSAVESLEEP:
-		if (ireq->i_val < 0)
-			return EINVAL;
-		ic->ic_lintval = ireq->i_val;
-		error = IS_UP(ic) ? ic->ic_reset(ic->ic_ifp) : 0;
-		break;
-#endif /* __FreeBSD__ || COMPAT_FREEBSD_NET80211 */
 	case IEEE80211_IOC_RTSTHRESHOLD:
 		if (!(IEEE80211_RTS_MIN <= ireq->i_val &&
 		      ireq->i_val <= IEEE80211_RTS_MAX))
@@ -2404,24 +2171,6 @@ ieee80211_ioctl_set80211(struct ieee80211com *ic, u_long cmd,
 		rsn->rsn_caps = ireq->i_val;
 		error = (ic->ic_flags & IEEE80211_F_WPA) ? ENETRESET : 0;
 		break;
-#if defined(__FreeBSD__) || defined(COMPAT_FREEBSD_NET80211)
-	case IEEE80211_IOC_BSSID:
-		/* NB: should only be set when in STA mode */
-		if (ic->ic_opmode != IEEE80211_M_STA)
-			return EINVAL;
-		if (ireq->i_len != sizeof(tmpbssid))
-			return EINVAL;
-		error = copyin(ireq->i_data, tmpbssid, ireq->i_len);
-		if (error)
-			break;
-		IEEE80211_ADDR_COPY(ic->ic_des_bssid, tmpbssid);
-		if (IEEE80211_ADDR_EQ(ic->ic_des_bssid, zerobssid))
-			ic->ic_flags &= ~IEEE80211_F_DESBSSID;
-		else
-			ic->ic_flags |= IEEE80211_F_DESBSSID;
-		error = ENETRESET;
-		break;
-#endif /* __FreeBSD__ || COMPAT_FREEBSD_NET80211 */
 	case IEEE80211_IOC_CHANLIST:
 		error = ieee80211_ioctl_setchanlist(ic, ireq);
 		break;
@@ -2557,28 +2306,6 @@ ieee80211_ioctl(struct ieee80211com *ic, u_long cmd, void *data)
 }
 #endif /* __FreeBSD__ */
 
-#ifdef COMPAT_20
-static void
-ieee80211_get_ostats(struct ieee80211_ostats *ostats,
-    struct ieee80211_stats *stats)
-{
-#define	COPYSTATS1(__ostats, __nstats, __dstmemb, __srcmemb, __lastmemb)\
-	(void)memcpy(&(__ostats)->__dstmemb, &(__nstats)->__srcmemb,	\
-	    offsetof(struct ieee80211_stats, __lastmemb) -		\
-	    offsetof(struct ieee80211_stats, __srcmemb))
-#define	COPYSTATS(__ostats, __nstats, __dstmemb, __lastmemb)		\
-	COPYSTATS1(__ostats, __nstats, __dstmemb, __dstmemb, __lastmemb)
-
-	COPYSTATS(ostats, stats, is_rx_badversion, is_rx_unencrypted);
-	COPYSTATS(ostats, stats, is_rx_wepfail, is_rx_beacon);
-	COPYSTATS(ostats, stats, is_rx_rstoobig, is_rx_auth_countermeasures);
-	COPYSTATS(ostats, stats, is_rx_assoc_bss, is_rx_assoc_badwpaie);
-	COPYSTATS(ostats, stats, is_rx_deauth, is_rx_unauth);
-	COPYSTATS1(ostats, stats, is_tx_nombuf, is_tx_nobuf, is_tx_badcipher);
-	COPYSTATS(ostats, stats, is_scan_active, is_crypto_tkip);
-}
-#endif /* COMPAT_20 */
-
 #ifdef __NetBSD__
 int
 ieee80211_ioctl(struct ieee80211com *ic, u_long cmd, void *data)
@@ -2594,9 +2321,6 @@ ieee80211_ioctl(struct ieee80211com *ic, u_long cmd, void *data)
 	struct ieee80211chanreq *chanreq;
 	struct ieee80211_channel *chan;
 	uint32_t oflags;
-#ifdef COMPAT_20
-	struct ieee80211_ostats ostats;
-#endif /* COMPAT_20 */
 	static const u_int8_t zerobssid[IEEE80211_ADDR_LEN];
 	u_int8_t tmpkey[IEEE80211_WEP_NKID][IEEE80211_KEYBUF_SIZE];
 
@@ -2875,18 +2599,6 @@ ieee80211_ioctl(struct ieee80211com *ic, u_long cmd, void *data)
 			break;
 		error = ieee80211_cfgset(ic, cmd, data);
 		break;
-#ifdef COMPAT_20
-	case OSIOCG80211STATS:
-	case OSIOCG80211ZSTATS:
-		ifr = (struct ifreq *)data;
-		s = splnet();
-		ieee80211_get_ostats(&ostats, &ic->ic_stats);
-		error = copyout(&ostats, ifr->ifr_data, sizeof(ostats));
-		if (error == 0 && cmd == OSIOCG80211ZSTATS)
-			(void)memset(&ic->ic_stats, 0, sizeof(ic->ic_stats));
-		splx(s);
-		break;
-#endif /* COMPAT_20 */
 	case SIOCG80211ZSTATS:
 	case SIOCG80211STATS:
 		ifr = (struct ifreq *)data;

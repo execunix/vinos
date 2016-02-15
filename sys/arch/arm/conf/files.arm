@@ -217,11 +217,3 @@ file	arch/arm/arm32/bcopy_page.S		arm32
 #
 include "compat/netbsd32/files.netbsd32"
 file	arch/arm/arm32/netbsd32_machdep.c	arm32 & compat_netbsd32
-
-# Linux binary compatibility (COMPAT_LINUX)
-include "compat/ossaudio/files.ossaudio"
-include "compat/linux/files.linux"
-include "compat/linux/arch/arm/files.linux_arm"
-file	arch/arm/arm/linux_sigcode.S		compat_linux
-file	arch/arm/arm/linux_syscall.c		compat_linux
-file	arch/arm/arm/linux_trap.c		compat_linux

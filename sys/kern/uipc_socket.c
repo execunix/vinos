@@ -102,11 +102,6 @@ __KERNEL_RCSID(0, "$NetBSD: uipc_socket.c,v 1.234 2014/08/09 05:33:00 rtr Exp $"
 #include <sys/condvar.h>
 #include <sys/kthread.h>
 
-#ifdef COMPAT_50
-#include <compat/sys/time.h>
-#include <compat/sys/socket.h>
-#endif
-
 #include <uvm/uvm_extern.h>
 #include <uvm/uvm_loan.h>
 #include <uvm/uvm_page.h>
@@ -1772,22 +1767,6 @@ sosetopt1(struct socket *so, const struct sockopt *sopt)
 		}
 		break;
 
-#ifdef COMPAT_50
-	case SO_OSNDTIMEO:
-	case SO_ORCVTIMEO: {
-		struct timeval50 otv;
-		error = sockopt_get(sopt, &otv, sizeof(otv));
-		if (error) {
-			solock(so);
-			break;
-		}
-		timeval50_to_timeval(&otv, &tv);
-		opt = opt == SO_OSNDTIMEO ? SO_SNDTIMEO : SO_RCVTIMEO;
-		error = 0;
-		/*FALLTHROUGH*/
-	}
-#endif /* COMPAT_50 */
-
 	case SO_SNDTIMEO:
 	case SO_RCVTIMEO:
 		if (error)
@@ -1936,22 +1915,6 @@ sogetopt1(struct socket *so, struct sockopt *sopt)
 	case SO_RCVLOWAT:
 		error = sockopt_setint(sopt, so->so_rcv.sb_lowat);
 		break;
-
-#ifdef COMPAT_50
-	case SO_OSNDTIMEO:
-	case SO_ORCVTIMEO: {
-		struct timeval50 otv;
-
-		optval = (opt == SO_OSNDTIMEO ?
-		     so->so_snd.sb_timeo : so->so_rcv.sb_timeo);
-
-		otv.tv_sec = optval / hz;
-		otv.tv_usec = (optval % hz) * tick;
-
-		error = sockopt_set(sopt, &otv, sizeof(otv));
-		break;
-	}
-#endif /* COMPAT_50 */
 
 	case SO_SNDTIMEO:
 	case SO_RCVTIMEO:

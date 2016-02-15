@@ -60,12 +60,6 @@ FILES
                     snapshot, such as files installed in DESTDIR/etc on the
                     destination system, boot media, and release notes.
 
-     tests/, regress/
-                    Regression test harness.  Can be cross-compiled, but only
-                    run natively.  tests/ uses the atf(7) test framework;
-                    regress/ contains older tests that have not yet been
-                    migrated to atf(7).
-
      sys/           NetBSD kernel sources.
 
      tools/         ``Reachover'' build structure for the host build tools.
@@ -722,13 +716,6 @@ BUILDING
                    populated by ``make release'' or equivalent.  The build
                    must have been performed with MKUNPRIVED=yes because ``make
                    install-image'' relies on information in DESTDIR/METALOG.
-
-     regression-tests
-                   Can only be run after building the regression tests in the
-                   directory ``regress''.  Runs those compiled regression
-                   tests on the local host.  Note that most tests are now
-                   managed instead using atf(7); this target should probably
-                   run those as well but currently does not.
 
    The "build.sh" script
      This script file is a shell script designed to build the entire NetBSD

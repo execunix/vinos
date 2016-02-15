@@ -1827,42 +1827,17 @@ doifioctl(struct socket *so, u_long cmd, void *data, struct lwp *l)
 	struct ifnet *ifp;
 	struct ifreq *ifr;
 	int error = 0;
-#if defined(COMPAT_OSOCK) || defined(COMPAT_OIFREQ)
-	u_long ocmd = cmd;
-#endif
 	short oif_flags;
-#ifdef COMPAT_OIFREQ
-	struct ifreq ifrb;
-	struct oifreq *oifr = NULL;
-#endif
 	int r;
 
 	switch (cmd) {
-#ifdef COMPAT_OIFREQ
-	case OSIOCGIFCONF:
-	case OOSIOCGIFCONF:
-		return compat_ifconf(cmd, data);
-#endif
-#ifdef COMPAT_OIFDATA
-	case OSIOCGIFDATA:
-	case OSIOCZIFDATA:
-		return compat_ifdatareq(l, cmd, data);
-#endif
 	case SIOCGIFCONF:
 		return ifconf(cmd, data);
 	case SIOCINITIFADDR:
 		return EPERM;
 	}
 
-#ifdef COMPAT_OIFREQ
-	cmd = compat_cvtcmd(cmd);
-	if (cmd != ocmd) {
-		oifr = data;
-		data = ifr = &ifrb;
-		ifreqo2n(oifr, ifr);
-	} else
-#endif
-		ifr = data;
+	ifr = data;
 
 	ifp = ifunit(ifr->ifr_name);
 
@@ -1937,12 +1912,8 @@ doifioctl(struct socket *so, u_long cmd, void *data, struct lwp *l)
 	else if (so->so_proto == NULL)
 		error = EOPNOTSUPP;
 	else {
-#ifdef COMPAT_OSOCK
-		error = compat_ifioctl(so, ocmd, cmd, data, l);
-#else
 		error = (*so->so_proto->pr_usrreqs->pr_ioctl)(so,
 		    cmd, data, ifp);
-#endif
 	}
 
 	if (((oif_flags ^ ifp->if_flags) & IFF_UP) != 0) {
@@ -1954,10 +1925,6 @@ doifioctl(struct socket *so, u_long cmd, void *data, struct lwp *l)
 		}
 #endif
 	}
-#ifdef COMPAT_OIFREQ
-	if (cmd != ocmd)
-		ifreqn2o(oifr, ifr);
-#endif
 
 	ifnet_lock_exit(ifp->if_ioctl_lock);
 	return error;
@@ -2149,19 +2116,8 @@ int
 ifreq_setaddr(u_long cmd, struct ifreq *ifr, const struct sockaddr *sa)
 {
 	uint8_t len;
-#ifdef COMPAT_OIFREQ
-	struct ifreq ifrb;
-	struct oifreq *oifr = NULL;
-	u_long ocmd = cmd;
-	cmd = compat_cvtcmd(cmd);
-	if (cmd != ocmd) {
-		oifr = (struct oifreq *)(void *)ifr;
-		ifr = &ifrb;
-		ifreqo2n(oifr, ifr);
-		len = sizeof(oifr->ifr_addr);
-	} else
-#endif
-		len = sizeof(ifr->ifr_ifru.ifru_space);
+
+	len = sizeof(ifr->ifr_ifru.ifru_space);
 
 	if (len < sa->sa_len)
 		return EFBIG;
@@ -2169,10 +2125,6 @@ ifreq_setaddr(u_long cmd, struct ifreq *ifr, const struct sockaddr *sa)
 	memset(&ifr->ifr_addr, 0, len);
 	sockaddr_copy(&ifr->ifr_addr, len, sa);
 
-#ifdef COMPAT_OIFREQ
-	if (cmd != ocmd)
-		ifreqn2o(oifr, ifr);
-#endif
 	return 0;
 }
 

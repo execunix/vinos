@@ -16,4 +16,3 @@
 ./usr/libdata/debug/usr/sbin/apmd.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/usr/sbin/bad144.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/usr/sbin/ipwctl.debug	comp-sysutil-debug	debug
-./usr/libdata/debug/usr/sbin/ndiscvt.debug	comp-sysutil-debug	debug

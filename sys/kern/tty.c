@@ -97,10 +97,6 @@ __KERNEL_RCSID(0, "$NetBSD: tty.c,v 1.261 2014/05/22 16:31:19 dholland Exp $");
 #include <sys/module.h>
 #include <sys/bitops.h>
 
-#ifdef COMPAT_60
-#include <compat/sys/ttycom.h>
-#endif /* COMPAT_60 */
-
 static int	ttnread(struct tty *);
 static void	ttyblock(struct tty *);
 static void	ttyecho(int, struct tty *);
@@ -1369,11 +1365,6 @@ ttioctl(struct tty *tp, u_long cmd, void *data, int flag, struct lwp *l)
 			error = tty_set_qsize(tp, s);
 		return error;
 	default:
-#ifdef COMPAT_60
-		error = compat_60_ttioctl(tp, cmd, data, flag, l);
-		if (error != EPASSTHROUGH)
-			return error;
-#endif /* COMPAT_60 */
 		/* We may have to load the compat module for this. */
 		for (;;) {
 			rw_enter(&ttcompat_lock, RW_READER);

@@ -65,9 +65,6 @@ struct gpio_softc {
 	int			 sc_ioctl_busy;	/* ioctl is busy */
 	kcondvar_t		 sc_attach;	/* attach/detach in progress */
 	int			 sc_attach_busy;/* busy in attach/detach */
-#ifdef COMPAT_50
-	LIST_HEAD(, gpio_dev)	 sc_devs;	/* devices */
-#endif
 	LIST_HEAD(, gpio_name)	 sc_names;	/* named pins */
 };
 
@@ -83,12 +80,6 @@ static int	gpio_print(void *, const char *);
 static int	gpio_pinbyname(struct gpio_softc *, char *);
 static int	gpio_ioctl(struct gpio_softc *, u_long, void *, int,
     struct lwp *);
-
-#ifdef COMPAT_50
-/* Old API */
-static int	gpio_ioctl_oapi(struct gpio_softc *, u_long, void *, int,
-    kauth_cred_t);
-#endif
 
 CFATTACH_DECL3_NEW(gpio, sizeof(struct gpio_softc),
     gpio_match, gpio_attach, gpio_detach, NULL, gpio_rescan,
@@ -149,42 +140,6 @@ gpio_resume(device_t self, const pmf_qual_t *qual)
 static void
 gpio_childdetached(device_t self, device_t child)
 {
-#ifdef COMPAT_50
-	struct gpio_dev *gdev;
-	struct gpio_softc *sc;
-	int error;
-
-	/*
-	 * gpio_childetached is serialized because it can be entered in
-	 * different ways concurrently, e.g. via the GPIODETACH ioctl and
-	 * drvctl(8) or modunload(8).
-	 */
-	sc = device_private(self);
-	error = 0;
-	mutex_enter(&sc->sc_mtx);
-	while (sc->sc_attach_busy) {
-		error = cv_wait_sig(&sc->sc_attach, &sc->sc_mtx);
-		if (error)
-			break;
-	}
-	if (!error)
-		sc->sc_attach_busy = 1;
-	mutex_exit(&sc->sc_mtx);
-	if (error)
-		return;
-
-	LIST_FOREACH(gdev, &sc->sc_devs, sc_next)
-		if (gdev->sc_dev == child) {
-			LIST_REMOVE(gdev, sc_next);
-			kmem_free(gdev, sizeof(struct gpio_dev));
-			break;
-		}
-
-	mutex_enter(&sc->sc_mtx);
-	sc->sc_attach_busy = 0;
-	cv_signal(&sc->sc_attach);
-	mutex_exit(&sc->sc_mtx);
-#endif
 }
 
 static int
@@ -495,9 +450,6 @@ gpio_ioctl(struct gpio_softc *sc, u_long cmd, void *data, int flag,
 	struct gpio_req *req;
 	struct gpio_name *nm;
 	struct gpio_set *set;
-#ifdef COMPAT_50
-	struct gpio_dev *gdev;
-#endif
 	device_t dv;
 	cfdata_t cf;
 	kauth_cred_t cred;
@@ -612,18 +564,6 @@ gpio_ioctl(struct gpio_softc *sc, u_long cmd, void *data, int flag,
 	case GPIOATTACH:
 		attach = data;
 		ga.ga_flags = attach->ga_flags;
-#ifdef COMPAT_50
-		/* FALLTHROUGH */
-	case GPIOATTACH50:
-		/*
-		 * The double assignment to 'attach' in case of GPIOATTACH
-		 * and COMPAT_50 is on purpose. It ensures backward
-		 * compatability in case we are called through the old
-		 * GPIOATTACH50 ioctl(2), which had not the ga_flags field
-		 * in struct gpio_attach.
-		 */
-		attach = data;
-#endif
 		if (kauth_authorize_device(cred, KAUTH_DEVICE_GPIO_PINSET,
 		    NULL, NULL, NULL, NULL))
 			return EPERM;
@@ -662,18 +602,8 @@ gpio_ioctl(struct gpio_softc *sc, u_long cmd, void *data, int flag,
 		if (cf != NULL) {
 			dv = config_attach_loc(sc->sc_dev, cf, locs, &ga,
 			    gpiobus_print);
-#ifdef COMPAT_50
-			if (dv != NULL) {
-				gdev = kmem_alloc(sizeof(struct gpio_dev),
-				    KM_SLEEP);
-				gdev->sc_dev = dv;
-				LIST_INSERT_HEAD(&sc->sc_devs, gdev, sc_next);
-			} else
-				error = EINVAL;
-#else
 			if (dv == NULL)
 				error = EINVAL;
-#endif
 		} else
 			error = EINVAL;
 		mutex_enter(&sc->sc_mtx);
@@ -766,181 +696,10 @@ gpio_ioctl(struct gpio_softc *sc, u_long cmd, void *data, int flag,
 		sc->sc_pins[pin].pin_flags &= ~GPIO_PIN_SET;
 		break;
 	default:
-#ifdef COMPAT_50
-		/* Try the old API */
-		DPRINTF(("%s: trying the old API\n", device_xname(sc->sc_dev)));
-		return gpio_ioctl_oapi(sc, cmd, data, flag, cred);
-#else
-		return ENOTTY;
-#endif
-	}
-	return 0;
-}
-
-#ifdef COMPAT_50
-static int
-gpio_ioctl_oapi(struct gpio_softc *sc, u_long cmd, void *data, int flag,
-    kauth_cred_t cred)
-{
-	gpio_chipset_tag_t gc;
-	struct gpio_pin_op *op;
-	struct gpio_pin_ctl *ctl;
-	struct gpio_attach *attach;
-	struct gpio_dev *gdev;
-
-	int error, pin, value, flags;
-
-	gc = sc->sc_gc;
-
-	switch (cmd) {
-	case GPIOPINREAD:
-		op = data;
-
-		pin = op->gp_pin;
-
-		if (pin < 0 || pin >= sc->sc_npins)
-			return EINVAL;
-
-		if (!(sc->sc_pins[pin].pin_flags & GPIO_PIN_SET) &&
-		    kauth_authorize_device(cred, KAUTH_DEVICE_GPIO_PINSET,
-		    NULL, NULL, NULL, NULL))
-			return EPERM;
-
-		/* return read value */
-		op->gp_value = gpiobus_pin_read(gc, pin);
-		break;
-	case GPIOPINWRITE:
-		if ((flag & FWRITE) == 0)
-			return EBADF;
-
-		op = data;
-
-		pin = op->gp_pin;
-
-		if (pin < 0 || pin >= sc->sc_npins)
-			return EINVAL;
-
-		if (sc->sc_pins[pin].pin_mapped)
-			return EBUSY;
-
-		if (!(sc->sc_pins[pin].pin_flags & GPIO_PIN_SET) &&
-		    kauth_authorize_device(cred, KAUTH_DEVICE_GPIO_PINSET,
-		    NULL, NULL, NULL, NULL))
-			return EPERM;
-
-		value = op->gp_value;
-		if (value != GPIO_PIN_LOW && value != GPIO_PIN_HIGH)
-			return EINVAL;
-
-		gpiobus_pin_write(gc, pin, value);
-		/* return old value */
-		op->gp_value = sc->sc_pins[pin].pin_state;
-		/* update current value */
-		sc->sc_pins[pin].pin_state = value;
-		break;
-	case GPIOPINTOGGLE:
-		if ((flag & FWRITE) == 0)
-			return EBADF;
-
-		op = data;
-
-		pin = op->gp_pin;
-
-		if (pin < 0 || pin >= sc->sc_npins)
-			return EINVAL;
-
-		if (sc->sc_pins[pin].pin_mapped)
-			return EBUSY;
-
-		if (!(sc->sc_pins[pin].pin_flags & GPIO_PIN_SET) &&
-		    kauth_authorize_device(cred, KAUTH_DEVICE_GPIO_PINSET,
-		    NULL, NULL, NULL, NULL))
-			return EPERM;
-
-		value = (sc->sc_pins[pin].pin_state == GPIO_PIN_LOW ?
-		    GPIO_PIN_HIGH : GPIO_PIN_LOW);
-		gpiobus_pin_write(gc, pin, value);
-		/* return old value */
-		op->gp_value = sc->sc_pins[pin].pin_state;
-		/* update current value */
-		sc->sc_pins[pin].pin_state = value;
-		break;
-	case GPIOPINCTL:
-		ctl = data;
-
-		if (kauth_authorize_device(cred, KAUTH_DEVICE_GPIO_PINSET,
-		    NULL, NULL, NULL, NULL))
-			return EPERM;
-
-		pin = ctl->gp_pin;
-
-		if (pin < 0 || pin >= sc->sc_npins)
-			return EINVAL;
-		if (sc->sc_pins[pin].pin_mapped)
-			return EBUSY;
-		flags = ctl->gp_flags;
-
-		/* check that the controller supports all requested flags */
-		if ((flags & sc->sc_pins[pin].pin_caps) != flags)
-			return ENODEV;
-
-		ctl->gp_caps = sc->sc_pins[pin].pin_caps;
-		/* return old value */
-		ctl->gp_flags = sc->sc_pins[pin].pin_flags;
-		if (flags > 0) {
-			gpiobus_pin_ctl(gc, pin, flags);
-			/* update current value */
-			sc->sc_pins[pin].pin_flags = flags;
-		}
-		break;
-	case GPIODETACH50:
-		/* FALLTHOUGH */
-	case GPIODETACH:
-		if (kauth_authorize_device(cred, KAUTH_DEVICE_GPIO_PINSET,
-		    NULL, NULL, NULL, NULL))
-			return EPERM;
-
-		error = 0;
-		mutex_enter(&sc->sc_mtx);
-		while (sc->sc_attach_busy) {
-			error = cv_wait_sig(&sc->sc_attach, &sc->sc_mtx);
-			if (error)
-				break;
-		}
-		if (!error)
-			sc->sc_attach_busy = 1;
-		mutex_exit(&sc->sc_mtx);
-		if (error)
-			return EBUSY;
-
-		attach = data;
-		LIST_FOREACH(gdev, &sc->sc_devs, sc_next) {
-			if (strcmp(device_xname(gdev->sc_dev),
-			    attach->ga_dvname) == 0) {
-				mutex_enter(&sc->sc_mtx);
-				sc->sc_attach_busy = 0;
-				cv_signal(&sc->sc_attach);
-				mutex_exit(&sc->sc_mtx);
-
-				if (config_detach(gdev->sc_dev, 0) == 0)
-					return 0;
-				break;
-			}
-		}
-		if (gdev == NULL) {
-			mutex_enter(&sc->sc_mtx);
-			sc->sc_attach_busy = 0;
-			cv_signal(&sc->sc_attach);
-			mutex_exit(&sc->sc_mtx);
-		}
-		return EINVAL;
-
-	default:
 		return ENOTTY;
 	}
 	return 0;
 }
-#endif	/* COMPAT_50 */
 
 MODULE(MODULE_CLASS_DRIVER, gpio, NULL);
 

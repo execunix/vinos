@@ -126,14 +126,6 @@
 void delay(unsigned long);
 #define	DELAY(x)	delay(x)
 #endif
-/*
- * Compatibility /dev/zero mapping.
- */
-#ifdef _KERNEL
-#ifdef COMPAT_16
-#define	COMPAT_ZERODEV(x)	(x == makedev(0, _DEV_ZERO_oARM))
-#endif
-#endif /* _KERNEL */
 
 #elif defined(__arm__)
 

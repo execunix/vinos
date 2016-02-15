@@ -85,15 +85,6 @@ typedef struct trapframe {
 #define TRAP_USERMODE(tf)	(((tf)->tf_r15 & R15_MODE) == R15_MODE_USR)
 #endif
 
-/*
- * Signal frame.  Pushed onto user stack before calling sigcode.
- */
-#ifdef COMPAT_16
-struct sigframe_sigcontext {
-	struct	sigcontext sf_sc;
-};
-#endif
-
 /* the pointers are use in the trampoline code to locate the ucontext */
 struct sigframe_siginfo {
 	siginfo_t	sf_si;		/* actual saved siginfo */

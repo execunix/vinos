@@ -53,8 +53,6 @@
 #	Does a `make distribution', and then tars up the DESTDIR files
 #	into ${RELEASEDIR}/${RELEASEMACHINEDIR}, in release(7) format.
 #	(See etc/Makefile for more information on this.)
-#   regression-tests:
-#	Runs the regression tests in "regress" on this host.
 #   sets:
 #	Populate ${RELEASEDIR}/${RELEASEMACHINEDIR}/binary/sets
 #	from ${DESTDIR}
@@ -140,7 +138,7 @@ _SRC_TOP_OBJ_=
 _SUBDIR=	tools lib include gnu external crypto/external bin games
 _SUBDIR+=	libexec sbin usr.bin
 _SUBDIR+=	usr.sbin share sys etc compat
-_SUBDIR+=	.WAIT rescue .WAIT distrib regress
+_SUBDIR+=	.WAIT rescue .WAIT distrib
 
 .for dir in ${_SUBDIR}
 .if "${dir}" == ".WAIT" \
@@ -148,12 +146,6 @@ _SUBDIR+=	.WAIT rescue .WAIT distrib regress
 SUBDIR+=	${dir}
 .endif
 .endfor
-
-.if exists(regress)
-regression-tests: .PHONY .MAKE
-	@echo Running regression tests...
-	${MAKEDIRTARGET} regress regress
-.endif
 
 .if ${MKUNPRIVED} != "no"
 NOPOSTINSTALL=	# defined
@@ -513,11 +505,11 @@ do-obsolete: .PHONY .MAKE
 # (Tells <bsd.subdir.mk> not to recurse for them.)
 #
 
-.for dir in bin etc distrib games libexec regress sbin usr.bin usr.sbin tools
+.for dir in bin etc distrib games libexec sbin usr.bin usr.sbin tools
 includes-${dir}: .PHONY
 	@true
 .endfor
-.for dir in etc distrib regress
+.for dir in etc distrib
 install-${dir}: .PHONY
 	@true
 .endfor

@@ -90,24 +90,6 @@ __KERNEL_RCSID(0, "$NetBSD: rtsock.c,v 1.163 2014/08/09 05:33:01 rtr Exp $");
 
 #include <netmpls/mpls.h>
 
-#if defined(COMPAT_14) || defined(COMPAT_50)
-#include <compat/net/if.h>
-#include <compat/net/route.h>
-#endif
-#ifdef COMPAT_RTSOCK
-#define	RTM_XVERSION	RTM_OVERSION
-#define	RT_XADVANCE(a,b) RT_OADVANCE(a,b)
-#define	RT_XROUNDUP(n)	RT_OROUNDUP(n)
-#define	PF_XROUTE	PF_OROUTE
-#define	rt_xmsghdr	rt_msghdr50
-#define	if_xmsghdr	if_msghdr	/* if_msghdr50 is for RTM_OIFINFO */
-#define	ifa_xmsghdr	ifa_msghdr50
-#define	if_xannouncemsghdr	if_announcemsghdr50
-#define	COMPATNAME(x)	compat_50_ ## x
-#define	DOMAINNAME	"oroute"
-CTASSERT(sizeof(struct ifa_xmsghdr) == 20);
-DOMAIN_DEFINE(compat_50_routedomain); /* forward declare and add to link set */
-#else
 #define	RTM_XVERSION	RTM_VERSION
 #define	RT_XADVANCE(a,b) RT_ADVANCE(a,b)
 #define	RT_XROUNDUP(n)	RT_ROUNDUP(n)
@@ -119,13 +101,7 @@ DOMAIN_DEFINE(compat_50_routedomain); /* forward declare and add to link set */
 #define	COMPATNAME(x)	x
 #define	DOMAINNAME	"route"
 CTASSERT(sizeof(struct ifa_xmsghdr) == 24);
-#ifdef COMPAT_50
-#define	COMPATCALL(name, args)	compat_50_ ## name args
-#endif
 DOMAIN_DEFINE(routedomain); /* forward declare and add to link set */
-#undef COMPAT_50
-#undef COMPAT_14
-#endif
 
 #ifndef COMPATCALL
 #define	COMPATCALL(name, args)	do { } while (/*CONSTCOND*/ 0)
@@ -808,12 +784,10 @@ rt_xaddrs(u_char rtmtype, const char *cp, const char *cplim,
 static int
 rt_getlen(int type)
 {
-#ifndef COMPAT_RTSOCK
 	CTASSERT(__alignof(struct ifa_msghdr) >= sizeof(uint64_t));
 	CTASSERT(__alignof(struct if_msghdr) >= sizeof(uint64_t));
 	CTASSERT(__alignof(struct if_announcemsghdr) >= sizeof(uint64_t));
 	CTASSERT(__alignof(struct rt_msghdr) >= sizeof(uint64_t));
-#endif
 
 	switch (type) {
 	case RTM_DELADDR:
@@ -822,23 +796,15 @@ rt_getlen(int type)
 		return sizeof(struct ifa_xmsghdr);
 
 	case RTM_OOIFINFO:
-#ifdef COMPAT_14
-		return sizeof(struct if_msghdr14);
-#else
 #ifdef DIAGNOSTIC
 		printf("RTM_OOIFINFO\n");
 #endif
 		return -1;
-#endif
 	case RTM_OIFINFO:
-#ifdef COMPAT_50
-		return sizeof(struct if_msghdr50);
-#else
 #ifdef DIAGNOSTIC
 		printf("RTM_OIFINFO\n");
 #endif
 		return -1;
-#endif
 
 	case RTM_IFINFO:
 		return sizeof(struct if_xmsghdr);
@@ -1048,12 +1014,6 @@ COMPATNAME(rt_ifmsg)(struct ifnet *ifp)
 	if (m == NULL)
 		return;
 	COMPATNAME(route_enqueue)(m, 0);
-#ifdef COMPAT_14
-	compat_14_rt_oifmsg(ifp);
-#endif
-#ifdef COMPAT_50
-	compat_50_rt_oifmsg(ifp);
-#endif
 }
 
 
@@ -1295,16 +1255,6 @@ sysctl_iflist(int af, struct rt_walkarg *w, int type)
 		case NET_RT_IFLIST:
 			error = rt_msg2(RTM_IFINFO, &info, NULL, w, &len);
 			break;
-#ifdef COMPAT_14
-		case NET_RT_OOIFLIST:
-			error = rt_msg2(RTM_OOIFINFO, &info, NULL, w, &len);
-			break;
-#endif
-#ifdef COMPAT_50
-		case NET_RT_OIFLIST:
-			error = rt_msg2(RTM_OIFINFO, &info, NULL, w, &len);
-			break;
-#endif
 		default:
 			panic("sysctl_iflist(1)");
 		}
@@ -1328,20 +1278,6 @@ sysctl_iflist(int af, struct rt_walkarg *w, int type)
 				break;
 			}
 
-#ifdef COMPAT_14
-			case NET_RT_OOIFLIST:
-				error = compat_14_iflist(ifp, w, &info, len);
-				if (error)
-					return error;
-				break;
-#endif
-#ifdef COMPAT_50
-			case NET_RT_OIFLIST:
-				error = compat_50_iflist(ifp, w, &info, len);
-				if (error)
-					return error;
-				break;
-#endif
 			default:
 				panic("sysctl_iflist(2)");
 			}
@@ -1419,16 +1355,6 @@ again:
 				break;
 		break;
 
-#ifdef COMPAT_14
-	case NET_RT_OOIFLIST:
-		error = sysctl_iflist(af, &w, w.w_op);
-		break;
-#endif
-#ifdef COMPAT_50
-	case NET_RT_OIFLIST:
-		error = sysctl_iflist(af, &w, w.w_op);
-		break;
-#endif
 	case NET_RT_IFLIST:
 		error = sysctl_iflist(af, &w, w.w_op);
 		break;
@@ -1506,9 +1432,7 @@ COMPATNAME(route_init)(void)
 {
 	struct route_info * const ri = &COMPATNAME(route_info);
 
-#ifndef COMPAT_RTSOCK
 	rt_init();
-#endif
 
 	sysctl_net_route_setup(NULL);
 	ri->ri_intrq.ifq_maxlen = ri->ri_maxqlen;
@@ -1519,11 +1443,7 @@ COMPATNAME(route_init)(void)
 /*
  * Definitions of protocols supported in the ROUTE domain.
  */
-#ifndef COMPAT_RTSOCK
 PR_WRAP_USRREQS(route);
-#else
-PR_WRAP_USRREQS(compat_50_route);
-#endif
 
 static const struct pr_usrreqs route_usrreqs = {
 	.pr_attach	= COMPATNAME(route_attach_wrapper),

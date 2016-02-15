@@ -1078,10 +1078,10 @@ sppp_ioctl(struct ifnet *ifp, u_long cmd, void *data)
 	case SPPPSETAUTHFAILURE:
 	case SPPPSETDNSOPTS:
 	case SPPPSETKEEPALIVE:
-#if defined(COMPAT_50) || defined(MODULAR)
+#if defined(MODULAR)
 	case __SPPPSETIDLETO50:
 	case __SPPPSETKEEPALIVE50:
-#endif /* COMPAT_50 || MODULAR */
+#endif /* MODULAR */
 		error = kauth_authorize_network(l->l_cred,
 		    KAUTH_NETWORK_INTERFACE,
 		    KAUTH_REQ_NETWORK_INTERFACE_SETPRIV, ifp, (void *)cmd,
@@ -1109,10 +1109,10 @@ sppp_ioctl(struct ifnet *ifp, u_long cmd, void *data)
 	case SPPPGETDNSOPTS:
 	case SPPPGETDNSADDRS:
 	case SPPPGETKEEPALIVE:
-#if defined(COMPAT_50) || defined(MODULAR)
+#if defined(MODULAR)
 	case __SPPPGETIDLETO50:
 	case __SPPPGETKEEPALIVE50:
-#endif /* COMPAT_50 || MODULAR */
+#endif /* MODULAR */
 		error = sppp_params(sp, cmd, data);
 		break;
 
@@ -5311,7 +5311,7 @@ sppp_params(struct sppp *sp, u_long cmd, void *data)
 		sp->pp_max_noreceive = settings->max_noreceive;
 	    }
 	    break;
-#if defined(COMPAT_50) || defined(MODULAR)
+#if defined(MODULAR)
 	case __SPPPGETIDLETO50:
 	    {
 	    	struct spppidletimeout50 *to = (struct spppidletimeout50 *)data;
@@ -5340,7 +5340,7 @@ sppp_params(struct sppp *sp, u_long cmd, void *data)
 		sp->pp_max_noreceive = (time_t)settings->max_noreceive;
 	    }
 	    break;
-#endif /* COMPAT_50 || MODULAR */
+#endif /* MODULAR */
 	default:
 		return (EINVAL);
 	}

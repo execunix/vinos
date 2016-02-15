@@ -183,13 +183,4 @@
 #define	NMBCLUSTERS_MAX	(0x2000000 / MCLBYTES)	/* Limit to 64MB for clusters */
 #endif
 
-/*
- * Compatibility /dev/zero mapping.
- */
-#ifdef _KERNEL
-#ifdef COMPAT_16
-#define	COMPAT_ZERODEV(x)	(x == makedev(0, _DEV_ZERO_oARM))
-#endif
-#endif /* _KERNEL */
-
 #endif /* _ARM_PARAM_H_ */

@@ -54,10 +54,6 @@ __KERNEL_RCSID(0, "$NetBSD: tty_ptm.c,v 1.33 2014/07/25 08:10:40 dholland Exp $"
 
 #include <miscfs/specfs/specdev.h>
 
-#ifdef COMPAT_60
-#include <compat/sys/ttycom.h>
-#endif /* COMPAT_60 */
-
 #ifdef DEBUG_PTM
 #define DPRINTF(a)	printf a
 #else
@@ -418,11 +414,6 @@ ptmioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 			goto bad2;
 		return 0;
 	default:
-#ifdef COMPAT_60
-		error = compat_60_ptmioctl(dev, cmd, data, flag, l);
-		if (error != EPASSTHROUGH)
-			return error;
-#endif /* COMPAT_60 */
 		DPRINTF(("ptmioctl EINVAL\n"));
 		return EINVAL;
 	}

@@ -285,12 +285,6 @@ cpuctl_ioctl(dev_t dev, u_long cmd, void *data, int flag, lwp_t *l)
 		error = cpu_ucode_get_version((struct cpu_ucode_version *)data);
 		break;
 
-#ifdef COMPAT_60
-	case OIOC_CPU_UCODE_GET_VERSION:
-		error = compat6_cpu_ucode_get_version((struct compat6_cpu_ucode *)data);
-		break;
-#endif
-
 	case IOC_CPU_UCODE_APPLY:
 		error = kauth_authorize_machdep(l->l_cred,
 		    KAUTH_MACHDEP_CPU_UCODE_APPLY,
@@ -299,17 +293,6 @@ cpuctl_ioctl(dev_t dev, u_long cmd, void *data, int flag, lwp_t *l)
 			break;
 		error = cpu_ucode_apply((const struct cpu_ucode *)data);
 		break;
-
-#ifdef COMPAT_60
-	case OIOC_CPU_UCODE_APPLY:
-		error = kauth_authorize_machdep(l->l_cred,
-		    KAUTH_MACHDEP_CPU_UCODE_APPLY,
-		    NULL, NULL, NULL, NULL);
-		if (error != 0)
-			break;
-		error = compat6_cpu_ucode_apply((const struct compat6_cpu_ucode *)data);
-		break;
-#endif
 #endif
 
 	default:

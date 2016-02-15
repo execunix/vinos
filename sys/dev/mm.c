@@ -305,9 +305,6 @@ mm_readwrite(dev_t dev, struct uio *uio, int flags)
 	case DEV_KMEM:
 	case DEV_NULL:
 	case DEV_ZERO:
-#if defined(COMPAT_16) && defined(__arm)
-	case _DEV_ZERO_oARM:
-#endif
 		break;
 	default:
 		return mm_md_readwrite(dev, uio);
@@ -337,9 +334,6 @@ mm_readwrite(dev_t dev, struct uio *uio, int flags)
 			}
 			/* Break directly out of the loop. */
 			return 0;
-#if defined(COMPAT_16) && defined(__arm)
-		case _DEV_ZERO_oARM:
-#endif
 		case DEV_ZERO:
 			error = dev_zero_readwrite(uio, iov);
 			break;
@@ -365,9 +359,6 @@ mm_mmap(dev_t dev, off_t off, int acc)
 	case DEV_MEM:
 	case DEV_KMEM:
 	case DEV_NULL:
-#if defined(COMPAT_16) && defined(__arm)
-	case _DEV_ZERO_oARM:
-#endif
 	case DEV_ZERO:
 		break;
 	default:

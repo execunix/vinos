@@ -70,10 +70,7 @@
 __KERNEL_RCSID(0, "$NetBSD: machdep.c,v 1.752 2014/02/23 22:36:43 dsl Exp $");
 
 #include "opt_beep.h"
-#include "opt_compat_ibcs2.h"
-#include "opt_compat_freebsd.h"
 #include "opt_compat_netbsd.h"
-#include "opt_compat_svr4.h"
 #include "opt_cpureset_delay.h"
 #include "opt_ddb.h"
 #include "opt_ipkdb.h"
@@ -1708,8 +1705,6 @@ mm_md_open(dev_t dev, int flag, int mode, struct lwp *l)
 	case DEV_IO:
 		/*
 		 * This is done by i386_iopl(3) now.
-		 *
-		 * #if defined(COMPAT_10) || defined(COMPAT_FREEBSD)
 		 */
 		if (flag & FWRITE) {
 			struct trapframe *fp;

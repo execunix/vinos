@@ -47,15 +47,5 @@
 	"PT_SETFPREGS",
 
 #ifdef _KERNEL_OPT
-#include "opt_compat_netbsd32.h"
 
-#ifdef COMPAT_NETBSD32
-#include <machine/netbsd32_machdep.h>
-
-#define process_read_regs32	netbsd32_process_read_regs
-#define process_read_fpregs32	netbsd32_process_read_fpregs
-
-#define process_reg32		struct reg32
-#define process_fpreg32		struct fpreg32
-#endif
 #endif

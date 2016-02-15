@@ -204,22 +204,6 @@ struct ccd_softc {
 #define CCDIOCSET	_IOWR('F', 16, struct ccd_ioctl)   /* enable ccd */
 #define CCDIOCCLR	_IOW('F', 17, struct ccd_ioctl)    /* disable ccd */
 
-#if defined(COMPAT_60) && !defined(_LP64)
-/*
- * Old version with incorrect ccio_size
- */
-struct ccd_ioctl_60 {
-	char	**ccio_disks;		/* pointer to component paths */
-	u_int	ccio_ndisks;		/* number of disks to concatenate */
-	int	ccio_ileave;		/* interleave (DEV_BSIZE blocks) */
-	int	ccio_flags;		/* see sc_flags below */
-	int	ccio_unit;		/* unit number: use varies */
-	size_t	ccio_size;		/* (returned) size of ccd */
-};
-
-#define CCDIOCSET_60	_IOWR('F', 16, struct ccd_ioctl_60)   /* enable ccd */
-#define CCDIOCCLR_60	_IOW('F', 17, struct ccd_ioctl_60)   /* disable ccd */
-#endif /* COMPAT_60 && !LP64*/
 /*
  * Sysctl information
  */

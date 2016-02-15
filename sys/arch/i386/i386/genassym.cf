@@ -64,9 +64,6 @@
 #
 
 if defined(_KERNEL_OPT)
-include "opt_compat_svr4.h"
-include "opt_compat_freebsd.h"
-include "opt_compat_linux.h"
 include "opt_compat_netbsd.h"
 include	"opt_xen.h"
 endif
@@ -107,19 +104,6 @@ include "ioapic.h"
 endif
 
 include <compat/sys/signal.h>
-
-ifdef COMPAT_SVR4
-include <compat/svr4/svr4_ucontext.h>
-endif
-
-ifdef COMPAT_LINUX
-include <compat/linux/common/linux_signal.h>
-include <compat/linux/common/linux_machdep.h>
-endif
-
-ifdef COMPAT_FREEBSD
-include <machine/freebsd_machdep.h>
-endif
 
 if NIOAPIC > 0
 include <machine/i82093reg.h>
@@ -229,23 +213,6 @@ define	TF_EAX			offsetof(struct trapframe, tf_eax)
 define	TF_PUSHSIZE		offsetof(struct trapframe, tf_trapno)
 
 define	FRAMESIZE		sizeof(struct trapframe)
-
-ifdef COMPAT_SVR4
-define	SVR4_SIGF_HANDLER	offsetof(struct svr4_sigframe, sf_handler)
-define	SVR4_SIGF_UC		offsetof(struct svr4_sigframe, sf_uc)
-endif
-
-ifdef COMPAT_LINUX
-define	LINUX_SIGF_HANDLER	offsetof(struct linux_sigframe, sf_handler)
-define	LINUX_SIGF_SC		offsetof(struct linux_sigframe, sf_sc)
-define	LINUX_RT_SIGF_HANDLER	offsetof(struct linux_rt_sigframe, sf_handler)
-define	LINUX_RT_SIGF_UC	offsetof(struct linux_rt_sigframe, sf_uc)
-endif
-
-ifdef COMPAT_FREEBSD
-define	FREEBSD_SIGF_HANDLER	offsetof(struct freebsd_sigframe, sf_handler)
-define	FREEBSD_SIGF_SC		offsetof(struct freebsd_sigframe, sf_sc)
-endif
 
 define	IH_FUN			offsetof(struct intrhand, ih_fun)
 define	IH_ARG			offsetof(struct intrhand, ih_arg)

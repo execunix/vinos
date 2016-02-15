@@ -63,22 +63,6 @@ cpu_ucode_get_version(struct cpu_ucode_version *data)
 	return 0;
 }
 
-#ifdef COMPAT_60
-int
-compat6_cpu_ucode_get_version(struct compat6_cpu_ucode *data)
-{
-
-	switch (cpu_vendor) {
-	case CPUVENDOR_AMD:
-		return compat6_cpu_ucode_amd_get_version(data);
-	default:
-		return EOPNOTSUPP;
-	}
-
-	return 0;
-}
-#endif /* COMPAT60 */
-
 int
 cpu_ucode_md_open(firmware_handle_t *fwh, int loader_version, const char *fwname)
 {
@@ -121,28 +105,3 @@ cpu_ucode_apply(const struct cpu_ucode *data)
 	sc->sc_blobsize = 0;
 	return error;
 }
-
-#ifdef COMPAT_60
-int
-compat6_cpu_ucode_apply(const struct compat6_cpu_ucode *data)
-{
-	struct cpu_ucode_softc *sc = &ucode_softc;
-	int error;
-
-	if (cpu_vendor != CPUVENDOR_AMD)
-		return EOPNOTSUPP;
-
-	sc->loader_version = CPU_UCODE_LOADER_AMD;
-	error = cpu_ucode_load(sc, data->fwname);
-	if (error)
-		return error;
-
-	error = cpu_ucode_amd_apply(sc, CPU_UCODE_ALL_CPUS);
-
-	if (sc->sc_blob != NULL)
-		firmware_free(sc->sc_blob, 0);
-	sc->sc_blob = NULL;
-	sc->sc_blobsize = 0;
-	return error;
-}
-#endif /* COMPAT60 */

@@ -55,7 +55,7 @@ __KERNEL_RCSID(0, "$NetBSD: if_tap.c,v 1.77 2014/07/25 08:10:40 dholland Exp $")
 #include <sys/proc.h>
 #include <sys/select.h>
 #include <sys/sockio.h>
-#if defined(COMPAT_40) || defined(MODULAR)
+#if defined(MODULAR)
 #include <sys/sysctl.h>
 #endif
 #include <sys/kauth.h>
@@ -72,7 +72,7 @@ __KERNEL_RCSID(0, "$NetBSD: if_tap.c,v 1.77 2014/07/25 08:10:40 dholland Exp $")
 
 #include <compat/sys/sockio.h>
 
-#if defined(COMPAT_40) || defined(MODULAR)
+#if defined(MODULAR)
 /*
  * sysctl node management
  *
@@ -213,7 +213,7 @@ static int	tap_init(struct ifnet *);
 static int	tap_ioctl(struct ifnet *, u_long, void *);
 
 /* Internal functions */
-#if defined(COMPAT_40) || defined(MODULAR)
+#if defined(MODULAR)
 static int	tap_lifaddr(struct ifnet *, u_long, struct ifaliasreq *);
 #endif
 static void	tap_softintr(void *);
@@ -264,7 +264,7 @@ tap_attach(device_t parent, device_t self, void *aux)
 {
 	struct tap_softc *sc = device_private(self);
 	struct ifnet *ifp;
-#if defined(COMPAT_40) || defined(MODULAR)
+#if defined(MODULAR)
 	const struct sysctlnode *node;
 	int error;
 #endif
@@ -330,7 +330,7 @@ tap_attach(device_t parent, device_t self, void *aux)
 
 	sc->sc_flags = 0;
 
-#if defined(COMPAT_40) || defined(MODULAR)
+#if defined(MODULAR)
 	/*
 	 * Add a sysctl node for that interface.
 	 *
@@ -384,7 +384,7 @@ tap_detach(device_t self, int flags)
 {
 	struct tap_softc *sc = device_private(self);
 	struct ifnet *ifp = &sc->sc_ec.ec_if;
-#if defined(COMPAT_40) || defined(MODULAR)
+#if defined(MODULAR)
 	int error;
 #endif
 	int s;
@@ -400,7 +400,7 @@ tap_detach(device_t self, int flags)
 		sc->sc_sih = NULL;
 	}
 
-#if defined(COMPAT_40) || defined(MODULAR)
+#if defined(MODULAR)
 	/*
 	 * Destroying a single leaf is a very straightforward operation using
 	 * sysctl_destroyv.  One should be sure to always end the path with
@@ -546,7 +546,7 @@ tap_ioctl(struct ifnet *ifp, u_long cmd, void *data)
 	case SIOCGIFMEDIA:
 		error = ifmedia_ioctl(ifp, ifr, &sc->sc_im, cmd);
 		break;
-#if defined(COMPAT_40) || defined(MODULAR)
+#if defined(MODULAR)
 	case SIOCSIFPHYADDR:
 		error = tap_lifaddr(ifp, cmd, (struct ifaliasreq *)data);
 		break;
@@ -563,7 +563,7 @@ tap_ioctl(struct ifnet *ifp, u_long cmd, void *data)
 	return (error);
 }
 
-#if defined(COMPAT_40) || defined(MODULAR)
+#if defined(MODULAR)
 /*
  * Helper function to set Ethernet address.  This has been replaced by
  * the generic SIOCALIFADDR ioctl on a PF_LINK socket.
@@ -1279,7 +1279,7 @@ tap_kqread(struct knote *kn, long hint)
 	return rv;
 }
 
-#if defined(COMPAT_40) || defined(MODULAR)
+#if defined(MODULAR)
 /*
  * sysctl management routines
  * You can set the address of an interface through:

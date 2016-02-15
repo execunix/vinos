@@ -29,7 +29,6 @@
 #include <sys/cdefs.h>
 __KERNEL_RCSID(0, "$NetBSD: wsdisplay_compat_usl.c,v 1.48 2013/02/19 15:21:08 macallan Exp $");
 
-#include "opt_compat_freebsd.h"
 #include "opt_compat_netbsd.h"
 
 #include <sys/param.h>
@@ -419,23 +418,8 @@ wsdisplay_usl_ioctl2(struct wsdisplay_softc *sc, struct wsscreen *scr,
 #undef d
 
 	    case KDENABIO:
-#if defined(__i386__) && (defined(COMPAT_11) || defined(COMPAT_FREEBSD))
-		if (kauth_authorize_machdep(l->l_cred, KAUTH_MACHDEP_IOPL,
-		    NULL, NULL, NULL, NULL) != 0)
-			return (EPERM);
-#endif
 		/* FALLTHRU */
 	    case KDDISABIO:
-#if defined(__i386__) && (defined(COMPAT_11) || defined(COMPAT_FREEBSD))
-		{
-			/* XXX NJWLWP */
-		struct trapframe *fp = (struct trapframe *)curlwp->l_md.md_regs;
-		if (cmd == KDENABIO)
-			fp->tf_eflags |= PSL_IOPL;
-		else
-			fp->tf_eflags &= ~PSL_IOPL;
-		}
-#endif
 		return (0);
 	    case KDSETRAD:
 		/* XXX ignore for now */

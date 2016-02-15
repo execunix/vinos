@@ -1635,18 +1635,9 @@ do_sys_openat(lwp_t *l, int fdat, const char *path, int flags,
 	struct pathbuf *pb;
 	int error;
 
-#ifdef COMPAT_10	/* XXX: and perhaps later */
-	if (path == NULL) {
-		pb = pathbuf_create(".");
-		if (pb == NULL)
-			return ENOMEM;
-	} else
-#endif
-	{
-		error = pathbuf_copyin(path, &pb);
-		if (error)
-			return error;
-	}
+	error = pathbuf_copyin(path, &pb);
+	if (error)
+		return error;
 
 	if (fdat != AT_FDCWD) {
 		/* fd_getvnode() will use the descriptor for us */
