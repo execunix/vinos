@@ -35,7 +35,6 @@
 
 #if defined(_KERNEL_OPT)
 #include "opt_compat_netbsd.h"
-#include "opt_compat_netbsd32.h"
 #endif
 
 #include <sys/types.h>

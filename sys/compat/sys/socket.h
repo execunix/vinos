@@ -36,14 +36,11 @@
 
 #ifdef _KERNEL_OPT
 
-#include "opt_compat_linux.h"
-#include "opt_compat_svr4.h"
-#include "opt_compat_ultrix.h"
 #include "opt_compat_43.h"
 #include "opt_modular.h"
 
-#if defined(COMPAT_43) || defined(COMPAT_LINUX) || defined(COMPAT_SVR4) || \
-    defined(COMPAT_ULTRIX) || defined(MODULAR)
+#if defined(COMPAT_43) || \
+    defined(MODULAR)
 #define COMPAT_OSOCK
 #endif
 

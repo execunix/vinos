@@ -49,7 +49,6 @@ typedef int sig_atomic_t;
 
 #ifdef _KERNEL_OPT
 #include "opt_compat_netbsd.h"
-#include "opt_compat_netbsd32.h"
 #endif
 
 #endif	/* _NETBSD_SOURCE */

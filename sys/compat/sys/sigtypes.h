@@ -40,7 +40,6 @@
 #define	_COMPAT_SYS_SIGTYPES_H_
 
 #if defined(_KERNEL_OPT)
-#include "opt_compat_netbsd32.h"
 #endif
 
 #if defined(_POSIX_C_SOURCE) || defined(_XOPEN_SOURCE) || \

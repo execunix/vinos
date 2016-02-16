@@ -68,7 +68,6 @@ __KERNEL_RCSID(0, "$NetBSD: kern_proc.c,v 1.193 2014/07/12 09:57:25 njoly Exp $"
 #include "opt_kstack.h"
 #include "opt_maxuprc.h"
 #include "opt_dtrace.h"
-#include "opt_compat_netbsd32.h"
 #endif
 
 #include <sys/param.h>

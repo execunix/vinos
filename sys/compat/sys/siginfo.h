@@ -33,7 +33,6 @@
 #define	_COMPAT_SYS_SIGINFO_H_
 
 #if defined(_KERNEL_OPT)
-#include "opt_compat_netbsd32.h"
 #endif
 
 #if defined(COMPAT_NETBSD32) && defined(_KERNEL)

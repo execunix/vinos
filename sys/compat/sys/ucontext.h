@@ -33,7 +33,6 @@
 #define _COMPAT_SYS_UCONTEXT_H_
 
 #if defined(_KERNEL_OPT)
-#include "opt_compat_netbsd32.h"
 #endif
 
 #include <compat/sys/sigtypes.h>

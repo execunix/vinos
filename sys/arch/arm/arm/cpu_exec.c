@@ -33,7 +33,6 @@
 __KERNEL_RCSID(0, "$NetBSD: cpu_exec.c,v 1.9 2014/02/20 15:45:20 matt Exp $");
 
 #include "opt_compat_netbsd.h"
-#include "opt_compat_netbsd32.h"
 
 #include <sys/param.h>
 #include <sys/systm.h>

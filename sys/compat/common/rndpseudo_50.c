@@ -34,7 +34,6 @@ __KERNEL_RCSID(0, "$NetBSD: rndpseudo_50.c,v 1.2 2012/08/03 07:51:21 matt Exp $"
 
 #if defined(_KERNEL_OPT)
 #include "opt_compat_netbsd.h"
-#include "opt_compat_netbsd32.h"
 #endif
 
 #include <sys/param.h>

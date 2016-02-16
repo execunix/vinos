@@ -6,6 +6,7 @@ file	miscfs/procfs/procfs_cmdline.c	procfs
 file	miscfs/procfs/procfs_ctl.c	procfs
 file	miscfs/procfs/procfs_fd.c	procfs
 file	miscfs/procfs/procfs_fpregs.c	procfs
+file	miscfs/procfs/procfs_linux.c	procfs
 file	miscfs/procfs/procfs_map.c	procfs
 file	miscfs/procfs/procfs_mem.c	procfs
 file	miscfs/procfs/procfs_note.c	procfs

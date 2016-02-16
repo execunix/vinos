@@ -37,7 +37,6 @@ int	ofisa_get_isabus_data(int, struct isabus_attach_args *);
 int	ofisa_ignore_child(int pphandle, int cphandle);
 
 #if defined(_KERNEL_OPT)
-#include "opt_compat_old_ofw.h"
 #endif
 
 #ifdef COMPAT_OLD_OFW
