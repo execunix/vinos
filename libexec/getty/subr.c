@@ -41,7 +41,7 @@ __RCSID("$NetBSD: subr.c,v 1.35 2013/08/11 16:36:30 dholland Exp $");
 /*
  * Melbourne getty.
  */
-#define COMPAT_43
+//#define COMPAT_43
 #include <sys/param.h>
 #include <sys/ioctl.h>
 

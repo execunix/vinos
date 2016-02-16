@@ -11,10 +11,6 @@ CPPFLAGS=	${COMPATCPPFLAGS} ${SKIP_AUTODEP::=}
 # Common compatibility code, used by all emulations
 SRCS=	compat_exec.c compat_util.c
 
-# Compatibility code for 4.3BSD
-SRCS+=	kern_exit_43.c kern_info_43.c kern_resource_43.c kern_sig_43.c \
-	tty_43.c uipc_syscalls_43.c vfs_syscalls_43.c vm_43.c if_43.c
-
 # only needed during build
 libinstall::
 

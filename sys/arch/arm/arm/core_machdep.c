@@ -41,6 +41,7 @@ __KERNEL_RCSID(0, "$NetBSD: core_machdep.c,v 1.7 2014/02/25 21:29:12 matt Exp $"
 
 #ifdef _KERNEL_OPT
 #include "opt_execfmt.h"
+#include "opt_compat_netbsd32.h"
 #else
 #define EXEC_ELF32 1
 #endif
@@ -59,6 +60,9 @@ __KERNEL_RCSID(0, "$NetBSD: core_machdep.c,v 1.7 2014/02/25 21:29:12 matt Exp $"
 
 #ifdef EXEC_ELF32
 #include <sys/exec_elf.h>
+#ifdef COMPAT_NETBSD32
+#include <compat/netbsd32/netbsd32_exec.h>
+#endif
 #endif
 
 #include <machine/reg.h>
@@ -113,17 +117,21 @@ cpu_coredump(struct lwp *l, struct coredump_iostate *iocookie,
 void
 arm_netbsd_elf32_coredump_setup(struct lwp *l, void *arg)
 {
-#if defined(__ARMEB__) || defined(__ARM_EABI__)
+#if defined(__ARMEB__) || defined(__ARM_EABI__) || defined(COMPAT_NETBSD32)
 	Elf_Ehdr * const eh = arg;
-#if defined(__ARM_EABI__)
+#if defined(__ARM_EABI__) || defined(COMPAT_NETBSD32)
 	struct proc * const p = l->l_proc;
 
 #ifdef __ARM_EABI__
 	if (p->p_emul == &emul_netbsd) {
 		eh->e_flags |= EF_ARM_EABI_VER5;
 	}
+#elif defined(COMPAT_NETBSD32)
+	if (p->p_emul == &emul_netbsd32) {
+		eh->e_flags |= EF_ARM_EABI_VER5;
+	}
 #endif
-#endif /* __ARM_EABI__ */
+#endif /* __ARM_EABI__ || COMPAT_NETBSD32 */
 #ifdef __ARMEB__
         if (CPU_IS_ARMV7_P()
 	    || (CPU_IS_ARMV6_P()

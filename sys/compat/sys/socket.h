@@ -36,11 +36,9 @@
 
 #ifdef _KERNEL_OPT
 
-#include "opt_compat_43.h"
 #include "opt_modular.h"
 
-#if defined(COMPAT_43) || \
-    defined(MODULAR)
+#if defined(MODULAR)
 #define COMPAT_OSOCK
 #endif
 

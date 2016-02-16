@@ -58,7 +58,6 @@ options 	PIPE_SOCKETPAIR	# smaller, but slower pipe(2)
 #makeoptions	DEBUG="-g"	# compile full symbol table
 
 # Compatibility options
-options 	COMPAT_43	# 4.3BSD, 386BSD, and BSDI
 
 # File systems
 file-system	FFS		# UFS

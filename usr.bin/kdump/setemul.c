@@ -81,9 +81,11 @@ __RCSID("$NetBSD: setemul.c,v 1.29 2011/04/26 16:57:42 joerg Exp $");
 
 #include <sys/syscall.h>
 
+#include "../../sys/compat/netbsd32/netbsd32_syscall.h"
 #define KTRACE
 #include "../../sys/kern/syscalls.c"
 
+#include "../../sys/compat/netbsd32/netbsd32_syscalls.c"
 #undef KTRACE
 
 #define NELEM(a) (sizeof(a) / sizeof(a[0]))
@@ -93,6 +95,10 @@ const struct emulation emulations[] = {
 	{ "netbsd",	syscallnames,		SYS_MAXSYSCALL,
 	  NULL,				0,
 	  NULL,				0,	0 },
+
+	{ "netbsd32",	netbsd32_syscallnames,	SYS_MAXSYSCALL,
+	  NULL,				0,
+	  NULL,				0,	EMUL_FLAG_NETBSD32 },
 
 	{ NULL,		NULL,			0,
 	  NULL,				0,

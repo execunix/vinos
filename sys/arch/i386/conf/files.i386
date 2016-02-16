@@ -327,9 +327,6 @@ include "dev/apm/files.apm"
 # VM86 mode
 file	arch/i386/i386/vm86.c			vm86
 
-# NDIS compatibilty (COMPAT_NDIS)
-include "compat/ndis/files.ndis"
-
 #
 # CARDBUS
 #

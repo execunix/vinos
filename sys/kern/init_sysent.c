@@ -21,11 +21,7 @@ __KERNEL_RCSID(0, "$NetBSD: init_sysent.c,v 1.287.2.1 2015/02/24 10:52:43 martin
 #include <sys/sched.h>
 #include <sys/syscallargs.h>
 
-#ifdef COMPAT_43
-#define	compat_43(func) __CONCAT(compat_43_,func)
-#else
 #define	compat_43(func) sys_nosys
-#endif
 
 #define	compat_09(func) sys_nosys
 

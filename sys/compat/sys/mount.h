@@ -35,7 +35,6 @@
 #define _COMPAT_SYS_MOUNT_H_
 
 #ifdef _KERNEL_OPT
-#include "opt_compat_43.h"
 #endif
 
 #define MFSNAMELEN	16

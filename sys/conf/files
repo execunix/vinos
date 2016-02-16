@@ -123,7 +123,7 @@ defflag opt_rnd_printf.h	RND_PRINTF
 # compatibility options
 #
 defflag opt_compat_netbsd.h	COMPAT_NETBSD
-defflag				COMPAT_43
+defflag				COMPAT_NETBSD32
 
 #
 # Cryptography support.  Include this early, since several things

@@ -128,7 +128,7 @@ options 	SYSCALL_TIMES_HASCOUNTER	# use 'broken' rdtsc (soekris)
 options 	KDTRACE_HOOKS	# kernel DTrace hooks
 
 # Compatibility options
-options 	COMPAT_43	# 4.3BSD, 386BSD, and BSDI
+options 	COMPAT_BSDPTY	# /dev/[pt]ty?? ptys.
 
 # Wedge support
 options 	DKWEDGE_AUTODISCOVER	# Automatically add dk(4) instances

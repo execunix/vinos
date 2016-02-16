@@ -2,12 +2,14 @@
 #	from: @(#)Makefile	8.1 (Berkeley) 6/5/93
 
 MAN=	MAKEDEV.8 MAKEDEV.local.8 afterboot.8 boot.8 \
+	compat_netbsd32.8 \
 	diskless.8 hpcboot.8 \
 	intro.8 nis.8 pam.8 rc.8 rc.subr.8 rescue.8 \
 	sysinst.8 veriexec.8 \
 	wizd.8
 MLINKS+=MAKEDEV.8 makedev.8
 MLINKS+=MAKEDEV.local.8 makedev.local.8
+MLINKS+=compat_netbsd32.8 netbsd32.8
 MLINKS+=nis.8 yp.8
 MLINKS+=rc.8 rc.d.8
 MLINKS+=rc.8 rc.local.8

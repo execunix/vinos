@@ -71,7 +71,6 @@ __KERNEL_RCSID(0, "$NetBSD: vfs_subr.c,v 1.444 2014/05/24 16:34:04 christos Exp 
 
 #include "opt_ddb.h"
 #include "opt_compat_netbsd.h"
-#include "opt_compat_43.h"
 
 #include <sys/param.h>
 #include <sys/systm.h>

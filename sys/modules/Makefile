@@ -19,6 +19,7 @@ SUBDIR+=	chfs
 SUBDIR+=	crypto
 SUBDIR+=	coda
 SUBDIR+=	coda5
+SUBDIR+=	compat
 SUBDIR+=	coredump
 SUBDIR+=	dbcool
 SUBDIR+=	des
@@ -191,6 +192,10 @@ SUBDIR+=	wmidell
 SUBDIR+=	wmieeepc
 SUBDIR+=	wmihp
 SUBDIR+=	wmimsi
+.endif
+
+.if ${MACHINE_ARCH} == "x86_64"
+SUBDIR+=	compat_netbsd32
 .endif
 
 .if ${MACHINE_ARCH} == "i386"

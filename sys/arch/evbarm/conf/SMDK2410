@@ -91,6 +91,7 @@ options 	NFS_BOOT_DHCP
 options 	NFS_BOOT_BOOTPARAM
 
 # Compatibility options
+options		COMPAT_NETBSD32	# allow running arm (e.g. non-earm) binaries
 
 # Shared memory options
 

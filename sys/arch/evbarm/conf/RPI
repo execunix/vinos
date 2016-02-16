@@ -84,6 +84,7 @@ options 	NFS_BOOT_DHCP
 options		NFS_BOOT_RWSIZE=1024
 
 # Compatibility options
+options		COMPAT_NETBSD32	# allow running arm (e.g. non-earm) binaries
 
 # Shared memory options
 

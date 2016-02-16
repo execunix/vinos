@@ -566,6 +566,7 @@ exec_autoload(void)
 		"exec_aout",
 		"exec_coff",
 		"exec_ecoff",
+		"compat_netbsd32",
 		NULL
 	};
 	char const * const *list;

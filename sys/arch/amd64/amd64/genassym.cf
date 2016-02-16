@@ -64,6 +64,7 @@
 #
 
 if defined(_KERNEL_OPT)
+include "opt_compat_netbsd32.h"
 endif
 
 quote #define __MUTEX_PRIVATE
@@ -93,6 +94,10 @@ include <machine/vmparam.h>
 include <machine/intr.h>
 include <machine/types.h>
 include <machine/cpufunc.h>
+
+if defined(COMPAT_NETBSD32)
+include <machine/netbsd32_machdep.h>
+endif
 
 if defined(_KERNEL) && defined(_KERNEL_OPT)
 include "isa.h"
@@ -269,6 +274,11 @@ ifdef XEN
 define IH_IPL_NEXT		offsetof(struct intrhand, ih_ipl_next)
 else
 define	IH_NEXT			offsetof(struct intrhand, ih_next)
+endif
+
+ifdef COMPAT_NETBSD32
+define	SC_FS32			offsetof(struct netbsd32_sigcontext, sc_fs)
+define	SC_GS32			offsetof(struct netbsd32_sigcontext, sc_gs)
 endif
 
 ifdef XEN

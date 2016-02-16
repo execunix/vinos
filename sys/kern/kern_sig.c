@@ -74,6 +74,7 @@ __KERNEL_RCSID(0, "$NetBSD: kern_sig.c,v 1.319 2013/11/22 21:04:11 christos Exp 
 
 #include "opt_ptrace.h"
 #include "opt_compat_netbsd.h"
+#include "opt_compat_netbsd32.h"
 #include "opt_pax.h"
 
 #define	SIGPROP		/* include signal properties table */

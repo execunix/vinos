@@ -99,4 +99,10 @@ file	arch/aarch64/aarch64/sig_machdep.c
 file	arch/aarch64/aarch64/sys_machdep.c
 file	arch/aarch64/aarch64/vm_machdep.c
 
+# NetBSD 32-bit binary compatibility
+include "compat/netbsd32/files.netbsd32"
+file	arch/aarch64/aarch64/netbsd32_machdep.c		compat_netbsd32
+#file	arch/aarch64/aarch32/aarch32_oabi_machdep.c	compat_aarch32_oabi
+#file	arch/aarch64/aarch32/aarch32_eabi_machdep.c	compat_aarch32_eabi
+
 include "arch/arm/conf/majors.arm32"

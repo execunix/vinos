@@ -95,7 +95,6 @@ __KERNEL_RCSID(0, "$NetBSD: tcp_subr.c,v 1.255.4.2 2015/02/21 13:40:19 martin Ex
 
 #include "opt_inet.h"
 #include "opt_ipsec.h"
-#include "opt_tcp_compat_42.h"
 #include "opt_inet_csum.h"
 #include "opt_mbuftrace.h"
 
@@ -199,11 +198,7 @@ int tcp_init_win_max[] = {
 int	tcp_init_win = TCP_INIT_WIN;
 int	tcp_init_win_local = TCP_INIT_WIN_LOCAL;
 int	tcp_mss_ifmtu = 0;
-#ifdef TCP_COMPAT_42
-int	tcp_compat_42 = 1;
-#else
 int	tcp_compat_42 = 0;
-#endif
 int	tcp_rst_ppslim = 100;	/* 100pps */
 int	tcp_ackdrop_ppslim = 100;	/* 100pps */
 int	tcp_do_loopback_cksum = 0;

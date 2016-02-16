@@ -1597,6 +1597,7 @@
 ./usr/share/man/cat8/cleanup.0			man-postfix-catman	postfix,.cat
 ./usr/share/man/cat8/clri.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/cnwctl.0			man-sysutil-catman	.cat
+./usr/share/man/cat8/compat_netbsd32.0		man-sys-catman		.cat
 ./usr/share/man/cat8/comsat.0			man-man-catman		.cat
 ./usr/share/man/cat8/cpuctl.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/crash.0			man-sysutil-catman	.cat
@@ -1838,6 +1839,7 @@
 ./usr/share/man/cat8/ncdcs.0			man-sysutil-catman	binutils,.cat
 ./usr/share/man/cat8/ndbootd.0			man-bootserver-catman	.cat
 ./usr/share/man/cat8/ndp.0			man-netutil-catman	inet6,.cat
+./usr/share/man/cat8/netbsd32.0			man-sys-catman		.cat
 ./usr/share/man/cat8/netgroup_mkdb.0		man-nis-catman		.cat
 ./usr/share/man/cat8/newbtconf.0		man-sysutil-catman	.cat
 ./usr/share/man/cat8/newfs.0			man-sysutil-catman	.cat
@@ -3723,6 +3725,7 @@
 ./usr/share/man/html8/cleanup.html		man-postfix-htmlman	postfix,html
 ./usr/share/man/html8/clri.html			man-sysutil-htmlman	html
 ./usr/share/man/html8/cnwctl.html		man-sysutil-htmlman	html
+./usr/share/man/html8/compat_netbsd32.html	man-sys-htmlman		html
 ./usr/share/man/html8/comsat.html		man-man-htmlman		html
 ./usr/share/man/html8/cpuctl.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/crash.html		man-sysutil-htmlman	html
@@ -3965,6 +3968,7 @@
 ./usr/share/man/html8/ncdcs.html		man-sysutil-htmlman	binutils,html
 ./usr/share/man/html8/ndbootd.html		man-bootserver-htmlman	html
 ./usr/share/man/html8/ndp.html			man-netutil-htmlman	inet6,html
+./usr/share/man/html8/netbsd32.html		man-sys-htmlman		html
 ./usr/share/man/html8/netgroup_mkdb.html	man-nis-htmlman		html
 ./usr/share/man/html8/newbtconf.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/newfs.html		man-sysutil-htmlman	html
@@ -5847,6 +5851,7 @@
 ./usr/share/man/man8/cleanup.8			man-postfix-man		postfix,.man
 ./usr/share/man/man8/clri.8			man-sysutil-man		.man
 ./usr/share/man/man8/cnwctl.8			man-sysutil-man		.man
+./usr/share/man/man8/compat_netbsd32.8		man-sys-man		.man
 ./usr/share/man/man8/comsat.8			man-man-man		.man
 ./usr/share/man/man8/cpuctl.8			man-sysutil-man		.man
 ./usr/share/man/man8/crash.8			man-crash-man		.man
@@ -6089,6 +6094,7 @@
 ./usr/share/man/man8/ncdcs.8			man-sysutil-man		binutils,.man
 ./usr/share/man/man8/ndbootd.8			man-bootserver-man	.man
 ./usr/share/man/man8/ndp.8			man-netutil-man		inet6,.man
+./usr/share/man/man8/netbsd32.8			man-sys-man		.man
 ./usr/share/man/man8/netgroup_mkdb.8		man-nis-man		.man
 ./usr/share/man/man8/newbtconf.8		man-sysutil-man		.man
 ./usr/share/man/man8/newfs.8			man-sysutil-man		.man

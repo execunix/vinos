@@ -102,11 +102,10 @@ __END_DECLS
  */
 
 #if defined(_KERNEL_OPT)
-#include "opt_compat_43.h"
 #include "opt_modular.h"
 #endif
 
-#if defined(USE_OLD_TTY) || defined(COMPAT_43) || \
+#if defined(USE_OLD_TTY) || \
     defined(MODULAR)
 #include <sys/ioctl_compat.h>
 #endif

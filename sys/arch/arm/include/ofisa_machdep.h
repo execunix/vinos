@@ -39,46 +39,6 @@ int	ofisa_ignore_child(int pphandle, int cphandle);
 #if defined(_KERNEL_OPT)
 #endif
 
-#ifdef COMPAT_OLD_OFW
-
-#define	_OFISA_MD_MATCH
-int	ofisa_md_match(device_t, cfdata_t, void *);
-
-#define	_COM_OFISA_MD_MATCH
-#define	_COM_OFISA_MD_INTR_FIXUP
-int	com_ofisa_md_match(device_t, cfdata_t, void *);
-int	com_ofisa_md_intr_fixup(device_t, device_t, void *,
-	    struct ofisa_intr_desc *, int, int);
-
-#define	_CS_OFISA_MD_MATCH
-#define	_CS_OFISA_MD_REG_FIXUP
-#define	_CS_OFISA_MD_INTR_FIXUP
-#define	_CS_OFISA_MD_DMA_FIXUP
-#define	_CS_OFISA_MD_MEDIA_FIXUP
-int	cs_ofisa_md_match(device_t, cfdata_t, void *);
-int	cs_ofisa_md_reg_fixup(device_t, device_t, void *,
-	    struct ofisa_reg_desc *, int, int);
-int	cs_ofisa_md_intr_fixup(device_t, device_t, void *,
-	    struct ofisa_intr_desc *, int, int);
-int	cs_ofisa_md_dma_fixup(device_t, device_t, void *,
-	    struct ofisa_dma_desc *, int, int);
-int	*cs_ofisa_md_media_fixup(device_t, device_t, void *,
-	    int *, int *, int *);
-
-#define	_LPT_OFISA_MD_MATCH
-#define	_LPT_OFISA_MD_INTR_FIXUP
-int	lpt_ofisa_md_match(device_t, cfdata_t, void *);
-int	lpt_ofisa_md_intr_fixup(device_t, device_t, void *,
-	    struct ofisa_intr_desc *, int, int);
-
-#define	_WDC_OFISA_MD_MATCH
-#define	_WDC_OFISA_MD_INTR_FIXUP
-int	wdc_ofisa_md_match(device_t, cfdata_t, void *);
-int	wdc_ofisa_md_intr_fixup(device_t, device_t, void *,
-	    struct ofisa_intr_desc *, int, int);
-
-#endif /* COMPAT_OLD_OFW */
-
 /* The following aren't dependent on old OpenFirmware. */
 #define	_CS_OFISA_MD_CFGFLAGS_FIXUP
 int	cs_ofisa_md_cfgflags_fixup(device_t, device_t, void *);

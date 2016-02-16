@@ -43,8 +43,6 @@
 #include <sys/cdefs.h>
 __KERNEL_RCSID(0, "$NetBSD: kern_prot.c,v 1.117 2013/11/25 16:28:20 rmind Exp $");
 
-#include "opt_compat_43.h"
-
 #include <sys/param.h>
 #include <sys/acct.h>
 #include <sys/systm.h>
