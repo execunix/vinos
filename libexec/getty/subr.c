@@ -58,7 +58,9 @@ __RCSID("$NetBSD: subr.c,v 1.35 2013/08/11 16:36:30 dholland Exp $");
 
 extern	struct termios tmode, omode;
 
+#ifdef COMPAT_43
 static void	compatflags(long);
+#endif
 
 /*
  * Get a table entry.
