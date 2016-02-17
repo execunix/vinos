@@ -325,13 +325,6 @@
 ./usr/share/examples/asm/hello
 ./usr/share/examples/dhcp
 ./usr/share/examples/disktab
-./usr/share/examples/emul
-./usr/share/examples/emul/linux
-./usr/share/examples/emul/linux/etc
-./usr/share/examples/emul/svr4
-./usr/share/examples/emul/svr4/etc
-./usr/share/examples/emul/ultrix
-./usr/share/examples/emul/ultrix/etc
 ./usr/share/examples/fstab
 ./usr/share/examples/blacklist
 ./usr/share/examples/ftpd

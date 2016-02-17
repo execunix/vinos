@@ -85,7 +85,7 @@ cpuswitch.o fault.o machdep.o: Makefile
 
 # various assembly files that depend on assym.h
 atomic.o bcopy_page.o bcopyinout.o copystr.o cpuswitch.o cpu_in_cksum.o: assym.h
-exception.o sigcode.o: assym.h
+exception.o: assym.h
 spl.o vectors.o: assym.h
 
 ##

@@ -660,11 +660,6 @@
 ./usr/share/examples/asm/hello/powerpc.s	misc-asm-examples	share
 ./usr/share/examples/dhcp/dhcpd.conf		misc-dhcpd-examples	share
 ./usr/share/examples/disktab/disktab		misc-sys-examples	share
-./usr/share/examples/emul/linux/etc/LINUX_MAKEDEV	misc-sys-examples	share
-./usr/share/examples/emul/svr4/etc/SVR4_MAKEDEV	misc-sys-examples	share
-./usr/share/examples/emul/svr4/etc/netconfig	misc-sys-examples	share
-./usr/share/examples/emul/svr4/etc/nsswitch.conf	misc-sys-examples	share
-./usr/share/examples/emul/ultrix/etc/svc.conf	misc-sys-examples	share
 ./usr/share/examples/fstab/fstab.cdrom		misc-fstab-examples	share
 ./usr/share/examples/fstab/fstab.nfs.1		misc-fstab-examples	share
 ./usr/share/examples/fstab/fstab.nfs.2		misc-fstab-examples	share

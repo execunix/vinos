@@ -182,7 +182,6 @@ file	arch/arm/arm/lock_cas.S
 file	arch/arm/arm/process_machdep.c
 file	arch/arm/arm/procfs_machdep.c		procfs
 file	arch/arm/arm/sig_machdep.c
-file	arch/arm/arm/sigcode.S
 file	arch/arm/arm/syscall.c
 file	arch/arm/arm/undefined.c
 # vectors.S gets included manually by Makefile.acorn26, since it needs

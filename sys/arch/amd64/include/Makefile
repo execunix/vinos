@@ -14,7 +14,7 @@ INCS=	ansi.h aout_machdep.h asm.h \
 	intr.h intrdefs.h \
 	joystick.h \
 	kcore.h \
-	limits.h linux32_machdep.h lock.h \
+	limits.h lock.h \
 	math.h mcontext.h mutex.h mtrr.h \
 	netbsd32_machdep.h \
 	param.h pcb.h pci_machdep.h pio.h pmap.h pmc.h proc.h \

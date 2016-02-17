@@ -118,9 +118,7 @@
 ./usr/include/i386/fenv.h			comp-c-include
 ./usr/include/i386/float.h			comp-c-include
 ./usr/include/i386/frame.h			comp-c-include
-./usr/include/i386/freebsd_machdep.h		comp-c-include
 ./usr/include/i386/gdt.h			comp-c-include
-./usr/include/i386/ibcs2_machdep.h		comp-c-include
 ./usr/include/i386/ieee.h			comp-c-include
 ./usr/include/i386/ieeefp.h			comp-c-include
 ./usr/include/i386/int_const.h			comp-c-include
@@ -157,7 +155,6 @@
 ./usr/include/i386/sljit_machdep.h		comp-c-include
 ./usr/include/i386/specialreg.h			comp-c-include
 ./usr/include/i386/spkr.h			comp-c-include
-./usr/include/i386/svr4_machdep.h		comp-c-include
 ./usr/include/i386/sysarch.h			comp-c-include
 ./usr/include/i386/trap.h			comp-c-include
 ./usr/include/i386/tss.h			comp-c-include

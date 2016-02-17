@@ -1521,13 +1521,6 @@
 ./usr/share/examples/blacklist/npf.conf		base-sys-examples
 ./usr/share/examples/dhcp			base-dhcpd-examples
 ./usr/share/examples/disktab			base-sys-examples
-./usr/share/examples/emul			base-sys-examples
-./usr/share/examples/emul/linux			base-sys-examples
-./usr/share/examples/emul/linux/etc		base-sys-examples
-./usr/share/examples/emul/svr4			base-sys-examples
-./usr/share/examples/emul/svr4/etc		base-sys-examples
-./usr/share/examples/emul/ultrix		base-sys-examples
-./usr/share/examples/emul/ultrix/etc		base-sys-examples
 ./usr/share/examples/fstab			base-fstab-examples
 ./usr/share/examples/ftpd			base-netutil-examples
 ./usr/share/examples/getdate			base-sys-examples
