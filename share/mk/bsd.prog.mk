@@ -271,11 +271,6 @@ __proginstall: .USE
 	${INSTALL_FILE} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} \
 		${STRIPFLAG} ${.ALLSRC} ${.TARGET}
 
-__progrumpinstall: .USE
-	${_MKTARGET_INSTALL}
-	${INSTALL_FILE} -o ${RUMPBINOWN} -g ${RUMPBINGRP} -m ${RUMPBINMODE} \
-		${STRIPFLAG} ${.ALLSRC} ${.TARGET}
-
 __progdebuginstall: .USE
 	${_MKTARGET_INSTALL}
 	${INSTALL_FILE} -o ${DEBUGOWN} -g ${DEBUGGRP} -m ${DEBUGMODE} \
@@ -505,11 +500,7 @@ proginstall-${_P}::	${DESTDIR}${BINDIR.${_P}}/${PROGNAME.${_P}} \
 		${_PROGDEBUG.${_P}:D${DESTDIR}${DEBUGDIR}${BINDIR.${_P}}/${_PROGDEBUG.${_P}}}
 
 .if ${MKUPDATE} == "no"
-.if defined(_RUMPINSTALL.${_P})
-${DESTDIR}${BINDIR.${_P}}/${PROGNAME.${_P}}! ${_P} __progrumpinstall
-.else
 ${DESTDIR}${BINDIR.${_P}}/${PROGNAME.${_P}}! ${_P} __proginstall
-.endif
 .if !defined(BUILD) && !make(all) && !make(${_P})
 ${DESTDIR}${BINDIR.${_P}}/${PROGNAME.${_P}}! .MADE
 .endif
@@ -520,11 +511,7 @@ ${DESTDIR}${DEBUGDIR}${BINDIR.${_P}}/${_PROGDEBUG.${_P}}! .MADE
 .endif
 .endif	#  define(_PROGDEBUG.${_P})
 .else	# MKUPDATE != no
-.if defined(_RUMPINSTALL.${_P})
-${DESTDIR}${BINDIR.${_P}}/${PROGNAME.${_P}}: ${_P} __progrumpinstall
-.else
 ${DESTDIR}${BINDIR.${_P}}/${PROGNAME.${_P}}: ${_P} __proginstall
-.endif
 .if !defined(BUILD) && !make(all) && !make(${_P})
 ${DESTDIR}${BINDIR.${_P}}/${PROGNAME.${_P}}: .MADE
 .endif

@@ -5,7 +5,6 @@
 
 PROG=	dd
 SRCS=	args.c conv.c dd.c misc.c position.c
-SRCS+=	${PROG}_hostops.c
 
 DPADD+=	${LIBUTIL}
 LDADD+=	-lutil

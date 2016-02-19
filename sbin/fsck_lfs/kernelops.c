@@ -49,24 +49,6 @@ __RCSID("$NetBSD: kernelops.c,v 1.3 2009/10/13 22:04:31 pooka Exp $");
 
 #include "kernelops.h"
 
-#ifdef USE_RUMP
-
-#include <rump/rump.h>
-#include <rump/rump_syscalls.h>
-
-const struct kernelops kops = {
-	.ko_open = rump_sys_open,
-	.ko_fcntl = rump_sys_fcntl,
-	.ko_statvfs = rump_sys_statvfs1,
-	.ko_fhopen = rump_sys_fhopen,
-	.ko_close = rump_sys_close,
-
-	.ko_pread = rump_sys_pread,
-	.ko_pwrite = rump_sys_pwrite,
-};
-
-#else
-
 const struct kernelops kops = {
 	.ko_open = open,
 	.ko_fcntl = fcntl,
@@ -77,4 +59,3 @@ const struct kernelops kops = {
 	.ko_pread = pread,
 	.ko_pwrite = pwrite,
 };
-#endif

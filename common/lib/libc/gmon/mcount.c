@@ -101,16 +101,6 @@ _MCOUNT_DECL(u_long, u_long)
     __used;
 #endif
 
-/* XXX: make these interfaces */
-#ifdef _RUMPKERNEL
-#undef MCOUNT_ENTER
-#define MCOUNT_ENTER
-#undef MCOUNT_EXIT
-#define MCOUNT_EXIT
-#undef MCOUNT
-#define MCOUNT
-#endif
-
 /*
  * mcount is called on entry to each function compiled with the profiling
  * switch set.  _mcount(), which is declared in a machine-dependent way
@@ -134,7 +124,7 @@ _MCOUNT_DECL(u_long frompc, u_long selfpc)
 	struct tostruct *top, *prevtop;
 	struct gmonparam *p;
 	long toindex;
-#if defined(_KERNEL) && !defined(_RUMPKERNEL)
+#if defined(_KERNEL)
 	int s;
 #endif
 

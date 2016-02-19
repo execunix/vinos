@@ -412,15 +412,6 @@ MKYP		If "no", disables building of YP (NIS)
 		infrastructure (libraries and support programs).
 		Default: yes
 
-MKZFS		If "no", do not build and install utilities and libraries
-		used to manage ZFS file system. Do not build zfs and solaris
-		compatibility kernel modules.
-		Default: yes on i386/amd64, no elsewhere.
-
-MKRUMP		If "no", do not build and install rump related headers,
-		libraries, and programs.
-		Default: yes
-
 USE_HESIOD	If "no", disables building Hesiod support into
 		various system utilities/libraries that support it.
 		If ${MKHESIOD} is "no", USE_HESIOD will also be

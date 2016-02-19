@@ -43,9 +43,7 @@ CPPFLAGS+=	-I${KERNDIR}/../../../common/include
 .include "$M/Makefile.inc"
 .endif
 
-.if !defined(RUMPKERNEL)
 .include "${.PARSEDIR}/Makefile.compiler-rt"
-.endif
 
 # Other stuff
 SRCS+=	kern_assert.c __main.c

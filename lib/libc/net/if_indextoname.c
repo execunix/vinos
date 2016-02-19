@@ -31,9 +31,7 @@
 __RCSID("$NetBSD: if_indextoname.c,v 1.7 2010/12/13 23:10:12 pooka Exp $");
 #endif /* LIBC_SCCS and not lint */
 
-#ifndef RUMP_ACTION
 #include "namespace.h"
-#endif
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <net/if_dl.h>
@@ -43,10 +41,8 @@ __RCSID("$NetBSD: if_indextoname.c,v 1.7 2010/12/13 23:10:12 pooka Exp $");
 #include <string.h>
 #include <errno.h>
 
-#ifndef RUMP_ACTION
 #ifdef __weak_alias
 __weak_alias(if_indextoname,_if_indextoname)
-#endif
 #endif
 
 /*

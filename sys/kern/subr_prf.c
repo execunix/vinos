@@ -279,9 +279,8 @@ vpanic(const char *fmt, va_list ap)
 		if (oci != NULL && oci != ci) {
 			/* Give interrupts a chance to try and prevent deadlock. */
 			for (;;) {
-#ifndef _RUMPKERNEL /* XXXpooka: temporary build fix, see kern/40505 */
+				/* XXXpooka: temporary build fix, see kern/40505 */
 				DELAY(10);
-#endif /* _RUMPKERNEL */
 			}
 		}
 

@@ -582,11 +582,6 @@ NONBINMODE?=	444
 
 # These are here mainly because we don't want suid root in case
 # a Makefile defines BINMODE.
-RUMPBINGRP?=	wheel
-RUMPBINOWN?=	root
-RUMPBINMODE?=	555
-RUMPNONBINMODE?=444
-
 MANDIR?=	/usr/share/man
 MANGRP?=	wheel
 MANOWN?=	root

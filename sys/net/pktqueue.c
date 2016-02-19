@@ -208,11 +208,7 @@ pktq_rps_hash(const struct mbuf *m __unused)
 bool
 pktq_enqueue(pktqueue_t *pq, struct mbuf *m, const u_int hash __unused)
 {
-#if defined(_RUMPKERNEL) || defined(_RUMP_NATIVE_ABI)
-	const unsigned cpuid = curcpu()->ci_index;
-#else
 	const unsigned cpuid = hash % ncpu;
-#endif
 
 	KASSERT(kpreempt_disabled());
 

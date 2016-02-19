@@ -30,9 +30,7 @@
 __RCSID("$NetBSD: getifaddrs.c,v 1.15 2012/03/13 21:13:40 christos Exp $");
 #endif /* LIBC_SCCS and not lint */
 
-#ifndef RUMP_ACTION
 #include "namespace.h"
-#endif
 #include <sys/types.h>
 #include <sys/ioctl.h>
 #include <sys/socket.h>
@@ -48,14 +46,9 @@ __RCSID("$NetBSD: getifaddrs.c,v 1.15 2012/03/13 21:13:40 christos Exp $");
 #include <stdlib.h>
 #include <string.h>
 
-#if defined(__weak_alias) && !defined(RUMP_ACTION)
+#if defined(__weak_alias)
 __weak_alias(getifaddrs,_getifaddrs)
 __weak_alias(freeifaddrs,_freeifaddrs)
-#endif
-
-#ifdef RUMP_ACTION
-#include <rump/rump_syscalls.h>
-#define sysctl(a,b,c,d,e,f) rump_sys___sysctl(a,b,c,d,e,f)
 #endif
 
 #define	SA_RLEN(sa)	RT_ROUNDUP((sa)->sa_len)

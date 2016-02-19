@@ -2,7 +2,6 @@
 
 PROG=		crash
 MAN=		crash.8
-#RUMPKERNEL=	yes	# XXX: Avoid -mcmodel=kernel
 
 CWARNFLAGS.clang+=	-Wno-format
 

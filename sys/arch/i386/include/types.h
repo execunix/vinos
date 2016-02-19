@@ -109,7 +109,7 @@ typedef	volatile unsigned char		__cpu_simple_lock_t;
 #define	__HAVE_SYSCALL_INTERN
 #define	__HAVE_MINIMAL_EMUL
 #define	__HAVE_OLD_DISKLABEL
-#if defined(_KERNEL) && !defined(_RUMPKERNEL) && !defined(_RUMP_NATIVE_ABI)
+#if defined(_KERNEL)
 /*
  * Processors < i586 do not have cmpxchg8b, and we compile for i486
  * by default in userland. The kernel tsc driver uses them though,

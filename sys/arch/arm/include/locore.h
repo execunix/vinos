@@ -233,7 +233,6 @@ read_thumb_insn(vaddr_t va, bool user_p)
 	return insn;
 }
 
-#ifndef _RUMPKERNEL
 static inline void
 arm_dmb(void)
 {
@@ -260,7 +259,6 @@ arm_isb(void)
 	else if (CPU_IS_ARMV7_P())
 		__asm __volatile("isb" ::: "memory");
 }
-#endif
 
 /*
  * Random cruft

@@ -33,11 +33,6 @@
 
 #include <dm-ioctl.h>
 
-#ifdef RUMP_ACTION
-#include <rump/rump.h>
-#include <rump/rump_syscalls.h>
-#endif
-
 /*
  * Ensure build compatibility.
  * The hard-coded versions here are the highest present
@@ -202,9 +197,6 @@ static int _open_control(void)
 	if (_control_fd != -1)
 		return 1;
 
-#ifdef RUMP_ACTION
-	rump_init();
-#endif
 	snprintf(control, sizeof(control), "%s/control", dm_dir());
 
 	if (!_control_device_number(&major, &minor))

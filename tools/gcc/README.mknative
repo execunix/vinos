@@ -68,7 +68,6 @@ work.
    MKLINT=no
    MKPROFILE=no
    MKSHARE=no
-   MKRUMP=no
 
 9. In src/tools/gcc, do "nbmake-MACHINE native-gcc".
 

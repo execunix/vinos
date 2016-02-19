@@ -247,13 +247,8 @@ clnt_dg_create(
 	cu->cu_rlen = svcaddr->len;
 	cu->cu_outbuf = &cu->cu_inbuf[recvsz];
 	/* Other values can also be set through clnt_control() */
-#ifdef RUMP_RPC
-	cu->cu_wait.tv_sec = 15;	/* heuristically chosen */
-	cu->cu_wait.tv_usec = 0;
-#else
 	cu->cu_wait.tv_sec = 0;		/* for testing, 10x / second */
 	cu->cu_wait.tv_usec = 100000;
-#endif
 	cu->cu_total.tv_sec = -1;
 	cu->cu_total.tv_usec = -1;
 	cu->cu_sendsz = sendsz;

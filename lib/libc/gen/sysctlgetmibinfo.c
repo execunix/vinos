@@ -34,12 +34,10 @@
 __RCSID("$NetBSD: sysctlgetmibinfo.c,v 1.11 2014/05/16 12:22:32 martin Exp $");
 #endif /* LIBC_SCCS and not lint */
 
-#ifndef RUMP_ACTION
 #include "namespace.h"
 #ifdef _REENTRANT
 #include "reentrant.h"
 #endif /* _REENTRANT */
-#endif /* RUMP_ACTION */
 #include <sys/param.h>
 #include <sys/sysctl.h>
 
@@ -49,14 +47,9 @@ __RCSID("$NetBSD: sysctlgetmibinfo.c,v 1.11 2014/05/16 12:22:32 martin Exp $");
 #include <stdlib.h>
 #include <string.h>
 
-#ifdef RUMP_ACTION
-#include <rump/rump_syscalls.h>
-#define sysctl(a,b,c,d,e,f) rump_sys___sysctl(a,b,c,d,e,f)
-#else
 #ifdef __weak_alias
 __weak_alias(__learn_tree,___learn_tree)
 __weak_alias(sysctlgetmibinfo,_sysctlgetmibinfo)
-#endif
 #endif
 
 /*

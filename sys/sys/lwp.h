@@ -235,8 +235,6 @@ extern int		maxlwp __read_mostly;	/* max number of lwps */
 #define	LW_CANCELLED	0x02000000 /* tsleep should not sleep */
 #define	LW_WREBOOT	0x08000000 /* System is rebooting, please suspend */
 #define	LW_UNPARKED	0x10000000 /* Unpark op pending */
-#define	LW_RUMP_CLEAR	0x40000000 /* Clear curlwp in RUMP scheduler */
-#define	LW_RUMP_QEXIT	0x80000000 /* LWP should exit ASAP */
 
 /* The second set of flags is kept in l_pflag. */
 #define	LP_KTRACTIVE	0x00000001 /* Executing ktrace operation */

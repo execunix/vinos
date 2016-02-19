@@ -85,10 +85,6 @@ __KERNEL_RCSID(0, "$NetBSD: subr_xcall.c,v 1.18 2013/11/26 21:13:05 rmind Exp $"
 #include <sys/kthread.h>
 #include <sys/cpu.h>
 
-#ifdef _RUMPKERNEL
-#include "rump_private.h"
-#endif
-
 /* Cross-call state box. */
 typedef struct {
 	kmutex_t	xc_lock;
@@ -399,9 +395,6 @@ xc_highpri(xcfunc_t func, void *arg1, void *arg2, struct cpu_info *ci)
 	 * Note: it will handle the local CPU case.
 	 */
 
-#ifdef _RUMPKERNEL
-	rump_xc_highpri(ci);
-#else
 #ifdef MULTIPROCESSOR
 	kpreempt_disable();
 	if (curcpu() == ci) {
@@ -419,7 +412,6 @@ xc_highpri(xcfunc_t func, void *arg1, void *arg2, struct cpu_info *ci)
 #else
 	KASSERT(ci == NULL || curcpu() == ci);
 	xc_ipi_handler();
-#endif
 #endif
 
 	/* Indicate a high priority ticket. */

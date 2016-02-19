@@ -87,11 +87,8 @@
  *   _HARDKERNEL: code uses kernel namespace and runs in hw priviledged mode
  *   _SOFTKERNEL: code uses kernel namespace but runs without hw priviledges
  */
-#if defined(_KERNEL) && !defined(_RUMPKERNEL)
+#if defined(_KERNEL)
 #define _HARDKERNEL
-#endif
-#if defined(_KERNEL) && defined(_RUMPKERNEL)
-#define _SOFTKERNEL
 #endif
 
 #include <sys/null.h>

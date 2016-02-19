@@ -109,13 +109,8 @@ static int
 libdm_control_open(const char *path)
 {
 	int fd;
-#ifdef RUMP_ACTION
-	if ((fd = rump_sys_open(path, O_RDWR)) < 0)
-		return -1;
-#else
 	if ((fd = open(path, O_RDWR)) < 0)
 		return -1;
-#endif
 	return fd;
 }
 
@@ -123,11 +118,7 @@ static int
 libdm_control_close(int fd)
 {
 
-#ifdef RUMP_ACTION
-	return rump_sys_close(fd);
-#else
 	return close(fd);
-#endif
 }
 
 /* Destroy iterator for arrays such as version strings, cmd_data. */
@@ -149,9 +140,6 @@ libdm_task_run(libdm_task_t libdm_task)
 	prop_dictionary_t dict;
 	int libdm_control_fd = -1;
 	int error;
-#ifdef RUMP_ACTION
-	struct plistref prefp;
-#endif
 	error = 0;
 
 	if (libdm_task == NULL)
@@ -159,20 +147,6 @@ libdm_task_run(libdm_task_t libdm_task)
 
 	if ((libdm_control_fd = libdm_control_open(DM_DEVICE_PATH)) < 0)
 		return errno;
-#ifdef RUMP_ACTION
-	prop_dictionary_externalize_to_pref(libdm_task->ldm_task,
-	    &prefp);
-
-	error = rump_sys_ioctl(libdm_control_fd, NETBSD_DM_IOCTL, &prefp);
-	if (error < 0) {
-		libdm_task_destroy(libdm_task);
-		libdm_task = NULL;
-		libdm_control_close(libdm_control_fd);
-
-		return error;
-	}
-	dict = prop_dictionary_internalize(prefp.pref_plist);
-#else
 	prop_dictionary_externalize_to_file(libdm_task->ldm_task, "/tmp/libdm_in");
 	error = prop_dictionary_sendrecv_ioctl(libdm_task->ldm_task,
 	    libdm_control_fd, NETBSD_DM_IOCTL, &dict);
@@ -183,7 +157,6 @@ libdm_task_run(libdm_task_t libdm_task)
 		return error;
 	}
 	prop_dictionary_externalize_to_file(dict, "/tmp/libdm_out");
-#endif
 
 	libdm_control_close(libdm_control_fd);
 	prop_object_retain(dict);

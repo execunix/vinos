@@ -69,9 +69,7 @@ svc_run(void)
 	fd_set readfds, cleanfds;
 	struct timeval timeout;
 	int maxfd;
-#ifndef RUMP_RPC		
 	int probs = 0;
-#endif
 #ifdef _REENTRANT
 	extern rwlock_t svc_fd_lock;
 #endif
@@ -87,12 +85,10 @@ svc_run(void)
 		rwlock_unlock(&svc_fd_lock);
 		switch (select(maxfd + 1, &readfds, NULL, NULL, &timeout)) {
 		case -1:
-#ifndef RUMP_RPC		
 			if ((errno == EINTR || errno == EBADF) && probs < 100) {
 				probs++;
 				continue;
 			}
-#endif
 			if (errno == EINTR) {
 				continue;
 			}
@@ -103,9 +99,7 @@ svc_run(void)
 			continue;
 		default:
 			svc_getreqset(&readfds);
-#ifndef RUMP_RPC
 			probs = 0;
-#endif
 		}
 	}
 }

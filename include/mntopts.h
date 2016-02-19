@@ -72,7 +72,6 @@ struct mntopt {
 
 /* This is parsed by mount(8), but is ignored by specific mount_*(8)s. */
 #define MOPT_AUTO		{ "auto",	0, 0, 0 }
-#define MOPT_RUMP		{ "rump",	0, 0, 0 }
 #define MOPT_NULL		{ NULL,		0, 0, 0 }
 
 #define MOPT_FSTAB_COMPAT						\
@@ -92,8 +91,7 @@ struct mntopt {
 	MOPT_RDONLY,							\
 	MOPT_UNION,							\
 	MOPT_IGNORE,							\
-	MOPT_SYMPERM,							\
-	MOPT_RUMP
+	MOPT_SYMPERM
 
 __BEGIN_DECLS
 typedef struct mntoptparse *mntoptparse_t;

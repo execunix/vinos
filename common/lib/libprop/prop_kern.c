@@ -43,11 +43,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#ifdef RUMP_ACTION
-#include <rump/rump_syscalls.h>
-#define ioctl(a,b,c) rump_sys_ioctl(a,b,c)
-#endif
-
 static int
 _prop_object_externalize_to_pref(prop_object_t obj, struct plistref *pref,
 	       			 char **bufp)

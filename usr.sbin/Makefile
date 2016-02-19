@@ -41,6 +41,8 @@ SUBDIR+= makemandb
 SUBDIR+= rpc.yppasswdd ypbind yppoll ypserv ypset
 .endif
 
+SUBDIR+= puffs
+
 .if ${TOOLCHAIN_MISSING} != "no"
 SUBDIR+= mdsetimage
 .endif

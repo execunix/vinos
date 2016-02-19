@@ -243,7 +243,6 @@ SUBST="${SUBST};s#@MACHINE@#${MACHINE}#g"
 #	postfix			${MKPOSTFIX} != no
 #	profile			${MKPROFILE} != no
 #	perfuse			${MKPERFUSE} != no
-#	rump			${MKRUMP} != no
 #	share			${MKSHARE} != no
 #	skey			${MKSKEY} != no
 #	sljit			${MKSLJIT} != no

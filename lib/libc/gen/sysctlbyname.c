@@ -34,19 +34,12 @@
 __RCSID("$NetBSD: sysctlbyname.c,v 1.7 2010/12/13 23:10:13 pooka Exp $");
 #endif /* LIBC_SCCS and not lint */
 
-#ifndef RUMP_ACTION
 #include "namespace.h"
-#endif
 #include <sys/param.h>
 #include <sys/sysctl.h>
 
-#ifdef RUMP_ACTION
-#include <rump/rump_syscalls.h>
-#define sysctl(a,b,c,d,e,f) rump_sys___sysctl(a,b,c,d,e,f)
-#else
 #ifdef __weak_alias
 __weak_alias(sysctlbyname,_sysctlbyname)
-#endif
 #endif
 
 /*

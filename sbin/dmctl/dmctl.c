@@ -41,12 +41,6 @@
 
 #include <dm.h>
 
-#ifdef RUMP_ACTION
-#include <rump/rump.h>
-#include <rump/rumpclient.h>
-#include <rump/rump_syscalls.h>
-#endif
-
 /* dmctl command is used to communicate with device-mapper driver in NetBSD
  * it uses libdm library to create and send required data to kernel.
  *
@@ -152,11 +146,6 @@ main(int argc, char *argv[])
 	libdm_task_t task;
 
 	oargc = 0;
-
-#ifdef RUMP_ACTION
-	if (rumpclient_init() == -1)
-	  err(EXIT_FAILURE, "rump client init failed");
-#endif
 
 	/* Must have at least: device command */
 	if (argc < 2)

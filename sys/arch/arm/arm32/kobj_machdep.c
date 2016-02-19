@@ -402,10 +402,8 @@ kobj_machdep(kobj_t ko, void *base, size_t size, bool load)
 		if (CPU_IS_ARMV7_P())
 			kobj_be8_fixup(ko);
 #endif
-#ifndef _RUMPKERNEL
 		cpu_idcache_wbinv_range((vaddr_t)base, size);
 		cpu_tlb_flushID();
-#endif
 	}
 
 	return 0;

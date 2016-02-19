@@ -308,7 +308,6 @@ x(CGD,		17,	"cgd")		/* cryptographic pseudo-disk */ \
 x(VINUM,	18,	"vinum")	/* vinum volume */ \
 x(FLASH,	19,	"flash")	/* flash memory devices */ \
 x(DM,           20,     "dm")           /* device-mapper pseudo-disk devices */\
-x(RUMPD,	21,     "rumpd")	/* rump virtual disk */ \
     
 #ifndef _LOCORE
 #define DKTYPE_NUMS(tag, number, name) __CONCAT(DTYPE_,tag=number),

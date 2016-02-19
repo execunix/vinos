@@ -361,7 +361,6 @@ struct proc {
  * process context only.
  */
 #define	PS_NOCLDSTOP	0x00000008 /* No SIGCHLD when children stop */
-#define	PS_RUMP_LWPEXIT	0x00000400 /* LWPs in RUMP kernel should exit for GC */
 #define	PS_WCORE	0x00001000 /* Process needs to dump core */
 #define	PS_WEXIT	0x00002000 /* Working on exiting */
 #define	PS_STOPFORK	0x00800000 /* Child will be stopped on fork(2) */

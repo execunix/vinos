@@ -110,7 +110,18 @@ static const struct ddfops ddfops_stdfd = {
 	.op_read = read,
 	.op_write = write,
 };
-extern const struct ddfops ddfops_prog;
+static const struct ddfops ddfops_prog = {
+	.op_open = open,
+	.op_close = close,
+	.op_fcntl = fcntl,
+	.op_ioctl = ioctl,
+	.op_fstat = fstat,
+	.op_fsync = fsync,
+	.op_ftruncate = ftruncate,
+	.op_lseek = lseek,
+	.op_read = read,
+	.op_write = write,
+};
 
 int
 main(int argc, char *argv[])

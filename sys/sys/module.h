@@ -107,28 +107,7 @@ typedef struct module {
  * difficult (impossible?) to implement (e.g. GNU gold, OS X, etc.)
  */
 
-#ifdef RUMP_USE_CTOR
-struct modinfo_chain {
-	const struct modinfo	*mc_info;
-	LIST_ENTRY(modinfo_chain) mc_entries;
-};
-LIST_HEAD(modinfo_boot_chain, modinfo_chain);
-#define _MODULE_REGISTER(name)						\
-static void modctor_##name(void) __attribute__((constructor));		\
-static void modctor_##name(void)					\
-{									\
-	static struct modinfo_chain mc = {				\
-		.mc_info = &name##_modinfo,				\
-	};								\
-	extern struct modinfo_boot_chain modinfo_boot_chain;		\
-	LIST_INSERT_HEAD(&modinfo_boot_chain, &mc, mc_entries);		\
-}
-
-#else /* RUMP_USE_CTOR */
-
 #define _MODULE_REGISTER(name) __link_set_add_rodata(modules, name##_modinfo);
-
-#endif /* RUMP_USE_CTOR */
 
 #define	MODULE(class, name, required)				\
 static int name##_modcmd(modcmd_t, void *);			\
