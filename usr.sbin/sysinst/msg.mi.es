@@ -1093,7 +1093,7 @@ reinténtelo de nuevo.}
 message failed {Error}
 
 message notsupported {Operación no admitida!}
-message askfsmountadv {Punto de montaje o 'raid' o 'CGD' o 'lvm'?}
+message askfsmountadv {Punto de montaje o 'raid' o 'lvm'?}
 message partman {Partición extendida}
 message editbsdpart {Editar particiones BSD}
 message editmbr {Editar y guardar MBR}
