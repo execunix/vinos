@@ -28,7 +28,6 @@
 ./etc/X11/xserver
 ./etc/X11/xsm
 ./etc/bluetooth
-./etc/cgd			mode=0700
 ./etc/defaults
 ./etc/fonts
 ./etc/fonts/conf.avail

@@ -117,8 +117,6 @@ getfstypename(int fstype)
 		return DKW_PTYPE_EFS;
 	case FS_NILFS:
 		return DKW_PTYPE_NILFS;
-	case FS_CGD:
-		return DKW_PTYPE_CGD;
 	case FSMAXTYPES:
 		return DKW_PTYPE_UNKNOWN;
 	case FS_MINIXFS3:

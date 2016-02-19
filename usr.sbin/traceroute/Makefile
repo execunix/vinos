@@ -19,7 +19,7 @@ BINMODE=4555
 
 SRCS=	traceroute.c ifaddrlist.c 
 SRCS+=	version.c as.c
-SRCS+=	${PROG}_hostops.c
+SRCS+=	prog_ops.c
 
 AWKS=	median.awk mean.awk 
 

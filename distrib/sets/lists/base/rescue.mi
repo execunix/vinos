@@ -11,7 +11,6 @@
 ./rescue/bzip2					base-rescue-root
 ./rescue/cat					base-rescue-root
 ./rescue/ccdconfig				base-rescue-root
-./rescue/cgdconfig				base-rescue-root	crypto
 ./rescue/chgrp					base-rescue-root
 ./rescue/chio					base-rescue-root
 ./rescue/chmod					base-rescue-root

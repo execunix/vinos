@@ -1056,7 +1056,6 @@ message enable_ntpd {Activar ntpd}
 message run_ntpdate {Ejecutar ntpdate durante el arranque}
 message enable_mdnsd {Activar mdnsd}
 message enable_xdm {Enable xdm}
-message enable_cgd {Enable cgd}
 message enable_lvm {Enable lvm}
 message enable_raid {Enable raidframe}
 message add_a_user {Add a user}
@@ -1129,7 +1128,6 @@ message cantsave {Los cambios no se pueden guardar.}
 message noroot {No hay una partición raíz definida, no puede continuar \n}
 message wannaunblock {El dispositivo está bloqueado. ¿Quiere forzar a desbloquear y continuar? unblock it and continue?}
 message wannatry {¿Quieres probar?}
-message create_cgd {Crear cifrado de volumen (CGD)}
 message create_cnd {Crear imagen de disco virtual (VND)}
 message create_vg {Crear grupo de volúmenes (LVM VG)}
 message create_lv {      Crear volúmenes lógicos}
@@ -1194,14 +1192,6 @@ message vnd_bps_ask {Bytes por sector?}
 message vnd_spt_ask {Sectores por pista?}
 message vnd_tpc_ask {Pistas por cilindro?}
 message vnd_cyl_ask {Cilindros}
-message cgd_err_menufmt {   DISCO NO SE DEFINE!}
-message cgd_menufmt {   cgd%1d %-48s %11uM}
-message cgd_dev_fmt {Dispositivo de base: %19s}
-message cgd_enc_fmt {Encriptación:        %19s}
-message cgd_key_fmt {Tamaño de la clave:  %19d}
-message cgd_iv_fmt {Algoritmo IV:        %19s}
-message cgd_keygen_fmt {La generación de claves: %15s}
-message cgd_verif_fmt {Método de verificación:  %15s}
 message lvm_disks {Discos en VG:}
 message lvm_menufmt {   %-44s %20sM}
 message lvm_err_menufmt {   VACIAR VG!}

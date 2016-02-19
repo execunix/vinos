@@ -4,8 +4,7 @@
 .include "${NETBSDSRCDIR}/common/lib/libc/arch/arm/features.mk"
 .endif
 
-.if defined(LIB) && (${LIB} == "kern" || ${LIB} == "c" || ${LIB} == "pthread" \
-	|| ${LIB} == "rump")
+.if defined(LIB) && (${LIB} == "kern" || ${LIB} == "c" || ${LIB} == "pthread")
 
 .if "${FEAT_LDREX}" == "no"
 SRCS.atomic+=	atomic_add_32_cas.c atomic_add_32_nv_cas.c \
@@ -54,7 +53,7 @@ SRCS.atomic+=	sync_bool_compare_and_swap_${sz}.S
 
 .endif
 
-.if defined(LIB) && (${LIB} == "c" || ${LIB} == "pthread" || ${LIB} == "rump")
+.if defined(LIB) && (${LIB} == "c" || ${LIB} == "pthread")
 
 SRCS.atomic+=	atomic_simplelock.c
 .if "${FEAT_THUMB2}" == "no"

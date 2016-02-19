@@ -14,7 +14,6 @@ SUBDIR+=	camellia
 SUBDIR+=	cast128
 SUBDIR+=	ccd
 SUBDIR+=	cd9660
-SUBDIR+=	cgd
 SUBDIR+=	chfs
 SUBDIR+=	crypto
 SUBDIR+=	coda

@@ -1080,7 +1080,6 @@ message enable_ntpd {ntpd aktivieren}
 message run_ntpdate {ntpdate beim Starten ausführen}
 message enable_mdnsd {mdnsd aktivieren}
 message enable_xdm {xdm aktivieren}
-message enable_cgd {cgd aktivieren}
 message enable_lvm {lvm aktivieren}
 message enable_raid {raidframe aktivieren}
 message add_a_user {Add a user}
@@ -1113,7 +1112,7 @@ message pkgin_failed
 vorhanden sind. Bitte den Pfad der Pakete überprüfen und noch einmal versuchen.}
 message failed {Fehlgeschlagen}
 message notsupported {Operation wird nicht unterstützt!}
-message askfsmountadv {Mountpoint oder 'raid' oder 'cgd' oder 'lvm'?}
+message askfsmountadv {Mountpoint oder 'raid' oder 'lvm'?}
 message partman {Erweiterte Partitionierung}
 message editbsdpart {Bearbeiten BSD-Partitionen}
 message editmbr {Bearbeiten und speichern MBR}
@@ -1148,7 +1147,6 @@ message cantsave {Änderungen können nicht gespeichert werden.}
 message noroot {Kein Root-Partition definiert ist, kann nicht fortgesetzt werden \n}
 message wannaunblock {Das Gerät ist blockiert. Wollen Sie zwingen sie zu entsperren und weiter?}
 message wannatry {Wollen Sie probieren?}
-message create_cgd {Erstellen kryptographische Volumen (CGD)}
 message create_cnd {Erstellen Sie virtuelle Disk-Image (VND)}
 message create_vg {Erstellen Volume-Gruppe (LVM VG)}
 message create_lv {      Erstellen logischer Volumen}
@@ -1213,14 +1211,6 @@ message vnd_bps_ask {Byte pro Sektor?}
 message vnd_spt_ask {Sektoren pro Spur?}
 message vnd_tpc_ask {Spuren pro Zylinder?}
 message vnd_cyl_ask {Zylinder?}
-message cgd_err_menufmt {   DISK NICHT DEFINIERT!}
-message cgd_menufmt {   cgd%1d %-48s %11uM}
-message cgd_dev_fmt {Grundgerät:     %24s}
-message cgd_enc_fmt {Mausklick und:  %24s}
-message cgd_key_fmt {Schlüsselgröße: %24d}
-message cgd_iv_fmt {IV-Algorithmus: %24s}
-message cgd_keygen_fmt {Schlüsselgenerierung: %18s}
-message cgd_verif_fmt {Verification Methode: %18s}
 message lvm_disks {Festplatten im VG:}
 message lvm_menufmt {   %-44s %20sM}
 message lvm_err_menufmt {   VG LEER!}

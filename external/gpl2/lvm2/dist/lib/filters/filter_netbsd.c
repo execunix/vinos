@@ -79,7 +79,6 @@ static const device_info_t device_info[] = {
 	{"wd", 64},	
 	{"vnd", 1},
 	{"raid", 64},
-	{"cgd", 1},
 	{"ccd", 1},	
 	{"xbd", 64},
 	{"ld", 64},

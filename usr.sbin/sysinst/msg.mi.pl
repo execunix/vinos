@@ -1013,7 +1013,6 @@ message enable_ntpd {Wlacz ntpd}
 message run_ntpdate {uruchom ntpdate podczas startu systemu}
 message enable_mdnsd {Wlacz mdnsd}
 message enable_xdm {Enable xdm}
-message enable_cgd {Enable cgd}
 message enable_lvm {Enable lvm}
 message enable_raid {Enable raidframe}
 message add_a_user {Add a user}
@@ -1050,7 +1049,7 @@ Sprawdz sciezke pakietow i sprobuj ponownie.}
 message failed {Nie powiodlo sie}
 
 message notsupported {Operacja nie jest obs³ugiwana!}
-message askfsmountadv {Montowania lub "raid" lub "cgd" lub "lvm"?}
+message askfsmountadv {Montowania lub "raid" lub "lvm"?}
 message partman {Partycje rozszerzone}
 message editbsdpart {Edytuj partycje BSD}
 message editmbr {Edytowaæ i zapisywaæ MBR}
@@ -1085,7 +1084,6 @@ message cantsave {Zmiany nie mog± byæ zbawieni.}
 message noroot {No partycja zdefiniowana, nie mo¿e kontynuowaæ \n}
 message wannaunblock {Urz±dzenie jest zablokowane. Czy chcesz, aby zmusiæ go odblokowaæ i kontynuowaæ?}
 message wannatry {Czy chcesz spróbowaæ?}
-message create_cgd {Utwórz wolumen kryptograficznych (CGD)}
 message create_cnd {Utwórz wirtualnego obraz dysku (VND)}
 message create_vg {Utwórz grupê woluminów (LVM VG)}
 message create_lv {      Utwórz wolumin logiczny}
@@ -1150,14 +1148,6 @@ message vnd_bps_ask {Bajtów na sektor?}
 message vnd_spt_ask {Sektory na ¶cie¿kê?}
 message vnd_tpc_ask {Utwory na cylinder?}
 message vnd_cyl_ask {Cylindry}
-message cgd_err_menufmt {   DISK NIE ZDEFINIOWANE!}
-message cgd_menufmt {   cgd%1d %-48s %11uM}
-message cgd_dev_fmt {Urz±dzenie podstawy: %19s}
-message cgd_enc_fmt {Encryption:           %19s}
-message cgd_key_fmt {Rozmiar klucza:      %19d}
-message cgd_iv_fmt {Algorytm IV: %27s}
-message cgd_keygen_fmt {Generowanie kluczy: %20s}
-message cgd_verif_fmt {Metoda weryfikacji: %20s}
 message lvm_disks {Dyski w VG:}
 message lvm_menufmt {   %-44s %20sM}
 message lvm_err_menufmt {   EMPTY VG!}

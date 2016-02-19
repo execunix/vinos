@@ -61,7 +61,6 @@
 #	dk*	wedge disk slices
 #	ccd*	concatenated disk devices
 #	cd*	SCSI or ATAPI CD-ROM
-#	cgd*	cryptographic disk devices
 #	raid*	RAIDframe disk devices
 #	sd*	SCSI disks
 #	wd*	"winchester" disk drives (ST506,IDE,ESDI,RLL,...)
@@ -1100,10 +1099,9 @@ ss[0-9]*)
 	mkdev en$name$unit	c $chr $(($unit * 16 + 3)) 640 $g_operator
 	;;
 
-ccd[0-9]*|cgd[0-9]*|raid[0-9]*|vnd[0-9]*)
+ccd[0-9]*|raid[0-9]*|vnd[0-9]*)
 	case $i in
 	ccd*)	name=ccd;	unit=${i#ccd};	blk=%ccd_blk%;	chr=%ccd_chr%;;
-	cgd*)	name=cgd;	unit=${i#cgd};	blk=%cgd_blk%;	chr=%cgd_chr%;;
 	raid*)	name=raid;	unit=${i#raid}; blk=%raid_blk%; chr=%raid_chr%;;
 	vnd*)	name=vnd;	unit=${i#vnd};	blk=%vnd_blk%;	chr=%vnd_chr%;;
 	esac

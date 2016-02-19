@@ -14,7 +14,7 @@ SUBDIR+= iscsi
 INCSDIR= /usr/include/dev
 
 # Only install includes which are used by userland
-INCS=	biovar.h ccdvar.h cgdvar.h fssvar.h keylock.h kttcpio.h lockstat.h \
+INCS=	biovar.h ccdvar.h fssvar.h keylock.h kttcpio.h lockstat.h \
 	md.h vndvar.h
 
 .include <bsd.kinc.mk>

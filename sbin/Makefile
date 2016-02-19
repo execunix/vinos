@@ -50,10 +50,6 @@ SUBDIR+= mount_umap
 SUBDIR+= mount_union
 SUBDIR+= mount_v7fs
 
-.if (${MKCRYPTO} != "no")
-SUBDIR+= cgdconfig
-.endif
-
 .if (${USE_INET6} != "no")
 SUBDIR+= ping6 rtsol
 .endif

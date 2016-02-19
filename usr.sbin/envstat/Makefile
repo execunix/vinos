@@ -2,7 +2,7 @@
 
 PROG=		envstat
 SRCS+=		envstat.c config.c config_yacc.y config_lex.l
-SRCS+=		${PROG}_hostops.c
+SRCS+=		prog_ops.c
 
 LDADD=		-lprop
 DPADD=		${LIBPROP}

@@ -1332,7 +1332,6 @@ file	dev/ic/dm9000.c			dme
 defpseudodev vnd:	disk
 defflag opt_vnd.h	VND_COMPRESSION
 defpseudo ccd:		disk
-defpseudodev cgd:	disk, des, blowfish, cast128
 defpseudodev md:	disk
 defpseudodev fss:	disk
 
@@ -1469,11 +1468,9 @@ file	dev/aurateconv.c		aurateconv		needs-flag
 file	dev/auvolconv.c			auvolconv
 file	dev/bio.c			bio			needs-flag
 file	dev/ccd.c			ccd
-file	dev/cgd.c			cgd
-file	dev/cgd_crypto.c		cgd
 file	dev/clock_subr.c
 file	dev/clockctl.c			clockctl
-file	dev/dksubr.c			cgd | xbd | ccd | raid | dm
+file	dev/dksubr.c			xbd | ccd | raid | dm
 file	dev/dkwedge/dk.c
 file	dev/dkwedge/dkwedge_apple.c	dkwedge_method_apple
 file	dev/dkwedge/dkwedge_bsdlabel.c	dkwedge_method_bsdlabel

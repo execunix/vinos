@@ -304,7 +304,6 @@ x(ATAPI,	13,	"ATAPI")	/* ATAPI */ \
 x(RAID,		14,	"RAID")		/* RAIDframe */ \
 x(LD,		15,	"ld")		/* logical disk */ \
 x(JFS2,		16,	"jfs")		/* IBM JFS2 */ \
-x(CGD,		17,	"cgd")		/* cryptographic pseudo-disk */ \
 x(VINUM,	18,	"vinum")	/* vinum volume */ \
 x(FLASH,	19,	"flash")	/* flash memory devices */ \
 x(DM,           20,     "dm")           /* device-mapper pseudo-disk devices */\
@@ -357,7 +356,6 @@ x(UDF,     24, "UDF",        NULL,   "udf")   /* UDF */ \
 x(SYSVBFS, 25, "SysVBFS",    NULL,  "sysvbfs")/* System V boot file system */ \
 x(EFS,     26, "EFS",        NULL,   "efs")   /* SGI's Extent Filesystem */ \
 x(NILFS,   27, "NiLFS",      NULL,   "nilfs") /* NTT's NiLFS(2) */ \
-x(CGD,     28, "cgd",	     NULL,   NULL)    /* Cryptographic disk */ \
 x(MINIXFS3,29, "MINIX FSv3", NULL,   NULL)    /* MINIX file system v3 */
 
 

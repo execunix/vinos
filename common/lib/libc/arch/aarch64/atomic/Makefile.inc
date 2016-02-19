@@ -1,7 +1,6 @@
 # $NetBSD: Makefile.inc,v 1.1 2014/08/10 05:47:35 matt Exp $
 
-.if defined(LIB) && (${LIB} == "kern" || ${LIB} == "c" || ${LIB} == "pthread" \
-	|| ${LIB} == "rump")
+.if defined(LIB) && (${LIB} == "kern" || ${LIB} == "c" || ${LIB} == "pthread")
 
 .for op in add and cas nand or sub swap xor
 .for sz in 8 16 32 64

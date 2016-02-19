@@ -93,7 +93,6 @@ static const struct gptfs_t gpt_filesystems[] = {
     { "ufs", FS_OTHER, GPT_ENT_TYPE_APPLE_UFS, },
     { "ccd", FS_CCD, GPT_ENT_TYPE_NETBSD_CCD, },
     { "raid", FS_RAID, GPT_ENT_TYPE_NETBSD_RAIDFRAME, },
-    { "cgd", FS_CGD, GPT_ENT_TYPE_NETBSD_CGD, },
     { "efi", FS_OTHER, GPT_ENT_TYPE_EFI, },
     { "bios", FS_OTHER, GPT_ENT_TYPE_BIOS, },
     { NULL, -1, GPT_ENT_TYPE_UNUSED, },
@@ -113,7 +112,7 @@ static int incoregpt(pm_devs_t *, partinfo *);
 #define DISK_NAMES "wd", "sd", "ld", "raid"
 #endif
 
-static const char *disk_names[] = { DISK_NAMES, "vnd", "cgd", NULL };
+static const char *disk_names[] = { DISK_NAMES, "vnd", NULL };
 
 static bool tmpfs_on_var_shm(void);
 
@@ -345,7 +344,7 @@ get_descr(struct disk_desc *dd)
 	/* try SCSI */
 	if (get_descr_scsi(dd, fd))
 		goto done;
-	/* XXX: get description from raid, cgd, vnd... */
+	/* XXX: get description from raid, vnd... */
 
 done:
 	if (fd >= 0)

@@ -5,7 +5,6 @@ SUBDIR+=	ramdisks
 SUBDIR+=	.WAIT
 SUBDIR+=	instkernel
 SUBDIR+=	kmod
-SUBDIR+=	kmod-cgdroot
 SUBDIR+=	.WAIT
 SUBDIR+=	cdroms
 SUBDIR+=	liveimage

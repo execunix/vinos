@@ -6,7 +6,7 @@
 PROG=	route
 MAN=	route.8
 SRCS=	route.c show.c keywords.c rtutil.c
-SRCS+=	${PROG}_hostops.c
+SRCS+=	prog_ops.c
 
 .if (${USE_INET6} != "no")
 CPPFLAGS+=-DINET6

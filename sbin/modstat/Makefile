@@ -2,7 +2,7 @@
 
 PROG=	modstat
 SRCS=	main.c
-SRCS+=	${PROG}_hostops.c
+SRCS+=	prog_ops.c
 MAN=	modstat.8
 
 .include <bsd.prog.mk>

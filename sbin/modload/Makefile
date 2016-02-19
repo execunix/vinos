@@ -4,7 +4,7 @@
 
 PROG=	modload
 SRCS=	main.c
-SRCS+=	${PROG}_hostops.c
+SRCS+=	prog_ops.c
 MAN=	modload.8
 LDADD=	-lprop
 

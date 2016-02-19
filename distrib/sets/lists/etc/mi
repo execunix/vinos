@@ -138,7 +138,6 @@
 ./etc/rc.d/bootconf.sh				etc-sys-rc
 ./etc/rc.d/bootparams				etc-bootserver-rc
 ./etc/rc.d/ccd					etc-sys-rc
-./etc/rc.d/cgd					etc-sys-rc
 ./etc/rc.d/cleartmp				etc-sys-rc
 ./etc/rc.d/cron					etc-cron-rc
 ./etc/rc.d/devpubd				etc-sys-rc

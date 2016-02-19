@@ -2,7 +2,7 @@
 
 PROG=	modunload
 SRCS=	main.c
-SRCS+=	${PROG}_hostops.c
+SRCS+=	prog_ops.c
 MAN=	modunload.8
 
 .include <bsd.prog.mk>

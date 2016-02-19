@@ -9,7 +9,7 @@ PROG=	netstat
 SRCS=	atalk.c bpf.c fast_ipsec.c if.c inet.c inet6.c \
 	main.c mbuf.c mroute.c mroute6.c pfkey.c pfsync.c route.c \
 	unix.c vtw.c rtutil.c
-SRCS+=	${PROG}_hostops.c
+SRCS+=	prog_ops.c
 BINGRP=	kmem
 BINMODE=2555
 LDADD=	-lkvm

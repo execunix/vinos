@@ -920,9 +920,9 @@ if checkyesno check_disklabels; then
 		done
 	fi
 
-		# if dkctl is available, generate dkctl listwedges for:	ed ld sd wd cgd ofdisk ra rl raid
+		# if dkctl is available, generate dkctl listwedges for:	ed ld sd wd ofdisk ra rl raid
 	if [ -x /sbin/dkctl ]; then
-		disks=$(iostat -x | awk 'NR > 1 && $1 ~ /^[elsw]d|cgd|ofdisk|r[al]|raid/ { print $1; }')
+		disks=$(iostat -x | awk 'NR > 1 && $1 ~ /^[elsw]d|ofdisk|r[al]|raid/ { print $1; }')
 		for i in $disks; do
 			/sbin/dkctl $i listwedges > "$work_dir/wedges.$i" 2>/dev/null
 		done

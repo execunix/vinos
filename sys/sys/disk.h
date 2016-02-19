@@ -244,7 +244,6 @@ __link_set_add_data(dkwedge_methods, name ## _ddm)
 #define	DKW_PTYPE_SYSVBFS	"sysvbfs"
 #define	DKW_PTYPE_EFS		"efs"
 #define	DKW_PTYPE_NILFS		"nilfs"
-#define	DKW_PTYPE_CGD		"cgd"
 #define	DKW_PTYPE_MINIXFS3	"minixfs3"
 
 /*

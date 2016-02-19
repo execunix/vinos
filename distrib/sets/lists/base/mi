@@ -72,7 +72,6 @@
 ./etc/X11/xinit					base-x11-root
 ./etc/X11/xserver				base-x11-root
 ./etc/X11/xsm					base-x11-root
-./etc/cgd					base-sys-root
 ./etc/defaults					base-sys-root
 ./etc/fonts					base-x11-root
 ./etc/fonts/conf.avail				base-x11-root
@@ -379,7 +378,6 @@
 ./sbin/blacklistd				base-sysutil-root
 ./sbin/brconfig					base-netutil-root
 ./sbin/ccdconfig				base-sysutil-root
-./sbin/cgdconfig				base-sysutil-root	crypto
 ./sbin/chown					base-sysutil-root
 ./sbin/clri					base-sysutil-root
 ./sbin/devpubd					base-sysutil-root

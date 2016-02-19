@@ -28,8 +28,6 @@
 ./@MODULEDIR@/ccd/ccd.kmod			base-kernel-modules	kmod
 ./@MODULEDIR@/cd9660				base-kernel-modules	kmod
 ./@MODULEDIR@/cd9660/cd9660.kmod		base-kernel-modules	kmod
-./@MODULEDIR@/cgd				base-kernel-modules	kmod
-./@MODULEDIR@/cgd/cgd.kmod			base-kernel-modules	kmod
 ./@MODULEDIR@/chfs				base-kernel-modules	kmod
 ./@MODULEDIR@/chfs/chfs.kmod			base-kernel-modules	kmod
 ./@MODULEDIR@/coda				base-kernel-modules	kmod

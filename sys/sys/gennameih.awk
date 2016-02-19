@@ -50,7 +50,6 @@ function printheader(outfile) {
 BEGIN {
 	myvers="$NetBSD: gennameih.awk,v 1.5 2009/12/23 14:17:19 pooka Exp $"
 	namei="namei.h"
-	rumpnamei = "../rump/include/rump/rump_namei.h"
 }
 
 NR == 1 {
@@ -81,16 +80,4 @@ END {
 	}
 
 	printf "\n#endif /* !_SYS_NAMEI_H_ */\n" > namei
-
-	# Now, create rump_namei.h
-	printheader(rumpnamei)
-	printf("\n#ifndef _RUMP_RUMP_NAMEI_H_\n") > rumpnamei
-	printf("#define _RUMP_RUMP_NAMEI_H_\n\n") > rumpnamei
-
-	# print flags in the same order
-	for (j = 0; j < i; j++) {
-		print "#define RUMP_" nameifl[j] > rumpnamei
-	}
-
-	printf("\n#endif /* _RUMP_RUMP_NAMEI_H_ */\n") > rumpnamei
 }

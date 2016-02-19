@@ -143,16 +143,6 @@ remove_gpt_options()
 	remove_menu_option(MENU_pmpartentry, MSG_switchgpt);
 }
 
-void
-remove_cgd_options()
-{
-	/*
-	 * No CGD available, remove the following menu entries:
-	 */
-	remove_menu_option(MENU_pmdiskentry, MSG_encrypt);
-	remove_menu_option(MENU_pmpartentry, MSG_encrypt);
-}
-
 }
 
 default y=12, no exit, scrollable;
@@ -636,13 +626,6 @@ menu pmdiskentry, x=50, y=5, exit, default exit;
 											pm_partusage(pm, -1, 1);
 											layoutkind = LY_NEWLVM;
 											md_make_bsd_partitions(); };
-	option MSG_encrypt,		exit, action { pm->unsaved = 1;
-											pm_partusage(pm, -1, 1);
-											layoutkind = LY_NEWCGD;
-											md_make_bsd_partitions();
-											pm_cgd_edit(0, &(part_entry_t)
-												{.dev_ptr = pm, .dev_num = PART_E}
-											); };
 	option MSG_setbootable,	exit, action { pm->unsaved = 1;
 											pm->bootable = !pm->bootable; };
 	option MSG_erase,		next menu shred_modes;
@@ -681,18 +664,6 @@ menu pmpartentry, x=50, y=5, exit, default exit;
 									pm_setfstype(pm, *(int*)arg, FS_BSDFFS);
 								    pm->bsdlabel[*(int*)arg].lvmpv = 1;
 								};
-	option MSG_encrypt,		exit, action {
-									if (pm->gpt || pm->isspecial) {
-										process_menu(MENU_ok, deconst(MSG_notsupported));
-										return -1;
-									}
-									pm->unsaved = 1;
-									pm_partusage(pm, *(int*)arg, 1);
-									pm_setfstype(pm, *(int*)arg, FS_CGD);
-									pm_cgd_edit(0,
-										&(part_entry_t){.dev_ptr = pm,
-														.dev_num = *(int*)arg});
-								};
 	option MSG_erase,		next menu shred_modes;
 	option MSG_doumount,	exit, action { pm_umount(pm, *(int*)arg); };
 	option MSG_Delete_partition,	exit, action {
@@ -729,26 +700,3 @@ menu raidlevel;
 	option MSG_raid1, exit, action { *(int *)arg = 1; };
 	option MSG_raid4, exit, action { *(int *)arg = 4; };
 	option MSG_raid5, exit, action { *(int *)arg = 5; };
-
-menu cgd_enctype;
-	option "aes-cbc",			exit, action { *(const char**)arg = "aes-cbc"; };
-	option "3des-cbc",			exit, action { *(const char**)arg = "3des-cbc"; };
-	option "blowfish-cbc",		exit, action { *(const char**)arg = "blowfish-cbc"; };
-
-menu cgd_ivtype;
-	option "encblkno1",			exit, action { *(const char**)arg = "encblkno1"; };
-	option "encblkno8",			exit, action { *(const char**)arg = "encblkno8"; };
-
-menu cgd_keygentype;
-	option "pkcs5_pbkdf2/sha1",	exit, action { *(const char**)arg = "pkcs5_pbkdf2/sha1"; };
-	option "pkcs5_pbkdf2",		exit, action { *(const char**)arg = "pkcs5_pbkdf2"; };
-	option "storedkey",			exit, action { *(const char**)arg = "storedkey"; };
-	option "randomkey",			exit, action { *(const char**)arg = "randomkey"; };
-	option "urandomkey",		exit, action { *(const char**)arg = "urandomkey"; };
-	option "shell_cmd",			exit, action { *(const char**)arg = "shell_cmd"; };
-
-menu cgd_verifytype;
-	option "none",				exit, action { *(const char**)arg = "none"; };
-	option "disklabel",			exit, action { *(const char**)arg = "disklabel"; };
-	option "ffs",				exit, action { *(const char**)arg = "ffs"; };
-	option "re-enter",			exit, action { *(const char**)arg = "re-enter"; };

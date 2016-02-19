@@ -543,9 +543,6 @@ get_ptn_sizes(daddr_t part_start, daddr_t sectors, int no_swap)
 		if (!strcmp(p->mount, "raid")) {
 			save_ptn(i, part_start, size, FS_RAID, NULL);
 			continue;			
-		} else if (!strcmp(p->mount, "cgd")) {
-			save_ptn(i, part_start, size, FS_CGD, NULL);
-			continue;
 		}
 		save_ptn(i, part_start, size, FS_BSDFFS, p->mount);
 	}
@@ -740,10 +737,6 @@ make_bsd_partitions(void)
 	
 	else if (layoutkind == LY_NEWRAID) {
 		set_ptype(&(pm->bsdlabel[PART_E]), FS_RAID, 0);
-		pm->bsdlabel[PART_E].pi_size = pm->ptsize;
-	}
-	else if (layoutkind == LY_NEWCGD) {
-		set_ptype(&(pm->bsdlabel[PART_E]), FS_CGD, 0);
 		pm->bsdlabel[PART_E].pi_size = pm->ptsize;
 	}
 	else if (layoutkind == LY_NEWLVM) {

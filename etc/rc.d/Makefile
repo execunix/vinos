@@ -17,7 +17,7 @@ CONFIGFILES=\
 		DAEMON DISKS LOGIN NETWORKING SERVERS \
 		accounting altqd amd apmd \
 		bluetooth bootconf.sh bootparams \
-		ccd cgd cleartmp cron devpubd \
+		ccd cleartmp cron devpubd \
 		dhclient dhcpcd dhcpd dhcrelay dmesg downinterfaces envsys \
 		fsck fsck_root ftp_proxy ftpd \
 		gpio \

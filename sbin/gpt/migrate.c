@@ -223,11 +223,6 @@ migrate_netbsd_disklabel(int fd, off_t start, struct gpt_ent *ent)
 			    ent->ent_name, sizeof(ent->ent_name));
 			break;
 		}
-		case FS_CGD: {
-			gpt_uuid_create(GPT_TYPE_NETBSD_CGD, ent->ent_type,
-			    ent->ent_name, sizeof(ent->ent_name));
-			break;
-		}
 		default:
 			warnx("%s: warning: unknown NetBSD partition (%d)",
 			    device_name, dl->d_partitions[i].p_fstype);

@@ -12,7 +12,7 @@ MAN=	ifconfig.8
 
 #DBG+=-g
 SRCS= af_atalk.c af_link.c carp.c
-SRCS+=	${PROG}_hostops.c
+SRCS+=	prog_ops.c
 .if (${USE_INET6} != "no")
 CPPFLAGS+=	-DINET6
 SRCS+= af_inet6.c

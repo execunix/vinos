@@ -1007,7 +1007,6 @@ message enable_ntpd {Enable ntpd}
 message run_ntpdate {Run ntpdate at boot}
 message enable_mdnsd {Enable mdnsd}
 message enable_xdm {Enable xdm}
-message enable_cgd {Enable cgd}
 message enable_lvm {Enable lvm}
 message enable_raid {Enable raidframe}
 message add_a_user {Add a user}
@@ -1039,7 +1038,7 @@ exist.  Please check the package path and try again.}
 message failed {Failed}
 
 message notsupported {Operation not supported!}
-message askfsmountadv {Mountpoint or 'raid' or 'cgd' or 'lvm'?}
+message askfsmountadv {Mountpoint or 'raid' or 'lvm'?}
 message partman {Extended partitioning}
 message editbsdpart {Edit BSD partitions}
 message editmbr {Edit and save MBR}
@@ -1076,7 +1075,6 @@ message wannaunblock {
 Device is blocked.  Editing it may cause problems.
 Do you want to force unblock it and continue?}
 message wannatry {Do you want to try?}
-message create_cgd {Create cryptographic volume (CGD)}
 message create_cnd {Create virtual disk image (VND)}
 message create_vg {Create volume group (LVM VG)}
 message create_lv {      Create logical volume}
@@ -1140,14 +1138,6 @@ message vnd_bps_ask {Bytes per Sector?}
 message vnd_spt_ask {Sectors per Track?}
 message vnd_tpc_ask {Tracks per Cylinder?}
 message vnd_cyl_ask {Cylinders?}
-message cgd_err_menufmt {   DISK NOT DEFINED!}
-message cgd_menufmt {   cgd%1d %-48s %11uM}
-message cgd_dev_fmt {Base device:    %24s}
-message cgd_enc_fmt {Encryption:      %24s}
-message cgd_key_fmt {Key size:       %24d}
-message cgd_iv_fmt {IV algorithm:   %24s}
-message cgd_keygen_fmt {Key generation: %24s}
-message cgd_verif_fmt {Verification method:   %17s}
 message lvm_disks {Disks in VG:}
 message lvm_menufmt {   %-44s %20sM}
 message lvm_err_menufmt {   EMPTY VG!}

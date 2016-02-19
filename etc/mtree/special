@@ -37,8 +37,6 @@
 ./etc/bootparams		type=file mode=0644 optional
 ./etc/bootptab			type=file mode=0644 optional
 ./etc/ccd.conf			type=file mode=0644 optional
-./etc/cgd			type=dir  mode=0700 optional
-./etc/cgd/cgd.conf		type=file mode=0600 optional tags=nodiff
 ./etc/changelist		type=file mode=0644
 ./etc/crontab			type=file mode=0644 optional
 ./etc/csh.cshrc			type=file mode=0644
@@ -190,7 +188,6 @@
 ./etc/rc.d/bootconf.sh		type=file mode=0555
 ./etc/rc.d/bootparams		type=file mode=0555
 ./etc/rc.d/ccd			type=file mode=0555
-./etc/rc.d/cgd			type=file mode=0555
 ./etc/rc.d/cleartmp		type=file mode=0555
 ./etc/rc.d/cron			type=file mode=0555
 ./etc/rc.d/devpubd		type=file mode=0555

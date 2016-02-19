@@ -8,6 +8,6 @@ PROG=	sysctl
 MAN=	sysctl.8
 
 SRCS=	sysctl.c
-SRCS+=	${PROG}_hostops.c
+SRCS+=	prog_ops.c
 
 .include <bsd.prog.mk>

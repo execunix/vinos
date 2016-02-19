@@ -2,7 +2,7 @@
 
 PROG=	raidctl 
 SRCS=	rf_configure.c raidctl.c
-SRCS+=	${PROG}_hostops.c
+SRCS+=	prog_ops.c
 MAN=	raidctl.8
 
 DPADD=  ${LIBUTIL}

@@ -17,7 +17,7 @@ MAN=	aac.4 ac97.4 acardide.4 aceride.4 acphy.4 \
 	btmagic.4 btms.4 btsco.4 btuart.4 \
 	bwi.4 \
 	cac.4 cardbus.4 carp.4 cas.4 ccd.4 cd.4 \
-	cec.4 cgd.4 cfb.4 ch.4 chipsfb.4 ciphy.4 ciss.4 clcs.4 clct.4 \
+	cec.4 cfb.4 ch.4 chipsfb.4 ciphy.4 ciss.4 clcs.4 clct.4 \
 	clockctl.4 cmdide.4 cmpci.4 cms.4 cnw.4 \
 	com.4 coram.4 crypto.4 cs80bus.4 cuda.4 cypide.4 cxdtv.4 \
 	ddb.4 ddc.4 de.4 dge.4 dk.4 dm.4 dmoverio.4 \

@@ -46,7 +46,7 @@
 
 /* flags whether to offer the respective options (depending on helper
    programs available on install media */
-int have_raid, have_vnd, have_cgd, have_lvm, have_gpt, have_dk;
+int have_raid, have_vnd, have_lvm, have_gpt, have_dk;
 
 /* XXX: replace all MAX_* defines with vars that depend on kernel settings */
 #define MAX_ENTRIES 96
@@ -82,22 +82,6 @@ typedef struct vnds_t {
 	pm_devs_t *pm;  /* referring device */
 } vnds_t;
 vnds_t vnds[MAX_VND];
-
-#define MAX_CGD 4
-typedef struct cgds_t {
-	int enabled;
-	int blocked;
-	int node;
-	pm_devs_t *pm;
-	char pm_name[SSTRSIZE];
-	int pm_part;
-	const char *keygen_type;
-	const char *verify_type;
-	const char *enc_type;
-	const char *iv_type;
-	int key_size;
-} cgds_t;
-cgds_t cgds[MAX_CGD];
 
 #define MAX_LVM_VG 16
 #define MAX_LVM_PV 255
@@ -149,7 +133,7 @@ typedef struct structinfo_t {
 	void *entry_blocked;
 	void *entry_node;
 } structinfo_t;
-structinfo_t raids_t_info, vnds_t_info, cgds_t_info, lvms_t_info, lv_t_info;
+structinfo_t raids_t_info, vnds_t_info, lvms_t_info, lv_t_info;
 
 typedef struct pm_upddevlist_adv_t {
 	const char *create_msg;
@@ -181,11 +165,6 @@ enum { /* VND menu enum */
 	PMV_MENU_REMOVE, PMV_MENU_END
 };
 
-enum { /* CGD menu enum */
-	PMC_MENU_DEV, PMC_MENU_ENCTYPE, PMC_MENU_KEYSIZE, PMC_MENU_IVTYPE,
-	PMC_MENU_KEYGENTYPE, PMC_MENU_VERIFYTYPE, PMC_MENU_REMOVE, PMC_MENU_END
-};
-
 enum { /* LVM menu enum */
 	PML_MENU_PV, PML_MENU_NAME, PML_MENU_MAXLOGICALVOLUMES,
 	PML_MENU_MAXPHYSICALVOLUMES, PML_MENU_PHYSICALEXTENTSIZE, 
@@ -203,12 +182,11 @@ enum { /* LVM submenu (logical volumes) enum */
 part_entry_t pm_dev_list(int);
 static int pm_raid_disk_add(menudesc *, void *);
 static int pm_raid_disk_del(menudesc *, void *);
-static int pm_cgd_disk_set(cgds_t *, part_entry_t *);
 static int pm_mount(pm_devs_t *, int);
 static int pm_upddevlist(menudesc *, void *);
 static void pm_select(pm_devs_t *);
 
-/* Universal menu for RAID/VND/CGD/LVM entry edit */
+/* Universal menu for RAID/VND/LVM entry edit */
 static int
 pm_edit(int menu_entries_count, void (*menu_fmt)(menudesc *, int, void *),
 	int (*action)(menudesc *, void *), int (*check_fun)(void *),
@@ -287,10 +265,6 @@ pm_dev_list(int type)
 					if (pm_i->bsdlabel[i].pi_fstype == FS_RAID)
 						ok = 1;
 					break;
-				case PM_CGD_T:
-					if (pm_i->bsdlabel[i].pi_fstype == FS_CGD)
-						ok = 1;
-					break;
 				case PM_LVM_T:
 					if (pm_i->bsdlabel[i].lvmpv)
 						ok = 1;
@@ -326,7 +300,7 @@ pm_dev_list(int type)
 	return disk_entries[dev_num];
 }
 
-/* Get unused raid*, cgd* or vnd* device */
+/* Get unused raid* or vnd* device */
 static int
 pm_manage_getfreenode(void *node, const char *d, structinfo_t *s)
 {
@@ -955,206 +929,6 @@ pm_vnd_commit(void)
 		}
 	}
 	return 0;
-}
-
-/***
- CGD
- ***/
-
-static void
-pm_cgd_menufmt(menudesc *m, int opt, void *arg)
-{
-	cgds_t *dev_ptr = ((part_entry_t *)arg)[opt].dev_ptr;
-	char desc[STRSIZE];
-
-	if (dev_ptr->enabled == 0)
-		return;
-	if (dev_ptr->pm == NULL)
-		wprintw(m->mw, "%s", msg_string(MSG_cgd_err_menufmt));
-	else {
-		snprintf(desc, STRSIZE, "(%s-%d) on %s", dev_ptr->enc_type,
-			dev_ptr->key_size, dev_ptr->pm_name);
-		wprintw(m->mw, msg_string(MSG_cgd_menufmt), dev_ptr->node, desc,
-			dev_ptr->pm->bsdlabel[dev_ptr->pm_part].pi_size /
-							(MEG / dev_ptr->pm->sectorsize));
-	}
-	return;
-}
-
-static void
-pm_cgd_edit_menufmt(menudesc *m, int opt, void *arg)
-{
-	cgds_t *dev_ptr = arg;
-	switch (opt) {
-		case PMC_MENU_DEV:
-			wprintw(m->mw, msg_string(MSG_cgd_dev_fmt), dev_ptr->pm_name);
-			break;
-		case PMC_MENU_ENCTYPE:
-			wprintw(m->mw, msg_string(MSG_cgd_enc_fmt), dev_ptr->enc_type);
-			break;
-		case PMC_MENU_KEYSIZE:
-			wprintw(m->mw, msg_string(MSG_cgd_key_fmt), dev_ptr->key_size);
-			break;
-		case PMC_MENU_IVTYPE:
-			wprintw(m->mw, msg_string(MSG_cgd_iv_fmt), dev_ptr->iv_type);
-			break;
-		case PMC_MENU_KEYGENTYPE:
-			wprintw(m->mw, msg_string(MSG_cgd_keygen_fmt), dev_ptr->keygen_type);
-			break;
-		case PMC_MENU_VERIFYTYPE:
-			wprintw(m->mw, msg_string(MSG_cgd_verif_fmt), dev_ptr->verify_type);
-			break;
-	}
-	return;
-}
-
-static int
-pm_cgd_set_value(menudesc *m, void *arg)
-{
-	char *retstring;
-	cgds_t *dev_ptr = arg;
-
-	switch (m->cursel) {
-		case PMC_MENU_DEV:
-			pm_cgd_disk_set(dev_ptr, NULL);
-			return 0;
-		case PMC_MENU_ENCTYPE:
-			process_menu(MENU_cgd_enctype, &retstring);
-			dev_ptr->enc_type = retstring;
-			if (! strcmp(retstring, "blowfish-cbc"))
-				dev_ptr->key_size = 128;
-			if (! strcmp(retstring, "3des-cbc"))
-				dev_ptr->key_size = 192;
-			return 0;
-		case PMC_MENU_KEYSIZE:
-			if (! strcmp(dev_ptr->enc_type, "aes-cbc"))
-				dev_ptr->key_size +=
-					(dev_ptr->key_size < 256)? 64 : -128;
-			if (! strcmp(dev_ptr->enc_type, "blowfish-cbc"))
-				dev_ptr->key_size = 128;
-			if (! strcmp(dev_ptr->enc_type, "3des-cbc"))
-				dev_ptr->key_size = 192;
-			return 0;
-		case PMC_MENU_IVTYPE:
-			process_menu(MENU_cgd_ivtype, &retstring);
-			dev_ptr->iv_type = retstring;
-			return 0;
-		case PMC_MENU_KEYGENTYPE:
-			process_menu(MENU_cgd_keygentype, &retstring);
-			dev_ptr->keygen_type = retstring;
-			return 0;
-		case PMC_MENU_VERIFYTYPE:
-			process_menu(MENU_cgd_verifytype, &retstring);
-			dev_ptr->verify_type = retstring;
-			return 0;
-		case PMC_MENU_REMOVE:
-			dev_ptr->enabled = 0;
-			return 0;
-	}
-	return -1;
-}
-
-static void
-pm_cgd_init(void *arg1, void *arg2)
-{
-	cgds_t *dev_ptr = arg1;
-	part_entry_t *disk_entrie = arg2;
-
-	memset(dev_ptr, 0, sizeof(*dev_ptr));
-	*dev_ptr = (struct cgds_t) {
-		.enabled = 1,
-		.blocked = 0,
-		.pm = NULL,
-		.pm_name[0] = '\0',
-		.pm_part = 0,
-		.keygen_type = "pkcs5_pbkdf2/sha1",
-		.verify_type = "disklabel",
-		.enc_type = "aes-cbc",
-		.iv_type = "encblkno1",
-		.key_size = 192,
-	};
-	if (disk_entrie != NULL) {
-		pm_getdevstring(disk_entrie->fullname, SSTRSIZE,
-			disk_entrie->dev_ptr, disk_entrie->dev_num);
-		pm_cgd_disk_set(dev_ptr, disk_entrie);
-	}
-	return;
-}
-
-static int
-pm_cgd_check(void *arg)
-{
-	cgds_t *dev_ptr = arg;
-
-	if (dev_ptr->blocked)
-		return 0;
-	if (dev_ptr->pm == NULL)
-		dev_ptr->enabled = 0;
-	else
-		pm_manage_getfreenode(&(dev_ptr->node), "cgd", &cgds_t_info);
-		if (dev_ptr->node < 0)
-			dev_ptr->enabled = 0;
-	return dev_ptr->enabled;
-}
-
-static int
-pm_cgd_disk_set(cgds_t *dev_ptr, part_entry_t *disk_entrie)
-{
-	int alloc_disk_entrie = 0;
-	if (disk_entrie == NULL) {
-		alloc_disk_entrie = 1;
-		disk_entrie = malloc (sizeof(part_entry_t));
-		if (disk_entrie == NULL)
-			return -2;
-		*disk_entrie = pm_dev_list(PM_CGD_T);
-		if (disk_entrie->retvalue < 0) {
-			free(disk_entrie);
-			return -1;
-		}
-	}
-	dev_ptr->pm = disk_entrie->dev_ptr;
-	dev_ptr->pm_part = disk_entrie->dev_num;
-	strlcpy(dev_ptr->pm_name, disk_entrie->fullname, SSTRSIZE);
-
-	if (alloc_disk_entrie)
-		free(disk_entrie);
-	return 0;
-}
-
-int
-pm_cgd_edit(void *dev_ptr, part_entry_t *disk_entrie)
-{
-	if (disk_entrie != NULL)
-		dev_ptr = NULL;
-	return pm_edit(PMC_MENU_END, pm_cgd_edit_menufmt,
-		pm_cgd_set_value, pm_cgd_check, pm_cgd_init,
-		disk_entrie, dev_ptr, 0, &cgds_t_info);
-}
-
-static int
-pm_cgd_commit(void)
-{
-	int i, error = 0;
-	for (i = 0; i < MAX_CGD; i++) {
-		if (! pm_cgd_check(&cgds[i]))
-			continue;
-		if (run_program(RUN_DISPLAY | RUN_PROGRESS,
-			"cgdconfig -g -i %s -k %s -o /tmp/cgd.%d.conf %s %d",
-			cgds[i].iv_type, cgds[i].keygen_type, cgds[i].node,
-			cgds[i].enc_type, cgds[i].key_size) != 0) {
-			error++;
-			continue;
-		}
-		if (run_program(RUN_DISPLAY | RUN_PROGRESS,
-			"cgdconfig -V re-enter cgd%d /dev/%s /tmp/cgd.%d.conf",
-			cgds[i].node, cgds[i].pm_name, cgds[i].node) != 0) {
-			error++;
-			continue;
-		}
-		cgds[i].pm->blocked++;
-		cgds[i].blocked = 1;
-	}
-	return error;
 }
 
 /***
@@ -1879,18 +1653,7 @@ pm_getrefdev(pm_devs_t *pm_cur)
 	char dev[SSTRSIZE]; dev[0] = '\0';
 
 	pm_cur->refdev = NULL;
-	if (! strncmp(pm_cur->diskdev, "cgd", 3)) {
-		dev_num = pm_cur->diskdev[3] - '0';
-		for (i = 0; i < MAX_CGD; i++)
-			if (cgds[i].blocked && cgds[i].node == dev_num) {
-				pm_cur->refdev = &cgds[i];
-
-				snprintf(pm_cur->diskdev_descr, STRSIZE, "%s (%s, %s-%d)",
-					pm_cur->diskdev_descr, cgds[i].pm_name,
-					cgds[i].enc_type, cgds[i].key_size);
-				break;
-			}
- 	} else if (! strncmp(pm_cur->diskdev, "vnd", 3)) {
+ 	if (! strncmp(pm_cur->diskdev, "vnd", 3)) {
  		dev_num = pm_cur->diskdev[3] - '0';
  		for (i = 0; i < MAX_VND; i++)
 			if (vnds[i].blocked && vnds[i].node == dev_num) {
@@ -1936,16 +1699,6 @@ pm_partusage(pm_devs_t *pm_cur, int part_num, int do_del)
 		return retvalue;
 	}
 
-	for (i = 0; i < MAX_CGD; i++)
-		if (cgds[i].enabled &&
-			cgds[i].pm == pm_cur &&
-			cgds[i].pm_part == part_num) {
-			if (do_del) {
-				cgds[i].pm = NULL;
-				strcpy(cgds[i].pm_name, "");
-			}
-			return 1;
-		}
 	for (i = 0; i < MAX_RAID; i++)
 		for (ii = 0; ii < MAX_IN_RAID; ii++)
 			if (raids[i].enabled &&
@@ -2067,17 +1820,6 @@ pm_shred(pm_devs_t *pm_cur, int part, int shredtype)
 			error += run_program(RUN_DISPLAY | RUN_PROGRESS,
 				"dd of=/dev/%s if=/dev/urandom bs=1m progress=100 msgfmt=human",
 				dev);
-			break;
-		case SHRED_CRYPTO:
-			error += run_program(RUN_DISPLAY | RUN_PROGRESS,
-				"sh -c 'cgdconfig -s cgd0 /dev/%s aes-cbc 128 < /dev/urandom'",
-				dev); /* XXX: cgd0?! */
-			if (! error) {
-				error += run_program(RUN_DISPLAY | RUN_PROGRESS,
-					"dd of=/dev/rcgd0d if=/dev/urandom bs=1m progress=100 msgfmt=human");
-				error += run_program(RUN_DISPLAY | RUN_PROGRESS,
-					"cgdconfig -u cgd0");
-			}
 			break;
 		default:
 			return -1;
@@ -2203,13 +1945,7 @@ int
 pm_unconfigure(pm_devs_t *pm_cur)
 {
 	int i, error = 0, num = 0;
-	if (! strncmp(pm_cur->diskdev, "cgd", 3)) {
- 		error = run_program(RUN_DISPLAY | RUN_PROGRESS, "cgdconfig -u %s", pm_cur->diskdev);
- 		if (! error && pm_cur->refdev != NULL) {
-			((cgds_t*)pm_cur->refdev)->pm->blocked--;
-			((cgds_t*)pm_cur->refdev)->blocked = 0;
- 		}
- 	} else if (! strncmp(pm_cur->diskdev, "vnd", 3)) {
+	if (! strncmp(pm_cur->diskdev, "vnd", 3)) {
 		error = run_program(RUN_DISPLAY | RUN_PROGRESS, "vnconfig -u %s", pm_cur->diskdev);
  		if (! error && pm_cur->refdev != NULL) {
 			((vnds_t*)pm_cur->refdev)->pm->blocked--;
@@ -2316,11 +2052,6 @@ pm_commit(menudesc *m, void *arg)
 	if ((retcode = pm_raid_commit()) != 0) {
 		if (logfp)
 			fprintf(logfp, "RAIDframe configuring error #%d\n", retcode);
-		return -1;
-	}
-	if ((retcode = pm_cgd_commit()) != 0) {
-		if (logfp)
-			fprintf(logfp, "CGD configuring error #%d\n", retcode);
 		return -1;
 	}
 	if ((retcode = pm_lvm_commit()) != 0) {
@@ -2438,9 +2169,6 @@ pm_submenu(menudesc *m, void *arg)
 			return pm_edit(PMV_MENU_END, pm_vnd_edit_menufmt,
 				pm_vnd_set_value, pm_vnd_check, pm_vnd_init,
 				NULL, ((part_entry_t *)arg)[m->cursel].dev_ptr, 0, &vnds_t_info);
-		case PM_CGD_T:
-			return pm_cgd_edit(((part_entry_t *)arg)[m->cursel].dev_ptr,
-				NULL);
 		case PM_LVM_T:
 			return pm_edit(PML_MENU_END, pm_lvm_edit_menufmt,
 				pm_lvm_set_value, pm_lvm_check, pm_lvm_init,
@@ -2524,9 +2252,6 @@ pm_menufmt(menudesc *m, int opt, void *arg)
 		case PM_VND_T:
 			pm_vnd_menufmt(m, opt, arg);
 			break;
-		case PM_CGD_T:
-			pm_cgd_menufmt(m, opt, arg);
-			break;
 		case PM_LVM_T:
 			pm_lvm_menufmt(m, opt, arg);
 			break;
@@ -2537,7 +2262,7 @@ pm_menufmt(menudesc *m, int opt, void *arg)
 	return;
 }
 
-/* Submenu for RAID/LVM/CGD/VND */
+/* Submenu for RAID/LVM/VND */
 static void
 pm_upddevlist_adv(menudesc *m, void *arg, int *i,
 	pm_upddevlist_adv_t *d)
@@ -2638,10 +2363,6 @@ pm_upddevlist(menudesc *m, void *arg)
 		}
 		i++;
 	}
-	if (have_cgd) {
-		pm_upddevlist_adv(m, arg, &i,
-		    &(pm_upddevlist_adv_t) {MSG_create_cgd, PM_CGD_T, &cgds_t_info, 0, NULL});
-	}
 	if (have_lvm) {
 		pm_upddevlist_adv(m, arg, &i,
 		    &(pm_upddevlist_adv_t) {MSG_create_cnd, PM_VND_T, &vnds_t_info, 0, NULL});
@@ -2700,7 +2421,6 @@ check_available_binaries()
 
 	have_raid = binary_available("raidctl");
 	have_vnd = binary_available("vnconfig");
-	have_cgd = binary_available("cgdconfig");
 	have_lvm = binary_available("lvm");
 	have_gpt = binary_available("gpt");
 	have_dk = binary_available("dkctl");
@@ -2724,8 +2444,6 @@ partman(void)
 			remove_lvm_options();
 		if (!have_gpt)
 			remove_gpt_options();
-		if (!have_cgd)
-			remove_cgd_options();
 
 		raids_t_info = (structinfo_t) {
 			.max = MAX_RAID,
@@ -2742,14 +2460,6 @@ partman(void)
 			.entry_enabled = &(vnds[0].enabled),
 			.entry_blocked = &(vnds[0].blocked),
 			.entry_node = &(vnds[0].node),
-		};
-		cgds_t_info = (structinfo_t) {
-			.max = MAX_CGD,
-			.entry_size = sizeof cgds[0],
-			.entry_first = &cgds[0],
-			.entry_enabled = &(cgds[0].enabled),
-			.entry_blocked = &(cgds[0].blocked),
-			.entry_node = &(cgds[0].node),
 		};
 		lvms_t_info = (structinfo_t) {
 			.max = MAX_LVM_VG,
@@ -2769,7 +2479,6 @@ partman(void)
 		};
 
 		memset(&raids, 0, sizeof raids);
-		memset(&cgds, 0, sizeof cgds);
 		memset(&vnds, 0, sizeof vnds);
 		memset(&lvms, 0, sizeof lvms);
 		cursel = 0;

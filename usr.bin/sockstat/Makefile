@@ -4,7 +4,7 @@
 
 PROG=	sockstat
 SRCS=	sockstat.c
-SRCS+=	${PROG}_hostops.c
+SRCS+=	prog_ops.c
 
 .if (${USE_INET6} != "no")
 CPPFLAGS+=-DINET6

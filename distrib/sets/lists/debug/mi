@@ -188,7 +188,6 @@
 ./usr/libdata/debug/sbin/blacklistd.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/brconfig.debug		comp-netutil-debug	debug
 ./usr/libdata/debug/sbin/ccdconfig.debug	comp-sysutil-debug	debug
-./usr/libdata/debug/sbin/cgdconfig.debug	comp-sysutil-debug	crypto,debug
 ./usr/libdata/debug/sbin/chown.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/clri.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/devpubd.debug		comp-sysutil-debug	debug

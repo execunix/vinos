@@ -73,7 +73,6 @@ device-major	iop		char 76			iop
 device-major	altq		char 77			altq
 device-major	mlx		char 78			mlx
 device-major	clockctl	char 79			clockctl
-device-major	cgd		char 81  block 20	cgd
 device-major	agp		char 82			agp
 device-major	pci		char 83			pci
 device-major	irframe		char 84			irframe

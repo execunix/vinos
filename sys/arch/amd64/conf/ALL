@@ -1481,7 +1481,6 @@ pseudo-device	swcrypto	# software crypto implementation
 # disk/mass storage pseudo-devices
 pseudo-device	bio			# RAID control device driver
 pseudo-device	ccd			# concatenated/striped disk devices
-pseudo-device	cgd			# cryptographic disk devices
 pseudo-device	raid			# RAIDframe disk driver
 options 	RAID_AUTOCONFIG		# auto-configuration of RAID components
 # Options to enable various other RAIDframe RAID types.

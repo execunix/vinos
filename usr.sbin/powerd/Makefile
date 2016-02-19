@@ -2,7 +2,7 @@
 
 PROG=	powerd
 SRCS=	powerd.c
-SRCS+=	${PROG}_hostops.c
+SRCS+=	prog_ops.c
 
 DPADD+=	${LIBPROP} ${LIBUTIL}
 LDADD+=	-lprop -lutil

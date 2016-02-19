@@ -1116,7 +1116,6 @@ message enable_ntpd {Activer ntpd}
 message run_ntpdate {Exécuter ntpdate au démarrage}
 message enable_mdnsd {Activer mdnsd}
 message enable_xdm {Activer xdm}
-message enable_cgd {Activer cgd}
 message enable_lvm {Activer lvm}
 message enable_raid {Activer raidframe}
 message add_a_user {Ajouter un utilisateur}
@@ -1152,7 +1151,7 @@ message failed {Échoué}
 
 
 message notsupported {Le fonctionnement n'est pas pris en charge!}
-message askfsmountadv {Point de montage ou de 'raid' ou 'cgd' ou 'lvm'?}
+message askfsmountadv {Point de montage ou de 'raid' ou 'lvm'?}
 message partman {Partitionnement étendu}
 message editbsdpart {Modifier les partitions BSD}
 message editmbr {Modifiez et enregistrez MBR}
@@ -1187,7 +1186,6 @@ message cantsave {Aucune modification ne peut être sauvé.}
 message noroot {Aucune partition racine défini, ne peut pas continuer \n continue\n}
 message wannaunblock {L'appareil est bloqué. Voulez-vous forcer le débloquer et continuer? unblock it and continue?}
 message wannatry {Voulez-vous essayer?}
-message create_cgd {Le volume cryptographique Créer (CGD)}
 message create_cnd {Créer une image de disque virtuel (VND)}
 message create_vg {Créer un groupe de volumes LVM (VG)}
 message create_lv {      Créer un volume logique}
@@ -1252,14 +1250,6 @@ message vnd_bps_ask {Octets par secteur?}
 message vnd_spt_ask {Secteurs par piste?}
 message vnd_tpc_ask {Pistes par cylindre?}
 message vnd_cyl_ask {Cylindres}
-message cgd_err_menufmt {   DISQUE NON DEFINI!}
-message cgd_menufmt {   cgd%1d %-48s %11uM}
-message cgd_dev_fmt {Dispositif de base: %20s}
-message cgd_enc_fmt {Chiffrage:          %20s}
-message cgd_key_fmt {Taille de la clé:   %20d}
-message cgd_iv_fmt {Algorithme IV:      %20s}
-message cgd_keygen_fmt {La génération des clés: %16s}
-message cgd_verif_fmt {Méthode de vérification: %15s}
 message lvm_disks {Disques à VG:}
 message lvm_menufmt {   %-44s %20sM}
 message lvm_err_menufmt {   VIDER VG!}

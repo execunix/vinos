@@ -80,7 +80,6 @@ static const struct {
 	{ GPT_ENT_TYPE_MS_BASIC_DATA, "windows", "Windows basic data" },
 	{ GPT_ENT_TYPE_MS_RESERVED, "windows-reserved", "Windows reserved" },
 	{ GPT_ENT_TYPE_NETBSD_CCD, "ccd", "NetBSD ccd component" },
-	{ GPT_ENT_TYPE_NETBSD_CGD, "cgd", "NetBSD Cryptographic Disk" },
 	{ GPT_ENT_TYPE_NETBSD_FFS, "ffs", "NetBSD FFSv1/FFSv2" },
 	{ GPT_ENT_TYPE_NETBSD_LFS, "lfs", "NetBSD LFS" },
 	{ GPT_ENT_TYPE_NETBSD_RAIDFRAME, "raid",
