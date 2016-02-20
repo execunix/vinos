@@ -6,7 +6,6 @@ SUBDIR=
 
 .if ${MACHINE_CPU} == "arm" && ${TARGET_ENDIANNESS} == "1234"
 # Little endian platforms
-SUBDIR+= GEMINI_dram_0x01600000
 SUBDIR+= SMDK2410_flash_0x00000000
 .endif
 

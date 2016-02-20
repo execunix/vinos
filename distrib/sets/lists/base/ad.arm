@@ -321,7 +321,6 @@
 ./usr/libexec/ld.elf_so-oabi			base-sysutil-bin	compat,pic
 ./usr/libexec/ld.so				base-sys-shlib		pic,endian=1234
 ./usr/mdec/bootmini2440				base-sysutil-bin
-./usr/mdec/gzboot_GEMINI_0x01600000.bin		base-sysutil-bin	endian=1234
 ./usr/mdec/gzboot_SMDK2410_0x00000000.bin	base-sysutil-bin	endian=1234
 ./usr/sbin/apm					base-sysutil-bin
 ./usr/sbin/apmd					base-sysutil-bin

@@ -18,10 +18,7 @@
 #	
 .if ${MACHINE_ARCH} == "arm"
 # Little endian platforms.
-ARCH_TARGETS=	GEMINI		GEMINI		GEMINI		\
-		0x01600000	netbsd				\
-								\
-		SMDK2800	SMDK2800	SMDK2800	\
+ARCH_TARGETS=	SMDK2800	SMDK2800	SMDK2800	\
 		0x00000000	netbsd
 .elif ${MACHINE_ARCH} == "armeb"
 # Big endian platforms.
