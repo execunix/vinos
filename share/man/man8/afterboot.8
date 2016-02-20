@@ -523,25 +523,6 @@ Refer to the above example and
 for information on the format of this file.
 .Pp
 You may wish to do NFS mounts now too, or you can do them later.
-.Ss Concatenated disks (ccd)
-If you are using
-.Xr ccd 4
-concatenated disks, edit
-.Pa /etc/ccd.conf .
-You may wish to take a look to
-.Xr ccdconfig 8
-for more information about this file.
-Use the
-.Ic ccdconfig -U
-command to unload and the
-.Ic ccdconfig -C
-command to create tables internal to the kernel for the concatenated disks.
-You then
-.Xr mount 8 ,
-.Xr umount 8 ,
-and edit
-.Pa /etc/fstab
-as needed.
 .Ss Automounter daemon (AMD)
 To use the
 .Xr amd 8
@@ -980,7 +961,6 @@ for details on how to do so.
 .Xr systat 1 ,
 .Xr top 1 ,
 .Xr xdm 1 ,
-.Xr ccd 4 ,
 .Xr aliases 5 ,
 .Xr crontab 5 ,
 .Xr dhclient.conf 5 ,
@@ -1004,7 +984,6 @@ for details on how to do so.
 .Xr pkgsrc 7 ,
 .Xr tests 7 ,
 .Xr amd 8 ,
-.Xr ccdconfig 8 ,
 .Xr chown 8 ,
 .Xr dhclient 8 ,
 .Xr dhcpcd 8 ,

@@ -243,7 +243,6 @@
 ./usr/include/dev/bluetooth/btdev.h		comp-c-include
 ./usr/include/dev/bluetooth/bthidev.h		comp-c-include
 ./usr/include/dev/bluetooth/btsco.h		comp-c-include
-./usr/include/dev/ccdvar.h			comp-c-include
 ./usr/include/dev/dec/dec_boot.h		comp-c-include
 ./usr/include/dev/dec/lk201.h			comp-c-include
 ./usr/include/dev/dm/netbsd-dm.h		comp-c-include		
@@ -302,8 +301,6 @@
 ./usr/include/dev/pcmcia/if_rayreg.h		comp-c-include
 ./usr/include/dev/pud/pud_msgif.h		comp-c-include
 ./usr/include/dev/putter/putter.h		comp-c-include
-./usr/include/dev/raidframe/raidframeio.h	comp-c-include
-./usr/include/dev/raidframe/raidframevar.h	comp-c-include
 ./usr/include/dev/sbus/mbppio.h			comp-c-include
 ./usr/include/dev/scsipi/scsi_all.h		comp-c-include
 ./usr/include/dev/scsipi/scsi_disk.h		comp-c-include

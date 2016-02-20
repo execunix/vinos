@@ -234,8 +234,6 @@ __link_set_add_data(dkwedge_methods, name ## _ddm)
 #define	DKW_PTYPE_FILECORE	"filecore"
 #define	DKW_PTYPE_EXT2FS	"ext2fs"
 #define	DKW_PTYPE_NTFS		"ntfs"
-#define	DKW_PTYPE_RAIDFRAME	"raidframe"
-#define	DKW_PTYPE_CCD		"ccd"
 #define	DKW_PTYPE_JFS2		"jfs2"
 #define	DKW_PTYPE_APPLEUFS	"appleufs"
 #define	DKW_PTYPE_VINUM		"vinum"

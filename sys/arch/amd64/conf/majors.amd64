@@ -21,7 +21,6 @@ device-major	st		char 14  block 5	st
 device-major	cd		char 15  block 6	cd
 device-major	lpt		char 16			lpt
 device-major	ch		char 17			ch
-device-major	ccd		char 18  block 16	ccd
 device-major	ss		char 19			ss
 device-major	uk		char 20			uk
 
@@ -55,7 +54,6 @@ device-major	midi		char 58			midi
 device-major	sequencer	char 59			sequencer
 device-major	vcoda		char 60			vcoda
 device-major	scsibus		char 61			scsibus
-device-major	raid		char 62  block 18	raid
 device-major	esh		char 63			esh
 device-major	ugen		char 64			ugen
 device-major	wsmux		char 65			wsmux

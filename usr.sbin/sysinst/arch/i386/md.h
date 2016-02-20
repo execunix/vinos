@@ -82,9 +82,9 @@
  * Disk names accepted as valid targets for a from-scratch installation.
  *
  * On i386, we allow "wd"  ST-506/IDE disks,  "sd" scsi disks, "ld" logical
- * disks, "ed" IBM ESDI disks, "raid" raidframe disks
+ * disks, "ed" IBM ESDI disks
  */
-#define DISK_NAMES "wd", "sd", "ld", "ed", "raid:no_mbr", "xbd:no_mbr"
+#define DISK_NAMES "wd", "sd", "ld", "ed", "xbd:no_mbr"
 
 /*
  * Machine-specific command to write a new label to a disk.

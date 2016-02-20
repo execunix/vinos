@@ -91,8 +91,6 @@ static const struct gptfs_t gpt_filesystems[] = {
     { "windows,", FS_MSDOS, GPT_ENT_TYPE_MS_BASIC_DATA, },
     { "hfs", FS_HFS, GPT_ENT_TYPE_APPLE_HFS, },
     { "ufs", FS_OTHER, GPT_ENT_TYPE_APPLE_UFS, },
-    { "ccd", FS_CCD, GPT_ENT_TYPE_NETBSD_CCD, },
-    { "raid", FS_RAID, GPT_ENT_TYPE_NETBSD_RAIDFRAME, },
     { "efi", FS_OTHER, GPT_ENT_TYPE_EFI, },
     { "bios", FS_OTHER, GPT_ENT_TYPE_BIOS, },
     { NULL, -1, GPT_ENT_TYPE_UNUSED, },
@@ -109,7 +107,7 @@ static bool is_gpt(const char *);
 static int incoregpt(pm_devs_t *, partinfo *);
 
 #ifndef DISK_NAMES
-#define DISK_NAMES "wd", "sd", "ld", "raid"
+#define DISK_NAMES "wd", "sd", "ld"
 #endif
 
 static const char *disk_names[] = { DISK_NAMES, "vnd", NULL };
@@ -344,7 +342,7 @@ get_descr(struct disk_desc *dd)
 	/* try SCSI */
 	if (get_descr_scsi(dd, fd))
 		goto done;
-	/* XXX: get description from raid, vnd... */
+	/* XXX: get description from vnd... */
 
 done:
 	if (fd >= 0)

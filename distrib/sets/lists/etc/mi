@@ -137,7 +137,6 @@
 ./etc/rc.d/bluetooth				etc-sys-rc
 ./etc/rc.d/bootconf.sh				etc-sys-rc
 ./etc/rc.d/bootparams				etc-bootserver-rc
-./etc/rc.d/ccd					etc-sys-rc
 ./etc/rc.d/cleartmp				etc-sys-rc
 ./etc/rc.d/cron					etc-cron-rc
 ./etc/rc.d/devpubd				etc-sys-rc
@@ -204,8 +203,6 @@
 ./etc/rc.d/pwcheck				etc-sys-rc
 ./etc/rc.d/quota				etc-sys-rc
 ./etc/rc.d/racoon				etc-net-rc
-./etc/rc.d/raidframe				etc-sys-rc
-./etc/rc.d/raidframeparity			etc-sys-rc
 ./etc/rc.d/random_seed				etc-sys-rc
 ./etc/rc.d/rarpd				etc-bootserver-rc
 ./etc/rc.d/rbootd				etc-bootserver-rc

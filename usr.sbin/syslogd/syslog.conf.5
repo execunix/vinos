@@ -610,10 +610,6 @@ kern.*					-/var/log/kernlog
 !ftpd
 *.*					/var/log/spoolerr
 
-# Send all error messages from a RAID array through a filter.
-!raid0
-kern.err				|exec /usr/local/sbin/raidfilter
-
 # Save pppd messages from dialhost to a separate file.
 !pppd
 +dialhost

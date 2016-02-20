@@ -39,7 +39,6 @@ __RCSID("$NetBSD: boot1.c,v 1.20 2011/01/06 01:08:48 jakllsch Exp $");
 #include <sys/param.h>
 #include <sys/bootblock.h>
 #include <sys/disklabel.h>
-#include <dev/raidframe/raidframevar.h>	/* For RF_PROTECTED_SECTORS */
 
 #define XSTR(x) #x
 #define STR(x) XSTR(x)
@@ -86,7 +85,7 @@ boot1(uint32_t biosdev, uint64_t *sector)
 	 * (Maybe this should only be done if the filesystem
 	 * magic number is absent.)
 	 */
-	bios_sector += RF_PROTECTED_SECTORS;
+	bios_sector += 64/*RF_PROTECTED_SECTORS*/;
 	fd = ob();
 	if (fd != -1)
 		goto done;
@@ -100,8 +99,6 @@ boot1(uint32_t biosdev, uint64_t *sector)
 		goto done;
 	bios_sector = ptn_disklabel.d_partitions[0].p_offset;
 	*sector = bios_sector;
-	if (ptn_disklabel.d_partitions[0].p_fstype == FS_RAID)
-		bios_sector += RF_PROTECTED_SECTORS;
 
 	fd = ob();
 

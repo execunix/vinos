@@ -12,7 +12,6 @@ SUBDIR+=	blowfish
 SUBDIR+=	bpf
 SUBDIR+=	camellia
 SUBDIR+=	cast128
-SUBDIR+=	ccd
 SUBDIR+=	cd9660
 SUBDIR+=	chfs
 SUBDIR+=	crypto

@@ -44,7 +44,6 @@ SRCDIRS	sbin
 PROG	atactl
 PROG	badsect
 PROG	brconfig
-PROG	ccdconfig
 PROG	chown		chgrp
 PROG	clri
 PROG	disklabel
@@ -96,7 +95,6 @@ PROG	newfs_lfs
 PROG	newfs_msdos
 PROG	ping
 PROG	pppoectl	ipppctl
-PROG	raidctl
 PROG	rcorder
 PROG	reboot		halt
 PROG	restore		rrestore

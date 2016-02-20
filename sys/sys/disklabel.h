@@ -298,10 +298,8 @@ x(HPIB,		7,	"HP-IB")	/* CS/80 on HP-IB */ \
 x(HPFL,		8,	"HP-FL")	/* HP Fiber-link */ \
 x(TYPE_9,	9,	"type 9") \
 x(FLOPPY,	10,	"floppy")	/* floppy */ \
-x(CCD,		11,	"ccd")		/* concatenated disk device */ \
 x(VND,		12,	"vnd")		/* uvnode pseudo-disk */ \
 x(ATAPI,	13,	"ATAPI")	/* ATAPI */ \
-x(RAID,		14,	"RAID")		/* RAIDframe */ \
 x(LD,		15,	"ld")		/* logical disk */ \
 x(JFS2,		16,	"jfs")		/* IBM JFS2 */ \
 x(VINUM,	18,	"vinum")	/* vinum volume */ \
@@ -346,8 +344,6 @@ x(HFS,     15, "HFS",        NULL,    NULL)   /* Macintosh HFS */ \
 x(FILECORE,16, "FILECORE",   NULL, "filecore")/* Acorn Filecore FS */ \
 x(EX2FS,   17, "Linux Ext2","ext2fs","ext2fs")/* Linux Extended 2 FS */ \
 x(NTFS,    18, "NTFS",       NULL,   "ntfs")  /* Windows/NT file system */ \
-x(RAID,    19, "RAID",       NULL,    NULL)   /* RAIDframe component */ \
-x(CCD,     20, "ccd",        NULL,    NULL)   /* concatenated disk component */\
 x(JFS2,    21, "jfs",        NULL,    NULL)   /* IBM JFS2 */ \
 x(APPLEUFS,22, "Apple UFS", "ffs",   "ffs")   /* Apple UFS */ \
 /* XXX this is not the same as FreeBSD.  How to solve? */ \

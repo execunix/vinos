@@ -6,11 +6,11 @@
 
 .include <bsd.own.mk>
 
-SUBDIR=	amrctl apmlabel atactl badsect bioctl brconfig ccdconfig \
+SUBDIR=	amrctl apmlabel atactl badsect bioctl brconfig \
 	chown devpubd disklabel dkctl dkscan_bsdlabel dmesg dmctl \
 	drvctl fastboot fdisk fsck fsirand gpt ifconfig init ldconfig luactl \
 	mbrlabel mknod modload modstat modunload mount newbtconf nologin \
-	ping pppoectl raidctl reboot rcorder rndctl route routed \
+	ping pppoectl reboot rcorder rndctl route routed \
 	savecore scan_ffs scsictl shutdown slattach svhlabel swapctl sysctl \
 	ttyflags umount veriexecctl wdogctl wsconsctl
 

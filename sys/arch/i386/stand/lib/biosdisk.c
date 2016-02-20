@@ -107,7 +107,6 @@ struct biosdisk {
 };
 
 #ifndef NO_GPT
-const struct uuid GET_nbsd_raid = GPT_ENT_TYPE_NETBSD_RAIDFRAME;
 const struct uuid GET_nbsd_ffs = GPT_ENT_TYPE_NETBSD_FFS;
 const struct uuid GET_nbsd_lfs = GPT_ENT_TYPE_NETBSD_LFS;
 const struct uuid GET_nbsd_swap = GPT_ENT_TYPE_NETBSD_SWAP;
@@ -283,8 +282,6 @@ check_gpt(struct biosdisk *d, daddr_t sector)
 					d->part[j].fstype = FS_BSDFFS;
 				else if (guid_is_equal(u, &GET_nbsd_lfs))
 					d->part[j].fstype = FS_BSDLFS;
-				else if (guid_is_equal(u, &GET_nbsd_raid))
-					d->part[j].fstype = FS_RAID;
 				else if (guid_is_equal(u, &GET_nbsd_swap))
 					d->part[j].fstype = FS_SWAP;
 				else
@@ -768,9 +765,6 @@ biosdisk_open(struct open_file *f, ...)
 	}
 
 	d->boff = d->part[partition].offset;
-
-	if (d->part[partition].fstype == FS_RAID)
-		d->boff += RF_PROTECTED_SECTORS;
 
 #ifdef _STANDALONE
 	bi_wedge.startblk = d->part[partition].offset;

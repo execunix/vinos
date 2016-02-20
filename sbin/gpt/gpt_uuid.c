@@ -74,16 +74,12 @@ static const struct {
 	{ GPT_ENT_TYPE_FREEBSD_VINUM, "fbsd-vinum", "FreeBSD vinum" },
 	{ GPT_ENT_TYPE_FREEBSD_ZFS, "fbsd-zfs", "FreeBSD ZFS" },
 	{ GPT_ENT_TYPE_LINUX_DATA, "linux-data", "Linux data" },
-	{ GPT_ENT_TYPE_LINUX_RAID, "linux-raid", "Linux RAID" },
 	{ GPT_ENT_TYPE_LINUX_SWAP, "linux-swap", "Linux swap" },
 	{ GPT_ENT_TYPE_LINUX_LVM, "linux-lvm", "Linux LVM" },
 	{ GPT_ENT_TYPE_MS_BASIC_DATA, "windows", "Windows basic data" },
 	{ GPT_ENT_TYPE_MS_RESERVED, "windows-reserved", "Windows reserved" },
-	{ GPT_ENT_TYPE_NETBSD_CCD, "ccd", "NetBSD ccd component" },
 	{ GPT_ENT_TYPE_NETBSD_FFS, "ffs", "NetBSD FFSv1/FFSv2" },
 	{ GPT_ENT_TYPE_NETBSD_LFS, "lfs", "NetBSD LFS" },
-	{ GPT_ENT_TYPE_NETBSD_RAIDFRAME, "raid",
-	    "NetBSD RAIDFrame component" },
 	{ GPT_ENT_TYPE_NETBSD_SWAP, "swap", "NetBSD swap" },
 };
 

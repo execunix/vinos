@@ -23,8 +23,6 @@ device-major	fd		char 17  block 17	fdc
 device-major	md		char 18  block 18	md
 device-major	vnd		char 19  block 19	vnd
 
-device-major	ccd		char 21  block 21	ccd
-
 device-major	sd		char 24  block 24	sd
 device-major	st		char 25  block 25	st
 device-major	cd		char 26  block 26	cd
@@ -63,7 +61,6 @@ device-major	uhid		char 65			uhid
 device-major	ulpt		char 66			ulpt
 
 device-major	scsibus		char 70			scsibus
-device-major	raid		char 71  block 71	raid
 device-major	ugen		char 72			ugen
 device-major	wsmux		char 73			wsmux
 device-major	ucom		char 74			ucom

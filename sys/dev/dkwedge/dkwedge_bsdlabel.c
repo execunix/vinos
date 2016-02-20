@@ -157,8 +157,6 @@ bsdlabel_fstype_to_str(uint8_t fstype)
 	case FS_FILECORE:	str = DKW_PTYPE_FILECORE;	break;
 	case FS_EX2FS:		str = DKW_PTYPE_EXT2FS;		break;
 	case FS_NTFS:		str = DKW_PTYPE_NTFS;		break;
-	case FS_RAID:		str = DKW_PTYPE_RAIDFRAME;	break;
-	case FS_CCD:		str = DKW_PTYPE_CCD;		break;
 	case FS_APPLEUFS:	str = DKW_PTYPE_APPLEUFS;	break;
 	default:		str = NULL;			break;
 	}

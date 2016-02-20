@@ -36,7 +36,6 @@
 ./etc/bluetooth/protocols	type=file mode=0644
 ./etc/bootparams		type=file mode=0644 optional
 ./etc/bootptab			type=file mode=0644 optional
-./etc/ccd.conf			type=file mode=0644 optional
 ./etc/changelist		type=file mode=0644
 ./etc/crontab			type=file mode=0644 optional
 ./etc/csh.cshrc			type=file mode=0644
@@ -187,7 +186,6 @@
 ./etc/rc.d/bluetooth		type=file mode=0555
 ./etc/rc.d/bootconf.sh		type=file mode=0555
 ./etc/rc.d/bootparams		type=file mode=0555
-./etc/rc.d/ccd			type=file mode=0555
 ./etc/rc.d/cleartmp		type=file mode=0555
 ./etc/rc.d/cron			type=file mode=0555
 ./etc/rc.d/devpubd		type=file mode=0555
@@ -251,8 +249,6 @@
 ./etc/rc.d/pwcheck		type=file mode=0555
 ./etc/rc.d/quota		type=file mode=0555
 ./etc/rc.d/racoon		type=file mode=0555
-./etc/rc.d/raidframe		type=file mode=0555
-./etc/rc.d/raidframeparity	type=file mode=0555
 ./etc/rc.d/random_seed		type=file mode=0555
 ./etc/rc.d/rarpd		type=file mode=0555
 ./etc/rc.d/rbootd		type=file mode=0555

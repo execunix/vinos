@@ -86,7 +86,7 @@ deconst(const void *p)
 #define RUN_XFER_DIR	0x0200		/* cd to xfer_dir in child */
 
 /* for bsddisklabel.c */
-enum { LY_SETNEW, LY_NEWRAID, LY_NEWLVM, LY_USEEXIST };
+enum { LY_SETNEW, LY_NEWLVM, LY_USEEXIST };
 
 /* Installation sets */
 enum {
@@ -333,7 +333,7 @@ typedef struct {
     void *dev_ptr;
     int dev_ptr_delta;
     char fullname[SSTRSIZE];
-    enum {PM_DISK_T=1, PM_PART_T, PM_WEDGE_T, PM_SPEC_T, PM_RAID_T,
+    enum {PM_DISK_T=1, PM_PART_T, PM_WEDGE_T, PM_SPEC_T,
         PM_VND_T, PM_LVM_T, PM_LVMLV_T} type;
 } part_entry_t;
 
@@ -418,7 +418,6 @@ char dist_postfix[SSTRSIZE];
 /* needed prototypes */
 void set_menu_numopts(int, int);
 void remove_color_options(void);
-void remove_raid_options(void);
 void remove_lvm_options(void);
 void remove_gpt_options(void);
 
@@ -608,7 +607,7 @@ void update_wedges(const char *);
 
 /* flags whether to offer the respective options (depending on helper
    programs available on install media */
-int have_raid, have_vnd, have_lvm, have_gpt, have_dk;
+int have_vnd, have_lvm, have_gpt, have_dk;
 /* initialize above variables */
 void check_available_binaries(void);
 

@@ -88,8 +88,6 @@ SAMISCMAKEFLAGS+= SA_INCLUDE_NET=no	# Netboot via TFTP, NFS
 
 CPPFLAGS+=	-Wno-pointer-sign
 
-# CPPFLAGS+= -DBOOTXX_RAID1_SUPPORT
-
 I386_STAND_DIR?= $S/arch/i386/stand
 
 ### find out what to use for libi386

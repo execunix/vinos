@@ -187,7 +187,6 @@
 ./usr/libdata/debug/sbin/blacklistctl.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/blacklistd.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/brconfig.debug		comp-netutil-debug	debug
-./usr/libdata/debug/sbin/ccdconfig.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/chown.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/clri.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/devpubd.debug		comp-sysutil-debug	debug
@@ -268,7 +267,6 @@
 ./usr/libdata/debug/sbin/ping.debug		comp-netutil-debug	debug
 ./usr/libdata/debug/sbin/ping6.debug		comp-netutil-debug	use_inet6,debug
 ./usr/libdata/debug/sbin/pppoectl.debug		comp-netutil-debug	debug
-./usr/libdata/debug/sbin/raidctl.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/rcorder.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/reboot.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/resize_ffs.debug	comp-sysutil-debug	debug

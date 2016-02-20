@@ -59,9 +59,7 @@
 #
 # Disks:
 #	dk*	wedge disk slices
-#	ccd*	concatenated disk devices
 #	cd*	SCSI or ATAPI CD-ROM
-#	raid*	RAIDframe disk devices
 #	sd*	SCSI disks
 #	wd*	"winchester" disk drives (ST506,IDE,ESDI,RLL,...)
 #	bmd*	Nereid bank memory disks
@@ -814,10 +812,8 @@ all)
 	makedev std fd ptm
 	makedev dk0 dk1 dk2 dk3 dk4 dk5 dk6 dk7
 	makedev dk8 dk9 dk10 dk11 dk12 dk13 dk14 dk15
-	makedev ccd0 ccd1 ccd2 ccd3
 	makedev fss0 fss1 fss2 fss3
 	makedev md0 md1
-	makedev raid0 raid1 raid2 raid3 raid4 raid5 raid6 raid7
 	makedev vnd0 vnd1 vnd2 vnd3
 	makedev iscsi0
 	makedev bpf npf
@@ -1098,10 +1094,8 @@ ss[0-9]*)
 	mkdev en$name$unit	c $chr $(($unit * 16 + 3)) 640 $g_operator
 	;;
 
-ccd[0-9]*|raid[0-9]*|vnd[0-9]*)
+vnd[0-9]*)
 	case $i in
-	ccd*)	name=ccd;	unit=${i#ccd};	blk=%ccd_blk%;	chr=%ccd_chr%;;
-	raid*)	name=raid;	unit=${i#raid}; blk=%raid_blk%; chr=%raid_chr%;;
 	vnd*)	name=vnd;	unit=${i#vnd};	blk=%vnd_blk%;	chr=%vnd_chr%;;
 	esac
 	%MKDISK% $name $unit $blk $chr

@@ -115,7 +115,6 @@
 ./usr/include/dev/pci
 ./usr/include/dev/pckbc
 ./usr/include/dev/pcmcia
-./usr/include/dev/raidframe
 ./usr/include/dev/sbus
 ./usr/include/dev/scsipi
 ./usr/include/dev/sun

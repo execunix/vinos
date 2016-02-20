@@ -404,11 +404,6 @@ file	dev/ld.c			ld			needs-flag
 include "dev/mii/files.mii"
 
 #
-# RAIDframe
-#
-include "dev/raidframe/files.raidframe"
-
-#
 # Hardware-assisted data mover API
 #
 include "dev/dmover/files.dmover"
@@ -1331,7 +1326,6 @@ file	dev/ic/dm9000.c			dme
 #
 defpseudodev vnd:	disk
 defflag opt_vnd.h	VND_COMPRESSION
-defpseudo ccd:		disk
 defpseudodev md:	disk
 defpseudodev fss:	disk
 
@@ -1467,10 +1461,9 @@ file	dev/audiobell.c			audiobell
 file	dev/aurateconv.c		aurateconv		needs-flag
 file	dev/auvolconv.c			auvolconv
 file	dev/bio.c			bio			needs-flag
-file	dev/ccd.c			ccd
 file	dev/clock_subr.c
 file	dev/clockctl.c			clockctl
-file	dev/dksubr.c			xbd | ccd | raid | dm
+file	dev/dksubr.c			xbd | dm
 file	dev/dkwedge/dk.c
 file	dev/dkwedge/dkwedge_apple.c	dkwedge_method_apple
 file	dev/dkwedge/dkwedge_bsdlabel.c	dkwedge_method_bsdlabel

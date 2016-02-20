@@ -89,8 +89,6 @@ CPPFLAGS+= -DLIBSA_SINGLE_FILESYSTEM=xxfs \
 
 # -DLIBSA_FS_SINGLECOMPONENT 
 
-# CPPFLAGS+= -DBOOTXX_RAID1_SUPPORT
-
 I386_STAND_DIR?= $S/arch/i386/stand
 
 ### find out what to use for libi386

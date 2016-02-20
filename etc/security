@@ -777,7 +777,7 @@ if checkyesno check_devices; then
 	# Check for block and character disk devices that are readable or
 	# writable or not owned by root.operator.
 	>$TMP1
-	DISKLIST="ccd ch hk hp ld md ra raid rb rd rl rx \
+	DISKLIST="ch hk hp ld md ra rb rd rl rx \
 	    sd se ss uk up vnd wd xd xy"
 #	DISKLIST="$DISKLIST ct mt st wt"
 	for i in $DISKLIST; do
@@ -920,9 +920,9 @@ if checkyesno check_disklabels; then
 		done
 	fi
 
-		# if dkctl is available, generate dkctl listwedges for:	ed ld sd wd ofdisk ra rl raid
+		# if dkctl is available, generate dkctl listwedges for:	ed ld sd wd ofdisk ra rl
 	if [ -x /sbin/dkctl ]; then
-		disks=$(iostat -x | awk 'NR > 1 && $1 ~ /^[elsw]d|ofdisk|r[al]|raid/ { print $1; }')
+		disks=$(iostat -x | awk 'NR > 1 && $1 ~ /^[elsw]d|ofdisk|r[al]/ { print $1; }')
 		for i in $disks; do
 			/sbin/dkctl $i listwedges > "$work_dir/wedges.$i" 2>/dev/null
 		done
@@ -974,12 +974,10 @@ if checkyesno check_changelist ; then
 	(
 		# Add other files which might dynamically exist:
 		#	/etc/ifconfig.*
-		#	/etc/raid*.conf
 		#	/etc/rc.d/*
 		#	/etc/rc.conf.d/*
 		#
 		echo "/etc/ifconfig.*"
-		echo "/etc/raid*.conf"
 		echo "/etc/rc.d/*"
 		echo "/etc/rc.conf.d/*"
 		echo "/etc/lvm/backup/*"

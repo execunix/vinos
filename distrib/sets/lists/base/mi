@@ -377,7 +377,6 @@
 ./sbin/blacklistctl				base-sysutil-root
 ./sbin/blacklistd				base-sysutil-root
 ./sbin/brconfig					base-netutil-root
-./sbin/ccdconfig				base-sysutil-root
 ./sbin/chown					base-sysutil-root
 ./sbin/clri					base-sysutil-root
 ./sbin/devpubd					base-sysutil-root
@@ -468,7 +467,6 @@
 ./sbin/ping6					base-netutil-root	use_inet6
 ./sbin/poweroff					base-sysutil-root
 ./sbin/pppoectl					base-netutil-root
-./sbin/raidctl					base-sysutil-root
 ./sbin/rcorder					base-sysutil-root
 ./sbin/rdump					base-sysutil-root
 ./sbin/rdump_lfs				base-sysutil-root
@@ -913,7 +911,6 @@
 ./usr/include/dev/pcmcia			base-c-usr
 ./usr/include/dev/pud				base-c-usr
 ./usr/include/dev/putter			base-c-usr
-./usr/include/dev/raidframe			base-c-usr
 ./usr/include/dev/sbus				base-c-usr
 ./usr/include/dev/scsipi			base-c-usr
 ./usr/include/dev/sun				base-c-usr

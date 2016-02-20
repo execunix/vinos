@@ -56,9 +56,6 @@ __RCSID("$NetBSD: ffs.c,v 1.32 2013/06/23 02:06:06 dholland Exp $");
 
 #include "installboot.h"
 
-/* From <dev/raidframe/raidframevar.h> */
-#define RF_PROTECTED_SECTORS 64L
-
 #undef DIRBLKSIZ
 
 #include <ufs/ufs/dinode.h>
@@ -469,19 +466,6 @@ int
 ffs_match(ib_params *params)
 {
 	return ffs_match_common(params, (off_t) 0);
-}
-
-int
-raid_match(ib_params *params)
-{
-	/* XXX Assumes 512 bytes / sector */
-	if (params->sectorsize != 512) {
-		warnx("Media is %d bytes/sector."
-			"  RAID is only supported on 512 bytes/sector media.",
-			params->sectorsize);
-		return 0;
-	}
-	return ffs_match_common(params, (off_t) RF_PROTECTED_SECTORS);
 }
 
 int

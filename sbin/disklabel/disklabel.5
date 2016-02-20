@@ -251,10 +251,8 @@ struct disklabel {
 #define	DTYPE_HPIB	7	/* CS/80 on HP-IB */
 #define	DTYPE_HPFL	8	/* HP Fiber-link */
 #define	DTYPE_FLOPPY	10	/* floppy */
-#define DTYPE_CCD	11	/* concatenated disk device */
 #define DTYPE_VND	12	/* vnode pseudo-disk */
 #define DTYPE_ATAPI	13	/* ATAPI */
-#define DTYPE_RAID	14	/* RAIDframe */
 #define DTYPE_LD	15	/* logical disk */
 #define DTYPE_JFS2	16	/* IBM JFS2 */
 #define DTYPE_VINUM	18	/* vinum volume obsolete */
@@ -273,10 +271,8 @@ static const char *const dktypenames[] = {
 	"HP-FL",
 	"type 9",
 	"floppy",
-	"ccd",
 	"vnd",
 	"ATAPI",
-	"RAID",
 	"ld",
 	"jfs",
 	"obsolete vinum",
@@ -310,8 +306,6 @@ static const char *const dktypenames[] = {
 #define	FS_FILECORE	16	/* Acorn Filecore Filing System */
 #define	FS_EX2FS	17	/* Linux Extended 2 file system */
 #define	FS_NTFS		18	/* Windows/NT file system */
-#define	FS_RAID		19	/* RAIDframe component */
-#define	FS_CCD		20	/* concatenated disk component */
 #define	FS_JFS2		21	/* IBM JFS2 */
 #define	FS_APPLEUFS	22	/* Apple UFS */
 #define	FS_VINUM	23	/* Vinum */
@@ -337,8 +331,6 @@ static const char *const fstypenames[] = {
 	"FILECORE",
 	"Linux Ext2",
 	"NTFS",
-	"RAID",
-	"ccd",
 	"jfs",
 	"Apple UFS",
 	"obsolete vinum",

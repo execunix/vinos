@@ -16,7 +16,7 @@ MAN=	aac.4 ac97.4 acardide.4 aceride.4 acphy.4 \
 	brgphy.4 bridge.4 bthidev.4 bthub.4 btkbd.4 \
 	btmagic.4 btms.4 btsco.4 btuart.4 \
 	bwi.4 \
-	cac.4 cardbus.4 carp.4 cas.4 ccd.4 cd.4 \
+	cac.4 cardbus.4 carp.4 cas.4 cd.4 \
 	cec.4 cfb.4 ch.4 chipsfb.4 ciphy.4 ciss.4 clcs.4 clct.4 \
 	clockctl.4 cmdide.4 cmpci.4 cms.4 cnw.4 \
 	com.4 coram.4 crypto.4 cs80bus.4 cuda.4 cypide.4 cxdtv.4 \
@@ -49,7 +49,7 @@ MAN=	aac.4 ac97.4 acardide.4 aceride.4 acphy.4 \
 	piixpm.4 pim.4 plip.4 pms.4 pmu.4 pnaphy.4 ppbus.4 ppp.4 pppoe.4 \
 	pseye.4 ptcd.4 ptm.4 pty.4 puc.4 pud.4 puffs.4 pwdog.4 px.4 pxg.4 \
 	qe.4 qec.4 qsphy.4 \
-	raid.4 ral.4 ray.4 rcons.4 rdcphy.4 re.4 rgephy.4 rlphy.4 \
+	ral.4 ray.4 rcons.4 rdcphy.4 re.4 rgephy.4 rlphy.4 \
 	rnd.4 route.4 rs5c372rtc.4 rtk.4 rtsx.4 rtw.4 rum.4 run.4 \
 	s390rtc.4 satalink.4 sbus.4 scc.4 schide.4 \
 	scsi.4 sd.4 se.4 seeprom.4 sem.4 \

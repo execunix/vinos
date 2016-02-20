@@ -689,7 +689,6 @@
 ./usr/share/man/cat4/carp.0			man-sys-catman		.cat
 ./usr/share/man/cat4/cas.0			man-sys-catman		.cat
 ./usr/share/man/cat4/cbb.0			man-sys-catman		.cat
-./usr/share/man/cat4/ccd.0			man-sys-catman		.cat
 ./usr/share/man/cat4/cd.0			man-sys-catman		.cat
 ./usr/share/man/cat4/cdce.0			man-sys-catman		.cat
 ./usr/share/man/cat4/cec.0			man-sys-catman		.cat
@@ -1069,7 +1068,6 @@
 ./usr/share/man/cat4/r128drm.0			man-sys-catman		.cat
 ./usr/share/man/cat4/radeondrm.0		man-sys-catman		.cat
 ./usr/share/man/cat4/radio.0			man-sys-catman		.cat
-./usr/share/man/cat4/raid.0			man-sys-catman		.cat
 ./usr/share/man/cat4/ral.0			man-sys-catman		.cat
 ./usr/share/man/cat4/random.0			man-sys-catman		.cat
 ./usr/share/man/cat4/rasterconsole.0		man-sys-catman		.cat
@@ -1357,7 +1355,6 @@
 ./usr/share/man/cat5/bounce.0			man-postfix-catman	postfix,.cat
 ./usr/share/man/cat5/canonical.0		man-postfix-catman	postfix,.cat
 ./usr/share/man/cat5/capfile.0			man-sys-catman		.cat
-./usr/share/man/cat5/ccd.conf.0			man-sysutil-catman	.cat
 ./usr/share/man/cat5/cdb.0			man-sys-catman		.cat
 ./usr/share/man/cat5/cidr_table.0		man-postfix-catman	postfix,.cat
 ./usr/share/man/cat5/core.0			man-sys-catman		.cat
@@ -1588,7 +1585,6 @@
 ./usr/share/man/cat8/bthcid.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/btpand.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/catman.0			man-man-catman		.cat
-./usr/share/man/cat8/ccdconfig.0		man-sysutil-catman	.cat
 ./usr/share/man/cat8/chat.0			man-ppp-catman		.cat
 ./usr/share/man/cat8/chown.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/chroot.0			man-sysutil-catman	.cat
@@ -1934,7 +1930,6 @@
 ./usr/share/man/cat8/quotarestore.0		man-sysutil-catman	.cat
 ./usr/share/man/cat8/racoon.0			man-netutil-catman	crypto,.cat
 ./usr/share/man/cat8/racoonctl.0		man-netutil-catman	crypto,.cat
-./usr/share/man/cat8/raidctl.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/rarpd.0			man-bootserver-catman	.cat
 ./usr/share/man/cat8/rbootd.0			man-bootserver-catman	.cat
 ./usr/share/man/cat8/rc.0			man-rc-catman		.cat
@@ -2814,7 +2809,6 @@
 ./usr/share/man/html4/carp.html			man-sys-htmlman		html
 ./usr/share/man/html4/cas.html			man-sys-htmlman		html
 ./usr/share/man/html4/cbb.html			man-sys-htmlman		html
-./usr/share/man/html4/ccd.html			man-sys-htmlman		html
 ./usr/share/man/html4/cd.html			man-sys-htmlman		html
 ./usr/share/man/html4/cdce.html			man-sys-htmlman		html
 ./usr/share/man/html4/cec.html			man-sys-htmlman		html
@@ -3194,7 +3188,6 @@
 ./usr/share/man/html4/r128drm.html		man-sys-htmlman		html
 ./usr/share/man/html4/radeondrm.html		man-sys-htmlman		html
 ./usr/share/man/html4/radio.html		man-sys-htmlman		html
-./usr/share/man/html4/raid.html			man-sys-htmlman		html
 ./usr/share/man/html4/ral.html			man-sys-htmlman		html
 ./usr/share/man/html4/random.html		man-sys-htmlman		html
 ./usr/share/man/html4/rasterconsole.html	man-sys-htmlman		html
@@ -3483,7 +3476,6 @@
 ./usr/share/man/html5/bounce.html		man-postfix-htmlman	postfix,html
 ./usr/share/man/html5/canonical.html		man-postfix-htmlman	postfix,html
 ./usr/share/man/html5/capfile.html		man-sys-htmlman		html
-./usr/share/man/html5/ccd.conf.html		man-sysutil-htmlman	html
 ./usr/share/man/html5/cdb.html			man-sys-htmlman		html
 ./usr/share/man/html5/cidr_table.html		man-postfix-htmlman	postfix,html
 ./usr/share/man/html5/core.html			man-sys-htmlman		html
@@ -3716,7 +3708,6 @@
 ./usr/share/man/html8/bthcid.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/btpand.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/catman.html		man-man-htmlman		html
-./usr/share/man/html8/ccdconfig.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/chat.html			man-ppp-htmlman		html
 ./usr/share/man/html8/chown.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/chroot.html		man-sysutil-htmlman	html
@@ -4063,7 +4054,6 @@
 ./usr/share/man/html8/quotarestore.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/racoon.html		man-netutil-htmlman	crypto,html
 ./usr/share/man/html8/racoonctl.html		man-netutil-htmlman	crypto,html
-./usr/share/man/html8/raidctl.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/rarpd.html		man-bootserver-htmlman	html
 ./usr/share/man/html8/rbootd.html		man-bootserver-htmlman	html
 ./usr/share/man/html8/rc.d.html			man-rc-htmlman		html
@@ -4940,7 +4930,6 @@
 ./usr/share/man/man4/carp.4			man-sys-man		.man
 ./usr/share/man/man4/cas.4			man-sys-man		.man
 ./usr/share/man/man4/cbb.4			man-sys-man		.man
-./usr/share/man/man4/ccd.4			man-sys-man		.man
 ./usr/share/man/man4/cd.4			man-sys-man		.man
 ./usr/share/man/man4/cdce.4			man-sys-man		.man
 ./usr/share/man/man4/cec.4			man-sys-man		.man
@@ -5320,7 +5309,6 @@
 ./usr/share/man/man4/r128drm.4			man-sys-man		.man
 ./usr/share/man/man4/radeondrm.4		man-sys-man		.man
 ./usr/share/man/man4/radio.4			man-sys-man		.man
-./usr/share/man/man4/raid.4			man-sys-man		.man
 ./usr/share/man/man4/ral.4			man-sys-man		.man
 ./usr/share/man/man4/random.4			man-sys-man		.man
 ./usr/share/man/man4/rasterconsole.4		man-sys-man		.man
@@ -5609,7 +5597,6 @@
 ./usr/share/man/man5/bounce.5			man-postfix-man		postfix,.man
 ./usr/share/man/man5/canonical.5		man-postfix-man		postfix,.man
 ./usr/share/man/man5/capfile.5			man-sys-man		.man
-./usr/share/man/man5/ccd.conf.5			man-sysutil-man		.man
 ./usr/share/man/man5/cdb.5			man-sys-man		.man
 ./usr/share/man/man5/cidr_table.5		man-postfix-man		postfix,.man
 ./usr/share/man/man5/core.5			man-sys-man		.man
@@ -5842,7 +5829,6 @@
 ./usr/share/man/man8/bthcid.8			man-sysutil-man		.man
 ./usr/share/man/man8/btpand.8			man-sysutil-man		.man
 ./usr/share/man/man8/catman.8			man-man-man		.man
-./usr/share/man/man8/ccdconfig.8		man-sysutil-man		.man
 ./usr/share/man/man8/chat.8			man-ppp-man		.man
 ./usr/share/man/man8/chown.8			man-sysutil-man		.man
 ./usr/share/man/man8/chroot.8			man-sysutil-man		.man
@@ -6189,7 +6175,6 @@
 ./usr/share/man/man8/quotarestore.8		man-sysutil-man		.man
 ./usr/share/man/man8/racoon.8			man-netutil-man		crypto,.man
 ./usr/share/man/man8/racoonctl.8		man-netutil-man		crypto,.man
-./usr/share/man/man8/raidctl.8			man-sysutil-man		.man
 ./usr/share/man/man8/rarpd.8			man-bootserver-man	.man
 ./usr/share/man/man8/rbootd.8			man-bootserver-man	.man
 ./usr/share/man/man8/rc.8			man-rc-man		.man

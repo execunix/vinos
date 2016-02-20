@@ -87,9 +87,9 @@
  * Disk names accepted as valid targets for a from-scratch installation.
  *
  * On amd64, we allow "wd"  ST-506/IDE disks,  "sd" scsi disks, "ld" logical
- * disks and "raid" raidframe disks.
+ * disks.
  */
-#define DISK_NAMES "wd", "sd", "ld", "raid:no_mbr", "xbd:no_mbr"
+#define DISK_NAMES "wd", "sd", "ld", "xbd:no_mbr"
 
 /*
  * Machine-specific command to write a new label to a disk.

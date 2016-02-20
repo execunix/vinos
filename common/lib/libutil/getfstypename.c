@@ -99,10 +99,6 @@ getfstypename(int fstype)
 		return DKW_PTYPE_EXT2FS;
 	case FS_NTFS:
 		return DKW_PTYPE_NTFS;
-	case FS_RAID:
-		return DKW_PTYPE_RAIDFRAME;
-	case FS_CCD:
-		return DKW_PTYPE_CCD;
 	case FS_JFS2:
 		return DKW_PTYPE_JFS2;
 	case FS_APPLEUFS:

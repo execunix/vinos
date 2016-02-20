@@ -46,26 +46,10 @@
 
 /* flags whether to offer the respective options (depending on helper
    programs available on install media */
-int have_raid, have_vnd, have_lvm, have_gpt, have_dk;
+int have_vnd, have_lvm, have_gpt, have_dk;
 
 /* XXX: replace all MAX_* defines with vars that depend on kernel settings */
 #define MAX_ENTRIES 96
-
-#define MAX_RAID 8
-#define MAX_IN_RAID 48
-typedef struct raids_t {
-	int enabled;
-	int blocked;
-	int node;
-	char pm_name[MAX_IN_RAID][SSTRSIZE];
-	int pm_part[MAX_IN_RAID];
-	int pm_is_spare[MAX_IN_RAID];
-	int numRow, numCol, numSpare;
-	int sectPerSU, SUsPerParityUnit, SUsPerReconUnit, raid_level;
-	uint total_size;
-	pm_devs_t *pm[MAX_IN_RAID];
-} raids_t;
-raids_t raids[MAX_RAID];
 
 #define MAX_VND 4
 typedef struct vnds_t {
@@ -133,7 +117,7 @@ typedef struct structinfo_t {
 	void *entry_blocked;
 	void *entry_node;
 } structinfo_t;
-structinfo_t raids_t_info, vnds_t_info, lvms_t_info, lv_t_info;
+structinfo_t vnds_t_info, lvms_t_info, lv_t_info;
 
 typedef struct pm_upddevlist_adv_t {
 	const char *create_msg;
@@ -151,13 +135,6 @@ struct {
 
 int cursel; /* Number of selected entry in main menu */
 int changed; /* flag indicating that we have unsaved changes */
-int raid_curspare; /* XXX: replace by true way */
-
-enum { /* RAIDframe menu enum */
-	PMR_MENU_DEVS, PMR_MENU_DEVSSPARE, PMR_MENU_RAIDLEVEL, PMR_MENU_NUMROW,
-	PMR_MENU_NUMCOL, PMR_MENU_NUMSPARE,	PMR_MENU_SECTPERSU,	PMR_MENU_SUSPERPARITYUNIT,
-	PMR_MENU_SUSPERRECONUNIT, PMR_MENU_REMOVE, PMR_MENU_END
-};
 
 enum { /* VND menu enum */
 	PMV_MENU_FILEPATH, PMV_MENU_EXIST, PMV_MENU_SIZE, PMV_MENU_RO, PMV_MENU_MGEOM,
@@ -180,13 +157,11 @@ enum { /* LVM submenu (logical volumes) enum */
 };
 
 part_entry_t pm_dev_list(int);
-static int pm_raid_disk_add(menudesc *, void *);
-static int pm_raid_disk_del(menudesc *, void *);
 static int pm_mount(pm_devs_t *, int);
 static int pm_upddevlist(menudesc *, void *);
 static void pm_select(pm_devs_t *);
 
-/* Universal menu for RAID/VND/LVM entry edit */
+/* Universal menu for VND/LVM entry edit */
 static int
 pm_edit(int menu_entries_count, void (*menu_fmt)(menudesc *, int, void *),
 	int (*action)(menudesc *, void *), int (*check_fun)(void *),
@@ -261,10 +236,6 @@ pm_dev_list(int type)
 		for (i = 0; i < MAXPARTITIONS; i++) {
 			ok = 0;
 			switch (type) {
-				case PM_RAID_T:
-					if (pm_i->bsdlabel[i].pi_fstype == FS_RAID)
-						ok = 1;
-					break;
 				case PM_LVM_T:
 					if (pm_i->bsdlabel[i].lvmpv)
 						ok = 1;
@@ -300,7 +271,7 @@ pm_dev_list(int type)
 	return disk_entries[dev_num];
 }
 
-/* Get unused raid* or vnd* device */
+/* Get unused vnd* device */
 static int
 pm_manage_getfreenode(void *node, const char *d, structinfo_t *s)
 {
@@ -333,344 +304,6 @@ pm_manage_getfreenode(void *node, const char *d, structinfo_t *s)
 	}
 	process_menu(MENU_ok, deconst(MSG_nofreedev));
 	return -1;
-}
-
-/***
- RAIDs
- ***/
-
-static void
-pm_raid_menufmt(menudesc *m, int opt, void *arg)
-{
-	int i, ok = 0;
-	char buf[STRSIZE]; buf[0] = '\0';
-	raids_t *dev_ptr = ((part_entry_t *)arg)[opt].dev_ptr;
-
-	if (dev_ptr->enabled == 0)
-		return;
-	for (i = 0; i < MAX_IN_RAID; i++)
-		if (dev_ptr->pm[i] != NULL) {
-			strncat(buf, dev_ptr->pm_name[i], STRSIZE);
-			strncat(buf, " ", STRSIZE);
-			ok = 1;
-		}
-	if (ok)
-		wprintw(m->mw, msg_string(MSG_raid_menufmt), dev_ptr->node,
-			dev_ptr->raid_level, buf, dev_ptr->total_size);
-	else
-		wprintw(m->mw, "%s", msg_string(MSG_raid_err_menufmt));
-	return;
-}
-
-static void
-pm_raid_edit_menufmt(menudesc *m, int opt, void *arg)
-{
-	int i;
-	char buf[STRSIZE]; buf[0] = '\0';
-	raids_t *dev_ptr = arg;
-
-	switch (opt) {
-		case PMR_MENU_DEVS:
-			for (i = 0; i < MAX_IN_RAID; i++)
-				if (dev_ptr->pm[i] != NULL && dev_ptr->pm_is_spare[i] == 0)
-					snprintf(buf, STRSIZE, "%s %s", buf, dev_ptr->pm_name[i]);
-			wprintw(m->mw, msg_string(MSG_raid_disks_fmt), buf);
-			break;
-		case PMR_MENU_DEVSSPARE:
-			for (i = 0; i < MAX_IN_RAID; i++)
-				if (dev_ptr->pm[i] != NULL && dev_ptr->pm_is_spare[i] != 0)
-					snprintf(buf, STRSIZE, "%s %s", buf, dev_ptr->pm_name[i]);
-			wprintw(m->mw, msg_string(MSG_raid_spares_fmt), buf);
-			break;
-		case PMR_MENU_RAIDLEVEL:
-			wprintw(m->mw, msg_string(MSG_raid_level_fmt), dev_ptr->raid_level);
-			break;
-		case PMR_MENU_NUMROW:
-			wprintw(m->mw, msg_string(MSG_raid_numrow_fmt), dev_ptr->numRow);
-			break;
-		case PMR_MENU_NUMCOL:
-			wprintw(m->mw, msg_string(MSG_raid_numcol_fmt), dev_ptr->numCol);
-			break;
-		case PMR_MENU_NUMSPARE:
-			wprintw(m->mw, msg_string(MSG_raid_numspare_fmt), dev_ptr->numSpare);
-			break;
-		case PMR_MENU_SECTPERSU:
-			wprintw(m->mw, msg_string(MSG_raid_sectpersu_fmt), dev_ptr->sectPerSU);
-			break;
-		case PMR_MENU_SUSPERPARITYUNIT:
-			wprintw(m->mw, msg_string(MSG_raid_superpar_fmt), dev_ptr->SUsPerParityUnit);
-			break;
-		case PMR_MENU_SUSPERRECONUNIT:
-			wprintw(m->mw, msg_string(MSG_raid_superrec_fmt), dev_ptr->SUsPerReconUnit);
-			break;
-	}
-	return;
-}
-
-static int
-pm_raid_set_value(menudesc *m, void *arg)
-{
-	int retvalue = -1;
-	int *out_var = NULL;
-	char buf[SSTRSIZE];
-	const char *msg_to_show = NULL;
-	raids_t *dev_ptr = arg;
-
-	static menu_ent menuent_disk_adddel[] = {
-	    {MSG_add, OPT_NOMENU, OPT_EXIT, pm_raid_disk_add}, 
-	    {MSG_remove, OPT_NOMENU, OPT_EXIT, pm_raid_disk_del}
-	};
-	static int menu_disk_adddel = -1;
-	if (menu_disk_adddel == -1) {
-		menu_disk_adddel = new_menu(NULL, menuent_disk_adddel, nelem(menuent_disk_adddel),
-			-1, -1, 0, 10, MC_NOCLEAR, NULL, NULL, NULL, NULL, NULL);
-	}
-	
-	switch (m->cursel) {
-		case PMR_MENU_DEVS:
-			raid_curspare = 0;
-			process_menu(menu_disk_adddel, dev_ptr);
-			return 0;
-		case PMR_MENU_DEVSSPARE:
-			raid_curspare = 1;
-			process_menu(menu_disk_adddel, dev_ptr);
-			return 0;
-		case PMR_MENU_RAIDLEVEL:
-			process_menu(MENU_raidlevel, &retvalue);
-			if (retvalue >= 0)
-				dev_ptr->raid_level = retvalue;
-			return 0;
-		case PMR_MENU_NUMROW:
-			process_menu(MENU_ok, deconst(MSG_raid_nomultidim));
-			return 0;
-			msg_to_show = MSG_raid_numrow_ask;
-			out_var = &(dev_ptr->numRow);
-			break;
-		case PMR_MENU_NUMCOL:
-			msg_to_show = MSG_raid_numcol_ask;
-			out_var = &(dev_ptr->numCol);
-			break;
-		case PMR_MENU_NUMSPARE:
-			msg_to_show = MSG_raid_numspare_ask;
-			out_var = &(dev_ptr->numSpare);
-			break;
-		case PMR_MENU_SECTPERSU:
-			msg_to_show = MSG_raid_sectpersu_ask;
-			out_var = &(dev_ptr->sectPerSU);
-			break;
-		case PMR_MENU_SUSPERPARITYUNIT:
-			msg_to_show = MSG_raid_superpar_ask;
-			out_var = &(dev_ptr->SUsPerParityUnit);
-			break;
-		case PMR_MENU_SUSPERRECONUNIT:
-			msg_to_show = MSG_raid_superrec_ask;
-			out_var = &(dev_ptr->SUsPerReconUnit);
-			break;
-		case PMR_MENU_REMOVE:
-			dev_ptr->enabled = 0;
-			return 0;
-	}
-	if (out_var == NULL || msg_to_show == NULL)
-		return -1;
-	snprintf(buf, SSTRSIZE, "%d", *out_var);
-	msg_prompt_win(msg_to_show, -1, 18, 0, 0, buf, buf, SSTRSIZE);
-	if (atoi(buf) >= 0)
-		*out_var = atoi(buf);
-	return 0;
-}
-
-static void
-pm_raid_init(void *arg, void *none)
-{
-	raids_t *dev_ptr = arg;
-	memset(dev_ptr, 0, sizeof(*dev_ptr));
-	*dev_ptr = (struct raids_t) {
-		.enabled = 1,
-		.blocked = 0,
-		.sectPerSU = 32,
-		.SUsPerParityUnit = 1,
-		.SUsPerReconUnit = 1,
-	};
-	return;
-}
-
-static int
-pm_raid_check(void *arg)
-{
-	int i, dev_num = 0, min_size = 0, cur_size = 0;
-	raids_t *dev_ptr = arg;
-
-	if (dev_ptr->blocked)
-		return 0;
-	for (i = 0; i < MAX_IN_RAID; i++)
-		if (dev_ptr->pm[i] != NULL) {
-			cur_size = dev_ptr->pm[i]->bsdlabel[dev_ptr->pm_part[i]].pi_size /
-						(MEG / dev_ptr->pm[i]->sectorsize);
-			if (cur_size < min_size || dev_num == 0)
-				min_size = cur_size;
-			if (!dev_ptr->pm_is_spare[i])
-				dev_num++;
-		}
-	/* Calculate sum of available space */
-	if (dev_num > 0) {
-		switch (dev_ptr->raid_level) {
-			case 0:
-				dev_ptr->total_size = min_size * dev_num;
-				break;
-			case 1:
-				dev_ptr->total_size = min_size;
-				break;
-			case 4:
-			case 5:
-				dev_ptr->total_size = min_size * (dev_num - 1);
-				break;
-		}
-		pm_manage_getfreenode(&(dev_ptr->node), "raid", &raids_t_info);
-		if (dev_ptr->node < 0)
-			dev_ptr->enabled = 0;
-	}
-	else
-		dev_ptr->enabled = 0;
-	return dev_ptr->enabled;
-}
-
-static int
-pm_raid_disk_add(menudesc *m, void *arg)
-{
-	int i;
-	raids_t *dev_ptr = arg;
-	part_entry_t disk_entrie = pm_dev_list(PM_RAID_T);
-	if (disk_entrie.retvalue < 0)
-		return disk_entrie.retvalue;
-
-	for (i = 0; i < MAX_IN_RAID; i++)
-		if (dev_ptr->pm[i] == NULL) {
-			dev_ptr->pm[i] = disk_entrie.dev_ptr;
-			dev_ptr->pm_part[i] = disk_entrie.dev_num;
-			dev_ptr->pm_is_spare[i] = raid_curspare;
-			strlcpy(dev_ptr->pm_name[i], disk_entrie.fullname, SSTRSIZE);
-			if (raid_curspare)
-				dev_ptr->numSpare++;
-			else
-				dev_ptr->numCol++;
-			dev_ptr->numRow = 1;
-			break;
-		}
-	return 0;
-}
-
-static int
-pm_raid_disk_del(menudesc *m, void *arg)
-{
-	int retvalue = -1, num_devs = 0;
-	int i, pm_cur;
-	int menu_no;
-	raids_t *dev_ptr = arg;
-	menu_ent menu_entries[MAX_IN_RAID];
-	part_entry_t submenu_args[MAX_IN_RAID];
-
-	for (i = 0; i < MAX_IN_RAID; i++) {
-		if (dev_ptr->pm[i] == NULL ||
-			dev_ptr->pm_is_spare[i] != raid_curspare)
-			continue;
-		menu_entries[num_devs] = (struct menu_ent) {
-			.opt_name = dev_ptr->pm_name[i],
-			.opt_action = set_menu_select,
-			.opt_menu = OPT_NOMENU,
-			.opt_flags = OPT_EXIT,
-		};
-		submenu_args[num_devs].dev_num = i;
-		num_devs++;
-	}
-
-	menu_no = new_menu(MSG_raid_disks,
-		menu_entries, num_devs, -1, -1, (num_devs+1<3)?3:num_devs+1, 13,
-		MC_SCROLL | MC_NOCLEAR, NULL, NULL, NULL, NULL, NULL);
-	if (menu_no == -1)
-		return -1;
-	process_menu(menu_no, &retvalue);
-	free_menu(menu_no);
-
-	if (retvalue < 0 || retvalue >= num_devs)
-		return -1;
-
-	pm_cur = submenu_args[retvalue].dev_num;
-
-	if (dev_ptr->pm_is_spare[pm_cur])
-		dev_ptr->numSpare--;
-	else
-		dev_ptr->numCol--;
-	dev_ptr->numRow = (dev_ptr->numCol)?1:0;
-	dev_ptr->pm[pm_cur] = NULL;
-
-	return 0;
-}
-
-static int
-pm_raid_commit(void)
-{
-	int i, ii;
-	FILE *f;
-	char f_name[STRSIZE];
-
-	for (i = 0; i < MAX_RAID; i++) {
-		if (! pm_raid_check(&raids[i]))
-			continue;
-
-		/* Generating configure file for our raid */
-		snprintf(f_name, SSTRSIZE, "/tmp/raid.%d.conf", raids[i].node);
-		f = fopen(f_name, "w");
-		if (f == NULL) {
-			endwin();
-			(void)fprintf(stderr, "Could not open %s for writing\n", f_name);
-			if (logfp)
-				(void)fprintf(logfp, "Could not open %s for writing\n", f_name);
-			return 1;
-		}
-		scripting_fprintf(NULL, "cat <<EOF >%s\n", f_name);
-		scripting_fprintf(f, "START array\n%d %d %d\n", raids[i].numRow,
-							raids[i].numCol, raids[i].numSpare);
-
-		scripting_fprintf(f, "\nSTART disks\n");
-		for (ii = 0; ii < MAX_IN_RAID; ii++)
-			if (raids[i].pm[ii] != NULL && raids[i].pm_is_spare[ii] == 0) {
-				scripting_fprintf(f,  "/dev/%s\n", raids[i].pm_name[ii]);
-			}
-
-		scripting_fprintf(f, "\nSTART spare\n");
-		for (ii = 0; ii < MAX_IN_RAID; ii++)
-			if (raids[i].pm[ii] != NULL && raids[i].pm_is_spare[ii] != 0) {
-				scripting_fprintf(f,  "/dev/%s\n", raids[i].pm_name[ii]);
-			}
-
-		scripting_fprintf(f, "\nSTART layout\n%d %d %d %d\n", raids[i].sectPerSU,
-						raids[i].SUsPerParityUnit, raids[i].SUsPerReconUnit,
-						raids[i].raid_level);
-
-		scripting_fprintf(f, "\nSTART queue\nfifo 100\n\n");
-		scripting_fprintf(NULL, "EOF\n");
-		fclose (f);
-		fflush(NULL);
-
-		/* Raid initialization */
-		if (
-			run_program(RUN_DISPLAY | RUN_PROGRESS, "raidctl -C %s raid%d",
-							f_name, raids[i].node) == 0 &&
-			run_program(RUN_DISPLAY | RUN_PROGRESS, "raidctl -I %d raid%d",
-							rand(), raids[i].node) == 0 &&
-			run_program(RUN_DISPLAY | RUN_PROGRESS, "raidctl -vi raid%d",
-							raids[i].node) == 0 &&
-			run_program(RUN_DISPLAY | RUN_PROGRESS, "raidctl -v -A yes raid%d",
-							raids[i].node) == 0
-			) {
-			raids[i].blocked = 1; /* RAID creation done, remove it from list to 
-									 prevent it's repeated reinitialization */
-			for (ii = 0; ii < MAX_IN_RAID; ii++)
-				if (raids[i].pm[ii] != NULL)
-					raids[i].pm[ii]->blocked++;
-		}
-	}
-	return 0;
 }
 
 /***
@@ -1649,7 +1282,7 @@ pm_gpt_commit(void)
 int
 pm_getrefdev(pm_devs_t *pm_cur)
 {
-	int i, ii, dev_num, num_devs, num_devs_s;
+	int i, dev_num;
 	char dev[SSTRSIZE]; dev[0] = '\0';
 
 	pm_cur->refdev = NULL;
@@ -1661,24 +1294,6 @@ pm_getrefdev(pm_devs_t *pm_cur)
 				pm_getdevstring(dev, SSTRSIZE, vnds[i].pm, vnds[i].pm_part);
 				snprintf(pm_cur->diskdev_descr, STRSIZE, "%s (%s, %s)",
 					pm_cur->diskdev_descr, dev, vnds[i].filepath);
-				break;
-			}
-	} else if (! strncmp(pm_cur->diskdev, "raid", 4)) {
-		dev_num = pm_cur->diskdev[4] - '0';
- 		for (i = 0; i < MAX_RAID; i++)
-			if (raids[i].blocked && raids[i].node == dev_num) {
-				pm_cur->refdev = &raids[i];
-				num_devs = 0; num_devs_s = 0;
-				for (ii = 0; ii < MAX_IN_RAID; ii++)
-					if (raids[i].pm[ii] != NULL) {
-						if(raids[i].pm_is_spare[ii])
-							num_devs_s++;
-						else
-							num_devs++;
-					}
-				snprintf(pm_cur->diskdev_descr, STRSIZE,
-					"%s (lvl %d, %d disks, %d spare)", pm_cur->diskdev_descr,
-					raids[i].raid_level, num_devs, num_devs_s);
 				break;
 			}
 	} else
@@ -1699,15 +1314,6 @@ pm_partusage(pm_devs_t *pm_cur, int part_num, int do_del)
 		return retvalue;
 	}
 
-	for (i = 0; i < MAX_RAID; i++)
-		for (ii = 0; ii < MAX_IN_RAID; ii++)
-			if (raids[i].enabled &&
-				raids[i].pm[ii] == pm_cur &&
-				raids[i].pm_part[ii] == part_num) {
-					if (do_del)
-						raids[i].pm[ii] = NULL;
-					return 1;
-			}
 	for (i = 0; i < MAX_LVM_VG; i++)
 		for (ii = 0; ii < MAX_LVM_PV; ii++)
 			if (lvms[i].enabled &&
@@ -1944,21 +1550,13 @@ pm_umount(pm_devs_t *pm_cur, int part_num)
 int
 pm_unconfigure(pm_devs_t *pm_cur)
 {
-	int i, error = 0, num = 0;
+	int error = 0, num = 0;
 	if (! strncmp(pm_cur->diskdev, "vnd", 3)) {
 		error = run_program(RUN_DISPLAY | RUN_PROGRESS, "vnconfig -u %s", pm_cur->diskdev);
  		if (! error && pm_cur->refdev != NULL) {
 			((vnds_t*)pm_cur->refdev)->pm->blocked--;
 			((vnds_t*)pm_cur->refdev)->blocked = 0;
  		}
-	} else if (! strncmp(pm_cur->diskdev, "raid", 4)) {
-		error = run_program(RUN_DISPLAY | RUN_PROGRESS, "raidctl -u %s", pm_cur->diskdev);
-		if (! error && pm_cur->refdev != NULL) {
-			((raids_t*)pm_cur->refdev)->blocked = 0;
-			for (i = 0; i < MAX_IN_RAID; i++)
-				if (((raids_t*)pm_cur->refdev)->pm[i] != NULL)
-					((raids_t*)pm_cur->refdev)->pm[i]->blocked--;
-		}
 	} else if (! strncmp(pm_cur->diskdev, "dk", 2)) {
 		if (pm_cur->refdev == NULL)
 			return -2;
@@ -2049,11 +1647,6 @@ pm_commit(menudesc *m, void *arg)
 	}
 
 	/* Call all functions that may create new devices */
-	if ((retcode = pm_raid_commit()) != 0) {
-		if (logfp)
-			fprintf(logfp, "RAIDframe configuring error #%d\n", retcode);
-		return -1;
-	}
 	if ((retcode = pm_lvm_commit()) != 0) {
 		if (logfp)
 			fprintf(logfp, "LVM configuring error #%d\n", retcode);
@@ -2077,14 +1670,6 @@ pm_savebootsector(void)
 	pm_devs_t *pm_i;
 	SLIST_FOREACH(pm_i, &pm_head, l)
 		if (pm_i->bootable) {
-			if (! strncmp("raid", pm_i->diskdev, 4))
-				if (run_program(RUN_DISPLAY | RUN_PROGRESS,
-					"raidctl -v -A root %s", pm_i->diskdev) != 0) {
-					if (logfp)
-						fprintf(logfp, "Error writting RAID bootsector to %s\n",
-							pm_i->diskdev);
-					continue;
-				}
 			if (pm_i->gpt && ! pm_i->isspecial) {
 				if (pm_i->rootpart < 0 ||
 					run_program(RUN_DISPLAY | RUN_PROGRESS,
@@ -2161,10 +1746,6 @@ pm_submenu(menudesc *m, void *arg)
 			part_num = 0;
 			process_menu(MENU_pmpartentry, &part_num);
 			break;
-		case PM_RAID_T:
-			return pm_edit(PMR_MENU_END, pm_raid_edit_menufmt,
-				pm_raid_set_value, pm_raid_check, pm_raid_init,
-				NULL, ((part_entry_t *)arg)[m->cursel].dev_ptr, 0, &raids_t_info);
 		case PM_VND_T:
 			return pm_edit(PMV_MENU_END, pm_vnd_edit_menufmt,
 				pm_vnd_set_value, pm_vnd_check, pm_vnd_init,
@@ -2246,9 +1827,6 @@ pm_menufmt(menudesc *m, int opt, void *arg)
 				getfslabelname(pm_cur->bsdlabel[0].pi_fstype),
 				pm_cur->bsdlabel[0].pi_size / (MEG / pm_cur->sectorsize));
 			break;
-		case PM_RAID_T:
-			pm_raid_menufmt(m, opt, arg);
-			break;
 		case PM_VND_T:
 			pm_vnd_menufmt(m, opt, arg);
 			break;
@@ -2262,7 +1840,7 @@ pm_menufmt(menudesc *m, int opt, void *arg)
 	return;
 }
 
-/* Submenu for RAID/LVM/VND */
+/* Submenu for LVM/VND */
 static void
 pm_upddevlist_adv(menudesc *m, void *arg, int *i,
 	pm_upddevlist_adv_t *d)
@@ -2370,10 +1948,6 @@ pm_upddevlist(menudesc *m, void *arg)
 		    &(pm_upddevlist_adv_t) {MSG_create_vg, PM_LVM_T, &lvms_t_info, 0,
 		    &(pm_upddevlist_adv_t) {MSG_create_lv, PM_LVMLV_T, &lv_t_info, 0, NULL}});
 	}
-	if (have_raid) {
-		pm_upddevlist_adv(m, arg, &i,
-		    &(pm_upddevlist_adv_t) {MSG_create_raid, PM_RAID_T, &raids_t_info, 0, NULL});
-	}
 
 	m->opts[i++] = (struct menu_ent) {
 		.opt_name = MSG_updpmlist,
@@ -2419,7 +1993,6 @@ check_available_binaries()
 	if (did_test) return;
 	did_test = 1;
 
-	have_raid = binary_available("raidctl");
 	have_vnd = binary_available("vnconfig");
 	have_lvm = binary_available("lvm");
 	have_gpt = binary_available("gpt");
@@ -2438,21 +2011,11 @@ partman(void)
 	if (firstrun) {
 		check_available_binaries();
 
-		if (!have_raid)
-			remove_raid_options();
 		if (!have_lvm)
 			remove_lvm_options();
 		if (!have_gpt)
 			remove_gpt_options();
 
-		raids_t_info = (structinfo_t) {
-			.max = MAX_RAID,
-			.entry_size = sizeof raids[0],
-			.entry_first = &raids[0],
-			.entry_enabled = &(raids[0].enabled),
-			.entry_blocked = &(raids[0].blocked),
-			.entry_node = &(raids[0].node),
-		};
 		vnds_t_info = (structinfo_t) {
 			.max = MAX_VND,
 			.entry_size = sizeof vnds[0],
@@ -2478,7 +2041,6 @@ partman(void)
 			.parent_size = sizeof lvms[0],
 		};
 
-		memset(&raids, 0, sizeof raids);
 		memset(&vnds, 0, sizeof vnds);
 		memset(&lvms, 0, sizeof lvms);
 		cursel = 0;

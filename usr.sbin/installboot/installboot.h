@@ -155,7 +155,6 @@ int		shared_bbinfo_setboot(ib_params *, struct bbinfo_params *,
 int		hardcode_stage2(ib_params *, uint32_t *, ib_block *);
 int		ffs_match(ib_params *);
 int		ffs_findstage2(ib_params *, uint32_t *, ib_block *);
-int		raid_match(ib_params *);
 int		raw_match(ib_params *);
 int		raw_findstage2(ib_params *, uint32_t *, ib_block *);
 int		ext2fs_match(ib_params *);

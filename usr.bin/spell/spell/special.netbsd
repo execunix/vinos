@@ -126,7 +126,6 @@ catman
 cb
 cbrt
 cc
-ccdconfig
 cd
 cdio
 cdpath
@@ -955,7 +954,6 @@ quotacheck
 quotaoff
 quotaon
 radioctl
-raidctl
 rand
 random
 ranlib

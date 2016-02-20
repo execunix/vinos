@@ -188,9 +188,6 @@ struct netbsd32_wsdisplay_cursor {
 
 /* can wait! */
 #if 0
-dev/ccdvar.h:219:#define CCDIOCSET	_IOWR('F', 16, struct ccd_ioctl)   /* enable ccd */
-dev/ccdvar.h:220:#define CCDIOCCLR	_IOW('F', 17, struct ccd_ioctl)    /* disable ccd */
-
 dev/md.h:45:#define MD_GETCONF	_IOR('r', 0, struct md_conf)	/* get unit config */
 dev/md.h:46:#define MD_SETCONF	_IOW('r', 1, struct md_conf)	/* set unit config */
 

@@ -17,7 +17,7 @@ CONFIGFILES=\
 		DAEMON DISKS LOGIN NETWORKING SERVERS \
 		accounting altqd amd apmd \
 		bluetooth bootconf.sh bootparams \
-		ccd cleartmp cron devpubd \
+		cleartmp cron devpubd \
 		dhclient dhcpcd dhcpd dhcrelay dmesg downinterfaces envsys \
 		fsck fsck_root ftp_proxy ftpd \
 		gpio \
@@ -32,7 +32,7 @@ CONFIGFILES=\
 		ntpdate \
 		perusertmp pf pf_boot pflogd postfix powerd ppp pwcheck \
 		quota \
-		racoon rpcbind raidframe raidframeparity random_seed rarpd \
+		racoon rpcbind random_seed rarpd \
 		rbootd resize_root rndctl root route6d routed rtadvd rtclocaltime \
 		rtsold rwho \
 		savecore screenblank securelevel sshd \

@@ -44,8 +44,6 @@ echo "/* Automatically generated file, do not edit! */"
 echo "struct lwp;"
 echo "struct crap { int _xxx; };" # XXX arm video lossage
 echo "typedef struct crap videomemory_t;" # XXX arm video lossage
-echo "typedef struct crap RF_AccTotals_t;" # XXX Raidframe lossage
-echo "struct rf_test_acc { int _xxx; };" # XXX Raidframe lossage
 echo "#include <stdio.h>"
 echo "#include <sys/types.h>"
 echo "#include <sys/param.h>"

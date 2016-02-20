@@ -204,7 +204,6 @@ struct lsegblock {
 #define DOST_MUFS	0x6d754600	/* 'muFx' AmigaDos partition (muFS) */
 #define DOST_EXT2	0x4c4e5800	/* 'LNX0' Linux fs partition (ext2fs) */
 #define DOST_LNXSWP	0x53575000	/* 'SWP0' Linux swap partition */
-#define DOST_RAID	0x52414900	/* 'RAID' Raidframe partition */
 #define DOST_MSD	0x4d534400	/* 'MSDx' MSDOS partition */
 #define DOST_SFS	0x53465300	/* 'SFSx' Smart fs partition */
 
@@ -221,7 +220,6 @@ struct adostype {
 #define ADT_NETBSDUSER	4
 #define ADT_AMIX	5
 #define ADT_EXT2	6
-#define ADT_RAID	7
 #define ADT_MSD		8
 #define ADT_SFS		9
 

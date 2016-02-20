@@ -7,7 +7,6 @@
 #	/etc/mtree/special.local
 # and files matching:
 #	/etc/ifconfig.* 
-#	/etc/raid*.conf
 #	/etc/rc.d/*
 #	/etc/rc.conf.d/*
 #	/etc/lvm/archive/*

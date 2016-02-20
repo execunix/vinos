@@ -114,16 +114,6 @@ remove_color_options()
 }
 
 void
-remove_raid_options()
-{
-	/*
-	 * No raidframe available, remove the following menu entries:
-	 */
-	remove_menu_option(MENU_pmdiskentry, MSG_fmtasraid);
-	remove_menu_option(MENU_pmpartentry, MSG_fmtasraid);
-}
-
-void
 remove_lvm_options()
 {
 	/*
@@ -618,10 +608,6 @@ menu pmdiskentry, x=50, y=5, exit, default exit;
 	option MSG_switchgpt,	exit, action { if (pm_gpt_convert(pm) == 0)
 												pm_partusage(pm, -1, 1); };
 	option MSG_renamedisk,	exit, action { pm->unsaved = 1; pm_rename(pm); };
-	option MSG_fmtasraid,	exit, action { pm->unsaved = 1;
-											pm_partusage(pm, -1, 1);
-											layoutkind = LY_NEWRAID;
-											md_make_bsd_partitions();};
 	option MSG_fmtaslvm,	exit, action { pm->unsaved = 1;
 											pm_partusage(pm, -1, 1);
 											layoutkind = LY_NEWLVM;
@@ -644,15 +630,6 @@ menu pmpartentry, x=50, y=5, exit, default exit;
 										tplvm != pm->bsdlabel[*(int*)arg].lvmpv)
 										/* Oops, partition type changed */
 										pm_partusage(pm, *(int*)arg, 1);
-								};
-	option MSG_fmtasraid,	exit, action {
-									if (pm->gpt || pm->isspecial) {
-										process_menu(MENU_ok, deconst(MSG_notsupported));
-										return -1;
-									}
-									pm->unsaved = 1;
-									pm_partusage(pm, *(int*)arg, 1);
-									pm_setfstype(pm, *(int*)arg, FS_RAID);
 								};
 	option MSG_fmtaslvm,	exit, action {
 									if (pm->gpt || pm->isspecial) {
@@ -694,9 +671,3 @@ menu shred_modes, x=50, y=5, exit, default exit;
 							action { pm_shred(pm, *(int*)arg, SHRED_RANDOM); };
 	option MSG_fillcrypto,	exit,
 							action { pm_shred(pm, *(int*)arg, SHRED_CRYPTO); };
-
-menu raidlevel;
-	option MSG_raid0, exit, action { *(int *)arg = 0; };
-	option MSG_raid1, exit, action { *(int *)arg = 1; };
-	option MSG_raid4, exit, action { *(int *)arg = 4; };
-	option MSG_raid5, exit, action { *(int *)arg = 5; };

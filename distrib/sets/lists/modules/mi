@@ -24,8 +24,6 @@
 ./@MODULEDIR@/camellia/camellia.kmod		base-kernel-modules	kmod
 ./@MODULEDIR@/cast128				base-kernel-modules	kmod
 ./@MODULEDIR@/cast128/cast128.kmod		base-kernel-modules	kmod
-./@MODULEDIR@/ccd				base-kernel-modules	kmod
-./@MODULEDIR@/ccd/ccd.kmod			base-kernel-modules	kmod
 ./@MODULEDIR@/cd9660				base-kernel-modules	kmod
 ./@MODULEDIR@/cd9660/cd9660.kmod		base-kernel-modules	kmod
 ./@MODULEDIR@/chfs				base-kernel-modules	kmod
