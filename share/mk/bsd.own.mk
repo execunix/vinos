@@ -783,14 +783,14 @@ MK${var}:=	yes
 .if ${MACHINE_ARCH} == "x86_64" \
     || ${MACHINE_CPU} == "aarch64" \
     || !empty(MACHINE_ARCH:Mearm*)
-MKCOMPAT?=	yes
+MKCOMPAT?=	no
 .else
 # Don't let this build where it really isn't supported.
 MKCOMPAT:=	no
 .endif
 
 .if ${MACHINE_ARCH} == "x86_64" || ${MACHINE_ARCH} == "i386"
-MKCOMPATMODULES?=	yes
+MKCOMPATMODULES?=	no
 .else
 MKCOMPATMODULES:=	no
 .endif
