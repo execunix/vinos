@@ -51,9 +51,6 @@ SRCS+=					\
 . if ${MACHINE_ARCH} == "i386"
 SRCS+= pixman-mmx.c
 COPTS.pixman-mmx.c=	-mmmx -fvisibility=hidden
-.  if defined(HAVE_LLVM)
-COPTS.pixman-mmx.c+=	-Wno-error=attributes
-.  endif
 CPPFLAGS+=		-DUSE_X86_MMX
 MKDEPFLAGS+=		-mmmx
 . endif

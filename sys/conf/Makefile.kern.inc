@@ -101,7 +101,7 @@ CFLAGS+=	${DEBUG} ${COPTS}
 AFLAGS+=	-D_LOCORE -Wa,--fatal-warnings
 
 # XXX
-.if defined(HAVE_GCC) || defined(HAVE_LLVM)
+.if defined(HAVE_GCC)
 CFLAGS+=	-fno-strict-aliasing
 CFLAGS+=	-fno-common
 .endif

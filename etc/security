@@ -61,7 +61,6 @@ MPBYPATH=mpbypath.$$
 LIST=list.$$
 OUTPUT=output.$$
 LABELS=labels.$$
-LVM_LABELS=lvm.$$
 PKGS=pkgs.$$
 CHANGEFILES=changefiles.$$
 SPECIALSPEC=specialspec.$$
@@ -934,19 +933,6 @@ if checkyesno check_disklabels; then
 	CHANGELIST="$LABELS $CHANGELIST"
 fi
 
-if checkyesno check_lvm; then
-    
-    # generate list of existing LVM elements Physical Volumes, Volume Groups and Logical Volumes.
-if [ -x /sbin/lvm ]; then
-    lvm pvdisplay -m >"$work_dir/lvm.pv" 2>/dev/null
-    lvm vgdisplay -m >"$work_dir/lvm.vg" 2>/dev/null
-    lvm lvdisplay -m >"$work_dir/lvm.lv" 2>/dev/null
-fi
-    ls -1d $work_dir/lvm.* 2>/dev/null |
-        egrep -v '\.(backup|current)(,v)?$'>> $LVM_LABELS 
-    CHANGELIST="$CHANGELIST $LVM_LABELS"
-fi
-
 # Check for changes in the list of installed pkgs
 #
 if checkyesno check_pkgs && have_pkgs; then
@@ -980,8 +966,6 @@ if checkyesno check_changelist ; then
 		echo "/etc/ifconfig.*"
 		echo "/etc/rc.d/*"
 		echo "/etc/rc.conf.d/*"
-		echo "/etc/lvm/backup/*"
-		echo "/etc/lvm/archive/*"
 
 		# Add /etc/changelist
 		#

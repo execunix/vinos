@@ -65,8 +65,6 @@
 ./usr/include/arm/vfpreg.h			comp-c-include
 ./usr/include/arm/vmparam.h			comp-c-include
 ./usr/include/arm/wchar_limits.h		comp-c-include
-./usr/include/clang-3.6/arm_acle.h		comp-c-include		llvm
-./usr/include/clang-3.6/arm_neon.h		comp-c-include		llvm
 ./usr/include/evbarm				comp-c-include
 ./usr/include/evbarm/disklabel.h		comp-c-include
 ./usr/include/evbarm/intr.h			comp-c-include
@@ -323,22 +321,6 @@
 ./usr/lib/oabi/libdes_p.a			comp-c-proflib		compat,crypto,profile
 ./usr/lib/oabi/libdes_pic.a			comp-c-piclib		compat,crypto,pic,picinstall
 ./usr/lib/oabi/libdes_pic.a			comp-c-piclib		compat,crypto,pic,picinstall
-./usr/lib/oabi/libdevmapper.a			comp-lvm-lib		compat,lvm
-./usr/lib/oabi/libdevmapper.a			comp-lvm-lib		compat,lvm
-./usr/lib/oabi/libdevmapper.so			base-lvm-shlib		compat,lvm,pic
-./usr/lib/oabi/libdevmapper.so			base-lvm-shlib		compat,lvm,pic
-./usr/lib/oabi/libdevmapper_p.a			comp-lvm-proflib	compat,profile,lvm
-./usr/lib/oabi/libdevmapper_p.a			comp-lvm-proflib	compat,profile,lvm
-./usr/lib/oabi/libdevmapper_pic.a		comp-lvm-piclib		compat,pic,lvm,picinstall
-./usr/lib/oabi/libdevmapper_pic.a		comp-lvm-piclib		compat,pic,lvm,picinstall
-./usr/lib/oabi/libdm.a				comp-c-lib		compat
-./usr/lib/oabi/libdm.a				comp-c-lib		compat
-./usr/lib/oabi/libdm.so				base-sys-shlib		compat,pic
-./usr/lib/oabi/libdm.so				base-sys-shlib		compat,pic
-./usr/lib/oabi/libdm_p.a				comp-c-proflib		compat,profile
-./usr/lib/oabi/libdm_p.a			comp-c-proflib		compat,profile
-./usr/lib/oabi/libdm_pic.a			comp-c-piclib		compat,pic,picinstall
-./usr/lib/oabi/libdm_pic.a			comp-c-piclib		compat,pic,picinstall
 ./usr/lib/oabi/libdns.a				comp-c-lib		compat
 ./usr/lib/oabi/libdns.a				comp-c-lib		compat
 ./usr/lib/oabi/libdns.so				base-sys-shlib		compat,pic

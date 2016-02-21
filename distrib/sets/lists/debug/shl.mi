@@ -3,7 +3,6 @@
 ./usr/libdata/debug/lib/libc.so.12.193.1.debug		comp-sys-debug	debug
 ./usr/libdata/debug/lib/libcrypt.so.1.0.debug		comp-sys-debug	debug
 ./usr/libdata/debug/lib/libcrypto.so.8.4.debug		comp-sys-debug	debug
-./usr/libdata/debug/lib/libdevmapper.so.1.0.debug	comp-sys-debug	debug
 ./usr/libdata/debug/lib/libedit.so.3.1.debug		comp-sys-debug	debug
 ./usr/libdata/debug/lib/libevent.so.4.0.debug		comp-sys-debug	debug
 ./usr/libdata/debug/lib/libgcc_s.so.1.0.debug		comp-sys-debug	gcc,debug
@@ -65,8 +64,6 @@
 ./usr/libdata/debug/usr/lib/libcrypto_rc5.so.7.0.debug	comp-crypto-debug	crypto,crypto_rc5,debug
 ./usr/libdata/debug/usr/lib/libcurses.so.7.0.debug	comp-sys-debug	debug
 ./usr/libdata/debug/usr/lib/libdes.so.8.2.debug		comp-crypto-debug	crypto,debug
-./usr/libdata/debug/usr/lib/libdevmapper.so.1.0.debug	comp-lvm-debug	lvm,debug
-./usr/libdata/debug/usr/lib/libdm.so.0.0.debug 		comp-sys-debug	debug
 ./usr/libdata/debug/usr/lib/libdns.so.8.2.debug 	comp-bind-debug debug
 ./usr/libdata/debug/usr/lib/libdns_sd.so.0.0.debug	comp-mdns-debug	mdns,debug
 ./usr/libdata/debug/usr/lib/libdwarf.so.1.0.debug	comp-sys-debug	debug

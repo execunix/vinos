@@ -21,6 +21,6 @@ FILES=	rtadvd.conf
 
 .include <bsd.prog.mk>
 
-.if defined(HAVE_GCC) || defined(HAVE_LLVM)
+.if defined(HAVE_GCC)
 COPTS.dump.c=-fno-strict-aliasing
 .endif

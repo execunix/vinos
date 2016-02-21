@@ -139,11 +139,6 @@ MKCRYPTO	If "no", no cryptography support will be built into the system,
 MKCRYPTO_RC5	If not "no", RC5 support will be built into libcrypto_rc5
 		Default: no
 
-MKCTF		If "no", do not build and install CTF tools, and also
-		don't generate and manipulate CTF data of ELF binaries
-		during build.
-		Default: no
-
 MKCVS		If "no", don't build or install cvs(1).
 		Default: yes
 
@@ -267,10 +262,6 @@ MKLINKLIB	If "no", act as "MKLINT=no MKPICINSTALL=no MKPROFILE=no".
 MKLINT		If "no", don't build or install the lint libraries.
 		Default: yes
 
-MKLVM		If "no", don't build or install the logical volume manager
-		and device mapper tools and libraries
-		Default: yes
-
 MKMAN		If "no", don't build or install the man or catman pages,
 		and also acts as "MKCATPAGES=no MKHTML=no".
 		Default: yes
@@ -305,10 +296,6 @@ MKOBJDIRS	If "no", don't create objdirs during a "make build".
 MKPAM		If "no", disables building of PAM authentication
 		infrastructure (libraries and support programs).
 		Default: yes
-
-MKPCC		If "no", don't build pcc(1) or any of the PCC-related
-		libraries (libpcc, libpccsoftfloat).
-		Default: no
 
 MKPF		If "no", don't build or install the pf programs and LKM.
 		Default: yes
@@ -495,8 +482,6 @@ The active compiler is selected using the following variables:
 AVAILABLE_COMPILER
 		List of available compiler suites.  Processed in order
 		for selecting the active compiler for each frontend.
-HAVE_PCC	If defined, PCC is present and enabled.
-HAVE_LLVM	If defined, LLVM/Clang is present and enabled.
 UNSUPPORTED_COMPILER.xxx
 		If defined, the support for compiler "xxx" is disabled.
 

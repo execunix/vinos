@@ -46,12 +46,6 @@ NEED_OWN_INSTALL_TARGET?=	yes
 #
 TOOLCHAIN_MISSING?=	no
 
-.if ${MACHINE_CPU} == "aarch64" && ${MKLLVM:Uyes} != "no"
-MKLLVM?=	yes
-HAVE_LLVM?=	yes
-MKGCC?=		no
-.endif
-
 #
 # GCC Using platforms.
 #
@@ -84,15 +78,13 @@ _LIBC_COMPILER_RT.aarch64=	yes
 _LIBC_COMPILER_RT.i386=		yes
 _LIBC_COMPILER_RT.x86_64=	yes
 
-.if ${MKLLVM:Uno} == "yes" && ${_LIBC_COMPILER_RT.${MACHINE_ARCH}:Uno} == "yes"
+.if ${_LIBC_COMPILER_RT.${MACHINE_ARCH}:Uno} == "yes"
 HAVE_LIBGCC?=	no
 .else
 HAVE_LIBGCC?=	yes
 .endif
 
-
-# ia64 is not support
-.if ${MKLLVM:Uno} == "yes" || !empty(MACHINE_ARCH:Mearm*)
+.if !empty(MACHINE_ARCH:Mearm*)
 HAVE_LIBGCC_EH?=	no
 .else
 HAVE_LIBGCC_EH?=	yes
@@ -252,11 +244,6 @@ TOOL_CPP.clang=		${TOOLDIR}/bin/${MACHINE_GNU_PLATFORM}-clang-cpp
 TOOL_CXX.clang=		${TOOLDIR}/bin/${MACHINE_GNU_PLATFORM}-clang++
 TOOL_OBJC.clang=	${TOOLDIR}/bin/${MACHINE_GNU_PLATFORM}-clang
 
-# PCC supports C and Fortran
-TOOL_CC.pcc=		${TOOLDIR}/bin/${MACHINE_GNU_PLATFORM}-pcc
-TOOL_CPP.pcc=		${TOOLDIR}/libexec/${MACHINE_GNU_PLATFORM}-cpp
-TOOL_CXX.pcc=		${TOOLDIR}/bin/${MACHINE_GNU_PLATFORM}-p++
-
 #
 # Make sure DESTDIR is set, so that builds with these tools always
 # get appropriate -nostdinc, -nostdlib, etc. handling.  The default is
@@ -318,7 +305,6 @@ TOOL_INDXBIB=		${TOOLDIR}/bin/${_TOOL_PREFIX}indxbib
 TOOL_INSTALLBOOT=	${TOOLDIR}/bin/${_TOOL_PREFIX}installboot
 TOOL_INSTALL_INFO=	${TOOLDIR}/bin/${_TOOL_PREFIX}install-info
 TOOL_JOIN=		${TOOLDIR}/bin/${_TOOL_PREFIX}join
-TOOL_LLVM_TBLGEN=		${TOOLDIR}/bin/${_TOOL_PREFIX}llvm-tblgen
 TOOL_M4=		${TOOLDIR}/bin/${_TOOL_PREFIX}m4
 TOOL_MAKEFS=		${TOOLDIR}/bin/${_TOOL_PREFIX}makefs
 TOOL_MAKEINFO=		${TOOLDIR}/bin/${_TOOL_PREFIX}makeinfo
@@ -385,11 +371,6 @@ TOOL_CXX.gcc=	c++
 TOOL_FC.gcc=	g77
 TOOL_OBJC.gcc=	gcc
 
-# PCC supports C and Fortran
-TOOL_CC.pcc=		pcc
-TOOL_CPP.pcc=		/usr/libexec/pcpp
-TOOL_CXX.pcc=		p++
-
 TOOL_AMIGAAOUT2BB=	amiga-aout2bb
 TOOL_AMIGAELF2BB=	amiga-elf2bb
 TOOL_AMIGATXLT=		amiga-txlt
@@ -420,7 +401,6 @@ TOOL_INDXBIB=		indxbib
 TOOL_INSTALLBOOT=	installboot
 TOOL_INSTALL_INFO=	install-info
 TOOL_JOIN=		join
-TOOL_LLVM_TBLGEN=	llvm-tblgen
 TOOL_M4=		m4
 TOOL_MAKEFS=		makefs
 TOOL_MAKEINFO=		makeinfo
@@ -480,7 +460,7 @@ TOOL_CXX.false=		false
 TOOL_FC.false=		false
 TOOL_OBJC.false=	false
 
-AVAILABLE_COMPILER?=	${HAVE_PCC:Dpcc} ${HAVE_LLVM:Dclang} ${HAVE_GCC:Dgcc} ${EXTERNAL_TOOLCHAIN:Dgcc} false
+AVAILABLE_COMPILER?=	${HAVE_GCC:Dgcc} ${EXTERNAL_TOOLCHAIN:Dgcc} false
 
 .for _t in CC CPP CXX FC OBJC
 ACTIVE_${_t}=	${AVAILABLE_COMPILER:@.c.@ ${ !defined(UNSUPPORTED_COMPILER.${.c.}) && defined(TOOL_${_t}.${.c.}) :? ${.c.} : }@:[1]}
@@ -839,7 +819,7 @@ _MKVARS.yes= \
 	MKIEEEFP MKINET6 MKINFO MKIPFILTER MKISCSI \
 	MKKERBEROS \
 	MKKMOD \
-	MKLDAP MKLIBSTDCXX MKLINKLIB MKLVM \
+	MKLDAP MKLIBSTDCXX MKLINKLIB \
 	MKMAN MKMANDOC \
 	MKMDNS \
 	MKMAKEMANDB \
@@ -870,7 +850,7 @@ _MKVARS.no= \
 	MKDEBUGLIB MKEXTSRC MKGROFFHTMLDOC \
 	MKLLD MKLLDB MKLINT \
 	MKMANZ MKMCLINKER MKOBJDIRS \
-	MKLIBCXX MKLLVM MKPCC \
+	MKLIBCXX \
 	MKPICINSTALL MKPROFILE \
 	MKPIGZGZIP \
 	MKREPRO \
@@ -964,7 +944,7 @@ _NEEDS_LIBCXX.i386=	yes
 _NEEDS_LIBCXX.x86_64=	yes
 _NEEDS_LIBCXX.aarch64=	yes
 
-.if ${MKLLVM} == "yes" && ${_NEEDS_LIBCXX.${MACHINE_ARCH}:Uno} == "yes"
+.if ${_NEEDS_LIBCXX.${MACHINE_ARCH}:Uno} == "yes"
 MKLIBCXX:=	yes
 .endif
 

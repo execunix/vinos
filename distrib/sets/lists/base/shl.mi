@@ -25,12 +25,6 @@
 ./lib/libcrypto.so				base-crypto-shlib	crypto,dynamicroot
 ./lib/libcrypto.so.8				base-crypto-shlib	crypto,dynamicroot
 ./lib/libcrypto.so.8.4				base-crypto-shlib	crypto,dynamicroot
-./lib/libdevmapper.so				base-lvm-shlib		lvm,dynamicroot
-./lib/libdevmapper.so.1				base-lvm-shlib		lvm,dynamicroot
-./lib/libdevmapper.so.1.0			base-lvm-shlib		lvm,dynamicroot
-./lib/libdm.so					base-sys-shlib		dynamicroot
-./lib/libdm.so.0				base-sys-shlib		dynamicroot
-./lib/libdm.so.0.0				base-sys-shlib		dynamicroot
 ./lib/libedit.so				base-sys-shlib		dynamicroot
 ./lib/libedit.so.3				base-sys-shlib		dynamicroot
 ./lib/libedit.so.3.1				base-sys-shlib		dynamicroot
@@ -217,12 +211,6 @@
 ./usr/lib/libdes.so				base-crypto-shlib	crypto
 ./usr/lib/libdes.so.8				base-crypto-shlib	crypto
 ./usr/lib/libdes.so.8.2				base-crypto-shlib	crypto
-./usr/lib/libdevmapper.so			base-lvm-shlib		lvm
-./usr/lib/libdevmapper.so.1			base-lvm-shlib		lvm
-./usr/lib/libdevmapper.so.1.0			base-lvm-shlib		lvm
-./usr/lib/libdm.so				base-sys-shlib
-./usr/lib/libdm.so.0				base-sys-shlib
-./usr/lib/libdm.so.0.0				base-sys-shlib
 ./usr/lib/libdns.so				base-bind-shlib
 ./usr/lib/libdns.so.8				base-bind-shlib
 ./usr/lib/libdns.so.8.2				base-bind-shlib

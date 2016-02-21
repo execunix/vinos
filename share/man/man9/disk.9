@@ -129,8 +129,6 @@ may grow or shrink over time as disks are dynamically added and removed
 from the system.
 Drivers which currently make use of the detachment
 capability of the framework are the
-.Nm dm ,
-and
 .Nm vnd
 pseudo-device drivers.
 .Pp
@@ -503,16 +501,14 @@ and
 .Pp
 The
 .Nx
-.Nm dm ,
-and
 .Nm vnd
 drivers use the detachment capability of the framework.
 They are located in
+.Pa sys/dev/ccd.c ,
 .Pa sys/dev/vnd.c ,
 and
 .Pa sys/dev/dm/device-mapper.c .
 .Sh SEE ALSO
-.Xr dm 4 ,
 .Xr vnd 4
 .Sh HISTORY
 The

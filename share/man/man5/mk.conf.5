@@ -325,13 +325,6 @@ is compiled with support for
 .In complex.h .
 .DFLTy
 .
-.It Sy MKCTF
-.YorN
-Indicates whether CTF tools are to be built and installed.
-If yes, the tools will be used to generate and manipulate
-CTF data of ELF binaries during build.
-.DFLTn
-.
 .It Sy MKCRYPTO
 .YorN
 Indicates whether cryptographic code will be included in a build;
@@ -573,13 +566,6 @@ installed into
 .Sy DESTDIR Ns Pa /usr/libdata/lint .
 .DFLTy
 .
-.It Sy MKLVM
-.YorN
-If not
-.Dq no ,
-build and install the logical volume manager.
-.DFLTy
-.
 .It Sy MKMAN
 .YorN
 Indicates whether manual pages will be installed.
@@ -643,15 +629,6 @@ Indicates whether the
 framework (libraries and support files) is built.
 The pre-PAM code is not supported and may be removed in the future.
 .DFLTy
-.
-.It Sy MKPCC
-.YorN
-Indicates whether
-.Xr pcc 1
-or any related libraries
-.Pq Sy libpcc , libpccsoftfloat
-are built.
-.DFLTn
 .
 .It Sy MKPF
 .YorN

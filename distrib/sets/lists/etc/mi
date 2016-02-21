@@ -171,7 +171,6 @@
 ./etc/rc.d/ldpd					etc-router-rc
 ./etc/rc.d/local				etc-sys-rc
 ./etc/rc.d/lpd					etc-lpr-rc
-./etc/rc.d/lvm					etc-sys-rc
 ./etc/rc.d/makemandb				etc-man-rc
 ./etc/rc.d/mdnsd				etc-mdns-rc
 ./etc/rc.d/mixerctl				etc-audio-rc

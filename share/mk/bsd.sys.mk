@@ -23,7 +23,6 @@ CPPFLAGS+=	-Wp,-iremap,${X11SRCDIR}:/usr/xsrc
 # NetBSD sources use C99 style, with some GCC extensions.
 CFLAGS+=	${${ACTIVE_CC} == "clang":? -std=gnu99 :}
 CFLAGS+=	${${ACTIVE_CC} == "gcc":? -std=gnu99 :}
-CFLAGS+=	${${ACTIVE_CC} == "pcc":? -std=gnu99 :}
 
 .if defined(WARNS)
 CFLAGS+=	${${ACTIVE_CC} == "clang":? -Wno-sign-compare -Wno-pointer-sign :}
@@ -48,7 +47,7 @@ CFLAGS+=	-Wa,--fatal-warnings
 .if (!defined(MKPIC) || ${MKPIC} != "no") && \
     (!defined(LDSTATIC) || ${LDSTATIC} != "-static")
 # XXX there are some strange problems not yet resolved
-. if !defined(HAVE_GCC) || defined(HAVE_LLVM)
+. if !defined(HAVE_GCC)
 LDFLAGS+=	-Wl,--fatal-warnings
 . endif
 .endif
@@ -67,7 +66,7 @@ CXXFLAGS+=	-Wctor-dtor-privacy -Wnon-virtual-dtor -Wreorder \
 		-Wno-deprecated -Woverloaded-virtual -Wsign-promo -Wsynth
 CXXFLAGS+=	${${ACTIVE_CXX} == "gcc":? -Wno-non-template-friend -Wno-pmf-conversions :}
 .endif
-.if ${WARNS} > 3 && (defined(HAVE_GCC) || defined(HAVE_LLVM))
+.if ${WARNS} > 3 && defined(HAVE_GCC)
 .if ${WARNS} > 4
 CFLAGS+=	-Wold-style-definition
 .endif
@@ -76,9 +75,6 @@ CFLAGS+=	-Wconversion
 .endif
 CFLAGS+=	-Wsign-compare -Wformat=2
 CFLAGS+=	${${ACTIVE_CC} == "gcc":? -Wno-format-zero-length :}
-.endif
-.if ${WARNS} > 3 && defined(HAVE_LLVM)
-CFLAGS+=	${${ACTIVE_CC} == "clang":? -Wpointer-sign -Wmissing-noreturn :}
 .endif
 .if (defined(HAVE_GCC) \
      && (${MACHINE_ARCH} == "coldfire" || \

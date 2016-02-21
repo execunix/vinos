@@ -119,10 +119,6 @@
 ./usr/lib/eabi/libcurses.so.7.0			base-compat-shlib	compat,pic
 ./usr/lib/eabi/libdes.so.8			base-compat-shlib	compat,pic,crypto
 ./usr/lib/eabi/libdes.so.8.2			base-compat-shlib	compat,pic,crypto
-./usr/lib/eabi/libdevmapper.so.1			base-compat-shlib	compat,pic,lvm
-./usr/lib/eabi/libdevmapper.so.1.0		base-compat-shlib	compat,pic,lvm
-./usr/lib/eabi/libdm.so.0				base-compat-shlib	compat,pic
-./usr/lib/eabi/libdm.so.0.0			base-compat-shlib	compat,pic
 ./usr/lib/eabi/libdns.so.8			base-compat-shlib	compat,pic
 ./usr/lib/eabi/libdns.so.8.2			base-compat-shlib	compat,pic
 ./usr/lib/eabi/libdns_sd.so.0			base-compat-shlib	compat,pic,mdns
@@ -406,10 +402,6 @@
 #./usr/lib/eabihf/libcurses.so.7.0			base-compat-shlib	compat,pic
 #./usr/lib/eabihf/libdes.so.8			base-compat-shlib	compat,pic,crypto
 #./usr/lib/eabihf/libdes.so.8.2			base-compat-shlib	compat,pic,crypto
-#./usr/lib/eabihf/libdevmapper.so.1			base-compat-shlib	compat,pic,lvm
-#./usr/lib/eabihf/libdevmapper.so.1.0		base-compat-shlib	compat,pic,lvm
-#./usr/lib/eabihf/libdm.so.0				base-compat-shlib	compat,pic
-#./usr/lib/eabihf/libdm.so.0.0			base-compat-shlib	compat,pic
 #./usr/lib/eabihf/libdns.so.8			base-compat-shlib	compat,pic
 #./usr/lib/eabihf/libdns.so.8.2			base-compat-shlib	compat,pic
 #./usr/lib/eabihf/libdns_sd.so.0			base-compat-shlib	compat,pic,mdns
@@ -693,10 +685,6 @@
 ./usr/lib/oabi/libcurses.so.7.0			base-compat-shlib	compat,pic
 ./usr/lib/oabi/libdes.so.8			base-compat-shlib	compat,pic,crypto
 ./usr/lib/oabi/libdes.so.8.2			base-compat-shlib	compat,pic,crypto
-./usr/lib/oabi/libdevmapper.so.1		base-compat-shlib	compat,pic,lvm
-./usr/lib/oabi/libdevmapper.so.1.0		base-compat-shlib	compat,pic,lvm
-./usr/lib/oabi/libdm.so.0			base-compat-shlib	compat,pic
-./usr/lib/oabi/libdm.so.0.0			base-compat-shlib	compat,pic
 ./usr/lib/oabi/libdns.so.8			base-compat-shlib	compat,pic
 ./usr/lib/oabi/libdns.so.8.2			base-compat-shlib	compat,pic
 ./usr/lib/oabi/libdns_sd.so.0			base-compat-shlib	compat,pic,mdns

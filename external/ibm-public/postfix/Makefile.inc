@@ -31,11 +31,6 @@ LDADD+= -lgssapi
 . endif
 .endif
 
-.if defined(HAVE_PCC)
-# code uses gcc-specific aggregate dynamic array
-CPPFLAGS+=	-DCANT_USE_SEND_RECV_MSG
-.endif
-
 # TLS support.
 .if ${MKCRYPTO} != "no"
 CPPFLAGS+=	-DUSE_TLS

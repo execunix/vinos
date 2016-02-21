@@ -21,8 +21,6 @@
 ./usr/lib/libcrypto_pic.a			comp-c-piclib		crypto,picinstall
 ./usr/lib/libcurses_pic.a			comp-c-piclib	picinstall
 ./usr/lib/libdes_pic.a				comp-c-piclib		crypto,picinstall
-./usr/lib/libdevmapper_pic.a			comp-lvm-piclib		lvm,picinstall
-./usr/lib/libdm_pic.a				comp-c-piclib	picinstall
 ./usr/lib/libdns_pic.a				comp-bind-piclib	picinstall
 ./usr/lib/libdns_sd_pic.a			comp-mdns-piclib	mdns,picinstall
 ./usr/lib/libdwarf_pic.a			comp-c-piclib	picinstall

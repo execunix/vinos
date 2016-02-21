@@ -111,10 +111,6 @@
 ./usr/lib/oabi/libcurses.so.7.0			base-compat-shlib	compat,pic
 ./usr/lib/oabi/libdes.so.8			base-compat-shlib	compat,pic,crypto
 ./usr/lib/oabi/libdes.so.8.2			base-compat-shlib	compat,pic,crypto
-./usr/lib/oabi/libdevmapper.so.1		base-compat-shlib	compat,pic,lvm
-./usr/lib/oabi/libdevmapper.so.1.0		base-compat-shlib	compat,pic,lvm
-./usr/lib/oabi/libdm.so.0			base-compat-shlib	compat,pic
-./usr/lib/oabi/libdm.so.0.0			base-compat-shlib	compat,pic
 ./usr/lib/oabi/libdns.so.8			base-compat-shlib	compat,pic
 ./usr/lib/oabi/libdns.so.8.2			base-compat-shlib	compat,pic
 ./usr/lib/oabi/libdns_sd.so.0			base-compat-shlib	compat,pic,mdns

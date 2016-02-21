@@ -23,12 +23,6 @@ SUBDIR+= openldap
 .if (${MKLIBCXX} != "no")
 SUBDIR+= libc++
 .endif
-.if (${MKLLVM} != "no")
-SUBDIR+= llvm
-.endif
-.if (${MKPCC} != "no")
-SUBDIR+= pcc
-.endif
 
 SUBDIR+= blacklist pdisk dhcp nvi ppp smbfs
 

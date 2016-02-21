@@ -15,7 +15,7 @@ LDADD+=	-lm
 DPADD+=	${LIBM}
 .endif
 YHEADER=	yes
-.if defined(HAVE_GCC) || defined(HAVE_PCC)
+.if defined(HAVE_GCC)
 COPTS+=	-Wno-pointer-sign
 .endif
 

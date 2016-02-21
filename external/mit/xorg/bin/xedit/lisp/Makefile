@@ -16,11 +16,6 @@ CPPFLAGS+=	-DLISP  -DLISPDIR=\"${X11LIBDIR}/xedit/lisp\" \
 		-I${X11SRCDIR.xedit} \
 		-I${X11SRCDIR.xc}/programs
 
-.if defined(HAVE_PCC)
-# code uses gcc-specific "label as values" feature
-CPPFLAGS+=	-DANSI_SOURCE
-.endif
-
 .PATH:		${X11SRCDIR.xedit}/lisp
 
 CWARNFLAGS.clang+=	-Wno-format

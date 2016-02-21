@@ -96,7 +96,6 @@ SUBDIR+=	../crypto/external/bsd/netpgp/lib/verify # depends on libz
 SUBDIR+=	../external/bsd/elftoolchain/lib/libdwarf # depends on libelf
 SUBDIR+=	../external/mit/lua/lib # depends on libm
 SUBDIR+=	libcurses	# depends on libterminfo
-SUBDIR+=	libdm		# depends on libprop
 SUBDIR+=	libedit		# depends on libterminfo
 SUBDIR+=	libexecinfo 	# depends on libelf
 SUBDIR+=	libppath	# depends on libprop
@@ -120,10 +119,6 @@ SUBDIR+=	../external/bsd/iscsi/lib	# depends on libpthread
 .endif
 
 SUBDIR+=	../external/bsd/libarchive/lib	# depends on libxz
-
-.if (${MKLVM} != "no")
-SUBDIR+=	../external/gpl2/lvm2/lib	# depends on libprop
-.endif
 
 .if (${MKBINUTILS} != "no")
 SUBDIR+=	../external/gpl3/binutils/lib	# libbfd depends on libz

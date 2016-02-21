@@ -44,8 +44,6 @@
 ./usr/lib/oabi/libcrypto_g.a			comp-c-debuglib		compat,debuglib
 ./usr/lib/oabi/libcurses_g.a			comp-c-debuglib		compat,debuglib
 ./usr/lib/oabi/libdes_g.a			comp-c-debuglib		compat,debuglib
-./usr/lib/oabi/libdevmapper_g.a			comp-c-debuglib		compat,debuglib,lvm
-./usr/lib/oabi/libdm_g.a			comp-c-debuglib		compat,debuglib
 ./usr/lib/oabi/libdns_g.a			comp-c-debuglib		compat,debuglib
 ./usr/lib/oabi/libdns_sd_g.a			comp-c-debuglib		compat,debuglib
 ./usr/lib/oabi/libdwarf_g.a			comp-c-debuglib		compat,debuglib
@@ -198,8 +196,6 @@
 ./usr/libdata/debug/usr/lib/oabi/libcrypto_rc5.so.7.0.debug	comp-crypto-debug	crypto,crypto_rc5,debug,compat
 ./usr/libdata/debug/usr/lib/oabi/libcurses.so.7.0.debug	comp-sys-debug	debug,compat
 ./usr/libdata/debug/usr/lib/oabi/libdes.so.8.2.debug		comp-crypto-debug	crypto,debug,compat
-./usr/libdata/debug/usr/lib/oabi/libdevmapper.so.1.0.debug	comp-lvm-debug	lvm,debug,compat
-./usr/libdata/debug/usr/lib/oabi/libdm.so.0.0.debug 		comp-sys-debug	debug,compat
 ./usr/libdata/debug/usr/lib/oabi/libdns.so.8.2.debug		comp-bind-debug	debug,compat
 ./usr/libdata/debug/usr/lib/oabi/libdns_sd.so.0.0.debug	comp-mdns-debug	mdns,debug,compat
 ./usr/libdata/debug/usr/lib/oabi/libdwarf.so.1.0.debug	comp-sys-debug	debug,compat

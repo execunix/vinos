@@ -8,6 +8,6 @@ USE_FORT?=yes	# network client/server
 DIST=${NETBSDSRCDIR}/external/bsd/ppp/dist
 BINDIR=/usr/sbin
 
-.if defined(HAVE_GCC) || defined(HAVE_LLVM)
+.if defined(HAVE_GCC)
 COPTS+=	-fno-strict-aliasing
 .endif

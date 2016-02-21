@@ -1,16 +1,12 @@
 # $NetBSD: ad.aarch64,v 1.2.2.7 2015/07/22 16:51:59 snj Exp $
 ./usr/lib/eabi/libcrypto_g.a			comp-c-debuglib		compat,crypto,debuglib
 ./usr/lib/eabi/libcrypto_rc5_g.a			comp-c-debuglib		compat,crypto,crypto_rc5,debuglib
-./usr/lib/eabi/libdevmapper_g.a			comp-c-debuglib		compat,debuglib,lvm
-./usr/lib/eabi/libdm_g.a				comp-c-debuglib		compat,debuglib
 ./usr/lib/eabi/libheimbase_g.a			comp-c-debuglib		compat,debuglib,kerberos
 ./usr/lib/eabi/libkdc_g.a				comp-c-debuglib		compat,debuglib,kerberos
 ./usr/lib/eabi/liblzf_g.a				comp-c-debuglib		compat,debuglib
 ./usr/lib/eabi/libperfuse_g.a			comp-c-debuglib		compat,debuglib
 ./usr/lib/eabi/libppath_g.a			comp-c-debuglib		compat,debuglib
 ./usr/lib/eabi/libwind_g.a			comp-c-debuglib		compat,debuglib,kerberos
-./usr/lib/oabi/libdevmapper_g.a			comp-c-debuglib		compat,debuglib,lvm
-./usr/lib/oabi/libdm_g.a				comp-c-debuglib		compat,debuglib
 ./usr/lib/oabi/libheimbase_g.a			comp-c-debuglib		compat,debuglib,kerberos
 ./usr/lib/oabi/libkdc_g.a			comp-c-debuglib		compat,debuglib,kerberos
 ./usr/lib/oabi/liblzf_g.a			comp-c-debuglib		compat,debuglib
@@ -70,8 +66,6 @@
 ./usr/libdata/debug/usr/lib/eabi/libcurses.so.7.0.debug	comp-sys-debug	debug,compat
 ./usr/libdata/debug/usr/lib/eabi/libc++.so.1.0.debug	comp-sys-debug	debug,compat,libcxx
 ./usr/libdata/debug/usr/lib/eabi/libdes.so.8.2.debug		comp-crypto-debug	crypto,debug,compat
-./usr/libdata/debug/usr/lib/eabi/libdevmapper.so.1.0.debug	comp-lvm-debug	lvm,debug,compat
-./usr/libdata/debug/usr/lib/eabi/libdm.so.0.0.debug 		comp-sys-debug	debug,compat
 ./usr/libdata/debug/usr/lib/eabi/libdns.so.8.2.debug		comp-bind-debug	debug,compat
 ./usr/libdata/debug/usr/lib/eabi/libdns_sd.so.0.0.debug	comp-mdns-debug	mdns,debug,compat
 ./usr/libdata/debug/usr/lib/eabi/libdwarf.so.1.0.debug	comp-sys-debug	debug,compat
@@ -197,8 +191,6 @@
 #./usr/libdata/debug/usr/lib/eabihf/libcurses.so.7.0.debug	comp-sys-debug	debug,compat
 #./usr/libdata/debug/usr/lib/eabihf/libc++.so.1.0.debug	comp-sys-debug	debug,compat,libcxx
 #./usr/libdata/debug/usr/lib/eabihf/libdes.so.8.2.debug		comp-crypto-debug	crypto,debug,compat
-#./usr/libdata/debug/usr/lib/eabihf/libdevmapper.so.1.0.debug	comp-lvm-debug	lvm,debug,compat
-#./usr/libdata/debug/usr/lib/eabihf/libdm.so.0.0.debug 		comp-sys-debug	debug,compat
 #./usr/libdata/debug/usr/lib/eabihf/libdns.so.8.2.debug		comp-bind-debug	debug,compat
 #./usr/libdata/debug/usr/lib/eabihf/libdns_sd.so.0.0.debug	comp-mdns-debug	mdns,debug,compat
 #./usr/libdata/debug/usr/lib/eabihf/libdwarf.so.1.1.debug	comp-sys-debug	debug,compat
@@ -325,8 +317,6 @@
 ./usr/libdata/debug/usr/lib/oabi/libcurses.so.7.0.debug		comp-sys-debug	debug,compat
 ./usr/libdata/debug/usr/lib/oabi/libc++.so.1.0.debug		comp-sys-debug	debug,compat,libcxx
 ./usr/libdata/debug/usr/lib/oabi/libdes.so.8.2.debug		comp-crypto-debug	crypto,debug,compat
-./usr/libdata/debug/usr/lib/oabi/libdevmapper.so.1.0.debug	comp-lvm-debug	lvm,debug,compat
-./usr/libdata/debug/usr/lib/oabi/libdm.so.0.0.debug 		comp-sys-debug	debug,compat
 ./usr/libdata/debug/usr/lib/oabi/libdns.so.8.2.debug		comp-bind-debug	debug,compat
 ./usr/libdata/debug/usr/lib/oabi/libdns_sd.so.0.0.debug		comp-mdns-debug	mdns,debug,compat
 ./usr/libdata/debug/usr/lib/oabi/libdwarf.so.1.0.debug		comp-sys-debug	debug,compat

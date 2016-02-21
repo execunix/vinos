@@ -86,7 +86,6 @@
 .\" Local libraries not in groff
 .ds doc-str-Lb-libarchive       Reading and Writing Streaming Archives Library (libarchive, \-larchive)
 .ds doc-str-Lb-libbluetooth     Bluetooth Library (libbluetooth, \-lbluetooth)
-.ds doc-str-Lb-libdm            Device-mapper Library (libdm, \-ldm)
 .ds doc-str-Lb-libexecinfo	Backtrace Access Library (libexecinfo, \-lexecinfo)
 .ds doc-str-Lb-libfetch         File Transfer Library for URLs (libfetch, \-lfetch)
 .ds doc-str-Lb-libiscsi         iSCSI Protocol Library (libiscsi, \-liscsi)

@@ -41,12 +41,6 @@ TOOLCHAIN_BITS+= .WAIT
 . endif
 .endif
 
-.if defined(HAVE_PCC)
-. if ${TOOLCHAIN_MISSING} == "no"
-TOOLCHAIN_BITS+= pcc
-. endif
-.endif
-
 .if ${TOOLCHAIN_MISSING} == "no"
 # XXX Eventually, we want to be able to build dbsym and mdsetimage
 # XXX if EXTERNAL_TOOLCHAIN is set.
@@ -99,22 +93,6 @@ SUBDIR += .WAIT texinfo \
 		.WAIT installboot \
 		pwd_mkdb strfile sunlabel vgrind zic
 SUBDIR+= stat .WAIT config
-
-.if ${MKLLVM} != "no"
-SUBDIR+= \
-	llvm .WAIT \
-	llvm-lib/libLLVMSupport llvm-lib/libLLVMTableGen .WAIT \
-	llvm-tblgen llvm-clang-tblgen .WAIT \
-	llvm-include .WAIT \
-	llvm-lib .WAIT \
-	llvm-clang
-. if ${MKLLD} != "no"
-SUBDIR+=	llvm-lld
-. endif
-. if ${MKMCLINKER} != "no"
-SUBDIR+=	llvm-mcld
-. endif
-.endif
 
 .if ${MKMAN} != "no" || ${MKDOC} != "no" || ${MKHTML} != "no"
 . if ${MKGROFF} != "no"

@@ -68,7 +68,7 @@ COPTS += -Os
 CPPFLAGS+=-DINET6
 .endif
 
-.if defined(HAVE_GCC) || defined(HAVE_PCC)
+.if defined(HAVE_GCC)
 COPTS.label.c+=	-Wno-pointer-sign
 .endif
 COPTS.main.c += -Wno-format-nonliteral

@@ -5,6 +5,6 @@ MAN=	wiconfig.8
 
 .include <bsd.prog.mk>
 
-.if defined(HAVE_GCC) || defined(HAVE_LLVM)
+.if defined(HAVE_GCC)
 COPTS+=	-fno-strict-aliasing
 .endif

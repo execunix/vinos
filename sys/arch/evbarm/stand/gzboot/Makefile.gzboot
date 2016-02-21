@@ -38,7 +38,7 @@ CPPFLAGS+= -nostdinc -I. -I${EVBARM_STAND}/gzboot -I${EVBARM_STAND}/board
 CPPFLAGS+= -I${S} -I${S}/arch -I${S}/lib/libsa
 CPPFLAGS+= -I${S}/../common/dist/zlib
 CPPFLAGS+= ${ARM_APCS_FLAGS}
-.if ${HAVE_LLVM:Uno} != "no" || ${HAVE_GCC:U0} >= 48
+.if ${HAVE_GCC:U0} >= 48
 CPPFLAGS+=	-marm
 .else
 CPPFLAGS+=	-mno-thumb -mno-thumb-interwork

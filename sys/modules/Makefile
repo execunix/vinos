@@ -250,11 +250,6 @@ SUBDIR+=	pwdog
 #SUBDIR+=	../arch/usermode/modules/syscallemu
 .endif
 
-# we need our device mapper for LVM
-.if (${MKLVM} != "no")
-SUBDIR+= 	dm
-.endif
-
 .if (${MKCOMPATMODULES} != "no")
 SUBDIR+=	arch
 .endif

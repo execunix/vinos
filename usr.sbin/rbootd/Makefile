@@ -12,7 +12,7 @@ DPADD+=	${LIBUTIL}
 
 .include <bsd.own.mk>
 
-.if defined(HAVE_GCC) || defined(HAVE_LLVM)
+.if defined(HAVE_GCC)
 COPTS.utils.c+=	-fno-strict-aliasing
 .endif
 

@@ -17,7 +17,7 @@ CPPFLAGS+=-DBUILDER=\"make\"	# I am tempted to say Bob
 
 .include "${IDIST}/srcid"
 
-.if defined(HAVE_GCC) || defined(HAVE_LLVM)
+.if defined(HAVE_GCC)
 .for f in client
 COPTS.${f}.c+=  -fno-strict-aliasing
 .endfor

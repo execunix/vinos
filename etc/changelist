@@ -9,5 +9,3 @@
 #	/etc/ifconfig.* 
 #	/etc/rc.d/*
 #	/etc/rc.conf.d/*
-#	/etc/lvm/archive/*
-#	/etc/lvm/backup/*

@@ -386,9 +386,7 @@
 ./sbin/disklabel				base-sysutil-root
 ./sbin/dkctl					base-sysutil-root
 ./sbin/dkscan_bsdlabel				base-sysutil-root
-./sbin/dmctl					base-sysutil-root
 ./sbin/dmesg					base-sysutil-root
-./sbin/dmsetup					base-lvm-root		lvm
 ./sbin/drvctl					base-sysutil-root
 ./sbin/dump					base-sysutil-root
 ./sbin/dump_lfs					base-sysutil-root
@@ -412,7 +410,6 @@
 ./sbin/iscsictl					base-iscsi-bin		iscsi
 ./sbin/iscsid					base-iscsi-bin		iscsi
 ./sbin/luactl					base-sysutil-root
-./sbin/lvm					base-lvm-root		lvm
 ./sbin/mbrlabel					base-sysutil-root
 ./sbin/mknod					base-sysutil-root
 ./sbin/modload					base-sysutil-root
@@ -892,7 +889,6 @@
 ./usr/include/dev/apm				base-c-usr
 ./usr/include/dev/ata				base-c-usr
 ./usr/include/dev/dec				base-c-usr
-./usr/include/dev/dm	                        base-c-usr
 ./usr/include/dev/dmover			base-c-usr
 ./usr/include/dev/dtv				base-c-usr
 ./usr/include/dev/filemon			base-c-usr

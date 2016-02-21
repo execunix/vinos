@@ -25,7 +25,7 @@ CONFIGFILES=\
 		identd ifwatchd inetd ipfilter ipfs ipmon ipnat ipsec \
 		irdaattach iscsi_target isdnd isibootd \
 		kdc \
-		ldconfig ldpd local lpd lvm \
+		ldconfig ldpd local lpd \
 		makemandb mdnsd mixerctl modules mopd motd mountall \
 		mountcritlocal mountcritremote mountd moused mrouted \
 		named ndbootd network newsyslog nfsd nfslocking npf ntpd \

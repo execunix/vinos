@@ -97,10 +97,6 @@
 ./usr/lib/i386/libcurses.so.7.0			base-compat-shlib	compat,pic
 ./usr/lib/i386/libdes.so.8			base-compat-shlib	compat,pic
 ./usr/lib/i386/libdes.so.8.2			base-compat-shlib	compat,pic
-./usr/lib/i386/libdevmapper.so.1		base-compat-shlib	compat,pic,lvm
-./usr/lib/i386/libdevmapper.so.1.0		base-compat-shlib	compat,pic,lvm
-./usr/lib/i386/libdm.so.0			base-compat-shlib	compat,pic
-./usr/lib/i386/libdm.so.0.0			base-compat-shlib	compat,pic
 ./usr/lib/i386/libdns.so.8			base-compat-shlib	compat,pic
 ./usr/lib/i386/libdns.so.8.2			base-compat-shlib	compat,pic
 ./usr/lib/i386/libdns_sd.so.0			base-compat-shlib	compat,pic,mdns

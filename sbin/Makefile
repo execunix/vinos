@@ -7,7 +7,7 @@
 .include <bsd.own.mk>
 
 SUBDIR=	amrctl apmlabel atactl badsect bioctl brconfig \
-	chown devpubd disklabel dkctl dkscan_bsdlabel dmesg dmctl \
+	chown devpubd disklabel dkctl dkscan_bsdlabel dmesg \
 	drvctl fastboot fdisk fsck fsirand gpt ifconfig init ldconfig luactl \
 	mbrlabel mknod modload modstat modunload mount newbtconf nologin \
 	ping pppoectl reboot rcorder rndctl route routed \

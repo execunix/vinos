@@ -12,10 +12,6 @@
 ./usr/bin/c89					comp-c-bin
 ./usr/bin/c99					comp-c-bin
 ./usr/bin/cc					comp-c-bin		gcccmds
-./usr/bin/clang					comp-c-bin		llvm
-./usr/bin/clang++				comp-c-bin		llvm
-./usr/bin/clang-cpp				comp-c-bin		llvm
-./usr/bin/clang-tblgen				comp-c-bin		llvm
 ./usr/bin/config				comp-util-bin
 ./usr/bin/crunchgen				comp-c-bin
 ./usr/bin/crunchide				comp-c-bin
@@ -35,12 +31,8 @@
 ./usr/bin/genassym				comp-util-bin
 ./usr/bin/gettext				comp-c-bin
 ./usr/bin/gprof					comp-debug-bin		binutils
-./usr/bin/ld.mcld				comp-c-bin		mclinker
 ./usr/bin/lex					comp-c-bin
 ./usr/bin/lint					comp-c-bin
-./usr/bin/lld					comp-c-bin		lld
-./usr/bin/lldb					comp-c-bin		lldb
-./usr/bin/llvm-tblgen				comp-c-bin		llvm
 ./usr/bin/lorder				comp-util-bin
 ./usr/bin/luac					comp-util-bin
 ./usr/bin/menuc					comp-c-bin
@@ -63,8 +55,6 @@
 ./usr/bin/nm					comp-util-bin		binutils
 ./usr/bin/objcopy				comp-util-bin		binutils
 ./usr/bin/objdump				comp-util-bin		binutils
-./usr/bin/p++					comp-cxx-bin		pcc
-./usr/bin/pcc					comp-c-bin		pcc
 ./usr/bin/ranlib				comp-util-bin		binutils
 ./usr/bin/rcs2log				comp-cvs-bin		cvs
 ./usr/bin/readelf				comp-util-bin		binutils
@@ -224,7 +214,6 @@
 ./usr/include/c++/vector			comp-cxx-include	libcxx
 ./usr/include/cdbr.h				comp-c-include
 ./usr/include/cdbw.h				comp-c-include
-./usr/include/clang-3.6/stdatomic.h	comp-c-include		llvm
 ./usr/include/complex.h				comp-c-include
 ./usr/include/cpio.h				comp-c-include
 ./usr/include/crypto/cryptodev.h		comp-c-include
@@ -245,7 +234,6 @@
 ./usr/include/dev/bluetooth/btsco.h		comp-c-include
 ./usr/include/dev/dec/dec_boot.h		comp-c-include
 ./usr/include/dev/dec/lk201.h			comp-c-include
-./usr/include/dev/dm/netbsd-dm.h		comp-c-include		
 ./usr/include/dev/dmover/dmover_io.h		comp-c-include
 ./usr/include/dev/dtv/dtvio.h			comp-c-include
 ./usr/include/dev/dtv/dtvio_demux.h		comp-c-include
@@ -335,7 +323,6 @@
 ./usr/include/dirent.h				comp-c-include
 ./usr/include/disktab.h				comp-c-include
 ./usr/include/dlfcn.h				comp-c-include
-./usr/include/dm.h                              comp-c-include
 ./usr/include/dns_sd.h				comp-mdns-include	mdns
 ./usr/include/dwarf.h				comp-c-include
 ./usr/include/elf.h				comp-c-include
@@ -2256,10 +2243,6 @@
 ./usr/lib/libcurses_p.a				comp-c-proflib		profile
 ./usr/lib/libdes.a				comp-c-lib		crypto
 ./usr/lib/libdes_p.a				comp-c-proflib		profile,crypto
-./usr/lib/libdevmapper.a			comp-lvm-lib		lvm
-./usr/lib/libdevmapper_p.a			comp-lvm-proflib	profile,lvm
-./usr/lib/libdm.a				comp-c-lib
-./usr/lib/libdm_p.a				comp-c-proflib		profile
 ./usr/lib/libdns.a				comp-bind-lib
 ./usr/lib/libdns_p.a				comp-bind-proflib	profile
 ./usr/lib/libdns_sd.a				comp-mdns-lib		mdns
@@ -2550,13 +2533,10 @@
 ./usr/libexec/cc1				comp-c-bin		gcccmds
 ./usr/libexec/cc1obj				comp-objc-bin		gcccmds
 ./usr/libexec/cc1plus				comp-cxx-bin		gcccmds
-./usr/libexec/ccom				comp-c-bin		pcc
-./usr/libexec/cxxcom				comp-cxx-bin		pcc
 ./usr/libexec/lint1				comp-c-bin
 ./usr/libexec/lint2				comp-c-bin
 ./usr/libexec/lto-wrapper			comp-c-bin		gcc=48
 ./usr/libexec/lto1				comp-c-bin		gcc=48
-./usr/libexec/pcpp				comp-c-bin		pcc
 ./usr/sbin/gspa					comp-util-sbin
 ./usr/sbin/kgmon				comp-debug-sbin
 ./usr/share/locale/be/LC_MESSAGES/gettext-tools.mo	comp-c_locale-be	nls
@@ -10529,7 +10509,6 @@
 ./usr/share/man/html3/dlopen.html		comp-c-htmlman		html
 ./usr/share/man/html3/dlsym.html		comp-c-htmlman		html
 ./usr/share/man/html3/dlvsym.html		comp-c-htmlman		html
-./usr/share/man/html3/dm.html			comp-c-htmlman		html
 ./usr/share/man/html3/dn_comp.html		comp-c-htmlman		html
 ./usr/share/man/html3/dn_expand.html		comp-c-htmlman		html
 ./usr/share/man/html3/dngettext.html		comp-c-htmlman		html
@@ -16817,7 +16796,6 @@
 ./usr/share/man/man3/dlopen.3			comp-c-man		.man
 ./usr/share/man/man3/dlsym.3			comp-c-man		.man
 ./usr/share/man/man3/dlvsym.3			comp-c-man		.man
-./usr/share/man/man3/dm.3			comp-c-man		.man
 ./usr/share/man/man3/dn_comp.3			comp-c-man		.man
 ./usr/share/man/man3/dn_expand.3		comp-c-man		.man
 ./usr/share/man/man3/dngettext.3		comp-c-man		.man

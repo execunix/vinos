@@ -1408,9 +1408,6 @@ defpseudo pud
 file	dev/pud/pud.c			pud
 file	dev/pud/pud_dev.c		pud
 
-# device-mapper driver for LVM
-include "dev/dm/files.dm"
-
 #
 # File systems
 #
@@ -1463,7 +1460,7 @@ file	dev/auvolconv.c			auvolconv
 file	dev/bio.c			bio			needs-flag
 file	dev/clock_subr.c
 file	dev/clockctl.c			clockctl
-file	dev/dksubr.c			xbd | dm
+file	dev/dksubr.c			xbd
 file	dev/dkwedge/dk.c
 file	dev/dkwedge/dkwedge_apple.c	dkwedge_method_apple
 file	dev/dkwedge/dkwedge_bsdlabel.c	dkwedge_method_bsdlabel
