@@ -78,11 +78,7 @@ _LIBC_COMPILER_RT.aarch64=	yes
 _LIBC_COMPILER_RT.i386=		yes
 _LIBC_COMPILER_RT.x86_64=	yes
 
-.if ${_LIBC_COMPILER_RT.${MACHINE_ARCH}:Uno} == "yes"
-HAVE_LIBGCC?=	no
-.else
 HAVE_LIBGCC?=	yes
-.endif
 
 .if !empty(MACHINE_ARCH:Mearm*)
 HAVE_LIBGCC_EH?=	no
@@ -944,9 +940,9 @@ _NEEDS_LIBCXX.i386=	yes
 _NEEDS_LIBCXX.x86_64=	yes
 _NEEDS_LIBCXX.aarch64=	yes
 
-.if ${_NEEDS_LIBCXX.${MACHINE_ARCH}:Uno} == "yes"
-MKLIBCXX:=	yes
-.endif
+#.if ${_NEEDS_LIBCXX.${MACHINE_ARCH}:Uno} == "yes"
+#MKLIBCXX:=	yes
+#.endif
 
 #
 # install(1) parameters.
