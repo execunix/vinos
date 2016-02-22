@@ -9,8 +9,7 @@ SRCS=	fonttosfnt.c read.c write.c struct.c util.c
 CPPFLAGS+=	-DXFREE86_FT2 -I${DESTDIR}${X11INCDIR}/freetype2 \
 		-DXVENDORNAMESHORT=${XVENDORNAMESHORT} \
 		-DXVENDORNAME=${XVENDORNAME}
-CPPFLAGS+=	-I${DESTDIR}${X11INCDIR}/X11/fonts \
-		-I${X11SRCDIR.xc}/extras/freetype2/include
+CPPFLAGS+=	-I${DESTDIR}${X11INCDIR}/X11/fonts
 
 
 LDADD+=	-lfreetype -lfontenc -lz -lm

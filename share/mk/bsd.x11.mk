@@ -152,7 +152,7 @@ PRINTX11VERSION=${TOOL_AWK} ' \
 		     /^\#define XF86_VERSION_PATCH/ {patch = $$3} \
 		     /^\#define XF86_VERSION_SNAP/ {snap = $$3} \
 		     END { print "((("major") * 10000000) + (("minor") * 100000) + (("patch") * 1000) + "snap")"}' \
-		     ${X11SRCDIR.xc}/programs/Xserver/hw/xfree86/xf86Version.h
+		     ${X11SRCDIR.xc}/xf86Version.h
 
 # Commandline to convert 'XCOMM' comments and 'XHASH' to '#', among other
 # things. Transformed from the "CppSedMagic" macro from "Imake.rules".
