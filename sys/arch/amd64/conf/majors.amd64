@@ -52,7 +52,6 @@ device-major	uhid		char 56			uhid
 device-major	ulpt		char 57			ulpt
 device-major	midi		char 58			midi
 device-major	sequencer	char 59			sequencer
-device-major	vcoda		char 60			vcoda
 device-major	scsibus		char 61			scsibus
 device-major	esh		char 63			esh
 device-major	ugen		char 64			ugen

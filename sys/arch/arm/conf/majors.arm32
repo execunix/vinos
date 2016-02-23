@@ -51,7 +51,6 @@ device-major	fcom		char 54			fcom
 device-major	joy		char 56			joy
 device-major	midi		char 57			midi
 device-major	sequencer	char 58			sequencer
-device-major	vcoda		char 59			vcoda
 device-major	wsdisplay	char 60			wsdisplay
 device-major	wskbd		char 61			wskbd
 device-major	wsmouse		char 62			wsmouse

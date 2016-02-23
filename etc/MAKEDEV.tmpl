@@ -226,7 +226,6 @@
 #	bktr	Brooktree 848/849/878/879 based TV cards
 #	bpf	packet filter
 #	bthub	Bluetooth Device Hub control interface
-#	cfs*	Coda file system device
 #	ch*	SCSI media changer
 #	cir*	Consumer IR
 #	clockctl clock control for non root users
@@ -1527,15 +1526,6 @@ satlink[0-9]*)
 random)
 	mkdev random	c %rnd_chr% 0 444
 	mkdev urandom	c %rnd_chr% 1 644
-	;;
-
-cfs)
-	makedev cfs0
-	;;
-
-cfs[0-9]*)
-	unit=${i#cfs}
-	mkdev cfs$unit c %vcoda_chr% $unit
 	;;
 
 sysmon)

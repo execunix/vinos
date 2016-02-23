@@ -886,26 +886,6 @@ by mounting a local writable file system on top of the read-only file system.
 See
 .Xr mount_union 8
 for details.
-.It Cd file-system CODA
-.Bq Em EXPERIMENTAL
-Includes code for the Coda file system.
-Coda is a distributed file system like NFS and AFS.
-It is freely available, like NFS, but it functions much like AFS in being a
-.Dq stateful
-file system.
-Both Coda and AFS cache files on your local machine to improve performance.
-Then Coda goes a step further than AFS by letting you access the cached
-files when there is no available network, viz. disconnected laptops and
-network outages.
-In Coda, both the client and server are outside the kernel which makes
-them easier to experiment with.
-Coda is available for several UNIX and non-UNIX platforms.
-See
-.Lk http://www.coda.cs.cmu.edu
-for more details.
-.Em NOTE :
-You also need to enable the pseudo-device, vcoda, for the Coda
-file system to work.
 .It Cd file-system SMBFS
 .Bq Em EXPERIMENTAL
 Includes code for the SMB/CIFS file system.

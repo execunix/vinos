@@ -28,10 +28,6 @@
 ./@MODULEDIR@/cd9660/cd9660.kmod		base-kernel-modules	kmod
 ./@MODULEDIR@/chfs				base-kernel-modules	kmod
 ./@MODULEDIR@/chfs/chfs.kmod			base-kernel-modules	kmod
-./@MODULEDIR@/coda				base-kernel-modules	kmod
-./@MODULEDIR@/coda/coda.kmod			base-kernel-modules	kmod
-./@MODULEDIR@/coda5				base-kernel-modules	kmod
-./@MODULEDIR@/coda5/coda5.kmod			base-kernel-modules	kmod
 ./@MODULEDIR@/compat				base-kernel-modules	kmod
 ./@MODULEDIR@/compat/compat.kmod		base-kernel-modules	kmod
 ./@MODULEDIR@/coredump				base-kernel-modules	kmod
@@ -212,8 +208,6 @@
 ./@MODULEDIR@/usbverbose/usbverbose.kmod	base-kernel-modules	kmod
 ./@MODULEDIR@/v7fs				base-kernel-modules	kmod
 ./@MODULEDIR@/v7fs/v7fs.kmod			base-kernel-modules	kmod
-./@MODULEDIR@/vcoda				base-kernel-modules	kmod
-./@MODULEDIR@/vcoda/vcoda.kmod			base-kernel-modules	kmod
 ./@MODULEDIR@/vnd 				base-kernel-modules	kmod
 ./@MODULEDIR@/vnd/vnd.kmod		        base-kernel-modules	kmod
 ./@MODULEDIR@/zlib				base-kernel-modules     kmod

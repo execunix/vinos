@@ -1407,7 +1407,6 @@ file	dev/pud/pud_dev.c		pud
 #
 # File systems
 #
-include "coda/files.coda"
 include "fs/adosfs/files.adosfs"
 include "fs/cd9660/files.cd9660"
 include "fs/efs/files.efs"

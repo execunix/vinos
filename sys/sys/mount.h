@@ -80,8 +80,6 @@
 #define	MOUNT_UNION	"union"		/* Union (translucent) Filesystem */
 #define	MOUNT_ADOSFS	"adosfs"	/* AmigaDOS Filesystem */
 #define	MOUNT_EXT2FS	"ext2fs"	/* Second Extended Filesystem */
-#define	MOUNT_CFS	"coda"		/* Coda Filesystem */
-#define	MOUNT_CODA	MOUNT_CFS	/* Coda Filesystem */
 #define	MOUNT_FILECORE	"filecore"	/* Acorn Filecore Filesystem */
 #define	MOUNT_NTFS	"ntfs"		/* Windows/NT Filesystem */
 #define	MOUNT_SMBFS	"smbfs"		/* CIFS (SMB) */
@@ -174,7 +172,6 @@ struct mount {
 	{ MOUNT_UNION, CTLTYPE_NODE }, \
 	{ MOUNT_ADOSFS, CTLTYPE_NODE }, \
 	{ MOUNT_EXT2FS, CTLTYPE_NODE }, \
-	{ MOUNT_CODA, CTLTYPE_NODE }, \
 	{ MOUNT_FILECORE, CTLTYPE_NODE }, \
 	{ MOUNT_NTFS, CTLTYPE_NODE }, \
 }
