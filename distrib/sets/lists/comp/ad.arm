@@ -57,7 +57,6 @@
 ./usr/include/arm/rwlock.h			comp-c-include
 ./usr/include/arm/setjmp.h			comp-c-include
 ./usr/include/arm/signal.h			comp-c-include
-./usr/include/arm/sljit_machdep.h		comp-c-include
 ./usr/include/arm/swi.h				comp-c-include
 ./usr/include/arm/sysarch.h			comp-c-include
 ./usr/include/arm/trap.h			comp-c-include
@@ -68,7 +67,6 @@
 ./usr/include/evbarm				comp-c-include
 ./usr/include/evbarm/disklabel.h		comp-c-include
 ./usr/include/evbarm/intr.h			comp-c-include
-./usr/include/evbarm/sljit_machdep.h		comp-c-include
 ./usr/include/gcc-4.5/arm_neon.h		comp-c-include		gcccmds,gcc=45
 ./usr/include/gcc-4.5/mmintrin.h		comp-c-include		gcccmds,gcc=45
 ./usr/include/gcc-4.5/tgmath.h			comp-c-include		gcccmds,gcc=45

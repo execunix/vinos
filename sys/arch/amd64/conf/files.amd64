@@ -50,12 +50,6 @@ file	dev/cons.c
 file	arch/amd64/amd64/mptramp.S        multiprocessor
 
 #
-# Stack-less Just-In-Time compiler
-#
-
-include	"external/bsd/sljit/conf/files.sljit"
-
-#
 # Machine-independent SCSI drivers
 #
 

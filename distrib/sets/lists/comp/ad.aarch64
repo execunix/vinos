@@ -105,7 +105,6 @@
 ./usr/include/arm/rwlock.h			comp-c-include
 ./usr/include/arm/setjmp.h			comp-c-include
 ./usr/include/arm/signal.h			comp-c-include
-./usr/include/arm/sljit_machdep.h		comp-c-include
 ./usr/include/arm/swi.h				comp-c-include
 ./usr/include/arm/sysarch.h			comp-c-include
 ./usr/include/arm/trap.h			comp-c-include

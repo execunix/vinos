@@ -146,16 +146,6 @@ SUBDIR+=	vmt
 SUBDIR+=	ubsec		# Builds on architectures with PCI bus
 .endif
 
-.if ${MKSLJIT} != "no"
-# No modules for arm, mips and powerpc yet.
-.if ${MACHINE_ARCH} == "i386" || \
-    ${MACHINE_ARCH} == "x86_64" || \
-    ${MACHINE_ARCH} == "sparc"
-SUBDIR+=	bpfjit
-SUBDIR+=	sljit
-.endif
-.endif
-
 #
 # ACPI modules
 #

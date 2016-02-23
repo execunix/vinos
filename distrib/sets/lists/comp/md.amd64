@@ -53,7 +53,6 @@
 ./usr/include/amd64/segments.h			comp-c-include
 ./usr/include/amd64/setjmp.h			comp-c-include
 ./usr/include/amd64/signal.h			comp-c-include
-./usr/include/amd64/sljit_machdep.h		comp-c-include
 ./usr/include/amd64/specialreg.h		comp-c-include
 ./usr/include/amd64/sysarch.h			comp-c-include
 ./usr/include/amd64/trap.h			comp-c-include
@@ -181,7 +180,6 @@
 ./usr/include/i386/segments.h			comp-c-include
 ./usr/include/i386/setjmp.h			comp-c-include
 ./usr/include/i386/signal.h			comp-c-include
-./usr/include/i386/sljit_machdep.h		comp-c-include
 ./usr/include/i386/specialreg.h			comp-c-include
 ./usr/include/i386/spkr.h			comp-c-include
 ./usr/include/i386/sysarch.h			comp-c-include

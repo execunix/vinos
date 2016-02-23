@@ -43,8 +43,6 @@
 ./@MODULEDIR@/auvitek/auvitek.kmod		base-kernel-modules	kmod
 ./@MODULEDIR@/azalia				base-kernel-modules	kmod
 ./@MODULEDIR@/azalia/azalia.kmod		base-kernel-modules	kmod
-./@MODULEDIR@/bpfjit				base-kernel-modules	kmod,sljit
-./@MODULEDIR@/bpfjit/bpfjit.kmod		base-kernel-modules	kmod,sljit
 ./@MODULEDIR@/compat_netbsd32			base-kernel-modules	kmod
 ./@MODULEDIR@/compat_netbsd32/compat_netbsd32.kmod	base-kernel-modules	kmod
 ./@MODULEDIR@/coram				base-kernel-modules	kmod
@@ -115,8 +113,6 @@
 ./@MODULEDIR@/powernow/powernow.kmod		base-kernel-modules	kmod
 ./@MODULEDIR@/pwdog				base-kernel-modules	kmod
 ./@MODULEDIR@/pwdog/pwdog.kmod			base-kernel-modules	kmod
-./@MODULEDIR@/sljit				base-kernel-modules	kmod,sljit
-./@MODULEDIR@/sljit/sljit.kmod			base-kernel-modules	kmod,sljit
 ./@MODULEDIR@/thinkpad				base-kernel-modules	kmod
 ./@MODULEDIR@/thinkpad/thinkpad.kmod		base-kernel-modules	kmod
 ./@MODULEDIR@/tprof_amdpmi			base-kernel-modules	kmod

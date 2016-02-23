@@ -19,7 +19,7 @@ INCS=	ansi.h aout_machdep.h apmvar.h asm.h \
 	param.h pcb.h pio.h pmap.h pmc.h proc.h profile.h psl.h \
 	pte.h ptrace.h \
 	reg.h rwlock.h \
-	segments.h setjmp.h signal.h sljit_machdep.h specialreg.h spkr.h \
+	segments.h setjmp.h signal.h specialreg.h spkr.h \
 	sysarch.h \
 	trap.h tss.h types.h \
 	vm86.h vmparam.h \

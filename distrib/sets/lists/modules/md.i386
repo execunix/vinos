@@ -45,8 +45,6 @@
 ./@MODULEDIR@/auvitek/auvitek.kmod		base-kernel-modules	kmod
 ./@MODULEDIR@/azalia				base-kernel-modules	kmod
 ./@MODULEDIR@/azalia/azalia.kmod		base-kernel-modules	kmod
-./@MODULEDIR@/bpfjit				base-kernel-modules	kmod,sljit
-./@MODULEDIR@/bpfjit/bpfjit.kmod		base-kernel-modules	kmod,sljit
 ./@MODULEDIR@/coram				base-kernel-modules	kmod
 ./@MODULEDIR@/coram/coram.kmod			base-kernel-modules	kmod
 ./@MODULEDIR@/coretemp				base-kernel-modules	kmod
@@ -131,8 +129,6 @@
 ./@MODULEDIR@/savagedrm/savagedrm.kmod		base-kernel-modules	kmod
 ./@MODULEDIR@/sisdrm				base-kernel-modules	kmod
 ./@MODULEDIR@/sisdrm/sisdrm.kmod		base-kernel-modules	kmod
-./@MODULEDIR@/sljit				base-kernel-modules	kmod,sljit
-./@MODULEDIR@/sljit/sljit.kmod			base-kernel-modules	kmod,sljit
 ./@MODULEDIR@/tdfxdrm				base-kernel-modules	kmod
 ./@MODULEDIR@/tdfxdrm/tdfxdrm.kmod		base-kernel-modules	kmod
 ./@MODULEDIR@/thinkpad				base-kernel-modules	kmod

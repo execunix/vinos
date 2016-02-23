@@ -56,11 +56,6 @@ SUBDIR+=	../external/bsd/elftoolchain/lib/libelf
 SUBDIR+=	../external/bsd/liblzf/lib
 SUBDIR+=	../external/bsd/libpcap/lib
 
-.if ${MKSLJIT} != "no"
-SUBDIR+=	../external/bsd/sljit/lib
-SUBDIR+=	libbpfjit
-.endif
-
 SUBDIR+=	../external/mit/expat/lib
 
 SUBDIR+=	../external/public-domain/sqlite/lib

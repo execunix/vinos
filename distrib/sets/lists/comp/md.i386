@@ -114,7 +114,6 @@
 ./usr/include/i386/segments.h			comp-c-include
 ./usr/include/i386/setjmp.h			comp-c-include
 ./usr/include/i386/signal.h			comp-c-include
-./usr/include/i386/sljit_machdep.h		comp-c-include
 ./usr/include/i386/specialreg.h			comp-c-include
 ./usr/include/i386/spkr.h			comp-c-include
 ./usr/include/i386/sysarch.h			comp-c-include

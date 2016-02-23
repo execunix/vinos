@@ -113,8 +113,6 @@ MAKEVERBOSE	Control how "verbose" the standard make(1) rules are.
 		    3	Ignore the effect of the "@" prefix in make commands
 		    4	Trace shell commands using the shell's -x flag
 
-MKBFD		Obsolete, use MKBINUTILS
-
 MKBINUTILS	If "no", don't build binutils (gas, ld, etc and libbfd,
 		libopcodes)
 		Default: yes
@@ -340,10 +338,6 @@ MKSHARE		If "no", act as "MKCATPAGES=no MKDOC=no MKHTML=no MKINFO=no
 MKSKEY		If "no", disables building of S/key authentication
 		infrastructure (libraries and support programs).
 		Default: yes
-
-MKSLJIT		If "no", disables building of sljit (stack-less platform
-		independent JIT compiler) private library and tests.
-		Default: yes on amd64, i386 and sparc, no elsewhere.
 
 MKSOFTFLOAT	If not "no", build with options to enable the compiler to
 		generate output containing library calls for floating

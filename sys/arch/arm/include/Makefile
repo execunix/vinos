@@ -17,7 +17,7 @@ INCS=	aeabi.h ansi.h aout_machdep.h apmvar.h armreg.h asm.h atomic.h \
 	param.h pcb.h pmc.h proc.h profile.h rwlock.h \
 	ptrace.h \
 	reg.h rwlock.h \
-	setjmp.h signal.h sljit_machdep.h swi.h sysarch.h \
+	setjmp.h signal.h swi.h sysarch.h \
 	trap.h types.h \
 	vfpreg.h vmparam.h \
 	wchar_limits.h

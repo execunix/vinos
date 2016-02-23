@@ -95,12 +95,6 @@ file	crypto/blowfish/arch/i386/bf_enc.S	blowfish
 file	crypto/blowfish/arch/i386/bf_cbc.S	blowfish & !i386_cpu
 
 #
-# Stack-less Just-In-Time compiler
-#
-
-include	"external/bsd/sljit/conf/files.sljit"
-
-#
 # Machine-independent SCSI drivers
 #
 

@@ -239,7 +239,6 @@ SUBST="${SUBST};s#@MACHINE@#${MACHINE}#g"
 #	perfuse			${MKPERFUSE} != no
 #	share			${MKSHARE} != no
 #	skey			${MKSKEY} != no
-#	sljit			${MKSLJIT} != no
 #	softfloat		${MKSOFTFLOAT} != no
 #	ssp			${HAVE_SSP} != no
 #	tpm			${MKTPM} != no
