@@ -32,14 +32,14 @@ if [ -d XINITDIR/xinitrc.d ] ; then
 	unset f
 fi
 
-if [ -f /usr/pkg/bin/xfce4-session ] ; then
-xrandr -s 1280x960
-xfce4-session
-else
 xrandr -s 1024x768
+
+#ifdef __TBD_XFCE4__
+xfce4-session
+#else
 TWM &
 XCLOCK -geometry 50x50-1+1 &
-XTERM -geometry 80x25+494-1 &
-XTERM -geometry 80x25+494+60 &
+XTERM -geometry 80x25+486+60 &
+XTERM -geometry 80x25+486-1 &
 exec XTERM -geometry 80x50+0+0 -name login
-fi
+#endif
