@@ -1,10 +1,12 @@
-execunix@xmtlinux1:/mnt/hdd1/vinos$ ./build.sh -U -x -r -n -m amd64 -j4 release
+# nbmake INSTALLWORLDDIR=/mnt/hdd1/root/ installworld
 
-execunix@xmtlinux1:/mnt/hdd1/vinos$ . bldenv.sh
-execunix@xmtlinux1:/mnt/hdd1/vinos$ nbmk -j4 release
+$ ./build.sh -U -x -r -n -m amd64 -j4 release
+
+$ . bldenv.sh
+$ nbmk -j4 release
 
 ##############################################################################
-execunix@xmtlinux1:/mnt/hdd1/vinos$ env
+$ env
 MAKEWRAPPERMACHINE=amd64
 NETBSDSRCDIR=/mnt/hdd1/vinos
 RELEASEDIR=/mnt/hdd1/vinos/obj/releasedir
@@ -25,9 +27,9 @@ MACHINE_ARCH=x86_64
 MKARZERO=yes
 MKUPDATE=yes
 BUILDSEED=NetBSD-7
-execunix@xmtlinux1:/mnt/hdd1/vinos$
+$
 ##############################################################################
-execunix@xmtlinux1:/mnt/hdd1/vinos$ ./build.sh -U -x -r -n -m amd64 -j4 release
+$ ./build.sh -U -x -r -n -m amd64 -j4 release
 echo ===> build.sh command:    ./build.sh -U -x -r -n -m amd64 -j4 release
 echo ===> build.sh started:    Thu Jan  7 21:12:47 KST 2016
 echo ===> NetBSD version:      7.0
@@ -113,4 +115,4 @@ echo ===> build.sh ended:      Thu Jan  7 21:12:47 KST 2016
 	echo ===> Successful make release
 	echo ===> build.sh ended:      Thu Jan  7 21:12:47 KST 2016
 ===> .
-execunix@xmtlinux1:/mnt/hdd1/vinos$ 
+$ 
