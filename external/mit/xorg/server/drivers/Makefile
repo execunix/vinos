@@ -28,29 +28,10 @@ RADEON_SUBDIR=radeon
 .if ${MACHINE_ARCH} == "i386" || \
     ${MACHINE_ARCH} == "x86_64"
 SUBDIR+= \
-	xf86-video-apm \
-	xf86-video-ark \
-	xf86-video-ast \
 	xf86-video-ati \
-	xf86-video-chips \
-	xf86-video-cirrus \
-	xf86-video-cirrus_alpine \
-	xf86-video-cirrus_laguna \
-	xf86-video-glint \
-	xf86-video-i128 \
-	xf86-video-i740 \
-
-# needs porting for xorg-server 1.6
-#	xf86-video-imstt \
-
-SUBDIR+= \
 	xf86-video-intel \
-	xf86-video-mach64 \
-	xf86-video-mga \
-	xf86-video-neomagic \
 	xf86-video-nv \
 	xf86-video-openchrome \
-	xf86-video-r128 \
 	xf86-video-${RADEON_SUBDIR} \
 	xf86-video-radeonhd \
 	xf86-video-vmware \
