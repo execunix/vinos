@@ -89,7 +89,6 @@
 ./usr/games
 ./usr/games/hide		gname=games mode=0750
 ./usr/include
-./usr/include/adosfs
 ./usr/include/altq
 ./usr/include/arpa
 ./usr/include/c++
@@ -123,7 +122,6 @@
 ./usr/include/dev/vme
 ./usr/include/dev/wscons
 ./usr/include/event2
-./usr/include/filecorefs
 ./usr/include/fs
 ./usr/include/fs/smbfs
 ./usr/include/g++

@@ -287,17 +287,11 @@ static const char *const dktypenames[] = {
 #define	FS_BSDFFS	2	/* 4.2BSD fast file system */
 #define	FS_MSDOS	3	/* MSDOS file system */
 #define	FS_OTHER	4	/* in use, but unknown/unsupported */
-#define	FS_HPFS		5	/* OS/2 high-performance file system */
-#define	FS_ISO9660	6	/* ISO 9660, normally CD-ROM */
-#define	FS_BOOT		7	/* partition contains bootstrap */
-#define	FS_ADOS		8	/* AmigaDOS fast file system */
-#define	FS_HFS		9	/* Macintosh HFS */
-#define	FS_FILECORE	10	/* Acorn Filecore Filing System */
-#define	FS_EX2FS	11	/* Linux Extended 2 file system */
-#define	FS_NTFS		12	/* Windows/NT file system */
-#define	FS_JFS2		13	/* IBM JFS2 */
-#define	FS_APPLEUFS	14	/* Apple UFS */
-#define	FS_VINUM	15	/* Vinum */
+#define	FS_ISO9660	5	/* ISO 9660, normally CD-ROM */
+#define	FS_BOOT		6	/* partition contains bootstrap */
+#define	FS_EX2FS	7	/* Linux Extended 2 file system */
+#define	FS_NTFS		8	/* Windows/NT file system */
+#define	FS_UDF		9	/* UDF */
 
 #ifdef	FSTYPENAMES
 static const char *const fstypenames[] = {
@@ -306,17 +300,11 @@ static const char *const fstypenames[] = {
 	"4.2BSD",
 	"MSDOS",
 	"unknown",
-	"HPFS",
 	"ISO9660",
 	"boot",
-	"ADOS",
-	"HFS",
-	"FILECORE",
 	"Linux Ext2",
 	"NTFS",
-	"jfs",
-	"Apple UFS",
-	"obsolete vinum",
+	"UDF",
 	NULL
 };
 #define FSMAXTYPES	(sizeof(fstypenames) / sizeof(fstypenames[0]) - 1)

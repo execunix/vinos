@@ -329,10 +329,10 @@
 /* #undef HAVE_FS_CFS */
 
 /* Define if have EFS filesystem (irix) */
-#define HAVE_FS_EFS 1
+//#define HAVE_FS_EFS 1
 
 /* Define to 1 if you have the <fs/efs/efs_mount.h> header file. */
-#define HAVE_FS_EFS_EFS_MOUNT_H 1
+//#define HAVE_FS_EFS_EFS_MOUNT_H 1
 
 /* Define if have FFS filesystem */
 /* #undef HAVE_FS_FFS */
@@ -2007,7 +2007,7 @@
 /* #undef MNTTAB_TYPE_CFS */
 
 /* Mount-table entry name for EFS filesystem (irix) */
-#define MNTTAB_TYPE_EFS "efs"
+//#define MNTTAB_TYPE_EFS "efs"
 
 /* Mount-table entry name for FFS filesystem */
 /* #undef MNTTAB_TYPE_FFS */
@@ -2067,7 +2067,7 @@
 /* #undef MOUNT_TYPE_CFS */
 
 /* Mount(2) type/name for EFS filesystem (irix) */
-#define MOUNT_TYPE_EFS MOUNT_EFS
+//#define MOUNT_TYPE_EFS MOUNT_EFS
 
 /* Mount(2) type/name for FFS filesystem */
 /* #undef MOUNT_TYPE_FFS */

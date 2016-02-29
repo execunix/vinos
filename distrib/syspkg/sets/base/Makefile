@@ -1,6 +1,5 @@
 #	$NetBSD: Makefile,v 1.11 2010/01/16 16:10:39 roy Exp $
 
-SUBDIR+=base-adosfs-root
 SUBDIR+=base-amd-bin
 SUBDIR+=base-amd-examples
 SUBDIR+=base-amd-shlib
@@ -23,7 +22,6 @@ SUBDIR+=base-dhclient-root
 SUBDIR+=base-dhcpd-bin
 SUBDIR+=base-dhcpd-examples
 SUBDIR+=base-ext2fs-root
-SUBDIR+=base-filecorefs-root
 SUBDIR+=base-games-root
 SUBDIR+=base-games-share
 SUBDIR+=base-gnats-bin

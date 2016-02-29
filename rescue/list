@@ -69,11 +69,9 @@ PROG	modunload
 PROG	mount
 PROG	mount_ados
 PROG	mount_cd9660
-PROG	mount_efs
 PROG	mount_ext2fs
 PROG	mount_fdesc
 PROG	mount_ffs	mount_ufs
-PROG	mount_filecore
 PROG	mount_kernfs
 PROG	mount_msdos
 PROG	mount_nfs

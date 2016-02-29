@@ -5,7 +5,7 @@ deffs					EXT2FS
 deffs					MFS
 deffs					CHFS
 
-defflag	opt_ffs.h			FFS_EI FFS_NO_SNAPSHOT APPLE_UFS
+defflag	opt_ffs.h			FFS_EI FFS_NO_SNAPSHOT
 					UFS_DIRHASH UFS_EXTATTR
 
 file	ufs/ext2fs/ext2fs_alloc.c	ext2fs
@@ -48,7 +48,6 @@ file	ufs/ffs/ffs_tables.c		ffs | mfs | ext2fs | chfs
 file	ufs/ffs/ffs_vfsops.c		ffs | mfs | ext2fs | chfs
 file	ufs/ffs/ffs_vnops.c		ffs | mfs | ext2fs | chfs
 file	ufs/ffs/ffs_wapbl.c		ffs & wapbl
-file	ufs/ffs/ffs_appleufs.c		ffs & apple_ufs
 file	ufs/ffs/ffs_quota2.c		quota2 & (ffs | mfs | ext2fs | chfs)
 
 file	ufs/mfs/mfs_vfsops.c		mfs

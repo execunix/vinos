@@ -144,12 +144,6 @@ struct ufs2_dinode {
 	((ip)->i_ump->um_fstype == UFS1) ? \
 	UFS1_MAXSYMLINKLEN : UFS2_MAXSYMLINKLEN
 
-/* NeXT used to keep short symlinks in the inode even when using
- * FS_42INODEFMT.  In that case fs->fs_maxsymlinklen is probably -1,
- * but short symlinks were stored in inodes shorter than this:
- */
-#define	APPLEUFS_MAXSYMLINKLEN 60
-
 /* File permissions. */
 #define	IEXEC		0000100		/* Executable. */
 #define	IWRITE		0000200		/* Writable. */

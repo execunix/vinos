@@ -170,13 +170,6 @@ const char lmsg[] = "%s: can't read disk label";
 #define	LL_DFL_FRAGSIZE	4096
 #define	DFL_FRAG_BLK	8
 
-/* Apple requires the fragment size to be at least APPLEUFS_DIRBLKSIZ
- * but the block size cannot be larger than Darwin's PAGE_SIZE.  See
- * the mount check in Darwin's ffs_mountfs for an explanation.
- */
-#define APPLEUFS_DFL_FRAGSIZE APPLEUFS_DIRBLKSIZ /* 1024 */
-#define APPLEUFS_DFL_BLKSIZE 4096 /* default Darwin PAGE_SIZE */
-
 /*
  * Default sector size.
  */
@@ -228,9 +221,7 @@ caddr_t	membase;		/* start address of memory based filesystem */
 int	needswap;		/* Filesystem not in native byte order */
 char	*disktype = NULL;
 int	unlabeled;
-char *appleufs_volname = 0; /* Apple UFS volume name */
-int isappleufs = 0;
-int quotas = 0;
+int	quotas = 0;
 
 char	device[MAXPATHLEN];
 
@@ -413,14 +404,6 @@ main(int argc, char *argv[])
 			/* mfs only */
 			mfsuid = mfs_user(optarg);
 			break;
-		case 'v':
-			appleufs_volname = optarg;
-			if (strchr(appleufs_volname, ':') || strchr(appleufs_volname, '/'))
-				errx(1,"Apple UFS volume name cannot contain ':' or '/'");
-			if (appleufs_volname[0] == '\0')
-				errx(1,"Apple UFS volume name cannot be zero length");
-			isappleufs = 1;
-			break;
 		case '?':
 		default:
 			usage();
@@ -556,22 +539,12 @@ main(int argc, char *argv[])
 			if (dkw.dkw_size == 0)
 				errx(1, "%s partition is unavailable", special);
 
-			if (strcmp(dkw.dkw_ptype, DKW_PTYPE_APPLEUFS) == 0)
-				isappleufs = 1;
-				
 			if (!Iflag) {
 				static const char m[] =
 				    "%s partition type is not `%s'";
-				if (isappleufs) {
-					if (strcmp(dkw.dkw_ptype,
-					    DKW_PTYPE_APPLEUFS))
-						errx(1, m,
-						    special, "Apple UFS");
-				} else {
-					if (strcmp(dkw.dkw_ptype,
-					    DKW_PTYPE_FFS))
-						errx(1, m, special, "4.2BSD");
-				}
+				if (strcmp(dkw.dkw_ptype,
+				    DKW_PTYPE_FFS))
+					errx(1, m, special, "4.2BSD");
 			}
 		}	/* !Fflag && !mfs */
 	}
@@ -630,36 +603,20 @@ main(int argc, char *argv[])
 	if (fsize == 0) {
 		fsize = bsize / DFL_FRAG_BLK;
 		if (fsize <= 0) {
-			if (isappleufs) {
-				fsize = APPLEUFS_DFL_FRAGSIZE;
-			} else {
-				if (fssize < SMALL_FSSIZE)
-					fsize = S_DFL_FRAGSIZE;
-				else if (fssize < MEDIUM_FSSIZE)
-					fsize = M_DFL_FRAGSIZE;
-				else if (fssize < LARGE_FSSIZE)
-					fsize = L_DFL_FRAGSIZE;
-				else
-					fsize = LL_DFL_FRAGSIZE;
-				if (fsize < sectorsize)
-					fsize = sectorsize;
-			}
+			if (fssize < SMALL_FSSIZE)
+				fsize = S_DFL_FRAGSIZE;
+			else if (fssize < MEDIUM_FSSIZE)
+				fsize = M_DFL_FRAGSIZE;
+			else if (fssize < LARGE_FSSIZE)
+				fsize = L_DFL_FRAGSIZE;
+			else
+				fsize = LL_DFL_FRAGSIZE;
+			if (fsize < sectorsize)
+				fsize = sectorsize;
 		}
 	}
 	if (bsize <= 0) {
-		if (isappleufs)
-			bsize = APPLEUFS_DFL_BLKSIZE;
-		else
-			bsize = DFL_FRAG_BLK * fsize;
-	}
-
-	if (isappleufs && (fsize < APPLEUFS_DFL_FRAGSIZE)) {
-		warnx("Warning: chosen fsize of %d is less than Apple UFS minimum of %d",
-			fsize, APPLEUFS_DFL_FRAGSIZE);
-	}
-	if (isappleufs && (bsize > APPLEUFS_DFL_BLKSIZE)) {
-		warnx("Warning: chosen bsize of %d is greater than Apple UFS maximum of %d",
-			bsize, APPLEUFS_DFL_BLKSIZE);
+		bsize = DFL_FRAG_BLK * fsize;
 	}
 
 	/*
@@ -874,7 +831,6 @@ struct help_strings {
 	{ MFS_MOUNT,	"-p perm\t\tpermissions (in octal)" },
 	{ BOTH,		"-s fssize\tfile system size (sectors)" },
 	{ MFS_MOUNT,	"-u username\tuser name of mount point" },
-	{ NEWFS,	"-v volname\tApple UFS volume name" },
 	{ 0, NULL }
 };
 

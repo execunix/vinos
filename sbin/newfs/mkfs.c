@@ -210,8 +210,6 @@ mkfs(const char *fsys, int fi, int fo,
 		sblock.fs_maxsymlinklen = (Oflag == 1 ? UFS1_MAXSYMLINKLEN :
 		    UFS2_MAXSYMLINKLEN);
 		sblock.fs_old_flags = FS_FLAGS_UPDATED;
-		if (isappleufs)
-			sblock.fs_old_flags = 0;
 		sblock.fs_flags = 0;
 	}
 
@@ -624,24 +622,6 @@ mkfs(const char *fsys, int fi, int fo,
 		 * this file system as Ext2fs.
 		 */
 		zap_old_sblock(EXT2FS_SBOFF);
-
-		if (isappleufs) {
-			struct appleufslabel appleufs;
-			ffs_appleufs_set(&appleufs, appleufs_volname,
-			    tv.tv_sec, 0);
-			wtfs(APPLEUFS_LABEL_OFFSET/sectorsize,
-			    APPLEUFS_LABEL_SIZE, &appleufs);
-		} else if (APPLEUFS_LABEL_SIZE % sectorsize == 0) {
-			struct appleufslabel appleufs;
-			/* Look for & zap any existing valid apple ufs labels */
-			rdfs(APPLEUFS_LABEL_OFFSET/sectorsize,
-			    APPLEUFS_LABEL_SIZE, &appleufs);
-			if (ffs_appleufs_validate(fsys, &appleufs, NULL) == 0) {
-				memset(&appleufs, 0, sizeof(appleufs));
-				wtfs(APPLEUFS_LABEL_OFFSET/sectorsize,
-				    APPLEUFS_LABEL_SIZE, &appleufs);
-			}
-		}
 	}
 
 	/*
@@ -821,13 +801,6 @@ initcg(int cylno, const struct timeval *tv)
 	} else {
 		acg.cg_clustersumoff = acg.cg_freeoff +
 		    howmany(sblock.fs_fpg, CHAR_BIT) - sizeof(int32_t);
-		if (isappleufs) {
-			/* Apple PR2216969 gives rationale for this change.
-			 * I believe they were mistaken, but we need to
-			 * duplicate it for compatibility.  -- dbj@NetBSD.org
-			 */
-			acg.cg_clustersumoff += sizeof(int32_t);
-		}
 		acg.cg_clustersumoff =
 		    roundup(acg.cg_clustersumoff, sizeof(int32_t));
 		acg.cg_clusteroff = acg.cg_clustersumoff +
@@ -1031,8 +1004,6 @@ fsinit(const struct timeval *tv, mode_t mfsmode, uid_t mfsuid, gid_t mfsgid)
 	uint16_t q2h_hash_mask;
 #ifdef LOSTDIR
 	int dirblksiz = DIRBLKSIZ;
-	if (isappleufs)
-		dirblksiz = APPLEUFS_DIRBLKSIZ;
 	int nextino = LOSTFOUNDINO+1;
 #else
 	int nextino = UFS_ROOTINO+1;
@@ -1259,8 +1230,6 @@ makedir(struct direct *protodir, int entries)
 	char *cp;
 	int i, spcleft;
 	int dirblksiz = UFS_DIRBLKSIZ;
-	if (isappleufs)
-		dirblksiz = APPLEUFS_DIRBLKSIZ;
 
 	memset(&buf, 0, UFS_DIRBLKSIZ);
 	spcleft = dirblksiz;

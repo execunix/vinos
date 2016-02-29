@@ -326,7 +326,6 @@ checkinode(ino_t inumber, struct inodesc *idesc)
 		 */
 		if ((sblock->fs_maxsymlinklen < 0) ||
 		    (size < (uint64_t)sblock->fs_maxsymlinklen) ||
-		    (isappleufs && (size < APPLEUFS_MAXSYMLINKLEN)) ||
 		    (sblock->fs_maxsymlinklen == 0 && DIP(dp, blocks) == 0)) {
 			if (is_ufs2)
 				ndb = howmany(size, sizeof(int64_t));

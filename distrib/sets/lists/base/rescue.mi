@@ -74,11 +74,9 @@
 ./rescue/mount					base-rescue-root
 ./rescue/mount_ados				base-rescue-root
 ./rescue/mount_cd9660				base-rescue-root
-./rescue/mount_efs				base-rescue-root
 ./rescue/mount_ext2fs				base-rescue-root
 ./rescue/mount_fdesc				base-rescue-root
 ./rescue/mount_ffs				base-rescue-root
-./rescue/mount_filecore				base-rescue-root
 ./rescue/mount_kernfs				base-rescue-root
 ./rescue/mount_mfs				base-rescue-root
 ./rescue/mount_msdos				base-rescue-root

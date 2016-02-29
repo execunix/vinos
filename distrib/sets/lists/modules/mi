@@ -12,8 +12,6 @@
 ./@MODULEDIR@/accf_dataready/accf_dataready.kmod	base-kernel-modules	kmod
 ./@MODULEDIR@/accf_httpready			base-kernel-modules	kmod
 ./@MODULEDIR@/accf_httpready/accf_httpready.kmod	base-kernel-modules	kmod
-./@MODULEDIR@/adosfs				base-kernel-modules	kmod
-./@MODULEDIR@/adosfs/adosfs.kmod		base-kernel-modules	kmod
 ./@MODULEDIR@/aio				base-kernel-modules	kmod
 ./@MODULEDIR@/aio/aio.kmod			base-kernel-modules	kmod
 ./@MODULEDIR@/blowfish				base-kernel-modules	kmod
@@ -46,8 +44,6 @@
 ./@MODULEDIR@/dtv/dtv.kmod			base-kernel-modules	kmod
 ./@MODULEDIR@/dtv_math				base-kernel-modules	kmod
 ./@MODULEDIR@/dtv_math/dtv_math.kmod		base-kernel-modules	kmod
-./@MODULEDIR@/efs				base-kernel-modules	kmod
-./@MODULEDIR@/efs/efs.kmod			base-kernel-modules	kmod
 ./@MODULEDIR@/exec_script			base-kernel-modules	kmod
 ./@MODULEDIR@/exec_script/exec_script.kmod	base-kernel-modules	kmod
 ./@MODULEDIR@/ext2fs				base-kernel-modules	kmod
@@ -56,8 +52,6 @@
 ./@MODULEDIR@/fdesc/fdesc.kmod			base-kernel-modules	kmod
 ./@MODULEDIR@/ffs				base-kernel-modules	kmod
 ./@MODULEDIR@/ffs/ffs.kmod			base-kernel-modules	kmod
-./@MODULEDIR@/filecore				base-kernel-modules	kmod
-./@MODULEDIR@/filecore/filecore.kmod		base-kernel-modules	kmod
 ./@MODULEDIR@/filemon				base-kernel-modules	kmod
 ./@MODULEDIR@/filemon/filemon.kmod		base-kernel-modules	kmod
 ./@MODULEDIR@/flash				base-kernel-modules	kmod
@@ -72,8 +66,6 @@
 ./@MODULEDIR@/gpioow/gpioow.kmod		base-kernel-modules	kmod
 ./@MODULEDIR@/gpiosim				base-kernel-modules	kmod
 ./@MODULEDIR@/gpiosim/gpiosim.kmod		base-kernel-modules	kmod
-./@MODULEDIR@/hfs				base-kernel-modules	kmod
-./@MODULEDIR@/hfs/hfs.kmod			base-kernel-modules	kmod
 ./@MODULEDIR@/hythygtemp			base-kernel-modules	kmod
 ./@MODULEDIR@/hythygtemp/hythygtemp.kmod	base-kernel-modules	kmod
 ./@MODULEDIR@/i2cexec				base-kernel-modules	kmod
@@ -186,8 +178,6 @@
 ./@MODULEDIR@/swcrypto/swcrypto.kmod		base-kernel-modules	kmod
 ./@MODULEDIR@/swsensor				base-kernel-modules	kmod
 ./@MODULEDIR@/swsensor/swsensor.kmod		base-kernel-modules	kmod
-./@MODULEDIR@/sysvbfs				base-kernel-modules	kmod
-./@MODULEDIR@/sysvbfs/sysvbfs.kmod		base-kernel-modules	kmod
 ./@MODULEDIR@/tmpfs				base-kernel-modules	kmod
 ./@MODULEDIR@/tmpfs/tmpfs.kmod			base-kernel-modules	kmod
 ./@MODULEDIR@/tprof				base-kernel-modules	kmod

@@ -120,7 +120,6 @@ struct bufarea {
 		struct cg *b_cg;		/* cylinder group */
 		struct ufs1_dinode *b_dinode1;	/* UFS1 inode block */
 		struct ufs2_dinode *b_dinode2;	/* UFS2 inode block */
-		struct appleufslabel *b_appleufs;		/* Apple UFS volume label */
 	} b_un;
 	char b_dirty;
 };
@@ -142,7 +141,6 @@ struct bufarea bufhead;		/* head of list of other blks in filesys */
 struct bufarea sblk;		/* file system superblock */
 struct bufarea asblk;		/* file system superblock */
 struct bufarea cgblk;		/* cylinder group blocks */
-struct bufarea appleufsblk;		/* Apple UFS volume label */
 struct bufarea *pdirbp;		/* current directory contents */
 struct bufarea *pbp;		/* current inode block */
 
@@ -165,14 +163,6 @@ struct fs *sblocksave;
 		sblk.b_dirty = 1; \
 	} while (0)
 #define	cgdirty()	do {copyback_cg(&cgblk); cgblk.b_dirty = 1;} while (0)
-
-#define appleufsdirty() \
-	do { \
-		appleufsblk.b_un.b_appleufs->ul_checksum = 0; \
-		appleufsblk.b_un.b_appleufs->ul_checksum =  \
-			ffs_appleufs_cksum(appleufsblk.b_un.b_appleufs); \
-		appleufsblk.b_dirty = 1; \
-	} while (0)
 
 enum fixstate {DONTKNOW, NOFIX, FIX, IGNORE};
 
@@ -294,7 +284,6 @@ int	fsreadfd;		/* file descriptor for reading file system */
 int	fswritefd;		/* file descriptor for writing file system */
 int	rerun;			/* rerun fsck.  Only used in non-preen mode */
 char	resolved;		/* cleared if unresolved changes => not clean */
-int	isappleufs;		/* filesystem is Apple UFS */
 
 daddr_t maxfsblock;		/* number of blocks in the file system */
 char	*blockmap;		/* ptr to primary blk allocation map */

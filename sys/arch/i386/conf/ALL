@@ -155,14 +155,9 @@ file-system 	PROCFS		# /proc
 file-system 	UMAPFS		# NULLFS + uid and gid remapping
 file-system 	UNION		# union file system
 file-system 	SMBFS		# experimental - CIFS; also needs nsmb (below)
-file-system 	SYSVBFS		# System V boot file system
 file-system 	PTYFS		# /dev/ptm support
 file-system 	TMPFS		# Efficient memory file-system
 file-system 	UDF		# experimental - OSTA UDF CD/DVD file-system
-file-system 	HFS		# experimental - Apple HFS+ file system
-file-system 	EFS		# Silicon Graphics Extent File System
-file-system 	FILECORE	# Acorn filecore file system
-file-system 	ADOSFS		# AmigaDOS file system
 file-system	CHFS		# Chip File System
 
 # File system options
@@ -2065,8 +2060,6 @@ options FBDEBUG
 options FDDEBUG
 options FD_DEBUG
 options FFBDEBUG
-options FILECORE_DEBUG
-options FILECORE_DEBUG_BR
 options FIRESTARDEBUG
 options FLASH_DEBUG
 options FLP_DEBUG
@@ -2317,7 +2310,6 @@ options SYNAPTICSDEBUG
 options SYSCALL_DEBUG
 options SYSCTL_DEBUG_CREATE
 options SYSCTL_DEBUG_SETUP
-options SYSVBFS_VNOPS_DEBUG
 options TC5165DEBUG
 options TCICDEBUG
 options TCICISADEBUG

@@ -461,8 +461,7 @@ set_ptn_header(menudesc *m, void *arg)
 			p->pi_mount[0] = 0;
 			continue;
 		}
-		if (i == PTN_MENU_NEWFS && t != FS_BSDFFS
-		    && t != FS_APPLEUFS) {
+		if (i == PTN_MENU_NEWFS && t != FS_BSDFFS) {
 			/* Can only newfs UFS filesystems */
 			p->pi_flags &= ~PIF_NEWFS;
 			continue;
@@ -471,9 +470,6 @@ set_ptn_header(menudesc *m, void *arg)
 			/* Parameters for newfs... */
 			if (!(p->pi_flags & PIF_NEWFS))
 				/* Not if we aren't going to run newfs */
-				continue;
-			 if (t == FS_APPLEUFS && i != PTN_MENU_ISIZE)
-				/* Can only set # inodes for appleufs */
 				continue;
 		}
 		/* Ok: we want this one */

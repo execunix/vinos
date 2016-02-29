@@ -369,7 +369,6 @@
 ./root						base-sys-root
 ./sbin						base-sys-root
 ./sbin/amrctl					base-sysutil-root
-./sbin/apmlabel					base-sysutil-root
 ./sbin/atactl					base-sysutil-root
 ./sbin/badsect					base-sysutil-root
 ./sbin/bioctl					base-sysutil-root
@@ -412,15 +411,11 @@
 ./sbin/modstat					base-sysutil-root
 ./sbin/modunload				base-sysutil-root
 ./sbin/mount					base-sysutil-root
-./sbin/mount_ados				base-adosfs-root
 ./sbin/mount_cd9660				base-sysutil-root
 ./sbin/mount_chfs				base-sysutil-root
-./sbin/mount_efs				base-efs-root
 ./sbin/mount_ext2fs				base-ext2fs-root
 ./sbin/mount_fdesc				base-miscfs-root
 ./sbin/mount_ffs				base-sysutil-root
-./sbin/mount_filecore				base-filecorefs-root
-./sbin/mount_hfs				base-hfs-root
 ./sbin/mount_kernfs				base-sysutil-root
 ./sbin/mount_mfs				base-sysutil-root
 ./sbin/mount_msdos				base-sysutil-root
@@ -433,7 +428,6 @@
 ./sbin/mount_ptyfs				base-miscfs-root
 ./sbin/mount_puffs				base-sysutil-root
 ./sbin/mount_smbfs				base-smbfs-root
-./sbin/mount_sysvbfs				base-sysutil-root
 ./sbin/mount_tmpfs				base-miscfs-root
 ./sbin/mount_udf				base-sysutil-root
 ./sbin/mount_ufs				base-sysutil-root
@@ -443,7 +437,6 @@
 ./sbin/newfs					base-sysutil-root
 ./sbin/newfs_ext2fs				base-sysutil-root
 ./sbin/newfs_msdos				base-sysutil-root
-./sbin/newfs_sysvbfs				base-sysutil-root
 ./sbin/newfs_udf				base-sysutil-root
 ./sbin/nologin					base-sysutil-root
 ./sbin/npfctl					base-npf-bin		npf
@@ -472,7 +465,6 @@
 ./sbin/setkey					base-netutil-root
 ./sbin/shutdown					base-sysutil-root
 ./sbin/slattach					base-slip-root
-./sbin/svhlabel					base-sysutil-root
 ./sbin/swapctl					base-sysutil-root
 ./sbin/swapon					base-sysutil-root
 ./sbin/sysctl					base-sysutil-root
@@ -865,7 +857,6 @@
 ./usr/games					base-games-usr
 ./usr/games/hide				base-games-usr
 ./usr/include					base-c-usr
-./usr/include/adosfs				base-c-usr
 ./usr/include/altq				base-c-usr
 ./usr/include/arpa				base-c-usr
 ./usr/include/c++				base-cxx-usr
@@ -903,14 +894,10 @@
 ./usr/include/dev/vme				base-c-usr
 ./usr/include/dev/wscons			base-c-usr
 ./usr/include/event2				base-c-usr
-./usr/include/filecorefs			base-c-usr
 ./usr/include/fs				base-c-usr
-./usr/include/fs/efs				base-c-usr
-./usr/include/fs/hfs				base-c-usr
 ./usr/include/fs/ptyfs				base-c-usr
 ./usr/include/fs/puffs				base-puffs-usr
 ./usr/include/fs/smbfs				base-c-usr
-./usr/include/fs/sysvbfs			base-c-usr
 ./usr/include/fs/tmpfs				base-c-usr
 ./usr/include/fs/udf				base-c-usr
 ./usr/include/g++				base-cxx-usr

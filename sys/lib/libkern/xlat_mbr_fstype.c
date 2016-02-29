@@ -44,7 +44,6 @@ xlat_mbr_fstype(int mbr_type)
 		uint8_t	netbsd_type;
 	} ptn_types[] = {
 		{ MBR_PTYPE_386BSD,	FS_BSDFFS },
-		{ MBR_PTYPE_APPLE_UFS,	FS_APPLEUFS },
 		{ MBR_PTYPE_FAT12,	FS_MSDOS },
 		{ MBR_PTYPE_FAT16B,	FS_MSDOS },
 		{ MBR_PTYPE_FAT16L,	FS_MSDOS },
@@ -55,7 +54,6 @@ xlat_mbr_fstype(int mbr_type)
 		{ MBR_PTYPE_LNXSWAP,	FS_SWAP },
 		{ MBR_PTYPE_NETBSD,	FS_BSDFFS },
 		{ MBR_PTYPE_NTFS,	FS_NTFS },
-		{ MBR_PTYPE_MINIX_14B,	FS_MINIXFS3 },
 		{ MBR_PTYPE_OPENBSD,	FS_BSDFFS },
 		{ 0,			FS_OTHER }
 	};

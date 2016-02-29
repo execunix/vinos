@@ -1,4 +1,3 @@
-base-adosfs-root base-sys-root
 base-amd-bin base-sys-usr
 base-amd-examples base-sys-share
 base-amd-shlib base-sys-usr
@@ -22,9 +21,7 @@ base-dhclient-root base-sys-root
 base-dhcpd-bin base-sys-share
 base-dhcpd-bin base-sys-usr
 base-dhcpd-examples base-sys-share
-base-efs-root base-sys-root
 base-ext2fs-root base-sys-root
-base-filecorefs-root base-sys-root
 base-fstab-examples base-sys-share
 base-games-root base-sys-root
 base-games-share base-sys-share
@@ -344,8 +341,6 @@ games-utils-bin base-games-usr
 games-utils-catman base-man-share
 games-utils-man base-man-share
 games-utils-share base-games-share
-man-adosfs-catman base-man-share
-man-adosfs-man base-man-share
 man-amd-catman base-man-share
 man-amd-info base-texinfo-share
 man-amd-man base-man-share
@@ -371,12 +366,8 @@ man-dhclient-catman base-man-share
 man-dhclient-man base-man-share
 man-dhcpd-catman base-man-share
 man-dhcpd-man base-man-share
-man-efs-catman base-man-share
-man-efs-man base-man-share
 man-ext2fs-catman base-man-share
 man-ext2fs-man base-man-share
-man-filecorefs-catman base-man-share
-man-filecorefs-man base-man-share
 man-fortran-info base-texinfo-share
 man-gnats-catman base-man-share
 man-gnats-info base-texinfo-share

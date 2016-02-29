@@ -71,7 +71,6 @@ mbr_ptype_to_str(uint8_t ptype)
 	case MBR_PTYPE_FAT16L:	str = DKW_PTYPE_FAT;		break;
 	case MBR_PTYPE_LNXSWAP:	str = DKW_PTYPE_SWAP;		break;
 	case MBR_PTYPE_LNXEXT2:	str = DKW_PTYPE_EXT2FS;		break;
-	case MBR_PTYPE_APPLE_UFS:str = DKW_PTYPE_APPLEUFS;	break;
 	case MBR_PTYPE_EFI:	str = DKW_PTYPE_FAT;		break;
 	default:		str = NULL;			break;
 	}

@@ -42,7 +42,6 @@ options 	SMDK2XX0_CLOCK_CONFIG="1,1,0x5c,4,0"	# to get 200MHz
 file-system	FFS		# UFS
 file-system	MFS		# memory file system
 file-system	NFS		# Network file system
-#file-system 	ADOSFS		# AmigaDOS-compatible file system
 #file-system 	EXT2FS		# second extended file system (linux)
 file-system	CD9660		# ISO 9660 + Rock Ridge file system
 file-system	MSDOSFS		# MS-DOS file system

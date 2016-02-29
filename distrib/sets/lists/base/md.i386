@@ -24,7 +24,6 @@
 ./usr/mdec/bootxx_ffsv1				base-sysutil-bin
 ./usr/mdec/bootxx_ffsv2				base-sysutil-bin
 ./usr/mdec/bootxx_msdos				base-sysutil-bin
-./usr/mdec/bootxx_ustarfs			base-sysutil-bin
 ./usr/mdec/dosboot.com				base-sysutil-bin
 ./usr/mdec/gptmbr.bin				base-sysutil-bin
 ./usr/mdec/mbr					base-sysutil-bin

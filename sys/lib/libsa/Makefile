@@ -68,10 +68,8 @@ SRCS+=	nfs.c tftp.c
 
 SRCS+=	ffsv1.c ffsv2.c
 SRCS+=	cd9660.c
-SRCS+=	ustarfs.c
 SRCS+=	dosfs.c
 SRCS+=	ext2fs.c
-SRCS+=	minixfs3.c
 SRCS+=	fnmatch.c
 # for historic compatibility ufs == ffsv1
 SRCS+=	ufs.c

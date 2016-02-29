@@ -75,7 +75,6 @@
 #undef	UFS_DIRBLKSIZ
 #define	UFS_DIRBLKSIZ	DEV_BSIZE
 #define	FFS_MAXNAMLEN	255
-#define APPLEUFS_DIRBLKSIZ 1024
 
 #define d_ino d_fileno
 struct	direct {

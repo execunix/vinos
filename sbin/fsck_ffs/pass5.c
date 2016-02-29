@@ -148,13 +148,6 @@ pass5(void)
 	if (fs->fs_contigsumsize > 0) {
 		newcg->cg_clustersumoff = newcg->cg_nextfreeoff -
 		    sizeof(u_int32_t);
-		if (isappleufs) {
-			/* Apple PR2216969 gives rationale for this change.
-			 * I believe they were mistaken, but we need to
-			 * duplicate it for compatibility.  -- dbj@NetBSD.org
-			 */
-			newcg->cg_clustersumoff += sizeof(u_int32_t);
-		}
 		newcg->cg_clustersumoff =
 		    roundup(newcg->cg_clustersumoff, sizeof(u_int32_t));
 		newcg->cg_clusteroff = newcg->cg_clustersumoff +

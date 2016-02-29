@@ -178,12 +178,6 @@ struct ufs_ops {
 /* Convert mount ptr to ufsmount ptr. */
 #define VFSTOUFS(mp)	((struct ufsmount *)((mp)->mnt_data))
 
-#ifdef APPLE_UFS
-#define UFS_MPISAPPLEUFS(ump)	((ump)->um_flags & UFS_ISAPPLEUFS)
-#else
-#define UFS_MPISAPPLEUFS(ump)	(0)
-#endif
-
 /*
  * Macros to access file system parameters in the ufsmount structure.
  * Used by ufs_bmap.

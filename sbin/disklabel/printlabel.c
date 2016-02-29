@@ -145,8 +145,6 @@ showpartition(FILE *f, struct disklabel *lp, int i, int ctsformat)
 		break;
 
 	case FS_BSDFFS:
-	case FS_ADOS:
-	case FS_APPLEUFS:
 		(void)fprintf(f, "  %5" PRIu32 " %5" PRIu64 " %5" PRIu16 " ",
 		    pp->p_fsize, (uint64_t)pp->p_fsize * pp->p_frag, pp->p_cpg);
 		break;

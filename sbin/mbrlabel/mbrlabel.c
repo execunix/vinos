@@ -204,7 +204,6 @@ getparts(int sd, u_int32_t off, u_int32_t extoff, int verbose)
 			    fstypenames[npe.p_fstype], unused + 'a');
 		switch (npe.p_fstype) {
 		case FS_BSDFFS:
-		case FS_APPLEUFS:
 			npe.p_size = 16384;	/* XXX */
 			npe.p_fsize = 1024;
 			npe.p_frag = 8;

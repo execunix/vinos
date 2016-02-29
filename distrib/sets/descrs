@@ -1,4 +1,3 @@
-base-adosfs-root	Root file system support for Amiga DOS file system support
 base-amd-bin	auto-mounter daemon 
 base-amd-examples	example configuration files for the auto-mounter daemon and utilities
 base-amd-shlib	auto-mounter daemon shared library
@@ -22,9 +21,7 @@ base-debug-bin	debugging utilities
 base-dhclient-root	root file system support for DHCP client software
 base-dhcpd-bin	DHCP server
 base-dhcpd-examples	example configuration files for DHCP server
-base-efs-root		root file system support for efs file system
 base-ext2fs-root	root file system support for ext2fs file system
-base-filecorefs-root	root file system support for the Acorn FILECORE file system
 base-fstab-examples	various example file system tables
 base-games-root	root file system support for games
 base-games-share	shared data files for games
@@ -573,8 +570,6 @@ games-utils-bin	miscellaneous utilities from /usr/games
 games-utils-catman	formatted manual pages for miscellaneous utilities from /usr/games
 games-utils-man	manual pages source for miscellaneous utilities from /usr/games
 games-utils-share	shared data files for miscellaneous utilities from /usr/games
-man-adosfs-catman	formatted manual pages for AmigaDOS file system support
-man-adosfs-man	manual pages source for AmigaDOS file system support
 man-amd-catman	formatted manual pages for the amd(8) auto-mounting daemon
 man-amd-info	texinfo documentation for the amd(8) auto-mounting daemon
 man-amd-man	manual pages source for the amd(8) auto-mounting daemon
@@ -601,12 +596,8 @@ man-dhclient-catman	formatted manual pages for DHCP (dynamic host configuration 
 man-dhclient-man	manual pages source for DHCP (dynamic host configuration protocol) client utilities
 man-dhcpd-catman	formatted manual pages for DHCP (dynamic host configuration protocol) server utilities
 man-dhcpd-man	manual pages source for DHCP (dynamic host configuration protocol) server utilities
-man-efs-catman		formatted manual pages for the Silicon Graphics EFS file system support
-man-efs-man		manual pages source for the Silicon Graphics EFS file system support
 man-ext2fs-catman	formatted manual pages for the Linux ext2fx file system support
 man-ext2fs-man	manual pages source for the Linux ext2fx file system support
-man-filecorefs-catman	formatted manual pages Acorn FileCore file system support
-man-filecorefs-man	manual pages source Acorn FileCore file system support
 man-fortran-info	texinfo documentation for the FORTRAN programming language
 man-games-catman	formatted manual pages for games
 man-games-man	manual pages source for games
@@ -617,8 +608,6 @@ man-groff-catman	formatted manual pages for the groff documentation formatting u
 man-groff-man	manual pages source for the groff documentation formatting utility
 man-hesiod-catman	formatted manual pages for the HESIOD network information system
 man-hesiod-man	manual pages source for the HESIOD network information system
-man-hfs-catman	formatted manual pages for the HFS file system
-man-hfs-man	manual pages source for the HFS file system
 man-info-share	required file system structure for GNU texinfo documentation
 man-ipf-catman	formatted manual pages for the IPfilter packet filtering software
 man-ipf-man	manual pages source for the IPfilter packet filtering software

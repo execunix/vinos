@@ -85,7 +85,6 @@ ckinode(union dinode *dp, struct inodesc *idesc)
 	mode = iswap16(DIP(dp, mode)) & IFMT;
 	if (mode == IFBLK || mode == IFCHR || (mode == IFLNK &&
 	    (idesc->id_filesize < sblock->fs_maxsymlinklen ||
-	    (isappleufs && (idesc->id_filesize < APPLEUFS_MAXSYMLINKLEN)) ||
 	     (sblock->fs_maxsymlinklen == 0 && DIP(dp, blocks) == 0))))
 		return (KEEPON);
 	if (is_ufs2)
@@ -348,8 +347,6 @@ swap_dinode1(union dinode *dp, int n)
 	int i, j;
 	struct ufs1_dinode *dp1;
 	int32_t maxsymlinklen = sblock->fs_maxsymlinklen;
-	if (isappleufs)
-		maxsymlinklen = APPLEUFS_MAXSYMLINKLEN;
 
 	dp1 = (struct ufs1_dinode *)&dp->dp1;
 	for (i = 0; i < n; i++, dp1++) {

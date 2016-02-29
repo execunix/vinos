@@ -382,7 +382,7 @@ The
 member is read-only.
 Valid tag types are:
 .Pp
-.Bl -tag -offset indent -width "VT_FILECORE " -compact
+.Bl -tag -offset indent -width "VT_MSDOSFS " -compact
 .It Dv VT_NON
 non file system
 .It Dv VT_UFS
@@ -415,8 +415,6 @@ union file system
 Amiga file system
 .It Dv VT_EXT2FS
 Linux's ext2 file system
-.It Dv VT_FILECORE
-filecore file system
 .It Dv VT_NTFS
 Microsoft NT's file system
 .It Dv VT_VFS
@@ -431,8 +429,6 @@ pseudo-terminal device file system
 efficient memory file system
 .It Dv VT_UDF
 universal disk format file system
-.It Dv VT_SYSVBFS
-systemV boot file system
 .El
 .Pp
 All vnode locking operations use

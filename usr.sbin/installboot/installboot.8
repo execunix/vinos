@@ -605,19 +605,6 @@ Remove the primary bootstrap from disk
 .Sq sd1 :
 .Dl Ic installboot -c /dev/rsd1c
 .
-.Ss Nx Ns Tn /amiga
-Modify the command line to change the default from "netbsd -ASn2" to
-"netbsd -S":
-.Dl Ic installboot -m amiga -o command="netbsd -S" /dev/rsd0a /usr/mdec/bootxx_ffs
-.
-.Ss Nx Ns Tn /ews4800mips
-Install the System V Boot File System primary bootstrap on to disk
-.Sq sd0 ,
-with the secondary bootstrap
-.Sq Pa /boot
-already present in the SysVBFS partition on the disk:
-.Dl Ic installboot /dev/rsd0c /usr/mdec/bootxx_bfs
-.
 .Ss Nx Ns Tn /i386 and Nx Ns Tn /amd64
 Install new boot blocks on an existing
 .Sy FFSv2

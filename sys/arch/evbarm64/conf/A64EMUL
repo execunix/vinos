@@ -52,7 +52,6 @@ makeoptions	DEBUG="-g"
 file-system	FFS		# Fast file system
 file-system	MFS		# Memory-based file system
 file-system	CD9660		# ISO-9660 CD-ROM FS (w/RockRidge extensions)
-file-system	ADOSFS		# AmigaDOS-compatible file system
 file-system	MSDOSFS		# MS-DOS-compatible file system
 file-system	NTFS		# Windows/NT file system (experimental)
 file-system	EXT2FS		# Linux ext2 file system

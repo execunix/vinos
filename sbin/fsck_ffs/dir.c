@@ -154,11 +154,7 @@ dirscan(struct inodesc *idesc)
 	struct bufarea *bp;
 	int dsize, n;
 	long blksiz;
-#if UFS_DIRBLKSIZ > APPLEUFS_DIRBLKSIZ
 	char dbuf[UFS_DIRBLKSIZ];
-#else
-	char dbuf[APPLEUFS_DIRBLKSIZ];
-#endif
 
 	if (idesc->id_type != DATA)
 		errexit("wrong type to dirscan %d", idesc->id_type);
@@ -697,17 +693,15 @@ makeentry(ino_t parent, ino_t ino, const char *name)
 /*
  * Attempt to expand the size of a directory
  */
+//#undef DIRBLKSIZ // tbd
+#define DIRBLKSIZ 1024
 static int
 expanddir(union dinode *dp, char *name)
 {
 	daddr_t lastbn, newblk, dirblk;
 	struct bufarea *bp;
 	char *cp;
-#if DIRBLKSIZ > APPLEUFS_DIRBLKSIZ
 	char firstblk[DIRBLKSIZ];
-#else
-	char firstblk[APPLEUFS_DIRBLKSIZ];
-#endif
 	struct ufs1_dinode *dp1 = NULL;
 	struct ufs2_dinode *dp2 = NULL;
 

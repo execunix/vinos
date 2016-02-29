@@ -7,7 +7,7 @@ PROG=	fsck_ffs
 MAN=	fsck_ffs.8
 SRCS=	dir.c inode.c main.c pass1.c pass1b.c pass2.c pass3.c pass4.c \
 	pass5.c pass6.c fsutil.c setup.c utilities.c ffs_bswap.c ffs_subr.c \
-	ffs_tables.c ffs_appleufs.c partutil.c snapshot.c quota2.c quota2_subr.c
+	ffs_tables.c partutil.c snapshot.c quota2.c quota2_subr.c
 
 FSCK=	${NETBSDSRCDIR}/sbin/fsck
 DUMP=	${NETBSDSRCDIR}/sbin/dump
@@ -29,8 +29,6 @@ DPADD+=${LIBUTIL}
 
 LDADD+=-lprop
 DPADD+=${LIBPROP}
-
-COPTS.ffs_appleufs.c+=	-Wno-pointer-sign
 
 .if ${MACHINE_ARCH} == "m68000"
 COPTS.pass1.c+=	-fno-tree-fre -fno-tree-lrs

@@ -35,12 +35,6 @@
 #ifdef SUPPORT_EXT2FS
 #include <lib/libsa/ext2fs.h>
 #endif
-#ifdef SUPPORT_MINIXFS3
-#include <lib/libsa/minixfs3.h>
-#endif
-#ifdef SUPPORT_USTARFS
-#include <lib/libsa/ustarfs.h>
-#endif
 #ifdef SUPPORT_DOSFS
 #include <lib/libsa/dosfs.h>
 #endif
@@ -60,15 +54,9 @@ struct fs_ops file_system[] = {
 #ifdef SUPPORT_CD9660
 	FS_OPS(cd9660),
 #endif
-#ifdef SUPPORT_USTARFS
-	FS_OPS(ustarfs),
-#endif
 	FS_OPS(ffsv1), FS_OPS(ffsv2),
 #ifdef SUPPORT_EXT2FS // tbd
 	FS_OPS(ext2fs),
-#endif
-#ifdef SUPPORT_MINIXFS3
-	FS_OPS(minixfs3),
 #endif
 #ifdef SUPPORT_DOSFS
 	FS_OPS(dosfs),

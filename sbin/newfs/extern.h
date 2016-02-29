@@ -53,6 +53,4 @@ extern int	avgfpdir;	/* expected number of files per directory */
 extern u_long	memleft;	/* virtual memory available */
 extern caddr_t	membase;	/* start address of memory based filesystem */
 extern int	needswap;	/* Filesystem not in native byte order */
-extern int	isappleufs; /* Filesystem is Apple UFS */
-extern char	*appleufs_volname;	/* Apple UFS volume name */
 extern int	quotas;		/* filesystem quota to enable */

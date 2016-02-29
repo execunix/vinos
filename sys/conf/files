@@ -1407,18 +1407,13 @@ file	dev/pud/pud_dev.c		pud
 #
 # File systems
 #
-include "fs/adosfs/files.adosfs"
 include "fs/cd9660/files.cd9660"
-include "fs/efs/files.efs"
-include "fs/filecorefs/files.filecorefs"
-include "fs/hfs/files.hfs"
 include "fs/msdosfs/files.msdosfs"
 include "fs/ntfs/files.ntfs"
 include "fs/ptyfs/files.ptyfs"
 include "fs/puffs/files.puffs"
 include "fs/udf/files.udf"
 include "fs/smbfs/files.smbfs"
-include "fs/sysvbfs/files.sysvbfs"
 include "fs/tmpfs/files.tmpfs"
 include "fs/union/files.union"
 include "miscfs/fdesc/files.fdesc"

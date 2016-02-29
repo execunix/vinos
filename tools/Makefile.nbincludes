@@ -26,7 +26,7 @@ _ARCH_INCS!=	${TOOL_SED} -e 's/^\#.*//' ${.CURDIR}/../headerlist
 
 _INCS=		disktab.h
 _SYSINCS=	bootblock.h \
-		disklabel.h disklabel_acorn.h disklabel_gpt.h disklabel_rdb.h \
+		disklabel.h disklabel_gpt.h disklabel_rdb.h \
 		dkbad.h \
 		exec_elf.h
 

@@ -1,7 +1,5 @@
 #	$NetBSD: Makefile,v 1.6 2010/01/16 16:10:39 roy Exp $
 
-SUBDIR+=man-adosfs-catman
-SUBDIR+=man-adosfs-man
 SUBDIR+=man-amd-catman
 SUBDIR+=man-amd-info
 SUBDIR+=man-amd-man
@@ -30,8 +28,6 @@ SUBDIR+=man-dhcpd-catman
 SUBDIR+=man-dhcpd-man
 SUBDIR+=man-ext2fs-catman
 SUBDIR+=man-ext2fs-man
-SUBDIR+=man-filecorefs-catman
-SUBDIR+=man-filecorefs-man
 SUBDIR+=man-fortran-info
 SUBDIR+=man-games-catman
 SUBDIR+=man-games-man

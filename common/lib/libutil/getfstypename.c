@@ -65,50 +65,24 @@ getfstypename(int fstype)
 		return DKW_PTYPE_UNUSED;
 	case FS_SWAP:
 		return DKW_PTYPE_SWAP;
-	case FS_SYSV:
-		return DKW_PTYPE_SYSV;
-	case FS_V71K:
-		return DKW_PTYPE_V71K;
-	case FS_V8:
-		return DKW_PTYPE_V8;
 	case FS_BSDFFS:
 		return DKW_PTYPE_FFS;
 	case FS_MSDOS:
 		return DKW_PTYPE_FAT;
 	case FS_OTHER:
 		return DKW_PTYPE_OTHER;
-	case FS_HPFS:
-		return DKW_PTYPE_HPFS;
 	case FS_ISO9660:
 		return DKW_PTYPE_ISO9660;
 	case FS_BOOT:
 		return DKW_PTYPE_BOOT;
-	case FS_ADOS:
-		return DKW_PTYPE_AMIGADOS;
-	case FS_HFS:
-		return DKW_PTYPE_APPLEHFS;
-	case FS_FILECORE:
-		return DKW_PTYPE_FILECORE;
 	case FS_EX2FS:
 		return DKW_PTYPE_EXT2FS;
 	case FS_NTFS:
 		return DKW_PTYPE_NTFS;
-	case FS_JFS2:
-		return DKW_PTYPE_JFS2;
-	case FS_APPLEUFS:
-		return DKW_PTYPE_APPLEUFS;
-	case FS_VINUM:
-		return DKW_PTYPE_VINUM;
 	case FS_UDF:
 		return DKW_PTYPE_UDF;
-	case FS_SYSVBFS:
-		return DKW_PTYPE_SYSVBFS;
-	case FS_EFS:
-		return DKW_PTYPE_EFS;
 	case FSMAXTYPES:
 		return DKW_PTYPE_UNKNOWN;
-	case FS_MINIXFS3:
-		return DKW_PTYPE_MINIXFS3;
 	}
 	/* Stupid gcc, should know it is impossible to get here */
 	/*NOTREACHED*/

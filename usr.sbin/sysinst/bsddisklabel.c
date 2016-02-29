@@ -652,16 +652,6 @@ make_bsd_partitions(void)
 	}
 #endif /* PART_BOOT w/o BOOT_SIZE */
 
-#if defined(PART_SYSVBFS) && defined(SYSVBFS_SIZE)
-	pm->bsdlabel[PART_SYSVBFS].pi_offset = partstart;
-	pm->bsdlabel[PART_SYSVBFS].pi_fstype = FS_SYSVBFS;
-	pm->bsdlabel[PART_SYSVBFS].pi_size = SYSVBFS_SIZE;
-	pm->bsdlabel[PART_SYSVBFS].pi_flags |= PIF_NEWFS | PIF_MOUNT;
-	strlcpy(pm->bsdlabel[PART_SYSVBFS].pi_mount, "/stand",
-	    sizeof pm->bsdlabel[PART_SYSVBFS].pi_mount);
-	partstart += SYSVBFS_SIZE;
-#endif
-
 #ifdef PART_REST
 	pm->bsdlabel[PART_REST].pi_offset = 0;
 	pm->bsdlabel[PART_REST].pi_size = pm->ptstart;

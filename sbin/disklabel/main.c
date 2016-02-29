@@ -102,13 +102,11 @@ __RCSID("$NetBSD: main.c,v 1.41 2014/08/10 06:48:51 apb Exp $");
 
 #if HAVE_NBTOOL_CONFIG_H
 #include <nbinclude/sys/disklabel.h>
-#include <nbinclude/sys/disklabel_acorn.h>
 #include <nbinclude/sys/bootblock.h>
 #include "../../include/disktab.h"
 #else
 #include <sys/ioctl.h>
 #include <sys/disklabel.h>
-#include <sys/disklabel_acorn.h>
 #include <sys/bootblock.h>
 #include <util.h>
 #include <disktab.h>
@@ -957,159 +955,7 @@ writelabel_mbr(int f, u_int sector)
 
 #endif	/* !NO_MBR_SUPPORT */
 
-#ifndef USE_ACORN
 #define get_filecore_partition(f) 0
-#else
-/*
- * static int filecore_checksum(u_char *bootblock)
- *
- * Calculates the filecore boot block checksum. This is used to validate
- * a filecore boot block on the disk.  If a boot block is validated then
- * it is used to locate the partition table. If the boot block is not
- * validated, it is assumed that the whole disk is NetBSD.
- *
- * The basic algorithm is:
- *
- *	for (each byte in block, excluding checksum) {
- *		sum += byte;
- *		if (sum > 255)
- *			sum -= 255;
- *	}
- *
- * That's equivalent to summing all of the bytes in the block
- * (excluding the checksum byte, of course), then calculating the
- * checksum as "cksum = sum - ((sum - 1) / 255) * 255)".  That
- * expression may or may not yield a faster checksum function,
- * but it's easier to reason about.
- *
- * Note that if you have a block filled with bytes of a single
- * value "X" (regardless of that value!) and calculate the cksum
- * of the block (excluding the checksum byte), you will _always_
- * end up with a checksum of X.  (Do the math; that can be derived
- * from the checksum calculation function!)  That means that
- * blocks which contain bytes which all have the same value will
- * always checksum properly.  That's a _very_ unlikely occurence
- * (probably impossible, actually) for a valid filecore boot block,
- * so we treat such blocks as invalid.
- */
-static int
-filecore_checksum(u_char *bootblock)
-{
-	u_char	byte0, accum_diff;
-	u_int	sum;
-	int	i;
-
-	sum = 0;
-	accum_diff = 0;
-	byte0 = bootblock[0];
-
-	/*
-	 * Sum the contents of the block, keeping track of whether
-	 * or not all bytes are the same.  If 'accum_diff' ends up
-	 * being zero, all of the bytes are, in fact, the same.
-	 */
-	for (i = 0; i < 511; ++i) {
-		sum += bootblock[i];
-		accum_diff |= bootblock[i] ^ byte0;
-	}
-
-	/*
-	 * Check to see if the checksum byte is the same as the
-	 * rest of the bytes, too.  (Note that if all of the bytes
-	 * are the same except the checksum, a checksum compare
-	 * won't succeed, but that's not our problem.)
-	 */
-	accum_diff |= bootblock[i] ^ byte0;
-
-	/* All bytes in block are the same; call it invalid. */
-	if (accum_diff == 0)
-		return (-1);
-
-	return (sum - ((sum - 1) / 255) * 255);
-}
-
-/*
- * Check for the presence of a RiscOS filecore boot block
- * indicating an ADFS file system on the disc.
- * Return the offset to the NetBSD part of the disc if
- * this can be determined.
- * This routine will terminate disklabel if the disc
- * is found to be ADFS only.
- */
-static u_int
-get_filecore_partition(int f)
-{
-	struct filecore_bootblock	*fcbb;
-	static u_char	bb[DEV_BSIZE];
-	u_int		offset;
-	struct riscix_partition_table	*riscix_part;
-	int		loop;
-
-	if (pread(f, bb, sizeof(bb), (off_t)FILECORE_BOOT_SECTOR * DEV_BSIZE) != sizeof(bb))
-		err(4, "can't read filecore boot block");
-	fcbb = (struct filecore_bootblock *)bb;
-
-	/* Check if table is valid. */
-	if (filecore_checksum(bb) != fcbb->checksum)
-		return (0);
-
-	/*
-	 * Check for NetBSD/arm32 (RiscBSD) partition marker.
-	 * If found the NetBSD disklabel location is easy.
-	 */
-	offset = (fcbb->partition_cyl_low + (fcbb->partition_cyl_high << 8))
-	    * fcbb->heads * fcbb->secspertrack;
-
-	switch (fcbb->partition_type) {
-
-	case PARTITION_FORMAT_RISCBSD:
-		return (offset);
-
-	case PARTITION_FORMAT_RISCIX:
-		/*
-		 * Read the RISCiX partition table and search for the
-		 * first partition named "RiscBSD", "NetBSD", or "Empty:"
-		 *
-		 * XXX is use of 'Empty:' really desirable?! -- cgd
-		 */
-
-		if (pread(f, bb, sizeof(bb), (off_t)offset * DEV_BSIZE) != sizeof(bb))
-			err(4, "can't read riscix partition table");
-		riscix_part = (struct riscix_partition_table *)bb;
-
-		for (loop = 0; loop < NRISCIX_PARTITIONS; ++loop) {
-			if (strcmp((char *)riscix_part->partitions[loop].rp_name,
-				    "RiscBSD") == 0 ||
-			    strcmp((char *)riscix_part->partitions[loop].rp_name,
-				    "NetBSD") == 0 ||
-			    strcmp((char *)riscix_part->partitions[loop].rp_name,
-				    "Empty:") == 0) {
-				return riscix_part->partitions[loop].rp_start;
-				break;
-			}
-		}
-		/*
-		 * Valid filecore boot block, RISCiX partition table
-		 * but no NetBSD partition. We should leave this
-		 * disc alone.
-		 */
-		errx(4, "cannot label: no NetBSD partition found"
-			" in RISCiX partition table");
-
-	default:
-		/*
-		 * Valid filecore boot block and no non-ADFS partition.
-		 * This means that the whole disc is allocated for ADFS
-		 * so do not trash ! If the user really wants to put a
-		 * NetBSD disklabel on the disc then they should remove
-		 * the filecore boot block first with dd.
-		 */
-		errx(4, "cannot label: filecore-only disk"
-			" (no non-ADFS partition)");
-	}
-	return (0);
-}
-#endif	/* USE_ACORN */
 
 /*
  * Fetch disklabel for disk to 'lab'.
@@ -1427,8 +1273,6 @@ makedisktab(FILE *f, struct disklabel *lp)
 
 			case FS_BSDFFS:
 			case FS_EX2FS:
-			case FS_ADOS:
-			case FS_APPLEUFS:
 				(void) fprintf(f, "b%c#%" PRIu64 ":", c,
 				    (uint64_t)pp->p_fsize * pp->p_frag);
 				(void) fprintf(f, "f%c#%" PRIu32 ":", c,
@@ -1915,8 +1759,6 @@ gottype:
 			break;
 
 		case FS_BSDFFS:
-		case FS_ADOS:
-		case FS_APPLEUFS:
 			NXTNUM(pp->p_fsize);
 			if (pp->p_fsize == 0)
 				break;

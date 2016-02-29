@@ -698,7 +698,6 @@ ffs_reload(struct mount *mp, kauth_cred_t cred, struct lwp *l)
 	void *space;
 	struct buf *bp;
 	struct fs *fs, *newfs;
-	struct dkwedge_info dkw;
 	int i, bsize, blks, error;
 	int32_t *lp;
 	struct ufsmount *ump;
@@ -762,55 +761,12 @@ ffs_reload(struct mount *mp, kauth_cred_t cred, struct lwp *l)
 	brelse(bp, 0);
 	kmem_free(newfs, fs->fs_sbsize);
 
-	/* Recheck for apple UFS filesystem */
-	ump->um_flags &= ~UFS_ISAPPLEUFS;
-	/* First check to see if this is tagged as an Apple UFS filesystem
-	 * in the disklabel
-	 */
-	if (getdiskinfo(devvp, &dkw) == 0 &&
-	    strcmp(dkw.dkw_ptype, DKW_PTYPE_APPLEUFS) == 0)
-		ump->um_flags |= UFS_ISAPPLEUFS;
-#ifdef APPLE_UFS
-	else {
-		/* Manually look for an apple ufs label, and if a valid one
-		 * is found, then treat it like an Apple UFS filesystem anyway
-		 *
-		 * EINVAL is most probably a blocksize or alignment problem,
-		 * it is unlikely that this is an Apple UFS filesystem then.
-		 */
-		error = bread(devvp,
-		    (daddr_t)(APPLEUFS_LABEL_OFFSET / DEV_BSIZE),
-		    APPLEUFS_LABEL_SIZE, cred, 0, &bp);
-		if (error && error != EINVAL) {
-			return error;
-		}
-		if (error == 0) {
-			error = ffs_appleufs_validate(fs->fs_fsmnt,
-				(struct appleufslabel *)bp->b_data, NULL);
-			if (error == 0)
-				ump->um_flags |= UFS_ISAPPLEUFS;
-			brelse(bp, 0);
-		}
-		bp = NULL;
-	}
-#else
-	if (ump->um_flags & UFS_ISAPPLEUFS)
-		return (EIO);
-#endif
-
-	if (UFS_MPISAPPLEUFS(ump)) {
-		/* see comment about NeXT below */
-		ump->um_maxsymlinklen = APPLEUFS_MAXSYMLINKLEN;
-		ump->um_dirblksiz = APPLEUFS_DIRBLKSIZ;
+	ump->um_maxsymlinklen = fs->fs_maxsymlinklen;
+	ump->um_dirblksiz = UFS_DIRBLKSIZ;
+	if (ump->um_maxsymlinklen > 0)
 		mp->mnt_iflag |= IMNT_DTYPE;
-	} else {
-		ump->um_maxsymlinklen = fs->fs_maxsymlinklen;
-		ump->um_dirblksiz = UFS_DIRBLKSIZ;
-		if (ump->um_maxsymlinklen > 0)
-			mp->mnt_iflag |= IMNT_DTYPE;
-		else
-			mp->mnt_iflag &= ~IMNT_DTYPE;
-	}
+	else
+		mp->mnt_iflag &= ~IMNT_DTYPE;
 	ffs_oldfscompat_read(fs, ump, sblockloc);
 
 	mutex_enter(&ump->um_lock);
@@ -913,7 +869,6 @@ ffs_mountfs(struct vnode *devvp, struct mount *mp, struct lwp *l)
 	struct buf *bp;
 	struct fs *fs;
 	dev_t dev;
-	struct dkwedge_info dkw;
 	void *space;
 	daddr_t sblockloc, fsblockloc;
 	int blks, fstype;
@@ -1137,71 +1092,6 @@ ffs_mountfs(struct vnode *devvp, struct mount *mp, struct lwp *l)
 		brelse(bp, 0);
 	bp = NULL;
 
-	/* First check to see if this is tagged as an Apple UFS filesystem
-	 * in the disklabel
-	 */
-	if (getdiskinfo(devvp, &dkw) == 0 &&
-	    strcmp(dkw.dkw_ptype, DKW_PTYPE_APPLEUFS) == 0)
-		ump->um_flags |= UFS_ISAPPLEUFS;
-#ifdef APPLE_UFS
-	else {
-		/* Manually look for an apple ufs label, and if a valid one
-		 * is found, then treat it like an Apple UFS filesystem anyway
-		 */
-		error = bread(devvp,
-		    (daddr_t)(APPLEUFS_LABEL_OFFSET / DEV_BSIZE),
-		    APPLEUFS_LABEL_SIZE, cred, 0, &bp);
-		if (error) {
-			DPRINTF(("%s: apple bread@0x%jx %d\n", __func__,
-			    (intmax_t)(APPLEUFS_LABEL_OFFSET / DEV_BSIZE),
-			    error));
-			goto out;
-		}
-		error = ffs_appleufs_validate(fs->fs_fsmnt,
-		    (struct appleufslabel *)bp->b_data, NULL);
-		if (error == 0)
-			ump->um_flags |= UFS_ISAPPLEUFS;
-		brelse(bp, 0);
-		bp = NULL;
-	}
-#else
-	if (ump->um_flags & UFS_ISAPPLEUFS) {
-		DPRINTF(("%s: bad apple\n", __func__));
-		error = EINVAL;
-		goto out;
-	}
-#endif
-
-#if 0
-/*
- * XXX This code changes the behaviour of mounting dirty filesystems, to
- * XXX require "mount -f ..." to mount them.  This doesn't match what
- * XXX mount(8) describes and is disabled for now.
- */
-	/*
-	 * If the file system is not clean, don't allow it to be mounted
-	 * unless MNT_FORCE is specified.  (Note: MNT_FORCE is always set
-	 * for the root file system.)
-	 */
-	if (fs->fs_flags & FS_DOWAPBL) {
-		/*
-		 * wapbl normally expects to be FS_WASCLEAN when the FS_DOWAPBL
-		 * bit is set, although there's a window in unmount where it
-		 * could be FS_ISCLEAN
-		 */
-		if ((mp->mnt_flag & MNT_FORCE) == 0 &&
-		    (fs->fs_clean & (FS_WASCLEAN | FS_ISCLEAN)) == 0) {
-			error = EPERM;
-			goto out;
-		}
-	} else
-		if ((fs->fs_clean & FS_ISCLEAN) == 0 &&
-		    (mp->mnt_flag & MNT_FORCE) == 0) {
-			error = EPERM;
-			goto out;
-		}
-#endif
-
 	/*
 	 * verify that we can access the last block in the fs
 	 * if we're mounting read/write.
@@ -1286,23 +1176,12 @@ ffs_mountfs(struct vnode *devvp, struct mount *mp, struct lwp *l)
 	mp->mnt_stat.f_fsidx.__fsid_val[1] = makefstype(MOUNT_FFS);
 	mp->mnt_stat.f_fsid = mp->mnt_stat.f_fsidx.__fsid_val[0];
 	mp->mnt_stat.f_namemax = FFS_MAXNAMLEN;
-	if (UFS_MPISAPPLEUFS(ump)) {
-		/* NeXT used to keep short symlinks in the inode even
-		 * when using FS_42INODEFMT.  In that case fs->fs_maxsymlinklen
-		 * is probably -1, but we still need to be able to identify
-		 * short symlinks.
-		 */
-		ump->um_maxsymlinklen = APPLEUFS_MAXSYMLINKLEN;
-		ump->um_dirblksiz = APPLEUFS_DIRBLKSIZ;
+	ump->um_maxsymlinklen = fs->fs_maxsymlinklen;
+	ump->um_dirblksiz = UFS_DIRBLKSIZ;
+	if (ump->um_maxsymlinklen > 0)
 		mp->mnt_iflag |= IMNT_DTYPE;
-	} else {
-		ump->um_maxsymlinklen = fs->fs_maxsymlinklen;
-		ump->um_dirblksiz = UFS_DIRBLKSIZ;
-		if (ump->um_maxsymlinklen > 0)
-			mp->mnt_iflag |= IMNT_DTYPE;
-		else
-			mp->mnt_iflag &= ~IMNT_DTYPE;
-	}
+	else
+		mp->mnt_iflag &= ~IMNT_DTYPE;
 	mp->mnt_fs_bshift = fs->fs_bshift;
 	mp->mnt_dev_bshift = DEV_BSHIFT;	/* XXX */
 	mp->mnt_flag |= MNT_LOCAL;

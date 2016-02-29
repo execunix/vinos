@@ -107,7 +107,6 @@ main(int argc, char *argv[])
 
 	forceimage = 0;
 	debug = 0;
-	isappleufs = 0;
 	while ((ch = getopt(argc, argv, "dFf:n")) != -1) {
 		switch (ch) {
 		case 'd':

@@ -140,11 +140,6 @@ bufinit(void)
 		errexit("cannot allocate buffer pool");
 	cgblk.b_un.b_buf = bufp;
 	initbarea(&cgblk);
-	bufp = malloc((unsigned int)APPLEUFS_LABEL_SIZE);
-	if (bufp == 0)
-		errexit("cannot allocate buffer pool");
-	appleufsblk.b_un.b_buf = bufp;
-	initbarea(&appleufsblk);
 	bufhead.b_next = bufhead.b_prev = &bufhead;
 	bufcnt = MAXBUFSPACE / sblock->fs_bsize;
 	if (bufcnt < MINBUFS)
@@ -287,8 +282,6 @@ ckfini(int noint)
 		sbdirty();
 		flush(fswritefd, &sblk);
 	}
-	flush(fswritefd, &appleufsblk);
-	free(appleufsblk.b_un.b_buf);
 	flush(fswritefd, &cgblk);
 	free(cgblk.b_un.b_buf);
 	for (bp = bufhead.b_prev; bp && bp != &bufhead; bp = nbp) {

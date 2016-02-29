@@ -70,7 +70,6 @@ __RCSID("$NetBSD: setup.c,v 1.100 2013/06/23 07:28:36 dholland Exp $");
 static void badsb(int, const char *);
 static int calcsb(const char *, int, struct fs *);
 static int readsb(int);
-static int readappleufs(void);
 
 int16_t sblkpostbl[256];
 
@@ -527,19 +526,10 @@ setup(const char *dev, const char *origdev)
 	else
 		usedsoftdep = 0;
 
-	if (!forceimage && dkw.dkw_parent[0]) 
-		if (strcmp(dkw.dkw_ptype, DKW_PTYPE_APPLEUFS) == 0)
-			isappleufs = 1;
-
-	if (readappleufs())
-		isappleufs = 1;
-
 	dirblksiz = UFS_DIRBLKSIZ;
-	if (isappleufs)
-		dirblksiz = APPLEUFS_DIRBLKSIZ;
 
 	if (debug)
-		printf("isappleufs = %d, dirblksiz = %d\n", isappleufs, dirblksiz);
+		printf("dirblksiz = %d\n", dirblksiz);
 
 	if (sblock->fs_flags & FS_DOQUOTA2) {
 		/* allocate the quota hash table */
@@ -578,111 +568,6 @@ badsblabel:
 	markclean=0;
 	ckfini(1);
 	return (0);
-}
-
-static int
-readappleufs(void)
-{
-	daddr_t label = APPLEUFS_LABEL_OFFSET / dev_bsize;
-	struct appleufslabel *appleufs;
-	int i;
-
-	/* XXX do we have to deal with APPLEUFS_LABEL_OFFSET not
-	 * being block aligned (CD's?)
-	 */
-	if (APPLEUFS_LABEL_SIZE % dev_bsize != 0)
-		return 0;
-	if (bread(fsreadfd, (char *)appleufsblk.b_un.b_fs, label,
-	    (long)APPLEUFS_LABEL_SIZE) != 0)
-		return 0;
-	appleufsblk.b_bno = label;
-	appleufsblk.b_size = APPLEUFS_LABEL_SIZE;
-
-	appleufs = appleufsblk.b_un.b_appleufs;
-
-	if (ntohl(appleufs->ul_magic) != APPLEUFS_LABEL_MAGIC) {
-		if (!isappleufs) {
-			return 0;
-		} else {
-			pfatal("MISSING APPLEUFS VOLUME LABEL\n");
-			if (reply("FIX") == 0) {
-				return 1;
-			}
-			ffs_appleufs_set(appleufs, NULL, -1, 0);
-			appleufsdirty();
-		}
-	}
-
-	if (ntohl(appleufs->ul_version) != APPLEUFS_LABEL_VERSION) {
-		pwarn("INCORRECT APPLE UFS VERSION NUMBER (%d should be %d)",
-			ntohl(appleufs->ul_version),APPLEUFS_LABEL_VERSION);
-		if (preen) {
-			printf(" (CORRECTED)\n");
-		}
-		if (preen || reply("CORRECT")) {
-			appleufs->ul_version = htonl(APPLEUFS_LABEL_VERSION);
-			appleufsdirty();
-		}
-	}
-
-	if (ntohs(appleufs->ul_namelen) > APPLEUFS_MAX_LABEL_NAME) {
-		pwarn("APPLE UFS LABEL NAME TOO LONG");
-		if (preen) {
-			printf(" (TRUNCATED)\n");
-		}
-		if (preen || reply("TRUNCATE")) {
-			appleufs->ul_namelen = htons(APPLEUFS_MAX_LABEL_NAME);
-			appleufsdirty();
-		}
-	}
-
-	if (ntohs(appleufs->ul_namelen) == 0) {
-		pwarn("MISSING APPLE UFS LABEL NAME");
-		if (preen) {
-			printf(" (FIXED)\n");
-		}
-		if (preen || reply("FIX")) {
-			ffs_appleufs_set(appleufs, NULL, -1, 0);
-			appleufsdirty();
-		}
-	}
-
-	/* Scan name for first illegal character */
-	for (i=0;i<ntohs(appleufs->ul_namelen);i++) {
-		if ((appleufs->ul_name[i] == '\0') ||
-			(appleufs->ul_name[i] == ':') ||
-			(appleufs->ul_name[i] == '/')) {
-			pwarn("APPLE UFS LABEL NAME CONTAINS ILLEGAL CHARACTER");
-			if (preen) {
-				printf(" (TRUNCATED)\n");
-			}
-			if (preen || reply("TRUNCATE")) {
-				appleufs->ul_namelen = i+1;
-				appleufsdirty();
-			}
-			break;
-		}
-	}
-
-	/* Check the checksum last, because if anything else was wrong,
-	 * then the checksum gets reset anyway.
-	 */
-	appleufs->ul_checksum = 0;
-	appleufs->ul_checksum = ffs_appleufs_cksum(appleufs);
-	if (appleufsblk.b_un.b_appleufs->ul_checksum != appleufs->ul_checksum) {
-		pwarn("INVALID APPLE UFS CHECKSUM (%#04x should be %#04x)",
-			appleufsblk.b_un.b_appleufs->ul_checksum, appleufs->ul_checksum);
-		if (preen) {
-			printf(" (CORRECTED)\n");
-		}
-		if (preen || reply("CORRECT")) {
-			appleufsdirty();
-		} else {
-			/* put the incorrect checksum back in place */
-			appleufs->ul_checksum = appleufsblk.b_un.b_appleufs->ul_checksum;
-		}
-	}
-	return 1;
 }
 
 /*
@@ -1027,8 +912,7 @@ calcsb(const char *dev, int devfd, struct fs *fs)
 		pfatal("%s: CANNOT FIGURE OUT FILE SYSTEM PARTITION\n", dev);
 		return (0);
 	}
-	if (strcmp(dkw.dkw_ptype, DKW_PTYPE_FFS) &&
-	    strcmp(dkw.dkw_ptype, DKW_PTYPE_APPLEUFS)) {
+	if (strcmp(dkw.dkw_ptype, DKW_PTYPE_FFS)) {
 		pfatal("%s: NOT LABELED AS A BSD FILE SYSTEM (%s)\n",
 		    dev, dkw.dkw_ptype);
 		return (0);

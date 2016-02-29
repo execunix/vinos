@@ -173,14 +173,6 @@ extern int (**ffs_fifoop_p)(void *);
 
 #endif /* defined(_KERNEL) */
 
-/* ffs_appleufs.c */
-struct appleufslabel;
-u_int16_t ffs_appleufs_cksum(const struct appleufslabel *);
-int	ffs_appleufs_validate(const char*, const struct appleufslabel *,
-			      struct appleufslabel *);
-void	ffs_appleufs_set(struct appleufslabel *, const char *, time_t,
-			 uint64_t);
-
 /* ffs_bswap.c */
 void	ffs_sb_swap(struct fs*, struct fs *);
 void	ffs_dinode1_swap(struct ufs1_dinode *, struct ufs1_dinode *);

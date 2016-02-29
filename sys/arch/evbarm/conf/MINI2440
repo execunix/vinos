@@ -56,7 +56,6 @@ options 	S3C2XX0_XTAL_CLK=12000000     # 12MHz Xtal
 file-system	FFS		# UFS
 #file-system	MFS		# memory file system
 file-system	NFS		# Network file system
-#file-system 	ADOSFS		# AmigaDOS-compatible file system
 #file-system 	EXT2FS		# second extended file system (linux)
 #file-system	CD9660		# ISO 9660 + Rock Ridge file system
 file-system	MSDOSFS		# MS-DOS file system

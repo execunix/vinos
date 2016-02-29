@@ -1729,12 +1729,6 @@ ffs_snapshot_mount(struct mount *mp)
 	daddr_t snaplistsize, *snapblklist;
 	int i, error, ns __unused, snaploc, loc;
 
-	/*
-	 * No persistent snapshots on apple ufs file systems.
-	 */
-	if (UFS_MPISAPPLEUFS(VFSTOUFS(mp)))
-		return;
-
 	si = VFSTOUFS(mp)->um_snapinfo;
 	ns = UFS_FSNEEDSWAP(fs);
 	/*

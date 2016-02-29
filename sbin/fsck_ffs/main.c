@@ -97,13 +97,8 @@ main(int argc, char *argv[])
 	markclean = 1;
 	forceimage = 0;
 	endian = 0;
-	isappleufs = 0;
 	while ((ch = getopt(argc, argv, "aB:b:c:dFfm:npPqUyx:X")) != -1) {
 		switch (ch) {
-		case 'a':
-			isappleufs = 1;
-			break;
-
 		case 'B':
 			if (strcmp(optarg, "be") == 0)
 				endian = BIG_ENDIAN;

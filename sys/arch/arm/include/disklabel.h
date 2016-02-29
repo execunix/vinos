@@ -72,11 +72,9 @@
 
 #if HAVE_NBTOOL_CONFIG_H
 #include <nbinclude/sys/dkbad.h>
-#include <nbinclude/sys/disklabel_acorn.h>
 #include <nbinclude/sys/bootblock.h>
 #else
 #include <sys/dkbad.h>
-#include <sys/disklabel_acorn.h>
 #include <sys/bootblock.h>
 #endif /* HAVE_NBTOOL_CONFIG_H */
 

@@ -339,3 +339,7 @@ root@xmtbsdv3:/mnt/hdd1/vinos#
 
 ##############################################################################
 # nbmake INSTALLWORLDDIR=/mnt/hdd1/root/ installworld
+
+/mnt/hdd1/vinos/usr.sbin/sysinst
+GPT_ENT_TYPE_*
+compat_
