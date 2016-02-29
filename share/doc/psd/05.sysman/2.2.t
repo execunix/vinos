@@ -754,19 +754,6 @@ This system call is restricted to the superuser.
 The kernel supports many other filesystems.
 These include:
 .IP \(bu
-The log-structured filesystem. It provides an alternate disk
-layout than the fast filesystem optimized for writing rather
-than reading.
-For further information see the
-.Xr mount_lfs (8)
-manual page.
-.\"
-.\" We currently do not document the LFS calls
-.\" .Fd lfs_bmapv 3
-.\" .Fd lfs_markv 3
-.\" .Fd lfs_segclean 2
-.\" .Fd lfs_segwait 2
-.IP \(bu
 The ISO-standard 9660 filesystem with Rock Ridge extensions used for CD-ROMs.
 For further information see the
 .Xr mount_cd9660 (8)

@@ -6,7 +6,7 @@
 SUBDIR=	ac accton acpitools altq apm apmd arp \
 	bad144 bootp btattach btconfig btdevctl bthcid btpand catman \
 	chroot cnwctl cpuctl crash \
-	dev_mkdb diskpart dumpfs dumplfs \
+	dev_mkdb diskpart dumpfs \
 	edquota eeprom envstat eshconfig etcupdate extattrctl \
 	flashctl fssconfig fusermount fwctl \
 	gpioctl gspa \

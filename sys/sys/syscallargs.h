@@ -957,32 +957,6 @@ struct sys_seteuid_args {
 };
 check_syscall_args(sys_seteuid)
 
-struct sys_lfs_bmapv_args {
-	syscallarg(fsid_t *) fsidp;
-	syscallarg(struct block_info *) blkiov;
-	syscallarg(int) blkcnt;
-};
-check_syscall_args(sys_lfs_bmapv)
-
-struct sys_lfs_markv_args {
-	syscallarg(fsid_t *) fsidp;
-	syscallarg(struct block_info *) blkiov;
-	syscallarg(int) blkcnt;
-};
-check_syscall_args(sys_lfs_markv)
-
-struct sys_lfs_segclean_args {
-	syscallarg(fsid_t *) fsidp;
-	syscallarg(u_long) segment;
-};
-check_syscall_args(sys_lfs_segclean)
-
-struct compat_50_sys_lfs_segwait_args {
-	syscallarg(fsid_t *) fsidp;
-	syscallarg(struct timeval50 *) tv;
-};
-check_syscall_args(compat_50_sys_lfs_segwait)
-
 struct compat_12_sys_stat_args {
 	syscallarg(const char *) path;
 	syscallarg(struct stat12 *) ub;
@@ -2327,12 +2301,6 @@ struct sys___adjtime50_args {
 };
 check_syscall_args(sys___adjtime50)
 
-struct sys___lfs_segwait50_args {
-	syscallarg(fsid_t *) fsidp;
-	syscallarg(struct timeval *) tv;
-};
-check_syscall_args(sys___lfs_segwait50)
-
 struct sys___futimes50_args {
 	syscallarg(int) fd;
 	syscallarg(const struct timeval *) tptr;
@@ -3101,14 +3069,6 @@ int	sys_setegid(struct lwp *, const struct sys_setegid_args *, register_t *);
 
 int	sys_seteuid(struct lwp *, const struct sys_seteuid_args *, register_t *);
 
-int	sys_lfs_bmapv(struct lwp *, const struct sys_lfs_bmapv_args *, register_t *);
-
-int	sys_lfs_markv(struct lwp *, const struct sys_lfs_markv_args *, register_t *);
-
-int	sys_lfs_segclean(struct lwp *, const struct sys_lfs_segclean_args *, register_t *);
-
-int	compat_50_sys_lfs_segwait(struct lwp *, const struct compat_50_sys_lfs_segwait_args *, register_t *);
-
 int	compat_12_sys_stat(struct lwp *, const struct compat_12_sys_stat_args *, register_t *);
 
 int	compat_12_sys_fstat(struct lwp *, const struct compat_12_sys_fstat_args *, register_t *);
@@ -3538,8 +3498,6 @@ int	sys___settimeofday50(struct lwp *, const struct sys___settimeofday50_args *,
 int	sys___utimes50(struct lwp *, const struct sys___utimes50_args *, register_t *);
 
 int	sys___adjtime50(struct lwp *, const struct sys___adjtime50_args *, register_t *);
-
-int	sys___lfs_segwait50(struct lwp *, const struct sys___lfs_segwait50_args *, register_t *);
 
 int	sys___futimes50(struct lwp *, const struct sys___futimes50_args *, register_t *);
 

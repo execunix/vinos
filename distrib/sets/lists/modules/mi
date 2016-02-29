@@ -96,8 +96,6 @@
 ./@MODULEDIR@/ksem/ksem.kmod			base-obsolete		obsolete
 ./@MODULEDIR@/layerfs				base-kernel-modules	kmod
 ./@MODULEDIR@/layerfs/layerfs.kmod		base-kernel-modules	kmod
-./@MODULEDIR@/lfs				base-kernel-modules	kmod
-./@MODULEDIR@/lfs/lfs.kmod			base-kernel-modules	kmod
 ./@MODULEDIR@/lua				base-kernel-modules	kmod
 ./@MODULEDIR@/lua/lua.kmod			base-kernel-modules	kmod
 ./@MODULEDIR@/luacore				base-obsolete		obsolete
@@ -124,8 +122,6 @@
 ./@MODULEDIR@/nfs/nfs.kmod			base-kernel-modules	kmod
 ./@MODULEDIR@/nfsserver				base-kernel-modules	kmod
 ./@MODULEDIR@/nfsserver/nfsserver.kmod		base-kernel-modules	kmod
-./@MODULEDIR@/nilfs				base-kernel-modules	kmod
-./@MODULEDIR@/nilfs/nilfs.kmod			base-kernel-modules	kmod
 ./@MODULEDIR@/npf				base-kernel-modules	kmod
 ./@MODULEDIR@/npf/npf.kmod			base-kernel-modules	kmod
 ./@MODULEDIR@/npf_alg_icmp			base-kernel-modules	kmod
@@ -206,8 +202,6 @@
 ./@MODULEDIR@/union/union.kmod			base-kernel-modules	kmod
 ./@MODULEDIR@/usbverbose			base-kernel-modules	kmod
 ./@MODULEDIR@/usbverbose/usbverbose.kmod	base-kernel-modules	kmod
-./@MODULEDIR@/v7fs				base-kernel-modules	kmod
-./@MODULEDIR@/v7fs/v7fs.kmod			base-kernel-modules	kmod
 ./@MODULEDIR@/vnd 				base-kernel-modules	kmod
 ./@MODULEDIR@/vnd/vnd.kmod		        base-kernel-modules	kmod
 ./@MODULEDIR@/zlib				base-kernel-modules     kmod

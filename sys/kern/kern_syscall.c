@@ -165,7 +165,6 @@ sys_nomodule(struct lwp *l, const void *v, register_t *retval)
 	    { SYS_compat_50_settimeofday, "compat" },
 	    { SYS_compat_50_utimes, "compat" },
 	    { SYS_compat_50_adjtime, "compat" },
-	    { SYS_compat_50_lfs_segwait, "compat" },
 	    { SYS_compat_50_futimes, "compat" },
 	    { SYS_compat_50_clock_gettime, "compat" },
 	    { SYS_compat_50_clock_settime, "compat" },

@@ -29,7 +29,6 @@ makeoptions 	CPUFLAGS="-march=armv6z -mtune=arm1176jzf-s -mfpu=vfp"
 # File systems
 
 file-system	FFS		# UFS
-#file-system	LFS		# log-structured file system
 file-system	MFS		# memory file system
 file-system	NFS		# Network file system
 #file-system 	ADOSFS		# AmigaDOS-compatible file system
@@ -46,7 +45,6 @@ file-system	PUFFS		# Userspace file systems (e.g. ntfs-3g & sshfs)
 file-system	TMPFS		# memory file system
 #file-system	UDF		# experimental - OSTA UDF CD/DVD file-system
 #file-system	HFS		# experimental - Apple HFS+ (read-only)
-#file-system	NILFS		# experimental - NTT's NiLFS(2)
 file-system	PTYFS		# /dev/pts/N support
 
 # File system options

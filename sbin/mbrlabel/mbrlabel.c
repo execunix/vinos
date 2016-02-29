@@ -210,14 +210,6 @@ getparts(int sd, u_int32_t off, u_int32_t extoff, int verbose)
 			npe.p_frag = 8;
 			npe.p_cpg = 16;
 			break;
-#ifdef	__does_not_happen__
-		case FS_BSDLFS:
-			npe.p_size = 16384;	/* XXX */
-			npe.p_fsize = 1024;
-			npe.p_frag = 8;
-			npe.p_sgs = XXX;
-			break;
-#endif
 		}
 		changed++;
 		label.d_partitions[unused] = npe;

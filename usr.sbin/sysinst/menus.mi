@@ -155,8 +155,7 @@ menu selfskind, title MSG_Select_the_type, exitstring MSG_unchanged, y=6, x=30;
 		    break;
 		case FS_SWAP:	menu->cursel = 3; break;
 		case FS_MSDOS:	menu->cursel = 4; break;
-		case FS_BSDLFS:	menu->cursel = 5; break;
-		default	:	menu->cursel = 6; break;
+		default	:	menu->cursel = 5; break;
 		};
 	};
 	option "unused", exit, action 
@@ -165,7 +164,6 @@ menu selfskind, title MSG_Select_the_type, exitstring MSG_unchanged, y=6, x=30;
 	option "FFSv2", exit, action { set_ptype(arg, FS_BSDFFS, PIF_FFSv2); };
 	option "swap",  exit, action { set_ptype(arg, FS_SWAP, 0); };
 	option "msdos", exit, action { set_ptype(arg, FS_MSDOS, 0); };
-	option "LFS",   exit, action { set_ptype(arg, FS_BSDLFS, 0); };
 	option MSG_other_types, action 
 	    { extern int all_fstype_menu;
 	      m->opts[m->cursel].opt_menu = all_fstype_menu; };

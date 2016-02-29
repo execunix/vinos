@@ -1426,7 +1426,6 @@ makedisktab(FILE *f, struct disklabel *lp)
 				break;
 
 			case FS_BSDFFS:
-			case FS_BSDLFS:
 			case FS_EX2FS:
 			case FS_ADOS:
 			case FS_APPLEUFS:
@@ -1924,14 +1923,6 @@ gottype:
 			NXTNUM(v);
 			pp->p_frag = v / pp->p_fsize;
 			NXTNUM(pp->p_cpg);
-			break;
-		case FS_BSDLFS:
-			NXTNUM(pp->p_fsize);
-			if (pp->p_fsize == 0)
-				break;
-			NXTNUM(v);
-			pp->p_frag = v / pp->p_fsize;
-			NXTNUM(pp->p_sgs);
 			break;
 		case FS_EX2FS:
 			NXTNUM(pp->p_fsize);

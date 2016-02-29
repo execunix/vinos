@@ -108,13 +108,10 @@ __KERNEL_RCSID(0, "$NetBSD: ufs_vnops.c,v 1.221.2.1 2015/01/28 18:34:11 martin E
 #include <ufs/ext2fs/ext2fs_extern.h>
 #include <ufs/ext2fs/ext2fs_dir.h>
 #include <ufs/ffs/ffs_extern.h>
-#include <ufs/lfs/lfs_extern.h>
-#include <ufs/lfs/lfs.h>
 
 #include <uvm/uvm.h>
 
 __CTASSERT(EXT2FS_MAXNAMLEN == FFS_MAXNAMLEN);
-__CTASSERT(LFS_MAXNAMLEN == FFS_MAXNAMLEN);
 
 static int ufs_chmod(struct vnode *, int, kauth_cred_t, struct lwp *);
 static int ufs_chown(struct vnode *, uid_t, gid_t, kauth_cred_t,

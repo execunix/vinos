@@ -181,8 +181,7 @@ enum {
 	 roundup((size) * (sizemult), (cylsize)))
 
 /* What FS type? */
-#define PI_ISBSDFS(p) ((p)->pi_fstype == FS_BSDLFS || \
-		       (p)->pi_fstype == FS_BSDFFS)
+#define PI_ISBSDFS(p) ((p)->pi_fstype == FS_BSDFFS)
 
 /* standard cd0 device */
 #define CD_NAMES "cd0a"
@@ -464,9 +463,6 @@ int get_dkwedges(struct dkwedge_info **, const char *);
 const char *get_gptfs_by_id(int);
 
 
-/* from disks_lfs.c */
-int	fs_is_lfs(void *);
-
 /* from label.c */
 const char *get_last_mounted(int, int, partinfo *);
 int	savenewlabel(partinfo *, int);
@@ -544,7 +540,6 @@ void	enable_rc_conf(void);
 void	set_sizemultname_cyl(void);
 void	set_sizemultname_meg(void);
 int	binary_available(const char *);
-int	check_lfs_progs(void);
 void	init_set_status(int);
 void	customise_sets(void);
 void	umount_mnt2(void);

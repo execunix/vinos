@@ -427,22 +427,6 @@ secmodel_suser_system_cb(kauth_cred_t cred, kauth_action_t action,
 
 		break;
 
-	case KAUTH_SYSTEM_LFS:
-		switch (req) {
-		case KAUTH_REQ_SYSTEM_LFS_MARKV:
-		case KAUTH_REQ_SYSTEM_LFS_BMAPV:
-		case KAUTH_REQ_SYSTEM_LFS_SEGCLEAN:
-		case KAUTH_REQ_SYSTEM_LFS_SEGWAIT:
-		case KAUTH_REQ_SYSTEM_LFS_FCNTL:
-			if (isroot)
-				result = KAUTH_RESULT_ALLOW;
-
-		default:
-			break;
-		}
-
-		break;
-
 	default:
 		break;
 	}

@@ -447,13 +447,13 @@ struct sysent netbsd32_sysent[] = {
 	{ ns(struct netbsd32_seteuid_args), 0,
 	    (sy_call_t *)netbsd32_seteuid },	/* 183 = netbsd32_seteuid */
 	{ 0, 0, 0,
-	    sys_nosys },			/* 184 = excluded netbsd32_lfs_bmapv */
+	    sys_nosys },			/* 184 = unimplemented */
 	{ 0, 0, 0,
-	    sys_nosys },			/* 185 = excluded netbsd32_lfs_markv */
+	    sys_nosys },			/* 185 = unimplemented */
 	{ 0, 0, 0,
-	    sys_nosys },			/* 186 = excluded netbsd32_lfs_segclean */
+	    sys_nosys },			/* 186 = unimplemented */
 	{ 0, 0, 0,
-	    sys_nosys },			/* 187 = excluded netbsd32_lfs_segwait */
+	    sys_nosys },			/* 187 = unimplemented */
 	{ ns(struct compat_12_netbsd32_stat12_args), 0,
 	    (sy_call_t *)compat_12(netbsd32_stat12) },/* 188 = compat_12_netbsd32_stat12 */
 	{ ns(struct compat_12_netbsd32_fstat12_args), 0,
@@ -976,7 +976,7 @@ struct sysent netbsd32_sysent[] = {
 	{ ns(struct netbsd32___adjtime50_args), 0,
 	    (sy_call_t *)netbsd32___adjtime50 },/* 421 = netbsd32___adjtime50 */
 	{ 0, 0, 0,
-	    sys_nosys },			/* 422 = excluded __lfs_segwait50 */
+	    sys_nosys },			/* 422 = unimplemented */
 	{ ns(struct netbsd32___futimes50_args), 0,
 	    (sy_call_t *)netbsd32___futimes50 },/* 423 = netbsd32___futimes50 */
 	{ ns(struct netbsd32___lutimes50_args), 0,

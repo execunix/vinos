@@ -30,8 +30,7 @@
 .Os
 .Sh NAME
 .Nm scan_ffs ,
-.Nm scan_lfs
-.Nd find FFSv1/FFSv2/LFS partitions on a disk or file
+.Nd find FFSv1/FFSv2 partitions on a disk or file
 .Sh SYNOPSIS
 .Nm
 .Op Fl blv
@@ -42,9 +41,9 @@
 .Sh DESCRIPTION
 .Nm
 will take a raw disk device that covers the whole disk or a file
-and will find all possible FFSv[12]/LFS partitions, independent
+and will find all possible FFSv[12] partitions, independent
 of block sizes on it.
-It will show the file system type (FFSv1, FFSv2, or LFS), size, and
+It will show the file system type (FFSv1, FFSv2), size, and
 offset.
 Also it has an option to show the values with a disklabel-alike
 output.
@@ -92,10 +91,6 @@ The
 argument specifies which device
 .Nm
 should scan for file systems.
-.Pp
-.Nm scan_lfs
-is just another name for the same program, both behave in exactly
-the same way.
 .Sh SEE ALSO
 .Xr disklabel 8
 .Sh HISTORY
@@ -120,7 +115,7 @@ It was ported to
 .Nx
 by
 .An Juan Romero Pardines ,
-who added support for LFS/FFSv2,
+who added support for FFSv2,
 partitions with fragsize/blocksize greater than
 2048/16384 for FFSv1, searching on files, etc.
 .Sh BUGS

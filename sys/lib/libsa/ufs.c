@@ -59,21 +59,14 @@
  */
 
 /*
- *	Stand-alone file reading package for UFS and LFS filesystems.
+ *	Stand-alone file reading package for UFS filesystems.
  */
 
 #include <sys/param.h>
 #include <sys/time.h>
 #include <ufs/ufs/dinode.h>
 #include <ufs/ufs/dir.h>
-#ifdef LIBSA_LFS
-#include <sys/queue.h>
-#include <sys/condvar.h>
-#include <sys/mount.h>			/* XXX for MNAMELEN */
-#include <ufs/lfs/lfs.h>
-#else
 #include <ufs/ffs/fs.h>
-#endif
 #ifdef _STANDALONE
 #include <lib/libkern/libkern.h>
 #else
@@ -81,14 +74,10 @@
 #endif
 
 #include "stand.h"
-#ifdef LIBSA_LFS
-#include "lfs.h"
-#else
 #include "ufs.h"
-#endif
 
 /* If this file is compiled by itself, build ufs (aka ffsv1) support */
-#if !defined(LIBSA_FFSv2) && !defined(LIBSA_LFS)
+#if !defined(LIBSA_FFSv2)
 #define LIBSA_FFSv1
 #endif
 
@@ -99,24 +88,9 @@
 #undef COMPAT_UFS
 #endif
 
-#ifdef LIBSA_LFS
-/*
- * In-core LFS superblock.  This exists only to placate the macros in lfs.h,
- */
-struct fs {
-	struct dlfs	lfs_dlfs;
-};
-#define fs_magic	lfs_magic
-#define fs_maxsymlinklen lfs_maxsymlinklen
-
-#define FS_MAGIC	LFS_MAGIC
-#define SBLOCKSIZE	LFS_SBPAD
-#define SBLOCKOFFSET	LFS_LABELPAD
-#else
 /* NB ufs2 doesn't use the common suberblock code... */
 #define FS_MAGIC	FS_UFS1_MAGIC
 #define SBLOCKOFFSET	SBLOCK_UFS1
-#endif
 
 #if defined(LIBSA_NO_TWIDDLE)
 #define twiddle()
@@ -190,42 +164,6 @@ static int ffs_find_superblock(struct open_file *, struct fs *);
 #endif
 
 
-#ifdef LIBSA_LFS
-/*
- * Find an inode's block.  Look it up in the ifile.  Whee!
- */
-static int
-find_inode_sector(ino32_t inumber, struct open_file *f, daddr_t *isp)
-{
-	struct file *fp = (struct file *)f->f_fsdata;
-	struct fs *fs = fp->f_fs;
-	daddr_t ifileent_blkno;
-	char *ent_in_buf;
-	size_t buf_after_ent;
-	int rc;
-
-	rc = read_inode(fs->lfs_ifile, f);
-	if (rc)
-		return rc;
-
-	ifileent_blkno =
-	    (inumber / fs->lfs_ifpb) + fs->lfs_cleansz + fs->lfs_segtabsz;
-	fp->f_seekp = (off_t)ifileent_blkno * fs->fs_bsize +
-	    (inumber % fs->lfs_ifpb) * sizeof (IFILE_Vx);
-	rc = buf_read_file(f, &ent_in_buf, &buf_after_ent);
-	if (rc)
-		return rc;
-	/* make sure something's not badly wrong, but don't panic. */
-	if (buf_after_ent < sizeof (IFILE_Vx))
-		return EINVAL;
-
-	*isp = FSBTODB(fs, ((IFILE_Vx *)ent_in_buf)->if_daddr);
-	if (*isp == LFS_UNUSED_DADDR)	/* again, something badly wrong */
-		return EINVAL;
-	return 0;
-}
-#endif
-
 /*
  * Read a new inode into a file structure.
  */
@@ -238,19 +176,7 @@ read_inode(ino32_t inumber, struct open_file *f)
 	size_t rsize;
 	int rc;
 	daddr_t inode_sector = 0; /* XXX: gcc */
-#ifdef LIBSA_LFS
-	struct ufs_dinode *dip;
-	int cnt;
-#endif
-
-#ifdef LIBSA_LFS
-	if (inumber == fs->lfs_ifile)
-		inode_sector = FSBTODB(fs, fs->lfs_idaddr);
-	else if ((rc = find_inode_sector(inumber, f, &inode_sector)) != 0)
-		return rc;
-#else
 	inode_sector = FSBTODB(fs, ino_to_fsba(fs, inumber));
-#endif
 
 	/*
 	 * Read inode and save it.
@@ -264,18 +190,7 @@ read_inode(ino32_t inumber, struct open_file *f)
 	if (rsize != fs->fs_bsize)
 		return EIO;
 
-#ifdef LIBSA_LFS
-	cnt = INOPBx(fs);
-	dip = (struct ufs_dinode *)buf + (cnt - 1);
-	for (; dip->di_inumber != inumber; --dip) {
-		/* kernel code panics, but boot blocks which panic are Bad. */
-		if (--cnt == 0)
-			return EINVAL;
-	}
-	fp->f_di = *dip;
-#else
 	fp->f_di = ((struct ufs_dinode *)buf)[ino_to_fsbo(fs, inumber)];
-#endif
 
 	/*
 	 * Clear out the old buffers
@@ -403,11 +318,7 @@ buf_read_file(struct open_file *f, char **buf_p, size_t *size_p)
 
 	off = ufs_blkoff(fs, fp->f_seekp);
 	file_block = ufs_lblkno(fs, fp->f_seekp);
-#ifdef LIBSA_LFS
-	block_size = dblksize(fs, &fp->f_di, file_block);
-#else
 	block_size = ffs_sblksize(fs, (int64_t)fp->f_di.di_size, file_block);
-#endif
 
 	if (file_block != fp->f_buf_blkno) {
 		indp_t disk_block = 0; /* XXX: gcc */
@@ -564,22 +475,11 @@ ufs_open(const char *path, struct open_file *f)
 		if (rc)
 			goto out;
 		if (buf_size != SBLOCKSIZE ||
-#ifdef LIBSA_FFS
-		    fs->lfs_version != REQUIRED_LFS_VERSION ||
-#endif
 		    fs->fs_magic != FS_MAGIC) {
 			rc = EINVAL;
 			goto out;
 		}
 	}
-#if defined(LIBSA_LFS) && REQUIRED_LFS_VERSION == 2
-	/*
-	 * XXX	We should check the second superblock and use the eldest
-	 *	of the two.  See comments near the top of lfs_mountfs()
-	 *	in sys/ufs/lfs/lfs_vfsops.c.
-	 *      This may need a LIBSA_LFS_SMALL check as well.
-	 */
-#endif
 #endif
 
 #ifdef LIBSA_FFSv1
@@ -750,10 +650,6 @@ ufs_open(const char *path, struct open_file *f)
 out:
 	if (rc)
 		ufs_close(f);
-#ifdef FSMOD		/* Only defined for lfs */
-	else
-		fsmod = FSMOD;
-#endif
 	return rc;
 }
 

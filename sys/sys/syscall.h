@@ -514,18 +514,6 @@
 /* syscall: "seteuid" ret: "int" args: "uid_t" */
 #define	SYS_seteuid	183
 
-/* syscall: "lfs_bmapv" ret: "int" args: "fsid_t *" "struct block_info *" "int" */
-#define	SYS_lfs_bmapv	184
-
-/* syscall: "lfs_markv" ret: "int" args: "fsid_t *" "struct block_info *" "int" */
-#define	SYS_lfs_markv	185
-
-/* syscall: "lfs_segclean" ret: "int" args: "fsid_t *" "u_long" */
-#define	SYS_lfs_segclean	186
-
-/* syscall: "compat_50_lfs_segwait" ret: "int" args: "fsid_t *" "struct timeval50 *" */
-#define	SYS_compat_50_lfs_segwait	187
-
 /* syscall: "compat_12_stat12" ret: "int" args: "const char *" "struct stat12 *" */
 #define	SYS_compat_12_stat12	188
 
@@ -1178,9 +1166,6 @@
 
 /* syscall: "__adjtime50" ret: "int" args: "const struct timeval *" "struct timeval *" */
 #define	SYS___adjtime50	421
-
-/* syscall: "__lfs_segwait50" ret: "int" args: "fsid_t *" "struct timeval *" */
-#define	SYS___lfs_segwait50	422
 
 /* syscall: "__futimes50" ret: "int" args: "int" "const struct timeval *" */
 #define	SYS___futimes50	423

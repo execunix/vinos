@@ -32,19 +32,12 @@
  */
 
 #include <machine/bswap.h>
-#ifdef DUMP_LFS
-#include <ufs/lfs/lfs.h>
-#endif
 #include <ufs/ufs/dinode.h>
 #include <protocols/dumprestore.h>
 
 union dinode {
 	struct ufs1_dinode dp1;
 	struct ufs2_dinode dp2;
-#ifdef DUMP_LFS
-	struct ulfs1_dinode dlp1;
-	struct ulfs2_dinode dlp2;
-#endif
 };
 #define DIP(dp, field) \
 	(is_ufs2 ? (dp)->dp2.di_##field : (dp)->dp1.di_##field)
@@ -58,7 +51,7 @@ union dinode {
 
 /*
  * Filestore-independent UFS data, so code can be more easily shared
- * between ffs, lfs, and maybe ext2fs and others as well.
+ * between ffs, and maybe ext2fs and others as well.
  */
 struct ufsi {
 	int64_t ufs_dsize;	/* file system size, in sectors */
@@ -233,12 +226,6 @@ union	dinode *getino(ino_t);
 void	*xcalloc(size_t, size_t);
 void	*xmalloc(size_t);
 char	*xstrdup(const char *);
-
-/* LFS snapshot hooks */
-#ifdef DUMP_LFS
-int	lfs_wrap_stop(char *);
-void	lfs_wrap_go(void);
-#endif
 
 /* rdump routines */
 #if defined(RDUMP) || defined(RRESTORE)

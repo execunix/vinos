@@ -68,7 +68,6 @@
 #define	MOUNT_NFS	"nfs"		/* Network Filesystem */
 #define	MOUNT_MFS	"mfs"		/* Memory Filesystem */
 #define	MOUNT_MSDOS	"msdos"		/* MSDOS Filesystem */
-#define	MOUNT_LFS	"lfs"		/* Log-based Filesystem */
 #define	MOUNT_FDESC	"fdesc"		/* File Descriptor Filesystem */
 #define	MOUNT_NULL	"null"		/* Minimal Filesystem Layer */
 #define	MOUNT_OVERLAY	"overlay"	/* Minimal Overlay Filesystem Layer */
@@ -91,8 +90,6 @@
 #define MOUNT_HFS	"hfs"		/* Apple HFS+ Filesystem */
 #define MOUNT_EFS	"efs"		/* SGI's Extent Filesystem */
 #define MOUNT_ZFS	"zfs"		/* Sun ZFS */
-#define MOUNT_NILFS	"nilfs"		/* NTT's NiLFS(2) logging file system */
-#define	MOUNT_V7FS	"v7fs"		/* 7th Edition of Unix Filesystem */
 
 #ifndef _STANDALONE
 
@@ -160,7 +157,6 @@ struct mount {
 	{ MOUNT_NFS, CTLTYPE_NODE }, \
 	{ MOUNT_MFS, CTLTYPE_NODE }, \
 	{ MOUNT_MSDOS, CTLTYPE_NODE }, \
-	{ MOUNT_LFS, CTLTYPE_NODE }, \
 	{ 0, 0 }, 			/* MOUNT_LOFS */ \
 	{ MOUNT_FDESC, CTLTYPE_NODE }, \
 	{ MOUNT_NULL, CTLTYPE_NODE }, \

@@ -714,9 +714,6 @@ dumpabort(int signo __unused)
 		/* Signals master to call dumpabort */
 		(void) kill(master, SIGTERM);
 	else {
-#ifdef DUMP_LFS
-		lfs_wrap_go();
-#endif
 		killall();
 		msg("The ENTIRE dump is aborted.\n");
 	}

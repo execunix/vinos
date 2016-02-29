@@ -137,8 +137,8 @@ main(int argc, char *argv[])
 	while ((fs = getfsent()) != NULL) {
 		char buf[MAXPATHLEN];
 		const char *fsspec;
-		if ((strcmp(fs->fs_vfstype, "ffs") &&
-		     strcmp(fs->fs_vfstype, "lfs")) ||
+		if ((strcmp(fs->fs_vfstype, "ffs")/* &&
+		     strcmp(fs->fs_vfstype, "lfs")*/) ||
 		    strcmp(fs->fs_type, FSTAB_RW))
 			continue;
 

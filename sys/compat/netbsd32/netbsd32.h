@@ -873,9 +873,6 @@ struct netbsd32_plistref {
 	netbsd32_size_t pref_len;
 };
 
-/* from <ufs/lfs/lfs.h> */
-typedef netbsd32_pointer_t netbsd32_block_infop_t;  /* XXX broken */
-
 /* from <sys/utsname.h> */
 typedef netbsd32_pointer_t netbsd32_utsnamep_t;
 

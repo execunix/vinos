@@ -150,7 +150,6 @@ bsdlabel_fstype_to_str(uint8_t fstype)
 	case FS_SWAP:		str = DKW_PTYPE_SWAP;		break;
 	case FS_BSDFFS:		str = DKW_PTYPE_FFS;		break;
 	case FS_MSDOS:		str = DKW_PTYPE_FAT;		break;
-	case FS_BSDLFS:		str = DKW_PTYPE_LFS;		break;
 	case FS_ISO9660:	str = DKW_PTYPE_ISO9660;	break;
 	case FS_ADOS:		str = DKW_PTYPE_AMIGADOS;	break;
 	case FS_HFS:		str = DKW_PTYPE_APPLEHFS;	break;

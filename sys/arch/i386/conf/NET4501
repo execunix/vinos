@@ -81,7 +81,6 @@ options 	DDB_HISTORY_SIZE=512	# enable history editing in DDB
 # File systems
 file-system	FFS		# UFS
 #file-system	EXT2FS		# second extended file system (linux)
-#file-system	LFS		# log-structured file system
 file-system	MFS		# memory file system
 file-system	NFS		# Network File System client
 #file-system	NTFS		# Windows/NT file system (experimental)

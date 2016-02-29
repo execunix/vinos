@@ -222,7 +222,7 @@ set_ptype(partinfo *p, int fstype, int flag)
 		return;
 
 	p->pi_fstype = fstype;
-	if (fstype == FS_BSDFFS || fstype == FS_BSDLFS) {
+	if (fstype == FS_BSDFFS) {
 		p->pi_frag = 8;
 		/*
 		 * match newfs defaults for fragments size:
@@ -461,9 +461,9 @@ set_ptn_header(menudesc *m, void *arg)
 			p->pi_mount[0] = 0;
 			continue;
 		}
-		if (i == PTN_MENU_NEWFS && t != FS_BSDFFS && t != FS_BSDLFS
+		if (i == PTN_MENU_NEWFS && t != FS_BSDFFS
 		    && t != FS_APPLEUFS) {
-			/* Can only newfs UFS and LFS filesystems */
+			/* Can only newfs UFS filesystems */
 			p->pi_flags &= ~PIF_NEWFS;
 			continue;
 		}
@@ -474,9 +474,6 @@ set_ptn_header(menudesc *m, void *arg)
 				continue;
 			 if (t == FS_APPLEUFS && i != PTN_MENU_ISIZE)
 				/* Can only set # inodes for appleufs */
-				continue;
-			 if (t == FS_BSDLFS && i != PTN_MENU_BSIZE)
-				/* LFS doesn't have fragments */
 				continue;
 		}
 		/* Ok: we want this one */

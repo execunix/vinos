@@ -231,7 +231,6 @@ with other vnodes.
 This vnode has been reclaimed and is no longer attached to a file system.
 .It Dv VU_DIROP
 This vnode is involved in a directory operation.
-This flag is used exclusively by LFS.
 .El
 .Pp
 The
@@ -394,8 +393,6 @@ network file system
 memory file system
 .It Dv VT_MSDOSFS
 FAT file system
-.It Dv VT_LFS
-log-structured file system
 .It Dv VT_LOFS
 loopback file system
 .It Dv VT_FDESC

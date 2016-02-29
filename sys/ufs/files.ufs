@@ -3,15 +3,10 @@
 deffs					FFS
 deffs					EXT2FS
 deffs					MFS
-deffs					LFS
 deffs					CHFS
 
 defflag	opt_ffs.h			FFS_EI FFS_NO_SNAPSHOT APPLE_UFS
 					UFS_DIRHASH UFS_EXTATTR
-
-defflag	opt_lfs.h			LFS_EI LFS_KERNEL_RFW
-					LFS_DIRHASH LFS_EXTATTR
-					LFS_QUOTA LFS_QUOTA2
 
 file	ufs/ext2fs/ext2fs_alloc.c	ext2fs
 file	ufs/ext2fs/ext2fs_balloc.c	ext2fs
@@ -55,36 +50,6 @@ file	ufs/ffs/ffs_vnops.c		ffs | mfs | ext2fs | chfs
 file	ufs/ffs/ffs_wapbl.c		ffs & wapbl
 file	ufs/ffs/ffs_appleufs.c		ffs & apple_ufs
 file	ufs/ffs/ffs_quota2.c		quota2 & (ffs | mfs | ext2fs | chfs)
-
-file	ufs/lfs/lfs_alloc.c		lfs
-file	ufs/lfs/lfs_balloc.c		lfs
-file	ufs/lfs/lfs_bio.c		lfs
-file	ufs/lfs/lfs_cksum.c		lfs
-file	ufs/lfs/lfs_debug.c		lfs
-file	ufs/lfs/lfs_inode.c		lfs
-file	ufs/lfs/lfs_itimes.c		lfs
-file	ufs/lfs/lfs_pages.c		lfs
-file	ufs/lfs/lfs_rename.c		lfs
-file	ufs/lfs/lfs_rfw.c		lfs & lfs_kernel_rfw
-file	ufs/lfs/lfs_segment.c		lfs
-file	ufs/lfs/lfs_subr.c		lfs
-file	ufs/lfs/lfs_syscalls.c		lfs
-file	ufs/lfs/lfs_vfsops.c		lfs
-file	ufs/lfs/lfs_vnops.c		lfs
-file	ufs/lfs/ulfs_bmap.c		lfs
-file	ufs/lfs/ulfs_dirhash.c		lfs & lfs_dirhash
-file	ufs/lfs/ulfs_extattr.c		lfs & lfs_extattr
-file	ufs/lfs/ulfs_ihash.c		lfs
-file	ufs/lfs/ulfs_inode.c		lfs
-file	ufs/lfs/ulfs_lookup.c		lfs
-file	ufs/lfs/ulfs_quota.c		lfs & (lfs_quota | lfs_quota2)
-file	ufs/lfs/ulfs_quota1.c		lfs & lfs_quota
-file	ufs/lfs/ulfs_quota2.c		lfs & lfs_quota2
-file	ufs/lfs/ulfs_quota1_subr.c	lfs
-file	ufs/lfs/ulfs_quota2_subr.c	lfs & lfs_quota2
-file	ufs/lfs/ulfs_snapshot.c		lfs
-file	ufs/lfs/ulfs_vfsops.c		lfs
-file	ufs/lfs/ulfs_vnops.c		lfs
 
 file	ufs/mfs/mfs_vfsops.c		mfs
 file	ufs/mfs/mfs_vnops.c		mfs

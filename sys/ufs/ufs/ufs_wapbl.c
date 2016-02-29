@@ -96,7 +96,6 @@ __KERNEL_RCSID(0, "$NetBSD: ufs_wapbl.c,v 1.23 2012/01/27 19:22:50 para Exp $");
 #include <ufs/ufs/ufs_extern.h>
 #include <ufs/ufs/ufs_wapbl.h>
 #include <ufs/ext2fs/ext2fs_extern.h>
-#include <ufs/lfs/lfs_extern.h>
 
 #include <uvm/uvm.h>
 

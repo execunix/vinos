@@ -353,14 +353,9 @@ getfstab(void)
 		    strcmp(fs->fs_type, FSTAB_RO) &&
 		    strcmp(fs->fs_type, FSTAB_RQ))
 			continue;
-#ifdef DUMP_LFS
-		if (strcmp(fs->fs_vfstype, "lfs"))
-			continue;
-#else
 		if (strcmp(fs->fs_vfstype, "ufs") &&
 		    strcmp(fs->fs_vfstype, "ffs"))
 			continue;
-#endif
 		fs = allocfsent(fs);
 		pf = (struct pfstab *)xmalloc(sizeof (*pf));
 		pf->pf_fstab = fs;
@@ -428,14 +423,9 @@ mntinfosearch(const char *key)
 	if ((mntbufc = getmntinfo(&mntbuf, MNT_NOWAIT)) == 0)
 		quit("Can't get mount list: %s", strerror(errno));
 	for (fs = mntbuf, i = 0; i < mntbufc; i++, fs++) {
-#ifdef DUMP_LFS
-		if (strcmp(fs->f_fstypename, "lfs") != 0)
-			continue;
-#else /* ! DUMP_LFS */
 		if (strcmp(fs->f_fstypename, "ufs") != 0 &&
 		    strcmp(fs->f_fstypename, "ffs") != 0)
 			continue;
-#endif /* ! DUMP_LFS */
 		if (strcmp(fs->f_mntonname, key) == 0 ||
 		    strcmp(fs->f_mntfromname, key) == 0)
 			return (fs);

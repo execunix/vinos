@@ -151,11 +151,6 @@ showpartition(FILE *f, struct disklabel *lp, int i, int ctsformat)
 		    pp->p_fsize, (uint64_t)pp->p_fsize * pp->p_frag, pp->p_cpg);
 		break;
 
-	case FS_BSDLFS:
-		(void)fprintf(f, "  %5" PRIu32 " %5" PRIu64 " %5" PRIu16 " ",
-		    pp->p_fsize, (uint64_t)pp->p_fsize * pp->p_frag, pp->p_sgs);
-		break;
-
 	case FS_EX2FS:
 		(void)fprintf(f, "  %5" PRIu32 " %5" PRIu64 "       ",
 		    pp->p_fsize, (uint64_t)pp->p_fsize * pp->p_frag);

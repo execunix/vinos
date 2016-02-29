@@ -443,20 +443,6 @@ main(int argc, char *argv[])
 		snap_internal = 0;
 	}
 
-#ifdef DUMP_LFS
-	sync();
-	if (snap_backup != NULL || snap_internal) {
-		if (lfs_wrap_stop(mountpoint) < 0) {
-			msg("Cannot stop writing on %s\n", mountpoint);
-			exit(X_STARTUP);
-		}
-	}
-	if ((diskfd = open(disk, O_RDONLY)) < 0) {
-		msg("Cannot open %s\n", disk);
-		exit(X_STARTUP);
-	}
-	disk_dev = disk;
-#else /* ! DUMP_LFS */
 	if (snap_backup != NULL || snap_internal) {
 		diskfd = snap_open(mntinfo->f_mntonname, snap_backup,
 		    &tnow, &disk_dev);
@@ -474,7 +460,6 @@ main(int argc, char *argv[])
 		disk_dev = disk;
 	}
 	sync();
-#endif /* ! DUMP_LFS */
 
 	needswap = fs_read_sblock(sblock_buf);
 
@@ -654,9 +639,6 @@ main(int argc, char *argv[])
 	putdumptime();
 	trewind(0);
 	broadcast("DUMP IS DONE!\a\a\n");
-#ifdef DUMP_LFS
-	lfs_wrap_go();
-#endif /* DUMP_LFS */
 	msg("DUMP IS DONE\n");
 	Exit(X_FINOK);
 	/* NOTREACHED */

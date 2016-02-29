@@ -379,10 +379,10 @@
 181	STD		{ int|netbsd32||setgid(gid_t gid); }
 182	STD		{ int|netbsd32||setegid(gid_t egid); }
 183	STD		{ int|netbsd32||seteuid(uid_t euid); }
-184	EXCL		netbsd32_lfs_bmapv
-185	EXCL		netbsd32_lfs_markv
-186	EXCL		netbsd32_lfs_segclean
-187	EXCL		netbsd32_lfs_segwait
+184	UNIMPL
+185	UNIMPL
+186	UNIMPL
+187	UNIMPL
 188	COMPAT_12	{ int|netbsd32||stat12(netbsd32_charp path, \
 			    netbsd32_stat12p_t ub); }
 189	COMPAT_12	{ int|netbsd32||fstat12(int fd, netbsd32_stat12p_t sb); }
@@ -863,7 +863,7 @@
 421	STD		{ int|netbsd32|50|adjtime( \
 			    const netbsd32_timevalp_t delta, \
 			    netbsd32_timevalp_t olddelta); }
-422	EXCL		__lfs_segwait50
+422	UNIMPL
 423	STD 		{ int|netbsd32|50|futimes(int fd, \
 			    const netbsd32_timevalp_t tptr); }
 424	STD  		{ int|netbsd32|50|lutimes(const netbsd32_charp path, \

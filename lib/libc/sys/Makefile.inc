@@ -115,8 +115,8 @@ ASM=	access.S acct.S \
 		_ksem_close.S _ksem_destroy.S _ksem_getvalue.S _ksem_init.S \
 		_ksem_post.S _ksem_timedwait.S _ksem_trywait.S _ksem_unlink.S \
 		_ksem_wait.S _ksem_open.S \
-	lchflags.S lchmod.S lchown.S lfs_bmapv.S lfs_markv.S lfs_segclean.S \
-		__lfs_segwait50.S link.S linkat.S listen.S __lstat50.S \
+	lchflags.S lchmod.S lchown.S \
+		link.S linkat.S listen.S __lstat50.S \
 		__lutimes50.S _lwp_create.S _lwp_exit.S _lwp_kill.S \
 		___lwp_park60.S _lwp_self.S _lwp_wait.S _lwp_unpark.S \
 		_lwp_unpark_all.S _lwp_suspend.S _lwp_continue.S \
@@ -249,7 +249,6 @@ MAN+=	accept.2 access.2 acct.2 adjtime.2 bind.2 brk.2 chdir.2 \
 	getpriority.2 getrlimit.2 getrusage.2 getsid.2 getsockname.2 \
 	getsockopt.2 gettimeofday.2 getuid.2 intro.2 ioctl.2 issetugid.2 \
 	kill.2 kqueue.2 ktrace.2 \
-	lfs_bmapv.2 lfs_markv.2 lfs_segclean.2 lfs_segwait.2 \
 	link.2 listen.2 lseek.2 \
 	_lwp_create.2 _lwp_ctl.2 _lwp_detach.2 _lwp_exit.2 \
 	_lwp_self.2 _lwp_setname.2 \

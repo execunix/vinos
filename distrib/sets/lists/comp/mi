@@ -375,8 +375,6 @@
 ./usr/include/fs/efs/efs_sb.h			comp-c-include
 ./usr/include/fs/hfs/hfs.h			comp-c-include
 ./usr/include/fs/hfs/libhfs.h			comp-c-include
-./usr/include/fs/nilfs/nilfs_fs.h		comp-c-include
-./usr/include/fs/nilfs/nilfs_mount.h		comp-c-include
 ./usr/include/fs/ptyfs/ptyfs.h			comp-c-include
 ./usr/include/fs/puffs/puffs_msgif.h		comp-puffs-include
 ./usr/include/fs/smbfs/smbfs.h			comp-c-include
@@ -385,8 +383,6 @@
 ./usr/include/fs/tmpfs/tmpfs_args.h		comp-c-include
 ./usr/include/fs/udf/ecma167-udf.h		comp-c-include
 ./usr/include/fs/udf/udf_mount.h		comp-c-include
-./usr/include/fs/v7fs/v7fs.h			comp-c-include
-./usr/include/fs/v7fs/v7fs_args.h		comp-c-include
 ./usr/include/fstab.h				comp-c-include
 ./usr/include/fts.h				comp-c-include
 ./usr/include/ftw.h				comp-c-include
@@ -2130,9 +2126,6 @@
 ./usr/include/ufs/ext2fs/ext2fs_extern.h	comp-c-include
 ./usr/include/ufs/ffs/ffs_extern.h		comp-c-include
 ./usr/include/ufs/ffs/fs.h			comp-c-include
-./usr/include/ufs/lfs/lfs.h			comp-c-include
-./usr/include/ufs/lfs/lfs_extern.h		comp-c-include
-./usr/include/ufs/lfs/lfs_inode.h		comp-c-include
 ./usr/include/ufs/mfs/mfs_extern.h		comp-c-include
 ./usr/include/ufs/mfs/mfsnode.h			comp-c-include
 ./usr/include/ufs/ufs/dinode.h			comp-c-include
@@ -2754,10 +2747,6 @@
 ./usr/share/man/cat2/lchflags.0			comp-c-catman		.cat
 ./usr/share/man/cat2/lchmod.0			comp-c-catman		.cat
 ./usr/share/man/cat2/lchown.0			comp-c-catman		.cat
-./usr/share/man/cat2/lfs_bmapv.0		comp-c-catman		.cat
-./usr/share/man/cat2/lfs_markv.0		comp-c-catman		.cat
-./usr/share/man/cat2/lfs_segclean.0		comp-c-catman		.cat
-./usr/share/man/cat2/lfs_segwait.0		comp-c-catman		.cat
 ./usr/share/man/cat2/link.0			comp-c-catman		.cat
 ./usr/share/man/cat2/linkat.0			comp-c-catman		.cat
 ./usr/share/man/cat2/listen.0			comp-c-catman		.cat
@@ -9021,10 +9010,6 @@
 ./usr/share/man/html2/lchflags.html		comp-c-htmlman		html
 ./usr/share/man/html2/lchmod.html		comp-c-htmlman		html
 ./usr/share/man/html2/lchown.html		comp-c-htmlman		html
-./usr/share/man/html2/lfs_bmapv.html		comp-c-htmlman		html
-./usr/share/man/html2/lfs_markv.html		comp-c-htmlman		html
-./usr/share/man/html2/lfs_segclean.html		comp-c-htmlman		html
-./usr/share/man/html2/lfs_segwait.html		comp-c-htmlman		html
 ./usr/share/man/html2/link.html			comp-c-htmlman		html
 ./usr/share/man/html2/linkat.html		comp-c-htmlman		html
 ./usr/share/man/html2/listen.html		comp-c-htmlman		html
@@ -15308,10 +15293,6 @@
 ./usr/share/man/man2/lchflags.2			comp-c-man		.man
 ./usr/share/man/man2/lchmod.2			comp-c-man		.man
 ./usr/share/man/man2/lchown.2			comp-c-man		.man
-./usr/share/man/man2/lfs_bmapv.2		comp-c-man		.man
-./usr/share/man/man2/lfs_markv.2		comp-c-man		.man
-./usr/share/man/man2/lfs_segclean.2		comp-c-man		.man
-./usr/share/man/man2/lfs_segwait.2		comp-c-man		.man
 ./usr/share/man/man2/link.2			comp-c-man		.man
 ./usr/share/man/man2/linkat.2			comp-c-man		.man
 ./usr/share/man/man2/listen.2			comp-c-man		.man

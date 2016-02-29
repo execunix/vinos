@@ -327,14 +327,11 @@ static const char *const dktypenames[] = { DKTYPE_DEFN(DKTYPE_NAMES) NULL };
 #define	FSTYPE_DEFN(x) \
 x(UNUSED,   0, "unused",     NULL,    NULL)   /* unused */ \
 x(SWAP,     1, "swap",       NULL,    NULL)   /* swap */ \
-x(V6,       2, "Version 6",  NULL,    NULL)   /* Sixth Edition */ \
-x(V7,       3, "Version 7", "v7fs",  "v7fs")  /* Seventh Edition */ \
 x(SYSV,     4, "System V",   NULL,    NULL)   /* System V */ \
 x(V71K,     5, "4.1BSD",     NULL,    NULL)   /* V7, 1K blocks (4.1, 2.9) */ \
 x(V8,    6, "Eighth Edition",NULL,    NULL)   /* Eighth Edition, 4K blocks */ \
 x(BSDFFS,   7, "4.2BSD",    "ffs",   "ffs")   /* 4.2BSD fast file system */ \
 x(MSDOS,    8, "MSDOS",     "msdos", "msdos") /* MSDOS file system */ \
-x(BSDLFS,   9, "4.4LFS",    "lfs",   "lfs")   /* 4.4BSD log-structured FS */ \
 x(OTHER,   10, "unknown",    NULL,    NULL)   /* in use, unknown/unsupported */\
 x(HPFS,    11, "HPFS",       NULL,    NULL)   /* OS/2 high-performance FS */ \
 x(ISO9660, 12, "ISO9660",    NULL,   "cd9660")/* ISO 9660, normally CD-ROM */ \
@@ -351,7 +348,6 @@ x(VINUM,   23, "vinum",      NULL,    NULL)   /* Vinum */ \
 x(UDF,     24, "UDF",        NULL,   "udf")   /* UDF */ \
 x(SYSVBFS, 25, "SysVBFS",    NULL,  "sysvbfs")/* System V boot file system */ \
 x(EFS,     26, "EFS",        NULL,   "efs")   /* SGI's Extent Filesystem */ \
-x(NILFS,   27, "NiLFS",      NULL,   "nilfs") /* NTT's NiLFS(2) */ \
 x(MINIXFS3,29, "MINIX FSv3", NULL,   NULL)    /* MINIX file system v3 */
 
 

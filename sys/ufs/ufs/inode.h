@@ -80,8 +80,6 @@ struct ext2fs_inode_ext {
 	daddr_t ext2fs_last_blk;	/* last block allocated on disk */
 };
 
-struct lfs_inode_ext;
-
 /*
  * The inode is used to describe each active (or recently active) file in the
  * UFS filesystem. It is composed of two types of information. The first part
@@ -103,11 +101,9 @@ struct inode {
 
 	union {			/* Associated filesystem. */
 		struct	fs *fs;		/* FFS */
-		struct	lfs *lfs;	/* LFS */
 		struct	m_ext2fs *e2fs;	/* EXT2FS */
 	} inode_u;
 #define	i_fs	inode_u.fs
-#define	i_lfs	inode_u.lfs
 #define	i_e2fs	inode_u.e2fs
 
 	void	*i_unused1;	/* Unused. */
@@ -129,7 +125,6 @@ struct inode {
 		/* Other extensions could go here... */
 		struct	ffs_inode_ext ffs;
 		struct	ext2fs_inode_ext e2fs;
-		struct  lfs_inode_ext *lfs;
 	} inode_ext;
 #define	i_snapblklist		inode_ext.ffs.ffs_snapblklist
 #define	i_ffs_first_data_blk	inode_ext.ffs.ffs_first_data_blk

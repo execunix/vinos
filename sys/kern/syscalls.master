@@ -358,13 +358,10 @@
 181	STD 		{ int|sys||setgid(gid_t gid); }
 182	STD 		{ int|sys||setegid(gid_t egid); }
 183	STD 		{ int|sys||seteuid(uid_t euid); }
-184	STD MODULAR	{ int|sys||lfs_bmapv(fsid_t *fsidp, \
-			    struct block_info *blkiov, int blkcnt); }
-185	STD MODULAR	{ int|sys||lfs_markv(fsid_t *fsidp, \
-			    struct block_info *blkiov, int blkcnt); }
-186	STD MODULAR	{ int|sys||lfs_segclean(fsid_t *fsidp, u_long segment); }
-187	COMPAT_50 MODULAR { int|sys||lfs_segwait(fsid_t *fsidp, \
-			    struct timeval50 *tv); }
+184	UNIMPL
+185	UNIMPL
+186	UNIMPL
+187	UNIMPL
 188	COMPAT_12 MODULAR { int|sys||stat(const char *path, struct stat12 *ub); } \
 			    stat12
 189	COMPAT_12 MODULAR { int|sys||fstat(int fd, struct stat12 *sb); } fstat12
@@ -804,8 +801,7 @@
 			    const struct timeval *tptr); }
 421	STD 	{ int|sys|50|adjtime(const struct timeval *delta, \
 			    struct timeval *olddelta); }
-422	STD  MODULAR	{ int|sys|50|lfs_segwait(fsid_t *fsidp, \
-			    struct timeval *tv); }
+422	UNIMPL
 423	STD 	{ int|sys|50|futimes(int fd, \
 			    const struct timeval *tptr); }
 424	STD  	{ int|sys|50|lutimes(const char *path, \

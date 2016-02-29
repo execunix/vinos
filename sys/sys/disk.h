@@ -217,14 +217,11 @@ __link_set_add_data(dkwedge_methods, name ## _ddm)
 #define	DKW_PTYPE_UNKNOWN	""
 #define	DKW_PTYPE_UNUSED	"unused"
 #define	DKW_PTYPE_SWAP		"swap"
-#define	DKW_PTYPE_V6		"v6"
-#define	DKW_PTYPE_V7		"v7"
 #define	DKW_PTYPE_SYSV		"sysv"
 #define	DKW_PTYPE_V71K		"v71k"
 #define	DKW_PTYPE_V8		"v8"
 #define	DKW_PTYPE_FFS		"ffs"
 #define	DKW_PTYPE_FAT		"msdos"
-#define	DKW_PTYPE_LFS		"lfs"
 #define	DKW_PTYPE_OTHER		"other"
 #define	DKW_PTYPE_HPFS		"hpfs"
 #define	DKW_PTYPE_ISO9660	"cd9660"
@@ -241,7 +238,6 @@ __link_set_add_data(dkwedge_methods, name ## _ddm)
 #define	DKW_PTYPE_APPLEHFS	"hfs"
 #define	DKW_PTYPE_SYSVBFS	"sysvbfs"
 #define	DKW_PTYPE_EFS		"efs"
-#define	DKW_PTYPE_NILFS		"nilfs"
 #define	DKW_PTYPE_MINIXFS3	"minixfs3"
 
 /*
@@ -331,8 +327,6 @@ struct disk_geom {
  *		<key>bsd44-iso9660-session-offset</key>
  *		<integer>...</integer>
  *		<key>bsd44-ffs-cylinders-per-group</key>
- *		<integer>...</integer>
- *		<key>bsd44-lfs-segment-shift</key>
  *		<integer>...</integer>
  *
  *		<!-- these are valid for NeXT partition maps -->

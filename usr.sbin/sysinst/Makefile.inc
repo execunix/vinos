@@ -12,7 +12,7 @@ NOMAN=		# defined
 WARNS=		4
 
 SRCS+=	menu_defs.c msg_defs.c main.c install.c upgrade.c \
-	txtwalk.c run.c factor.c net.c disks.c disks_lfs.c util.c geom.c \
+	txtwalk.c run.c factor.c net.c disks.c util.c geom.c \
 	label.c target.c md.c sizemultname.c configmenu.c checkrc.c partman.c
 
 SRCS+=	${MD_OPTIONS:MAOUT2ELF:S/AOUT2ELF/aout2elf.c/}

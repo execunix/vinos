@@ -5,7 +5,7 @@
 
 SUBDIR= atrun \
 	comsat fingerd ftpd getty httpd identd ld.aout_so \
-	ld.elf_so lfs_cleanerd mail.local makekey rexecd \
+	ld.elf_so mail.local makekey rexecd \
 	rlogind rshd rpc.rquotad rpc.rstatd rpc.rusersd rpc.rwalld \
 	rpc.sprayd talkd telnetd tftpd utmp_update
 

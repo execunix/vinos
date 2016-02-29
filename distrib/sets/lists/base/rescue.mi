@@ -26,9 +26,7 @@
 ./rescue/dmesg					base-rescue-root
 ./rescue/domainname				base-rescue-root
 ./rescue/dump					base-rescue-root
-./rescue/dump_lfs				base-rescue-root
 ./rescue/dumpfs					base-rescue-root
-./rescue/dumplfs				base-rescue-root
 ./rescue/echo					base-rescue-root
 ./rescue/ed					base-rescue-root
 ./rescue/egrep					base-rescue-root
@@ -40,7 +38,6 @@
 ./rescue/fsck					base-rescue-root
 ./rescue/fsck_ext2fs				base-rescue-root
 ./rescue/fsck_ffs				base-rescue-root
-./rescue/fsck_lfs				base-rescue-root
 ./rescue/fsck_msdos				base-rescue-root
 ./rescue/fsdb					base-rescue-root
 ./rescue/fsirand				base-rescue-root
@@ -64,7 +61,6 @@
 ./rescue/ktruss					base-rescue-root
 ./rescue/ldd					base-rescue-root
 ./rescue/less					base-rescue-root
-./rescue/lfs_cleanerd				base-rescue-root
 ./rescue/lmcconfig				base-rescue-root
 ./rescue/ln					base-rescue-root
 ./rescue/ls					base-rescue-root
@@ -84,7 +80,6 @@
 ./rescue/mount_ffs				base-rescue-root
 ./rescue/mount_filecore				base-rescue-root
 ./rescue/mount_kernfs				base-rescue-root
-./rescue/mount_lfs				base-rescue-root
 ./rescue/mount_mfs				base-rescue-root
 ./rescue/mount_msdos				base-rescue-root
 ./rescue/mount_nfs				base-rescue-root
@@ -100,7 +95,6 @@
 ./rescue/mt					base-rescue-root
 ./rescue/mv					base-rescue-root
 ./rescue/newfs					base-rescue-root
-./rescue/newfs_lfs				base-rescue-root
 ./rescue/newfs_msdos				base-rescue-root
 ./rescue/pax					base-rescue-root
 ./rescue/pdisk					base-rescue-root
@@ -113,7 +107,6 @@
 ./rescue/rcorder				base-rescue-root
 ./rescue/rcp					base-rescue-root
 ./rescue/rdump					base-rescue-root
-./rescue/rdump_lfs				base-rescue-root
 ./rescue/reboot					base-rescue-root
 ./rescue/restore				base-rescue-root
 ./rescue/rm					base-rescue-root

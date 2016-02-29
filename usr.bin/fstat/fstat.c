@@ -548,7 +548,6 @@ vfilestat(struct vnode *vp, struct filestat *fsp)
 			badtype = dead;
 			break;
 		case VT_UFS:
-		case VT_LFS:
 		case VT_MFS:
 			if (!ufs_filestat(vp, fsp))
 				badtype = "error";

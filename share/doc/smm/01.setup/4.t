@@ -76,7 +76,6 @@ vm		virtual memory management
 ufs		local filesystems broken down as follows
 	ufs	common local filesystem routines
 	ffs	fast filesystem
-	lfs	log-based filesystem
 	mfs	memory based filesystem
 nfs		Sun-compatible network filesystem
 miscfs		miscellaneous filesystems broken down as follows

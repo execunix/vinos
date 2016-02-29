@@ -218,8 +218,8 @@ __quota_oldfiles_load_fstab(void)
 	 */
 	setfsent();
 	while ((fs = getfsent()) != NULL) {
-		if (!strcmp(fs->fs_vfstype, "ffs") ||
-		    !strcmp(fs->fs_vfstype, "lfs")) {
+		if (!strcmp(fs->fs_vfstype, "ffs")/* ||
+		    !strcmp(fs->fs_vfstype, "lfs")*/) {
 			result = __quota_oldfiles_fill_fstabentry(fs, &ofe);
 			if (result == -1) {
 				goto failed;

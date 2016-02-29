@@ -359,7 +359,6 @@
 ./libexec/dhcpcd-hooks/30-hostname		base-dhcpcd-root
 ./libexec/dhcpcd-hooks/50-ntp.conf		base-dhcpcd-root
 ./libexec/dhcpcd-run-hooks			base-dhcpcd-root
-./libexec/lfs_cleanerd				base-sysutil-bin
 ./libexec/resolvconf				base-resolvconf-root
 ./libexec/resolvconf/dnsmasq			base-resolvconf-root
 ./libexec/resolvconf/libc			base-resolvconf-root
@@ -389,16 +388,13 @@
 ./sbin/dmesg					base-sysutil-root
 ./sbin/drvctl					base-sysutil-root
 ./sbin/dump					base-sysutil-root
-./sbin/dump_lfs					base-sysutil-root
 ./sbin/fastboot					base-sysutil-root
 ./sbin/fasthalt					base-sysutil-root
 ./sbin/fdisk					base-sysutil-root
 ./sbin/fsck					base-sysutil-root
 ./sbin/fsck_ext2fs				base-ext2fs-root
 ./sbin/fsck_ffs					base-sysutil-root
-./sbin/fsck_lfs					base-sysutil-root
 ./sbin/fsck_msdos				base-sysutil-root
-./sbin/fsck_v7fs				base-sysutil-root
 ./sbin/fsdb					base-sysutil-root
 ./sbin/fsirand					base-sysutil-root
 ./sbin/gpt					base-sysutil-root
@@ -426,11 +422,9 @@
 ./sbin/mount_filecore				base-filecorefs-root
 ./sbin/mount_hfs				base-hfs-root
 ./sbin/mount_kernfs				base-sysutil-root
-./sbin/mount_lfs				base-sysutil-root
 ./sbin/mount_mfs				base-sysutil-root
 ./sbin/mount_msdos				base-sysutil-root
 ./sbin/mount_nfs				base-nfsclient-root
-./sbin/mount_nilfs				base-sysutil-root
 ./sbin/mount_ntfs				base-ntfs-root
 ./sbin/mount_null				base-miscfs-root
 ./sbin/mount_overlay				base-miscfs-root
@@ -445,15 +439,12 @@
 ./sbin/mount_ufs				base-sysutil-root
 ./sbin/mount_umap				base-miscfs-root
 ./sbin/mount_union				base-miscfs-root
-./sbin/mount_v7fs				base-sysutil-root
 ./sbin/newbtconf				base-sysutil-root
 ./sbin/newfs					base-sysutil-root
 ./sbin/newfs_ext2fs				base-sysutil-root
-./sbin/newfs_lfs				base-sysutil-root
 ./sbin/newfs_msdos				base-sysutil-root
 ./sbin/newfs_sysvbfs				base-sysutil-root
 ./sbin/newfs_udf				base-sysutil-root
-./sbin/newfs_v7fs				base-sysutil-root
 ./sbin/nologin					base-sysutil-root
 ./sbin/npfctl					base-npf-bin		npf
 ./sbin/pdisk					base-sysutil-root
@@ -466,10 +457,8 @@
 ./sbin/pppoectl					base-netutil-root
 ./sbin/rcorder					base-sysutil-root
 ./sbin/rdump					base-sysutil-root
-./sbin/rdump_lfs				base-sysutil-root
 ./sbin/reboot					base-sysutil-root
 ./sbin/resize_ffs				base-sysutil-root
-./sbin/resize_lfs				base-sysutil-root
 ./sbin/resolvconf				base-resolvconf-root
 ./sbin/restore					base-sysutil-root
 ./sbin/rndctl					base-sysutil-root
@@ -479,7 +468,6 @@
 ./sbin/rtsol					base-netutil-root	use_inet6
 ./sbin/savecore					base-sysutil-root
 ./sbin/scan_ffs					base-sysutil-root
-./sbin/scan_lfs					base-sysutil-root
 ./sbin/scsictl					base-sysutil-root
 ./sbin/setkey					base-netutil-root
 ./sbin/shutdown					base-sysutil-root
@@ -919,14 +907,12 @@
 ./usr/include/fs				base-c-usr
 ./usr/include/fs/efs				base-c-usr
 ./usr/include/fs/hfs				base-c-usr
-./usr/include/fs/nilfs				base-c-usr
 ./usr/include/fs/ptyfs				base-c-usr
 ./usr/include/fs/puffs				base-puffs-usr
 ./usr/include/fs/smbfs				base-c-usr
 ./usr/include/fs/sysvbfs			base-c-usr
 ./usr/include/fs/tmpfs				base-c-usr
 ./usr/include/fs/udf				base-c-usr
-./usr/include/fs/v7fs				base-c-usr
 ./usr/include/g++				base-cxx-usr
 ./usr/include/g++/backward			base-cxx-usr
 ./usr/include/g++/bits				base-cxx-usr
@@ -1019,7 +1005,6 @@
 ./usr/include/ufs				base-c-usr
 ./usr/include/ufs/ext2fs			base-c-usr
 ./usr/include/ufs/ffs				base-c-usr
-./usr/include/ufs/lfs				base-c-usr
 ./usr/include/ufs/mfs				base-c-usr
 ./usr/include/ufs/ufs				base-c-usr
 ./usr/include/uvm				base-c-usr
@@ -1173,7 +1158,6 @@
 ./usr/sbin/download-vulnerability-list		base-pkgutil-bin	crypto
 ./usr/sbin/dtmfdecode				base-isdn-bin
 ./usr/sbin/dumpfs				base-sysutil-bin
-./usr/sbin/dumplfs				base-sysutil-bin
 ./usr/sbin/edquota				base-sysutil-bin
 ./usr/sbin/envstat				base-sysutil-bin
 ./usr/sbin/eshconfig				base-sysutil-bin

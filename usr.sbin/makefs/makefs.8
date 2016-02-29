@@ -213,8 +213,6 @@ ISO 9660 file system.
 Chip flash file system.
 .It Sy msdos
 FAT12, FAT16, or FAT32 file system.
-.It Sy v7fs
-7th Edition(V7) file system.
 .It Sy udf
 ISO/Ecma UDF file system.
 .El
@@ -380,16 +378,6 @@ NOR: 0 or NAND: 1.
 See
 .Xr newfs_msdos 8
 for fs specific options.
-.Ss V7FS-specific options
-The following keywords are supported:
-.Pp
-.Bl -tag -width optimization -offset indent -compact
-.It Sy pdp
-PDP endian.
-.It Sy progress
-Display a progress meter for the file system construction and file
-population.
-.El
 .Ss UDF-specific options
 .Sy udf
 images have udf-specific optional parameters that may be provided.

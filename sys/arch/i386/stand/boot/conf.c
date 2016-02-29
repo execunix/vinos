@@ -32,7 +32,6 @@
 
 #include <lib/libsa/stand.h>
 #include <lib/libsa/ufs.h>
-#include <lib/libsa/lfs.h>
 #ifdef SUPPORT_EXT2FS
 #include <lib/libsa/ext2fs.h>
 #endif
@@ -65,8 +64,7 @@ struct fs_ops file_system[] = {
 	FS_OPS(ustarfs),
 #endif
 	FS_OPS(ffsv1), FS_OPS(ffsv2),
-	FS_OPS(lfsv1), FS_OPS(lfsv2),
-#ifdef SUPPORT_EXT2FS
+#ifdef SUPPORT_EXT2FS // tbd
 	FS_OPS(ext2fs),
 #endif
 #ifdef SUPPORT_MINIXFS3

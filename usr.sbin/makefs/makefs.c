@@ -79,7 +79,6 @@ static fstype_t fstypes[] = {
 	ENTRY(ffs),
 	ENTRY(cd9660),
 	ENTRY(chfs),
-	ENTRY(v7fs),
 	ENTRY(msdos),
 	ENTRY(udf),
 	{ .type = NULL	},

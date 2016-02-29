@@ -34,24 +34,6 @@
 #include <sys/cdefs.h>
 __KERNEL_RCSID(1, "$NetBSD: ufs_readwrite.c,v 1.107 2013/06/23 07:28:37 dholland Exp $");
 
-#ifdef LFS_READWRITE
-#define	FS			struct lfs
-#define	I_FS			i_lfs
-#define	READ			lfs_read
-#define	READ_S			"lfs_read"
-#define	WRITE			lfs_write
-#define	WRITE_S			"lfs_write"
-#define	fs_bsize		lfs_bsize
-#define	fs_bmask		lfs_bmask
-#define	UFS_WAPBL_BEGIN(mp)	0
-#define	UFS_WAPBL_END(mp)	do { } while (0)
-#define	UFS_WAPBL_UPDATE(vp, access, modify, flags)	do { } while (0)
-#define ufs_blkoff		lfs_blkoff
-#define ufs_blksize		lfs_blksize
-#define ufs_lblkno		lfs_lblkno
-#define ufs_lblktosize		lfs_lblktosize
-#define ufs_blkroundup		lfs_blkroundup
-#else
 #define	FS			struct fs
 #define	I_FS			i_fs
 #define	READ			ffs_read
@@ -63,7 +45,6 @@ __KERNEL_RCSID(1, "$NetBSD: ufs_readwrite.c,v 1.107 2013/06/23 07:28:37 dholland
 #define ufs_lblkno		ffs_lblkno
 #define ufs_lblktosize		ffs_lblktosize
 #define ufs_blkroundup		ffs_blkroundup
-#endif
 
 /*
  * Vnode op for reading.
@@ -115,21 +96,15 @@ READ(void *v)
 	if (uio->uio_resid == 0)
 		return (0);
 
-#ifndef LFS_READWRITE
 	if ((ip->i_flags & (SF_SNAPSHOT | SF_SNAPINVAL)) == SF_SNAPSHOT)
 		return ffs_snapshot_read(vp, uio, ioflag);
-#endif /* !LFS_READWRITE */
 
 	fstrans_start(vp->v_mount, FSTRANS_SHARED);
 
 	if (uio->uio_offset >= ip->i_size)
 		goto out;
 
-#ifdef LFS_READWRITE
-	usepc = (vp->v_type == VREG && ip->i_number != LFS_IFILE_INUM);
-#else /* !LFS_READWRITE */
 	usepc = vp->v_type == VREG;
-#endif /* !LFS_READWRITE */
 	if (usepc) {
 		const int advice = IO_ADV_DECODE(ap->a_ioflag);
 
@@ -235,9 +210,6 @@ WRITE(void *v)
 	vsize_t bytelen;
 	bool async;
 	bool usepc = false;
-#ifdef LFS_READWRITE
-	bool need_unreserve = false;
-#endif
 	struct ufsmount *ump;
 
 	cred = ap->a_cred;
@@ -274,12 +246,6 @@ WRITE(void *v)
 	if (uio->uio_offset < 0 ||
 	    (u_int64_t)uio->uio_offset + uio->uio_resid > ump->um_maxfilesize)
 		return (EFBIG);
-#ifdef LFS_READWRITE
-	/* Disallow writes to the Ifile, even if noschg flag is removed */
-	/* XXX can this go away when the Ifile is no longer in the namespace? */
-	if (vp == fs->lfs_ivnode)
-		return (EPERM);
-#endif
 	if (uio->uio_resid == 0)
 		return (0);
 
@@ -302,11 +268,6 @@ WRITE(void *v)
 		}
 	}
 
-#ifdef LFS_READWRITE
-	async = true;
-	lfs_availwait(fs, btofsb(fs, uio->uio_resid));
-	lfs_check(vp, LFS_UNUSED_LBN, 0);
-#endif /* !LFS_READWRITE */
 	if (!usepc)
 		goto bcache;
 
@@ -423,7 +384,6 @@ WRITE(void *v)
 		 * XXXUBC simplistic async flushing.
 		 */
 
-#ifndef LFS_READWRITE
 		if (!async && oldoff >> 16 != uio->uio_offset >> 16) {
 			mutex_enter(vp->v_interlock);
 			error = VOP_PUTPAGES(vp, (oldoff >> 16) << 16,
@@ -432,7 +392,6 @@ WRITE(void *v)
 			if (error)
 				break;
 		}
-#endif
 	}
 	if (error == 0 && ioflag & IO_SYNC) {
 		mutex_enter(vp->v_interlock);
@@ -455,13 +414,6 @@ WRITE(void *v)
 		else
 			flags &= ~B_CLRBUF;
 
-#ifdef LFS_READWRITE
-		error = lfs_reserve(fs, vp, NULL,
-		    btofsb(fs, (UFS_NIADDR + 1) << fs->lfs_bshift));
-		if (error)
-			break;
-		need_unreserve = true;
-#endif
 		error = UFS_BALLOC(vp, uio->uio_offset, xfersize,
 		    ap->a_cred, flags, &bp);
 
@@ -488,28 +440,15 @@ WRITE(void *v)
 			brelse(bp, BC_INVAL);
 			break;
 		}
-#ifdef LFS_READWRITE
-		(void)VOP_BWRITE(bp->b_vp, bp);
-		lfs_reserve(fs, vp, NULL,
-		    -btofsb(fs, (UFS_NIADDR + 1) << fs->lfs_bshift));
-		need_unreserve = false;
-#else
 		if (ioflag & IO_SYNC)
 			(void)bwrite(bp);
 		else if (xfersize + blkoffset == fs->fs_bsize)
 			bawrite(bp);
 		else
 			bdwrite(bp);
-#endif
 		if (error || xfersize == 0)
 			break;
 	}
-#ifdef LFS_READWRITE
-	if (need_unreserve) {
-		lfs_reserve(fs, vp, NULL,
-		    -btofsb(fs, (UFS_NIADDR + 1) << fs->lfs_bshift));
-	}
-#endif
 
 	/*
 	 * If we successfully wrote any data, and we are not the superuser

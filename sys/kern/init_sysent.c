@@ -442,14 +442,14 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys_setegid },		/* 182 = setegid */
 	{ ns(struct sys_seteuid_args), 0,
 	    (sy_call_t *)sys_seteuid },		/* 183 = seteuid */
-	{ ns(struct sys_lfs_bmapv_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 184 = lfs_bmapv */
-	{ ns(struct sys_lfs_markv_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 185 = lfs_markv */
-	{ ns(struct sys_lfs_segclean_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 186 = lfs_segclean */
-	{ ns(struct compat_50_sys_lfs_segwait_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 187 = compat_50_lfs_segwait */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 184 = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 185 = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 186 = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 187 = unimplemented */
 	{ ns(struct compat_12_sys_stat_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_nomodule },	/* 188 = compat_12_stat12 */
 	{ ns(struct compat_12_sys_fstat_args), SYCALL_ARG_PTR,
@@ -966,8 +966,8 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys___utimes50 },	/* 420 = __utimes50 */
 	{ ns(struct sys___adjtime50_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys___adjtime50 },	/* 421 = __adjtime50 */
-	{ ns(struct sys___lfs_segwait50_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 422 = __lfs_segwait50 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 422 = unimplemented */
 	{ ns(struct sys___futimes50_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys___futimes50 },	/* 423 = __futimes50 */
 	{ ns(struct sys___lutimes50_args), SYCALL_ARG_PTR,

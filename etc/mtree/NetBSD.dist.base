@@ -215,7 +215,6 @@
 ./usr/include/ufs
 ./usr/include/ufs/ext2fs
 ./usr/include/ufs/ffs
-./usr/include/ufs/lfs
 ./usr/include/ufs/mfs
 ./usr/include/ufs/ufs
 ./usr/include/uvm

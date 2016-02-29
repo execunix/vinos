@@ -67,7 +67,6 @@ SRCS+=	nfs.c tftp.c
 .endif
 
 SRCS+=	ffsv1.c ffsv2.c
-SRCS+=	lfsv1.c lfsv2.c
 SRCS+=	cd9660.c
 SRCS+=	ustarfs.c
 SRCS+=	dosfs.c

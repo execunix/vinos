@@ -23,7 +23,6 @@ no options 	COMPAT_FREEBSD	# binary compatibility with FreeBSD
 # build non boot critical file systems as modules
 #
 no file-system	EXT2FS		# second extended file system (linux)
-no file-system	LFS		# log-structured file system
 no file-system	NTFS		# Windows/NT file system (experimental)
 no file-system	MSDOSFS		# MS-DOS file system
 no file-system	KERNFS		# /kern

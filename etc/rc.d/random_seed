@@ -47,7 +47,7 @@ fs_safe()
 	#
 	fstype="$(getfstype "$1")"
 	case "${fstype}" in
-	ffs|lfs|ext2fs|msdos|v7fs)
+	ffs|ext2fs|msdos)
 		return 0
 		;;
 	*)

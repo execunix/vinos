@@ -50,12 +50,10 @@ PROG	disklabel
 PROG	dkctl
 PROG	dmesg
 PROG	dump		rdump
-PROG	dump_lfs	rdump_lfs
 PROG	fdisk
 PROG	fsck
 PROG	fsck_ext2fs
 PROG	fsck_ffs
-PROG	fsck_lfs
 PROG	fsck_msdos
 PROG	fsdb
 PROG	fsirand
@@ -77,7 +75,6 @@ PROG	mount_fdesc
 PROG	mount_ffs	mount_ufs
 PROG	mount_filecore
 PROG	mount_kernfs
-PROG	mount_lfs
 PROG	mount_msdos
 PROG	mount_nfs
 PROG	mount_ntfs
@@ -91,7 +88,6 @@ PROG	mount_tmpfs
 PROG	mount_umap
 PROG	mount_union
 PROG	newfs		mount_mfs
-PROG	newfs_lfs
 PROG	newfs_msdos
 PROG	ping
 PROG	pppoectl	ipppctl
@@ -139,7 +135,6 @@ SRCDIRS	usr.sbin
 
 PROG	chroot
 PROG	dumpfs
-PROG	dumplfs
 PROG	installboot
 PROG	vnconfig
 
@@ -148,8 +143,6 @@ SRCDIRS	games
 PROG	tetris
 
 SRCDIRS	libexec
-
-PROG	lfs_cleanerd
 
 LIBS	liboverride.o
 LIBS	-lbz2 -llzma -lcrypt -ledit -lipsec -lkvm -ll -lm -lrmt -lcurses -lterminfo -lutil -lz -levent -lprop

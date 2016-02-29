@@ -307,7 +307,6 @@ killpgrp
 ktrace
 len
 lflag
-lfs
 linefeed
 lnextc
 lstat

@@ -839,8 +839,7 @@ netbsd32___mount50(struct lwp *l, const struct netbsd32___mount50_args *uap,
 		data = &fs_args.mfs_args;
 		data_len = sizeof(fs_args.mfs_args);
 	} else if ((strcmp(mtype, MOUNT_UFS) == 0) ||
-		   (strcmp(mtype, MOUNT_EXT2FS) == 0) ||
-		   (strcmp(mtype, MOUNT_LFS) == 0)) {
+		   (strcmp(mtype, MOUNT_EXT2FS) == 0)) {
 		if (data_len > sizeof(fs_args32.ufs_args))
 			return EINVAL;
 		if ((flags & MNT_GETARGS) == 0) {

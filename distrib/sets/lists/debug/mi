@@ -176,7 +176,6 @@
 ./usr/libdata/debug/bin/sync.debug		comp-util-debug		debug
 ./usr/libdata/debug/bin/tar.debug		comp-util-debug		debug,bsdtar
 ./usr/libdata/debug/bin/test.debug		comp-util-debug		debug
-./usr/libdata/debug/libexec/lfs_cleanerd.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/amrctl.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/apmlabel.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/atactl.debug		comp-sysutil-debug	debug
@@ -196,14 +195,11 @@
 ./usr/libdata/debug/sbin/dmesg.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/drvctl.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/dump.debug		comp-sysutil-debug	debug
-./usr/libdata/debug/sbin/dump_lfs.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/fdisk.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/fsck.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/fsck_ext2fs.debug	comp-ext2fs-debug	debug
 ./usr/libdata/debug/sbin/fsck_ffs.debug		comp-sysutil-debug	debug
-./usr/libdata/debug/sbin/fsck_lfs.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/fsck_msdos.debug	comp-sysutil-debug	debug
-./usr/libdata/debug/sbin/fsck_v7fs.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/fsdb.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/fsirand.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/gpt.debug		comp-sysutil-debug	debug
@@ -229,10 +225,8 @@
 ./usr/libdata/debug/sbin/mount_filecore.debug	comp-filecorefs-debug	debug
 ./usr/libdata/debug/sbin/mount_hfs.debug	comp-hfs-debug		debug
 ./usr/libdata/debug/sbin/mount_kernfs.debug	comp-sysutil-debug	debug
-./usr/libdata/debug/sbin/mount_lfs.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/mount_msdos.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/mount_nfs.debug	comp-nfsclient-debug	debug
-./usr/libdata/debug/sbin/mount_nilfs.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/mount_ntfs.debug	comp-ntfs-debug		debug
 ./usr/libdata/debug/sbin/mount_null.debug	comp-miscfs-debug	debug
 ./usr/libdata/debug/sbin/mount_overlay.debug	comp-miscfs-debug	debug
@@ -246,14 +240,11 @@
 ./usr/libdata/debug/sbin/mount_udf.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/mount_umap.debug	comp-miscfs-debug	debug
 ./usr/libdata/debug/sbin/mount_union.debug	comp-miscfs-debug	debug
-./usr/libdata/debug/sbin/mount_v7fs.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/newfs.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/newfs_ext2fs.debug	comp-sysutil-debug	debug
-./usr/libdata/debug/sbin/newfs_lfs.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/newfs_msdos.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/newfs_sysvbfs.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/newfs_udf.debug	comp-sysutil-debug	debug
-./usr/libdata/debug/sbin/newfs_v7fs.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/npfctl.debug		comp-npf-debug		npf,debug
 ./usr/libdata/debug/sbin/pdisk.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/pfctl.debug		comp-pf-debug		pf,debug
@@ -265,7 +256,6 @@
 ./usr/libdata/debug/sbin/rcorder.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/reboot.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/resize_ffs.debug	comp-sysutil-debug	debug
-./usr/libdata/debug/sbin/resize_lfs.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/restore.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/rndctl.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/route.debug		comp-netutil-debug	debug
@@ -821,7 +811,6 @@
 ./usr/libdata/debug/usr/sbin/dnssec-verify.debug	comp-bind-debug		debug
 ./usr/libdata/debug/usr/sbin/dtmfdecode.debug	comp-isdn-debug		debug
 ./usr/libdata/debug/usr/sbin/dumpfs.debug	comp-sysutil-debug	debug
-./usr/libdata/debug/usr/sbin/dumplfs.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/usr/sbin/edquota.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/usr/sbin/envstat.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/usr/sbin/eshconfig.debug	comp-sysutil-debug	debug

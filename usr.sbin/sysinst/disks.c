@@ -86,7 +86,6 @@ struct gptfs_t {
 static const struct gptfs_t gpt_filesystems[] = {
     { "swap", FS_SWAP, GPT_ENT_TYPE_NETBSD_SWAP, },
     { "ffs", FS_BSDFFS, GPT_ENT_TYPE_NETBSD_FFS, },
-    { "lfs", FS_BSDLFS, GPT_ENT_TYPE_NETBSD_LFS, },
     { "linux", FS_EX2FS, GPT_ENT_TYPE_LINUX_DATA, },
     { "windows,", FS_MSDOS, GPT_ENT_TYPE_MS_BASIC_DATA, },
     { "hfs", FS_HFS, GPT_ENT_TYPE_APPLE_HFS, },
@@ -742,12 +741,6 @@ make_filesystems(void)
 				lbl->mnt_opts = "-tffs -o async";
 			lbl->fsname = "ffs";
 			break;
-		case FS_BSDLFS:
-			asprintf(&newfs, "/sbin/newfs_lfs -b %d",
-				lbl->pi_fsize * lbl->pi_frag);
-			lbl->mnt_opts = "-tlfs";
-			lbl->fsname = "lfs";
-			break;
 		case FS_MSDOS:
 #ifdef USE_NEWFS_MSDOS
 			asprintf(&newfs, "/sbin/newfs_msdos");
@@ -885,12 +878,6 @@ make_fstab(void)
 			switch (pm_i->bsdlabel[i].pi_fstype) {
 			case FS_UNUSED:
 				continue;
-			case FS_BSDLFS:
-				/* If there is no LFS, just comment it out. */
-				if (!check_lfs_progs())
-					s = "# ";
-				fstype = "lfs";
-				/* FALLTHROUGH */
 			case FS_BSDFFS:
 				fsck_pass = (strcmp(mp, "/") == 0) ? 1 : 2;
 				dump_freq = 1;
@@ -1305,11 +1292,6 @@ bootxx_name(void)
 			bootxxname = NULL;
 #endif
 		}
-		break;
-#endif
-#ifdef BOOTXX_LFS
-	case FS_BSDLFS:
-		bootxxname = BOOTXX_LFS;
 		break;
 #endif
 	default:

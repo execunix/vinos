@@ -70,7 +70,6 @@ makeoptions	USE_SSP="no"
 # File systems
 file-system	FFS		# UFS
 #file-system	EXT2FS		# second extended file system (linux)
-#file-system	LFS		# log-structured file system
 #file-system	MFS		# memory file system
 file-system	NFS		# Network File System client
 #file-system	NTFS		# Windows/NT file system (experimental)

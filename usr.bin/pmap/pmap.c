@@ -366,7 +366,6 @@ dump_vm_map_entry(kvm_t *kd, struct kinfo_proc2 *proc, struct kbit *vmspace,
 	    D(vp, vnode)->v_data != NULL) {
 		switch (D(vp, vnode)->v_tag) {
 		case VT_UFS:
-		case VT_LFS:
 		case VT_EXT2FS:
 			V_DATA_IS(vp, inode, i_dev, i_number);
 			break;

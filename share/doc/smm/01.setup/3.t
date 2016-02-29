@@ -1305,26 +1305,6 @@ The format of
 has changed from previous \*(Bs releases
 to a blank-separated format to allow colons in pathnames.
 .PP
-A new local filesystem, the log-structured filesystem (LFS),
-has been added to the system.
-It provides near disk-speed output and fast crash recovery.
-This work is based, in part, on the LFS filesystem created
-for the Sprite operating system at Berkeley.
-While the kernel implementation is almost complete,
-only some of the utilities to support the
-filesystem have been written,
-so we do not recommend it for production use.
-See
-.Xr newlfs (8),
-.Xr mount_lfs (8)
-and
-.Xr lfs_cleanerd (8)
-for more information.
-For a in-depth description of the implementation and performance
-characteristics of log-structured filesystems in general,
-and this one in particular, see Dr. Margo Seltzer's doctoral thesis,
-available from the University of California Computer Science Department.
-.PP
 We have also added a memory-based filesystem that runs in
 pageable memory, allowing large temporary filesystems without
 requiring dedicated physical memory.

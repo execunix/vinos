@@ -65,10 +65,6 @@ getfstypename(int fstype)
 		return DKW_PTYPE_UNUSED;
 	case FS_SWAP:
 		return DKW_PTYPE_SWAP;
-	case FS_V6:
-		return DKW_PTYPE_V6;
-	case FS_V7:
-		return DKW_PTYPE_V7;
 	case FS_SYSV:
 		return DKW_PTYPE_SYSV;
 	case FS_V71K:
@@ -79,8 +75,6 @@ getfstypename(int fstype)
 		return DKW_PTYPE_FFS;
 	case FS_MSDOS:
 		return DKW_PTYPE_FAT;
-	case FS_BSDLFS:
-		return DKW_PTYPE_LFS;
 	case FS_OTHER:
 		return DKW_PTYPE_OTHER;
 	case FS_HPFS:
@@ -111,8 +105,6 @@ getfstypename(int fstype)
 		return DKW_PTYPE_SYSVBFS;
 	case FS_EFS:
 		return DKW_PTYPE_EFS;
-	case FS_NILFS:
-		return DKW_PTYPE_NILFS;
 	case FSMAXTYPES:
 		return DKW_PTYPE_UNKNOWN;
 	case FS_MINIXFS3:

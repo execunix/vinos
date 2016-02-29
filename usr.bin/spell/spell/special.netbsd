@@ -753,7 +753,6 @@ mount_ext2fs
 mount_fdesc
 mount_ffs
 mount_kernfs
-mount_lfs
 mount_mfs
 mount_msdos
 mount_nfs

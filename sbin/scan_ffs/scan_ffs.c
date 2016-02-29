@@ -27,7 +27,7 @@
  */
 
 /*
- * Currently it can detect FFS and LFS partitions (version 1 or 2)
+ * Currently it can detect FFS partitions (version 1 or 2)
  * up to 8192/65536 fragsize/blocksize.
  */
  
@@ -44,9 +44,6 @@ __RCSID("$NetBSD: scan_ffs.c,v 1.25 2013/06/23 22:03:34 dholland Exp $");
 #include <sys/fcntl.h>
 #include <sys/mount.h>
 
-#include <ufs/lfs/lfs.h>
-#include <ufs/lfs/lfs_extern.h>
-
 #include <ufs/ufs/dinode.h>
 #include <ufs/ffs/fs.h>
 
@@ -59,13 +56,10 @@ __RCSID("$NetBSD: scan_ffs.c,v 1.25 2013/06/23 22:03:34 dholland Exp $");
 
 #define BLK_CNT		(blk + (n / 512))
 
-/* common struct for FFS/LFS */
+/* common struct for FFS */
 struct sblockinfo {
-	struct lfs	*lfs;
 	struct fs	*ffs;
-	uint64_t	lfs_off;
 	uint64_t	ffs_off;
-	char		lfs_path[MAXMNTLEN];
 	char		ffs_path[MAXMNTLEN];
 };
 
@@ -74,7 +68,6 @@ static daddr_t	blk, lastblk;
 static int	eflag = 0;
 static int	fflag = 0;
 static int	flags = 0;
-static int	sbaddr = 0; /* counter for the LFS superblocks */
 
 static char	device[MAXPATHLEN];
 static const char *fstypes[] = { "NONE", "FFSv1", "FFSv2" };
@@ -86,24 +79,12 @@ static const char *fstypes[] = { "NONE", "FFSv1", "FFSv2" };
 #define SBCOUNT		128 /* may be changed */
 #define SBPASS		(SBCOUNT * SBLOCKSIZE / 512)
 
-/* This is only useful for LFS */
-
-/* first sblock address contains the correct offset */
-#define FIRST_SBLOCK_ADDRESS    1 
-/* second and third sblock address contain lfs_fsmnt[MAXMNTLEN] */
-#define SECOND_SBLOCK_ADDRESS   2
-/* last sblock address in a LFS partition */
-#define MAX_SBLOCK_ADDRESS      10
-
 enum { NADA=0, VERBOSE=1, LABELS=2, BLOCKS=4 };
 
 /* FFS functions */
 static void	ffs_printpart(struct sblockinfo *, int, size_t, int);
 static void	ffs_scan(struct sblockinfo *, int);
 static int	ffs_checkver(struct sblockinfo *);
-/* LFS functions */
-static void	lfs_printpart(struct sblockinfo *, int, int);
-static void	lfs_scan(struct sblockinfo *, int);
 /* common functions */
 static void	usage(void) __dead;
 static int	scan_disk(int, daddr_t, daddr_t, int);
@@ -244,97 +225,6 @@ ffs_scan(struct sblockinfo *sbi, int n)
 	}
 }
 
-static void
-lfs_printpart(struct sblockinfo *sbi, int flag, int n)
-{
-	if (flags & VERBOSE)
-               	(void)printf("offset: %" PRIu64 " size %" PRIu32
-			" fsid %" PRIx32 "\n", sbi->lfs_off, sbi->lfs->lfs_size,
-			sbi->lfs->lfs_ident);
-	switch (flag) {
-	case LABELS:
-		(void)printf("X:  %9" PRIu64,
-               		(uint64_t)(sbi->lfs->lfs_size *
-               		sbi->lfs->lfs_fsize / 512));
-		(void)printf(" %9" PRIu64, sbi->lfs_off); 
-		(void)printf(" 4.4LFS %6d %5d %7d # %s [LFSv%d]\n",
-			sbi->lfs->lfs_fsize, sbi->lfs->lfs_bsize,
-			sbi->lfs->lfs_nseg, sbi->lfs_path, 
-			sbi->lfs->lfs_version);
-		break;
-	case BLOCKS:
-		(void)printf("LFSv%d", sbi->lfs->lfs_version);
-		(void)printf(" sb at %" PRIu64, sbi->lfs_off + btodb(LFS_LABELPAD));
-		(void)printf(" fsid %" PRIx32, sbi->lfs->lfs_ident);
-		(void)printf(" size %" PRIu64 ", last mounted on %s\n",
-			(uint64_t)(sbi->lfs->lfs_size *
-			sbi->lfs->lfs_fsize / 512), sbi->lfs_path);
-		break;
-	default:
-		(void)printf("LFSv%d ", sbi->lfs->lfs_version);
-		(void)printf("at %" PRIu64, sbi->lfs_off);
-		(void)printf(" size %" PRIu64 ", last mounted on %s\n",
-			(uint64_t)(sbi->lfs->lfs_size *
-			sbi->lfs->lfs_fsize / 512), sbi->lfs_path);
-		break;
-	}
-}
-
-static void
-lfs_scan(struct sblockinfo *sbi, int n)
-{
-	/* Check to see if the sb checksums correctly */
-	if (lfs_sb_cksum(&(sbi->lfs->lfs_dlfs)) != sbi->lfs->lfs_cksum) {
-		if (flags & VERBOSE)
-			printf("LFS bad superblock at %" PRIu64 "\n",
-				BLK_CNT);
-		return;
-	}
-
-	/* backup offset */
-	lastblk = BLK_CNT - (LFS_SBPAD / 512);
-	/* increment counter */
-        ++sbaddr;
-
-	if (flags & BLOCKS) {
-		sbi->lfs_off = BLK_CNT - btodb(LFS_LABELPAD);
-		lfs_printpart(sbi, BLOCKS, n);
-		return;
-	}
-
-	switch (sbaddr) {
-	/*
-	 * first superblock contains the right offset, but lfs_fsmnt is
-	 * empty... fortunately the next superblock address has it.
-	 */
-	case FIRST_SBLOCK_ADDRESS:
-		/* copy partition offset */
-		if ((daddr_t)sbi->lfs_off != lastblk)
-			sbi->lfs_off = BLK_CNT - (LFS_LABELPAD / 512);
-		break;
-	case SECOND_SBLOCK_ADDRESS:
-		/* copy the path of last mount */
-		(void)memcpy(sbi->lfs_path, sbi->lfs->lfs_fsmnt, MAXMNTLEN);
-		/* print now that we have the info */
-		if (flags & LABELS)
-			lfs_printpart(sbi, LABELS, n);
-		else
-			lfs_printpart(sbi, NADA, n);
-		/* clear our struct */
-		(void)memset(sbi, 0, sizeof(*sbi));
-		break;
-	case MAX_SBLOCK_ADDRESS:
-		/*
-		 * reset the counter, this is the last superblock address,
-		 * the next one will be another partition maybe.
-		 */
-		sbaddr = 0;
-		break;
-	default:
-		break;
-	}
-}
-
 static int
 scan_disk(int fd, daddr_t beg, daddr_t end, int fflags)
 {
@@ -361,7 +251,6 @@ scan_disk(int fd, daddr_t beg, daddr_t end, int fflags)
 
 		for (n = 0; n < (SBLOCKSIZE * SBCOUNT); n += 512) {
 			sbinfo.ffs = (struct fs *)&buf[n];
-			sbinfo.lfs = (struct lfs *)&buf[n];
 
 			switch (ffs_checkver(&sbinfo)) {
 			case FSTYPE_FFSV1:
@@ -372,9 +261,6 @@ scan_disk(int fd, daddr_t beg, daddr_t end, int fflags)
 					sbinfo.ffs->fs_fsmnt, MAXMNTLEN);
 				break;
 			case FSTYPE_NONE:
-				/* maybe LFS? */
-				if (sbinfo.lfs->lfs_magic == LFS_MAGIC)
-					lfs_scan(&sbinfo, n);
 				break;
 			default:
 				break;

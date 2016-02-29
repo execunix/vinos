@@ -1617,18 +1617,6 @@ enable_rc_conf(void)
 }
 
 int
-check_lfs_progs(void)
-{
-
-#ifndef NO_LFS
-	return binary_available("fsck_lfs") && binary_available("mount_lfs")
-	    && binary_available("newfs_lfs");
-#else
-	return 0;
-#endif
-}
-
-int
 set_is_source(const char *set_name) {
 	int len = strlen(set_name);
 	return len >= 3 && memcmp(set_name + len - 3, "src", 3) == 0;

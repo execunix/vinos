@@ -512,10 +512,6 @@
 /* syscall: "netbsd32_seteuid" ret: "int" args: "uid_t" */
 #define	NETBSD32_SYS_netbsd32_seteuid	183
 
-				/* 184 is excluded netbsd32_lfs_bmapv */
-				/* 185 is excluded netbsd32_lfs_markv */
-				/* 186 is excluded netbsd32_lfs_segclean */
-				/* 187 is excluded netbsd32_lfs_segwait */
 /* syscall: "compat_12_netbsd32_stat12" ret: "int" args: "netbsd32_charp" "netbsd32_stat12p_t" */
 #define	NETBSD32_SYS_compat_12_netbsd32_stat12	188
 
@@ -1080,7 +1076,6 @@
 /* syscall: "netbsd32___adjtime50" ret: "int" args: "const netbsd32_timevalp_t" "netbsd32_timevalp_t" */
 #define	NETBSD32_SYS_netbsd32___adjtime50	421
 
-				/* 422 is excluded __lfs_segwait50 */
 /* syscall: "netbsd32___futimes50" ret: "int" args: "int" "const netbsd32_timevalp_t" */
 #define	NETBSD32_SYS_netbsd32___futimes50	423
 

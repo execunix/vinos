@@ -40,7 +40,6 @@ __KERNEL_RCSID(0, "$NetBSD: compat_mod.c,v 1.20 2013/09/19 18:50:35 christos Exp
 #include "opt_compat_netbsd.h"
 #include "opt_ntp.h"
 #include "opt_sysv.h"
-#include "opt_lfs.h"
 #endif
 
 #include <sys/systm.h>
