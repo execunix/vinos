@@ -327,14 +327,14 @@ static const char *const dktypenames[] = { DKTYPE_DEFN(DKTYPE_NAMES) NULL };
 #define	FSTYPE_DEFN(x) \
 x(UNUSED,   0, "unused",     NULL,    NULL)   /* unused */ \
 x(SWAP,     1, "swap",       NULL,    NULL)   /* swap */ \
-x(BSDFFS,   7, "4.2BSD",    "ffs",   "ffs")   /* 4.2BSD fast file system */ \
-x(MSDOS,    8, "MSDOS",     "msdos", "msdos") /* MSDOS file system */ \
-x(OTHER,   10, "unknown",    NULL,    NULL)   /* in use, unknown/unsupported */\
-x(ISO9660, 12, "ISO9660",    NULL,   "cd9660")/* ISO 9660, normally CD-ROM */ \
-x(BOOT,    13, "boot",       NULL,    NULL)   /* bootstrap code in partition */\
-x(EX2FS,   17, "Linux Ext2","ext2fs","ext2fs")/* Linux Extended 2 FS */ \
-x(NTFS,    18, "NTFS",       NULL,   "ntfs")  /* Windows/NT file system */ \
-x(UDF,     24, "UDF",        NULL,   "udf")   /* UDF */ \
+x(BSDFFS,   2, "4.2BSD",    "ffs",   "ffs")   /* 4.2BSD fast file system */ \
+x(MSDOS,    3, "MSDOS",     "msdos", "msdos") /* MSDOS file system */ \
+x(OTHER,    4, "unknown",    NULL,    NULL)   /* in use, unknown/unsupported */\
+x(ISO9660,  5, "ISO9660",    NULL,   "cd9660")/* ISO 9660, normally CD-ROM */ \
+x(BOOT,     6, "boot",       NULL,    NULL)   /* bootstrap code in partition */\
+x(EX2FS,    7, "Linux Ext2","ext2fs","ext2fs")/* Linux Extended 2 FS */ \
+x(NTFS,     8, "NTFS",       NULL,   "ntfs")  /* Windows/NT file system */ \
+x(UDF,      9, "UDF",        NULL,   "udf")   /* UDF */ \
 
 
 #ifndef _LOCORE

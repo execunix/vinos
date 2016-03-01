@@ -170,9 +170,7 @@ readdisklabel(dev_t dev, void (*strat)(struct buf *),
 	cyl = LABELSECTOR / lp->d_secpercyl;
 
 	if (osdep) {
-		if (filecore_label_read(dev, strat,lp, osdep, &msg, &cyl,
-		      &netbsdpartoff) ||
-		    mbr_label_read(dev, strat, lp, osdep, &msg, &cyl,
+		if (mbr_label_read(dev, strat, lp, osdep, &msg, &cyl,
 		      &netbsdpartoff)) {
 			if (msg != NULL)
 				goto done;
@@ -346,9 +344,7 @@ writedisklabel(dev_t dev, void (*strat)(struct buf *),
 	cyl = LABELSECTOR / lp->d_secpercyl;
 
 	if (osdep) {
-		if ((rv = filecore_label_locate(dev, strat,lp, osdep, &cyl,
-		      &netbsdpartoff)) != 0 ||
-		    (rv = mbr_label_locate(dev, strat, lp, osdep, &cyl,
+		if ((rv = mbr_label_locate(dev, strat, lp, osdep, &cyl,
 		      &netbsdpartoff)) != 0) {
 			if (rv > 0)
 			    goto done;
