@@ -16,7 +16,6 @@ file	dev/md_root.c				md & memory_disk_hooks
 file	arch/evbarm/evbarm/autoconf.c
 
 file	arch/arm/arm/disksubr.c
-file	arch/arm/arm/disksubr_acorn.c
 file	arch/arm/arm/disksubr_mbr.c
 
 # ARM FPE
