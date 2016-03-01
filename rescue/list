@@ -67,7 +67,6 @@ PROG	modload
 PROG	modstat
 PROG	modunload
 PROG	mount
-PROG	mount_ados
 PROG	mount_cd9660
 PROG	mount_ext2fs
 PROG	mount_fdesc

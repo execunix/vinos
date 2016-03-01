@@ -72,7 +72,6 @@
 ./rescue/modunload				base-rescue-root
 ./rescue/more					base-rescue-root
 ./rescue/mount					base-rescue-root
-./rescue/mount_ados				base-rescue-root
 ./rescue/mount_cd9660				base-rescue-root
 ./rescue/mount_ext2fs				base-rescue-root
 ./rescue/mount_fdesc				base-rescue-root

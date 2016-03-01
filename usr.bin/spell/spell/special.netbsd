@@ -747,7 +747,6 @@ moptrace
 more
 mount
 mountd
-mount_ados
 mount_cd9660
 mount_ext2fs
 mount_fdesc
