@@ -526,10 +526,8 @@ syscallprint(struct ktr_header *kth)
 	case SYS_mkdir:
 	case SYS_rmdir:
 	case SYS___utimes50:
-	case SYS_compat_50_quotactl:
 	case SYS___quotactl:
 	case SYS_statvfs1:
-	case SYS_compat_30_getfh:
 	case SYS_pathconf:
 	case SYS_truncate:
 	case SYS_undelete:

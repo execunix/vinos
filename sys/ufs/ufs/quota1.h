@@ -62,22 +62,6 @@
 #define	QUOTAGROUP	"operator"
 
 /*
- * Command definitions for the 'compat_50_quotactl' system call.  The commands
- * are broken into a main command defined below and a subcommand that is used
- * to convey the type of quota that is being manipulated (see above).
- */
-#define SUBCMDMASK	0x00ff
-#define SUBCMDSHIFT	8
-#define	QCMD(cmd, type)	(((cmd) << SUBCMDSHIFT) | ((type) & SUBCMDMASK))
-
-#define	Q_QUOTAON	0x0100	/* enable quotas */
-#define	Q_QUOTAOFF	0x0200	/* disable quotas */
-#define	Q_GETQUOTA	0x0300	/* get limits and usage */
-#define	Q_SETQUOTA	0x0400	/* set limits and usage */
-#define	Q_SETUSE	0x0500	/* set usage */
-#define	Q_SYNC		0x0600	/* sync disk copy of a filesystems quotas */
-
-/*
  * The following structure defines the format of the disk quota file
  * (as it appears on disk) - the file is an array of these structures
  * indexed by user or group number.  The setquota system call establishes

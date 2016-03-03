@@ -91,8 +91,6 @@ static int x86_64_set_mtrr32(struct lwp *, void *, register_t *);
 #define x86_64_set_mtrr32(x, y, z)	ENOSYS
 #endif
 
-static int check_sigcontext32(struct lwp *, const struct netbsd32_sigcontext *);
-
 #ifdef EXEC_AOUT
 /*
  * There is no native a.out -- this function is required
@@ -691,33 +689,6 @@ startlwp32(void *arg)
  * and rely on catching invalid user contexts on exit from the kernel.
  * These functions perform the needed checks.
  */
-
-static int
-check_sigcontext32(struct lwp *l, const struct netbsd32_sigcontext *scp)
-{
-	struct trapframe *tf;
-	struct pcb *pcb;
-
-	tf = l->l_md.md_regs;
-	pcb = lwp_getpcb(curlwp);
-
-	if (((scp->sc_eflags ^ tf->tf_rflags) & PSL_USERSTATIC) != 0 ||
-	    !VALID_USER_CSEL32(scp->sc_cs))
-		return EINVAL;
-	if (scp->sc_fs != 0 && !VALID_USER_DSEL32(scp->sc_fs) &&
-	    !(VALID_USER_FSEL32(scp->sc_fs) && pcb->pcb_fs != 0))
-		return EINVAL;
-	if (scp->sc_gs != 0 && !VALID_USER_DSEL32(scp->sc_gs) &&
-	    !(VALID_USER_GSEL32(scp->sc_gs) && pcb->pcb_gs != 0))
-		return EINVAL;
-	if (scp->sc_es != 0 && !VALID_USER_DSEL32(scp->sc_es))
-		return EINVAL;
-	if (!VALID_USER_DSEL32(scp->sc_ds) || !VALID_USER_DSEL32(scp->sc_ss))
-		return EINVAL;
-	if (scp->sc_eip >= VM_MAXUSER_ADDRESS32)
-		return EINVAL;
-	return 0;
-}
 
 int
 cpu_mcontext32_validate(struct lwp *l, const mcontext32_t *mcp)
