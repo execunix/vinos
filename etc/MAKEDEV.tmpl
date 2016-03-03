@@ -243,7 +243,6 @@
 #	hil	HP300 HIL input devices
 #	icp	ICP-Vortex/Intel RAID control interface
 #	iic*	IIC bus device
-#	io	x86 IOPL access for COMPAT_10, COMPAT_FREEBSD
 #	iop*	I2O IOP control interface
 #	ipl	IP Filter
 #	irframe* IrDA physical frame
@@ -1551,10 +1550,6 @@ bktr[0-9]*)
 	mkdev bktr$unit		c %bktr_chr% $(($unit + 0))	444
 	mkdev tuner$unit	c %bktr_chr% $(($unit + 16))	444
 	mkdev vbi$unit		c %bktr_chr% $(($unit + 32))	444
-	;;
-
-io)
-	mkdev		io	c %mem_chr% 14	600
 	;;
 
 iop[0-9]*)

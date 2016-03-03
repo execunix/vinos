@@ -178,8 +178,7 @@ iskmemdev(dev_t dev)
 	/* mem_no is emitted by config(8) to generated devsw.c */
 	extern const int mem_no;
 
-	/* minor 14 is /dev/io on i386 with COMPAT_10 */
-	return (major(dev) == mem_no && (minor(dev) < 2 || minor(dev) == 14));
+	return (major(dev) == mem_no && minor(dev) < 2);
 }
 
 static int

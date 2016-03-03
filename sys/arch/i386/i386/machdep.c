@@ -1695,35 +1695,6 @@ cpu_initclocks(void)
 	(*initclock_func)();
 }
 
-#define	DEV_IO 14		/* iopl for compat_10 */
-
-int
-mm_md_open(dev_t dev, int flag, int mode, struct lwp *l)
-{
-
-	switch (minor(dev)) {
-	case DEV_IO:
-		/*
-		 * This is done by i386_iopl(3) now.
-		 */
-		if (flag & FWRITE) {
-			struct trapframe *fp;
-			int error;
-
-			error = kauth_authorize_machdep(l->l_cred,
-			    KAUTH_MACHDEP_IOPL, NULL, NULL, NULL, NULL);
-			if (error)
-				return (error);
-			fp = curlwp->l_md.md_regs;
-			fp->tf_eflags |= PSL_IOPL;
-		}
-		break;
-	default:
-		break;
-	}
-	return 0;
-}
-
 #ifdef PAE
 void
 cpu_alloc_l3_page(struct cpu_info *ci)

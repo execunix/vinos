@@ -174,10 +174,6 @@ struct stat30 {
 
 #undef __STATPAD
 
-#if defined(_KERNEL)
-void compat_12_stat_conv(const struct stat *st, struct stat12 *ost);
-#endif
-
 #if !defined(_KERNEL) && !defined(_STANDALONE)
 
 __BEGIN_DECLS

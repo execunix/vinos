@@ -67,7 +67,7 @@ defparam opt_sysvparam.h	SHMMAXPGS SEMMNI SEMMNS SEMUME SEMMNU
 
 defflag	opt_ntp.h		PPS_SYNC PPS_DEBUG NTP
 
-defflag	opt_ptm.h		NO_DEV_PTM COMPAT_BSDPTY
+defflag	opt_ptm.h		NO_DEV_PTM
 
 defparam opt_kmempages.h	NKMEMPAGES NKMEMPAGES_MIN NKMEMPAGES_MAX
 
@@ -1614,7 +1614,6 @@ file	kern/sysv_sem.c			sysvsem
 file	kern/sysv_shm.c			sysvshm
 file	kern/tty.c
 file	kern/tty_conf.c
-file	kern/tty_bsdpty.c		compat_bsdpty
 file	kern/tty_pty.c			pty 			needs-flag
 file	kern/tty_ptm.c			pty
 file	kern/tty_subr.c

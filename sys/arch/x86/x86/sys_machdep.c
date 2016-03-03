@@ -795,9 +795,6 @@ sys_sysarch(struct lwp *l, const struct sys_sysarch_args *uap, register_t *retva
 	case X86_VM86:
 		error = x86_vm86(l, SCARG(uap, parms), retval);
 		break;
-	case X86_OLD_VM86:
-		error = compat_16_x86_vm86(l, SCARG(uap, parms), retval);
-		break;
 #endif
 
 #ifdef PERFCTRS

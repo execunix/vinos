@@ -86,8 +86,6 @@ typedef uint32_t netbsd32_uintptr_t;
  *	int netbsd32_sigreturn(struct proc *p, void *v,
  *	    register_t *retval);
  *	void netbsd32_sendsig(sig_t catcher, int sig, int mask, u_long code);
- *	char netbsd32_esigcode[], netbsd32_sigcode[]
- *		- the above are abvious
  *
  * pull in the netbsd32 machine dependent header, that may help with the
  * above, or it may be provided via the MD layer itself.

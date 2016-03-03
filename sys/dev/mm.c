@@ -59,11 +59,7 @@ static dev_type_mmap(mm_mmap);
 static dev_type_ioctl(mm_ioctl);
 
 const struct cdevsw mem_cdevsw = {
-#ifdef __HAVE_MM_MD_OPEN
-	.d_open = mm_md_open,
-#else
 	.d_open = nullopen,
-#endif
 	.d_close = nullclose,
 	.d_read = mm_readwrite,
 	.d_write = mm_readwrite,

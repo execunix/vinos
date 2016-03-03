@@ -955,8 +955,6 @@ writelabel_mbr(int f, u_int sector)
 
 #endif	/* !NO_MBR_SUPPORT */
 
-#define get_filecore_partition(f) 0
-
 /*
  * Fetch disklabel for disk to 'lab'.
  * Use ioctl to get label unless -r flag is given.
@@ -1143,18 +1141,11 @@ update_label(int f, u_int label_sector, u_int label_offset)
 static void
 writelabel_direct(int f)
 {
-	u_int label_sector;
-	int written = 0;
 	int rval;
-
-	label_sector = get_filecore_partition(f);
-	if (label_sector != 0)
-		/* The offset needs to be that from the acorn ports... */
-		written = update_label(f, label_sector, DEV_BSIZE);
 
 	rval = process_mbr(f, writelabel_mbr);
 
-	if (rval == 2 || written)
+	if (rval == 2)
 		/* Don't add a label to sector 0, but update one if there */
 		update_label(f, 0, ~0u);
 	else
@@ -1165,16 +1156,6 @@ static int
 readlabel_direct(int f)
 {
 	struct disklabel *disk_lp;
-	u_int filecore_partition_offset;
-
-	filecore_partition_offset = get_filecore_partition(f);
-	if (filecore_partition_offset != 0) {
-		disk_lp = find_label(f, filecore_partition_offset);
-		if (disk_lp != NULL) {
-			targettohlabel(&lab, disk_lp);
-			return 0;
-		}
-	}
 
 	if (mflag && process_mbr(f, readlabel_mbr) == 0)
 		return 0;

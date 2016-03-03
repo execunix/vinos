@@ -67,20 +67,6 @@ struct netbsd32_close_args {
 };
 check_syscall_args(netbsd32_close)
 
-struct compat_50_netbsd32_wait4_args {
-	syscallarg(int) pid;
-	syscallarg(netbsd32_intp) status;
-	syscallarg(int) options;
-	syscallarg(netbsd32_rusage50p_t) rusage;
-};
-check_syscall_args(compat_50_netbsd32_wait4)
-
-struct compat_43_netbsd32_ocreat_args {
-	syscallarg(netbsd32_charp) path;
-	syscallarg(mode_t) mode;
-};
-check_syscall_args(compat_43_netbsd32_ocreat)
-
 struct netbsd32_link_args {
 	syscallarg(netbsd32_charp) path;
 	syscallarg(netbsd32_charp) link;
@@ -102,13 +88,6 @@ struct netbsd32_fchdir_args {
 };
 check_syscall_args(netbsd32_fchdir)
 
-struct compat_50_netbsd32_mknod_args {
-	syscallarg(netbsd32_charp) path;
-	syscallarg(mode_t) mode;
-	syscallarg(uint32_t) dev;
-};
-check_syscall_args(compat_50_netbsd32_mknod)
-
 struct netbsd32_chmod_args {
 	syscallarg(netbsd32_charp) path;
 	syscallarg(mode_t) mode;
@@ -126,20 +105,6 @@ struct netbsd32_break_args {
 	syscallarg(netbsd32_charp) nsize;
 };
 check_syscall_args(netbsd32_break)
-
-struct compat_20_netbsd32_getfsstat_args {
-	syscallarg(netbsd32_statfsp_t) buf;
-	syscallarg(netbsd32_long) bufsize;
-	syscallarg(int) flags;
-};
-check_syscall_args(compat_20_netbsd32_getfsstat)
-
-struct compat_43_netbsd32_olseek_args {
-	syscallarg(int) fd;
-	syscallarg(netbsd32_long) offset;
-	syscallarg(int) whence;
-};
-check_syscall_args(compat_43_netbsd32_olseek)
 
 struct netbsd32_mount_args {
 	syscallarg(netbsd32_charp) type;
@@ -237,18 +202,6 @@ struct netbsd32_kill_args {
 };
 check_syscall_args(netbsd32_kill)
 
-struct compat_43_netbsd32_stat43_args {
-	syscallarg(netbsd32_charp) path;
-	syscallarg(netbsd32_stat43p_t) ub;
-};
-check_syscall_args(compat_43_netbsd32_stat43)
-
-struct compat_43_netbsd32_lstat43_args {
-	syscallarg(netbsd32_charp) path;
-	syscallarg(netbsd32_stat43p_t) ub;
-};
-check_syscall_args(compat_43_netbsd32_lstat43)
-
 struct netbsd32_dup_args {
 	syscallarg(int) fd;
 };
@@ -277,12 +230,6 @@ struct netbsd32_sigaction_args {
 };
 check_syscall_args(netbsd32_sigaction)
 
-struct compat_13_netbsd32_sigprocmask_args {
-	syscallarg(int) how;
-	syscallarg(int) mask;
-};
-check_syscall_args(compat_13_netbsd32_sigprocmask)
-
 struct netbsd32___getlogin_args {
 	syscallarg(netbsd32_charp) namebuf;
 	syscallarg(u_int) namelen;
@@ -299,23 +246,12 @@ struct netbsd32_acct_args {
 };
 check_syscall_args(netbsd32_acct)
 
-struct compat_13_netbsd32_sigaltstack13_args {
-	syscallarg(netbsd32_sigaltstack13p_t) nss;
-	syscallarg(netbsd32_sigaltstack13p_t) oss;
-};
-check_syscall_args(compat_13_netbsd32_sigaltstack13)
-
 struct netbsd32_ioctl_args {
 	syscallarg(int) fd;
 	syscallarg(netbsd32_u_long) com;
 	syscallarg(netbsd32_voidp) data;
 };
 check_syscall_args(netbsd32_ioctl)
-
-struct compat_12_netbsd32_reboot_args {
-	syscallarg(int) opt;
-};
-check_syscall_args(compat_12_netbsd32_reboot)
 
 struct netbsd32_revoke_args {
 	syscallarg(netbsd32_charp) path;
@@ -352,26 +288,6 @@ struct netbsd32_chroot_args {
 };
 check_syscall_args(netbsd32_chroot)
 
-struct compat_43_netbsd32_fstat43_args {
-	syscallarg(int) fd;
-	syscallarg(netbsd32_stat43p_t) sb;
-};
-check_syscall_args(compat_43_netbsd32_fstat43)
-
-struct compat_43_netbsd32_ogetkerninfo_args {
-	syscallarg(int) op;
-	syscallarg(netbsd32_charp) where;
-	syscallarg(netbsd32_intp) size;
-	syscallarg(int) arg;
-};
-check_syscall_args(compat_43_netbsd32_ogetkerninfo)
-
-struct compat_12_netbsd32_msync_args {
-	syscallarg(netbsd32_voidp) addr;
-	syscallarg(netbsd32_size_t) len;
-};
-check_syscall_args(compat_12_netbsd32_msync)
-
 struct netbsd32_sbrk_args {
 	syscallarg(netbsd32_intptr_t) incr;
 };
@@ -381,16 +297,6 @@ struct netbsd32_sstk_args {
 	syscallarg(int) incr;
 };
 check_syscall_args(netbsd32_sstk)
-
-struct compat_43_netbsd32_ommap_args {
-	syscallarg(netbsd32_voidp) addr;
-	syscallarg(netbsd32_size_t) len;
-	syscallarg(int) prot;
-	syscallarg(int) flags;
-	syscallarg(int) fd;
-	syscallarg(netbsd32_long) pos;
-};
-check_syscall_args(compat_43_netbsd32_ommap)
 
 struct netbsd32_ovadvise_args {
 	syscallarg(int) anom;
@@ -442,36 +348,6 @@ struct netbsd32_setpgid_args {
 };
 check_syscall_args(netbsd32_setpgid)
 
-struct compat_50_netbsd32_setitimer_args {
-	syscallarg(int) which;
-	syscallarg(netbsd32_itimerval50p_t) itv;
-	syscallarg(netbsd32_itimerval50p_t) oitv;
-};
-check_syscall_args(compat_50_netbsd32_setitimer)
-
-struct compat_12_netbsd32_oswapon_args {
-	syscallarg(netbsd32_charp) name;
-};
-check_syscall_args(compat_12_netbsd32_oswapon)
-
-struct compat_50_netbsd32_getitimer_args {
-	syscallarg(int) which;
-	syscallarg(netbsd32_itimerval50p_t) itv;
-};
-check_syscall_args(compat_50_netbsd32_getitimer)
-
-struct compat_43_netbsd32_ogethostname_args {
-	syscallarg(netbsd32_charp) hostname;
-	syscallarg(u_int) len;
-};
-check_syscall_args(compat_43_netbsd32_ogethostname)
-
-struct compat_43_netbsd32_osethostname_args {
-	syscallarg(netbsd32_charp) hostname;
-	syscallarg(u_int) len;
-};
-check_syscall_args(compat_43_netbsd32_osethostname)
-
 struct netbsd32_dup2_args {
 	syscallarg(int) from;
 	syscallarg(int) to;
@@ -485,15 +361,6 @@ struct netbsd32_fcntl_args {
 };
 check_syscall_args(netbsd32_fcntl)
 
-struct compat_50_netbsd32_select_args {
-	syscallarg(int) nd;
-	syscallarg(netbsd32_fd_setp_t) in;
-	syscallarg(netbsd32_fd_setp_t) ou;
-	syscallarg(netbsd32_fd_setp_t) ex;
-	syscallarg(netbsd32_timeval50p_t) tv;
-};
-check_syscall_args(compat_50_netbsd32_select)
-
 struct netbsd32_fsync_args {
 	syscallarg(int) fd;
 };
@@ -506,13 +373,6 @@ struct netbsd32_setpriority_args {
 };
 check_syscall_args(netbsd32_setpriority)
 
-struct compat_30_netbsd32_socket_args {
-	syscallarg(int) domain;
-	syscallarg(int) type;
-	syscallarg(int) protocol;
-};
-check_syscall_args(compat_30_netbsd32_socket)
-
 struct netbsd32_connect_args {
 	syscallarg(int) s;
 	syscallarg(netbsd32_sockaddrp_t) name;
@@ -520,39 +380,11 @@ struct netbsd32_connect_args {
 };
 check_syscall_args(netbsd32_connect)
 
-struct compat_43_netbsd32_oaccept_args {
-	syscallarg(int) s;
-	syscallarg(netbsd32_voidp) name;
-	syscallarg(netbsd32_intp) anamelen;
-};
-check_syscall_args(compat_43_netbsd32_oaccept)
-
 struct netbsd32_getpriority_args {
 	syscallarg(int) which;
 	syscallarg(int) who;
 };
 check_syscall_args(netbsd32_getpriority)
-
-struct compat_43_netbsd32_osend_args {
-	syscallarg(int) s;
-	syscallarg(netbsd32_voidp) buf;
-	syscallarg(int) len;
-	syscallarg(int) flags;
-};
-check_syscall_args(compat_43_netbsd32_osend)
-
-struct compat_43_netbsd32_orecv_args {
-	syscallarg(int) s;
-	syscallarg(netbsd32_voidp) buf;
-	syscallarg(int) len;
-	syscallarg(int) flags;
-};
-check_syscall_args(compat_43_netbsd32_orecv)
-
-struct compat_13_netbsd32_sigreturn_args {
-	syscallarg(netbsd32_sigcontextp_t) sigcntxp;
-};
-check_syscall_args(compat_13_netbsd32_sigreturn)
 
 struct netbsd32_bind_args {
 	syscallarg(int) s;
@@ -575,60 +407,6 @@ struct netbsd32_listen_args {
 	syscallarg(int) backlog;
 };
 check_syscall_args(netbsd32_listen)
-
-struct compat_43_netbsd32_osigvec_args {
-	syscallarg(int) signum;
-	syscallarg(netbsd32_sigvecp_t) nsv;
-	syscallarg(netbsd32_sigvecp_t) osv;
-};
-check_syscall_args(compat_43_netbsd32_osigvec)
-
-struct compat_43_netbsd32_sigblock_args {
-	syscallarg(int) mask;
-};
-check_syscall_args(compat_43_netbsd32_sigblock)
-
-struct compat_43_netbsd32_sigsetmask_args {
-	syscallarg(int) mask;
-};
-check_syscall_args(compat_43_netbsd32_sigsetmask)
-
-struct compat_13_netbsd32_sigsuspend_args {
-	syscallarg(int) mask;
-};
-check_syscall_args(compat_13_netbsd32_sigsuspend)
-
-struct compat_43_netbsd32_osigstack_args {
-	syscallarg(netbsd32_sigstackp_t) nss;
-	syscallarg(netbsd32_sigstackp_t) oss;
-};
-check_syscall_args(compat_43_netbsd32_osigstack)
-
-struct compat_43_netbsd32_orecvmsg_args {
-	syscallarg(int) s;
-	syscallarg(netbsd32_omsghdrp_t) msg;
-	syscallarg(int) flags;
-};
-check_syscall_args(compat_43_netbsd32_orecvmsg)
-
-struct compat_43_netbsd32_osendmsg_args {
-	syscallarg(int) s;
-	syscallarg(netbsd32_voidp) msg;
-	syscallarg(int) flags;
-};
-check_syscall_args(compat_43_netbsd32_osendmsg)
-
-struct compat_50_netbsd32_gettimeofday_args {
-	syscallarg(netbsd32_timeval50p_t) tp;
-	syscallarg(netbsd32_timezonep_t) tzp;
-};
-check_syscall_args(compat_50_netbsd32_gettimeofday)
-
-struct compat_50_netbsd32_getrusage_args {
-	syscallarg(int) who;
-	syscallarg(netbsd32_rusage50p_t) rusage;
-};
-check_syscall_args(compat_50_netbsd32_getrusage)
 
 struct netbsd32_getsockopt_args {
 	syscallarg(int) s;
@@ -653,12 +431,6 @@ struct netbsd32_writev_args {
 };
 check_syscall_args(netbsd32_writev)
 
-struct compat_50_netbsd32_settimeofday_args {
-	syscallarg(netbsd32_timeval50p_t) tv;
-	syscallarg(netbsd32_timezonep_t) tzp;
-};
-check_syscall_args(compat_50_netbsd32_settimeofday)
-
 struct netbsd32_fchown_args {
 	syscallarg(int) fd;
 	syscallarg(uid_t) uid;
@@ -671,16 +443,6 @@ struct netbsd32_fchmod_args {
 	syscallarg(mode_t) mode;
 };
 check_syscall_args(netbsd32_fchmod)
-
-struct compat_43_netbsd32_orecvfrom_args {
-	syscallarg(int) s;
-	syscallarg(netbsd32_voidp) buf;
-	syscallarg(netbsd32_size_t) len;
-	syscallarg(int) flags;
-	syscallarg(netbsd32_voidp) from;
-	syscallarg(netbsd32_intp) fromlenaddr;
-};
-check_syscall_args(compat_43_netbsd32_orecvfrom)
 
 struct netbsd32_setreuid_args {
 	syscallarg(uid_t) ruid;
@@ -699,18 +461,6 @@ struct netbsd32_rename_args {
 	syscallarg(netbsd32_charp) to;
 };
 check_syscall_args(netbsd32_rename)
-
-struct compat_43_netbsd32_otruncate_args {
-	syscallarg(netbsd32_charp) path;
-	syscallarg(netbsd32_long) length;
-};
-check_syscall_args(compat_43_netbsd32_otruncate)
-
-struct compat_43_netbsd32_oftruncate_args {
-	syscallarg(int) fd;
-	syscallarg(netbsd32_long) length;
-};
-check_syscall_args(compat_43_netbsd32_oftruncate)
 
 struct netbsd32_flock_args {
 	syscallarg(int) fd;
@@ -759,147 +509,11 @@ struct netbsd32_rmdir_args {
 };
 check_syscall_args(netbsd32_rmdir)
 
-struct compat_50_netbsd32_utimes_args {
-	syscallarg(netbsd32_charp) path;
-	syscallarg(netbsd32_timeval50p_t) tptr;
-};
-check_syscall_args(compat_50_netbsd32_utimes)
-
-struct compat_50_netbsd32_adjtime_args {
-	syscallarg(netbsd32_timeval50p_t) delta;
-	syscallarg(netbsd32_timeval50p_t) olddelta;
-};
-check_syscall_args(compat_50_netbsd32_adjtime)
-
-struct compat_43_netbsd32_ogetpeername_args {
-	syscallarg(int) fdes;
-	syscallarg(netbsd32_voidp) asa;
-	syscallarg(netbsd32_intp) alen;
-};
-check_syscall_args(compat_43_netbsd32_ogetpeername)
-
-struct compat_43_netbsd32_sethostid_args {
-	syscallarg(int32_t) hostid;
-};
-check_syscall_args(compat_43_netbsd32_sethostid)
-
-struct compat_43_netbsd32_ogetrlimit_args {
-	syscallarg(int) which;
-	syscallarg(netbsd32_orlimitp_t) rlp;
-};
-check_syscall_args(compat_43_netbsd32_ogetrlimit)
-
-struct compat_43_netbsd32_osetrlimit_args {
-	syscallarg(int) which;
-	syscallarg(netbsd32_orlimitp_t) rlp;
-};
-check_syscall_args(compat_43_netbsd32_osetrlimit)
-
-struct compat_43_netbsd32_killpg_args {
-	syscallarg(int) pgid;
-	syscallarg(int) signum;
-};
-check_syscall_args(compat_43_netbsd32_killpg)
-
-struct compat_50_netbsd32_quotactl_args {
-	syscallarg(netbsd32_charp) path;
-	syscallarg(int) cmd;
-	syscallarg(int) uid;
-	syscallarg(netbsd32_voidp) arg;
-};
-check_syscall_args(compat_50_netbsd32_quotactl)
-
-struct compat_43_netbsd32_ogetsockname_args {
-	syscallarg(int) fdec;
-	syscallarg(netbsd32_voidp) asa;
-	syscallarg(netbsd32_intp) alen;
-};
-check_syscall_args(compat_43_netbsd32_ogetsockname)
-
-struct compat_43_netbsd32_ogetdirentries_args {
-	syscallarg(int) fd;
-	syscallarg(netbsd32_charp) buf;
-	syscallarg(u_int) count;
-	syscallarg(netbsd32_longp) basep;
-};
-check_syscall_args(compat_43_netbsd32_ogetdirentries)
-
-struct compat_20_netbsd32_statfs_args {
-	syscallarg(netbsd32_charp) path;
-	syscallarg(netbsd32_statfsp_t) buf;
-};
-check_syscall_args(compat_20_netbsd32_statfs)
-
-struct compat_20_netbsd32_fstatfs_args {
-	syscallarg(int) fd;
-	syscallarg(netbsd32_statfsp_t) buf;
-};
-check_syscall_args(compat_20_netbsd32_fstatfs)
-
-struct compat_30_netbsd32_getfh_args {
-	syscallarg(netbsd32_charp) fname;
-	syscallarg(netbsd32_compat_30_fhandlep_t) fhp;
-};
-check_syscall_args(compat_30_netbsd32_getfh)
-
-struct compat_09_netbsd32_ogetdomainname_args {
-	syscallarg(netbsd32_charp) domainname;
-	syscallarg(int) len;
-};
-check_syscall_args(compat_09_netbsd32_ogetdomainname)
-
-struct compat_09_netbsd32_osetdomainname_args {
-	syscallarg(netbsd32_charp) domainname;
-	syscallarg(int) len;
-};
-check_syscall_args(compat_09_netbsd32_osetdomainname)
-
-struct compat_09_netbsd32_uname_args {
-	syscallarg(netbsd32_outsnamep_t) name;
-};
-check_syscall_args(compat_09_netbsd32_uname)
-
 struct netbsd32_sysarch_args {
 	syscallarg(int) op;
 	syscallarg(netbsd32_voidp) parms;
 };
 check_syscall_args(netbsd32_sysarch)
-#if defined(SYSVSEM) || !defined(_KERNEL_OPT)
-
-struct compat_10_netbsd32_semsys_args {
-	syscallarg(int) which;
-	syscallarg(int) a2;
-	syscallarg(int) a3;
-	syscallarg(int) a4;
-	syscallarg(int) a5;
-};
-check_syscall_args(compat_10_netbsd32_semsys)
-#else
-#endif
-#if defined(SYSVMSG) || !defined(_KERNEL_OPT)
-
-struct compat_10_netbsd32_msgsys_args {
-	syscallarg(int) which;
-	syscallarg(int) a2;
-	syscallarg(int) a3;
-	syscallarg(int) a4;
-	syscallarg(int) a5;
-	syscallarg(int) a6;
-};
-check_syscall_args(compat_10_netbsd32_msgsys)
-#else
-#endif
-#if defined(SYSVSHM) || !defined(_KERNEL_OPT)
-
-struct compat_10_netbsd32_shmsys_args {
-	syscallarg(int) which;
-	syscallarg(int) a2;
-	syscallarg(int) a3;
-	syscallarg(int) a4;
-};
-check_syscall_args(compat_10_netbsd32_shmsys)
-#else
-#endif
 
 struct netbsd32_pread_args {
 	syscallarg(int) fd;
@@ -919,11 +533,6 @@ struct netbsd32_pwrite_args {
 };
 check_syscall_args(netbsd32_pwrite)
 #if defined(NTP) || !defined(_KERNEL_OPT)
-
-struct compat_30_netbsd32_ntp_gettime_args {
-	syscallarg(netbsd32_ntptimeval50p_t) ntvp;
-};
-check_syscall_args(compat_30_netbsd32_ntp_gettime)
 
 struct netbsd32_ntp_adjtime_args {
 	syscallarg(netbsd32_timexp_t) tp;
@@ -946,24 +555,6 @@ struct netbsd32_seteuid_args {
 	syscallarg(uid_t) euid;
 };
 check_syscall_args(netbsd32_seteuid)
-
-struct compat_12_netbsd32_stat12_args {
-	syscallarg(netbsd32_charp) path;
-	syscallarg(netbsd32_stat12p_t) ub;
-};
-check_syscall_args(compat_12_netbsd32_stat12)
-
-struct compat_12_netbsd32_fstat12_args {
-	syscallarg(int) fd;
-	syscallarg(netbsd32_stat12p_t) sb;
-};
-check_syscall_args(compat_12_netbsd32_fstat12)
-
-struct compat_12_netbsd32_lstat12_args {
-	syscallarg(netbsd32_charp) path;
-	syscallarg(netbsd32_stat12p_t) ub;
-};
-check_syscall_args(compat_12_netbsd32_lstat12)
 
 struct netbsd32_pathconf_args {
 	syscallarg(netbsd32_charp) path;
@@ -988,14 +579,6 @@ struct netbsd32_setrlimit_args {
 	syscallarg(netbsd32_rlimitp_t) rlp;
 };
 check_syscall_args(netbsd32_setrlimit)
-
-struct compat_12_netbsd32_getdirentries_args {
-	syscallarg(int) fd;
-	syscallarg(netbsd32_charp) buf;
-	syscallarg(u_int) count;
-	syscallarg(netbsd32_longp) basep;
-};
-check_syscall_args(compat_12_netbsd32_getdirentries)
 
 struct netbsd32_mmap_args {
 	syscallarg(netbsd32_voidp) addr;
@@ -1062,12 +645,6 @@ struct netbsd32_undelete_args {
 };
 check_syscall_args(netbsd32_undelete)
 
-struct compat_50_netbsd32_futimes_args {
-	syscallarg(int) fd;
-	syscallarg(netbsd32_timeval50p_t) tptr;
-};
-check_syscall_args(compat_50_netbsd32_futimes)
-
 struct netbsd32_getpgid_args {
 	syscallarg(pid_t) pid;
 };
@@ -1086,14 +663,6 @@ struct netbsd32_poll_args {
 };
 check_syscall_args(netbsd32_poll)
 #if defined(SYSVSEM) || !defined(_KERNEL_OPT)
-
-struct compat_14_netbsd32___semctl_args {
-	syscallarg(int) semid;
-	syscallarg(int) semnum;
-	syscallarg(int) cmd;
-	syscallarg(netbsd32_semunu_t) arg;
-};
-check_syscall_args(compat_14_netbsd32___semctl)
 
 struct netbsd32_semget_args {
 	syscallarg(netbsd32_key_t) key;
@@ -1116,13 +685,6 @@ check_syscall_args(netbsd32_semconfig)
 #else
 #endif
 #if defined(SYSVMSG) || !defined(_KERNEL_OPT)
-
-struct compat_14_netbsd32_msgctl_args {
-	syscallarg(int) msqid;
-	syscallarg(int) cmd;
-	syscallarg(netbsd32_msqid_ds14p_t) buf;
-};
-check_syscall_args(compat_14_netbsd32_msgctl)
 
 struct netbsd32_msgget_args {
 	syscallarg(netbsd32_key_t) key;
@@ -1157,13 +719,6 @@ struct netbsd32_shmat_args {
 };
 check_syscall_args(netbsd32_shmat)
 
-struct compat_14_netbsd32_shmctl_args {
-	syscallarg(int) shmid;
-	syscallarg(int) cmd;
-	syscallarg(netbsd32_shmid_dsp_t) buf;
-};
-check_syscall_args(compat_14_netbsd32_shmctl)
-
 struct netbsd32_shmdt_args {
 	syscallarg(netbsd32_voidp) shmaddr;
 };
@@ -1178,24 +733,6 @@ check_syscall_args(netbsd32_shmget)
 #else
 #endif
 
-struct compat_50_netbsd32_clock_gettime_args {
-	syscallarg(netbsd32_clockid_t) clock_id;
-	syscallarg(netbsd32_timespec50p_t) tp;
-};
-check_syscall_args(compat_50_netbsd32_clock_gettime)
-
-struct compat_50_netbsd32_clock_settime_args {
-	syscallarg(netbsd32_clockid_t) clock_id;
-	syscallarg(netbsd32_timespec50p_t) tp;
-};
-check_syscall_args(compat_50_netbsd32_clock_settime)
-
-struct compat_50_netbsd32_clock_getres_args {
-	syscallarg(netbsd32_clockid_t) clock_id;
-	syscallarg(netbsd32_timespec50p_t) tp;
-};
-check_syscall_args(compat_50_netbsd32_clock_getres)
-
 struct netbsd32_timer_create_args {
 	syscallarg(netbsd32_clockid_t) clock_id;
 	syscallarg(netbsd32_sigeventp_t) evp;
@@ -1208,30 +745,10 @@ struct netbsd32_timer_delete_args {
 };
 check_syscall_args(netbsd32_timer_delete)
 
-struct compat_50_netbsd32_timer_settime_args {
-	syscallarg(netbsd32_timer_t) timerid;
-	syscallarg(int) flags;
-	syscallarg(netbsd32_itimerspec50p_t) value;
-	syscallarg(netbsd32_itimerspec50p_t) ovalue;
-};
-check_syscall_args(compat_50_netbsd32_timer_settime)
-
-struct compat_50_netbsd32_timer_gettime_args {
-	syscallarg(netbsd32_timer_t) timerid;
-	syscallarg(netbsd32_itimerspec50p_t) value;
-};
-check_syscall_args(compat_50_netbsd32_timer_gettime)
-
 struct netbsd32_timer_getoverrun_args {
 	syscallarg(netbsd32_timer_t) timerid;
 };
 check_syscall_args(netbsd32_timer_getoverrun)
-
-struct compat_50_netbsd32_nanosleep_args {
-	syscallarg(netbsd32_timespec50p_t) rqtp;
-	syscallarg(netbsd32_timespec50p_t) rmtp;
-};
-check_syscall_args(compat_50_netbsd32_nanosleep)
 
 struct netbsd32_fdatasync_args {
 	syscallarg(int) fd;
@@ -1242,13 +759,6 @@ struct netbsd32_mlockall_args {
 	syscallarg(int) flags;
 };
 check_syscall_args(netbsd32_mlockall)
-
-struct compat_50_netbsd32___sigtimedwait_args {
-	syscallarg(netbsd32_sigsetp_t) set;
-	syscallarg(netbsd32_siginfop_t) info;
-	syscallarg(netbsd32_timespec50p_t) timeout;
-};
-check_syscall_args(compat_50_netbsd32___sigtimedwait)
 
 struct netbsd32__ksem_init_args {
 	syscallarg(unsigned int) value;
@@ -1320,13 +830,6 @@ struct netbsd32_swapctl_args {
 };
 check_syscall_args(netbsd32_swapctl)
 
-struct compat_30_netbsd32_getdents_args {
-	syscallarg(int) fd;
-	syscallarg(netbsd32_charp) buf;
-	syscallarg(netbsd32_size_t) count;
-};
-check_syscall_args(compat_30_netbsd32_getdents)
-
 struct netbsd32_minherit_args {
 	syscallarg(netbsd32_voidp) addr;
 	syscallarg(netbsd32_size_t) len;
@@ -1347,36 +850,12 @@ struct netbsd32_lchown_args {
 };
 check_syscall_args(netbsd32_lchown)
 
-struct compat_50_netbsd32_lutimes_args {
-	syscallarg(netbsd32_charp) path;
-	syscallarg(netbsd32_timeval50p_t) tptr;
-};
-check_syscall_args(compat_50_netbsd32_lutimes)
-
 struct netbsd32___msync13_args {
 	syscallarg(netbsd32_voidp) addr;
 	syscallarg(netbsd32_size_t) len;
 	syscallarg(int) flags;
 };
 check_syscall_args(netbsd32___msync13)
-
-struct compat_30_netbsd32___stat13_args {
-	syscallarg(netbsd32_charp) path;
-	syscallarg(netbsd32_stat13p_t) ub;
-};
-check_syscall_args(compat_30_netbsd32___stat13)
-
-struct compat_30_netbsd32___fstat13_args {
-	syscallarg(int) fd;
-	syscallarg(netbsd32_stat13p_t) sb;
-};
-check_syscall_args(compat_30_netbsd32___fstat13)
-
-struct compat_30_netbsd32___lstat13_args {
-	syscallarg(netbsd32_charp) path;
-	syscallarg(netbsd32_stat13p_t) ub;
-};
-check_syscall_args(compat_30_netbsd32___lstat13)
 
 struct netbsd32___sigaltstack14_args {
 	syscallarg(netbsd32_sigaltstackp_t) nss;
@@ -1466,11 +945,6 @@ struct netbsd32___sigsuspend14_args {
 };
 check_syscall_args(netbsd32___sigsuspend14)
 
-struct compat_16_netbsd32___sigreturn14_args {
-	syscallarg(netbsd32_sigcontextp_t) sigcntxp;
-};
-check_syscall_args(compat_16_netbsd32___sigreturn14)
-
 struct netbsd32___getcwd_args {
 	syscallarg(netbsd32_charp) bufp;
 	syscallarg(netbsd32_size_t) length;
@@ -1481,55 +955,6 @@ struct netbsd32_fchroot_args {
 	syscallarg(int) fd;
 };
 check_syscall_args(netbsd32_fchroot)
-
-struct compat_30_netbsd32_fhopen_args {
-	syscallarg(netbsd32_fhandlep_t) fhp;
-	syscallarg(int) flags;
-};
-check_syscall_args(compat_30_netbsd32_fhopen)
-
-struct compat_30_netbsd32_fhstat_args {
-	syscallarg(netbsd32_fhandlep_t) fhp;
-	syscallarg(netbsd32_stat13p_t) sb;
-};
-check_syscall_args(compat_30_netbsd32_fhstat)
-
-struct compat_20_netbsd32_fhstatfs_args {
-	syscallarg(netbsd32_fhandlep_t) fhp;
-	syscallarg(netbsd32_stat50p_t) buf;
-};
-check_syscall_args(compat_20_netbsd32_fhstatfs)
-#if defined(SYSVSEM) || !defined(_KERNEL_OPT)
-
-struct compat_50_netbsd32___semctl14_args {
-	syscallarg(int) semid;
-	syscallarg(int) semnum;
-	syscallarg(int) cmd;
-	syscallarg(netbsd32_semun50p_t) arg;
-};
-check_syscall_args(compat_50_netbsd32___semctl14)
-#else
-#endif
-#if defined(SYSVMSG) || !defined(_KERNEL_OPT)
-
-struct compat_50_netbsd32___msgctl13_args {
-	syscallarg(int) msqid;
-	syscallarg(int) cmd;
-	syscallarg(netbsd32_msqid_ds50p_t) buf;
-};
-check_syscall_args(compat_50_netbsd32___msgctl13)
-#else
-#endif
-#if defined(SYSVSHM) || !defined(_KERNEL_OPT)
-
-struct compat_50_netbsd32___shmctl13_args {
-	syscallarg(int) shmid;
-	syscallarg(int) cmd;
-	syscallarg(netbsd32_shmid_ds50p_t) buf;
-};
-check_syscall_args(compat_50_netbsd32___shmctl13)
-#else
-#endif
 
 struct netbsd32_lchflags_args {
 	syscallarg(netbsd32_charp) path;
@@ -1598,14 +1023,6 @@ struct netbsd32__lwp_detach_args {
 };
 check_syscall_args(netbsd32__lwp_detach)
 
-struct compat_50_netbsd32__lwp_park_args {
-	syscallarg(netbsd32_timespec50p_t) ts;
-	syscallarg(lwpid_t) unpark;
-	syscallarg(netbsd32_voidp) hint;
-	syscallarg(netbsd32_voidp) unparkhint;
-};
-check_syscall_args(compat_50_netbsd32__lwp_park)
-
 struct netbsd32__lwp_unpark_args {
 	syscallarg(lwpid_t) target;
 	syscallarg(netbsd32_voidp) hint;
@@ -1653,16 +1070,6 @@ struct netbsd32_rasctl_args {
 	syscallarg(int) op;
 };
 check_syscall_args(netbsd32_rasctl)
-
-struct compat_50_netbsd32_kevent_args {
-	syscallarg(int) fd;
-	syscallarg(netbsd32_keventp_t) changelist;
-	syscallarg(netbsd32_size_t) nchanges;
-	syscallarg(netbsd32_keventp_t) eventlist;
-	syscallarg(netbsd32_size_t) nevents;
-	syscallarg(netbsd32_timespec50p_t) timeout;
-};
-check_syscall_args(compat_50_netbsd32_kevent)
 
 struct netbsd32__sched_setparam_args {
 	syscallarg(pid_t) pid;
@@ -1730,13 +1137,6 @@ struct netbsd32_fstatvfs1_args {
 	syscallarg(int) flags;
 };
 check_syscall_args(netbsd32_fstatvfs1)
-
-struct compat_30_netbsd32_fhstatvfs1_args {
-	syscallarg(netbsd32_fhandlep_t) fhp;
-	syscallarg(netbsd32_statvfsp_t) buf;
-	syscallarg(int) flags;
-};
-check_syscall_args(compat_30_netbsd32_fhstatvfs1)
 
 struct netbsd32_extattrctl_args {
 	syscallarg(netbsd32_charp) path;
@@ -1846,24 +1246,6 @@ struct netbsd32_extattr_list_link_args {
 };
 check_syscall_args(netbsd32_extattr_list_link)
 
-struct compat_50_netbsd32_pselect_args {
-	syscallarg(int) nd;
-	syscallarg(netbsd32_fd_setp_t) in;
-	syscallarg(netbsd32_fd_setp_t) ou;
-	syscallarg(netbsd32_fd_setp_t) ex;
-	syscallarg(netbsd32_timespec50p_t) ts;
-	syscallarg(netbsd32_sigsetp_t) mask;
-};
-check_syscall_args(compat_50_netbsd32_pselect)
-
-struct compat_50_netbsd32_pollts_args {
-	syscallarg(netbsd32_pollfdp_t) fds;
-	syscallarg(u_int) nfds;
-	syscallarg(netbsd32_timespec50p_t) ts;
-	syscallarg(netbsd32_sigsetp_t) mask;
-};
-check_syscall_args(compat_50_netbsd32_pollts)
-
 struct netbsd32_setxattr_args {
 	syscallarg(netbsd32_charp) path;
 	syscallarg(netbsd32_charp) name;
@@ -1954,44 +1336,12 @@ struct netbsd32_fremovexattr_args {
 };
 check_syscall_args(netbsd32_fremovexattr)
 
-struct compat_50_netbsd32___stat30_args {
-	syscallarg(netbsd32_charp) path;
-	syscallarg(netbsd32_stat50p_t) ub;
-};
-check_syscall_args(compat_50_netbsd32___stat30)
-
-struct compat_50_netbsd32___fstat30_args {
-	syscallarg(int) fd;
-	syscallarg(netbsd32_stat50p_t) sb;
-};
-check_syscall_args(compat_50_netbsd32___fstat30)
-
-struct compat_50_netbsd32___lstat30_args {
-	syscallarg(netbsd32_charp) path;
-	syscallarg(netbsd32_stat50p_t) ub;
-};
-check_syscall_args(compat_50_netbsd32___lstat30)
-
 struct netbsd32___getdents30_args {
 	syscallarg(int) fd;
 	syscallarg(netbsd32_charp) buf;
 	syscallarg(netbsd32_size_t) count;
 };
 check_syscall_args(netbsd32___getdents30)
-
-struct compat_30_netbsd32___fhstat30_args {
-	syscallarg(netbsd32_fhandlep_t) fhp;
-	syscallarg(netbsd32_stat50p_t) sb;
-};
-check_syscall_args(compat_30_netbsd32___fhstat30)
-#if defined(NTP) || !defined(_KERNEL_OPT)
-
-struct compat_50_netbsd32_ntp_gettime_args {
-	syscallarg(netbsd32_ntptimeval50p_t) ntvp;
-};
-check_syscall_args(compat_50_netbsd32_ntp_gettime)
-#else
-#endif
 
 struct netbsd32___socket30_args {
 	syscallarg(int) domain;
@@ -2021,13 +1371,6 @@ struct netbsd32___fhstatvfs140_args {
 	syscallarg(int) flags;
 };
 check_syscall_args(netbsd32___fhstatvfs140)
-
-struct compat_50_netbsd32___fhstat40_args {
-	syscallarg(netbsd32_pointer_t) fhp;
-	syscallarg(netbsd32_size_t) fh_size;
-	syscallarg(netbsd32_stat50p_t) sb;
-};
-check_syscall_args(compat_50_netbsd32___fhstat40)
 
 struct netbsd32___mount50_args {
 	syscallarg(netbsd32_charp) type;
@@ -2144,14 +1487,6 @@ struct netbsd32_____sigtimedwait50_args {
 	syscallarg(netbsd32_timespecp_t) timeout;
 };
 check_syscall_args(netbsd32_____sigtimedwait50)
-
-struct compat_60_netbsd32__lwp_park_args {
-	syscallarg(const netbsd32_timespecp_t) ts;
-	syscallarg(lwpid_t) unpark;
-	syscallarg(const netbsd32_voidp) hint;
-	syscallarg(const netbsd32_voidp) unparkhint;
-};
-check_syscall_args(compat_60_netbsd32__lwp_park)
 
 struct netbsd32___kevent50_args {
 	syscallarg(int) fd;
@@ -2483,10 +1818,6 @@ int	netbsd32_open(struct lwp *, const struct netbsd32_open_args *, register_t *)
 
 int	netbsd32_close(struct lwp *, const struct netbsd32_close_args *, register_t *);
 
-int	compat_50_netbsd32_wait4(struct lwp *, const struct compat_50_netbsd32_wait4_args *, register_t *);
-
-int	compat_43_netbsd32_ocreat(struct lwp *, const struct compat_43_netbsd32_ocreat_args *, register_t *);
-
 int	netbsd32_link(struct lwp *, const struct netbsd32_link_args *, register_t *);
 
 int	netbsd32_unlink(struct lwp *, const struct netbsd32_unlink_args *, register_t *);
@@ -2495,17 +1826,11 @@ int	netbsd32_chdir(struct lwp *, const struct netbsd32_chdir_args *, register_t 
 
 int	netbsd32_fchdir(struct lwp *, const struct netbsd32_fchdir_args *, register_t *);
 
-int	compat_50_netbsd32_mknod(struct lwp *, const struct compat_50_netbsd32_mknod_args *, register_t *);
-
 int	netbsd32_chmod(struct lwp *, const struct netbsd32_chmod_args *, register_t *);
 
 int	netbsd32_chown(struct lwp *, const struct netbsd32_chown_args *, register_t *);
 
 int	netbsd32_break(struct lwp *, const struct netbsd32_break_args *, register_t *);
-
-int	compat_20_netbsd32_getfsstat(struct lwp *, const struct compat_20_netbsd32_getfsstat_args *, register_t *);
-
-int	compat_43_netbsd32_olseek(struct lwp *, const struct compat_43_netbsd32_olseek_args *, register_t *);
 
 int	sys_getpid(struct lwp *, const void *, register_t *);
 
@@ -2543,11 +1868,7 @@ int	sys_sync(struct lwp *, const void *, register_t *);
 
 int	netbsd32_kill(struct lwp *, const struct netbsd32_kill_args *, register_t *);
 
-int	compat_43_netbsd32_stat43(struct lwp *, const struct compat_43_netbsd32_stat43_args *, register_t *);
-
 int	sys_getppid(struct lwp *, const void *, register_t *);
-
-int	compat_43_netbsd32_lstat43(struct lwp *, const struct compat_43_netbsd32_lstat43_args *, register_t *);
 
 int	netbsd32_dup(struct lwp *, const struct netbsd32_dup_args *, register_t *);
 
@@ -2563,21 +1884,13 @@ int	netbsd32_sigaction(struct lwp *, const struct netbsd32_sigaction_args *, reg
 
 int	sys_getgid(struct lwp *, const void *, register_t *);
 
-int	compat_13_netbsd32_sigprocmask(struct lwp *, const struct compat_13_netbsd32_sigprocmask_args *, register_t *);
-
 int	netbsd32___getlogin(struct lwp *, const struct netbsd32___getlogin_args *, register_t *);
 
 int	netbsd32_setlogin(struct lwp *, const struct netbsd32_setlogin_args *, register_t *);
 
 int	netbsd32_acct(struct lwp *, const struct netbsd32_acct_args *, register_t *);
 
-int	compat_13_sys_sigpending(struct lwp *, const void *, register_t *);
-
-int	compat_13_netbsd32_sigaltstack13(struct lwp *, const struct compat_13_netbsd32_sigaltstack13_args *, register_t *);
-
 int	netbsd32_ioctl(struct lwp *, const struct netbsd32_ioctl_args *, register_t *);
-
-int	compat_12_netbsd32_reboot(struct lwp *, const struct compat_12_netbsd32_reboot_args *, register_t *);
 
 int	netbsd32_revoke(struct lwp *, const struct netbsd32_revoke_args *, register_t *);
 
@@ -2591,21 +1904,11 @@ int	netbsd32_umask(struct lwp *, const struct netbsd32_umask_args *, register_t 
 
 int	netbsd32_chroot(struct lwp *, const struct netbsd32_chroot_args *, register_t *);
 
-int	compat_43_netbsd32_fstat43(struct lwp *, const struct compat_43_netbsd32_fstat43_args *, register_t *);
-
-int	compat_43_netbsd32_ogetkerninfo(struct lwp *, const struct compat_43_netbsd32_ogetkerninfo_args *, register_t *);
-
-int	compat_43_sys_getpagesize(struct lwp *, const void *, register_t *);
-
-int	compat_12_netbsd32_msync(struct lwp *, const struct compat_12_netbsd32_msync_args *, register_t *);
-
 int	sys_vfork(struct lwp *, const void *, register_t *);
 
 int	netbsd32_sbrk(struct lwp *, const struct netbsd32_sbrk_args *, register_t *);
 
 int	netbsd32_sstk(struct lwp *, const struct netbsd32_sstk_args *, register_t *);
-
-int	compat_43_netbsd32_ommap(struct lwp *, const struct compat_43_netbsd32_ommap_args *, register_t *);
 
 int	netbsd32_ovadvise(struct lwp *, const struct netbsd32_ovadvise_args *, register_t *);
 
@@ -2625,43 +1928,17 @@ int	sys_getpgrp(struct lwp *, const void *, register_t *);
 
 int	netbsd32_setpgid(struct lwp *, const struct netbsd32_setpgid_args *, register_t *);
 
-int	compat_50_netbsd32_setitimer(struct lwp *, const struct compat_50_netbsd32_setitimer_args *, register_t *);
-
-int	compat_43_sys_wait(struct lwp *, const void *, register_t *);
-
-int	compat_12_netbsd32_oswapon(struct lwp *, const struct compat_12_netbsd32_oswapon_args *, register_t *);
-
-int	compat_50_netbsd32_getitimer(struct lwp *, const struct compat_50_netbsd32_getitimer_args *, register_t *);
-
-int	compat_43_netbsd32_ogethostname(struct lwp *, const struct compat_43_netbsd32_ogethostname_args *, register_t *);
-
-int	compat_43_netbsd32_osethostname(struct lwp *, const struct compat_43_netbsd32_osethostname_args *, register_t *);
-
-int	compat_43_sys_getdtablesize(struct lwp *, const void *, register_t *);
-
 int	netbsd32_dup2(struct lwp *, const struct netbsd32_dup2_args *, register_t *);
 
 int	netbsd32_fcntl(struct lwp *, const struct netbsd32_fcntl_args *, register_t *);
-
-int	compat_50_netbsd32_select(struct lwp *, const struct compat_50_netbsd32_select_args *, register_t *);
 
 int	netbsd32_fsync(struct lwp *, const struct netbsd32_fsync_args *, register_t *);
 
 int	netbsd32_setpriority(struct lwp *, const struct netbsd32_setpriority_args *, register_t *);
 
-int	compat_30_netbsd32_socket(struct lwp *, const struct compat_30_netbsd32_socket_args *, register_t *);
-
 int	netbsd32_connect(struct lwp *, const struct netbsd32_connect_args *, register_t *);
 
-int	compat_43_netbsd32_oaccept(struct lwp *, const struct compat_43_netbsd32_oaccept_args *, register_t *);
-
 int	netbsd32_getpriority(struct lwp *, const struct netbsd32_getpriority_args *, register_t *);
-
-int	compat_43_netbsd32_osend(struct lwp *, const struct compat_43_netbsd32_osend_args *, register_t *);
-
-int	compat_43_netbsd32_orecv(struct lwp *, const struct compat_43_netbsd32_orecv_args *, register_t *);
-
-int	compat_13_netbsd32_sigreturn(struct lwp *, const struct compat_13_netbsd32_sigreturn_args *, register_t *);
 
 int	netbsd32_bind(struct lwp *, const struct netbsd32_bind_args *, register_t *);
 
@@ -2669,47 +1946,21 @@ int	netbsd32_setsockopt(struct lwp *, const struct netbsd32_setsockopt_args *, r
 
 int	netbsd32_listen(struct lwp *, const struct netbsd32_listen_args *, register_t *);
 
-int	compat_43_netbsd32_osigvec(struct lwp *, const struct compat_43_netbsd32_osigvec_args *, register_t *);
-
-int	compat_43_netbsd32_sigblock(struct lwp *, const struct compat_43_netbsd32_sigblock_args *, register_t *);
-
-int	compat_43_netbsd32_sigsetmask(struct lwp *, const struct compat_43_netbsd32_sigsetmask_args *, register_t *);
-
-int	compat_13_netbsd32_sigsuspend(struct lwp *, const struct compat_13_netbsd32_sigsuspend_args *, register_t *);
-
-int	compat_43_netbsd32_osigstack(struct lwp *, const struct compat_43_netbsd32_osigstack_args *, register_t *);
-
-int	compat_43_netbsd32_orecvmsg(struct lwp *, const struct compat_43_netbsd32_orecvmsg_args *, register_t *);
-
-int	compat_43_netbsd32_osendmsg(struct lwp *, const struct compat_43_netbsd32_osendmsg_args *, register_t *);
-
-int	compat_50_netbsd32_gettimeofday(struct lwp *, const struct compat_50_netbsd32_gettimeofday_args *, register_t *);
-
-int	compat_50_netbsd32_getrusage(struct lwp *, const struct compat_50_netbsd32_getrusage_args *, register_t *);
-
 int	netbsd32_getsockopt(struct lwp *, const struct netbsd32_getsockopt_args *, register_t *);
 
 int	netbsd32_readv(struct lwp *, const struct netbsd32_readv_args *, register_t *);
 
 int	netbsd32_writev(struct lwp *, const struct netbsd32_writev_args *, register_t *);
 
-int	compat_50_netbsd32_settimeofday(struct lwp *, const struct compat_50_netbsd32_settimeofday_args *, register_t *);
-
 int	netbsd32_fchown(struct lwp *, const struct netbsd32_fchown_args *, register_t *);
 
 int	netbsd32_fchmod(struct lwp *, const struct netbsd32_fchmod_args *, register_t *);
-
-int	compat_43_netbsd32_orecvfrom(struct lwp *, const struct compat_43_netbsd32_orecvfrom_args *, register_t *);
 
 int	netbsd32_setreuid(struct lwp *, const struct netbsd32_setreuid_args *, register_t *);
 
 int	netbsd32_setregid(struct lwp *, const struct netbsd32_setregid_args *, register_t *);
 
 int	netbsd32_rename(struct lwp *, const struct netbsd32_rename_args *, register_t *);
-
-int	compat_43_netbsd32_otruncate(struct lwp *, const struct compat_43_netbsd32_otruncate_args *, register_t *);
-
-int	compat_43_netbsd32_oftruncate(struct lwp *, const struct compat_43_netbsd32_oftruncate_args *, register_t *);
 
 int	netbsd32_flock(struct lwp *, const struct netbsd32_flock_args *, register_t *);
 
@@ -2725,68 +1976,15 @@ int	netbsd32_mkdir(struct lwp *, const struct netbsd32_mkdir_args *, register_t 
 
 int	netbsd32_rmdir(struct lwp *, const struct netbsd32_rmdir_args *, register_t *);
 
-int	compat_50_netbsd32_utimes(struct lwp *, const struct compat_50_netbsd32_utimes_args *, register_t *);
-
-int	compat_50_netbsd32_adjtime(struct lwp *, const struct compat_50_netbsd32_adjtime_args *, register_t *);
-
-int	compat_43_netbsd32_ogetpeername(struct lwp *, const struct compat_43_netbsd32_ogetpeername_args *, register_t *);
-
-int	compat_43_sys_gethostid(struct lwp *, const void *, register_t *);
-
-int	compat_43_netbsd32_sethostid(struct lwp *, const struct compat_43_netbsd32_sethostid_args *, register_t *);
-
-int	compat_43_netbsd32_ogetrlimit(struct lwp *, const struct compat_43_netbsd32_ogetrlimit_args *, register_t *);
-
-int	compat_43_netbsd32_osetrlimit(struct lwp *, const struct compat_43_netbsd32_osetrlimit_args *, register_t *);
-
-int	compat_43_netbsd32_killpg(struct lwp *, const struct compat_43_netbsd32_killpg_args *, register_t *);
-
 int	sys_setsid(struct lwp *, const void *, register_t *);
-
-int	compat_50_netbsd32_quotactl(struct lwp *, const struct compat_50_netbsd32_quotactl_args *, register_t *);
-
-int	compat_43_sys_quota(struct lwp *, const void *, register_t *);
-
-int	compat_43_netbsd32_ogetsockname(struct lwp *, const struct compat_43_netbsd32_ogetsockname_args *, register_t *);
-
-int	compat_43_netbsd32_ogetdirentries(struct lwp *, const struct compat_43_netbsd32_ogetdirentries_args *, register_t *);
-
-int	compat_20_netbsd32_statfs(struct lwp *, const struct compat_20_netbsd32_statfs_args *, register_t *);
-
-int	compat_20_netbsd32_fstatfs(struct lwp *, const struct compat_20_netbsd32_fstatfs_args *, register_t *);
-
-int	compat_30_netbsd32_getfh(struct lwp *, const struct compat_30_netbsd32_getfh_args *, register_t *);
-
-int	compat_09_netbsd32_ogetdomainname(struct lwp *, const struct compat_09_netbsd32_ogetdomainname_args *, register_t *);
-
-int	compat_09_netbsd32_osetdomainname(struct lwp *, const struct compat_09_netbsd32_osetdomainname_args *, register_t *);
-
-int	compat_09_netbsd32_uname(struct lwp *, const struct compat_09_netbsd32_uname_args *, register_t *);
 
 int	netbsd32_sysarch(struct lwp *, const struct netbsd32_sysarch_args *, register_t *);
 
-#if defined(SYSVSEM) || !defined(_KERNEL_OPT)
-int	compat_10_netbsd32_semsys(struct lwp *, const struct compat_10_netbsd32_semsys_args *, register_t *);
-
-#else
-#endif
-#if defined(SYSVMSG) || !defined(_KERNEL_OPT)
-int	compat_10_netbsd32_msgsys(struct lwp *, const struct compat_10_netbsd32_msgsys_args *, register_t *);
-
-#else
-#endif
-#if defined(SYSVSHM) || !defined(_KERNEL_OPT)
-int	compat_10_netbsd32_shmsys(struct lwp *, const struct compat_10_netbsd32_shmsys_args *, register_t *);
-
-#else
-#endif
 int	netbsd32_pread(struct lwp *, const struct netbsd32_pread_args *, register_t *);
 
 int	netbsd32_pwrite(struct lwp *, const struct netbsd32_pwrite_args *, register_t *);
 
 #if defined(NTP) || !defined(_KERNEL_OPT)
-int	compat_30_netbsd32_ntp_gettime(struct lwp *, const struct compat_30_netbsd32_ntp_gettime_args *, register_t *);
-
 int	netbsd32_ntp_adjtime(struct lwp *, const struct netbsd32_ntp_adjtime_args *, register_t *);
 
 #else
@@ -2797,12 +1995,6 @@ int	netbsd32_setegid(struct lwp *, const struct netbsd32_setegid_args *, registe
 
 int	netbsd32_seteuid(struct lwp *, const struct netbsd32_seteuid_args *, register_t *);
 
-int	compat_12_netbsd32_stat12(struct lwp *, const struct compat_12_netbsd32_stat12_args *, register_t *);
-
-int	compat_12_netbsd32_fstat12(struct lwp *, const struct compat_12_netbsd32_fstat12_args *, register_t *);
-
-int	compat_12_netbsd32_lstat12(struct lwp *, const struct compat_12_netbsd32_lstat12_args *, register_t *);
-
 int	netbsd32_pathconf(struct lwp *, const struct netbsd32_pathconf_args *, register_t *);
 
 int	netbsd32_fpathconf(struct lwp *, const struct netbsd32_fpathconf_args *, register_t *);
@@ -2810,8 +2002,6 @@ int	netbsd32_fpathconf(struct lwp *, const struct netbsd32_fpathconf_args *, reg
 int	netbsd32_getrlimit(struct lwp *, const struct netbsd32_getrlimit_args *, register_t *);
 
 int	netbsd32_setrlimit(struct lwp *, const struct netbsd32_setrlimit_args *, register_t *);
-
-int	compat_12_netbsd32_getdirentries(struct lwp *, const struct compat_12_netbsd32_getdirentries_args *, register_t *);
 
 int	netbsd32_mmap(struct lwp *, const struct netbsd32_mmap_args *, register_t *);
 
@@ -2831,8 +2021,6 @@ int	netbsd32_munlock(struct lwp *, const struct netbsd32_munlock_args *, registe
 
 int	netbsd32_undelete(struct lwp *, const struct netbsd32_undelete_args *, register_t *);
 
-int	compat_50_netbsd32_futimes(struct lwp *, const struct compat_50_netbsd32_futimes_args *, register_t *);
-
 int	netbsd32_getpgid(struct lwp *, const struct netbsd32_getpgid_args *, register_t *);
 
 int	netbsd32_reboot(struct lwp *, const struct netbsd32_reboot_args *, register_t *);
@@ -2840,8 +2028,6 @@ int	netbsd32_reboot(struct lwp *, const struct netbsd32_reboot_args *, register_
 int	netbsd32_poll(struct lwp *, const struct netbsd32_poll_args *, register_t *);
 
 #if defined(SYSVSEM) || !defined(_KERNEL_OPT)
-int	compat_14_netbsd32___semctl(struct lwp *, const struct compat_14_netbsd32___semctl_args *, register_t *);
-
 int	netbsd32_semget(struct lwp *, const struct netbsd32_semget_args *, register_t *);
 
 int	netbsd32_semop(struct lwp *, const struct netbsd32_semop_args *, register_t *);
@@ -2851,8 +2037,6 @@ int	netbsd32_semconfig(struct lwp *, const struct netbsd32_semconfig_args *, reg
 #else
 #endif
 #if defined(SYSVMSG) || !defined(_KERNEL_OPT)
-int	compat_14_netbsd32_msgctl(struct lwp *, const struct compat_14_netbsd32_msgctl_args *, register_t *);
-
 int	netbsd32_msgget(struct lwp *, const struct netbsd32_msgget_args *, register_t *);
 
 int	netbsd32_msgsnd(struct lwp *, const struct netbsd32_msgsnd_args *, register_t *);
@@ -2864,39 +2048,23 @@ int	netbsd32_msgrcv(struct lwp *, const struct netbsd32_msgrcv_args *, register_
 #if defined(SYSVSHM) || !defined(_KERNEL_OPT)
 int	netbsd32_shmat(struct lwp *, const struct netbsd32_shmat_args *, register_t *);
 
-int	compat_14_netbsd32_shmctl(struct lwp *, const struct compat_14_netbsd32_shmctl_args *, register_t *);
-
 int	netbsd32_shmdt(struct lwp *, const struct netbsd32_shmdt_args *, register_t *);
 
 int	netbsd32_shmget(struct lwp *, const struct netbsd32_shmget_args *, register_t *);
 
 #else
 #endif
-int	compat_50_netbsd32_clock_gettime(struct lwp *, const struct compat_50_netbsd32_clock_gettime_args *, register_t *);
-
-int	compat_50_netbsd32_clock_settime(struct lwp *, const struct compat_50_netbsd32_clock_settime_args *, register_t *);
-
-int	compat_50_netbsd32_clock_getres(struct lwp *, const struct compat_50_netbsd32_clock_getres_args *, register_t *);
-
 int	netbsd32_timer_create(struct lwp *, const struct netbsd32_timer_create_args *, register_t *);
 
 int	netbsd32_timer_delete(struct lwp *, const struct netbsd32_timer_delete_args *, register_t *);
 
-int	compat_50_netbsd32_timer_settime(struct lwp *, const struct compat_50_netbsd32_timer_settime_args *, register_t *);
-
-int	compat_50_netbsd32_timer_gettime(struct lwp *, const struct compat_50_netbsd32_timer_gettime_args *, register_t *);
-
 int	netbsd32_timer_getoverrun(struct lwp *, const struct netbsd32_timer_getoverrun_args *, register_t *);
-
-int	compat_50_netbsd32_nanosleep(struct lwp *, const struct compat_50_netbsd32_nanosleep_args *, register_t *);
 
 int	netbsd32_fdatasync(struct lwp *, const struct netbsd32_fdatasync_args *, register_t *);
 
 int	netbsd32_mlockall(struct lwp *, const struct netbsd32_mlockall_args *, register_t *);
 
 int	sys_munlockall(struct lwp *, const void *, register_t *);
-
-int	compat_50_netbsd32___sigtimedwait(struct lwp *, const struct compat_50_netbsd32___sigtimedwait_args *, register_t *);
 
 int	netbsd32__ksem_init(struct lwp *, const struct netbsd32__ksem_init_args *, register_t *);
 
@@ -2922,23 +2090,13 @@ int	netbsd32___posix_rename(struct lwp *, const struct netbsd32___posix_rename_a
 
 int	netbsd32_swapctl(struct lwp *, const struct netbsd32_swapctl_args *, register_t *);
 
-int	compat_30_netbsd32_getdents(struct lwp *, const struct compat_30_netbsd32_getdents_args *, register_t *);
-
 int	netbsd32_minherit(struct lwp *, const struct netbsd32_minherit_args *, register_t *);
 
 int	netbsd32_lchmod(struct lwp *, const struct netbsd32_lchmod_args *, register_t *);
 
 int	netbsd32_lchown(struct lwp *, const struct netbsd32_lchown_args *, register_t *);
 
-int	compat_50_netbsd32_lutimes(struct lwp *, const struct compat_50_netbsd32_lutimes_args *, register_t *);
-
 int	netbsd32___msync13(struct lwp *, const struct netbsd32___msync13_args *, register_t *);
-
-int	compat_30_netbsd32___stat13(struct lwp *, const struct compat_30_netbsd32___stat13_args *, register_t *);
-
-int	compat_30_netbsd32___fstat13(struct lwp *, const struct compat_30_netbsd32___fstat13_args *, register_t *);
-
-int	compat_30_netbsd32___lstat13(struct lwp *, const struct compat_30_netbsd32___lstat13_args *, register_t *);
 
 int	netbsd32___sigaltstack14(struct lwp *, const struct netbsd32___sigaltstack14_args *, register_t *);
 
@@ -2968,33 +2126,10 @@ int	netbsd32___sigprocmask14(struct lwp *, const struct netbsd32___sigprocmask14
 
 int	netbsd32___sigsuspend14(struct lwp *, const struct netbsd32___sigsuspend14_args *, register_t *);
 
-int	compat_16_netbsd32___sigreturn14(struct lwp *, const struct compat_16_netbsd32___sigreturn14_args *, register_t *);
-
 int	netbsd32___getcwd(struct lwp *, const struct netbsd32___getcwd_args *, register_t *);
 
 int	netbsd32_fchroot(struct lwp *, const struct netbsd32_fchroot_args *, register_t *);
 
-int	compat_30_netbsd32_fhopen(struct lwp *, const struct compat_30_netbsd32_fhopen_args *, register_t *);
-
-int	compat_30_netbsd32_fhstat(struct lwp *, const struct compat_30_netbsd32_fhstat_args *, register_t *);
-
-int	compat_20_netbsd32_fhstatfs(struct lwp *, const struct compat_20_netbsd32_fhstatfs_args *, register_t *);
-
-#if defined(SYSVSEM) || !defined(_KERNEL_OPT)
-int	compat_50_netbsd32___semctl14(struct lwp *, const struct compat_50_netbsd32___semctl14_args *, register_t *);
-
-#else
-#endif
-#if defined(SYSVMSG) || !defined(_KERNEL_OPT)
-int	compat_50_netbsd32___msgctl13(struct lwp *, const struct compat_50_netbsd32___msgctl13_args *, register_t *);
-
-#else
-#endif
-#if defined(SYSVSHM) || !defined(_KERNEL_OPT)
-int	compat_50_netbsd32___shmctl13(struct lwp *, const struct compat_50_netbsd32___shmctl13_args *, register_t *);
-
-#else
-#endif
 int	netbsd32_lchflags(struct lwp *, const struct netbsd32_lchflags_args *, register_t *);
 
 int	sys_issetugid(struct lwp *, const void *, register_t *);
@@ -3027,8 +2162,6 @@ int	netbsd32__lwp_kill(struct lwp *, const struct netbsd32__lwp_kill_args *, reg
 
 int	netbsd32__lwp_detach(struct lwp *, const struct netbsd32__lwp_detach_args *, register_t *);
 
-int	compat_50_netbsd32__lwp_park(struct lwp *, const struct compat_50_netbsd32__lwp_park_args *, register_t *);
-
 int	netbsd32__lwp_unpark(struct lwp *, const struct netbsd32__lwp_unpark_args *, register_t *);
 
 int	netbsd32__lwp_unpark_all(struct lwp *, const struct netbsd32__lwp_unpark_all_args *, register_t *);
@@ -3044,8 +2177,6 @@ int	netbsd32___sigaction_sigtramp(struct lwp *, const struct netbsd32___sigactio
 int	netbsd32_rasctl(struct lwp *, const struct netbsd32_rasctl_args *, register_t *);
 
 int	sys_kqueue(struct lwp *, const void *, register_t *);
-
-int	compat_50_netbsd32_kevent(struct lwp *, const struct compat_50_netbsd32_kevent_args *, register_t *);
 
 int	netbsd32__sched_setparam(struct lwp *, const struct netbsd32__sched_setparam_args *, register_t *);
 
@@ -3066,8 +2197,6 @@ int	netbsd32_getvfsstat(struct lwp *, const struct netbsd32_getvfsstat_args *, r
 int	netbsd32_statvfs1(struct lwp *, const struct netbsd32_statvfs1_args *, register_t *);
 
 int	netbsd32_fstatvfs1(struct lwp *, const struct netbsd32_fstatvfs1_args *, register_t *);
-
-int	compat_30_netbsd32_fhstatvfs1(struct lwp *, const struct compat_30_netbsd32_fhstatvfs1_args *, register_t *);
 
 int	netbsd32_extattrctl(struct lwp *, const struct netbsd32_extattrctl_args *, register_t *);
 
@@ -3095,10 +2224,6 @@ int	netbsd32_extattr_list_file(struct lwp *, const struct netbsd32_extattr_list_
 
 int	netbsd32_extattr_list_link(struct lwp *, const struct netbsd32_extattr_list_link_args *, register_t *);
 
-int	compat_50_netbsd32_pselect(struct lwp *, const struct compat_50_netbsd32_pselect_args *, register_t *);
-
-int	compat_50_netbsd32_pollts(struct lwp *, const struct compat_50_netbsd32_pollts_args *, register_t *);
-
 int	netbsd32_setxattr(struct lwp *, const struct netbsd32_setxattr_args *, register_t *);
 
 int	netbsd32_lsetxattr(struct lwp *, const struct netbsd32_lsetxattr_args *, register_t *);
@@ -3123,21 +2248,8 @@ int	netbsd32_lremovexattr(struct lwp *, const struct netbsd32_lremovexattr_args 
 
 int	netbsd32_fremovexattr(struct lwp *, const struct netbsd32_fremovexattr_args *, register_t *);
 
-int	compat_50_netbsd32___stat30(struct lwp *, const struct compat_50_netbsd32___stat30_args *, register_t *);
-
-int	compat_50_netbsd32___fstat30(struct lwp *, const struct compat_50_netbsd32___fstat30_args *, register_t *);
-
-int	compat_50_netbsd32___lstat30(struct lwp *, const struct compat_50_netbsd32___lstat30_args *, register_t *);
-
 int	netbsd32___getdents30(struct lwp *, const struct netbsd32___getdents30_args *, register_t *);
 
-int	compat_30_netbsd32___fhstat30(struct lwp *, const struct compat_30_netbsd32___fhstat30_args *, register_t *);
-
-#if defined(NTP) || !defined(_KERNEL_OPT)
-int	compat_50_netbsd32_ntp_gettime(struct lwp *, const struct compat_50_netbsd32_ntp_gettime_args *, register_t *);
-
-#else
-#endif
 int	netbsd32___socket30(struct lwp *, const struct netbsd32___socket30_args *, register_t *);
 
 int	netbsd32___getfh30(struct lwp *, const struct netbsd32___getfh30_args *, register_t *);
@@ -3145,8 +2257,6 @@ int	netbsd32___getfh30(struct lwp *, const struct netbsd32___getfh30_args *, reg
 int	netbsd32___fhopen40(struct lwp *, const struct netbsd32___fhopen40_args *, register_t *);
 
 int	netbsd32___fhstatvfs140(struct lwp *, const struct netbsd32___fhstatvfs140_args *, register_t *);
-
-int	compat_50_netbsd32___fhstat40(struct lwp *, const struct compat_50_netbsd32___fhstat40_args *, register_t *);
 
 int	netbsd32___mount50(struct lwp *, const struct netbsd32___mount50_args *, register_t *);
 
@@ -3181,8 +2291,6 @@ int	netbsd32___clock_getres50(struct lwp *, const struct netbsd32___clock_getres
 int	netbsd32___nanosleep50(struct lwp *, const struct netbsd32___nanosleep50_args *, register_t *);
 
 int	netbsd32_____sigtimedwait50(struct lwp *, const struct netbsd32_____sigtimedwait50_args *, register_t *);
-
-int	compat_60_netbsd32__lwp_park(struct lwp *, const struct compat_60_netbsd32__lwp_park_args *, register_t *);
 
 int	netbsd32___kevent50(struct lwp *, const struct netbsd32___kevent50_args *, register_t *);
 

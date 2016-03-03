@@ -135,8 +135,6 @@ file	arch/arm/arm/ast.c
 file	arch/arm/arm/bcopyinout.S
 file	arch/arm/arm/blockio.S
 file	arch/arm/arm/bootconfig.c
-file	arch/arm/arm/compat_13_machdep.c	compat_13
-file	arch/arm/arm/compat_16_machdep.c	compat_16
 file	arch/arm/arm/copystr.S
 file	arch/arm/arm/core_machdep.c
 file	arch/arm/arm/cpu_in_cksum.S		(inet | inet6) & cpu_in_cksum

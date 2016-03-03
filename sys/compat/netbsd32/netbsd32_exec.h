@@ -76,8 +76,6 @@ void netbsd32_setregs (struct lwp *, struct exec_package *, vaddr_t stack);
 int netbsd32_sigreturn (struct proc *, void *, register_t *);
 void netbsd32_sendsig (const ksiginfo_t *, const sigset_t *);
 
-extern char netbsd32_esigcode[], netbsd32_sigcode[];
-
 /*
  * We need to copy out all pointers as 32-bit values.
  */

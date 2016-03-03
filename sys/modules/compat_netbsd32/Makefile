@@ -25,7 +25,7 @@ SRCS+=	netbsd32_mod.c
 
 .if ${MACHINE_ARCH} == "x86_64"
 .PATH:	${S}/arch/amd64/amd64
-SRCS+=	netbsd32_machdep.c netbsd32_sigcode.S netbsd32_syscall.c
+SRCS+=	netbsd32_machdep.c netbsd32_syscall.c
 .endif
 
 .include <bsd.kmodule.mk>

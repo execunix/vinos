@@ -70,7 +70,6 @@ struct vm86_struct {
 
 #ifdef _KERNEL
 int x86_vm86(struct lwp *, char *, register_t *);
-int compat_16_x86_vm86(struct lwp *, char *, register_t *);
 void vm86_gpfault(struct lwp *, int);
 void vm86_return(struct lwp *, int);
 static __inline void clr_vif(struct lwp *);

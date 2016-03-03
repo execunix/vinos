@@ -71,20 +71,6 @@ struct sys_close_args {
 };
 check_syscall_args(sys_close)
 
-struct compat_50_sys_wait4_args {
-	syscallarg(pid_t) pid;
-	syscallarg(int *) status;
-	syscallarg(int) options;
-	syscallarg(struct rusage50 *) rusage;
-};
-check_syscall_args(compat_50_sys_wait4)
-
-struct compat_43_sys_creat_args {
-	syscallarg(const char *) path;
-	syscallarg(mode_t) mode;
-};
-check_syscall_args(compat_43_sys_creat)
-
 struct sys_link_args {
 	syscallarg(const char *) path;
 	syscallarg(const char *) link;
@@ -106,13 +92,6 @@ struct sys_fchdir_args {
 };
 check_syscall_args(sys_fchdir)
 
-struct compat_50_sys_mknod_args {
-	syscallarg(const char *) path;
-	syscallarg(mode_t) mode;
-	syscallarg(uint32_t) dev;
-};
-check_syscall_args(compat_50_sys_mknod)
-
 struct sys_chmod_args {
 	syscallarg(const char *) path;
 	syscallarg(mode_t) mode;
@@ -130,28 +109,6 @@ struct sys_obreak_args {
 	syscallarg(char *) nsize;
 };
 check_syscall_args(sys_obreak)
-
-struct compat_20_sys_getfsstat_args {
-	syscallarg(struct statfs12 *) buf;
-	syscallarg(long) bufsize;
-	syscallarg(int) flags;
-};
-check_syscall_args(compat_20_sys_getfsstat)
-
-struct compat_43_sys_lseek_args {
-	syscallarg(int) fd;
-	syscallarg(long) offset;
-	syscallarg(int) whence;
-};
-check_syscall_args(compat_43_sys_lseek)
-
-struct compat_40_sys_mount_args {
-	syscallarg(const char *) type;
-	syscallarg(const char *) path;
-	syscallarg(int) flags;
-	syscallarg(void *) data;
-};
-check_syscall_args(compat_40_sys_mount)
 
 struct sys_unmount_args {
 	syscallarg(const char *) path;
@@ -241,18 +198,6 @@ struct sys_kill_args {
 };
 check_syscall_args(sys_kill)
 
-struct compat_43_sys_stat_args {
-	syscallarg(const char *) path;
-	syscallarg(struct stat43 *) ub;
-};
-check_syscall_args(compat_43_sys_stat)
-
-struct compat_43_sys_lstat_args {
-	syscallarg(const char *) path;
-	syscallarg(struct stat43 *) ub;
-};
-check_syscall_args(compat_43_sys_lstat)
-
 struct sys_dup_args {
 	syscallarg(int) fd;
 };
@@ -274,19 +219,6 @@ struct sys_ktrace_args {
 };
 check_syscall_args(sys_ktrace)
 
-struct compat_13_sys_sigaction_args {
-	syscallarg(int) signum;
-	syscallarg(const struct sigaction13 *) nsa;
-	syscallarg(struct sigaction13 *) osa;
-};
-check_syscall_args(compat_13_sys_sigaction)
-
-struct compat_13_sys_sigprocmask_args {
-	syscallarg(int) how;
-	syscallarg(int) mask;
-};
-check_syscall_args(compat_13_sys_sigprocmask)
-
 struct sys___getlogin_args {
 	syscallarg(char *) namebuf;
 	syscallarg(size_t) namelen;
@@ -303,23 +235,12 @@ struct sys_acct_args {
 };
 check_syscall_args(sys_acct)
 
-struct compat_13_sys_sigaltstack_args {
-	syscallarg(const struct sigaltstack13 *) nss;
-	syscallarg(struct sigaltstack13 *) oss;
-};
-check_syscall_args(compat_13_sys_sigaltstack)
-
 struct sys_ioctl_args {
 	syscallarg(int) fd;
 	syscallarg(u_long) com;
 	syscallarg(void *) data;
 };
 check_syscall_args(sys_ioctl)
-
-struct compat_12_sys_reboot_args {
-	syscallarg(int) opt;
-};
-check_syscall_args(compat_12_sys_reboot)
 
 struct sys_revoke_args {
 	syscallarg(const char *) path;
@@ -356,26 +277,6 @@ struct sys_chroot_args {
 };
 check_syscall_args(sys_chroot)
 
-struct compat_43_sys_fstat_args {
-	syscallarg(int) fd;
-	syscallarg(struct stat43 *) sb;
-};
-check_syscall_args(compat_43_sys_fstat)
-
-struct compat_43_sys_getkerninfo_args {
-	syscallarg(int) op;
-	syscallarg(char *) where;
-	syscallarg(int *) size;
-	syscallarg(int) arg;
-};
-check_syscall_args(compat_43_sys_getkerninfo)
-
-struct compat_12_sys_msync_args {
-	syscallarg(void *) addr;
-	syscallarg(size_t) len;
-};
-check_syscall_args(compat_12_sys_msync)
-
 struct sys_sbrk_args {
 	syscallarg(intptr_t) incr;
 };
@@ -385,16 +286,6 @@ struct sys_sstk_args {
 	syscallarg(int) incr;
 };
 check_syscall_args(sys_sstk)
-
-struct compat_43_sys_mmap_args {
-	syscallarg(void *) addr;
-	syscallarg(size_t) len;
-	syscallarg(int) prot;
-	syscallarg(int) flags;
-	syscallarg(int) fd;
-	syscallarg(long) pos;
-};
-check_syscall_args(compat_43_sys_mmap)
 
 struct sys_ovadvise_args {
 	syscallarg(int) anom;
@@ -446,36 +337,6 @@ struct sys_setpgid_args {
 };
 check_syscall_args(sys_setpgid)
 
-struct compat_50_sys_setitimer_args {
-	syscallarg(int) which;
-	syscallarg(const struct itimerval50 *) itv;
-	syscallarg(struct itimerval50 *) oitv;
-};
-check_syscall_args(compat_50_sys_setitimer)
-
-struct compat_12_sys_swapon_args {
-	syscallarg(const char *) name;
-};
-check_syscall_args(compat_12_sys_swapon)
-
-struct compat_50_sys_getitimer_args {
-	syscallarg(int) which;
-	syscallarg(struct itimerval50 *) itv;
-};
-check_syscall_args(compat_50_sys_getitimer)
-
-struct compat_43_sys_gethostname_args {
-	syscallarg(char *) hostname;
-	syscallarg(u_int) len;
-};
-check_syscall_args(compat_43_sys_gethostname)
-
-struct compat_43_sys_sethostname_args {
-	syscallarg(char *) hostname;
-	syscallarg(u_int) len;
-};
-check_syscall_args(compat_43_sys_sethostname)
-
 struct sys_dup2_args {
 	syscallarg(int) from;
 	syscallarg(int) to;
@@ -489,15 +350,6 @@ struct sys_fcntl_args {
 };
 check_syscall_args(sys_fcntl)
 
-struct compat_50_sys_select_args {
-	syscallarg(int) nd;
-	syscallarg(fd_set *) in;
-	syscallarg(fd_set *) ou;
-	syscallarg(fd_set *) ex;
-	syscallarg(struct timeval50 *) tv;
-};
-check_syscall_args(compat_50_sys_select)
-
 struct sys_fsync_args {
 	syscallarg(int) fd;
 };
@@ -510,13 +362,6 @@ struct sys_setpriority_args {
 };
 check_syscall_args(sys_setpriority)
 
-struct compat_30_sys_socket_args {
-	syscallarg(int) domain;
-	syscallarg(int) type;
-	syscallarg(int) protocol;
-};
-check_syscall_args(compat_30_sys_socket)
-
 struct sys_connect_args {
 	syscallarg(int) s;
 	syscallarg(const struct sockaddr *) name;
@@ -524,39 +369,11 @@ struct sys_connect_args {
 };
 check_syscall_args(sys_connect)
 
-struct compat_43_sys_accept_args {
-	syscallarg(int) s;
-	syscallarg(void *) name;
-	syscallarg(socklen_t *) anamelen;
-};
-check_syscall_args(compat_43_sys_accept)
-
 struct sys_getpriority_args {
 	syscallarg(int) which;
 	syscallarg(id_t) who;
 };
 check_syscall_args(sys_getpriority)
-
-struct compat_43_sys_send_args {
-	syscallarg(int) s;
-	syscallarg(void *) buf;
-	syscallarg(int) len;
-	syscallarg(int) flags;
-};
-check_syscall_args(compat_43_sys_send)
-
-struct compat_43_sys_recv_args {
-	syscallarg(int) s;
-	syscallarg(void *) buf;
-	syscallarg(int) len;
-	syscallarg(int) flags;
-};
-check_syscall_args(compat_43_sys_recv)
-
-struct compat_13_sys_sigreturn_args {
-	syscallarg(struct sigcontext13 *) sigcntxp;
-};
-check_syscall_args(compat_13_sys_sigreturn)
 
 struct sys_bind_args {
 	syscallarg(int) s;
@@ -579,60 +396,6 @@ struct sys_listen_args {
 	syscallarg(int) backlog;
 };
 check_syscall_args(sys_listen)
-
-struct compat_43_sys_sigvec_args {
-	syscallarg(int) signum;
-	syscallarg(struct sigvec *) nsv;
-	syscallarg(struct sigvec *) osv;
-};
-check_syscall_args(compat_43_sys_sigvec)
-
-struct compat_43_sys_sigblock_args {
-	syscallarg(int) mask;
-};
-check_syscall_args(compat_43_sys_sigblock)
-
-struct compat_43_sys_sigsetmask_args {
-	syscallarg(int) mask;
-};
-check_syscall_args(compat_43_sys_sigsetmask)
-
-struct compat_13_sys_sigsuspend_args {
-	syscallarg(int) mask;
-};
-check_syscall_args(compat_13_sys_sigsuspend)
-
-struct compat_43_sys_sigstack_args {
-	syscallarg(struct sigstack *) nss;
-	syscallarg(struct sigstack *) oss;
-};
-check_syscall_args(compat_43_sys_sigstack)
-
-struct compat_43_sys_recvmsg_args {
-	syscallarg(int) s;
-	syscallarg(struct omsghdr *) msg;
-	syscallarg(int) flags;
-};
-check_syscall_args(compat_43_sys_recvmsg)
-
-struct compat_43_sys_sendmsg_args {
-	syscallarg(int) s;
-	syscallarg(void *) msg;
-	syscallarg(int) flags;
-};
-check_syscall_args(compat_43_sys_sendmsg)
-
-struct compat_50_sys_gettimeofday_args {
-	syscallarg(struct timeval50 *) tp;
-	syscallarg(void *) tzp;
-};
-check_syscall_args(compat_50_sys_gettimeofday)
-
-struct compat_50_sys_getrusage_args {
-	syscallarg(int) who;
-	syscallarg(struct rusage50 *) rusage;
-};
-check_syscall_args(compat_50_sys_getrusage)
 
 struct sys_getsockopt_args {
 	syscallarg(int) s;
@@ -657,12 +420,6 @@ struct sys_writev_args {
 };
 check_syscall_args(sys_writev)
 
-struct compat_50_sys_settimeofday_args {
-	syscallarg(const struct timeval50 *) tv;
-	syscallarg(const void *) tzp;
-};
-check_syscall_args(compat_50_sys_settimeofday)
-
 struct sys_fchown_args {
 	syscallarg(int) fd;
 	syscallarg(uid_t) uid;
@@ -675,16 +432,6 @@ struct sys_fchmod_args {
 	syscallarg(mode_t) mode;
 };
 check_syscall_args(sys_fchmod)
-
-struct compat_43_sys_recvfrom_args {
-	syscallarg(int) s;
-	syscallarg(void *) buf;
-	syscallarg(size_t) len;
-	syscallarg(int) flags;
-	syscallarg(void *) from;
-	syscallarg(socklen_t *) fromlenaddr;
-};
-check_syscall_args(compat_43_sys_recvfrom)
 
 struct sys_setreuid_args {
 	syscallarg(uid_t) ruid;
@@ -703,18 +450,6 @@ struct sys_rename_args {
 	syscallarg(const char *) to;
 };
 check_syscall_args(sys_rename)
-
-struct compat_43_sys_truncate_args {
-	syscallarg(const char *) path;
-	syscallarg(long) length;
-};
-check_syscall_args(compat_43_sys_truncate)
-
-struct compat_43_sys_ftruncate_args {
-	syscallarg(int) fd;
-	syscallarg(long) length;
-};
-check_syscall_args(compat_43_sys_ftruncate)
 
 struct sys_flock_args {
 	syscallarg(int) fd;
@@ -763,153 +498,17 @@ struct sys_rmdir_args {
 };
 check_syscall_args(sys_rmdir)
 
-struct compat_50_sys_utimes_args {
-	syscallarg(const char *) path;
-	syscallarg(const struct timeval50 *) tptr;
-};
-check_syscall_args(compat_50_sys_utimes)
-
-struct compat_50_sys_adjtime_args {
-	syscallarg(const struct timeval50 *) delta;
-	syscallarg(struct timeval50 *) olddelta;
-};
-check_syscall_args(compat_50_sys_adjtime)
-
-struct compat_43_sys_getpeername_args {
-	syscallarg(int) fdes;
-	syscallarg(void *) asa;
-	syscallarg(socklen_t *) alen;
-};
-check_syscall_args(compat_43_sys_getpeername)
-
-struct compat_43_sys_sethostid_args {
-	syscallarg(int32_t) hostid;
-};
-check_syscall_args(compat_43_sys_sethostid)
-
-struct compat_43_sys_getrlimit_args {
-	syscallarg(int) which;
-	syscallarg(struct orlimit *) rlp;
-};
-check_syscall_args(compat_43_sys_getrlimit)
-
-struct compat_43_sys_setrlimit_args {
-	syscallarg(int) which;
-	syscallarg(const struct orlimit *) rlp;
-};
-check_syscall_args(compat_43_sys_setrlimit)
-
-struct compat_43_sys_killpg_args {
-	syscallarg(int) pgid;
-	syscallarg(int) signum;
-};
-check_syscall_args(compat_43_sys_killpg)
-
-struct compat_50_sys_quotactl_args {
-	syscallarg(const char *) path;
-	syscallarg(int) cmd;
-	syscallarg(int) uid;
-	syscallarg(void *) arg;
-};
-check_syscall_args(compat_50_sys_quotactl)
-
-struct compat_43_sys_getsockname_args {
-	syscallarg(int) fdec;
-	syscallarg(void *) asa;
-	syscallarg(socklen_t *) alen;
-};
-check_syscall_args(compat_43_sys_getsockname)
-
 struct sys_nfssvc_args {
 	syscallarg(int) flag;
 	syscallarg(void *) argp;
 };
 check_syscall_args(sys_nfssvc)
 
-struct compat_43_sys_getdirentries_args {
-	syscallarg(int) fd;
-	syscallarg(char *) buf;
-	syscallarg(u_int) count;
-	syscallarg(long *) basep;
-};
-check_syscall_args(compat_43_sys_getdirentries)
-
-struct compat_20_sys_statfs_args {
-	syscallarg(const char *) path;
-	syscallarg(struct statfs12 *) buf;
-};
-check_syscall_args(compat_20_sys_statfs)
-
-struct compat_20_sys_fstatfs_args {
-	syscallarg(int) fd;
-	syscallarg(struct statfs12 *) buf;
-};
-check_syscall_args(compat_20_sys_fstatfs)
-
-struct compat_30_sys_getfh_args {
-	syscallarg(const char *) fname;
-	syscallarg(struct compat_30_fhandle *) fhp;
-};
-check_syscall_args(compat_30_sys_getfh)
-
-struct compat_09_sys_getdomainname_args {
-	syscallarg(char *) domainname;
-	syscallarg(int) len;
-};
-check_syscall_args(compat_09_sys_getdomainname)
-
-struct compat_09_sys_setdomainname_args {
-	syscallarg(char *) domainname;
-	syscallarg(int) len;
-};
-check_syscall_args(compat_09_sys_setdomainname)
-
-struct compat_09_sys_uname_args {
-	syscallarg(struct outsname *) name;
-};
-check_syscall_args(compat_09_sys_uname)
-
 struct sys_sysarch_args {
 	syscallarg(int) op;
 	syscallarg(void *) parms;
 };
 check_syscall_args(sys_sysarch)
-#if (defined(SYSVSEM) || !defined(_KERNEL_OPT)) && !defined(_LP64)
-
-struct compat_10_sys_semsys_args {
-	syscallarg(int) which;
-	syscallarg(int) a2;
-	syscallarg(int) a3;
-	syscallarg(int) a4;
-	syscallarg(int) a5;
-};
-check_syscall_args(compat_10_sys_semsys)
-#else
-#endif
-#if (defined(SYSVMSG) || !defined(_KERNEL_OPT)) && !defined(_LP64)
-
-struct compat_10_sys_msgsys_args {
-	syscallarg(int) which;
-	syscallarg(int) a2;
-	syscallarg(int) a3;
-	syscallarg(int) a4;
-	syscallarg(int) a5;
-	syscallarg(int) a6;
-};
-check_syscall_args(compat_10_sys_msgsys)
-#else
-#endif
-#if (defined(SYSVSHM) || !defined(_KERNEL_OPT)) && !defined(_LP64)
-
-struct compat_10_sys_shmsys_args {
-	syscallarg(int) which;
-	syscallarg(int) a2;
-	syscallarg(int) a3;
-	syscallarg(int) a4;
-};
-check_syscall_args(compat_10_sys_shmsys)
-#else
-#endif
 
 struct sys_pread_args {
 	syscallarg(int) fd;
@@ -929,10 +528,6 @@ struct sys_pwrite_args {
 };
 check_syscall_args(sys_pwrite)
 
-struct compat_30_sys_ntp_gettime_args {
-	syscallarg(struct ntptimeval30 *) ntvp;
-};
-check_syscall_args(compat_30_sys_ntp_gettime)
 #if defined(NTP) || !defined(_KERNEL_OPT)
 
 struct sys_ntp_adjtime_args {
@@ -957,24 +552,6 @@ struct sys_seteuid_args {
 };
 check_syscall_args(sys_seteuid)
 
-struct compat_12_sys_stat_args {
-	syscallarg(const char *) path;
-	syscallarg(struct stat12 *) ub;
-};
-check_syscall_args(compat_12_sys_stat)
-
-struct compat_12_sys_fstat_args {
-	syscallarg(int) fd;
-	syscallarg(struct stat12 *) sb;
-};
-check_syscall_args(compat_12_sys_fstat)
-
-struct compat_12_sys_lstat_args {
-	syscallarg(const char *) path;
-	syscallarg(struct stat12 *) ub;
-};
-check_syscall_args(compat_12_sys_lstat)
-
 struct sys_pathconf_args {
 	syscallarg(const char *) path;
 	syscallarg(int) name;
@@ -998,14 +575,6 @@ struct sys_setrlimit_args {
 	syscallarg(const struct rlimit *) rlp;
 };
 check_syscall_args(sys_setrlimit)
-
-struct compat_12_sys_getdirentries_args {
-	syscallarg(int) fd;
-	syscallarg(char *) buf;
-	syscallarg(u_int) count;
-	syscallarg(long *) basep;
-};
-check_syscall_args(compat_12_sys_getdirentries)
 
 struct sys_mmap_args {
 	syscallarg(void *) addr;
@@ -1072,12 +641,6 @@ struct sys_undelete_args {
 };
 check_syscall_args(sys_undelete)
 
-struct compat_50_sys_futimes_args {
-	syscallarg(int) fd;
-	syscallarg(const struct timeval50 *) tptr;
-};
-check_syscall_args(compat_50_sys_futimes)
-
 struct sys_getpgid_args {
 	syscallarg(pid_t) pid;
 };
@@ -1108,14 +671,6 @@ struct sys_afssys_args {
 check_syscall_args(sys_afssys)
 #if defined(SYSVSEM) || !defined(_KERNEL_OPT)
 
-struct compat_14_sys___semctl_args {
-	syscallarg(int) semid;
-	syscallarg(int) semnum;
-	syscallarg(int) cmd;
-	syscallarg(union __semun *) arg;
-};
-check_syscall_args(compat_14_sys___semctl)
-
 struct sys_semget_args {
 	syscallarg(key_t) key;
 	syscallarg(int) nsems;
@@ -1137,13 +692,6 @@ check_syscall_args(sys_semconfig)
 #else
 #endif
 #if defined(SYSVMSG) || !defined(_KERNEL_OPT)
-
-struct compat_14_sys_msgctl_args {
-	syscallarg(int) msqid;
-	syscallarg(int) cmd;
-	syscallarg(struct msqid_ds14 *) buf;
-};
-check_syscall_args(compat_14_sys_msgctl)
 
 struct sys_msgget_args {
 	syscallarg(key_t) key;
@@ -1178,13 +726,6 @@ struct sys_shmat_args {
 };
 check_syscall_args(sys_shmat)
 
-struct compat_14_sys_shmctl_args {
-	syscallarg(int) shmid;
-	syscallarg(int) cmd;
-	syscallarg(struct shmid_ds14 *) buf;
-};
-check_syscall_args(compat_14_sys_shmctl)
-
 struct sys_shmdt_args {
 	syscallarg(const void *) shmaddr;
 };
@@ -1199,24 +740,6 @@ check_syscall_args(sys_shmget)
 #else
 #endif
 
-struct compat_50_sys_clock_gettime_args {
-	syscallarg(clockid_t) clock_id;
-	syscallarg(struct timespec50 *) tp;
-};
-check_syscall_args(compat_50_sys_clock_gettime)
-
-struct compat_50_sys_clock_settime_args {
-	syscallarg(clockid_t) clock_id;
-	syscallarg(const struct timespec50 *) tp;
-};
-check_syscall_args(compat_50_sys_clock_settime)
-
-struct compat_50_sys_clock_getres_args {
-	syscallarg(clockid_t) clock_id;
-	syscallarg(struct timespec50 *) tp;
-};
-check_syscall_args(compat_50_sys_clock_getres)
-
 struct sys_timer_create_args {
 	syscallarg(clockid_t) clock_id;
 	syscallarg(struct sigevent *) evp;
@@ -1229,30 +752,10 @@ struct sys_timer_delete_args {
 };
 check_syscall_args(sys_timer_delete)
 
-struct compat_50_sys_timer_settime_args {
-	syscallarg(timer_t) timerid;
-	syscallarg(int) flags;
-	syscallarg(const struct itimerspec50 *) value;
-	syscallarg(struct itimerspec50 *) ovalue;
-};
-check_syscall_args(compat_50_sys_timer_settime)
-
-struct compat_50_sys_timer_gettime_args {
-	syscallarg(timer_t) timerid;
-	syscallarg(struct itimerspec50 *) value;
-};
-check_syscall_args(compat_50_sys_timer_gettime)
-
 struct sys_timer_getoverrun_args {
 	syscallarg(timer_t) timerid;
 };
 check_syscall_args(sys_timer_getoverrun)
-
-struct compat_50_sys_nanosleep_args {
-	syscallarg(const struct timespec50 *) rqtp;
-	syscallarg(struct timespec50 *) rmtp;
-};
-check_syscall_args(compat_50_sys_nanosleep)
 
 struct sys_fdatasync_args {
 	syscallarg(int) fd;
@@ -1263,13 +766,6 @@ struct sys_mlockall_args {
 	syscallarg(int) flags;
 };
 check_syscall_args(sys_mlockall)
-
-struct compat_50_sys___sigtimedwait_args {
-	syscallarg(const sigset_t *) set;
-	syscallarg(siginfo_t *) info;
-	syscallarg(struct timespec50 *) timeout;
-};
-check_syscall_args(compat_50_sys___sigtimedwait)
 
 struct sys_sigqueueinfo_args {
 	syscallarg(pid_t) pid;
@@ -1393,24 +889,6 @@ struct sys_mq_receive_args {
 };
 check_syscall_args(sys_mq_receive)
 
-struct compat_50_sys_mq_timedsend_args {
-	syscallarg(mqd_t) mqdes;
-	syscallarg(const char *) msg_ptr;
-	syscallarg(size_t) msg_len;
-	syscallarg(unsigned) msg_prio;
-	syscallarg(const struct timespec50 *) abs_timeout;
-};
-check_syscall_args(compat_50_sys_mq_timedsend)
-
-struct compat_50_sys_mq_timedreceive_args {
-	syscallarg(mqd_t) mqdes;
-	syscallarg(char *) msg_ptr;
-	syscallarg(size_t) msg_len;
-	syscallarg(unsigned *) msg_prio;
-	syscallarg(const struct timespec50 *) abs_timeout;
-};
-check_syscall_args(compat_50_sys_mq_timedreceive)
-
 struct sys___posix_rename_args {
 	syscallarg(const char *) from;
 	syscallarg(const char *) to;
@@ -1423,13 +901,6 @@ struct sys_swapctl_args {
 	syscallarg(int) misc;
 };
 check_syscall_args(sys_swapctl)
-
-struct compat_30_sys_getdents_args {
-	syscallarg(int) fd;
-	syscallarg(char *) buf;
-	syscallarg(size_t) count;
-};
-check_syscall_args(compat_30_sys_getdents)
 
 struct sys_minherit_args {
 	syscallarg(void *) addr;
@@ -1451,36 +922,12 @@ struct sys_lchown_args {
 };
 check_syscall_args(sys_lchown)
 
-struct compat_50_sys_lutimes_args {
-	syscallarg(const char *) path;
-	syscallarg(const struct timeval50 *) tptr;
-};
-check_syscall_args(compat_50_sys_lutimes)
-
 struct sys___msync13_args {
 	syscallarg(void *) addr;
 	syscallarg(size_t) len;
 	syscallarg(int) flags;
 };
 check_syscall_args(sys___msync13)
-
-struct compat_30_sys___stat13_args {
-	syscallarg(const char *) path;
-	syscallarg(struct stat13 *) ub;
-};
-check_syscall_args(compat_30_sys___stat13)
-
-struct compat_30_sys___fstat13_args {
-	syscallarg(int) fd;
-	syscallarg(struct stat13 *) sb;
-};
-check_syscall_args(compat_30_sys___fstat13)
-
-struct compat_30_sys___lstat13_args {
-	syscallarg(const char *) path;
-	syscallarg(struct stat13 *) ub;
-};
-check_syscall_args(compat_30_sys___lstat13)
 
 struct sys___sigaltstack14_args {
 	syscallarg(const struct sigaltstack *) nss;
@@ -1546,13 +993,6 @@ struct sys_pwritev_args {
 };
 check_syscall_args(sys_pwritev)
 
-struct compat_16_sys___sigaction14_args {
-	syscallarg(int) signum;
-	syscallarg(const struct sigaction *) nsa;
-	syscallarg(struct sigaction *) osa;
-};
-check_syscall_args(compat_16_sys___sigaction14)
-
 struct sys___sigpending14_args {
 	syscallarg(sigset_t *) set;
 };
@@ -1570,11 +1010,6 @@ struct sys___sigsuspend14_args {
 };
 check_syscall_args(sys___sigsuspend14)
 
-struct compat_16_sys___sigreturn14_args {
-	syscallarg(struct sigcontext *) sigcntxp;
-};
-check_syscall_args(compat_16_sys___sigreturn14)
-
 struct sys___getcwd_args {
 	syscallarg(char *) bufp;
 	syscallarg(size_t) length;
@@ -1585,55 +1020,6 @@ struct sys_fchroot_args {
 	syscallarg(int) fd;
 };
 check_syscall_args(sys_fchroot)
-
-struct compat_30_sys_fhopen_args {
-	syscallarg(const struct compat_30_fhandle *) fhp;
-	syscallarg(int) flags;
-};
-check_syscall_args(compat_30_sys_fhopen)
-
-struct compat_30_sys_fhstat_args {
-	syscallarg(const struct compat_30_fhandle *) fhp;
-	syscallarg(struct stat13 *) sb;
-};
-check_syscall_args(compat_30_sys_fhstat)
-
-struct compat_20_sys_fhstatfs_args {
-	syscallarg(const struct compat_30_fhandle *) fhp;
-	syscallarg(struct statfs12 *) buf;
-};
-check_syscall_args(compat_20_sys_fhstatfs)
-#if defined(SYSVSEM) || !defined(_KERNEL_OPT)
-
-struct compat_50_sys_____semctl13_args {
-	syscallarg(int) semid;
-	syscallarg(int) semnum;
-	syscallarg(int) cmd;
-	syscallarg(union __semun *) arg;
-};
-check_syscall_args(compat_50_sys_____semctl13)
-#else
-#endif
-#if defined(SYSVMSG) || !defined(_KERNEL_OPT)
-
-struct compat_50_sys___msgctl13_args {
-	syscallarg(int) msqid;
-	syscallarg(int) cmd;
-	syscallarg(struct msqid_ds *) buf;
-};
-check_syscall_args(compat_50_sys___msgctl13)
-#else
-#endif
-#if defined(SYSVSHM) || !defined(_KERNEL_OPT)
-
-struct compat_50_sys___shmctl13_args {
-	syscallarg(int) shmid;
-	syscallarg(int) cmd;
-	syscallarg(struct shmid_ds13 *) buf;
-};
-check_syscall_args(compat_50_sys___shmctl13)
-#else
-#endif
 
 struct sys_lchflags_args {
 	syscallarg(const char *) path;
@@ -1702,14 +1088,6 @@ struct sys__lwp_detach_args {
 };
 check_syscall_args(sys__lwp_detach)
 
-struct compat_50_sys__lwp_park_args {
-	syscallarg(const struct timespec50 *) ts;
-	syscallarg(lwpid_t) unpark;
-	syscallarg(const void *) hint;
-	syscallarg(const void *) unparkhint;
-};
-check_syscall_args(compat_50_sys__lwp_park)
-
 struct sys__lwp_unpark_args {
 	syscallarg(lwpid_t) target;
 	syscallarg(const void *) hint;
@@ -1742,30 +1120,6 @@ struct sys__lwp_ctl_args {
 };
 check_syscall_args(sys__lwp_ctl)
 
-struct compat_60_sys_sa_register_args {
-	syscallarg(void *) newv;
-	syscallarg(void **) oldv;
-	syscallarg(int) flags;
-	syscallarg(ssize_t) stackinfo_offset;
-};
-check_syscall_args(compat_60_sys_sa_register)
-
-struct compat_60_sys_sa_stacks_args {
-	syscallarg(int) num;
-	syscallarg(stack_t *) stacks;
-};
-check_syscall_args(compat_60_sys_sa_stacks)
-
-struct compat_60_sys_sa_setconcurrency_args {
-	syscallarg(int) concurrency;
-};
-check_syscall_args(compat_60_sys_sa_setconcurrency)
-
-struct compat_60_sys_sa_preempt_args {
-	syscallarg(int) sa_id;
-};
-check_syscall_args(compat_60_sys_sa_preempt)
-
 struct sys___sigaction_sigtramp_args {
 	syscallarg(int) signum;
 	syscallarg(const struct sigaction *) nsa;
@@ -1795,16 +1149,6 @@ struct sys_rasctl_args {
 	syscallarg(int) op;
 };
 check_syscall_args(sys_rasctl)
-
-struct compat_50_sys_kevent_args {
-	syscallarg(int) fd;
-	syscallarg(const struct kevent *) changelist;
-	syscallarg(size_t) nchanges;
-	syscallarg(struct kevent *) eventlist;
-	syscallarg(size_t) nevents;
-	syscallarg(const struct timespec50 *) timeout;
-};
-check_syscall_args(compat_50_sys_kevent)
 
 struct sys__sched_setparam_args {
 	syscallarg(pid_t) pid;
@@ -1872,13 +1216,6 @@ struct sys_fstatvfs1_args {
 	syscallarg(int) flags;
 };
 check_syscall_args(sys_fstatvfs1)
-
-struct compat_30_sys_fhstatvfs1_args {
-	syscallarg(const struct compat_30_fhandle *) fhp;
-	syscallarg(struct statvfs *) buf;
-	syscallarg(int) flags;
-};
-check_syscall_args(compat_30_sys_fhstatvfs1)
 
 struct sys_extattrctl_args {
 	syscallarg(const char *) path;
@@ -1988,24 +1325,6 @@ struct sys_extattr_list_link_args {
 };
 check_syscall_args(sys_extattr_list_link)
 
-struct compat_50_sys_pselect_args {
-	syscallarg(int) nd;
-	syscallarg(fd_set *) in;
-	syscallarg(fd_set *) ou;
-	syscallarg(fd_set *) ex;
-	syscallarg(const struct timespec50 *) ts;
-	syscallarg(const sigset_t *) mask;
-};
-check_syscall_args(compat_50_sys_pselect)
-
-struct compat_50_sys_pollts_args {
-	syscallarg(struct pollfd *) fds;
-	syscallarg(u_int) nfds;
-	syscallarg(const struct timespec50 *) ts;
-	syscallarg(const sigset_t *) mask;
-};
-check_syscall_args(compat_50_sys_pollts)
-
 struct sys_setxattr_args {
 	syscallarg(const char *) path;
 	syscallarg(const char *) name;
@@ -2096,41 +1415,12 @@ struct sys_fremovexattr_args {
 };
 check_syscall_args(sys_fremovexattr)
 
-struct compat_50_sys___stat30_args {
-	syscallarg(const char *) path;
-	syscallarg(struct stat30 *) ub;
-};
-check_syscall_args(compat_50_sys___stat30)
-
-struct compat_50_sys___fstat30_args {
-	syscallarg(int) fd;
-	syscallarg(struct stat30 *) sb;
-};
-check_syscall_args(compat_50_sys___fstat30)
-
-struct compat_50_sys___lstat30_args {
-	syscallarg(const char *) path;
-	syscallarg(struct stat30 *) ub;
-};
-check_syscall_args(compat_50_sys___lstat30)
-
 struct sys___getdents30_args {
 	syscallarg(int) fd;
 	syscallarg(char *) buf;
 	syscallarg(size_t) count;
 };
 check_syscall_args(sys___getdents30)
-
-struct compat_30_sys___fhstat30_args {
-	syscallarg(const struct compat_30_fhandle *) fhp;
-	syscallarg(struct stat30 *) sb;
-};
-check_syscall_args(compat_30_sys___fhstat30)
-
-struct compat_50_sys___ntp_gettime30_args {
-	syscallarg(struct ntptimeval50 *) ntvp;
-};
-check_syscall_args(compat_50_sys___ntp_gettime30)
 
 struct sys___socket30_args {
 	syscallarg(int) domain;
@@ -2161,13 +1451,6 @@ struct sys___fhstatvfs140_args {
 };
 check_syscall_args(sys___fhstatvfs140)
 
-struct compat_50_sys___fhstat40_args {
-	syscallarg(const void *) fhp;
-	syscallarg(size_t) fh_size;
-	syscallarg(struct stat30 *) sb;
-};
-check_syscall_args(compat_50_sys___fhstat40)
-
 struct sys_aio_cancel_args {
 	syscallarg(int) fildes;
 	syscallarg(struct aiocb *) aiocbp;
@@ -2194,13 +1477,6 @@ struct sys_aio_return_args {
 	syscallarg(struct aiocb *) aiocbp;
 };
 check_syscall_args(sys_aio_return)
-
-struct compat_50_sys_aio_suspend_args {
-	syscallarg(const struct aiocb *const *) list;
-	syscallarg(int) nent;
-	syscallarg(const struct timespec50 *) timeout;
-};
-check_syscall_args(compat_50_sys_aio_suspend)
 
 struct sys_aio_write_args {
 	syscallarg(struct aiocb *) aiocbp;
@@ -2374,14 +1650,6 @@ struct sys___mq_timedreceive50_args {
 	syscallarg(const struct timespec *) abs_timeout;
 };
 check_syscall_args(sys___mq_timedreceive50)
-
-struct compat_60_sys__lwp_park_args {
-	syscallarg(const struct timespec *) ts;
-	syscallarg(lwpid_t) unpark;
-	syscallarg(const void *) hint;
-	syscallarg(const void *) unparkhint;
-};
-check_syscall_args(compat_60_sys__lwp_park)
 
 struct sys___kevent50_args {
 	syscallarg(int) fd;
@@ -2753,10 +2021,6 @@ int	sys_open(struct lwp *, const struct sys_open_args *, register_t *);
 
 int	sys_close(struct lwp *, const struct sys_close_args *, register_t *);
 
-int	compat_50_sys_wait4(struct lwp *, const struct compat_50_sys_wait4_args *, register_t *);
-
-int	compat_43_sys_creat(struct lwp *, const struct compat_43_sys_creat_args *, register_t *);
-
 int	sys_link(struct lwp *, const struct sys_link_args *, register_t *);
 
 int	sys_unlink(struct lwp *, const struct sys_unlink_args *, register_t *);
@@ -2765,21 +2029,13 @@ int	sys_chdir(struct lwp *, const struct sys_chdir_args *, register_t *);
 
 int	sys_fchdir(struct lwp *, const struct sys_fchdir_args *, register_t *);
 
-int	compat_50_sys_mknod(struct lwp *, const struct compat_50_sys_mknod_args *, register_t *);
-
 int	sys_chmod(struct lwp *, const struct sys_chmod_args *, register_t *);
 
 int	sys_chown(struct lwp *, const struct sys_chown_args *, register_t *);
 
 int	sys_obreak(struct lwp *, const struct sys_obreak_args *, register_t *);
 
-int	compat_20_sys_getfsstat(struct lwp *, const struct compat_20_sys_getfsstat_args *, register_t *);
-
-int	compat_43_sys_lseek(struct lwp *, const struct compat_43_sys_lseek_args *, register_t *);
-
 int	sys_getpid_with_ppid(struct lwp *, const void *, register_t *);
-
-int	compat_40_sys_mount(struct lwp *, const struct compat_40_sys_mount_args *, register_t *);
 
 int	sys_unmount(struct lwp *, const struct sys_unmount_args *, register_t *);
 
@@ -2813,11 +2069,7 @@ int	sys_sync(struct lwp *, const void *, register_t *);
 
 int	sys_kill(struct lwp *, const struct sys_kill_args *, register_t *);
 
-int	compat_43_sys_stat(struct lwp *, const struct compat_43_sys_stat_args *, register_t *);
-
 int	sys_getppid(struct lwp *, const void *, register_t *);
-
-int	compat_43_sys_lstat(struct lwp *, const struct compat_43_sys_lstat_args *, register_t *);
 
 int	sys_dup(struct lwp *, const struct sys_dup_args *, register_t *);
 
@@ -2829,11 +2081,7 @@ int	sys_profil(struct lwp *, const struct sys_profil_args *, register_t *);
 
 int	sys_ktrace(struct lwp *, const struct sys_ktrace_args *, register_t *);
 
-int	compat_13_sys_sigaction(struct lwp *, const struct compat_13_sys_sigaction_args *, register_t *);
-
 int	sys_getgid_with_egid(struct lwp *, const void *, register_t *);
-
-int	compat_13_sys_sigprocmask(struct lwp *, const struct compat_13_sys_sigprocmask_args *, register_t *);
 
 int	sys___getlogin(struct lwp *, const struct sys___getlogin_args *, register_t *);
 
@@ -2841,13 +2089,7 @@ int	sys___setlogin(struct lwp *, const struct sys___setlogin_args *, register_t 
 
 int	sys_acct(struct lwp *, const struct sys_acct_args *, register_t *);
 
-int	compat_13_sys_sigpending(struct lwp *, const void *, register_t *);
-
-int	compat_13_sys_sigaltstack(struct lwp *, const struct compat_13_sys_sigaltstack_args *, register_t *);
-
 int	sys_ioctl(struct lwp *, const struct sys_ioctl_args *, register_t *);
-
-int	compat_12_sys_reboot(struct lwp *, const struct compat_12_sys_reboot_args *, register_t *);
 
 int	sys_revoke(struct lwp *, const struct sys_revoke_args *, register_t *);
 
@@ -2861,21 +2103,11 @@ int	sys_umask(struct lwp *, const struct sys_umask_args *, register_t *);
 
 int	sys_chroot(struct lwp *, const struct sys_chroot_args *, register_t *);
 
-int	compat_43_sys_fstat(struct lwp *, const struct compat_43_sys_fstat_args *, register_t *);
-
-int	compat_43_sys_getkerninfo(struct lwp *, const struct compat_43_sys_getkerninfo_args *, register_t *);
-
-int	compat_43_sys_getpagesize(struct lwp *, const void *, register_t *);
-
-int	compat_12_sys_msync(struct lwp *, const struct compat_12_sys_msync_args *, register_t *);
-
 int	sys_vfork(struct lwp *, const void *, register_t *);
 
 int	sys_sbrk(struct lwp *, const struct sys_sbrk_args *, register_t *);
 
 int	sys_sstk(struct lwp *, const struct sys_sstk_args *, register_t *);
-
-int	compat_43_sys_mmap(struct lwp *, const struct compat_43_sys_mmap_args *, register_t *);
 
 int	sys_ovadvise(struct lwp *, const struct sys_ovadvise_args *, register_t *);
 
@@ -2895,43 +2127,17 @@ int	sys_getpgrp(struct lwp *, const void *, register_t *);
 
 int	sys_setpgid(struct lwp *, const struct sys_setpgid_args *, register_t *);
 
-int	compat_50_sys_setitimer(struct lwp *, const struct compat_50_sys_setitimer_args *, register_t *);
-
-int	compat_43_sys_wait(struct lwp *, const void *, register_t *);
-
-int	compat_12_sys_swapon(struct lwp *, const struct compat_12_sys_swapon_args *, register_t *);
-
-int	compat_50_sys_getitimer(struct lwp *, const struct compat_50_sys_getitimer_args *, register_t *);
-
-int	compat_43_sys_gethostname(struct lwp *, const struct compat_43_sys_gethostname_args *, register_t *);
-
-int	compat_43_sys_sethostname(struct lwp *, const struct compat_43_sys_sethostname_args *, register_t *);
-
-int	compat_43_sys_getdtablesize(struct lwp *, const void *, register_t *);
-
 int	sys_dup2(struct lwp *, const struct sys_dup2_args *, register_t *);
 
 int	sys_fcntl(struct lwp *, const struct sys_fcntl_args *, register_t *);
-
-int	compat_50_sys_select(struct lwp *, const struct compat_50_sys_select_args *, register_t *);
 
 int	sys_fsync(struct lwp *, const struct sys_fsync_args *, register_t *);
 
 int	sys_setpriority(struct lwp *, const struct sys_setpriority_args *, register_t *);
 
-int	compat_30_sys_socket(struct lwp *, const struct compat_30_sys_socket_args *, register_t *);
-
 int	sys_connect(struct lwp *, const struct sys_connect_args *, register_t *);
 
-int	compat_43_sys_accept(struct lwp *, const struct compat_43_sys_accept_args *, register_t *);
-
 int	sys_getpriority(struct lwp *, const struct sys_getpriority_args *, register_t *);
-
-int	compat_43_sys_send(struct lwp *, const struct compat_43_sys_send_args *, register_t *);
-
-int	compat_43_sys_recv(struct lwp *, const struct compat_43_sys_recv_args *, register_t *);
-
-int	compat_13_sys_sigreturn(struct lwp *, const struct compat_13_sys_sigreturn_args *, register_t *);
 
 int	sys_bind(struct lwp *, const struct sys_bind_args *, register_t *);
 
@@ -2939,47 +2145,21 @@ int	sys_setsockopt(struct lwp *, const struct sys_setsockopt_args *, register_t 
 
 int	sys_listen(struct lwp *, const struct sys_listen_args *, register_t *);
 
-int	compat_43_sys_sigvec(struct lwp *, const struct compat_43_sys_sigvec_args *, register_t *);
-
-int	compat_43_sys_sigblock(struct lwp *, const struct compat_43_sys_sigblock_args *, register_t *);
-
-int	compat_43_sys_sigsetmask(struct lwp *, const struct compat_43_sys_sigsetmask_args *, register_t *);
-
-int	compat_13_sys_sigsuspend(struct lwp *, const struct compat_13_sys_sigsuspend_args *, register_t *);
-
-int	compat_43_sys_sigstack(struct lwp *, const struct compat_43_sys_sigstack_args *, register_t *);
-
-int	compat_43_sys_recvmsg(struct lwp *, const struct compat_43_sys_recvmsg_args *, register_t *);
-
-int	compat_43_sys_sendmsg(struct lwp *, const struct compat_43_sys_sendmsg_args *, register_t *);
-
-int	compat_50_sys_gettimeofday(struct lwp *, const struct compat_50_sys_gettimeofday_args *, register_t *);
-
-int	compat_50_sys_getrusage(struct lwp *, const struct compat_50_sys_getrusage_args *, register_t *);
-
 int	sys_getsockopt(struct lwp *, const struct sys_getsockopt_args *, register_t *);
 
 int	sys_readv(struct lwp *, const struct sys_readv_args *, register_t *);
 
 int	sys_writev(struct lwp *, const struct sys_writev_args *, register_t *);
 
-int	compat_50_sys_settimeofday(struct lwp *, const struct compat_50_sys_settimeofday_args *, register_t *);
-
 int	sys_fchown(struct lwp *, const struct sys_fchown_args *, register_t *);
 
 int	sys_fchmod(struct lwp *, const struct sys_fchmod_args *, register_t *);
-
-int	compat_43_sys_recvfrom(struct lwp *, const struct compat_43_sys_recvfrom_args *, register_t *);
 
 int	sys_setreuid(struct lwp *, const struct sys_setreuid_args *, register_t *);
 
 int	sys_setregid(struct lwp *, const struct sys_setregid_args *, register_t *);
 
 int	sys_rename(struct lwp *, const struct sys_rename_args *, register_t *);
-
-int	compat_43_sys_truncate(struct lwp *, const struct compat_43_sys_truncate_args *, register_t *);
-
-int	compat_43_sys_ftruncate(struct lwp *, const struct compat_43_sys_ftruncate_args *, register_t *);
 
 int	sys_flock(struct lwp *, const struct sys_flock_args *, register_t *);
 
@@ -2995,68 +2175,15 @@ int	sys_mkdir(struct lwp *, const struct sys_mkdir_args *, register_t *);
 
 int	sys_rmdir(struct lwp *, const struct sys_rmdir_args *, register_t *);
 
-int	compat_50_sys_utimes(struct lwp *, const struct compat_50_sys_utimes_args *, register_t *);
-
-int	compat_50_sys_adjtime(struct lwp *, const struct compat_50_sys_adjtime_args *, register_t *);
-
-int	compat_43_sys_getpeername(struct lwp *, const struct compat_43_sys_getpeername_args *, register_t *);
-
-int	compat_43_sys_gethostid(struct lwp *, const void *, register_t *);
-
-int	compat_43_sys_sethostid(struct lwp *, const struct compat_43_sys_sethostid_args *, register_t *);
-
-int	compat_43_sys_getrlimit(struct lwp *, const struct compat_43_sys_getrlimit_args *, register_t *);
-
-int	compat_43_sys_setrlimit(struct lwp *, const struct compat_43_sys_setrlimit_args *, register_t *);
-
-int	compat_43_sys_killpg(struct lwp *, const struct compat_43_sys_killpg_args *, register_t *);
-
 int	sys_setsid(struct lwp *, const void *, register_t *);
-
-int	compat_50_sys_quotactl(struct lwp *, const struct compat_50_sys_quotactl_args *, register_t *);
-
-int	compat_43_sys_quota(struct lwp *, const void *, register_t *);
-
-int	compat_43_sys_getsockname(struct lwp *, const struct compat_43_sys_getsockname_args *, register_t *);
 
 int	sys_nfssvc(struct lwp *, const struct sys_nfssvc_args *, register_t *);
 
-int	compat_43_sys_getdirentries(struct lwp *, const struct compat_43_sys_getdirentries_args *, register_t *);
-
-int	compat_20_sys_statfs(struct lwp *, const struct compat_20_sys_statfs_args *, register_t *);
-
-int	compat_20_sys_fstatfs(struct lwp *, const struct compat_20_sys_fstatfs_args *, register_t *);
-
-int	compat_30_sys_getfh(struct lwp *, const struct compat_30_sys_getfh_args *, register_t *);
-
-int	compat_09_sys_getdomainname(struct lwp *, const struct compat_09_sys_getdomainname_args *, register_t *);
-
-int	compat_09_sys_setdomainname(struct lwp *, const struct compat_09_sys_setdomainname_args *, register_t *);
-
-int	compat_09_sys_uname(struct lwp *, const struct compat_09_sys_uname_args *, register_t *);
-
 int	sys_sysarch(struct lwp *, const struct sys_sysarch_args *, register_t *);
 
-#if (defined(SYSVSEM) || !defined(_KERNEL_OPT)) && !defined(_LP64)
-int	compat_10_sys_semsys(struct lwp *, const struct compat_10_sys_semsys_args *, register_t *);
-
-#else
-#endif
-#if (defined(SYSVMSG) || !defined(_KERNEL_OPT)) && !defined(_LP64)
-int	compat_10_sys_msgsys(struct lwp *, const struct compat_10_sys_msgsys_args *, register_t *);
-
-#else
-#endif
-#if (defined(SYSVSHM) || !defined(_KERNEL_OPT)) && !defined(_LP64)
-int	compat_10_sys_shmsys(struct lwp *, const struct compat_10_sys_shmsys_args *, register_t *);
-
-#else
-#endif
 int	sys_pread(struct lwp *, const struct sys_pread_args *, register_t *);
 
 int	sys_pwrite(struct lwp *, const struct sys_pwrite_args *, register_t *);
-
-int	compat_30_sys_ntp_gettime(struct lwp *, const struct compat_30_sys_ntp_gettime_args *, register_t *);
 
 #if defined(NTP) || !defined(_KERNEL_OPT)
 int	sys_ntp_adjtime(struct lwp *, const struct sys_ntp_adjtime_args *, register_t *);
@@ -3069,12 +2196,6 @@ int	sys_setegid(struct lwp *, const struct sys_setegid_args *, register_t *);
 
 int	sys_seteuid(struct lwp *, const struct sys_seteuid_args *, register_t *);
 
-int	compat_12_sys_stat(struct lwp *, const struct compat_12_sys_stat_args *, register_t *);
-
-int	compat_12_sys_fstat(struct lwp *, const struct compat_12_sys_fstat_args *, register_t *);
-
-int	compat_12_sys_lstat(struct lwp *, const struct compat_12_sys_lstat_args *, register_t *);
-
 int	sys_pathconf(struct lwp *, const struct sys_pathconf_args *, register_t *);
 
 int	sys_fpathconf(struct lwp *, const struct sys_fpathconf_args *, register_t *);
@@ -3082,8 +2203,6 @@ int	sys_fpathconf(struct lwp *, const struct sys_fpathconf_args *, register_t *)
 int	sys_getrlimit(struct lwp *, const struct sys_getrlimit_args *, register_t *);
 
 int	sys_setrlimit(struct lwp *, const struct sys_setrlimit_args *, register_t *);
-
-int	compat_12_sys_getdirentries(struct lwp *, const struct compat_12_sys_getdirentries_args *, register_t *);
 
 int	sys_mmap(struct lwp *, const struct sys_mmap_args *, register_t *);
 
@@ -3103,8 +2222,6 @@ int	sys_munlock(struct lwp *, const struct sys_munlock_args *, register_t *);
 
 int	sys_undelete(struct lwp *, const struct sys_undelete_args *, register_t *);
 
-int	compat_50_sys_futimes(struct lwp *, const struct compat_50_sys_futimes_args *, register_t *);
-
 int	sys_getpgid(struct lwp *, const struct sys_getpgid_args *, register_t *);
 
 int	sys_reboot(struct lwp *, const struct sys_reboot_args *, register_t *);
@@ -3114,8 +2231,6 @@ int	sys_poll(struct lwp *, const struct sys_poll_args *, register_t *);
 int	sys_afssys(struct lwp *, const struct sys_afssys_args *, register_t *);
 
 #if defined(SYSVSEM) || !defined(_KERNEL_OPT)
-int	compat_14_sys___semctl(struct lwp *, const struct compat_14_sys___semctl_args *, register_t *);
-
 int	sys_semget(struct lwp *, const struct sys_semget_args *, register_t *);
 
 int	sys_semop(struct lwp *, const struct sys_semop_args *, register_t *);
@@ -3125,8 +2240,6 @@ int	sys_semconfig(struct lwp *, const struct sys_semconfig_args *, register_t *)
 #else
 #endif
 #if defined(SYSVMSG) || !defined(_KERNEL_OPT)
-int	compat_14_sys_msgctl(struct lwp *, const struct compat_14_sys_msgctl_args *, register_t *);
-
 int	sys_msgget(struct lwp *, const struct sys_msgget_args *, register_t *);
 
 int	sys_msgsnd(struct lwp *, const struct sys_msgsnd_args *, register_t *);
@@ -3138,39 +2251,23 @@ int	sys_msgrcv(struct lwp *, const struct sys_msgrcv_args *, register_t *);
 #if defined(SYSVSHM) || !defined(_KERNEL_OPT)
 int	sys_shmat(struct lwp *, const struct sys_shmat_args *, register_t *);
 
-int	compat_14_sys_shmctl(struct lwp *, const struct compat_14_sys_shmctl_args *, register_t *);
-
 int	sys_shmdt(struct lwp *, const struct sys_shmdt_args *, register_t *);
 
 int	sys_shmget(struct lwp *, const struct sys_shmget_args *, register_t *);
 
 #else
 #endif
-int	compat_50_sys_clock_gettime(struct lwp *, const struct compat_50_sys_clock_gettime_args *, register_t *);
-
-int	compat_50_sys_clock_settime(struct lwp *, const struct compat_50_sys_clock_settime_args *, register_t *);
-
-int	compat_50_sys_clock_getres(struct lwp *, const struct compat_50_sys_clock_getres_args *, register_t *);
-
 int	sys_timer_create(struct lwp *, const struct sys_timer_create_args *, register_t *);
 
 int	sys_timer_delete(struct lwp *, const struct sys_timer_delete_args *, register_t *);
 
-int	compat_50_sys_timer_settime(struct lwp *, const struct compat_50_sys_timer_settime_args *, register_t *);
-
-int	compat_50_sys_timer_gettime(struct lwp *, const struct compat_50_sys_timer_gettime_args *, register_t *);
-
 int	sys_timer_getoverrun(struct lwp *, const struct sys_timer_getoverrun_args *, register_t *);
-
-int	compat_50_sys_nanosleep(struct lwp *, const struct compat_50_sys_nanosleep_args *, register_t *);
 
 int	sys_fdatasync(struct lwp *, const struct sys_fdatasync_args *, register_t *);
 
 int	sys_mlockall(struct lwp *, const struct sys_mlockall_args *, register_t *);
 
 int	sys_munlockall(struct lwp *, const void *, register_t *);
-
-int	compat_50_sys___sigtimedwait(struct lwp *, const struct compat_50_sys___sigtimedwait_args *, register_t *);
 
 int	sys_sigqueueinfo(struct lwp *, const struct sys_sigqueueinfo_args *, register_t *);
 
@@ -3212,15 +2309,9 @@ int	sys_mq_send(struct lwp *, const struct sys_mq_send_args *, register_t *);
 
 int	sys_mq_receive(struct lwp *, const struct sys_mq_receive_args *, register_t *);
 
-int	compat_50_sys_mq_timedsend(struct lwp *, const struct compat_50_sys_mq_timedsend_args *, register_t *);
-
-int	compat_50_sys_mq_timedreceive(struct lwp *, const struct compat_50_sys_mq_timedreceive_args *, register_t *);
-
 int	sys___posix_rename(struct lwp *, const struct sys___posix_rename_args *, register_t *);
 
 int	sys_swapctl(struct lwp *, const struct sys_swapctl_args *, register_t *);
-
-int	compat_30_sys_getdents(struct lwp *, const struct compat_30_sys_getdents_args *, register_t *);
 
 int	sys_minherit(struct lwp *, const struct sys_minherit_args *, register_t *);
 
@@ -3228,15 +2319,7 @@ int	sys_lchmod(struct lwp *, const struct sys_lchmod_args *, register_t *);
 
 int	sys_lchown(struct lwp *, const struct sys_lchown_args *, register_t *);
 
-int	compat_50_sys_lutimes(struct lwp *, const struct compat_50_sys_lutimes_args *, register_t *);
-
 int	sys___msync13(struct lwp *, const struct sys___msync13_args *, register_t *);
-
-int	compat_30_sys___stat13(struct lwp *, const struct compat_30_sys___stat13_args *, register_t *);
-
-int	compat_30_sys___fstat13(struct lwp *, const struct compat_30_sys___fstat13_args *, register_t *);
-
-int	compat_30_sys___lstat13(struct lwp *, const struct compat_30_sys___lstat13_args *, register_t *);
 
 int	sys___sigaltstack14(struct lwp *, const struct sys___sigaltstack14_args *, register_t *);
 
@@ -3258,41 +2341,16 @@ int	sys_preadv(struct lwp *, const struct sys_preadv_args *, register_t *);
 
 int	sys_pwritev(struct lwp *, const struct sys_pwritev_args *, register_t *);
 
-int	compat_16_sys___sigaction14(struct lwp *, const struct compat_16_sys___sigaction14_args *, register_t *);
-
 int	sys___sigpending14(struct lwp *, const struct sys___sigpending14_args *, register_t *);
 
 int	sys___sigprocmask14(struct lwp *, const struct sys___sigprocmask14_args *, register_t *);
 
 int	sys___sigsuspend14(struct lwp *, const struct sys___sigsuspend14_args *, register_t *);
 
-int	compat_16_sys___sigreturn14(struct lwp *, const struct compat_16_sys___sigreturn14_args *, register_t *);
-
 int	sys___getcwd(struct lwp *, const struct sys___getcwd_args *, register_t *);
 
 int	sys_fchroot(struct lwp *, const struct sys_fchroot_args *, register_t *);
 
-int	compat_30_sys_fhopen(struct lwp *, const struct compat_30_sys_fhopen_args *, register_t *);
-
-int	compat_30_sys_fhstat(struct lwp *, const struct compat_30_sys_fhstat_args *, register_t *);
-
-int	compat_20_sys_fhstatfs(struct lwp *, const struct compat_20_sys_fhstatfs_args *, register_t *);
-
-#if defined(SYSVSEM) || !defined(_KERNEL_OPT)
-int	compat_50_sys_____semctl13(struct lwp *, const struct compat_50_sys_____semctl13_args *, register_t *);
-
-#else
-#endif
-#if defined(SYSVMSG) || !defined(_KERNEL_OPT)
-int	compat_50_sys___msgctl13(struct lwp *, const struct compat_50_sys___msgctl13_args *, register_t *);
-
-#else
-#endif
-#if defined(SYSVSHM) || !defined(_KERNEL_OPT)
-int	compat_50_sys___shmctl13(struct lwp *, const struct compat_50_sys___shmctl13_args *, register_t *);
-
-#else
-#endif
 int	sys_lchflags(struct lwp *, const struct sys_lchflags_args *, register_t *);
 
 int	sys_issetugid(struct lwp *, const void *, register_t *);
@@ -3325,8 +2383,6 @@ int	sys__lwp_kill(struct lwp *, const struct sys__lwp_kill_args *, register_t *)
 
 int	sys__lwp_detach(struct lwp *, const struct sys__lwp_detach_args *, register_t *);
 
-int	compat_50_sys__lwp_park(struct lwp *, const struct compat_50_sys__lwp_park_args *, register_t *);
-
 int	sys__lwp_unpark(struct lwp *, const struct sys__lwp_unpark_args *, register_t *);
 
 int	sys__lwp_unpark_all(struct lwp *, const struct sys__lwp_unpark_all_args *, register_t *);
@@ -3337,18 +2393,6 @@ int	sys__lwp_getname(struct lwp *, const struct sys__lwp_getname_args *, registe
 
 int	sys__lwp_ctl(struct lwp *, const struct sys__lwp_ctl_args *, register_t *);
 
-int	compat_60_sys_sa_register(struct lwp *, const struct compat_60_sys_sa_register_args *, register_t *);
-
-int	compat_60_sys_sa_stacks(struct lwp *, const struct compat_60_sys_sa_stacks_args *, register_t *);
-
-int	compat_60_sys_sa_enable(struct lwp *, const void *, register_t *);
-
-int	compat_60_sys_sa_setconcurrency(struct lwp *, const struct compat_60_sys_sa_setconcurrency_args *, register_t *);
-
-int	compat_60_sys_sa_yield(struct lwp *, const void *, register_t *);
-
-int	compat_60_sys_sa_preempt(struct lwp *, const struct compat_60_sys_sa_preempt_args *, register_t *);
-
 int	sys___sigaction_sigtramp(struct lwp *, const struct sys___sigaction_sigtramp_args *, register_t *);
 
 int	sys_pmc_get_info(struct lwp *, const struct sys_pmc_get_info_args *, register_t *);
@@ -3358,8 +2402,6 @@ int	sys_pmc_control(struct lwp *, const struct sys_pmc_control_args *, register_
 int	sys_rasctl(struct lwp *, const struct sys_rasctl_args *, register_t *);
 
 int	sys_kqueue(struct lwp *, const void *, register_t *);
-
-int	compat_50_sys_kevent(struct lwp *, const struct compat_50_sys_kevent_args *, register_t *);
 
 int	sys__sched_setparam(struct lwp *, const struct sys__sched_setparam_args *, register_t *);
 
@@ -3380,8 +2422,6 @@ int	sys_getvfsstat(struct lwp *, const struct sys_getvfsstat_args *, register_t 
 int	sys_statvfs1(struct lwp *, const struct sys_statvfs1_args *, register_t *);
 
 int	sys_fstatvfs1(struct lwp *, const struct sys_fstatvfs1_args *, register_t *);
-
-int	compat_30_sys_fhstatvfs1(struct lwp *, const struct compat_30_sys_fhstatvfs1_args *, register_t *);
 
 int	sys_extattrctl(struct lwp *, const struct sys_extattrctl_args *, register_t *);
 
@@ -3409,10 +2449,6 @@ int	sys_extattr_list_file(struct lwp *, const struct sys_extattr_list_file_args 
 
 int	sys_extattr_list_link(struct lwp *, const struct sys_extattr_list_link_args *, register_t *);
 
-int	compat_50_sys_pselect(struct lwp *, const struct compat_50_sys_pselect_args *, register_t *);
-
-int	compat_50_sys_pollts(struct lwp *, const struct compat_50_sys_pollts_args *, register_t *);
-
 int	sys_setxattr(struct lwp *, const struct sys_setxattr_args *, register_t *);
 
 int	sys_lsetxattr(struct lwp *, const struct sys_lsetxattr_args *, register_t *);
@@ -3437,17 +2473,7 @@ int	sys_lremovexattr(struct lwp *, const struct sys_lremovexattr_args *, registe
 
 int	sys_fremovexattr(struct lwp *, const struct sys_fremovexattr_args *, register_t *);
 
-int	compat_50_sys___stat30(struct lwp *, const struct compat_50_sys___stat30_args *, register_t *);
-
-int	compat_50_sys___fstat30(struct lwp *, const struct compat_50_sys___fstat30_args *, register_t *);
-
-int	compat_50_sys___lstat30(struct lwp *, const struct compat_50_sys___lstat30_args *, register_t *);
-
 int	sys___getdents30(struct lwp *, const struct sys___getdents30_args *, register_t *);
-
-int	compat_30_sys___fhstat30(struct lwp *, const struct compat_30_sys___fhstat30_args *, register_t *);
-
-int	compat_50_sys___ntp_gettime30(struct lwp *, const struct compat_50_sys___ntp_gettime30_args *, register_t *);
 
 int	sys___socket30(struct lwp *, const struct sys___socket30_args *, register_t *);
 
@@ -3456,8 +2482,6 @@ int	sys___getfh30(struct lwp *, const struct sys___getfh30_args *, register_t *)
 int	sys___fhopen40(struct lwp *, const struct sys___fhopen40_args *, register_t *);
 
 int	sys___fhstatvfs140(struct lwp *, const struct sys___fhstatvfs140_args *, register_t *);
-
-int	compat_50_sys___fhstat40(struct lwp *, const struct compat_50_sys___fhstat40_args *, register_t *);
 
 int	sys_aio_cancel(struct lwp *, const struct sys_aio_cancel_args *, register_t *);
 
@@ -3468,8 +2492,6 @@ int	sys_aio_fsync(struct lwp *, const struct sys_aio_fsync_args *, register_t *)
 int	sys_aio_read(struct lwp *, const struct sys_aio_read_args *, register_t *);
 
 int	sys_aio_return(struct lwp *, const struct sys_aio_return_args *, register_t *);
-
-int	compat_50_sys_aio_suspend(struct lwp *, const struct compat_50_sys_aio_suspend_args *, register_t *);
 
 int	sys_aio_write(struct lwp *, const struct sys_aio_write_args *, register_t *);
 
@@ -3520,8 +2542,6 @@ int	sys_____sigtimedwait50(struct lwp *, const struct sys_____sigtimedwait50_arg
 int	sys___mq_timedsend50(struct lwp *, const struct sys___mq_timedsend50_args *, register_t *);
 
 int	sys___mq_timedreceive50(struct lwp *, const struct sys___mq_timedreceive50_args *, register_t *);
-
-int	compat_60_sys__lwp_park(struct lwp *, const struct compat_60_sys__lwp_park_args *, register_t *);
 
 int	sys___kevent50(struct lwp *, const struct sys___kevent50_args *, register_t *);
 

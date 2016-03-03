@@ -56,10 +56,6 @@ struct ptm_pty {
 	int (*getmp)(struct lwp *, struct mount **);
 };
 
-#ifdef COMPAT_BSDPTY
-extern struct ptm_pty ptm_bsdpty;
-#endif
-
 #endif /* NO_DEV_PTM */
 
 extern int npty;

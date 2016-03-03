@@ -21,34 +21,6 @@ __KERNEL_RCSID(0, "$NetBSD: init_sysent.c,v 1.287.2.1 2015/02/24 10:52:43 martin
 #include <sys/sched.h>
 #include <sys/syscallargs.h>
 
-#define	compat_43(func) sys_nosys
-
-#define	compat_09(func) sys_nosys
-
-#define	compat_10(func) sys_nosys
-
-#define	compat_11(func) sys_nosys
-
-#define	compat_12(func) sys_nosys
-
-#define	compat_13(func) sys_nosys
-
-#define	compat_14(func) sys_nosys
-
-#define	compat_15(func) sys_nosys
-
-#define	compat_16(func) sys_nosys
-
-#define	compat_20(func) sys_nosys
-
-#define	compat_30(func) sys_nosys
-
-#define	compat_40(func) sys_nosys
-
-#define	compat_50(func) sys_nosys
-
-#define	compat_60(func) sys_nosys
-
 #define	s(type)	sizeof(type)
 #define	n(type)	(sizeof(type)/sizeof (register_t))
 #define	ns(type)	n(type), s(type)
@@ -68,10 +40,10 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys_open },		/* 5 = open */
 	{ ns(struct sys_close_args), 0,
 	    (sy_call_t *)sys_close },		/* 6 = close */
-	{ ns(struct compat_50_sys_wait4_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 7 = compat_50_wait4 */
-	{ ns(struct compat_43_sys_creat_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 8 = compat_43_ocreat */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys_link_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_link },		/* 9 = link */
 	{ ns(struct sys_unlink_args), SYCALL_ARG_PTR,
@@ -82,22 +54,22 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys_chdir },		/* 12 = chdir */
 	{ ns(struct sys_fchdir_args), 0,
 	    (sy_call_t *)sys_fchdir },		/* 13 = fchdir */
-	{ ns(struct compat_50_sys_mknod_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 14 = compat_50_mknod */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys_chmod_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_chmod },		/* 15 = chmod */
 	{ ns(struct sys_chown_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_chown },		/* 16 = chown */
 	{ ns(struct sys_obreak_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_obreak },		/* 17 = break */
-	{ ns(struct compat_20_sys_getfsstat_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 18 = compat_20_getfsstat */
-	{ ns(struct compat_43_sys_lseek_args), 0,
-	    (sy_call_t *)sys_nomodule },	/* 19 = compat_43_olseek */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
 	    (sy_call_t *)sys_getpid_with_ppid },/* 20 = getpid */
-	{ ns(struct compat_40_sys_mount_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 21 = compat_40_mount */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys_unmount_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_unmount },		/* 22 = unmount */
 	{ ns(struct sys_setuid_args), 0,
@@ -130,12 +102,12 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys_sync },		/* 36 = sync */
 	{ ns(struct sys_kill_args), 0,
 	    (sy_call_t *)sys_kill },		/* 37 = kill */
-	{ ns(struct compat_43_sys_stat_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 38 = compat_43_stat43 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
 	    (sy_call_t *)sys_getppid },		/* 39 = getppid */
-	{ ns(struct compat_43_sys_lstat_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 40 = compat_43_lstat43 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys_dup_args), 0,
 	    (sy_call_t *)sys_dup },		/* 41 = dup */
 	{ 0, 0, 0,
@@ -146,12 +118,12 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys_profil },		/* 44 = profil */
 	{ ns(struct sys_ktrace_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_ktrace },		/* 45 = ktrace */
-	{ ns(struct compat_13_sys_sigaction_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 46 = compat_13_sigaction13 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 46 = obsolete */
 	{ 0, 0, 0,
 	    (sy_call_t *)sys_getgid_with_egid },/* 47 = getgid */
-	{ ns(struct compat_13_sys_sigprocmask_args), 0,
-	    (sy_call_t *)sys_nomodule },	/* 48 = compat_13_sigprocmask13 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 48 = obsolete */
 	{ ns(struct sys___getlogin_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys___getlogin },	/* 49 = __getlogin */
 	{ ns(struct sys___setlogin_args), SYCALL_ARG_PTR,
@@ -159,13 +131,13 @@ struct sysent sysent[] = {
 	{ ns(struct sys_acct_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_acct },		/* 51 = acct */
 	{ 0, 0, 0,
-	    (sy_call_t *)sys_nomodule },	/* 52 = compat_13_sigpending13 */
-	{ ns(struct compat_13_sys_sigaltstack_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 53 = compat_13_sigaltstack13 */
+	    sys_nosys },			/* 52 = obsolete */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 53 = obsolete */
 	{ ns(struct sys_ioctl_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_ioctl },		/* 54 = ioctl */
-	{ ns(struct compat_12_sys_reboot_args), 0,
-	    (sy_call_t *)sys_nomodule },	/* 55 = compat_12_oreboot */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 55 = obsolete */
 	{ ns(struct sys_revoke_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_revoke },		/* 56 = revoke */
 	{ ns(struct sys_symlink_args), SYCALL_ARG_PTR,
@@ -178,14 +150,14 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys_umask },		/* 60 = umask */
 	{ ns(struct sys_chroot_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_chroot },		/* 61 = chroot */
-	{ ns(struct compat_43_sys_fstat_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 62 = compat_43_fstat43 */
-	{ ns(struct compat_43_sys_getkerninfo_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 63 = compat_43_ogetkerninfo */
 	{ 0, 0, 0,
-	    (sy_call_t *)sys_nomodule },	/* 64 = compat_43_ogetpagesize */
-	{ ns(struct compat_12_sys_msync_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 65 = compat_12_msync */
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 65 = obsolete */
 	{ 0, 0, 0,
 	    (sy_call_t *)sys_vfork },		/* 66 = vfork */
 	{ 0, 0, 0,
@@ -196,8 +168,8 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys_sbrk },		/* 69 = sbrk */
 	{ ns(struct sys_sstk_args), 0,
 	    (sy_call_t *)sys_sstk },		/* 70 = sstk */
-	{ ns(struct compat_43_sys_mmap_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 71 = compat_43_ommap */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys_ovadvise_args), 0,
 	    (sy_call_t *)sys_ovadvise },	/* 72 = vadvise */
 	{ ns(struct sys_munmap_args), SYCALL_ARG_PTR,
@@ -220,48 +192,48 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys_getpgrp },		/* 81 = getpgrp */
 	{ ns(struct sys_setpgid_args), 0,
 	    (sy_call_t *)sys_setpgid },		/* 82 = setpgid */
-	{ ns(struct compat_50_sys_setitimer_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 83 = compat_50_setitimer */
 	{ 0, 0, 0,
-	    (sy_call_t *)sys_nomodule },	/* 84 = compat_43_owait */
-	{ ns(struct compat_12_sys_swapon_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 85 = compat_12_oswapon */
-	{ ns(struct compat_50_sys_getitimer_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 86 = compat_50_getitimer */
-	{ ns(struct compat_43_sys_gethostname_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 87 = compat_43_ogethostname */
-	{ ns(struct compat_43_sys_sethostname_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 88 = compat_43_osethostname */
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
-	    (sy_call_t *)sys_nomodule },	/* 89 = compat_43_ogetdtablesize */
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 85 = obsolete */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys_dup2_args), 0,
 	    (sy_call_t *)sys_dup2 },		/* 90 = dup2 */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 91 = unimplemented getdopt */
 	{ ns(struct sys_fcntl_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_fcntl },		/* 92 = fcntl */
-	{ ns(struct compat_50_sys_select_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 93 = compat_50_select */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 94 = unimplemented setdopt */
 	{ ns(struct sys_fsync_args), 0,
 	    (sy_call_t *)sys_fsync },		/* 95 = fsync */
 	{ ns(struct sys_setpriority_args), 0,
 	    (sy_call_t *)sys_setpriority },	/* 96 = setpriority */
-	{ ns(struct compat_30_sys_socket_args), 0,
-	    (sy_call_t *)sys_nomodule },	/* 97 = compat_30_socket */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys_connect_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_connect },		/* 98 = connect */
-	{ ns(struct compat_43_sys_accept_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 99 = compat_43_oaccept */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys_getpriority_args), 0,
 	    (sy_call_t *)sys_getpriority },	/* 100 = getpriority */
-	{ ns(struct compat_43_sys_send_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 101 = compat_43_osend */
-	{ ns(struct compat_43_sys_recv_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 102 = compat_43_orecv */
-	{ ns(struct compat_13_sys_sigreturn_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 103 = compat_13_sigreturn13 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 103 = obsolete */
 	{ ns(struct sys_bind_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_bind },		/* 104 = bind */
 	{ ns(struct sys_setsockopt_args), SYCALL_ARG_PTR,
@@ -270,26 +242,26 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys_listen },		/* 106 = listen */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 107 = obsolete vtimes */
-	{ ns(struct compat_43_sys_sigvec_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 108 = compat_43_osigvec */
-	{ ns(struct compat_43_sys_sigblock_args), 0,
-	    (sy_call_t *)sys_nomodule },	/* 109 = compat_43_osigblock */
-	{ ns(struct compat_43_sys_sigsetmask_args), 0,
-	    (sy_call_t *)sys_nomodule },	/* 110 = compat_43_osigsetmask */
-	{ ns(struct compat_13_sys_sigsuspend_args), 0,
-	    (sy_call_t *)sys_nomodule },	/* 111 = compat_13_sigsuspend13 */
-	{ ns(struct compat_43_sys_sigstack_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 112 = compat_43_osigstack */
-	{ ns(struct compat_43_sys_recvmsg_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 113 = compat_43_orecvmsg */
-	{ ns(struct compat_43_sys_sendmsg_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 114 = compat_43_osendmsg */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 111 = obsolete */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 115 = obsolete vtrace */
-	{ ns(struct compat_50_sys_gettimeofday_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 116 = compat_50_gettimeofday */
-	{ ns(struct compat_50_sys_getrusage_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 117 = compat_50_getrusage */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys_getsockopt_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_getsockopt },	/* 118 = getsockopt */
 	{ 0, 0, 0,
@@ -298,24 +270,24 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys_readv },		/* 120 = readv */
 	{ ns(struct sys_writev_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_writev },		/* 121 = writev */
-	{ ns(struct compat_50_sys_settimeofday_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 122 = compat_50_settimeofday */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys_fchown_args), 0,
 	    (sy_call_t *)sys_fchown },		/* 123 = fchown */
 	{ ns(struct sys_fchmod_args), 0,
 	    (sy_call_t *)sys_fchmod },		/* 124 = fchmod */
-	{ ns(struct compat_43_sys_recvfrom_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 125 = compat_43_orecvfrom */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys_setreuid_args), 0,
 	    (sy_call_t *)sys_setreuid },	/* 126 = setreuid */
 	{ ns(struct sys_setregid_args), 0,
 	    (sy_call_t *)sys_setregid },	/* 127 = setregid */
 	{ ns(struct sys_rename_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_rename },		/* 128 = rename */
-	{ ns(struct compat_43_sys_truncate_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 129 = compat_43_otruncate */
-	{ ns(struct compat_43_sys_ftruncate_args), 0,
-	    (sy_call_t *)sys_nomodule },	/* 130 = compat_43_oftruncate */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys_flock_args), 0,
 	    (sy_call_t *)sys_flock },		/* 131 = flock */
 	{ ns(struct sys_mkfifo_args), SYCALL_ARG_PTR,
@@ -330,32 +302,32 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys_mkdir },		/* 136 = mkdir */
 	{ ns(struct sys_rmdir_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_rmdir },		/* 137 = rmdir */
-	{ ns(struct compat_50_sys_utimes_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 138 = compat_50_utimes */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 139 = obsolete 4.2 sigreturn */
-	{ ns(struct compat_50_sys_adjtime_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 140 = compat_50_adjtime */
-	{ ns(struct compat_43_sys_getpeername_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 141 = compat_43_ogetpeername */
 	{ 0, 0, 0,
-	    (sy_call_t *)sys_nomodule },	/* 142 = compat_43_ogethostid */
-	{ ns(struct compat_43_sys_sethostid_args), 0,
-	    (sy_call_t *)sys_nomodule },	/* 143 = compat_43_osethostid */
-	{ ns(struct compat_43_sys_getrlimit_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 144 = compat_43_ogetrlimit */
-	{ ns(struct compat_43_sys_setrlimit_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 145 = compat_43_osetrlimit */
-	{ ns(struct compat_43_sys_killpg_args), 0,
-	    (sy_call_t *)sys_nomodule },	/* 146 = compat_43_okillpg */
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
 	    (sy_call_t *)sys_setsid },		/* 147 = setsid */
-	{ ns(struct compat_50_sys_quotactl_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 148 = compat_50_quotactl */
 	{ 0, 0, 0,
-	    (sy_call_t *)sys_nomodule },	/* 149 = compat_43_oquota */
-	{ ns(struct compat_43_sys_getsockname_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 150 = compat_43_ogetsockname */
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 151 = unimplemented */
 	{ 0, 0, 0,
@@ -366,24 +338,24 @@ struct sysent sysent[] = {
 	    sys_nosys },			/* 154 = unimplemented */
 	{ ns(struct sys_nfssvc_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_nomodule },	/* 155 = nfssvc */
-	{ ns(struct compat_43_sys_getdirentries_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 156 = compat_43_ogetdirentries */
-	{ ns(struct compat_20_sys_statfs_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 157 = compat_20_statfs */
-	{ ns(struct compat_20_sys_fstatfs_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 158 = compat_20_fstatfs */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 159 = unimplemented */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 160 = unimplemented */
-	{ ns(struct compat_30_sys_getfh_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 161 = compat_30_getfh */
-	{ ns(struct compat_09_sys_getdomainname_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 162 = compat_09_ogetdomainname */
-	{ ns(struct compat_09_sys_setdomainname_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 163 = compat_09_osetdomainname */
-	{ ns(struct compat_09_sys_uname_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 164 = compat_09_ouname */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 162 = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 163 = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 164 = unimplemented */
 	{ ns(struct sys_sysarch_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_sysarch },		/* 165 = sysarch */
 	{ 0, 0, 0,
@@ -393,22 +365,22 @@ struct sysent sysent[] = {
 	{ 0, 0, 0,
 	    sys_nosys },			/* 168 = unimplemented */
 #if (defined(SYSVSEM) || !defined(_KERNEL_OPT)) && !defined(_LP64)
-	{ ns(struct compat_10_sys_semsys_args), 0,
-	    (sy_call_t *)sys_nomodule },	/* 169 = compat_10_osemsys */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 169 = obsolete */
 #else
 	{ 0, 0, 0,
 	    sys_nosys },			/* 169 = excluded 1.0 semsys */
 #endif
 #if (defined(SYSVMSG) || !defined(_KERNEL_OPT)) && !defined(_LP64)
-	{ ns(struct compat_10_sys_msgsys_args), 0,
-	    (sy_call_t *)sys_nomodule },	/* 170 = compat_10_omsgsys */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 170 = obsolete */
 #else
 	{ 0, 0, 0,
 	    sys_nosys },			/* 170 = excluded 1.0 msgsys */
 #endif
 #if (defined(SYSVSHM) || !defined(_KERNEL_OPT)) && !defined(_LP64)
-	{ ns(struct compat_10_sys_shmsys_args), 0,
-	    (sy_call_t *)sys_nomodule },	/* 171 = compat_10_oshmsys */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 171 = obsolete */
 #else
 	{ 0, 0, 0,
 	    sys_nosys },			/* 171 = excluded 1.0 shmsys */
@@ -419,8 +391,8 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys_pread },		/* 173 = pread */
 	{ ns(struct sys_pwrite_args), SYCALL_NARGS64_VAL(1) | SYCALL_ARG4_64 | SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_pwrite },		/* 174 = pwrite */
-	{ ns(struct compat_30_sys_ntp_gettime_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)compat_30(sys_ntp_gettime) },/* 175 = compat_30_ntp_gettime */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 #if defined(NTP) || !defined(_KERNEL_OPT)
 	{ ns(struct sys_ntp_adjtime_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_ntp_adjtime },	/* 176 = ntp_adjtime */
@@ -450,12 +422,12 @@ struct sysent sysent[] = {
 	    sys_nosys },			/* 186 = unimplemented */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 187 = unimplemented */
-	{ ns(struct compat_12_sys_stat_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 188 = compat_12_stat12 */
-	{ ns(struct compat_12_sys_fstat_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 189 = compat_12_fstat12 */
-	{ ns(struct compat_12_sys_lstat_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 190 = compat_12_lstat12 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 188 = obsolete */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 189 = obsolete */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 190 = obsolete */
 	{ ns(struct sys_pathconf_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_pathconf },	/* 191 = pathconf */
 	{ ns(struct sys_fpathconf_args), 0,
@@ -466,8 +438,8 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys_getrlimit },	/* 194 = getrlimit */
 	{ ns(struct sys_setrlimit_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_setrlimit },	/* 195 = setrlimit */
-	{ ns(struct compat_12_sys_getdirentries_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 196 = compat_12_getdirentries */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 196 = obsolete */
 	{ ns(struct sys_mmap_args), SYCALL_NARGS64_VAL(1) | SYCALL_ARG6_64 | SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_mmap },		/* 197 = mmap */
 	{ ns(struct sys___syscall_args), SYCALL_NARGS64_VAL(1) | SYCALL_ARG0_64 | SYCALL_RET_64 | SYCALL_INDIRECT,
@@ -486,8 +458,8 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys_munlock },		/* 204 = munlock */
 	{ ns(struct sys_undelete_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_undelete },	/* 205 = undelete */
-	{ ns(struct compat_50_sys_futimes_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 206 = compat_50_futimes */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys_getpgid_args), 0,
 	    (sy_call_t *)sys_getpgid },		/* 207 = getpgid */
 	{ ns(struct sys_reboot_args), SYCALL_ARG_PTR,
@@ -515,8 +487,8 @@ struct sysent sysent[] = {
 	{ 0, 0, 0,
 	    sys_nosys },			/* 219 = unimplemented */
 #if defined(SYSVSEM) || !defined(_KERNEL_OPT)
-	{ ns(struct compat_14_sys___semctl_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 220 = compat_14___semctl */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 220 = obsolete */
 	{ ns(struct sys_semget_args), 0,
 	    (sy_call_t *)sys_semget },		/* 221 = semget */
 	{ ns(struct sys_semop_args), SYCALL_ARG_PTR,
@@ -525,7 +497,7 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys_semconfig },	/* 223 = semconfig */
 #else
 	{ 0, 0, 0,
-	    sys_nosys },			/* 220 = excluded compat_14_semctl */
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 221 = excluded semget */
 	{ 0, 0, 0,
@@ -534,8 +506,8 @@ struct sysent sysent[] = {
 	    sys_nosys },			/* 223 = excluded semconfig */
 #endif
 #if defined(SYSVMSG) || !defined(_KERNEL_OPT)
-	{ ns(struct compat_14_sys_msgctl_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 224 = compat_14_msgctl */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 224 = obsolete */
 	{ ns(struct sys_msgget_args), 0,
 	    (sy_call_t *)sys_msgget },		/* 225 = msgget */
 	{ ns(struct sys_msgsnd_args), SYCALL_ARG_PTR,
@@ -544,7 +516,7 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys_msgrcv },		/* 227 = msgrcv */
 #else
 	{ 0, 0, 0,
-	    sys_nosys },			/* 224 = excluded compat_14_msgctl */
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 225 = excluded msgget */
 	{ 0, 0, 0,
@@ -555,8 +527,8 @@ struct sysent sysent[] = {
 #if defined(SYSVSHM) || !defined(_KERNEL_OPT)
 	{ ns(struct sys_shmat_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_shmat },		/* 228 = shmat */
-	{ ns(struct compat_14_sys_shmctl_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 229 = compat_14_shmctl */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 229 = obsolete */
 	{ ns(struct sys_shmdt_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_shmdt },		/* 230 = shmdt */
 	{ ns(struct sys_shmget_args), 0,
@@ -565,38 +537,38 @@ struct sysent sysent[] = {
 	{ 0, 0, 0,
 	    sys_nosys },			/* 228 = excluded shmat */
 	{ 0, 0, 0,
-	    sys_nosys },			/* 229 = excluded compat_14_shmctl */
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 230 = excluded shmdt */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 231 = excluded shmget */
 #endif
-	{ ns(struct compat_50_sys_clock_gettime_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 232 = compat_50_clock_gettime */
-	{ ns(struct compat_50_sys_clock_settime_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 233 = compat_50_clock_settime */
-	{ ns(struct compat_50_sys_clock_getres_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 234 = compat_50_clock_getres */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys_timer_create_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_timer_create },	/* 235 = timer_create */
 	{ ns(struct sys_timer_delete_args), 0,
 	    (sy_call_t *)sys_timer_delete },	/* 236 = timer_delete */
-	{ ns(struct compat_50_sys_timer_settime_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 237 = compat_50_timer_settime */
-	{ ns(struct compat_50_sys_timer_gettime_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 238 = compat_50_timer_gettime */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys_timer_getoverrun_args), 0,
 	    (sy_call_t *)sys_timer_getoverrun },/* 239 = timer_getoverrun */
-	{ ns(struct compat_50_sys_nanosleep_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 240 = compat_50_nanosleep */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys_fdatasync_args), 0,
 	    (sy_call_t *)sys_fdatasync },	/* 241 = fdatasync */
 	{ ns(struct sys_mlockall_args), 0,
 	    (sy_call_t *)sys_mlockall },	/* 242 = mlockall */
 	{ 0, 0, 0,
 	    (sy_call_t *)sys_munlockall },	/* 243 = munlockall */
-	{ ns(struct compat_50_sys___sigtimedwait_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 244 = compat_50___sigtimedwait */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys_sigqueueinfo_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_sigqueueinfo },	/* 245 = sigqueueinfo */
 	{ ns(struct sys_modctl_args), SYCALL_ARG_PTR,
@@ -637,10 +609,10 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys_nomodule },	/* 263 = mq_send */
 	{ ns(struct sys_mq_receive_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_nomodule },	/* 264 = mq_receive */
-	{ ns(struct compat_50_sys_mq_timedsend_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 265 = compat_50_mq_timedsend */
-	{ ns(struct compat_50_sys_mq_timedreceive_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 266 = compat_50_mq_timedreceive */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 267 = unimplemented */
 	{ 0, 0, 0,
@@ -651,24 +623,24 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys___posix_rename },	/* 270 = __posix_rename */
 	{ ns(struct sys_swapctl_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_swapctl },		/* 271 = swapctl */
-	{ ns(struct compat_30_sys_getdents_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 272 = compat_30_getdents */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys_minherit_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_minherit },	/* 273 = minherit */
 	{ ns(struct sys_lchmod_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_lchmod },		/* 274 = lchmod */
 	{ ns(struct sys_lchown_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_lchown },		/* 275 = lchown */
-	{ ns(struct compat_50_sys_lutimes_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 276 = compat_50_lutimes */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys___msync13_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys___msync13 },	/* 277 = __msync13 */
-	{ ns(struct compat_30_sys___stat13_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 278 = compat_30___stat13 */
-	{ ns(struct compat_30_sys___fstat13_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 279 = compat_30___fstat13 */
-	{ ns(struct compat_30_sys___lstat13_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 280 = compat_30___lstat13 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys___sigaltstack14_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys___sigaltstack14 },	/* 281 = __sigaltstack14 */
 	{ 0, 0, 0,
@@ -689,43 +661,43 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys_preadv },		/* 289 = preadv */
 	{ ns(struct sys_pwritev_args), SYCALL_NARGS64_VAL(1) | SYCALL_ARG4_64 | SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_pwritev },		/* 290 = pwritev */
-	{ ns(struct compat_16_sys___sigaction14_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 291 = compat_16___sigaction14 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 291 = obsolete */
 	{ ns(struct sys___sigpending14_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys___sigpending14 },	/* 292 = __sigpending14 */
 	{ ns(struct sys___sigprocmask14_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys___sigprocmask14 },	/* 293 = __sigprocmask14 */
 	{ ns(struct sys___sigsuspend14_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys___sigsuspend14 },	/* 294 = __sigsuspend14 */
-	{ ns(struct compat_16_sys___sigreturn14_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 295 = compat_16___sigreturn14 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 295 = obsolete */
 	{ ns(struct sys___getcwd_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys___getcwd },	/* 296 = __getcwd */
 	{ ns(struct sys_fchroot_args), 0,
 	    (sy_call_t *)sys_fchroot },		/* 297 = fchroot */
-	{ ns(struct compat_30_sys_fhopen_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 298 = compat_30_fhopen */
-	{ ns(struct compat_30_sys_fhstat_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 299 = compat_30_fhstat */
-	{ ns(struct compat_20_sys_fhstatfs_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 300 = compat_20_fhstatfs */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 #if defined(SYSVSEM) || !defined(_KERNEL_OPT)
-	{ ns(struct compat_50_sys_____semctl13_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 301 = compat_50_____semctl13 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 #else
 	{ 0, 0, 0,
 	    sys_nosys },			/* 301 = excluded ____semctl13 */
 #endif
 #if defined(SYSVMSG) || !defined(_KERNEL_OPT)
-	{ ns(struct compat_50_sys___msgctl13_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 302 = compat_50___msgctl13 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 #else
 	{ 0, 0, 0,
 	    sys_nosys },			/* 302 = excluded __msgctl13 */
 #endif
 #if defined(SYSVSHM) || !defined(_KERNEL_OPT)
-	{ ns(struct compat_50_sys___shmctl13_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 303 = compat_50___shmctl13 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 #else
 	{ 0, 0, 0,
 	    sys_nosys },			/* 303 = excluded __shmctl13 */
@@ -762,8 +734,8 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys__lwp_kill },	/* 318 = _lwp_kill */
 	{ ns(struct sys__lwp_detach_args), 0,
 	    (sy_call_t *)sys__lwp_detach },	/* 319 = _lwp_detach */
-	{ ns(struct compat_50_sys__lwp_park_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 320 = compat_50__lwp_park */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys__lwp_unpark_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys__lwp_unpark },	/* 321 = _lwp_unpark */
 	{ ns(struct sys__lwp_unpark_all_args), SYCALL_ARG_PTR,
@@ -782,18 +754,18 @@ struct sysent sysent[] = {
 	    sys_nosys },			/* 328 = unimplemented */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 329 = unimplemented */
-	{ ns(struct compat_60_sys_sa_register_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)compat_60(sys_sa_register) },/* 330 = compat_60_sa_register */
-	{ ns(struct compat_60_sys_sa_stacks_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)compat_60(sys_sa_stacks) },/* 331 = compat_60_sa_stacks */
 	{ 0, 0, 0,
-	    (sy_call_t *)compat_60(sys_sa_enable) },/* 332 = compat_60_sa_enable */
-	{ ns(struct compat_60_sys_sa_setconcurrency_args), 0,
-	    (sy_call_t *)compat_60(sys_sa_setconcurrency) },/* 333 = compat_60_sa_setconcurrency */
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
-	    (sy_call_t *)compat_60(sys_sa_yield) },/* 334 = compat_60_sa_yield */
-	{ ns(struct compat_60_sys_sa_preempt_args), 0,
-	    (sy_call_t *)compat_60(sys_sa_preempt) },/* 335 = compat_60_sa_preempt */
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 336 = obsolete sys_sa_unblockyield */
 	{ 0, 0, 0,
@@ -812,8 +784,8 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys_rasctl },		/* 343 = rasctl */
 	{ 0, 0, 0,
 	    (sy_call_t *)sys_kqueue },		/* 344 = kqueue */
-	{ ns(struct compat_50_sys_kevent_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 345 = compat_50_kevent */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys__sched_setparam_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys__sched_setparam },	/* 346 = _sched_setparam */
 	{ ns(struct sys__sched_getparam_args), SYCALL_ARG_PTR,
@@ -840,8 +812,8 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys_statvfs1 },	/* 357 = statvfs1 */
 	{ ns(struct sys_fstatvfs1_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_fstatvfs1 },	/* 358 = fstatvfs1 */
-	{ ns(struct compat_30_sys_fhstatvfs1_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 359 = compat_30_fhstatvfs1 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys_extattrctl_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_extattrctl },	/* 360 = extattrctl */
 	{ ns(struct sys_extattr_set_file_args), SYCALL_ARG_PTR,
@@ -868,10 +840,10 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys_extattr_list_file },/* 371 = extattr_list_file */
 	{ ns(struct sys_extattr_list_link_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_extattr_list_link },/* 372 = extattr_list_link */
-	{ ns(struct compat_50_sys_pselect_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 373 = compat_50_pselect */
-	{ ns(struct compat_50_sys_pollts_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 374 = compat_50_pollts */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys_setxattr_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_setxattr },	/* 375 = setxattr */
 	{ ns(struct sys_lsetxattr_args), SYCALL_ARG_PTR,
@@ -896,20 +868,20 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys_lremovexattr },	/* 385 = lremovexattr */
 	{ ns(struct sys_fremovexattr_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_fremovexattr },	/* 386 = fremovexattr */
-	{ ns(struct compat_50_sys___stat30_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 387 = compat_50___stat30 */
-	{ ns(struct compat_50_sys___fstat30_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 388 = compat_50___fstat30 */
-	{ ns(struct compat_50_sys___lstat30_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 389 = compat_50___lstat30 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys___getdents30_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys___getdents30 },	/* 390 = __getdents30 */
 	{ 0, 0, 0,
 	    (sy_call_t *)nullop },			/* 391 = ignored old posix_fadvise */
-	{ ns(struct compat_30_sys___fhstat30_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 392 = compat_30___fhstat30 */
-	{ ns(struct compat_50_sys___ntp_gettime30_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 393 = compat_50___ntp_gettime30 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys___socket30_args), 0,
 	    (sy_call_t *)sys___socket30 },	/* 394 = __socket30 */
 	{ ns(struct sys___getfh30_args), SYCALL_ARG_PTR,
@@ -918,8 +890,8 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys___fhopen40 },	/* 396 = __fhopen40 */
 	{ ns(struct sys___fhstatvfs140_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys___fhstatvfs140 },	/* 397 = __fhstatvfs140 */
-	{ ns(struct compat_50_sys___fhstat40_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 398 = compat_50___fhstat40 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys_aio_cancel_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_nomodule },	/* 399 = aio_cancel */
 	{ ns(struct sys_aio_error_args), SYCALL_ARG_PTR,
@@ -930,8 +902,8 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys_nomodule },	/* 402 = aio_read */
 	{ ns(struct sys_aio_return_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_nomodule },	/* 403 = aio_return */
-	{ ns(struct compat_50_sys_aio_suspend_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 404 = compat_50_aio_suspend */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys_aio_write_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_nomodule },	/* 405 = aio_write */
 	{ ns(struct sys_lio_listio_args), SYCALL_ARG_PTR,
@@ -990,8 +962,8 @@ struct sysent sysent[] = {
 	    (sy_call_t *)sys_nomodule },	/* 432 = __mq_timedsend50 */
 	{ ns(struct sys___mq_timedreceive50_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys_nomodule },	/* 433 = __mq_timedreceive50 */
-	{ ns(struct compat_60_sys__lwp_park_args), SYCALL_ARG_PTR,
-	    (sy_call_t *)sys_nomodule },	/* 434 = compat_60__lwp_park */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct sys___kevent50_args), SYCALL_ARG_PTR,
 	    (sy_call_t *)sys___kevent50 },	/* 435 = __kevent50 */
 	{ ns(struct sys___pselect50_args), SYCALL_ARG_PTR,

@@ -23,34 +23,6 @@ __KERNEL_RCSID(0, "$NetBSD: netbsd32_sysent.c,v 1.108.2.1 2015/03/07 05:27:54 sn
 #include <compat/netbsd32/netbsd32.h>
 #include <compat/netbsd32/netbsd32_syscallargs.h>
 
-#define	compat_43(func) sys_nosys
-
-#define	compat_09(func) sys_nosys
-
-#define	compat_10(func) sys_nosys
-
-#define	compat_11(func) sys_nosys
-
-#define	compat_12(func) sys_nosys
-
-#define	compat_13(func) sys_nosys
-
-#define	compat_14(func) sys_nosys
-
-#define	compat_15(func) sys_nosys
-
-#define	compat_16(func) sys_nosys
-
-#define	compat_20(func) sys_nosys
-
-#define	compat_30(func) sys_nosys
-
-#define	compat_40(func) sys_nosys
-
-#define	compat_50(func) sys_nosys
-
-#define	compat_60(func) sys_nosys
-
 #define	s(type)	sizeof(type)
 #define	n(type)	(sizeof(type)/sizeof (register32_t))
 #define	ns(type)	n(type), s(type)
@@ -70,10 +42,10 @@ struct sysent netbsd32_sysent[] = {
 	    (sy_call_t *)netbsd32_open },	/* 5 = netbsd32_open */
 	{ ns(struct netbsd32_close_args), 0,
 	    (sy_call_t *)netbsd32_close },	/* 6 = netbsd32_close */
-	{ ns(struct compat_50_netbsd32_wait4_args), 0,
-	    (sy_call_t *)compat_50(netbsd32_wait4) },/* 7 = compat_50_netbsd32_wait4 */
-	{ ns(struct compat_43_netbsd32_ocreat_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_ocreat) },/* 8 = compat_43_netbsd32_ocreat */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 7 = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct netbsd32_link_args), 0,
 	    (sy_call_t *)netbsd32_link },	/* 9 = netbsd32_link */
 	{ ns(struct netbsd32_unlink_args), 0,
@@ -84,18 +56,18 @@ struct sysent netbsd32_sysent[] = {
 	    (sy_call_t *)netbsd32_chdir },	/* 12 = netbsd32_chdir */
 	{ ns(struct netbsd32_fchdir_args), 0,
 	    (sy_call_t *)netbsd32_fchdir },	/* 13 = netbsd32_fchdir */
-	{ ns(struct compat_50_netbsd32_mknod_args), 0,
-	    (sy_call_t *)compat_50(netbsd32_mknod) },/* 14 = compat_50_netbsd32_mknod */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct netbsd32_chmod_args), 0,
 	    (sy_call_t *)netbsd32_chmod },	/* 15 = netbsd32_chmod */
 	{ ns(struct netbsd32_chown_args), 0,
 	    (sy_call_t *)netbsd32_chown },	/* 16 = netbsd32_chown */
 	{ ns(struct netbsd32_break_args), 0,
 	    (sy_call_t *)netbsd32_break },	/* 17 = netbsd32_break */
-	{ ns(struct compat_20_netbsd32_getfsstat_args), 0,
-	    (sy_call_t *)compat_20(netbsd32_getfsstat) },/* 18 = compat_20_netbsd32_getfsstat */
-	{ ns(struct compat_43_netbsd32_olseek_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_olseek) },/* 19 = compat_43_netbsd32_olseek */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
 	    (sy_call_t *)sys_getpid },		/* 20 = getpid */
 	{ ns(struct netbsd32_mount_args), 0,
@@ -132,12 +104,12 @@ struct sysent netbsd32_sysent[] = {
 	    (sy_call_t *)sys_sync },		/* 36 = sync */
 	{ ns(struct netbsd32_kill_args), 0,
 	    (sy_call_t *)netbsd32_kill },	/* 37 = netbsd32_kill */
-	{ ns(struct compat_43_netbsd32_stat43_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_stat43) },/* 38 = compat_43_netbsd32_stat43 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
 	    (sy_call_t *)sys_getppid },		/* 39 = getppid */
-	{ ns(struct compat_43_netbsd32_lstat43_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_lstat43) },/* 40 = compat_43_netbsd32_lstat43 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct netbsd32_dup_args), 0,
 	    (sy_call_t *)netbsd32_dup },	/* 41 = netbsd32_dup */
 	{ 0, 0, 0,
@@ -152,8 +124,8 @@ struct sysent netbsd32_sysent[] = {
 	    (sy_call_t *)netbsd32_sigaction },	/* 46 = netbsd32_sigaction */
 	{ 0, 0, 0,
 	    (sy_call_t *)sys_getgid },		/* 47 = getgid */
-	{ ns(struct compat_13_netbsd32_sigprocmask_args), 0,
-	    (sy_call_t *)compat_13(netbsd32_sigprocmask) },/* 48 = compat_13_sigprocmask13 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 48 = obsolete */
 	{ ns(struct netbsd32___getlogin_args), 0,
 	    (sy_call_t *)netbsd32___getlogin },	/* 49 = netbsd32___getlogin */
 	{ ns(struct netbsd32_setlogin_args), 0,
@@ -161,13 +133,13 @@ struct sysent netbsd32_sysent[] = {
 	{ ns(struct netbsd32_acct_args), 0,
 	    (sy_call_t *)netbsd32_acct },	/* 51 = netbsd32_acct */
 	{ 0, 0, 0,
-	    (sy_call_t *)compat_13(sys_sigpending) },/* 52 = compat_13_sigpending13 */
-	{ ns(struct compat_13_netbsd32_sigaltstack13_args), 0,
-	    (sy_call_t *)compat_13(netbsd32_sigaltstack13) },/* 53 = compat_13_netbsd32_sigaltstack13 */
+	    sys_nosys },			/* 52 = obsolete */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 53 = obsolete */
 	{ ns(struct netbsd32_ioctl_args), 0,
 	    (sy_call_t *)netbsd32_ioctl },	/* 54 = netbsd32_ioctl */
-	{ ns(struct compat_12_netbsd32_reboot_args), 0,
-	    (sy_call_t *)compat_12(netbsd32_reboot) },/* 55 = compat_12_netbsd32_reboot */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 55 = obsolete */
 	{ ns(struct netbsd32_revoke_args), 0,
 	    (sy_call_t *)netbsd32_revoke },	/* 56 = netbsd32_revoke */
 	{ ns(struct netbsd32_symlink_args), 0,
@@ -180,14 +152,14 @@ struct sysent netbsd32_sysent[] = {
 	    (sy_call_t *)netbsd32_umask },	/* 60 = netbsd32_umask */
 	{ ns(struct netbsd32_chroot_args), 0,
 	    (sy_call_t *)netbsd32_chroot },	/* 61 = netbsd32_chroot */
-	{ ns(struct compat_43_netbsd32_fstat43_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_fstat43) },/* 62 = compat_43_netbsd32_fstat43 */
-	{ ns(struct compat_43_netbsd32_ogetkerninfo_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_ogetkerninfo) },/* 63 = compat_43_netbsd32_ogetkerninfo */
 	{ 0, 0, 0,
-	    (sy_call_t *)compat_43(sys_getpagesize) },/* 64 = compat_43_ogetpagesize */
-	{ ns(struct compat_12_netbsd32_msync_args), 0,
-	    (sy_call_t *)compat_12(netbsd32_msync) },/* 65 = compat_12_netbsd32_msync */
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 65 = obsolete */
 	{ 0, 0, 0,
 	    (sy_call_t *)sys_vfork },		/* 66 = vfork */
 	{ 0, 0, 0,
@@ -198,8 +170,8 @@ struct sysent netbsd32_sysent[] = {
 	    (sy_call_t *)netbsd32_sbrk },	/* 69 = netbsd32_sbrk */
 	{ ns(struct netbsd32_sstk_args), 0,
 	    (sy_call_t *)netbsd32_sstk },	/* 70 = netbsd32_sstk */
-	{ ns(struct compat_43_netbsd32_ommap_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_ommap) },/* 71 = compat_43_netbsd32_ommap */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct netbsd32_ovadvise_args), 0,
 	    (sy_call_t *)netbsd32_ovadvise },	/* 72 = vadvise */
 	{ ns(struct netbsd32_munmap_args), 0,
@@ -222,48 +194,48 @@ struct sysent netbsd32_sysent[] = {
 	    (sy_call_t *)sys_getpgrp },		/* 81 = getpgrp */
 	{ ns(struct netbsd32_setpgid_args), 0,
 	    (sy_call_t *)netbsd32_setpgid },	/* 82 = netbsd32_setpgid */
-	{ ns(struct compat_50_netbsd32_setitimer_args), 0,
-	    (sy_call_t *)compat_50(netbsd32_setitimer) },/* 83 = compat_50_netbsd32_setitimer */
 	{ 0, 0, 0,
-	    (sy_call_t *)compat_43(sys_wait) },	/* 84 = compat_43_owait */
-	{ ns(struct compat_12_netbsd32_oswapon_args), 0,
-	    (sy_call_t *)compat_12(netbsd32_oswapon) },/* 85 = compat_12_netbsd32_oswapon */
-	{ ns(struct compat_50_netbsd32_getitimer_args), 0,
-	    (sy_call_t *)compat_50(netbsd32_getitimer) },/* 86 = compat_50_netbsd32_getitimer */
-	{ ns(struct compat_43_netbsd32_ogethostname_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_ogethostname) },/* 87 = compat_43_netbsd32_ogethostname */
-	{ ns(struct compat_43_netbsd32_osethostname_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_osethostname) },/* 88 = compat_43_netbsd32_osethostname */
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
-	    (sy_call_t *)compat_43(sys_getdtablesize) },/* 89 = compat_43_ogetdtablesize */
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 85 = obsolete */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct netbsd32_dup2_args), 0,
 	    (sy_call_t *)netbsd32_dup2 },	/* 90 = netbsd32_dup2 */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 91 = unimplemented getdopt */
 	{ ns(struct netbsd32_fcntl_args), 0,
 	    (sy_call_t *)netbsd32_fcntl },	/* 92 = netbsd32_fcntl */
-	{ ns(struct compat_50_netbsd32_select_args), 0,
-	    (sy_call_t *)compat_50(netbsd32_select) },/* 93 = compat_50_netbsd32_select */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 94 = unimplemented setdopt */
 	{ ns(struct netbsd32_fsync_args), 0,
 	    (sy_call_t *)netbsd32_fsync },	/* 95 = netbsd32_fsync */
 	{ ns(struct netbsd32_setpriority_args), 0,
 	    (sy_call_t *)netbsd32_setpriority },/* 96 = netbsd32_setpriority */
-	{ ns(struct compat_30_netbsd32_socket_args), 0,
-	    (sy_call_t *)compat_30(netbsd32_socket) },/* 97 = compat_30_netbsd32_socket */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct netbsd32_connect_args), 0,
 	    (sy_call_t *)netbsd32_connect },	/* 98 = netbsd32_connect */
-	{ ns(struct compat_43_netbsd32_oaccept_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_oaccept) },/* 99 = compat_43_netbsd32_oaccept */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct netbsd32_getpriority_args), 0,
 	    (sy_call_t *)netbsd32_getpriority },/* 100 = netbsd32_getpriority */
-	{ ns(struct compat_43_netbsd32_osend_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_osend) },/* 101 = compat_43_netbsd32_osend */
-	{ ns(struct compat_43_netbsd32_orecv_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_orecv) },/* 102 = compat_43_netbsd32_orecv */
-	{ ns(struct compat_13_netbsd32_sigreturn_args), 0,
-	    (sy_call_t *)compat_13(netbsd32_sigreturn) },/* 103 = compat_13_sigreturn13 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 103 = obsolete */
 	{ ns(struct netbsd32_bind_args), 0,
 	    (sy_call_t *)netbsd32_bind },	/* 104 = netbsd32_bind */
 	{ ns(struct netbsd32_setsockopt_args), 0,
@@ -272,26 +244,26 @@ struct sysent netbsd32_sysent[] = {
 	    (sy_call_t *)netbsd32_listen },	/* 106 = netbsd32_listen */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 107 = obsolete vtimes */
-	{ ns(struct compat_43_netbsd32_osigvec_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_osigvec) },/* 108 = compat_43_netbsd32_osigvec */
-	{ ns(struct compat_43_netbsd32_sigblock_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_sigblock) },/* 109 = compat_43_netbsd32_sigblock */
-	{ ns(struct compat_43_netbsd32_sigsetmask_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_sigsetmask) },/* 110 = compat_43_netbsd32_sigsetmask */
-	{ ns(struct compat_13_netbsd32_sigsuspend_args), 0,
-	    (sy_call_t *)compat_13(netbsd32_sigsuspend) },/* 111 = compat_13_sigsuspend13 */
-	{ ns(struct compat_43_netbsd32_osigstack_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_osigstack) },/* 112 = compat_43_netbsd32_osigstack */
-	{ ns(struct compat_43_netbsd32_orecvmsg_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_orecvmsg) },/* 113 = compat_43_netbsd32_orecvmsg */
-	{ ns(struct compat_43_netbsd32_osendmsg_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_osendmsg) },/* 114 = compat_43_netbsd32_osendmsg */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 111 = obsolete */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 115 = obsolete vtrace */
-	{ ns(struct compat_50_netbsd32_gettimeofday_args), 0,
-	    (sy_call_t *)compat_50(netbsd32_gettimeofday) },/* 116 = compat_50_netbsd32_gettimeofday */
-	{ ns(struct compat_50_netbsd32_getrusage_args), 0,
-	    (sy_call_t *)compat_50(netbsd32_getrusage) },/* 117 = compat_50_netbsd32_getrusage */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct netbsd32_getsockopt_args), 0,
 	    (sy_call_t *)netbsd32_getsockopt },	/* 118 = netbsd32_getsockopt */
 	{ 0, 0, 0,
@@ -300,24 +272,24 @@ struct sysent netbsd32_sysent[] = {
 	    (sy_call_t *)netbsd32_readv },	/* 120 = netbsd32_readv */
 	{ ns(struct netbsd32_writev_args), 0,
 	    (sy_call_t *)netbsd32_writev },	/* 121 = netbsd32_writev */
-	{ ns(struct compat_50_netbsd32_settimeofday_args), 0,
-	    (sy_call_t *)compat_50(netbsd32_settimeofday) },/* 122 = compat_50_netbsd32_settimeofday */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct netbsd32_fchown_args), 0,
 	    (sy_call_t *)netbsd32_fchown },	/* 123 = netbsd32_fchown */
 	{ ns(struct netbsd32_fchmod_args), 0,
 	    (sy_call_t *)netbsd32_fchmod },	/* 124 = netbsd32_fchmod */
-	{ ns(struct compat_43_netbsd32_orecvfrom_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_orecvfrom) },/* 125 = compat_43_netbsd32_orecvfrom */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct netbsd32_setreuid_args), 0,
 	    (sy_call_t *)netbsd32_setreuid },	/* 126 = netbsd32_setreuid */
 	{ ns(struct netbsd32_setregid_args), 0,
 	    (sy_call_t *)netbsd32_setregid },	/* 127 = netbsd32_setregid */
 	{ ns(struct netbsd32_rename_args), 0,
 	    (sy_call_t *)netbsd32_rename },	/* 128 = netbsd32_rename */
-	{ ns(struct compat_43_netbsd32_otruncate_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_otruncate) },/* 129 = compat_43_netbsd32_otruncate */
-	{ ns(struct compat_43_netbsd32_oftruncate_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_oftruncate) },/* 130 = compat_43_netbsd32_oftruncate */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct netbsd32_flock_args), 0,
 	    (sy_call_t *)netbsd32_flock },	/* 131 = netbsd32_flock */
 	{ ns(struct netbsd32_mkfifo_args), 0,
@@ -332,32 +304,32 @@ struct sysent netbsd32_sysent[] = {
 	    (sy_call_t *)netbsd32_mkdir },	/* 136 = netbsd32_mkdir */
 	{ ns(struct netbsd32_rmdir_args), 0,
 	    (sy_call_t *)netbsd32_rmdir },	/* 137 = netbsd32_rmdir */
-	{ ns(struct compat_50_netbsd32_utimes_args), 0,
-	    (sy_call_t *)compat_50(netbsd32_utimes) },/* 138 = compat_50_netbsd32_utimes */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 139 = obsolete 4.2 sigreturn */
-	{ ns(struct compat_50_netbsd32_adjtime_args), 0,
-	    (sy_call_t *)compat_50(netbsd32_adjtime) },/* 140 = compat_50_netbsd32_adjtime */
-	{ ns(struct compat_43_netbsd32_ogetpeername_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_ogetpeername) },/* 141 = compat_43_netbsd32_ogetpeername */
 	{ 0, 0, 0,
-	    (sy_call_t *)compat_43(sys_gethostid) },/* 142 = compat_43_ogethostid */
-	{ ns(struct compat_43_netbsd32_sethostid_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_sethostid) },/* 143 = compat_43_netbsd32_sethostid */
-	{ ns(struct compat_43_netbsd32_ogetrlimit_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_ogetrlimit) },/* 144 = compat_43_netbsd32_ogetrlimit */
-	{ ns(struct compat_43_netbsd32_osetrlimit_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_osetrlimit) },/* 145 = compat_43_netbsd32_osetrlimit */
-	{ ns(struct compat_43_netbsd32_killpg_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_killpg) },/* 146 = compat_43_netbsd32_killpg */
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
 	    (sy_call_t *)sys_setsid },		/* 147 = setsid */
-	{ ns(struct compat_50_netbsd32_quotactl_args), 0,
-	    (sy_call_t *)compat_50(netbsd32_quotactl) },/* 148 = compat_50_netbsd32_quotactl */
 	{ 0, 0, 0,
-	    (sy_call_t *)compat_43(sys_quota) },/* 149 = compat_43_oquota */
-	{ ns(struct compat_43_netbsd32_ogetsockname_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_ogetsockname) },/* 150 = compat_43_netbsd32_ogetsockname */
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 151 = unimplemented */
 	{ 0, 0, 0,
@@ -368,24 +340,24 @@ struct sysent netbsd32_sysent[] = {
 	    sys_nosys },			/* 154 = unimplemented */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 155 = unimplemented netbsd32_nfssvc */
-	{ ns(struct compat_43_netbsd32_ogetdirentries_args), 0,
-	    (sy_call_t *)compat_43(netbsd32_ogetdirentries) },/* 156 = compat_43_netbsd32_ogetdirentries */
-	{ ns(struct compat_20_netbsd32_statfs_args), 0,
-	    (sy_call_t *)compat_20(netbsd32_statfs) },/* 157 = compat_20_netbsd32_statfs */
-	{ ns(struct compat_20_netbsd32_fstatfs_args), 0,
-	    (sy_call_t *)compat_20(netbsd32_fstatfs) },/* 158 = compat_20_netbsd32_fstatfs */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 159 = unimplemented */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 160 = unimplemented */
-	{ ns(struct compat_30_netbsd32_getfh_args), 0,
-	    (sy_call_t *)compat_30(netbsd32_getfh) },/* 161 = compat_30_netbsd32_getfh */
-	{ ns(struct compat_09_netbsd32_ogetdomainname_args), 0,
-	    (sy_call_t *)compat_09(netbsd32_ogetdomainname) },/* 162 = compat_09_netbsd32_ogetdomainname */
-	{ ns(struct compat_09_netbsd32_osetdomainname_args), 0,
-	    (sy_call_t *)compat_09(netbsd32_osetdomainname) },/* 163 = compat_09_netbsd32_osetdomainname */
-	{ ns(struct compat_09_netbsd32_uname_args), 0,
-	    (sy_call_t *)compat_09(netbsd32_uname) },/* 164 = compat_09_netbsd32_uname */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 162 = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 163 = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 164 = unimplemented */
 	{ ns(struct netbsd32_sysarch_args), 0,
 	    (sy_call_t *)netbsd32_sysarch },	/* 165 = netbsd32_sysarch */
 	{ 0, 0, 0,
@@ -395,22 +367,22 @@ struct sysent netbsd32_sysent[] = {
 	{ 0, 0, 0,
 	    sys_nosys },			/* 168 = unimplemented */
 #if defined(SYSVSEM) || !defined(_KERNEL_OPT)
-	{ ns(struct compat_10_netbsd32_semsys_args), 0,
-	    (sy_call_t *)compat_10(netbsd32_semsys) },/* 169 = compat_10_osemsys */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 169 = obsolete */
 #else
 	{ 0, 0, 0,
 	    sys_nosys },			/* 169 = excluded netbsd32_semsys */
 #endif
 #if defined(SYSVMSG) || !defined(_KERNEL_OPT)
-	{ ns(struct compat_10_netbsd32_msgsys_args), 0,
-	    (sy_call_t *)compat_10(netbsd32_msgsys) },/* 170 = compat_10_omsgsys */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 170 = obsolete */
 #else
 	{ 0, 0, 0,
 	    sys_nosys },			/* 170 = excluded netbsd32_msgsys */
 #endif
 #if defined(SYSVSHM) || !defined(_KERNEL_OPT)
-	{ ns(struct compat_10_netbsd32_shmsys_args), 0,
-	    (sy_call_t *)compat_10(netbsd32_shmsys) },/* 171 = compat_10_oshmsys */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 171 = obsolete */
 #else
 	{ 0, 0, 0,
 	    sys_nosys },			/* 171 = excluded netbsd32_shmsys */
@@ -422,8 +394,8 @@ struct sysent netbsd32_sysent[] = {
 	{ ns(struct netbsd32_pwrite_args), 0,
 	    (sy_call_t *)netbsd32_pwrite },	/* 174 = netbsd32_pwrite */
 #if defined(NTP) || !defined(_KERNEL_OPT)
-	{ ns(struct compat_30_netbsd32_ntp_gettime_args), 0,
-	    (sy_call_t *)compat_30(netbsd32_ntp_gettime) },/* 175 = compat_30_netbsd32_ntp_gettime */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct netbsd32_ntp_adjtime_args), 0,
 	    (sy_call_t *)netbsd32_ntp_adjtime },/* 176 = netbsd32_ntp_adjtime */
 #else
@@ -454,12 +426,12 @@ struct sysent netbsd32_sysent[] = {
 	    sys_nosys },			/* 186 = unimplemented */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 187 = unimplemented */
-	{ ns(struct compat_12_netbsd32_stat12_args), 0,
-	    (sy_call_t *)compat_12(netbsd32_stat12) },/* 188 = compat_12_netbsd32_stat12 */
-	{ ns(struct compat_12_netbsd32_fstat12_args), 0,
-	    (sy_call_t *)compat_12(netbsd32_fstat12) },/* 189 = compat_12_netbsd32_fstat12 */
-	{ ns(struct compat_12_netbsd32_lstat12_args), 0,
-	    (sy_call_t *)compat_12(netbsd32_lstat12) },/* 190 = compat_12_netbsd32_lstat12 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 188 = obsolete */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 189 = obsolete */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 190 = obsolete */
 	{ ns(struct netbsd32_pathconf_args), 0,
 	    (sy_call_t *)netbsd32_pathconf },	/* 191 = netbsd32_pathconf */
 	{ ns(struct netbsd32_fpathconf_args), 0,
@@ -470,8 +442,8 @@ struct sysent netbsd32_sysent[] = {
 	    (sy_call_t *)netbsd32_getrlimit },	/* 194 = netbsd32_getrlimit */
 	{ ns(struct netbsd32_setrlimit_args), 0,
 	    (sy_call_t *)netbsd32_setrlimit },	/* 195 = netbsd32_setrlimit */
-	{ ns(struct compat_12_netbsd32_getdirentries_args), 0,
-	    (sy_call_t *)compat_12(netbsd32_getdirentries) },/* 196 = compat_12_netbsd32_getdirentries */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 196 = obsolete */
 	{ ns(struct netbsd32_mmap_args), 0,
 	    (sy_call_t *)netbsd32_mmap },	/* 197 = netbsd32_mmap */
 	{ ns(struct netbsd32____syscall_args), SYCALL_NARGS64_VAL(1) | SYCALL_ARG0_64 | SYCALL_RET_64 | SYCALL_INDIRECT,
@@ -490,8 +462,8 @@ struct sysent netbsd32_sysent[] = {
 	    (sy_call_t *)netbsd32_munlock },	/* 204 = netbsd32_munlock */
 	{ ns(struct netbsd32_undelete_args), 0,
 	    (sy_call_t *)netbsd32_undelete },	/* 205 = netbsd32_undelete */
-	{ ns(struct compat_50_netbsd32_futimes_args), 0,
-	    (sy_call_t *)compat_50(netbsd32_futimes) },/* 206 = compat_50_netbsd32_futimes */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct netbsd32_getpgid_args), 0,
 	    (sy_call_t *)netbsd32_getpgid },	/* 207 = netbsd32_getpgid */
 	{ ns(struct netbsd32_reboot_args), 0,
@@ -519,8 +491,8 @@ struct sysent netbsd32_sysent[] = {
 	{ 0, 0, 0,
 	    sys_nosys },			/* 219 = unimplemented */
 #if defined(SYSVSEM) || !defined(_KERNEL_OPT)
-	{ ns(struct compat_14_netbsd32___semctl_args), 0,
-	    (sy_call_t *)compat_14(netbsd32___semctl) },/* 220 = compat_14_netbsd32___semctl */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 220 = obsolete */
 	{ ns(struct netbsd32_semget_args), 0,
 	    (sy_call_t *)netbsd32_semget },	/* 221 = netbsd32_semget */
 	{ ns(struct netbsd32_semop_args), 0,
@@ -529,7 +501,7 @@ struct sysent netbsd32_sysent[] = {
 	    (sy_call_t *)netbsd32_semconfig },	/* 223 = netbsd32_semconfig */
 #else
 	{ 0, 0, 0,
-	    sys_nosys },			/* 220 = excluded compat_14_netbsd32_semctl */
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 221 = excluded netbsd32_semget */
 	{ 0, 0, 0,
@@ -538,8 +510,8 @@ struct sysent netbsd32_sysent[] = {
 	    sys_nosys },			/* 223 = excluded netbsd32_semconfig */
 #endif
 #if defined(SYSVMSG) || !defined(_KERNEL_OPT)
-	{ ns(struct compat_14_netbsd32_msgctl_args), 0,
-	    (sy_call_t *)compat_14(netbsd32_msgctl) },/* 224 = compat_14_netbsd32_msgctl */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 224 = obsolete */
 	{ ns(struct netbsd32_msgget_args), 0,
 	    (sy_call_t *)netbsd32_msgget },	/* 225 = netbsd32_msgget */
 	{ ns(struct netbsd32_msgsnd_args), 0,
@@ -548,7 +520,7 @@ struct sysent netbsd32_sysent[] = {
 	    (sy_call_t *)netbsd32_msgrcv },	/* 227 = netbsd32_msgrcv */
 #else
 	{ 0, 0, 0,
-	    sys_nosys },			/* 224 = excluded compat_14_netbsd32_msgctl */
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 225 = excluded netbsd32_msgget */
 	{ 0, 0, 0,
@@ -559,8 +531,8 @@ struct sysent netbsd32_sysent[] = {
 #if defined(SYSVSHM) || !defined(_KERNEL_OPT)
 	{ ns(struct netbsd32_shmat_args), 0,
 	    (sy_call_t *)netbsd32_shmat },	/* 228 = netbsd32_shmat */
-	{ ns(struct compat_14_netbsd32_shmctl_args), 0,
-	    (sy_call_t *)compat_14(netbsd32_shmctl) },/* 229 = compat_14_netbsd32_shmctl */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 229 = obsolete */
 	{ ns(struct netbsd32_shmdt_args), 0,
 	    (sy_call_t *)netbsd32_shmdt },	/* 230 = netbsd32_shmdt */
 	{ ns(struct netbsd32_shmget_args), 0,
@@ -569,38 +541,38 @@ struct sysent netbsd32_sysent[] = {
 	{ 0, 0, 0,
 	    sys_nosys },			/* 228 = excluded netbsd32_shmat */
 	{ 0, 0, 0,
-	    sys_nosys },			/* 229 = excluded compat_14_netbsd32_shmctl */
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 230 = excluded netbsd32_shmdt */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 231 = excluded netbsd32_shmget */
 #endif
-	{ ns(struct compat_50_netbsd32_clock_gettime_args), 0,
-	    (sy_call_t *)compat_50(netbsd32_clock_gettime) },/* 232 = compat_50_netbsd32_clock_gettime */
-	{ ns(struct compat_50_netbsd32_clock_settime_args), 0,
-	    (sy_call_t *)compat_50(netbsd32_clock_settime) },/* 233 = compat_50_netbsd32_clock_settime */
-	{ ns(struct compat_50_netbsd32_clock_getres_args), 0,
-	    (sy_call_t *)compat_50(netbsd32_clock_getres) },/* 234 = compat_50_netbsd32_clock_getres */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct netbsd32_timer_create_args), 0,
 	    (sy_call_t *)netbsd32_timer_create },/* 235 = netbsd32_timer_create */
 	{ ns(struct netbsd32_timer_delete_args), 0,
 	    (sy_call_t *)netbsd32_timer_delete },/* 236 = netbsd32_timer_delete */
-	{ ns(struct compat_50_netbsd32_timer_settime_args), 0,
-	    (sy_call_t *)compat_50(netbsd32_timer_settime) },/* 237 = compat_50_netbsd32_timer_settime */
-	{ ns(struct compat_50_netbsd32_timer_gettime_args), 0,
-	    (sy_call_t *)compat_50(netbsd32_timer_gettime) },/* 238 = compat_50_netbsd32_timer_gettime */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct netbsd32_timer_getoverrun_args), 0,
 	    (sy_call_t *)netbsd32_timer_getoverrun },/* 239 = netbsd32_timer_getoverrun */
-	{ ns(struct compat_50_netbsd32_nanosleep_args), 0,
-	    (sy_call_t *)compat_50(netbsd32_nanosleep) },/* 240 = compat_50_netbsd32_nanosleep */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct netbsd32_fdatasync_args), 0,
 	    (sy_call_t *)netbsd32_fdatasync },	/* 241 = netbsd32_fdatasync */
 	{ ns(struct netbsd32_mlockall_args), 0,
 	    (sy_call_t *)netbsd32_mlockall },	/* 242 = netbsd32_mlockall */
 	{ 0, 0, 0,
 	    (sy_call_t *)sys_munlockall },	/* 243 = munlockall */
-	{ ns(struct compat_50_netbsd32___sigtimedwait_args), 0,
-	    (sy_call_t *)compat_50(netbsd32___sigtimedwait) },/* 244 = compat_50_netbsd32___sigtimedwait */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 245 = unimplemented */
 	{ 0, 0, 0,
@@ -655,24 +627,24 @@ struct sysent netbsd32_sysent[] = {
 	    (sy_call_t *)netbsd32___posix_rename },/* 270 = netbsd32___posix_rename */
 	{ ns(struct netbsd32_swapctl_args), 0,
 	    (sy_call_t *)netbsd32_swapctl },	/* 271 = netbsd32_swapctl */
-	{ ns(struct compat_30_netbsd32_getdents_args), 0,
-	    (sy_call_t *)compat_30(netbsd32_getdents) },/* 272 = compat_30_netbsd32_getdents */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct netbsd32_minherit_args), 0,
 	    (sy_call_t *)netbsd32_minherit },	/* 273 = netbsd32_minherit */
 	{ ns(struct netbsd32_lchmod_args), 0,
 	    (sy_call_t *)netbsd32_lchmod },	/* 274 = netbsd32_lchmod */
 	{ ns(struct netbsd32_lchown_args), 0,
 	    (sy_call_t *)netbsd32_lchown },	/* 275 = netbsd32_lchown */
-	{ ns(struct compat_50_netbsd32_lutimes_args), 0,
-	    (sy_call_t *)compat_50(netbsd32_lutimes) },/* 276 = compat_50_netbsd32_lutimes */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct netbsd32___msync13_args), 0,
 	    (sy_call_t *)netbsd32___msync13 },	/* 277 = netbsd32___msync13 */
-	{ ns(struct compat_30_netbsd32___stat13_args), 0,
-	    (sy_call_t *)compat_30(netbsd32___stat13) },/* 278 = compat_30_netbsd32___stat13 */
-	{ ns(struct compat_30_netbsd32___fstat13_args), 0,
-	    (sy_call_t *)compat_30(netbsd32___fstat13) },/* 279 = compat_30_netbsd32___fstat13 */
-	{ ns(struct compat_30_netbsd32___lstat13_args), 0,
-	    (sy_call_t *)compat_30(netbsd32___lstat13) },/* 280 = compat_30_netbsd32___lstat13 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct netbsd32___sigaltstack14_args), 0,
 	    (sy_call_t *)netbsd32___sigaltstack14 },/* 281 = netbsd32___sigaltstack14 */
 	{ 0, 0, 0,
@@ -701,35 +673,35 @@ struct sysent netbsd32_sysent[] = {
 	    (sy_call_t *)netbsd32___sigprocmask14 },/* 293 = netbsd32___sigprocmask14 */
 	{ ns(struct netbsd32___sigsuspend14_args), 0,
 	    (sy_call_t *)netbsd32___sigsuspend14 },/* 294 = netbsd32___sigsuspend14 */
-	{ ns(struct compat_16_netbsd32___sigreturn14_args), 0,
-	    (sy_call_t *)compat_16(netbsd32___sigreturn14) },/* 295 = compat_16_netbsd32___sigreturn14 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* 295 = obsolete */
 	{ ns(struct netbsd32___getcwd_args), 0,
 	    (sy_call_t *)netbsd32___getcwd },	/* 296 = netbsd32___getcwd */
 	{ ns(struct netbsd32_fchroot_args), 0,
 	    (sy_call_t *)netbsd32_fchroot },	/* 297 = netbsd32_fchroot */
-	{ ns(struct compat_30_netbsd32_fhopen_args), 0,
-	    (sy_call_t *)compat_30(netbsd32_fhopen) },/* 298 = compat_30_netbsd32_fhopen */
-	{ ns(struct compat_30_netbsd32_fhstat_args), 0,
-	    (sy_call_t *)compat_30(netbsd32_fhstat) },/* 299 = compat_30_netbsd32_fhstat */
-	{ ns(struct compat_20_netbsd32_fhstatfs_args), 0,
-	    (sy_call_t *)compat_20(netbsd32_fhstatfs) },/* 300 = compat_20_netbsd32_fhstatfs */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 #if defined(SYSVSEM) || !defined(_KERNEL_OPT)
-	{ ns(struct compat_50_netbsd32___semctl14_args), 0,
-	    (sy_call_t *)compat_50(netbsd32___semctl14) },/* 301 = compat_50_netbsd32___semctl14 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 #else
 	{ 0, 0, 0,
 	    sys_nosys },			/* 301 = excluded __semctl14 */
 #endif
 #if defined(SYSVMSG) || !defined(_KERNEL_OPT)
-	{ ns(struct compat_50_netbsd32___msgctl13_args), 0,
-	    (sy_call_t *)compat_50(netbsd32___msgctl13) },/* 302 = compat_50_netbsd32___msgctl13 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 #else
 	{ 0, 0, 0,
 	    sys_nosys },			/* 302 = excluded __msgctl13 */
 #endif
 #if defined(SYSVSHM) || !defined(_KERNEL_OPT)
-	{ ns(struct compat_50_netbsd32___shmctl13_args), 0,
-	    (sy_call_t *)compat_50(netbsd32___shmctl13) },/* 303 = compat_50_netbsd32___shmctl13 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 #else
 	{ 0, 0, 0,
 	    sys_nosys },			/* 303 = excluded __shmctl13 */
@@ -766,8 +738,8 @@ struct sysent netbsd32_sysent[] = {
 	    (sy_call_t *)netbsd32__lwp_kill },	/* 318 = netbsd32__lwp_kill */
 	{ ns(struct netbsd32__lwp_detach_args), 0,
 	    (sy_call_t *)netbsd32__lwp_detach },/* 319 = netbsd32__lwp_detach */
-	{ ns(struct compat_50_netbsd32__lwp_park_args), 0,
-	    (sy_call_t *)compat_50(netbsd32__lwp_park) },/* 320 = compat_50_netbsd32__lwp_park */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct netbsd32__lwp_unpark_args), 0,
 	    (sy_call_t *)netbsd32__lwp_unpark },/* 321 = netbsd32__lwp_unpark */
 	{ ns(struct netbsd32__lwp_unpark_all_args), 0,
@@ -816,8 +788,8 @@ struct sysent netbsd32_sysent[] = {
 	    (sy_call_t *)netbsd32_rasctl },	/* 343 = netbsd32_rasctl */
 	{ 0, 0, 0,
 	    (sy_call_t *)sys_kqueue },		/* 344 = kqueue */
-	{ ns(struct compat_50_netbsd32_kevent_args), 0,
-	    (sy_call_t *)compat_50(netbsd32_kevent) },/* 345 = compat_50_netbsd32_kevent */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct netbsd32__sched_setparam_args), 0,
 	    (sy_call_t *)netbsd32__sched_setparam },/* 346 = netbsd32__sched_setparam */
 	{ ns(struct netbsd32__sched_getparam_args), 0,
@@ -844,8 +816,8 @@ struct sysent netbsd32_sysent[] = {
 	    (sy_call_t *)netbsd32_statvfs1 },	/* 357 = netbsd32_statvfs1 */
 	{ ns(struct netbsd32_fstatvfs1_args), 0,
 	    (sy_call_t *)netbsd32_fstatvfs1 },	/* 358 = netbsd32_fstatvfs1 */
-	{ ns(struct compat_30_netbsd32_fhstatvfs1_args), 0,
-	    (sy_call_t *)compat_30(netbsd32_fhstatvfs1) },/* 359 = compat_30_netbsd32_fhstatvfs1 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct netbsd32_extattrctl_args), 0,
 	    (sy_call_t *)netbsd32_extattrctl },	/* 360 = netbsd32_extattrctl */
 	{ ns(struct netbsd32_extattr_set_file_args), 0,
@@ -872,10 +844,10 @@ struct sysent netbsd32_sysent[] = {
 	    (sy_call_t *)netbsd32_extattr_list_file },/* 371 = netbsd32_extattr_list_file */
 	{ ns(struct netbsd32_extattr_list_link_args), 0,
 	    (sy_call_t *)netbsd32_extattr_list_link },/* 372 = netbsd32_extattr_list_link */
-	{ ns(struct compat_50_netbsd32_pselect_args), 0,
-	    (sy_call_t *)compat_50(netbsd32_pselect) },/* 373 = compat_50_netbsd32_pselect */
-	{ ns(struct compat_50_netbsd32_pollts_args), 0,
-	    (sy_call_t *)compat_50(netbsd32_pollts) },/* 374 = compat_50_netbsd32_pollts */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct netbsd32_setxattr_args), 0,
 	    (sy_call_t *)netbsd32_setxattr },	/* 375 = netbsd32_setxattr */
 	{ ns(struct netbsd32_lsetxattr_args), 0,
@@ -900,21 +872,21 @@ struct sysent netbsd32_sysent[] = {
 	    (sy_call_t *)netbsd32_lremovexattr },/* 385 = netbsd32_lremovexattr */
 	{ ns(struct netbsd32_fremovexattr_args), 0,
 	    (sy_call_t *)netbsd32_fremovexattr },/* 386 = netbsd32_fremovexattr */
-	{ ns(struct compat_50_netbsd32___stat30_args), 0,
-	    (sy_call_t *)compat_50(netbsd32___stat30) },/* 387 = compat_50_netbsd32___stat30 */
-	{ ns(struct compat_50_netbsd32___fstat30_args), 0,
-	    (sy_call_t *)compat_50(netbsd32___fstat30) },/* 388 = compat_50_netbsd32___fstat30 */
-	{ ns(struct compat_50_netbsd32___lstat30_args), 0,
-	    (sy_call_t *)compat_50(netbsd32___lstat30) },/* 389 = compat_50_netbsd32___lstat30 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct netbsd32___getdents30_args), 0,
 	    (sy_call_t *)netbsd32___getdents30 },/* 390 = netbsd32___getdents30 */
 	{ 0, 0, 0,
 	    (sy_call_t *)nullop },			/* 391 = ignored old posix fadvise */
-	{ ns(struct compat_30_netbsd32___fhstat30_args), 0,
-	    (sy_call_t *)compat_30(netbsd32___fhstat30) },/* 392 = compat_30_netbsd32___fhstat30 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 #if defined(NTP) || !defined(_KERNEL_OPT)
-	{ ns(struct compat_50_netbsd32_ntp_gettime_args), 0,
-	    (sy_call_t *)compat_50(netbsd32_ntp_gettime) },/* 393 = compat_50_netbsd32_ntp_gettime */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 #else
 	{ 0, 0, 0,
 	    sys_nosys },			/* 393 = excluded __ntp_gettime30 */
@@ -927,8 +899,8 @@ struct sysent netbsd32_sysent[] = {
 	    (sy_call_t *)netbsd32___fhopen40 },	/* 396 = netbsd32___fhopen40 */
 	{ ns(struct netbsd32___fhstatvfs140_args), 0,
 	    (sy_call_t *)netbsd32___fhstatvfs140 },/* 397 = netbsd32___fhstatvfs140 */
-	{ ns(struct compat_50_netbsd32___fhstat40_args), 0,
-	    (sy_call_t *)compat_50(netbsd32___fhstat40) },/* 398 = compat_50_netbsd32___fhstat40 */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 399 = unimplemented sys_aio_cancel */
 	{ 0, 0, 0,
@@ -999,8 +971,8 @@ struct sysent netbsd32_sysent[] = {
 	    sys_nosys },			/* 432 = unimplemented netbsd32___mq_timedsend50 */
 	{ 0, 0, 0,
 	    sys_nosys },			/* 433 = unimplemented netbsd32___mq_timedreceive50 */
-	{ ns(struct compat_60_netbsd32__lwp_park_args), 0,
-	    (sy_call_t *)compat_60(netbsd32__lwp_park) },/* 434 = compat_60_netbsd32__lwp_park */
+	{ 0, 0, 0,
+	    sys_nosys },			/* = unimplemented */
 	{ ns(struct netbsd32___kevent50_args), 0,
 	    (sy_call_t *)netbsd32___kevent50 },	/* 435 = netbsd32___kevent50 */
 	{ ns(struct netbsd32___pselect50_args), 0,

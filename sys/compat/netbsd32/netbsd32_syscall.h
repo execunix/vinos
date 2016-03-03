@@ -33,12 +33,6 @@
 /* syscall: "netbsd32_close" ret: "int" args: "int" */
 #define	NETBSD32_SYS_netbsd32_close	6
 
-/* syscall: "compat_50_netbsd32_wait4" ret: "int" args: "int" "netbsd32_intp" "int" "netbsd32_rusage50p_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32_wait4	7
-
-/* syscall: "compat_43_netbsd32_ocreat" ret: "int" args: "netbsd32_charp" "mode_t" */
-#define	NETBSD32_SYS_compat_43_netbsd32_ocreat	8
-
 /* syscall: "netbsd32_link" ret: "int" args: "netbsd32_charp" "netbsd32_charp" */
 #define	NETBSD32_SYS_netbsd32_link	9
 
@@ -52,9 +46,6 @@
 /* syscall: "netbsd32_fchdir" ret: "int" args: "int" */
 #define	NETBSD32_SYS_netbsd32_fchdir	13
 
-/* syscall: "compat_50_netbsd32_mknod" ret: "int" args: "netbsd32_charp" "mode_t" "uint32_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32_mknod	14
-
 /* syscall: "netbsd32_chmod" ret: "int" args: "netbsd32_charp" "mode_t" */
 #define	NETBSD32_SYS_netbsd32_chmod	15
 
@@ -63,12 +54,6 @@
 
 /* syscall: "netbsd32_break" ret: "int" args: "netbsd32_charp" */
 #define	NETBSD32_SYS_netbsd32_break	17
-
-/* syscall: "compat_20_netbsd32_getfsstat" ret: "int" args: "netbsd32_statfsp_t" "netbsd32_long" "int" */
-#define	NETBSD32_SYS_compat_20_netbsd32_getfsstat	18
-
-/* syscall: "compat_43_netbsd32_olseek" ret: "netbsd32_long" args: "int" "netbsd32_long" "int" */
-#define	NETBSD32_SYS_compat_43_netbsd32_olseek	19
 
 /* syscall: "getpid" ret: "pid_t" args: */
 #define	NETBSD32_SYS_getpid	20
@@ -124,14 +109,8 @@
 /* syscall: "netbsd32_kill" ret: "int" args: "int" "int" */
 #define	NETBSD32_SYS_netbsd32_kill	37
 
-/* syscall: "compat_43_netbsd32_stat43" ret: "int" args: "netbsd32_charp" "netbsd32_stat43p_t" */
-#define	NETBSD32_SYS_compat_43_netbsd32_stat43	38
-
 /* syscall: "getppid" ret: "pid_t" args: */
 #define	NETBSD32_SYS_getppid	39
-
-/* syscall: "compat_43_netbsd32_lstat43" ret: "int" args: "netbsd32_charp" "netbsd32_stat43p_t" */
-#define	NETBSD32_SYS_compat_43_netbsd32_lstat43	40
 
 /* syscall: "netbsd32_dup" ret: "int" args: "int" */
 #define	NETBSD32_SYS_netbsd32_dup	41
@@ -154,9 +133,6 @@
 /* syscall: "getgid" ret: "gid_t" args: */
 #define	NETBSD32_SYS_getgid	47
 
-/* syscall: "compat_13_sigprocmask13" ret: "int" args: "int" "int" */
-#define	NETBSD32_SYS_compat_13_sigprocmask13	48
-
 /* syscall: "netbsd32___getlogin" ret: "int" args: "netbsd32_charp" "u_int" */
 #define	NETBSD32_SYS_netbsd32___getlogin	49
 
@@ -166,17 +142,8 @@
 /* syscall: "netbsd32_acct" ret: "int" args: "netbsd32_charp" */
 #define	NETBSD32_SYS_netbsd32_acct	51
 
-/* syscall: "compat_13_sigpending13" ret: "int" args: */
-#define	NETBSD32_SYS_compat_13_sigpending13	52
-
-/* syscall: "compat_13_netbsd32_sigaltstack13" ret: "int" args: "netbsd32_sigaltstack13p_t" "netbsd32_sigaltstack13p_t" */
-#define	NETBSD32_SYS_compat_13_netbsd32_sigaltstack13	53
-
 /* syscall: "netbsd32_ioctl" ret: "int" args: "int" "netbsd32_u_long" "..." */
 #define	NETBSD32_SYS_netbsd32_ioctl	54
-
-/* syscall: "compat_12_netbsd32_reboot" ret: "int" args: "int" */
-#define	NETBSD32_SYS_compat_12_netbsd32_reboot	55
 
 /* syscall: "netbsd32_revoke" ret: "int" args: "netbsd32_charp" */
 #define	NETBSD32_SYS_netbsd32_revoke	56
@@ -196,18 +163,6 @@
 /* syscall: "netbsd32_chroot" ret: "int" args: "netbsd32_charp" */
 #define	NETBSD32_SYS_netbsd32_chroot	61
 
-/* syscall: "compat_43_netbsd32_fstat43" ret: "int" args: "int" "netbsd32_stat43p_t" */
-#define	NETBSD32_SYS_compat_43_netbsd32_fstat43	62
-
-/* syscall: "compat_43_netbsd32_ogetkerninfo" ret: "int" args: "int" "netbsd32_charp" "netbsd32_intp" "int" */
-#define	NETBSD32_SYS_compat_43_netbsd32_ogetkerninfo	63
-
-/* syscall: "compat_43_ogetpagesize" ret: "int" args: */
-#define	NETBSD32_SYS_compat_43_ogetpagesize	64
-
-/* syscall: "compat_12_netbsd32_msync" ret: "int" args: "netbsd32_voidp" "netbsd32_size_t" */
-#define	NETBSD32_SYS_compat_12_netbsd32_msync	65
-
 /* syscall: "vfork" ret: "int" args: */
 #define	NETBSD32_SYS_vfork	66
 
@@ -218,9 +173,6 @@
 
 /* syscall: "netbsd32_sstk" ret: "int" args: "int" */
 #define	NETBSD32_SYS_netbsd32_sstk	70
-
-/* syscall: "compat_43_netbsd32_ommap" ret: "int" args: "netbsd32_voidp" "netbsd32_size_t" "int" "int" "int" "netbsd32_long" */
-#define	NETBSD32_SYS_compat_43_netbsd32_ommap	71
 
 /* syscall: "vadvise" ret: "int" args: "int" */
 #define	NETBSD32_SYS_vadvise	72
@@ -251,35 +203,11 @@
 /* syscall: "netbsd32_setpgid" ret: "int" args: "int" "int" */
 #define	NETBSD32_SYS_netbsd32_setpgid	82
 
-/* syscall: "compat_50_netbsd32_setitimer" ret: "int" args: "int" "netbsd32_itimerval50p_t" "netbsd32_itimerval50p_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32_setitimer	83
-
-/* syscall: "compat_43_owait" ret: "int" args: */
-#define	NETBSD32_SYS_compat_43_owait	84
-
-/* syscall: "compat_12_netbsd32_oswapon" ret: "int" args: "netbsd32_charp" */
-#define	NETBSD32_SYS_compat_12_netbsd32_oswapon	85
-
-/* syscall: "compat_50_netbsd32_getitimer" ret: "int" args: "int" "netbsd32_itimerval50p_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32_getitimer	86
-
-/* syscall: "compat_43_netbsd32_ogethostname" ret: "int" args: "netbsd32_charp" "u_int" */
-#define	NETBSD32_SYS_compat_43_netbsd32_ogethostname	87
-
-/* syscall: "compat_43_netbsd32_osethostname" ret: "int" args: "netbsd32_charp" "u_int" */
-#define	NETBSD32_SYS_compat_43_netbsd32_osethostname	88
-
-/* syscall: "compat_43_ogetdtablesize" ret: "int" args: */
-#define	NETBSD32_SYS_compat_43_ogetdtablesize	89
-
 /* syscall: "netbsd32_dup2" ret: "int" args: "int" "int" */
 #define	NETBSD32_SYS_netbsd32_dup2	90
 
 /* syscall: "netbsd32_fcntl" ret: "int" args: "int" "int" "..." */
 #define	NETBSD32_SYS_netbsd32_fcntl	92
-
-/* syscall: "compat_50_netbsd32_select" ret: "int" args: "int" "netbsd32_fd_setp_t" "netbsd32_fd_setp_t" "netbsd32_fd_setp_t" "netbsd32_timeval50p_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32_select	93
 
 /* syscall: "netbsd32_fsync" ret: "int" args: "int" */
 #define	NETBSD32_SYS_netbsd32_fsync	95
@@ -287,26 +215,11 @@
 /* syscall: "netbsd32_setpriority" ret: "int" args: "int" "int" "int" */
 #define	NETBSD32_SYS_netbsd32_setpriority	96
 
-/* syscall: "compat_30_netbsd32_socket" ret: "int" args: "int" "int" "int" */
-#define	NETBSD32_SYS_compat_30_netbsd32_socket	97
-
 /* syscall: "netbsd32_connect" ret: "int" args: "int" "netbsd32_sockaddrp_t" "int" */
 #define	NETBSD32_SYS_netbsd32_connect	98
 
-/* syscall: "compat_43_netbsd32_oaccept" ret: "int" args: "int" "netbsd32_voidp" "netbsd32_intp" */
-#define	NETBSD32_SYS_compat_43_netbsd32_oaccept	99
-
 /* syscall: "netbsd32_getpriority" ret: "int" args: "int" "int" */
 #define	NETBSD32_SYS_netbsd32_getpriority	100
-
-/* syscall: "compat_43_netbsd32_osend" ret: "int" args: "int" "netbsd32_voidp" "int" "int" */
-#define	NETBSD32_SYS_compat_43_netbsd32_osend	101
-
-/* syscall: "compat_43_netbsd32_orecv" ret: "int" args: "int" "netbsd32_voidp" "int" "int" */
-#define	NETBSD32_SYS_compat_43_netbsd32_orecv	102
-
-/* syscall: "compat_13_sigreturn13" ret: "int" args: "netbsd32_sigcontextp_t" */
-#define	NETBSD32_SYS_compat_13_sigreturn13	103
 
 /* syscall: "netbsd32_bind" ret: "int" args: "int" "netbsd32_sockaddrp_t" "int" */
 #define	NETBSD32_SYS_netbsd32_bind	104
@@ -318,33 +231,7 @@
 #define	NETBSD32_SYS_netbsd32_listen	106
 
 				/* 107 is obsolete vtimes */
-/* syscall: "compat_43_netbsd32_osigvec" ret: "int" args: "int" "netbsd32_sigvecp_t" "netbsd32_sigvecp_t" */
-#define	NETBSD32_SYS_compat_43_netbsd32_osigvec	108
-
-/* syscall: "compat_43_netbsd32_sigblock" ret: "int" args: "int" */
-#define	NETBSD32_SYS_compat_43_netbsd32_sigblock	109
-
-/* syscall: "compat_43_netbsd32_sigsetmask" ret: "int" args: "int" */
-#define	NETBSD32_SYS_compat_43_netbsd32_sigsetmask	110
-
-/* syscall: "compat_13_sigsuspend13" ret: "int" args: "int" */
-#define	NETBSD32_SYS_compat_13_sigsuspend13	111
-
-/* syscall: "compat_43_netbsd32_osigstack" ret: "int" args: "netbsd32_sigstackp_t" "netbsd32_sigstackp_t" */
-#define	NETBSD32_SYS_compat_43_netbsd32_osigstack	112
-
-/* syscall: "compat_43_netbsd32_orecvmsg" ret: "int" args: "int" "netbsd32_omsghdrp_t" "int" */
-#define	NETBSD32_SYS_compat_43_netbsd32_orecvmsg	113
-
-/* syscall: "compat_43_netbsd32_osendmsg" ret: "int" args: "int" "netbsd32_voidp" "int" */
-#define	NETBSD32_SYS_compat_43_netbsd32_osendmsg	114
-
 				/* 115 is obsolete vtrace */
-/* syscall: "compat_50_netbsd32_gettimeofday" ret: "int" args: "netbsd32_timeval50p_t" "netbsd32_timezonep_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32_gettimeofday	116
-
-/* syscall: "compat_50_netbsd32_getrusage" ret: "int" args: "int" "netbsd32_rusage50p_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32_getrusage	117
 
 /* syscall: "netbsd32_getsockopt" ret: "int" args: "int" "int" "int" "netbsd32_voidp" "netbsd32_intp" */
 #define	NETBSD32_SYS_netbsd32_getsockopt	118
@@ -356,17 +243,11 @@
 /* syscall: "netbsd32_writev" ret: "netbsd32_ssize_t" args: "int" "netbsd32_iovecp_t" "int" */
 #define	NETBSD32_SYS_netbsd32_writev	121
 
-/* syscall: "compat_50_netbsd32_settimeofday" ret: "int" args: "netbsd32_timeval50p_t" "netbsd32_timezonep_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32_settimeofday	122
-
 /* syscall: "netbsd32_fchown" ret: "int" args: "int" "uid_t" "gid_t" */
 #define	NETBSD32_SYS_netbsd32_fchown	123
 
 /* syscall: "netbsd32_fchmod" ret: "int" args: "int" "mode_t" */
 #define	NETBSD32_SYS_netbsd32_fchmod	124
-
-/* syscall: "compat_43_netbsd32_orecvfrom" ret: "int" args: "int" "netbsd32_voidp" "netbsd32_size_t" "int" "netbsd32_voidp" "netbsd32_intp" */
-#define	NETBSD32_SYS_compat_43_netbsd32_orecvfrom	125
 
 /* syscall: "netbsd32_setreuid" ret: "int" args: "uid_t" "uid_t" */
 #define	NETBSD32_SYS_netbsd32_setreuid	126
@@ -376,12 +257,6 @@
 
 /* syscall: "netbsd32_rename" ret: "int" args: "netbsd32_charp" "netbsd32_charp" */
 #define	NETBSD32_SYS_netbsd32_rename	128
-
-/* syscall: "compat_43_netbsd32_otruncate" ret: "int" args: "netbsd32_charp" "netbsd32_long" */
-#define	NETBSD32_SYS_compat_43_netbsd32_otruncate	129
-
-/* syscall: "compat_43_netbsd32_oftruncate" ret: "int" args: "int" "netbsd32_long" */
-#define	NETBSD32_SYS_compat_43_netbsd32_oftruncate	130
 
 /* syscall: "netbsd32_flock" ret: "int" args: "int" "int" */
 #define	NETBSD32_SYS_netbsd32_flock	131
@@ -404,88 +279,15 @@
 /* syscall: "netbsd32_rmdir" ret: "int" args: "netbsd32_charp" */
 #define	NETBSD32_SYS_netbsd32_rmdir	137
 
-/* syscall: "compat_50_netbsd32_utimes" ret: "int" args: "netbsd32_charp" "netbsd32_timeval50p_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32_utimes	138
-
-				/* 139 is obsolete 4.2 sigreturn */
-/* syscall: "compat_50_netbsd32_adjtime" ret: "int" args: "netbsd32_timeval50p_t" "netbsd32_timeval50p_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32_adjtime	140
-
-/* syscall: "compat_43_netbsd32_ogetpeername" ret: "int" args: "int" "netbsd32_voidp" "netbsd32_intp" */
-#define	NETBSD32_SYS_compat_43_netbsd32_ogetpeername	141
-
-/* syscall: "compat_43_ogethostid" ret: "int32_t" args: */
-#define	NETBSD32_SYS_compat_43_ogethostid	142
-
-/* syscall: "compat_43_netbsd32_sethostid" ret: "int" args: "int32_t" */
-#define	NETBSD32_SYS_compat_43_netbsd32_sethostid	143
-
-/* syscall: "compat_43_netbsd32_ogetrlimit" ret: "int" args: "int" "netbsd32_orlimitp_t" */
-#define	NETBSD32_SYS_compat_43_netbsd32_ogetrlimit	144
-
-/* syscall: "compat_43_netbsd32_osetrlimit" ret: "int" args: "int" "netbsd32_orlimitp_t" */
-#define	NETBSD32_SYS_compat_43_netbsd32_osetrlimit	145
-
-/* syscall: "compat_43_netbsd32_killpg" ret: "int" args: "int" "int" */
-#define	NETBSD32_SYS_compat_43_netbsd32_killpg	146
-
 /* syscall: "setsid" ret: "int" args: */
 #define	NETBSD32_SYS_setsid	147
-
-/* syscall: "compat_50_netbsd32_quotactl" ret: "int" args: "netbsd32_charp" "int" "int" "netbsd32_voidp" */
-#define	NETBSD32_SYS_compat_50_netbsd32_quotactl	148
-
-/* syscall: "compat_43_oquota" ret: "int" args: */
-#define	NETBSD32_SYS_compat_43_oquota	149
-
-/* syscall: "compat_43_netbsd32_ogetsockname" ret: "int" args: "int" "netbsd32_voidp" "netbsd32_intp" */
-#define	NETBSD32_SYS_compat_43_netbsd32_ogetsockname	150
-
-/* syscall: "compat_43_netbsd32_ogetdirentries" ret: "int" args: "int" "netbsd32_charp" "u_int" "netbsd32_longp" */
-#define	NETBSD32_SYS_compat_43_netbsd32_ogetdirentries	156
-
-/* syscall: "compat_20_netbsd32_statfs" ret: "int" args: "netbsd32_charp" "netbsd32_statfsp_t" */
-#define	NETBSD32_SYS_compat_20_netbsd32_statfs	157
-
-/* syscall: "compat_20_netbsd32_fstatfs" ret: "int" args: "int" "netbsd32_statfsp_t" */
-#define	NETBSD32_SYS_compat_20_netbsd32_fstatfs	158
-
-/* syscall: "compat_30_netbsd32_getfh" ret: "int" args: "netbsd32_charp" "netbsd32_compat_30_fhandlep_t" */
-#define	NETBSD32_SYS_compat_30_netbsd32_getfh	161
-
-/* syscall: "compat_09_netbsd32_ogetdomainname" ret: "int" args: "netbsd32_charp" "int" */
-#define	NETBSD32_SYS_compat_09_netbsd32_ogetdomainname	162
-
-/* syscall: "compat_09_netbsd32_osetdomainname" ret: "int" args: "netbsd32_charp" "int" */
-#define	NETBSD32_SYS_compat_09_netbsd32_osetdomainname	163
-
-/* syscall: "compat_09_netbsd32_uname" ret: "int" args: "netbsd32_outsnamep_t" */
-#define	NETBSD32_SYS_compat_09_netbsd32_uname	164
 
 /* syscall: "netbsd32_sysarch" ret: "int" args: "int" "netbsd32_voidp" */
 #define	NETBSD32_SYS_netbsd32_sysarch	165
 
-#if defined(SYSVSEM) || !defined(_KERNEL_OPT)
-/* syscall: "compat_10_osemsys" ret: "int" args: "int" "int" "int" "int" "int" */
-#define	NETBSD32_SYS_compat_10_osemsys	169
-
-#else
 				/* 169 is excluded netbsd32_semsys */
-#endif
-#if defined(SYSVMSG) || !defined(_KERNEL_OPT)
-/* syscall: "compat_10_omsgsys" ret: "int" args: "int" "int" "int" "int" "int" "int" */
-#define	NETBSD32_SYS_compat_10_omsgsys	170
-
-#else
 				/* 170 is excluded netbsd32_msgsys */
-#endif
-#if defined(SYSVSHM) || !defined(_KERNEL_OPT)
-/* syscall: "compat_10_oshmsys" ret: "int" args: "int" "int" "int" "int" */
-#define	NETBSD32_SYS_compat_10_oshmsys	171
-
-#else
 				/* 171 is excluded netbsd32_shmsys */
-#endif
 /* syscall: "netbsd32_pread" ret: "netbsd32_ssize_t" args: "int" "netbsd32_voidp" "netbsd32_size_t" "int" "netbsd32_off_t" */
 #define	NETBSD32_SYS_netbsd32_pread	173
 
@@ -493,9 +295,6 @@
 #define	NETBSD32_SYS_netbsd32_pwrite	174
 
 #if defined(NTP) || !defined(_KERNEL_OPT)
-/* syscall: "compat_30_netbsd32_ntp_gettime" ret: "int" args: "netbsd32_ntptimeval50p_t" */
-#define	NETBSD32_SYS_compat_30_netbsd32_ntp_gettime	175
-
 /* syscall: "netbsd32_ntp_adjtime" ret: "int" args: "netbsd32_timexp_t" */
 #define	NETBSD32_SYS_netbsd32_ntp_adjtime	176
 
@@ -512,15 +311,6 @@
 /* syscall: "netbsd32_seteuid" ret: "int" args: "uid_t" */
 #define	NETBSD32_SYS_netbsd32_seteuid	183
 
-/* syscall: "compat_12_netbsd32_stat12" ret: "int" args: "netbsd32_charp" "netbsd32_stat12p_t" */
-#define	NETBSD32_SYS_compat_12_netbsd32_stat12	188
-
-/* syscall: "compat_12_netbsd32_fstat12" ret: "int" args: "int" "netbsd32_stat12p_t" */
-#define	NETBSD32_SYS_compat_12_netbsd32_fstat12	189
-
-/* syscall: "compat_12_netbsd32_lstat12" ret: "int" args: "netbsd32_charp" "netbsd32_stat12p_t" */
-#define	NETBSD32_SYS_compat_12_netbsd32_lstat12	190
-
 /* syscall: "netbsd32_pathconf" ret: "netbsd32_long" args: "netbsd32_charp" "int" */
 #define	NETBSD32_SYS_netbsd32_pathconf	191
 
@@ -532,9 +322,6 @@
 
 /* syscall: "netbsd32_setrlimit" ret: "int" args: "int" "netbsd32_rlimitp_t" */
 #define	NETBSD32_SYS_netbsd32_setrlimit	195
-
-/* syscall: "compat_12_netbsd32_getdirentries" ret: "int" args: "int" "netbsd32_charp" "u_int" "netbsd32_longp" */
-#define	NETBSD32_SYS_compat_12_netbsd32_getdirentries	196
 
 /* syscall: "netbsd32_mmap" ret: "netbsd32_voidp" args: "netbsd32_voidp" "netbsd32_size_t" "int" "int" "int" "netbsd32_long" "netbsd32_off_t" */
 #define	NETBSD32_SYS_netbsd32_mmap	197
@@ -563,9 +350,6 @@
 /* syscall: "netbsd32_undelete" ret: "int" args: "netbsd32_charp" */
 #define	NETBSD32_SYS_netbsd32_undelete	205
 
-/* syscall: "compat_50_netbsd32_futimes" ret: "int" args: "int" "netbsd32_timeval50p_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32_futimes	206
-
 /* syscall: "netbsd32_getpgid" ret: "int" args: "pid_t" */
 #define	NETBSD32_SYS_netbsd32_getpgid	207
 
@@ -576,9 +360,6 @@
 #define	NETBSD32_SYS_netbsd32_poll	209
 
 #if defined(SYSVSEM) || !defined(_KERNEL_OPT)
-/* syscall: "compat_14_netbsd32___semctl" ret: "int" args: "int" "int" "int" "netbsd32_semunu_t" */
-#define	NETBSD32_SYS_compat_14_netbsd32___semctl	220
-
 /* syscall: "netbsd32_semget" ret: "int" args: "netbsd32_key_t" "int" "int" */
 #define	NETBSD32_SYS_netbsd32_semget	221
 
@@ -589,15 +370,11 @@
 #define	NETBSD32_SYS_netbsd32_semconfig	223
 
 #else
-				/* 220 is excluded compat_14_netbsd32_semctl */
 				/* 221 is excluded netbsd32_semget */
 				/* 222 is excluded netbsd32_semop */
 				/* 223 is excluded netbsd32_semconfig */
 #endif
 #if defined(SYSVMSG) || !defined(_KERNEL_OPT)
-/* syscall: "compat_14_netbsd32_msgctl" ret: "int" args: "int" "int" "netbsd32_msqid_ds14p_t" */
-#define	NETBSD32_SYS_compat_14_netbsd32_msgctl	224
-
 /* syscall: "netbsd32_msgget" ret: "int" args: "netbsd32_key_t" "int" */
 #define	NETBSD32_SYS_netbsd32_msgget	225
 
@@ -608,7 +385,6 @@
 #define	NETBSD32_SYS_netbsd32_msgrcv	227
 
 #else
-				/* 224 is excluded compat_14_netbsd32_msgctl */
 				/* 225 is excluded netbsd32_msgget */
 				/* 226 is excluded netbsd32_msgsnd */
 				/* 227 is excluded netbsd32_msgrcv */
@@ -616,9 +392,6 @@
 #if defined(SYSVSHM) || !defined(_KERNEL_OPT)
 /* syscall: "netbsd32_shmat" ret: "netbsd32_voidp" args: "int" "netbsd32_voidp" "int" */
 #define	NETBSD32_SYS_netbsd32_shmat	228
-
-/* syscall: "compat_14_netbsd32_shmctl" ret: "int" args: "int" "int" "netbsd32_shmid_dsp_t" */
-#define	NETBSD32_SYS_compat_14_netbsd32_shmctl	229
 
 /* syscall: "netbsd32_shmdt" ret: "int" args: "netbsd32_voidp" */
 #define	NETBSD32_SYS_netbsd32_shmdt	230
@@ -628,36 +401,17 @@
 
 #else
 				/* 228 is excluded netbsd32_shmat */
-				/* 229 is excluded compat_14_netbsd32_shmctl */
 				/* 230 is excluded netbsd32_shmdt */
 				/* 231 is excluded netbsd32_shmget */
 #endif
-/* syscall: "compat_50_netbsd32_clock_gettime" ret: "int" args: "netbsd32_clockid_t" "netbsd32_timespec50p_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32_clock_gettime	232
-
-/* syscall: "compat_50_netbsd32_clock_settime" ret: "int" args: "netbsd32_clockid_t" "netbsd32_timespec50p_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32_clock_settime	233
-
-/* syscall: "compat_50_netbsd32_clock_getres" ret: "int" args: "netbsd32_clockid_t" "netbsd32_timespec50p_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32_clock_getres	234
-
 /* syscall: "netbsd32_timer_create" ret: "int" args: "netbsd32_clockid_t" "netbsd32_sigeventp_t" "netbsd32_timerp_t" */
 #define	NETBSD32_SYS_netbsd32_timer_create	235
 
 /* syscall: "netbsd32_timer_delete" ret: "int" args: "netbsd32_timer_t" */
 #define	NETBSD32_SYS_netbsd32_timer_delete	236
 
-/* syscall: "compat_50_netbsd32_timer_settime" ret: "int" args: "netbsd32_timer_t" "int" "netbsd32_itimerspec50p_t" "netbsd32_itimerspec50p_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32_timer_settime	237
-
-/* syscall: "compat_50_netbsd32_timer_gettime" ret: "int" args: "netbsd32_timer_t" "netbsd32_itimerspec50p_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32_timer_gettime	238
-
 /* syscall: "netbsd32_timer_getoverrun" ret: "int" args: "netbsd32_timer_t" */
 #define	NETBSD32_SYS_netbsd32_timer_getoverrun	239
-
-/* syscall: "compat_50_netbsd32_nanosleep" ret: "int" args: "netbsd32_timespec50p_t" "netbsd32_timespec50p_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32_nanosleep	240
 
 /* syscall: "netbsd32_fdatasync" ret: "int" args: "int" */
 #define	NETBSD32_SYS_netbsd32_fdatasync	241
@@ -668,8 +422,6 @@
 /* syscall: "munlockall" ret: "int" args: */
 #define	NETBSD32_SYS_munlockall	243
 
-/* syscall: "compat_50_netbsd32___sigtimedwait" ret: "int" args: "netbsd32_sigsetp_t" "netbsd32_siginfop_t" "netbsd32_timespec50p_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32___sigtimedwait	244
 
 /* syscall: "netbsd32__ksem_init" ret: "int" args: "unsigned int" "netbsd32_semidp_t" */
 #define	NETBSD32_SYS_netbsd32__ksem_init	247
@@ -707,8 +459,6 @@
 /* syscall: "netbsd32_swapctl" ret: "int" args: "int" "netbsd32_voidp" "int" */
 #define	NETBSD32_SYS_netbsd32_swapctl	271
 
-/* syscall: "compat_30_netbsd32_getdents" ret: "int" args: "int" "netbsd32_charp" "netbsd32_size_t" */
-#define	NETBSD32_SYS_compat_30_netbsd32_getdents	272
 
 /* syscall: "netbsd32_minherit" ret: "int" args: "netbsd32_voidp" "netbsd32_size_t" "int" */
 #define	NETBSD32_SYS_netbsd32_minherit	273
@@ -719,20 +469,8 @@
 /* syscall: "netbsd32_lchown" ret: "int" args: "netbsd32_charp" "uid_t" "gid_t" */
 #define	NETBSD32_SYS_netbsd32_lchown	275
 
-/* syscall: "compat_50_netbsd32_lutimes" ret: "int" args: "netbsd32_charp" "netbsd32_timeval50p_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32_lutimes	276
-
 /* syscall: "netbsd32___msync13" ret: "int" args: "netbsd32_voidp" "netbsd32_size_t" "int" */
 #define	NETBSD32_SYS_netbsd32___msync13	277
-
-/* syscall: "compat_30_netbsd32___stat13" ret: "int" args: "netbsd32_charp" "netbsd32_stat13p_t" */
-#define	NETBSD32_SYS_compat_30_netbsd32___stat13	278
-
-/* syscall: "compat_30_netbsd32___fstat13" ret: "int" args: "int" "netbsd32_stat13p_t" */
-#define	NETBSD32_SYS_compat_30_netbsd32___fstat13	279
-
-/* syscall: "compat_30_netbsd32___lstat13" ret: "int" args: "netbsd32_charp" "netbsd32_stat13p_t" */
-#define	NETBSD32_SYS_compat_30_netbsd32___lstat13	280
 
 /* syscall: "netbsd32___sigaltstack14" ret: "int" args: "netbsd32_sigaltstackp_t" "netbsd32_sigaltstackp_t" */
 #define	NETBSD32_SYS_netbsd32___sigaltstack14	281
@@ -776,45 +514,15 @@
 /* syscall: "netbsd32___sigsuspend14" ret: "int" args: "netbsd32_sigsetp_t" */
 #define	NETBSD32_SYS_netbsd32___sigsuspend14	294
 
-/* syscall: "compat_16_netbsd32___sigreturn14" ret: "int" args: "netbsd32_sigcontextp_t" */
-#define	NETBSD32_SYS_compat_16_netbsd32___sigreturn14	295
-
 /* syscall: "netbsd32___getcwd" ret: "int" args: "netbsd32_charp" "netbsd32_size_t" */
 #define	NETBSD32_SYS_netbsd32___getcwd	296
 
 /* syscall: "netbsd32_fchroot" ret: "int" args: "int" */
 #define	NETBSD32_SYS_netbsd32_fchroot	297
 
-/* syscall: "compat_30_netbsd32_fhopen" ret: "int" args: "netbsd32_fhandlep_t" "int" */
-#define	NETBSD32_SYS_compat_30_netbsd32_fhopen	298
-
-/* syscall: "compat_30_netbsd32_fhstat" ret: "int" args: "netbsd32_fhandlep_t" "netbsd32_stat13p_t" */
-#define	NETBSD32_SYS_compat_30_netbsd32_fhstat	299
-
-/* syscall: "compat_20_netbsd32_fhstatfs" ret: "int" args: "netbsd32_fhandlep_t" "netbsd32_stat50p_t" */
-#define	NETBSD32_SYS_compat_20_netbsd32_fhstatfs	300
-
-#if defined(SYSVSEM) || !defined(_KERNEL_OPT)
-/* syscall: "compat_50_netbsd32___semctl14" ret: "int" args: "int" "int" "int" "..." */
-#define	NETBSD32_SYS_compat_50_netbsd32___semctl14	301
-
-#else
 				/* 301 is excluded __semctl14 */
-#endif
-#if defined(SYSVMSG) || !defined(_KERNEL_OPT)
-/* syscall: "compat_50_netbsd32___msgctl13" ret: "int" args: "int" "int" "netbsd32_msqid_ds50p_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32___msgctl13	302
-
-#else
 				/* 302 is excluded __msgctl13 */
-#endif
-#if defined(SYSVSHM) || !defined(_KERNEL_OPT)
-/* syscall: "compat_50_netbsd32___shmctl13" ret: "int" args: "int" "int" "netbsd32_shmid_ds50p_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32___shmctl13	303
-
-#else
 				/* 303 is excluded __shmctl13 */
-#endif
 /* syscall: "netbsd32_lchflags" ret: "int" args: "netbsd32_charp" "netbsd32_u_long" */
 #define	NETBSD32_SYS_netbsd32_lchflags	304
 
@@ -863,9 +571,6 @@
 /* syscall: "netbsd32__lwp_detach" ret: "int" args: "lwpid_t" */
 #define	NETBSD32_SYS_netbsd32__lwp_detach	319
 
-/* syscall: "compat_50_netbsd32__lwp_park" ret: "int" args: "netbsd32_timespec50p_t" "lwpid_t" "netbsd32_voidp" "netbsd32_voidp" */
-#define	NETBSD32_SYS_compat_50_netbsd32__lwp_park	320
-
 /* syscall: "netbsd32__lwp_unpark" ret: "int" args: "lwpid_t" "netbsd32_voidp" */
 #define	NETBSD32_SYS_netbsd32__lwp_unpark	321
 
@@ -897,9 +602,6 @@
 /* syscall: "kqueue" ret: "int" args: */
 #define	NETBSD32_SYS_kqueue	344
 
-/* syscall: "compat_50_netbsd32_kevent" ret: "int" args: "int" "netbsd32_keventp_t" "netbsd32_size_t" "netbsd32_keventp_t" "netbsd32_size_t" "netbsd32_timespec50p_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32_kevent	345
-
 /* syscall: "netbsd32__sched_setparam" ret: "int" args: "pid_t" "lwpid_t" "int" "const netbsd32_sched_paramp_t" */
 #define	NETBSD32_SYS_netbsd32__sched_setparam	346
 
@@ -929,9 +631,6 @@
 
 /* syscall: "netbsd32_fstatvfs1" ret: "int" args: "int" "netbsd32_statvfsp_t" "int" */
 #define	NETBSD32_SYS_netbsd32_fstatvfs1	358
-
-/* syscall: "compat_30_netbsd32_fhstatvfs1" ret: "int" args: "netbsd32_fhandlep_t" "netbsd32_statvfsp_t" "int" */
-#define	NETBSD32_SYS_compat_30_netbsd32_fhstatvfs1	359
 
 /* syscall: "netbsd32_extattrctl" ret: "int" args: "netbsd32_charp" "int" "netbsd32_charp" "int" "netbsd32_charp" */
 #define	NETBSD32_SYS_netbsd32_extattrctl	360
@@ -972,12 +671,6 @@
 /* syscall: "netbsd32_extattr_list_link" ret: "int" args: "netbsd32_charp" "int" "netbsd32_voidp" "netbsd32_size_t" */
 #define	NETBSD32_SYS_netbsd32_extattr_list_link	372
 
-/* syscall: "compat_50_netbsd32_pselect" ret: "int" args: "int" "netbsd32_fd_setp_t" "netbsd32_fd_setp_t" "netbsd32_fd_setp_t" "netbsd32_timespec50p_t" "netbsd32_sigsetp_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32_pselect	373
-
-/* syscall: "compat_50_netbsd32_pollts" ret: "int" args: "netbsd32_pollfdp_t" "u_int" "netbsd32_timespec50p_t" "netbsd32_sigsetp_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32_pollts	374
-
 /* syscall: "netbsd32_setxattr" ret: "int" args: "netbsd32_charp" "netbsd32_charp" "netbsd32_voidp" "netbsd32_size_t" "int" */
 #define	NETBSD32_SYS_netbsd32_setxattr	375
 
@@ -1014,29 +707,11 @@
 /* syscall: "netbsd32_fremovexattr" ret: "int" args: "int" "netbsd32_charp" */
 #define	NETBSD32_SYS_netbsd32_fremovexattr	386
 
-/* syscall: "compat_50_netbsd32___stat30" ret: "int" args: "netbsd32_charp" "netbsd32_stat50p_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32___stat30	387
-
-/* syscall: "compat_50_netbsd32___fstat30" ret: "int" args: "int" "netbsd32_stat50p_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32___fstat30	388
-
-/* syscall: "compat_50_netbsd32___lstat30" ret: "int" args: "netbsd32_charp" "netbsd32_stat50p_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32___lstat30	389
-
 /* syscall: "netbsd32___getdents30" ret: "int" args: "int" "netbsd32_charp" "netbsd32_size_t" */
 #define	NETBSD32_SYS_netbsd32___getdents30	390
 
 				/* 391 is ignored old posix fadvise */
-/* syscall: "compat_30_netbsd32___fhstat30" ret: "int" args: "netbsd32_fhandlep_t" "netbsd32_stat50p_t" */
-#define	NETBSD32_SYS_compat_30_netbsd32___fhstat30	392
-
-#if defined(NTP) || !defined(_KERNEL_OPT)
-/* syscall: "compat_50_netbsd32_ntp_gettime" ret: "int" args: "netbsd32_ntptimeval50p_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32_ntp_gettime	393
-
-#else
 				/* 393 is excluded __ntp_gettime30 */
-#endif
 /* syscall: "netbsd32___socket30" ret: "int" args: "int" "int" "int" */
 #define	NETBSD32_SYS_netbsd32___socket30	394
 
@@ -1048,9 +723,6 @@
 
 /* syscall: "netbsd32___fhstatvfs140" ret: "int" args: "netbsd32_pointer_t" "netbsd32_size_t" "netbsd32_statvfsp_t" "int" */
 #define	NETBSD32_SYS_netbsd32___fhstatvfs140	397
-
-/* syscall: "compat_50_netbsd32___fhstat40" ret: "int" args: "netbsd32_pointer_t" "netbsd32_size_t" "netbsd32_stat50p_t" */
-#define	NETBSD32_SYS_compat_50_netbsd32___fhstat40	398
 
 /* syscall: "netbsd32___mount50" ret: "int" args: "netbsd32_charp" "netbsd32_charp" "int" "netbsd32_voidp" "netbsd32_size_t" */
 #define	NETBSD32_SYS_netbsd32___mount50	410
@@ -1102,9 +774,6 @@
 
 /* syscall: "netbsd32_____sigtimedwait50" ret: "int" args: "const netbsd32_sigsetp_t" "netbsd32_siginfop_t" "netbsd32_timespecp_t" */
 #define	NETBSD32_SYS_netbsd32_____sigtimedwait50	431
-
-/* syscall: "compat_60_netbsd32__lwp_park" ret: "int" args: "const netbsd32_timespecp_t" "lwpid_t" "const netbsd32_voidp" "const netbsd32_voidp" */
-#define	NETBSD32_SYS_compat_60_netbsd32__lwp_park	434
 
 /* syscall: "netbsd32___kevent50" ret: "int" args: "int" "const netbsd32_keventp_t" "netbsd32_size_t" "netbsd32_keventp_t" "netbsd32_size_t" "const netbsd32_timespecp_t" */
 #define	NETBSD32_SYS_netbsd32___kevent50	435

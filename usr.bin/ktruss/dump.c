@@ -557,12 +557,6 @@ syscallprint(struct ktr_header *kth)
 		}
 		break;
 
-	case SYS_compat_16___sigaction14 :
-		wprintf("(%s", signals[(int)*ap].name);
-		ap++;
-		argsize -= sizeof(register_t);
-		break;
-
 	case SYS_ioctl :
 		argprint("(", &ap, &argsize);
 		if ((s = ioctlname(*ap)) != NULL)

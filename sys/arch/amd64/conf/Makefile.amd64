@@ -91,7 +91,6 @@ locore.o machdep.o: Makefile
 
 acpi_wakeup_low.o amd64func.o busfunc.o cpufunc.o cpu_in_cksum.o: assym.h
 lock_stubs.o mptramp.o: assym.h
-netbsd32_sigcode.o: assym.h
 
 ##
 ## (7) misc settings

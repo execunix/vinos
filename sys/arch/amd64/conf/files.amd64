@@ -128,7 +128,6 @@ attach	fd at fdc
 # NetBSD/i386 32-bit binary compatibility (COMPAT_NETBSD32)
 include "compat/netbsd32/files.netbsd32"
 file	arch/amd64/amd64/netbsd32_machdep.c	compat_netbsd32
-file	arch/amd64/amd64/netbsd32_sigcode.S	compat_netbsd32 & compat_16
 file	arch/amd64/amd64/netbsd32_syscall.c	compat_netbsd32
 
 #

@@ -46,12 +46,6 @@ typedef struct { NETBSD32_POINTER_TYPE i32; }	netbsd32_pointer_t;
 typedef netbsd32_pointer_t			netbsd32_sigcontextp_t;
 
 /*
- * The sigcode is ABI neutral.
- */
-#define	netbsd32_sigcode			sigcode
-#define	netbsd32_esigcode			esigcode
-
-/*
  * Note: syscall_intern and setregs do not care about COMPAT_NETBSD32.
  */
 #define	netbsd32_syscall_intern			syscall_intern

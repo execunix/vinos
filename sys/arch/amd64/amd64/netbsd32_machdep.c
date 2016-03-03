@@ -250,65 +250,6 @@ netbsd32_sendsig(const ksiginfo_t *ksi, const sigset_t *mask)
 	netbsd32_sendsig_siginfo(ksi, mask);
 }
 
-int
-compat_16_netbsd32___sigreturn14(struct lwp *l, const struct compat_16_netbsd32___sigreturn14_args *uap, register_t *retval)
-{
-	/* {
-		syscallarg(netbsd32_sigcontextp_t) sigcntxp;
-	} */
-	struct netbsd32_sigcontext *scp, context;
-	struct proc *p = l->l_proc;
-	struct trapframe *tf;
-	int error;
-
-	/*
-	 * The trampoline code hands us the context.
-	 * It is unsafe to keep track of it ourselves, in the event that a
-	 * program jumps out of a signal handler.
-	 */
-	scp = NETBSD32PTR64(SCARG(uap, sigcntxp));
-	if (copyin(scp, &context, sizeof(*scp)) != 0)
-		return (EFAULT);
-
-	/*
-	 * Check for security violations.
-	 */
-	error = check_sigcontext32(l, &context);
-	if (error != 0)
-		return error;
-
-	/* Restore register context. */
-	tf = l->l_md.md_regs;
-	tf->tf_ds = context.sc_ds;
-	tf->tf_es = context.sc_es;
-	cpu_fsgs_reload(l, context.sc_fs, context.sc_gs);
-	tf->tf_rflags = context.sc_eflags;
-	tf->tf_rdi = context.sc_edi;
-	tf->tf_rsi = context.sc_esi;
-	tf->tf_rbp = context.sc_ebp;
-	tf->tf_rbx = context.sc_ebx;
-	tf->tf_rdx = context.sc_edx;
-	tf->tf_rcx = context.sc_ecx;
-	tf->tf_rax = context.sc_eax;
-
-	tf->tf_rip = context.sc_eip;
-	tf->tf_cs = context.sc_cs;
-	tf->tf_rsp = context.sc_esp;
-	tf->tf_ss = context.sc_ss;
-
-	mutex_enter(p->p_lock);
-	/* Restore signal stack. */
-	if (context.sc_onstack & SS_ONSTACK)
-		l->l_sigstk.ss_flags |= SS_ONSTACK;
-	else
-		l->l_sigstk.ss_flags &= ~SS_ONSTACK;
-	/* Restore signal mask. */
-	(void) sigprocmask1(l, SIG_SETMASK, &context.sc_mask, 0);
-	mutex_exit(p->p_lock);
-
-	return (EJUSTRETURN);
-}
-
 
 #ifdef COREDUMP
 /*

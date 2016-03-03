@@ -41,13 +41,6 @@
 int	mm_md_physacc(paddr_t, vm_prot_t);
 
 /*
- * Optional open() hook for MD.  Used by i386 for /dev/io emulation.
- *
- * machine/types.h must define __HAVE_MM_MD_OPEN to use this.
- */
-int	mm_md_open(dev_t, int, int, struct lwp *);
-
-/*
  * Optional read/write hook for additional minor devices.
  * Must handle the complete uio, not execute in a loop.
  *

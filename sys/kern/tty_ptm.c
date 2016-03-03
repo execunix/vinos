@@ -332,9 +332,6 @@ ptmattach(int n)
 		panic("ptmattach: Can't find pty slave in cdevsw");
 	if ((ptc_major = cdevsw_lookup_major(&ptc_cdevsw)) == -1)
 		panic("ptmattach: Can't find pty master in cdevsw");
-#ifdef COMPAT_BSDPTY
-	ptm = &ptm_bsdpty;
-#endif
 }
 
 static int
