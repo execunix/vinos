@@ -58,11 +58,7 @@ __RCSID("$NetBSD: jobs.c,v 1.73 2014/04/11 01:49:45 christos Exp $");
 
 #include "shell.h"
 #if JOBS
-#if OLD_TTY_DRIVER
-#include "sgtty.h"
-#else
 #include <termios.h>
-#endif
 #undef CEOF			/* syntax.h redefines this */
 #endif
 #include "redir.h"
@@ -107,27 +103,6 @@ STATIC void cmdputs(const char *);
 STATIC int onsigchild(void);
 #endif
 
-#ifdef OLD_TTY_DRIVER
-static pid_t tcgetpgrp(int fd);
-static int tcsetpgrp(int fd, pid_t pgrp);
-
-static pid_t
-tcgetpgrp(int fd)
-{
-	pid_t pgrp;
-	if (ioctl(fd, TIOCGPGRP, (char *)&pgrp) == -1)
-		return -1;
-	else
-		return pgrp;
-}
-
-static int
-tcsetpgrp(int fd, pid_tpgrp)
-{
-	return ioctl(fd, TIOCSPGRP, (char *)&pgrp);
-}
-#endif
-
 /*
  * Turn job control on and off.
  *
@@ -141,10 +116,6 @@ MKINIT int jobctl;
 void
 setjobctl(int on)
 {
-#ifdef OLD_TTY_DRIVER
-	int ldisc;
-#endif
-
 	if (on == jobctl || rootshell == 0)
 		return;
 	if (on) {
@@ -200,14 +171,6 @@ out:
 			}
 		} while (0);
 
-#ifdef OLD_TTY_DRIVER
-		if (ioctl(ttyfd, TIOCGETD, (char *)&ldisc) < 0
-		    || ldisc != NTTYDISC) {
-			out2str("sh: need new tty driver to run job control; job control turned off\n");
-			mflag = 0;
-			return;
-		}
-#endif
 		setsignal(SIGTSTP, 0);
 		setsignal(SIGTTOU, 0);
 		setsignal(SIGTTIN, 0);
