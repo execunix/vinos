@@ -2107,8 +2107,8 @@ main()
 }
 
 #main "$@"
-#main -U -x -u -m i386
-main -U -x -u -m amd64 -M ../tmp
+main -U -x -u -m i386 -M ../tmp
+#main -U -x -u -m amd64 -M ../tmp
 #main -U -x -u -m evbarm -M ../tmp
 #main -U -x -u -m evbarm64
 
