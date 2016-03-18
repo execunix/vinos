@@ -108,58 +108,10 @@ BEGIN {
 	}
 	close(cfgfile)
 
-	# determine number of partitions used by platform
-	# there are three variants in tree:
-	# 1. MAXPARTITIONS = 8
-	# 2. MAXPARTITIONS = 16 with no back compat mapping
-	# 3. MAXPARTITIONS = 16 with back compat with old limit of 8
-	# currently all archs, which moved from 8->16 use same
-	# scheme for mapping disk minors, high minor offset
-	# if this changes, the below needs to be adjusted and
-	# additional makedisk_p16foo needs to be added
-	incdir = machine
-	diskpartitions = 0
-	diskbackcompat = 0
-	while (1) {
-		inc = top "arch/" incdir "/include/disklabel.h"
-		if (system("test -f '" inc "'") != 0) {
-			print "ERROR: can't find kernel include file '" inc "'" > "/dev/stderr"
-			exit 1
-		}
-		incdir = 0
-		while (getline < inc) {
-			if ($1 == "#define" && $2 == "MAXPARTITIONS")
-				diskpartitions = $3
-			else if ($1 == "#define" && $2 == "OLDMAXPARTITIONS")
-				diskbackcompat = $3
-			else if ($1 == "#define" && $2 == "RAW_PART")
-				RAWDISK_OFF = $3
-			else if ($1 == "#include" && 
-				 $2 ~ "<.*/disklabel.h>" &&
-				 $2 !~ ".*nbinclude.*")
-			{
-				# wrapper, switch to the right file
-				incdir = substr($2, 2)
-				sub("/.*", "", incdir)
-				break;
-			}
-		}
-		close(inc)
-
-		if (diskpartitions)
-			break;
-
-		if (!incdir) {
-			print "ERROR: can't determine MAXPARTITIONS from include file '" inc "'" > "/dev/stderr"
-			exit 1
-		}
-	}
+	# tbd
+	diskpartitions = 8
 	MKDISK = "makedisk_p" diskpartitions	# routine to create disk devs
 	DISKMINOROFFSET = diskpartitions
-	if (diskbackcompat) {
-		MKDISK = MKDISK "high"
-		DISKMINOROFFSET = diskbackcompat
-	}
 	RAWDISK_NAME = sprintf("%c", 97 + RAWDISK_OFF)		# a+offset
 
 	# read etc/master.passwd for user name->UID mapping
@@ -247,10 +199,6 @@ BEGIN {
 }
 /^makedisk_p16\(\) \{/, /^\}/ {
 	if (MKDISK != "makedisk_p16")
-		next;
-}
-/^makedisk_p16high\(\) \{/, /^\}/ {
-	if (MKDISK != "makedisk_p16high")
 		next;
 }
 

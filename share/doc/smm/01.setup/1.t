@@ -120,24 +120,6 @@ If there are multiple controllers, the disk unit numbers will normally
 be counted sequentially across controllers.  This can be taken
 advantage of to make the system less dependent on the interconnect
 topology, and to make reconfiguration after hardware failure easier.
-.PP
-Each UNIX physical disk is divided into at most 8 logical disk partitions,
-each of which may occupy any consecutive cylinder range on the physical
-device.  The cylinders occupied by the 8 partitions for each drive type
-are specified initially in the disk description file
-.Pn /etc/disktab
-(c.f.
-.Xr disktab (5)).
-The partition information and description of the
-drive geometry are written in one of the first sectors of each disk with the
-.Xr disklabel (8)
-program.  Each partition may be used for either a
-raw data area such as a paging area or to store a UNIX filesystem.
-It is conventional for the first partition on a disk to be used
-to store a root filesystem, from which UNIX may be bootstrapped.
-The second partition is traditionally used as a paging area, and the
-rest of the disk is divided into spaces for additional ``mounted
-filesystems'' by use of one or more additional partitions.
 .Sh 2 "UNIX devices: block and raw"
 .PP
 UNIX makes a distinction between ``block'' and ``raw'' (character)

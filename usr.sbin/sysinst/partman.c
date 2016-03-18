@@ -46,7 +46,7 @@
 
 /* flags whether to offer the respective options (depending on helper
    programs available on install media */
-int have_vnd, have_lvm, have_gpt, have_dk;
+int have_vnd, have_gpt, have_dk;
 
 /* XXX: replace all MAX_* defines with vars that depend on kernel settings */
 #define MAX_ENTRIES 96
@@ -1352,7 +1352,6 @@ pm_make_bsd_partitions(pm_devs_t *pm_cur)
 
 	pm_cur->unsaved = 1;
 	layoutkind = LY_SETNEW;
-	md_make_bsd_partitions();
 	pm_cur->bootable = (pm_cur->bsdlabel[pm_cur->rootpart].pi_flags & PIF_MOUNT) ?
 		1 : 0;
 	for (i = 0; i < MAXPARTITIONS; i++)
@@ -1386,9 +1385,6 @@ pm_rename(pm_devs_t *pm_cur)
 	pm_select(pm_cur);
 	msg_prompt_win(MSG_packname, -1, 18, 0, 0, pm_cur->bsddiskname,
 		pm_cur->bsddiskname, sizeof pm_cur->bsddiskname);
-#ifndef NO_DISKLABEL
-	(void) savenewlabel(pm_cur->bsdlabel, MAXPARTITIONS);
-#endif
 	return;
 }
 
@@ -1628,13 +1624,8 @@ pm_commit(menudesc *m, void *arg)
 			}
 			pm_i->unsaved = 0;
 		} else if (! pm_i->gpt) {
-#ifndef NO_DISKLABEL
-			savenewlabel(pm_i->bsdlabel, MAXPARTITIONS);
-#endif
 			if (
-				write_disklabel() != 0   || /* Write slices table (disklabel) */
-                                set_swap_if_low_ram(pm->diskdev, pm->bsdlabel) != 0 || 
-				md_post_disklabel() != 0 || /* Enable swap and check badblock */
+				set_swap_if_low_ram(pm->diskdev, pm->bsdlabel) != 0 || 
 				make_filesystems() != 0     /* Create filesystems with newfs */
 			) {
 				/* Oops, something failed... */
@@ -1683,9 +1674,6 @@ pm_savebootsector(void)
 			} else {
 				pm_select(pm_i);
 			 	if (
-#ifndef NO_DISKLABEL
-				    check_partitions() == 0 ||
-#endif
 				    md_post_newfs() != 0) {
 		 			if (logfp)
 						fprintf(logfp, "Error writting bootsector to %s\n",
@@ -1840,49 +1828,6 @@ pm_menufmt(menudesc *m, int opt, void *arg)
 	return;
 }
 
-/* Submenu for LVM/VND */
-static void
-pm_upddevlist_adv(menudesc *m, void *arg, int *i,
-	pm_upddevlist_adv_t *d)
-{
-	int ii;
-	if (d->create_msg != NULL) {
-		/* We want to have menu entry that creates a new device */
-		((part_entry_t *)arg)[*i].type = d->pe_type;
-		((part_entry_t *)arg)[*i].dev_ptr = NULL;
-		((part_entry_t *)arg)[*i].dev_ptr_delta = d->s->parent_size * d->sub_num;
-		m->opts[(*i)++] = (struct menu_ent) {
-			.opt_name = d->create_msg,
-			.opt_action = pm_submenu,
-		};
-	}
-	for (ii = 0; ii < d->s->max; ii++) {
-		if (d->s->entry_enabled == NULL ||
-			d->s->entry_blocked == NULL ||
-			*(int*)((char*)d->s->entry_enabled + d->s->entry_size * ii +
-				d->s->parent_size * d->sub_num) == 0 ||
-			*(int*)((char*)d->s->entry_blocked + d->s->entry_size * ii +
-				d->s->parent_size * d->sub_num) != 0)
-			continue;
-		/* We have a entry for displaying */
-		changed = 1;
-		m->opts[*i] = (struct menu_ent) {
-			.opt_name = NULL,
-			.opt_action = pm_submenu,
-		};
-		((part_entry_t *)arg)[*i].type = d->pe_type;
-		((part_entry_t *)arg)[*i].dev_ptr = (char*)d->s->entry_first +
-			d->s->entry_size * ii + d->s->parent_size * d->sub_num;
-		(*i)++;
-		/* We should show submenu for current entry */
-		if (d->sub != NULL) {
-			d->sub->sub_num = ii;
-			pm_upddevlist_adv(m, arg, i, d->sub);
-		}
-	}
-	return;
-}
-
 /* Update partman main menu with devices list */
 static int
 pm_upddevlist(menudesc *m, void *arg)
@@ -1941,13 +1886,6 @@ pm_upddevlist(menudesc *m, void *arg)
 		}
 		i++;
 	}
-	if (have_lvm) {
-		pm_upddevlist_adv(m, arg, &i,
-		    &(pm_upddevlist_adv_t) {MSG_create_cnd, PM_VND_T, &vnds_t_info, 0, NULL});
-		pm_upddevlist_adv(m, arg, &i,
-		    &(pm_upddevlist_adv_t) {MSG_create_vg, PM_LVM_T, &lvms_t_info, 0,
-		    &(pm_upddevlist_adv_t) {MSG_create_lv, PM_LVMLV_T, &lv_t_info, 0, NULL}});
-	}
 
 	m->opts[i++] = (struct menu_ent) {
 		.opt_name = MSG_updpmlist,
@@ -1994,7 +1932,6 @@ check_available_binaries()
 	did_test = 1;
 
 	have_vnd = binary_available("vnconfig");
-	have_lvm = binary_available("lvm");
 	have_gpt = binary_available("gpt");
 	have_dk = binary_available("dkctl");
 }
@@ -2011,8 +1948,6 @@ partman(void)
 	if (firstrun) {
 		check_available_binaries();
 
-		if (!have_lvm)
-			remove_lvm_options();
 		if (!have_gpt)
 			remove_gpt_options();
 
@@ -2079,16 +2014,4 @@ partman(void)
 	
 	/* retvalue <0 - error, retvalue ==0 - user quits, retvalue >0 - all ok */
 	return (args[0].retvalue >= 0)?0:-1;
-}
-
-void
-update_wedges(const char *disk)
-{
-	check_available_binaries();
-
-	if (!have_dk)
-		return;
-
-	run_program(RUN_SILENT | RUN_ERROR_OK,
-	    "dkctl %s makewedges", disk);
 }

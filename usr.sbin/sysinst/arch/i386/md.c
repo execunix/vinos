@@ -228,15 +228,6 @@ edit:
 }
 
 /*
- * md back-end code for menu-driven BSD disklabel editor.
- */
-int
-md_make_bsd_partitions(void)
-{
-	return make_bsd_partitions();
-}
-
-/*
  * any additional partition validation
  */
 int
@@ -256,10 +247,10 @@ md_check_partitions(void)
 }
 
 /*
- * hook called before writing new disklabel.
+ * hook called before writing new mbr.
  */
 int
-md_pre_disklabel(void)
+md_write_mbr(void)
 {
 	if (pm->no_mbr)
 		return 0;
@@ -272,15 +263,6 @@ md_pre_disklabel(void)
 		process_menu(MENU_ok, NULL);
 		return 1;
 	}
-	return 0;
-}
-
-/*
- * hook called after writing disklabel to new target disk.
- */
-int
-md_post_disklabel(void)
-{
 	return 0;
 }
 

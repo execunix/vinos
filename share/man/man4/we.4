@@ -38,8 +38,6 @@
 .Ss ISA boards
 .Cd "we0 at isa? port 0x280 iomem 0xd0000 irq 9"
 .Cd "we1 at isa? port 0x300 iomem 0xcc000 irq 10"
-.Ss MCA boards
-.Cd "we* at mca? slot ?"
 .Ss atari
 .Cd "we0 at vme0 irq 4 # SMC Elite Ultra with SMC_TT VME-ISA bridge"
 .Sh DESCRIPTION
@@ -167,5 +165,4 @@ to limit NFS's packet size.
 .Xr ifmedia 4 ,
 .Xr intro 4 ,
 .Xr isa 4 ,
-.Xr mca 4 ,
 .Xr ifconfig 8

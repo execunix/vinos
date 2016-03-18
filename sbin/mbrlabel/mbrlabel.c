@@ -47,8 +47,6 @@ __RCSID("$NetBSD: mbrlabel.c,v 1.28 2012/07/14 20:14:17 wiz Exp $");
 #include <util.h>
 
 #include <sys/param.h>
-#define FSTYPENAMES
-#include <sys/disklabel.h>
 #include <sys/bootblock.h>
 #include <sys/ioctl.h>
 

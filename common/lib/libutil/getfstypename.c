@@ -48,7 +48,6 @@ __KERNEL_RCSID(0, "$NetBSD: getfstypename.c,v 1.8 2012/04/07 16:28:59 christos E
 # define FSTYPE_ENUMNAME fstype_enum
 # include <sys/types.h>
 # include <sys/disk.h>
-# include <sys/disklabel.h>
 # ifndef _KERNEL
 #  include <util.h>
 # endif

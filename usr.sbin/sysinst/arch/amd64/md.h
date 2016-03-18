@@ -91,19 +91,6 @@
  */
 #define DISK_NAMES "wd", "sd", "ld", "xbd:no_mbr"
 
-/*
- * Machine-specific command to write a new label to a disk.
- * For example, i386  uses "/sbin/disklabel -w -r", just like i386
- * miniroot scripts, though this may leave a bogus incore label.
- * Sun ports should probably use  DISKLABEL_CMD "/sbin/disklabel -w"
- * to get incore  to ondisk inode translation for the Sun proms.
- * If not defined, we assume the port does not support disklabels and
- * hand-edited disklabel will NOT be written by MI code.
- *
- * On amd64, do what the 1.2 install scripts did.
- */
-#define DISKLABEL_CMD "disklabel -w -r"
-
 #define _PATH_MBR	DEFAULT_BOOTDIR "/" DEFAULT_BOOTCODE
 #define _PATH_BOOTSEL	DEFAULT_BOOTDIR "/" DEFAULT_BOOTSELCODE
 

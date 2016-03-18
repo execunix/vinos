@@ -47,13 +47,6 @@
 #		- if MBR_BOOTCODE is not specified,
 #		  MBR_DEFAULT_BOOTCODE (default: mbr) will be used
 #		  if the target ${MACHINE} has the one in /usr/mdec
-#	USE_SUNLABEL
-#		set yes if target disk image requires Sun's label
-#		(default: no)
-#	INSTALLBOOT_AFTER_DISKLABEL (untested)
-#		set yes if the target ${MACHINE} requires disklabel
-#		to run installboot(8), like hp300
-#		(default: empty)
 #	IMAGEMB
 #		target image size in MB
 #		(default: 2048)
@@ -146,8 +139,6 @@ RM?=		rm
 #
 BOOTDISK?=	sd0
 USE_MBR?=	no
-USE_SUNLABEL?=	no
-INSTALLBOOT_AFTER_DISKLABEL?=	no
 
 #
 # size parameters for image
@@ -183,10 +174,6 @@ MBRNETBSD=	169
 BSDPARTSECTORS!= expr ${IMAGESECTORS} - ${LABELSECTORS}
 FSOFFSET=	${LABELSECTORS}
 SWAPOFFSET!=	expr ${LABELSECTORS} + ${FSSECTORS}
-
-# parameters for sunlabel
-FSCYLINDERS!=	expr ${FSSECTORS} / \( ${HEADS} \* ${SECTORS} \)
-SWAPCYLINDERS!=	expr ${SWAPSECTORS} / \( ${HEADS} \* ${SECTORS} \) || true
 
 
 #
@@ -294,7 +281,7 @@ ${TARGETFS}: prepare_md_post
 	    -F ${WORKSPEC} -N ${WORKDIR}/etc				\
 	    ${IMGMAKEFSOPTIONS}						\
 	    ${WORKFS} ${WORKDIR}
-.if !empty(PRIMARY_BOOT) && ${INSTALLBOOT_AFTER_DISKLABEL} == "no"
+.if !empty(PRIMARY_BOOT)
 	${TOOL_INSTALLBOOT} -v -m ${MACHINE} ${INSTALLBOOTOPTIONS} ${WORKFS} \
 	    ${WORKDIR}/usr/mdec/${PRIMARY_BOOT} ${SECONDARY_BOOT_ARG}
 .endif
@@ -372,18 +359,7 @@ ${IMGBASE}.img:	${TARGETFS} ${WORKLABEL}
 	${DD} if=/dev/zero of=${WORKSWAP} seek=$$((${SWAPSECTORS} - 1)) count=1
 	${CAT} ${WORKSWAP} >> ${WORKIMG}
 .endif
-.if ${USE_SUNLABEL} != "no"
-	@echo Creating sun disklabel...
-	printf 'V ncyl %d\nV nhead %d\nV nsect %d\na %d %d/0/0\nb %d %d/0/0\nW\n' \
-	    ${CYLINDERS} ${HEADS} ${SECTORS} \
-	    ${FSOFFSET} ${FSCYLINDERS} ${FSCYLINDERS} ${SWAPCYLINDERS} | \
-	    ${TOOL_SUNLABEL} -nq ${WORKIMG}
-.endif
 	${TOOL_DISKLABEL} -R -F ${WORKIMG} ${WORKLABEL}
-.if !empty(PRIMARY_BOOT) && ${INSTALLBOOT_AFTER_DISKLABEL} != "no"
-	${TOOL_INSTALLBOOT} -v -m ${MACHINE} ${INSTALLBOOTOPTIONS} ${WORKIMG} \
-	    ${WORKDIR}/usr/mdec/${PRIMARY_BOOT}
-.endif
 	mv ${WORKIMG} ${.TARGET}
 
 

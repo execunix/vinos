@@ -58,7 +58,6 @@ file format for that database.
 may be one of:
 .Bl -column "protocols" "user:passwd:uid:gid:gecos:home_dir:shell" -offset indent -compact
 .It Sy Database Ta Sy Display format
-.It disktab Ta entry
 .It ethers Ta address name
 .It gettytab Ta entry
 .It group Ta group:passwd:gid:[member[,member]...]
@@ -99,8 +98,7 @@ will be retrieved using the appropriate enumeration function and printed.
 For
 .Xr cgetcap 3
 style databases
-.Sy ( disktab ,
-.Sy printcap )
+.Sy ( printcap )
 specifying a key, lists the entry for that key, and specifying more arguments
 after the key are used as fields in that key, and only the values of the keys
 are returned.
@@ -121,7 +119,6 @@ or 3 if there is no support for enumeration on
 .Ar database .
 .Sh SEE ALSO
 .Xr cgetcap 3 ,
-.Xr disktab 5 ,
 .Xr ethers 5 ,
 .Xr gettytab 5 ,
 .Xr group 5 ,

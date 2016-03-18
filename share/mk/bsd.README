@@ -861,8 +861,6 @@ TOOL_STAT		Display file status.  [stat]
 TOOL_STRFILE		Create a random access file for storing strings.
 			[strfile]
 
-TOOL_SUNLABEL		Read or modify a SunOS disk label.  [sunlabel]
-
 TOOL_TBL		Format tables for groff.  [tbl]
 
 TOOL_UUDECODE		Uudecode a binary file.  [uudecode]

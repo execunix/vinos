@@ -188,7 +188,6 @@
 ./usr/libdata/debug/sbin/devpubd.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/dhclient.debug		comp-dhclient-debug	debug
 ./usr/libdata/debug/sbin/dhcpcd.debug		comp-dhcpcd-debug	debug
-./usr/libdata/debug/sbin/disklabel.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/dkctl.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/dkscan_bsdlabel.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/dmesg.debug		comp-sysutil-debug	debug
@@ -792,7 +791,6 @@
 ./usr/libdata/debug/usr/sbin/dev_mkdb.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/usr/sbin/dhcpd.debug	comp-dhcpd-debug	debug
 ./usr/libdata/debug/usr/sbin/dhcrelay.debug	comp-dhcpd-debug	debug
-./usr/libdata/debug/usr/sbin/diskpart.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/usr/sbin/dnssec-dsfromkey.debug	comp-bind-debug		debug
 ./usr/libdata/debug/usr/sbin/dnssec-importkey.debug	comp-bind-debug		debug
 ./usr/libdata/debug/usr/sbin/dnssec-keyfromlabel.debug	comp-bind-debug		debug
@@ -984,7 +982,6 @@
 ./usr/libdata/debug/usr/sbin/stdethers.debug	comp-nis-debug		yp,debug
 ./usr/libdata/debug/usr/sbin/stdhosts.debug	comp-nis-debug		yp,debug
 ./usr/libdata/debug/usr/sbin/sti.debug		comp-sysutil-debug	debug
-./usr/libdata/debug/usr/sbin/sunlabel.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/usr/sbin/sup.debug		comp-sup-debug		debug
 ./usr/libdata/debug/usr/sbin/supfilesrv.debug	comp-sup-debug		debug
 ./usr/libdata/debug/usr/sbin/supscan.debug	comp-sup-debug		debug

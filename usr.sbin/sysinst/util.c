@@ -39,7 +39,6 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/mount.h>
-#include <sys/disklabel.h>
 #include <sys/dkio.h>
 #include <sys/ioctl.h>
 #include <sys/types.h>

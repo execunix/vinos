@@ -298,13 +298,6 @@
 ./usr/include/dev/scsipi/scsipi_debug.h		comp-c-include
 ./usr/include/dev/scsipi/scsipiconf.h		comp-c-include
 ./usr/include/dev/scsipi/ses.h			comp-c-include
-./usr/include/dev/sun/disklabel.h		comp-c-include
-./usr/include/dev/sun/eeprom.h			comp-c-include
-./usr/include/dev/sun/fbio.h			comp-c-include
-./usr/include/dev/sun/idprom.h			comp-c-include
-./usr/include/dev/sun/kbd_reg.h			comp-c-include
-./usr/include/dev/sun/kbio.h			comp-c-include
-./usr/include/dev/sun/vuid_event.h		comp-c-include
 ./usr/include/dev/tc/sfbreg.h			comp-c-include
 ./usr/include/dev/tc/sticio.h			comp-c-include
 ./usr/include/dev/tc/sticreg.h			comp-c-include
@@ -320,7 +313,6 @@
 ./usr/include/dev/wscons/wsksymdef.h		comp-c-include
 ./usr/include/dev/wscons/wsksymvar.h		comp-c-include
 ./usr/include/dirent.h				comp-c-include
-./usr/include/disktab.h				comp-c-include
 ./usr/include/dlfcn.h				comp-c-include
 ./usr/include/dns_sd.h				comp-mdns-include	mdns
 ./usr/include/dwarf.h				comp-c-include
@@ -1909,9 +1901,6 @@
 ./usr/include/sys/dir.h				comp-c-include
 ./usr/include/sys/dirent.h			comp-c-include
 ./usr/include/sys/disk.h			comp-c-include
-./usr/include/sys/disklabel.h			comp-c-include
-./usr/include/sys/disklabel_gpt.h		comp-c-include
-./usr/include/sys/disklabel_rdb.h		comp-c-include
 ./usr/include/sys/dkbad.h			comp-c-include
 ./usr/include/sys/dkio.h			comp-c-include
 ./usr/include/sys/dkstat.h			comp-c-include
@@ -4190,8 +4179,6 @@
 ./usr/share/man/cat3/dirent.0			comp-c-catman		.cat
 ./usr/share/man/cat3/dirfd.0			comp-c-catman		.cat
 ./usr/share/man/cat3/dirname.0			comp-c-catman		.cat
-./usr/share/man/cat3/disklabel_dkcksum.0	comp-c-catman		.cat
-./usr/share/man/cat3/disklabel_scan.0		comp-c-catman		.cat
 ./usr/share/man/cat3/div.0			comp-c-catman		.cat
 ./usr/share/man/cat3/dl_iterate_phdr.0		comp-c-catman		.cat
 ./usr/share/man/cat3/dladdr.0			comp-c-catman		.cat
@@ -4855,7 +4842,6 @@
 ./usr/share/man/cat3/getdelim.0			comp-c-catman		.cat
 ./usr/share/man/cat3/getdevmajor.0		comp-c-catman		.cat
 ./usr/share/man/cat3/getdirentries.0		comp-c-catman		.cat
-./usr/share/man/cat3/getdiskbyname.0		comp-c-catman		.cat
 ./usr/share/man/cat3/getdiskcookedname.0	comp-c-catman		.cat
 ./usr/share/man/cat3/getdiskrawname.0		comp-c-catman		.cat
 ./usr/share/man/cat3/getdomainname.0		comp-c-catman		.cat
@@ -4882,9 +4868,6 @@
 ./usr/share/man/cat3/gethostid.0		comp-c-catman		.cat
 ./usr/share/man/cat3/gethostname.0		comp-c-catman		.cat
 ./usr/share/man/cat3/getifaddrs.0		comp-c-catman		.cat
-./usr/share/man/cat3/getlabeloffset.0		comp-c-catman		.cat
-./usr/share/man/cat3/getlabelsector.0		comp-c-catman		.cat
-./usr/share/man/cat3/getlabelusesmbr.0		comp-c-catman		.cat
 ./usr/share/man/cat3/getlastlogx.0		comp-c-catman		.cat
 ./usr/share/man/cat3/getline.0			comp-c-catman		.cat
 ./usr/share/man/cat3/getloadavg.0		comp-c-catman		.cat
@@ -6812,7 +6795,6 @@
 ./usr/share/man/cat3/setbuf.0			comp-c-catman		.cat
 ./usr/share/man/cat3/setbuffer.0		comp-c-catman		.cat
 ./usr/share/man/cat3/setclasscontext.0		comp-c-catman		.cat
-./usr/share/man/cat3/setdisktab.0		comp-c-catman		.cat
 ./usr/share/man/cat3/setdomainname.0		comp-c-catman		.cat
 ./usr/share/man/cat3/setenv.0			comp-c-catman		.cat
 ./usr/share/man/cat3/setfsent.0			comp-c-catman		.cat
@@ -7843,7 +7825,6 @@
 ./usr/share/man/cat9/disk_find.0		comp-sys-catman		.cat
 ./usr/share/man/cat9/disk_init.0		comp-sys-catman		.cat
 ./usr/share/man/cat9/disk_unbusy.0		comp-sys-catman		.cat
-./usr/share/man/cat9/disklabel.0		comp-sys-catman		.cat
 ./usr/share/man/cat9/dmover.0			comp-sys-catman		.cat
 ./usr/share/man/cat9/dmover_backend_register.0	comp-sys-catman		.cat
 ./usr/share/man/cat9/dmover_backend_unregister.0	comp-sys-catman		.cat
@@ -8176,12 +8157,6 @@
 ./usr/share/man/cat9/mb_read.0			comp-sys-catman		.cat
 ./usr/share/man/cat9/mb_write.0			comp-sys-catman		.cat
 ./usr/share/man/cat9/mbuf.0			comp-sys-catman		.cat
-./usr/share/man/cat9/mca.0			comp-sys-catman		.cat
-./usr/share/man/cat9/mca_conf_read.0		comp-sys-catman		.cat
-./usr/share/man/cat9/mca_conf_write.0		comp-sys-catman		.cat
-./usr/share/man/cat9/mca_intr_disestablish.0	comp-sys-catman		.cat
-./usr/share/man/cat9/mca_intr_establish.0	comp-sys-catman		.cat
-./usr/share/man/cat9/mca_intr_evcnt.0		comp-sys-catman		.cat
 ./usr/share/man/cat9/memcmp.0			comp-sys-catman		.cat
 ./usr/share/man/cat9/memcpy.0			comp-sys-catman		.cat
 ./usr/share/man/cat9/memmove.0			comp-sys-catman		.cat
@@ -8413,7 +8388,6 @@
 ./usr/share/man/cat9/rasops_init.0		comp-sys-catman		.cat
 ./usr/share/man/cat9/rasops_reconfig.0		comp-sys-catman		.cat
 ./usr/share/man/cat9/ratecheck.0		comp-sys-catman		.cat
-./usr/share/man/cat9/readdisklabel.0		comp-sys-catman		.cat
 ./usr/share/man/cat9/realloc.0			comp-sys-catman		.cat
 ./usr/share/man/cat9/relookup.0			comp-sys-catman		.cat
 ./usr/share/man/cat9/resettodr.0		comp-sys-catman		.cat
@@ -8468,7 +8442,6 @@
 ./usr/share/man/cat9/selrecord.0		comp-sys-catman		.cat
 ./usr/share/man/cat9/sendsig.0			comp-sys-catman		.cat
 ./usr/share/man/cat9/setbit.0			comp-sys-catman		.cat
-./usr/share/man/cat9/setdisklabel.0		comp-sys-catman		.cat
 ./usr/share/man/cat9/setjmp.0			comp-sys-catman		.cat
 ./usr/share/man/cat9/setroot.0			comp-sys-catman		.cat
 ./usr/share/man/cat9/shutdownhook_disestablish.0	comp-sys-catman		.cat
@@ -8772,7 +8745,6 @@
 ./usr/share/man/cat9/workqueue_create.0		comp-sys-catman		.cat
 ./usr/share/man/cat9/workqueue_destroy.0	comp-sys-catman		.cat
 ./usr/share/man/cat9/workqueue_enqueue.0	comp-sys-catman		.cat
-./usr/share/man/cat9/writedisklabel.0		comp-sys-catman		.cat
 ./usr/share/man/cat9/wscons.0			comp-sys-catman		.cat
 ./usr/share/man/cat9/wsdisplay.0		comp-sys-catman		.cat
 ./usr/share/man/cat9/wsdisplay_cnattach.0	comp-sys-catman		.cat
@@ -10472,8 +10444,6 @@
 ./usr/share/man/html3/dirent.html		comp-c-htmlman		html
 ./usr/share/man/html3/dirfd.html		comp-c-htmlman		html
 ./usr/share/man/html3/dirname.html		comp-c-htmlman		html
-./usr/share/man/html3/disklabel_dkcksum.html	comp-c-htmlman		html
-./usr/share/man/html3/disklabel_scan.html	comp-c-htmlman		html
 ./usr/share/man/html3/div.html			comp-c-htmlman		html
 ./usr/share/man/html3/dl_iterate_phdr.html	comp-c-htmlman		html
 ./usr/share/man/html3/dladdr.html		comp-c-htmlman		html
@@ -11136,7 +11106,6 @@
 ./usr/share/man/html3/getdelim.html		comp-c-htmlman		html
 ./usr/share/man/html3/getdevmajor.html		comp-c-htmlman		html
 ./usr/share/man/html3/getdirentries.html	comp-c-htmlman		html
-./usr/share/man/html3/getdiskbyname.html	comp-c-htmlman		html
 ./usr/share/man/html3/getdiskcookedname.html	comp-c-htmlman		html
 ./usr/share/man/html3/getdiskrawname.html	comp-c-htmlman		html
 ./usr/share/man/html3/getdomainname.html	comp-c-htmlman		html
@@ -11163,9 +11132,6 @@
 ./usr/share/man/html3/gethostid.html		comp-c-htmlman		html
 ./usr/share/man/html3/gethostname.html		comp-c-htmlman		html
 ./usr/share/man/html3/getifaddrs.html		comp-c-htmlman		html
-./usr/share/man/html3/getlabeloffset.html	comp-c-htmlman		html
-./usr/share/man/html3/getlabelsector.html	comp-c-htmlman		html
-./usr/share/man/html3/getlabelusesmbr.html	comp-c-htmlman		html
 ./usr/share/man/html3/getlastlogx.html		comp-c-htmlman		html
 ./usr/share/man/html3/getline.html		comp-c-htmlman		html
 ./usr/share/man/html3/getloadavg.html		comp-c-htmlman		html
@@ -13095,7 +13061,6 @@
 ./usr/share/man/html3/setbuf.html		comp-c-htmlman		html
 ./usr/share/man/html3/setbuffer.html		comp-c-htmlman		html
 ./usr/share/man/html3/setclasscontext.html	comp-c-htmlman		html
-./usr/share/man/html3/setdisktab.html		comp-c-htmlman		html
 ./usr/share/man/html3/setdomainname.html	comp-c-htmlman		html
 ./usr/share/man/html3/setenv.html		comp-c-htmlman		html
 ./usr/share/man/html3/setfsent.html		comp-c-htmlman		html
@@ -14126,7 +14091,6 @@
 ./usr/share/man/html9/disk_find.html		comp-sys-htmlman	html
 ./usr/share/man/html9/disk_init.html		comp-sys-htmlman	html
 ./usr/share/man/html9/disk_unbusy.html		comp-sys-htmlman	html
-./usr/share/man/html9/disklabel.html		comp-sys-htmlman	html
 ./usr/share/man/html9/dmover.html		comp-sys-htmlman	html
 ./usr/share/man/html9/dmover_backend_register.html	comp-sys-htmlman	html
 ./usr/share/man/html9/dmover_backend_unregister.html	comp-sys-htmlman	html
@@ -14459,12 +14423,6 @@
 ./usr/share/man/html9/mb_read.html		comp-sys-htmlman	html
 ./usr/share/man/html9/mb_write.html		comp-sys-htmlman	html
 ./usr/share/man/html9/mbuf.html			comp-sys-htmlman	html
-./usr/share/man/html9/mca.html			comp-sys-htmlman	html
-./usr/share/man/html9/mca_conf_read.html	comp-sys-htmlman	html
-./usr/share/man/html9/mca_conf_write.html	comp-sys-htmlman	html
-./usr/share/man/html9/mca_intr_disestablish.html	comp-sys-htmlman	html
-./usr/share/man/html9/mca_intr_establish.html	comp-sys-htmlman	html
-./usr/share/man/html9/mca_intr_evcnt.html	comp-sys-htmlman	html
 ./usr/share/man/html9/memcmp.html		comp-sys-htmlman	html
 ./usr/share/man/html9/memcpy.html		comp-sys-htmlman	html
 ./usr/share/man/html9/memmove.html		comp-sys-htmlman	html
@@ -14696,7 +14654,6 @@
 ./usr/share/man/html9/rasops_init.html		comp-sys-htmlman	html
 ./usr/share/man/html9/rasops_reconfig.html	comp-sys-htmlman	html
 ./usr/share/man/html9/ratecheck.html		comp-sys-htmlman	html
-./usr/share/man/html9/readdisklabel.html	comp-sys-htmlman	html
 ./usr/share/man/html9/realloc.html		comp-sys-htmlman	html
 ./usr/share/man/html9/relookup.html		comp-sys-htmlman	html
 ./usr/share/man/html9/resettodr.html		comp-sys-htmlman	html
@@ -14751,7 +14708,6 @@
 ./usr/share/man/html9/selrecord.html		comp-sys-htmlman	html
 ./usr/share/man/html9/sendsig.html		comp-sys-htmlman	html
 ./usr/share/man/html9/setbit.html		comp-sys-htmlman	html
-./usr/share/man/html9/setdisklabel.html		comp-sys-htmlman	html
 ./usr/share/man/html9/setjmp.html		comp-sys-htmlman	html
 ./usr/share/man/html9/setroot.html		comp-sys-htmlman	html
 ./usr/share/man/html9/shutdownhook_disestablish.html	comp-sys-htmlman	html
@@ -15055,7 +15011,6 @@
 ./usr/share/man/html9/workqueue_create.html	comp-sys-htmlman	html
 ./usr/share/man/html9/workqueue_destroy.html	comp-sys-htmlman	html
 ./usr/share/man/html9/workqueue_enqueue.html	comp-sys-htmlman	html
-./usr/share/man/html9/writedisklabel.html	comp-sys-htmlman	html
 ./usr/share/man/html9/wscons.html		comp-sys-htmlman	html
 ./usr/share/man/html9/wsdisplay.html		comp-sys-htmlman	html
 ./usr/share/man/html9/wsdisplay_cnattach.html	comp-sys-htmlman	html
@@ -16755,8 +16710,6 @@
 ./usr/share/man/man3/dirent.3			comp-c-man		.man
 ./usr/share/man/man3/dirfd.3			comp-c-man		.man
 ./usr/share/man/man3/dirname.3			comp-c-man		.man
-./usr/share/man/man3/disklabel_dkcksum.3	comp-c-man		.man
-./usr/share/man/man3/disklabel_scan.3		comp-c-man		.man
 ./usr/share/man/man3/div.3			comp-c-man		.man
 ./usr/share/man/man3/dl_iterate_phdr.3		comp-c-man		.man
 ./usr/share/man/man3/dladdr.3			comp-c-man		.man
@@ -17419,7 +17372,6 @@
 ./usr/share/man/man3/getdelim.3			comp-c-man		.man
 ./usr/share/man/man3/getdevmajor.3		comp-c-man		.man
 ./usr/share/man/man3/getdirentries.3		comp-c-man		.man
-./usr/share/man/man3/getdiskbyname.3		comp-c-man		.man
 ./usr/share/man/man3/getdiskcookedname.3	comp-c-man		.man
 ./usr/share/man/man3/getdiskrawname.3		comp-c-man		.man
 ./usr/share/man/man3/getdomainname.3		comp-c-man		.man
@@ -17446,9 +17398,6 @@
 ./usr/share/man/man3/gethostid.3		comp-c-man		.man
 ./usr/share/man/man3/gethostname.3		comp-c-man		.man
 ./usr/share/man/man3/getifaddrs.3		comp-c-man		.man
-./usr/share/man/man3/getlabeloffset.3		comp-c-man		.man
-./usr/share/man/man3/getlabelsector.3		comp-c-man		.man
-./usr/share/man/man3/getlabelusesmbr.3		comp-c-man		.man
 ./usr/share/man/man3/getlastlogx.3		comp-c-man		.man
 ./usr/share/man/man3/getline.3			comp-c-man		.man
 ./usr/share/man/man3/getloadavg.3		comp-c-man		.man
@@ -19377,7 +19326,6 @@
 ./usr/share/man/man3/setbuf.3			comp-c-man		.man
 ./usr/share/man/man3/setbuffer.3		comp-c-man		.man
 ./usr/share/man/man3/setclasscontext.3		comp-c-man		.man
-./usr/share/man/man3/setdisktab.3		comp-c-man		.man
 ./usr/share/man/man3/setdomainname.3		comp-c-man		.man
 ./usr/share/man/man3/setenv.3			comp-c-man		.man
 ./usr/share/man/man3/setfsent.3			comp-c-man		.man
@@ -20408,7 +20356,6 @@
 ./usr/share/man/man9/disk_find.9		comp-sys-man		.man
 ./usr/share/man/man9/disk_init.9		comp-sys-man		.man
 ./usr/share/man/man9/disk_unbusy.9		comp-sys-man		.man
-./usr/share/man/man9/disklabel.9		comp-sys-man		.man
 ./usr/share/man/man9/dmover.9			comp-sys-man		.man
 ./usr/share/man/man9/dmover_backend_register.9	comp-sys-man		.man
 ./usr/share/man/man9/dmover_backend_unregister.9	comp-sys-man		.man
@@ -20741,12 +20688,6 @@
 ./usr/share/man/man9/mb_read.9			comp-sys-man		.man
 ./usr/share/man/man9/mb_write.9			comp-sys-man		.man
 ./usr/share/man/man9/mbuf.9			comp-sys-man		.man
-./usr/share/man/man9/mca.9			comp-sys-man		.man
-./usr/share/man/man9/mca_conf_read.9		comp-sys-man		.man
-./usr/share/man/man9/mca_conf_write.9		comp-sys-man		.man
-./usr/share/man/man9/mca_intr_disestablish.9	comp-sys-man		.man
-./usr/share/man/man9/mca_intr_establish.9	comp-sys-man		.man
-./usr/share/man/man9/mca_intr_evcnt.9		comp-sys-man		.man
 ./usr/share/man/man9/memcmp.9			comp-sys-man		.man
 ./usr/share/man/man9/memcpy.9			comp-sys-man		.man
 ./usr/share/man/man9/memmove.9			comp-sys-man		.man
@@ -20978,7 +20919,6 @@
 ./usr/share/man/man9/rasops_init.9		comp-sys-man		.man
 ./usr/share/man/man9/rasops_reconfig.9		comp-sys-man		.man
 ./usr/share/man/man9/ratecheck.9		comp-sys-man		.man
-./usr/share/man/man9/readdisklabel.9		comp-sys-man		.man
 ./usr/share/man/man9/realloc.9			comp-sys-man		.man
 ./usr/share/man/man9/relookup.9			comp-sys-man		.man
 ./usr/share/man/man9/resettodr.9		comp-sys-man		.man
@@ -21033,7 +20973,6 @@
 ./usr/share/man/man9/selrecord.9		comp-sys-man		.man
 ./usr/share/man/man9/sendsig.9			comp-sys-man		.man
 ./usr/share/man/man9/setbit.9			comp-sys-man		.man
-./usr/share/man/man9/setdisklabel.9		comp-sys-man		.man
 ./usr/share/man/man9/setjmp.9			comp-sys-man		.man
 ./usr/share/man/man9/setroot.9			comp-sys-man		.man
 ./usr/share/man/man9/shutdownhook_disestablish.9	comp-sys-man		.man
@@ -21337,7 +21276,6 @@
 ./usr/share/man/man9/workqueue_create.9		comp-sys-man		.man
 ./usr/share/man/man9/workqueue_destroy.9	comp-sys-man		.man
 ./usr/share/man/man9/workqueue_enqueue.9	comp-sys-man		.man
-./usr/share/man/man9/writedisklabel.9		comp-sys-man		.man
 ./usr/share/man/man9/wscons.9			comp-sys-man		.man
 ./usr/share/man/man9/wsdisplay.9		comp-sys-man		.man
 ./usr/share/man/man9/wsdisplay_cnattach.9	comp-sys-man		.man

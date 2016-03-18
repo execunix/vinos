@@ -60,19 +60,15 @@ __RCSID("$NetBSD: fdisk.c,v 1.150 2014/04/04 16:15:30 christos Exp $");
 #include <vis.h>
 
 #if !HAVE_NBTOOL_CONFIG_H
-#include <sys/disklabel.h>
-#include <sys/disklabel_gpt.h>
 #include <sys/bootblock.h>
 #include <sys/ioctl.h>
 #include <sys/sysctl.h>
-#include <disktab.h>
 #include <util.h>
 #include <zlib.h>
 #else
 #include <nbinclude/sys/disklabel.h>
 #include <nbinclude/sys/disklabel_gpt.h>
 #include <nbinclude/sys/bootblock.h>
-#include "../../include/disktab.h"
 /* We enforce -F, so none of these possibly undefined items can be needed */
 #define opendisk(path, fl, buf, buflen, cooked) (-1)
 #ifndef DIOCGDEFLABEL
@@ -215,7 +211,6 @@ static unsigned int ptn_0_offset;	/* default dos_sectors */
 
 static int fd = -1, wfd = -1, *rfd = &fd;
 static char *disk_file = NULL;
-static char *disk_type = NULL;
 
 static int a_flag;		/* set active partition */
 static int i_flag;		/* init bootcode */
@@ -497,13 +492,6 @@ main(int argc, char *argv[])
 		case 'w':	/* write data to disk_file */
 			disk_file = optarg;
 			break;
-		case 't':
-			if (setdisktab(optarg) == -1)
-				errx(EXIT_FAILURE, "bad disktab");
-			break;
-		case 'T':
-			disk_type = optarg;
-			break;
 		case 'z':
 			secsize = atoi(optarg);
 			if (secsize <= 512)
@@ -520,9 +508,6 @@ out:				 errx(EXIT_FAILURE, "Invalid sector size %zd",
 	}
 	argc -= optind;
 	argv += optind;
-
-	if (disk_type != NULL && getdiskbyname(disk_type) == NULL)
-		errx(EXIT_FAILURE, "bad disktype");
 
 	if (sh_flag && (a_flag || i_flag || u_flag || f_flag || s_flag))
 		usage();
@@ -675,7 +660,6 @@ usage(void)
 		"%*s[-b cylinders/heads/sectors] \\\n"
 		"%*s[-0123 | -E num "
 		"[-s [id][/[start][/[size][/bootmenu]]]] \\\n"
-		"%*s[-t disktab] [-T disktype] \\\n"
 		"%*s[-c bootcode] "
 		"[-r|-w file] [device]\n"
 		"\t-a change active partition\n"
@@ -689,7 +673,7 @@ usage(void)
 		"\t-F treat device as a regular file\n"
 		"\t-S output as shell defines\n"
 		"\t-r and -w access 'file' for non-destructive testing\n",
-		getprogname(), indent, "", indent, "", indent, "", indent, "");
+		getprogname(), indent, "", indent, "", indent, "");
 	exit(1);
 }
 
@@ -2625,15 +2609,7 @@ guess_geometry(daddr_t _sectors)
 static int
 get_params(void)
 {
-	if (disk_type != NULL) {
-		struct disklabel *tmplabel;
-
-		if ((tmplabel = getdiskbyname(disk_type)) == NULL) {
-			warn("bad disktype");
-			return (-1);
-		}
-		disklabel = *tmplabel;
-	} else if (F_flag) {
+	if (F_flag) {
 		struct stat st;
 		if (fstat(fd, &st) == -1) {
 			warn("fstat");

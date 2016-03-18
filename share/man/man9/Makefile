@@ -32,7 +32,7 @@ MAN=	accept_filter.9 accf_data.9 accf_http.9 \
 	kprintf.9 kthread.9 linedisc.9 lock.9 log.9 ltsleep.9 \
 	LWP_CACHE_CREDS.9 \
 	makeiplcookie.9 \
-	malloc.9 mb.9 mbuf.9 mca.9 memcmp.9 memcpy.9 memoryallocators.9 \
+	malloc.9 mb.9 mbuf.9 memcmp.9 memcpy.9 memoryallocators.9 \
 	memmove.9 memset.9 \
 	microseq.9 microtime.9 microuptime.9 mi_switch.9 module.9 \
 	mstohz.9 mutex.9 m_tag.9 namecache.9 \
@@ -471,11 +471,6 @@ MLINKS+=mbuf.9 m_get.9 mbuf.9 m_getclr.9 mbuf.9 m_gethdr.9 mbuf.9 m_devget.9 \
 	mbuf.9 M_ALIGN.9 mbuf.9 MH_ALIGN.9 mbuf.9 M_LEADINGSPACE.9 \
 	mbuf.9 M_TRAILINGSPACE.9 mbuf.9 M_PREPEND.9 mbuf.9 MCHTYPE.9 \
 	mbuf.9 MFREE.9
-MLINKS+=mca.9 mca_intr_establish.9 \
-	mca.9 mca_intr_disestablish.9 \
-	mca.9 mca_intr_evcnt.9 \
-	mca.9 mca_conf_read.9 \
-	mca.9 mca_conf_write.9
 MLINKS+=microtime.9 bintime.9 \
 	microtime.9 getbintime.9 \
 	microtime.9 getmicrotime.9 \

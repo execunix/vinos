@@ -153,13 +153,6 @@ __KERNEL_RCSID(0, "$NetBSD: clock.c,v 1.33 2009/06/16 21:05:34 bouyer Exp $");
 #include <machine/specialreg.h> 
 #include <x86/rtc.h>
 
-#ifndef __x86_64__
-#include "mca.h"
-#endif
-#if NMCA > 0
-#include <machine/mca_machdep.h>	/* for MCA_system */
-#endif
-
 #include "pcppi.h"
 #if (NPCPPI > 0)
 #include <dev/isa/pcppivar.h>
@@ -377,12 +370,6 @@ clockintr(void *arg, struct intrframe *frame)
 
 	hardclock((struct clockframe *)frame);
 
-#if NMCA > 0
-	if (MCA_system) {
-		/* Reset PS/2 clock interrupt by asserting bit 7 of port 0x61 */
-		outb(0x61, inb(0x61) | 0x80);
-	}
-#endif
 	return -1;
 }
 

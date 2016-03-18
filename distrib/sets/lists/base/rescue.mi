@@ -21,7 +21,6 @@
 ./rescue/date					base-rescue-root
 ./rescue/dd					base-rescue-root
 ./rescue/df					base-rescue-root
-./rescue/disklabel				base-rescue-root
 ./rescue/dkctl					base-rescue-root
 ./rescue/dmesg					base-rescue-root
 ./rescue/domainname				base-rescue-root

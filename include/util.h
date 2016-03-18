@@ -61,7 +61,6 @@ typedef __va_list va_list;
 #define	PW_POLICY_BYGROUP	2
 
 __BEGIN_DECLS
-struct disklabel;
 struct iovec;
 struct passwd;
 struct termios;
@@ -74,9 +73,6 @@ char	       *flags_to_string(unsigned long, const char *);
 pid_t		forkpty(int *, char *, struct termios *, struct winsize *);
 const char     *getbootfile(void);
 int		getbyteorder(void);
-off_t		getlabeloffset(void);
-int		getlabelsector(void);
-int		getlabelusesmbr(void);
 int		getmaxpartitions(void);
 int		getrawpartition(void);
 const char     *getdiskrawname(char *, size_t, const char *);
@@ -136,9 +132,6 @@ int		ttyaction(const char *, const char *, const char *);
 int		ttylock(const char *, int, pid_t *);
 char	       *ttymsg(struct iovec *, int, const char *, int);
 int		ttyunlock(const char *);
-
-uint16_t	disklabel_dkcksum(struct disklabel *);
-int		disklabel_scan(struct disklabel *, char *, size_t);
 
 /* Error checked functions */
 void		(*esetfunc(void (*)(int, const char *, ...)))

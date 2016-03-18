@@ -455,7 +455,6 @@ rdcpcib* at pci? dev ? function ?	# RDC Vortex86/PMX-1000 PCI-ISA w/
 pchb*	at pci? dev ? function ?	# PCI-Host bridges
 pceb*	at pci? dev ? function ?	# PCI-EISA bridges
 pcib*	at pci? dev ? function ?	# PCI-ISA bridges
-pcmb*	at pci? dev ? function ?	# PCI-MCA bridges
 ppb*	at pci? dev ? function ?	# PCI-PCI bridges
 # XXX 'puc's aren't really bridges, but there's no better place for them here
 puc*	at pci? dev ? function ?	# PCI "universal" comm. cards
@@ -492,9 +491,6 @@ gpio*	at ibmcd?
 # PCMCIA bus support
 pcmcia* at pcic? controller ? socket ?
 pcmcia* at tcic? controller ? socket ?
-
-# MCA bus support
-mca0	at mainbus?
 
 # ISA PCMCIA controllers
 pcic0	at isa? port 0x3e0 iomem 0xd0000 iosiz 0x10000
@@ -617,9 +613,6 @@ moxa0	at isa?	port 0x100 irq 5	# MOXA C168H serial card (experimental)
 com*	at moxa? slave ?
 ioat*	at isa? port 0x220 irq 5	# BOCA IOAT66 6-port serial card
 com*	at ioat? slave ?
-
-# MCA serial interfaces
-com*	at mca? slot ?			# 16x50s on comm boards
 
 # Parallel Printer Interfaces
 
@@ -810,10 +803,6 @@ adv*	at cardbus? function ?	# AdvanSys 1200[A,B], 9xx[U,UA] SCSI
 ahc*	at cardbus? function ?	# Adaptec ADP-1480
 njs*	at cardbus? function ?	# Workbit NinjaSCSI-32
 
-# MCA SCSI cards
-aha*	at mca? slot ?			# Adaptec AHA-1640
-esp*	at mca? slot ?			# NCR 53C90 SCSI Adapter
-
 # SCSI bus support
 scsibus* at scsi?
 
@@ -955,10 +944,6 @@ mcd0	at isa? port 0x300 irq 10	# Mitsumi CD-ROM drives
 # same I/O address. The probe reprograms their EEPROMs. Don't
 # uncomment it unless you are actually using it.
 wt0	at isa? port 0x308 irq 5 drq 1	# Archive and Wangtek QIC tape drives
-
-# MCA ESDI devices
-edc*	at mca? slot ?			# IBM ESDI Disk Controllers
-ed*	at edc?
 
 
 # Network Interfaces
@@ -1103,16 +1088,6 @@ re*	at cardbus? function ?	# Realtek 8139C+/8169/8169S/8110S
 rtk*	at cardbus? function ?	# Realtek 8129/8139
 rtw*	at cardbus? function ?	# Realtek 8180L (802.11)
 tlp*	at cardbus? function ?	# DECchip 21143
-
-# MCA network cards
-elmc*	at mca? slot ?			# 3Com EtherLink/MC (3c523)
-ep*	at mca? slot ?			# 3Com EtherLink III (3c529)
-we*	at mca? slot ?			# WD/SMC Ethernet
-ate*	at mca? slot ?			# Allied Telesis AT1720
-ne*	at mca? slot ?			# Novell NE/2 and clones
-tr*	at mca? slot ?			# IBM Token Ring adapter
-tra*	at mca? slot ?			# Tiara LANCard/E and clones
-le*	at mca? slot ?			# SKNET Personal/MC2+
 
 # MII/PHY support
 acphy*	at mii? phy ?			# Altima AC101 and AMD Am79c874 PHYs

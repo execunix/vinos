@@ -63,11 +63,8 @@ __RCSID("$NetBSD: getent.c,v 1.19 2012/03/15 02:02:23 joerg Exp $");
 
 #include <rpc/rpcent.h>
 
-#include <disktab.h>
-
 static int	usage(void) __attribute__((__noreturn__));
 static int	parsenum(const char *, unsigned long *);
-static int	disktab(int, char *[]);
 static int	gettytab(int, char *[]);
 static int	ethers(int, char *[]);
 static int	group(int, char *[]);
@@ -92,7 +89,6 @@ static struct getentdb {
 	const char	*name;
 	int		(*callback)(int, char *[]);
 } databases[] = {
-	{	"disktab",	disktab,	},
 	{	"ethers",	ethers,		},
 	{	"gettytab",	gettytab,	},
 	{	"group",	group,		},
@@ -673,16 +669,6 @@ static int
 printcap(int argc, char *argv[])
 {
 	return handlecap(_PATH_PRINTCAP, argc, argv);
-}
-
-		/*
-		 * disktab
-		 */
-
-static int
-disktab(int argc, char *argv[])
-{
-	return handlecap(_PATH_DISKTAB, argc, argv);
 }
 
 		/*

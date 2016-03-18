@@ -9,7 +9,6 @@
 ./usr/include/amd64/byte_swap.h			comp-c-include
 ./usr/include/amd64/cdefs.h			comp-c-include
 ./usr/include/amd64/cpu.h			comp-c-include
-./usr/include/amd64/disklabel.h			comp-c-include
 ./usr/include/amd64/elf_machdep.h		comp-c-include
 ./usr/include/amd64/endian.h			comp-c-include
 ./usr/include/amd64/endian_machdep.h		comp-c-include
@@ -139,7 +138,6 @@
 ./usr/include/i386/cdefs.h			comp-c-include
 ./usr/include/i386/cpu.h			comp-c-include
 ./usr/include/i386/cputypes.h			comp-c-include
-./usr/include/i386/disklabel.h			comp-c-include
 ./usr/include/i386/elf_machdep.h		comp-c-include
 ./usr/include/i386/endian.h			comp-c-include
 ./usr/include/i386/endian_machdep.h		comp-c-include

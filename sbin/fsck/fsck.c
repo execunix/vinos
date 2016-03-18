@@ -43,10 +43,7 @@ __RCSID("$NetBSD: fsck.c,v 1.51.10.1 2014/11/11 10:21:26 martin Exp $");
 #include <sys/mount.h>
 #include <sys/queue.h>
 #include <sys/wait.h>
-#define FSTYPENAMES
-#define FSCKNAMES
 #include <sys/disk.h>
-#include <sys/disklabel.h>
 #include <sys/ioctl.h>
 
 #include <err.h>

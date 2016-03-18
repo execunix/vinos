@@ -22,7 +22,6 @@ PROG	bin/sync
 PROG	bin/sleep
 
 PROG	sbin/chown	bin/chgrp
-PROG	sbin/disklabel
 PROG	sbin/fdisk
 PROG	sbin/fsck
 PROG	sbin/fsck_msdos

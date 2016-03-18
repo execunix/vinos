@@ -63,13 +63,7 @@
 .Sh DESCRIPTION
 The
 .Nm
-utility creates a FAT12, FAT16, or FAT32 file system on device or file named
-.Ar special ,
-using
-.Xr disktab 5
-entry
-.Ar disktype
-to determine geometry, if required.
+utility creates a FAT12, FAT16, or FAT32 file system on device or file.
 .Pp
 The options are as follow:
 .Bl -tag -width indent
@@ -228,8 +222,6 @@ newfs_msdos -C 30M -@63s ./somefile
 .Sh DIAGNOSTICS
 Exit status is 0 on success and 1 on error.
 .Sh SEE ALSO
-.Xr disktab 5 ,
-.Xr disklabel 8 ,
 .Xr fdisk 8 ,
 .Xr newfs 8
 .Sh HISTORY

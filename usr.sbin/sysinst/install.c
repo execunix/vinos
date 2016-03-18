@@ -84,7 +84,7 @@ do_install(void)
 			}
 		}
 
-		if (!md_get_info() || md_make_bsd_partitions() == 0) {
+		if (!md_get_info()) {
 			msg_display(MSG_abort);
 			process_menu(MENU_ok, NULL);
 			return;
@@ -97,10 +97,8 @@ do_install(void)
 		if (!ask_noyes(NULL))
 			return;
 
-		if (md_pre_disklabel() != 0 ||
-			write_disklabel() != 0 ||
-                        set_swap_if_low_ram(pm->diskdev, pm->bsdlabel) != 0 || 
-			md_post_disklabel() != 0 ||
+		if (md_write_mbr() != 0 ||
+			set_swap_if_low_ram(pm->diskdev, pm->bsdlabel) != 0 || 
 			make_filesystems() ||
 			make_fstab() != 0 ||
 			md_post_newfs() != 0)

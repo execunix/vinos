@@ -114,16 +114,6 @@ remove_color_options()
 }
 
 void
-remove_lvm_options()
-{
-	/*
-	 * No LVM available, remove the following menu entries:
-	 */
-	remove_menu_option(MENU_pmdiskentry, MSG_fmtaslvm);
-	remove_menu_option(MENU_pmpartentry, MSG_fmtaslvm);
-}
-
-void
 remove_gpt_options()
 {
 	/*
@@ -601,15 +591,11 @@ menu usersh, title MSG_User_shell, no clear;
 menu pmdiskentry, x=50, y=5, exit, default exit;
 	option MSG_editbsdpart, exit, action { pm_make_bsd_partitions(pm); };
 	option MSG_editmbr,		exit, action { md_get_info();
-											md_pre_disklabel();
+											md_write_mbr();
 											memset(&pm->bsdlabel, 0, sizeof pm->bsdlabel);};
 	option MSG_switchgpt,	exit, action { if (pm_gpt_convert(pm) == 0)
 												pm_partusage(pm, -1, 1); };
 	option MSG_renamedisk,	exit, action { pm->unsaved = 1; pm_rename(pm); };
-	option MSG_fmtaslvm,	exit, action { pm->unsaved = 1;
-											pm_partusage(pm, -1, 1);
-											layoutkind = LY_NEWLVM;
-											md_make_bsd_partitions(); };
 	option MSG_setbootable,	exit, action { pm->unsaved = 1;
 											pm->bootable = !pm->bootable; };
 	option MSG_erase,		next menu shred_modes;
@@ -628,16 +614,6 @@ menu pmpartentry, x=50, y=5, exit, default exit;
 										tplvm != pm->bsdlabel[*(int*)arg].lvmpv)
 										/* Oops, partition type changed */
 										pm_partusage(pm, *(int*)arg, 1);
-								};
-	option MSG_fmtaslvm,	exit, action {
-									if (pm->gpt || pm->isspecial) {
-										process_menu(MENU_ok, deconst(MSG_notsupported));
-										return -1;
-									}
-									pm->unsaved = 1;
-									pm_partusage(pm, *(int*)arg, 1);
-									pm_setfstype(pm, *(int*)arg, FS_BSDFFS);
-								    pm->bsdlabel[*(int*)arg].lvmpv = 1;
 								};
 	option MSG_erase,		next menu shred_modes;
 	option MSG_doumount,	exit, action { pm_umount(pm, *(int*)arg); };

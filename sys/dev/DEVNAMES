@@ -404,7 +404,6 @@ eisa			MI
 eisabus			MI		Attribute
 el			MI
 elink			MI		Attribute
-elmc			MI (MCA)
 emac			evbppc
 em4k			amiga
 empb			amiga
@@ -849,7 +848,6 @@ mbmem			sun2
 mbpp			MI
 mc			mac68k
 mc			macppc
-mca			i386
 mcbus			alpha
 mcclock			algor
 mcclock			alpha
@@ -1078,7 +1076,6 @@ pckbd			MI
 pckbd			hpcmips
 pckbport		MI		Attribute
 pckbport_machdep_cnattach MI		Attribute
-pcmb			i386
 pcmcia			MI
 pcmcia			arc		Attribute
 pcmciabus		MI		Attribute

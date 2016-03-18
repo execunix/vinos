@@ -757,19 +757,6 @@ HW addr type is IEEE 802.  convert to %s and check again\n",
 	(bp->bp_siaddr).s_addr = (hp->flags.bootserver) ?
 		hp->bootserver.s_addr : 0L;
 
-#ifdef	STANFORD_PROM_COMPAT
-	/*
-	 * Stanford bootp PROMs (for a Sun?) have no way to leave
-	 * the boot file name field blank (because the boot file
-	 * name is automatically generated from some index).
-	 * As a work-around, this little hack allows those PROMs to
-	 * specify "sunboot14" with the same effect as a NULL name.
-	 * (The user specifies boot device 14 or some such magic.)
-	 */
-	if (strcmp(bp->bp_file, "sunboot14") == 0)
-		bp->bp_file[0] = '\0';	/* treat it as unspecified */
-#endif
-
 	/*
 	 * Fill in the client's proper bootfile.
 	 *

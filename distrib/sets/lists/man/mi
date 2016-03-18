@@ -746,7 +746,6 @@
 ./usr/share/man/cat4/ei.0			man-sys-catman		.cat
 ./usr/share/man/cat4/eisa.0			man-sys-catman		.cat
 ./usr/share/man/cat4/el.0			man-sys-catman		.cat
-./usr/share/man/cat4/elmc.0			man-sys-catman		.cat
 ./usr/share/man/cat4/emdtv.0			man-sys-catman		.cat
 ./usr/share/man/cat4/emuxki.0			man-sys-catman		.cat
 ./usr/share/man/cat4/en.0			man-sys-catman		.cat
@@ -946,7 +945,6 @@
 ./usr/share/man/cat4/malo.0			man-sys-catman		.cat
 ./usr/share/man/cat4/mbe.0			man-sys-catman		.cat
 ./usr/share/man/cat4/mc.0			man-sys-catman		.cat
-./usr/share/man/cat4/mca.0			man-sys-catman		.cat
 ./usr/share/man/cat4/mcclock.0			man-sys-catman		.cat
 ./usr/share/man/cat4/mcd.0			man-sys-catman		.cat
 ./usr/share/man/cat4/mcp23s17gpio.0		man-sys-catman		.cat
@@ -1364,8 +1362,6 @@
 ./usr/share/man/cat5/dhcpcd.conf.0		man-dhcpcd-catman	.cat
 ./usr/share/man/cat5/dhcpd.conf.0		man-dhcpd-catman	.cat
 ./usr/share/man/cat5/dhcpd.leases.0		man-dhcpd-catman	.cat
-./usr/share/man/cat5/disklabel.0		man-sys-catman		.cat
-./usr/share/man/cat5/disktab.0			man-sys-catman		.cat
 ./usr/share/man/cat5/editrc.0			man-sys-catman		.cat
 ./usr/share/man/cat5/elf.0			man-sys-catman		.cat
 ./usr/share/man/cat5/envsys.conf.0		man-sys-catman		.cat
@@ -1602,9 +1598,7 @@
 ./usr/share/man/cat8/dhcpd.0			man-dhcpd-catman	.cat
 ./usr/share/man/cat8/dhcrelay.0			man-dhcpd-catman	.cat
 ./usr/share/man/cat8/discard.0			man-postfix-catman	postfix,.cat
-./usr/share/man/cat8/disklabel.0		man-sysutil-catman	.cat
 ./usr/share/man/cat8/diskless.0			man-sysutil-catman	.cat
-./usr/share/man/cat8/diskpart.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/dkctl.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/dkscan_bsdlabel.0		man-sysutil-catman	.cat
 ./usr/share/man/cat8/dmesg.0			man-sysutil-catman	.cat
@@ -1968,7 +1962,6 @@
 ./usr/share/man/cat8/stdhosts.0			man-nis-catman		yp,.cat
 ./usr/share/man/cat8/sti.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/string2key.0		man-krb5-catman		kerberos,.cat
-./usr/share/man/cat8/sunlabel.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/supfilesrv.0		man-sup-catman		.cat
 ./usr/share/man/cat8/supscan.0			man-sup-catman		.cat
 ./usr/share/man/cat8/supservers.0		man-sup-catman		.cat
@@ -2796,7 +2789,6 @@
 ./usr/share/man/html4/ei.html			man-sys-htmlman		html
 ./usr/share/man/html4/eisa.html			man-sys-htmlman		html
 ./usr/share/man/html4/el.html			man-sys-htmlman		html
-./usr/share/man/html4/elmc.html			man-sys-htmlman		html
 ./usr/share/man/html4/emdtv.html		man-sys-htmlman		html
 ./usr/share/man/html4/emuxki.html		man-sys-htmlman		html
 ./usr/share/man/html4/en.html			man-sys-htmlman		html
@@ -2996,7 +2988,6 @@
 ./usr/share/man/html4/malo.html			man-sys-htmlman		html
 ./usr/share/man/html4/mbe.html			man-sys-htmlman		html
 ./usr/share/man/html4/mc.html			man-sys-htmlman		html
-./usr/share/man/html4/mca.html			man-sys-htmlman		html
 ./usr/share/man/html4/mcclock.html		man-sys-htmlman		html
 ./usr/share/man/html4/mcd.html			man-sys-htmlman		html
 ./usr/share/man/html4/mcp23s17gpio.html		man-sys-htmlman		html
@@ -3415,8 +3406,6 @@
 ./usr/share/man/html5/dhcpcd.conf.html		man-dhcpcd-htmlman	html
 ./usr/share/man/html5/dhcpd.conf.html		man-dhcpd-htmlman	html
 ./usr/share/man/html5/dhcpd.leases.html		man-dhcpd-htmlman	html
-./usr/share/man/html5/disklabel.html		man-sys-htmlman		html
-./usr/share/man/html5/disktab.html		man-sys-htmlman		html
 ./usr/share/man/html5/editrc.html		man-sys-htmlman		html
 ./usr/share/man/html5/elf.html			man-sys-htmlman		html
 ./usr/share/man/html5/envsys.conf.html		man-sys-htmlman		html
@@ -3655,9 +3644,7 @@
 ./usr/share/man/html8/dhcpd.html		man-dhcpd-htmlman	html
 ./usr/share/man/html8/dhcrelay.html		man-dhcpd-htmlman	html
 ./usr/share/man/html8/discard.html		man-postfix-htmlman	postfix,html
-./usr/share/man/html8/disklabel.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/diskless.html		man-sysutil-htmlman	html
-./usr/share/man/html8/diskpart.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/dkctl.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/dkscan_bsdlabel.html	man-sysutil-htmlman	html
 ./usr/share/man/html8/dmesg.html		man-sysutil-htmlman	html
@@ -4022,7 +4009,6 @@
 ./usr/share/man/html8/stdhosts.html		man-nis-htmlman		yp,html
 ./usr/share/man/html8/sti.html			man-sysutil-htmlman	html
 ./usr/share/man/html8/string2key.html		man-krb5-htmlman	kerberos,html
-./usr/share/man/html8/sunlabel.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/supfilesrv.html		man-sup-htmlman		html
 ./usr/share/man/html8/supscan.html		man-sup-htmlman		html
 ./usr/share/man/html8/supservers.html		man-sup-htmlman		html
@@ -4847,7 +4833,6 @@
 ./usr/share/man/man4/ei.4			man-sys-man		.man
 ./usr/share/man/man4/eisa.4			man-sys-man		.man
 ./usr/share/man/man4/el.4			man-sys-man		.man
-./usr/share/man/man4/elmc.4			man-sys-man		.man
 ./usr/share/man/man4/emdtv.4			man-sys-man		.man
 ./usr/share/man/man4/emuxki.4			man-sys-man		.man
 ./usr/share/man/man4/en.4			man-sys-man		.man
@@ -5047,7 +5032,6 @@
 ./usr/share/man/man4/malo.4				man-sys-man		.man
 ./usr/share/man/man4/mbe.4			man-sys-man		.man
 ./usr/share/man/man4/mc.4			man-sys-man		.man
-./usr/share/man/man4/mca.4			man-sys-man		.man
 ./usr/share/man/man4/mcclock.4			man-sys-man		.man
 ./usr/share/man/man4/mcd.4			man-sys-man		.man
 ./usr/share/man/man4/mcp23s17gpio.4		man-sys-man		.man
@@ -5466,8 +5450,6 @@
 ./usr/share/man/man5/dhcpcd.conf.5		man-dhcpcd-man		.man
 ./usr/share/man/man5/dhcpd.conf.5		man-dhcpd-man		.man
 ./usr/share/man/man5/dhcpd.leases.5		man-dhcpd-man		.man
-./usr/share/man/man5/disklabel.5		man-sys-man		.man
-./usr/share/man/man5/disktab.5			man-sys-man		.man
 ./usr/share/man/man5/editrc.5			man-sys-man		.man
 ./usr/share/man/man5/elf.5			man-sys-man		.man
 ./usr/share/man/man5/envsys.conf.5		man-sys-man		.man
@@ -5706,9 +5688,7 @@
 ./usr/share/man/man8/dhcpd.8			man-dhcpd-man		.man
 ./usr/share/man/man8/dhcrelay.8			man-dhcpd-man		.man
 ./usr/share/man/man8/discard.8			man-postfix-man		postfix,.man
-./usr/share/man/man8/disklabel.8		man-sysutil-man		.man
 ./usr/share/man/man8/diskless.8			man-sysutil-man		.man
-./usr/share/man/man8/diskpart.8			man-sysutil-man		.man
 ./usr/share/man/man8/dkctl.8			man-sysutil-man		.man
 ./usr/share/man/man8/dkscan_bsdlabel.8		man-sysutil-man		.man
 ./usr/share/man/man8/dmesg.8			man-sysutil-man		.man
@@ -6073,7 +6053,6 @@
 ./usr/share/man/man8/stdhosts.8			man-nis-man		yp,.man
 ./usr/share/man/man8/sti.8			man-sysutil-man		.man
 ./usr/share/man/man8/string2key.8		man-krb5-man		kerberos,.man
-./usr/share/man/man8/sunlabel.8			man-sysutil-man		.man
 ./usr/share/man/man8/supfilesrv.8		man-sup-man		.man
 ./usr/share/man/man8/supscan.8			man-sup-man		.man
 ./usr/share/man/man8/supservers.8		man-sup-man		.man

@@ -65,9 +65,6 @@ Things to do ....  in no specific order.
            possibly use the information on the fixed disk instead of having
            to ask everything.
 
-        -- Build the disktab as a profile, not a true /etc/disktab so it
-           doesn't overwrite the real disktab.
-
         -- Have both ftp and floppy gets get the file, extract the file,
            and then remove the file before going on to the next set to
            save disk space.

@@ -59,7 +59,7 @@ __KERNEL_RCSID(0, "$NetBSD: procfs_machdep.c,v 1.6 2014/04/05 18:43:09 christos 
 static const char * const x86_features[] = {
 	/* Intel-defined */
 	"fpu", "vme", "de", "pse", "tsc", "msr", "pae", "mce",
-	"cx8", "apic", NULL, "sep", "mtrr", "pge", "mca", "cmov",
+	"cx8", "apic", NULL, "sep", "mtrr", "pge", NULL, "cmov",
 	"pat", "pse36", "pn", "clflush", NULL, "dts", "acpi", "mmx",
 	"fxsr", "sse", "sse2", "ss", "ht", "tm", "ia64", NULL,
 #ifdef __x86_64__

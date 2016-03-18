@@ -341,5 +341,10 @@ root@xmtbsdv3:/mnt/hdd1/vinos#
 # nbmake INSTALLWORLDDIR=/mnt/hdd1/root/ installworld
 
 /mnt/hdd1/vinos/usr.sbin/sysinst
+X:\hdd1\vinos\sys\dev\DEVNAMES
 GPT_ENT_TYPE_*
 compat_
+disklabel
+diskname/bsddiskname
+vnconfig/vndconfig
+geomspec

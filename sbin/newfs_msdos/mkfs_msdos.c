@@ -63,7 +63,6 @@ __RCSID("$NetBSD: mkfs_msdos.c,v 1.9 2014/01/05 12:52:39 martin Exp $");
 #include <signal.h>
 
 #include <util.h>
-#include <disktab.h>
 
 #ifndef MAKEFS
 #include "partutil.h"

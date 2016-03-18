@@ -1084,7 +1084,6 @@ Compar
 DARPA
 DASI
 DFL
-DISKTAB
 DNDEBUG
 DST
 Dptr
@@ -1117,7 +1116,6 @@ Fscanf
 Ftell
 Func
 Fwrite
-GETDISKBYNAME
 GETFSENT
 GETHOSTENT
 GETLOG
@@ -1129,7 +1127,6 @@ GSI
 Gcvt
 Gerror
 Getchar
-Getdiskbyname
 Getfsent
 Getfsspec
 Gethostbyname
@@ -1517,12 +1514,10 @@ DARPA
 DECtape
 DEV
 DIRBLKSIZ
-DISKTAB
 DM2500,H2000
 DUMPINFMT
 DUMPOUTFMT
 Datamedia's
-Disktab
 ECOML
 ECOMM
 EE:ta
@@ -1698,7 +1693,6 @@ DELE
 DEV
 DFUNNY
 DHAHA
-DISKPART
 DMA
 DMA0
 DRA0
@@ -1706,7 +1700,6 @@ DSK
 DUMPFS
 Dept
 Dev
-Diskpart
 Dumpfs
 ECC
 EECS

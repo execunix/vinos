@@ -66,16 +66,6 @@
 
 #define MD_SETS_SELECTED SET_SYSTEM
 
-/*
- * Machine-specific command to write a new label to a disk.
- * For example, shark uses "/sbin/disklabel -w -r".
- * Sun ports should probably use  DISKLABEL_CMD "/sbin/disklabel -w"
- * to get incore to ondisk inode translation for the Sun proms.
- * If not defined, we assume the port does not support disklabels and
- * hand-edited disklabel will NOT be written by MI code.
- */
-#define DISKLABEL_CMD "disklabel -w -r"
-
 /* Special board type routines need a switch */
 #define BOARD_TYPE_NORMAL	0
 #define BOARD_TYPE_RPI		1

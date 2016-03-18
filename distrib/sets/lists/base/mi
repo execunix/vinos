@@ -381,7 +381,6 @@
 ./sbin/dhclient					base-dhclient-root
 ./sbin/dhclient-script				base-dhclient-root
 ./sbin/dhcpcd					base-dhcpcd-root
-./sbin/disklabel				base-sysutil-root
 ./sbin/dkctl					base-sysutil-root
 ./sbin/dkscan_bsdlabel				base-sysutil-root
 ./sbin/dmesg					base-sysutil-root
@@ -1133,7 +1132,6 @@
 ./usr/sbin/dev_mkdb				base-sysutil-bin
 ./usr/sbin/dhcpd				base-dhcpd-bin
 ./usr/sbin/dhcrelay				base-dhcpd-bin
-./usr/sbin/diskpart				base-sysutil-bin
 ./usr/sbin/dnssec-dsfromkey			base-bind-bin
 ./usr/sbin/dnssec-importkey			base-bind-bin
 ./usr/sbin/dnssec-keyfromlabel			base-bind-bin
@@ -1339,7 +1337,6 @@
 ./usr/sbin/stdethers				base-nis-bin		yp
 ./usr/sbin/stdhosts				base-nis-bin		yp
 ./usr/sbin/sti					base-sysutil-bin
-./usr/sbin/sunlabel				base-sysutil-bin
 ./usr/sbin/sup					base-sup-bin
 ./usr/sbin/supfilesrv				base-sup-bin
 ./usr/sbin/supscan				base-sup-bin
@@ -1484,7 +1481,6 @@
 ./usr/share/examples/blacklist/blacklistd.conf	base-sys-examples
 ./usr/share/examples/blacklist/npf.conf		base-sys-examples
 ./usr/share/examples/dhcp			base-dhcpd-examples
-./usr/share/examples/disktab			base-sys-examples
 ./usr/share/examples/fstab			base-fstab-examples
 ./usr/share/examples/ftpd			base-netutil-examples
 ./usr/share/examples/getdate			base-sys-examples

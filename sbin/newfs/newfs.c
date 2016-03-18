@@ -101,7 +101,6 @@ __RCSID("$NetBSD: newfs.c,v 1.111.10.2 2015/07/30 15:36:03 snj Exp $");
 #include <ufs/ffs/fs.h>
 
 #include <ctype.h>
-#include <disktab.h>
 #include <err.h>
 #include <errno.h>
 #include <grp.h>

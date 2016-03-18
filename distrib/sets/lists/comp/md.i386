@@ -73,7 +73,6 @@
 ./usr/include/i386/cdefs.h			comp-c-include
 ./usr/include/i386/cpu.h			comp-c-include
 ./usr/include/i386/cputypes.h			comp-c-include
-./usr/include/i386/disklabel.h			comp-c-include
 ./usr/include/i386/elf_machdep.h		comp-c-include
 ./usr/include/i386/endian.h			comp-c-include
 ./usr/include/i386/endian_machdep.h		comp-c-include

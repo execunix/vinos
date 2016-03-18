@@ -58,7 +58,6 @@
 ./etc/dhcpcd.duid		type=file mode=0644 optional
 ./etc/dhcpcd.hook		type=file mode=0644 optional
 ./etc/dhcpd.conf		type=file mode=0644 optional
-./etc/disktab			type=file mode=0644
 ./etc/dm.conf			type=file mode=0644
 ./etc/dumpdates			type=file mode=0664 gname=operator optional tags=exclude
 ./etc/envsys.conf		type=file mode=0644 optional

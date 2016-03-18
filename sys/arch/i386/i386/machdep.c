@@ -199,11 +199,6 @@ __KERNEL_RCSID(0, "$NetBSD: machdep.c,v 1.752 2014/02/23 22:36:43 dsl Exp $");
 #include <machine/rbus_machdep.h>
 #endif
 
-#include "mca.h"
-#if NMCA > 0
-#include <machine/mca_machdep.h>	/* for mca_busprobe() */
-#endif
-
 #ifdef MULTIPROCESSOR		/* XXX */
 #include <machine/mpbiosvar.h>	/* XXX */
 #endif				/* XXX */
@@ -1414,13 +1409,6 @@ init386(paddr_t first_avail)
 #endif /* XEN */
 
 	init386_ksyms();
-
-#if NMCA > 0
-	/* check for MCA bus, needed to be done before ISA stuff - if
-	 * MCA is detected, ISA needs to use level triggered interrupts
-	 * by default */
-	mca_busprobe();
-#endif
 
 #ifdef XEN
 	XENPRINTF(("events_default_setup\n"));

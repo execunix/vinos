@@ -18,7 +18,6 @@
 .Op Fl b Ar cylinders/heads/sectors
 .Op Fl c Ar bootcode
 .Op Fl T Ar disktype
-.Op Fl t Ar disktab
 .Op Fl z Ar sectorsize
 .Op Ar device
 .Nm
@@ -308,13 +307,6 @@ Use the disklabel
 .Ar disktype
 instead of the disklabel on
 .Ar device .
-.It Fl t Ar disktab
-Read
-.Ar disktype
-from the named
-.Xr disktab 5
-file instead of from
-.Pa /etc/disktab .
 .It Fl u
 Update partition data, including
 .Em id , start , No and Em size .
@@ -645,7 +637,6 @@ partition using whole disk without prompt against 1GB disk image file
 .Pp
 .Dl Ic fdisk -f -a -u -0 -s 169/63/2097089 -F diskimg
 .Sh SEE ALSO
-.Xr disktab 5 ,
 .Xr boot 8 ,
 .Xr disklabel 8 ,
 .Xr gpt 8 ,

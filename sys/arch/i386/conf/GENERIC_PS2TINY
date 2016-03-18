@@ -145,7 +145,6 @@ config		netbsd root on ? type ?
 # Device Configuration
 #
 
-mca0	at mainbus0
 isa0	at mainbus0
 
 # wscons
@@ -168,27 +167,6 @@ com0	at isa? port 0x3f8 irq 4	# "SERIAL_!"
 lpt0	at isa? port 0x3bc irq 7	# "PARALLEL_1"
 fdc0	at isa? port 0x3f0 irq 6 drq 2	# standard PC floppy controllers
 fd*	at fdc? drive ?			# the drives themselves
-
-# MCA serial interfaces
-com*	at mca? slot ?			# 16x50s on comm boards
-
-# MCA network devices
-elmc*	at mca? slot ?			# 3Com EtherLink/MC (3c523)
-ep*	at mca? slot ?			# 3Com EtherLink III (3c529)
-we*	at mca? slot ?			# WD/SMC Ethernet
-ate*	at mca? slot ?			# Allied Telesis AT1720
-ne*	at mca? slot ?			# Novell NE/2 and clones
-tr*	at mca? slot ?			# IBM Token Ring adapter
-tra*	at mca? slot ?			# Tiara LANCard/E and clones
-le*	at mca? slot ?			# SKNET Personal/MC2+
-
-# MCA ESDI controllers & disks
-edc*	at mca? slot ?			# IBM ESDI Disk Controllers
-ed*	at edc? drive ?
-
-# MCA SCSI controllers
-aha*	at mca? slot ?			# Adaptec AHA-1640
-esp*	at mca? slot ?			# NCR 53C90
 
 # SCSI bus support
 scsibus* at scsi?

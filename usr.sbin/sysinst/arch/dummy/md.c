@@ -56,25 +56,13 @@ md_get_info(void)
 }
 
 int
-md_make_bsd_partitions(void)
-{
-	return make_bsd_partitions();
-}
-
-int
 md_check_partitions(void)
 {
 	return 1;
 }
 
 int
-md_pre_disklabel(void)
-{
-	return 0;
-}
-
-int
-md_post_disklabel(void)
+md_write_mbr(void)
 {
 	return 0;
 }

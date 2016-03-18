@@ -4,7 +4,7 @@
 # missing: dump.5 plot.5
 
 MAN=	a.out.5 acct.5 ar.5 boot.cfg.5 \
-	capfile.5 core.5 daily.5 disktab.5 elf.5 \
+	capfile.5 core.5 daily.5 elf.5 \
 	ethers.5 floppytab.5 forward.5 \
 	fs.5 fstab.5 genassym.cf.5 gpio.conf.5 group.5 hesiod.conf.5 \
 	hosts.5 hosts.equiv.5 ifaliases.5 ifconfig.if.5 intro.5 \

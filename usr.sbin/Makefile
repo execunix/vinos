@@ -6,7 +6,7 @@
 SUBDIR=	ac accton acpitools altq apm apmd arp \
 	bad144 bootp btattach btconfig btdevctl bthcid btpand catman \
 	chroot cnwctl cpuctl crash \
-	dev_mkdb diskpart dumpfs \
+	dev_mkdb dumpfs \
 	edquota eeprom envstat eshconfig etcupdate extattrctl \
 	flashctl fssconfig fusermount fwctl \
 	gpioctl gspa \
@@ -26,7 +26,7 @@ SUBDIR=	ac accton acpitools altq apm apmd arp \
 	rpc.pcnfsd rpc.statd rpcbind rwhod \
 	sa screenblank sdpd service services_mkdb sesd schedctl \
 	sliplogin spray \
-	srtconfig sti sunlabel sup sysinst syslogd \
+	srtconfig sti sup sysinst syslogd \
 	tcpdchk tcpdmatch tcpdrop timed tpctl tprof traceroute trpt \
 	unlink usbdevs user \
 	videomode vipw veriexecgen vnconfig \

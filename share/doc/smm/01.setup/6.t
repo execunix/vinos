@@ -199,8 +199,7 @@ disks can be copied with
 .Xr dd (1)
 using the raw special files and an appropriate
 blocking factor; the number of sectors per track is usually
-a good value to use, consult
-.Pn /etc/disktab .
+a good value to use.
 .PP
 It is desirable that full dumps of the root filesystem be
 made regularly.
@@ -273,7 +272,7 @@ Note that if you change the disk partition tables or add new disk
 drivers they should also be added to the standalone system in
 .Pn /sys/<architecture>/stand ,
 and the default disk partition tables in
-.Pn /etc/disktab
+.Pn /etc/fstab
 should be modified.
 .Sh 2 "Monitoring system performance"
 .PP
@@ -646,7 +645,6 @@ the files that require periodic attention or are system specific:
 center;
 lfC l.
 /etc/fstab	how disk partitions are used
-/etc/disktab	default disk partition sizes/labels
 /etc/printcap	printer database
 /etc/gettytab	terminal type definitions
 /etc/remote	names and phone numbers of remote machines for \fItip\fP(1)

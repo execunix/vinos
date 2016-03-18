@@ -234,7 +234,6 @@ directory
 dirname
 dirs
 disklabel
-diskpart
 dist
 dmesg
 dnsquery
@@ -411,7 +410,6 @@ getchar
 getconf
 getcwd
 getdisk
-getdiskbyname
 getdtablesize
 getegid
 getencstat

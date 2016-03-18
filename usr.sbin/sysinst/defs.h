@@ -40,7 +40,6 @@
 /* System includes needed for this. */
 #include <sys/queue.h>
 #include <sys/types.h>
-#include <sys/disklabel.h>
 #include <sys/disk.h>
 
 const char *getfslabelname(uint8_t);
@@ -84,9 +83,6 @@ deconst(const void *p)
 #define RUN_PROGRESS	0x0080		/* Output is just progess test */
 #define RUN_NO_CLEAR	0x0100		/* Leave program output after error */
 #define RUN_XFER_DIR	0x0200		/* cd to xfer_dir in child */
-
-/* for bsddisklabel.c */
-enum { LY_SETNEW, LY_NEWLVM, LY_USEEXIST };
 
 /* Installation sets */
 enum {
@@ -415,9 +411,7 @@ int  mnt2_mounted;
 char dist_postfix[SSTRSIZE];
 
 /* needed prototypes */
-void set_menu_numopts(int, int);
 void remove_color_options(void);
-void remove_lvm_options(void);
 void remove_gpt_options(void);
 
 /* Machine dependent functions .... */
@@ -427,10 +421,8 @@ void	md_init_set_status(int); /* SFLAG_foo */
 
  /* MD functions if user selects install - in order called */
 int	md_get_info(void);
-int	md_make_bsd_partitions(void);
 int	md_check_partitions(void);
-int	md_pre_disklabel(void);
-int	md_post_disklabel(void);
+int	md_write_mbr(void);
 int	md_pre_mount(void);
 int	md_post_newfs(void);
 int	md_post_extract(void);
@@ -450,7 +442,6 @@ int	find_disks(const char *);
 struct menudesc;
 void	fmt_fspart(struct menudesc *, int, void *);
 void	disp_cur_fspart(int, int);
-int	write_disklabel(void);
 int	make_filesystems(void);
 int	make_fstab(void);
 int	mount_disks(void);
@@ -465,9 +456,7 @@ const char *get_gptfs_by_id(int);
 
 /* from label.c */
 const char *get_last_mounted(int, int, partinfo *);
-int	savenewlabel(partinfo *, int);
 int	incorelabel(const char *, partinfo *);
-int	edit_and_check_label(partinfo *, int, int, int);
 void	set_bsize(partinfo *, int);
 void	set_fsize(partinfo *, int);
 void	set_ptype(partinfo *, int, int);
@@ -598,22 +587,12 @@ int pm_unconfigure(pm_devs_t *);
 int pm_gpt_convert(pm_devs_t *);
 void pm_wedges_fill(pm_devs_t *);
 void pm_make_bsd_partitions(pm_devs_t *);
-void update_wedges(const char *);
 
 /* flags whether to offer the respective options (depending on helper
    programs available on install media */
-int have_vnd, have_lvm, have_gpt, have_dk;
+int have_vnd, have_gpt, have_dk;
 /* initialize above variables */
 void check_available_binaries(void);
-
-/* from bsddisklabel.c */
-int	make_bsd_partitions(void);
-int	save_ptn(int, daddr_t, daddr_t, int, const char *);
-void	set_ptn_titles(menudesc *, int, void *);
-void	set_ptn_menu(struct ptn_info *);
-int	set_ptn_size(menudesc *, void *);
-void	get_ptn_sizes(daddr_t, daddr_t, int);
-int check_partitions(void);
 
 /* from aout2elf.c */
 int move_aout_libs(void);

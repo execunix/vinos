@@ -326,7 +326,6 @@
 #define getcwd			_getcwd
 #define getdelim		_getdelim
 #define getdevmajor		_getdevmajor
-#define getdiskbyname		_getdiskbyname
 #define getdomainname		_getdomainname
 #define getfsent		_getfsent
 #define getfsfile		_getfsfile

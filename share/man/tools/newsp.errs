@@ -1612,7 +1612,6 @@ DARPA
 DASI
 DECOVF
 DFL
-DISKTAB
 DNDEBUG
 Dptr
 Dtime
@@ -1654,7 +1653,6 @@ Fscanf
 Ftell
 Fwrite
 GETCWD
-GETDISKBYNAME
 GETFSENT
 GETHOSTENT
 GETLOG
@@ -1666,7 +1664,6 @@ GSI
 Gcvt
 Gerror
 Getchar
-Getdiskbyname
 Getfsent
 Getfsspec
 Getfstype
@@ -1966,8 +1963,6 @@ dir.h
 directory.3
 dirp
 disect
-disktab
-disktab.h
 dispmsg
 doprnt
 dox
@@ -2060,7 +2055,6 @@ getch
 getcwd
 getcwd.3f
 getdisk.3x
-getdiskbyname
 getenv.3
 getenv.3f
 getfsent
@@ -2893,7 +2887,6 @@ dialup
 dialups
 diskette
 diskettes
-diskpart
 dm0
 dma
 dmc
@@ -3246,13 +3239,11 @@ DECtape
 DEV
 DIRBLKSIZ
 DIRSIZ
-DISKTAB
 DM2500,H2000
 DUMPINFMT
 DUMPOUTFMT
 DVI
 Datamedia's
-Disktab
 ECOML
 ECOMM
 EE:ta
@@ -3413,9 +3404,6 @@ dialup
 dinode
 dir.h
 dirdesc
-diskpart
-disktab
-disktab.h
 ditroff
 dotdashed
 drsize
@@ -3807,7 +3795,6 @@ del
 dh.c
 dialup
 dict
-disktab
 dle
 doc
 dumpdates
@@ -3977,7 +3964,6 @@ DARPA
 DBA0
 DELE
 DEV
-DISKPART
 DMA
 DMA0
 DRA0
@@ -3986,7 +3972,6 @@ DSK
 DUMPFS
 DVI
 Dept
-Diskpart
 Drtest
 Dumpfs
 ECC
@@ -4267,9 +4252,6 @@ dialup
 dieing
 diskette
 diskmap
-diskpart
-diskpart.8
-disktab
 disktype
 dissappears
 dkbad

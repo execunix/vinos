@@ -246,60 +246,6 @@ MKISOFS_ARGS.${image}+= -b ${BOOTFILE.amd64} -c boot.catalog
 .endif
 .endif
         
-# Mac (mac68k, macppc)
-
-.if !empty(ports:Mmacppc)
-BOOTHFS=	boothfs
-MKISOFS_ARGS.${image}+=	-hfs -part -hide-hfs-list ${.CURDIR}/hide-hfs.lst \
-	--macbin -map ${.CURDIR}/hfsmap.lst \
-	-boot-hfs-file ${.OBJDIR}/${BOOTHFS}
-UUDECODE_FILES=	${BOOTHFS}
-.include <bsd.files.mk>
-.elif defined(USE_APPLE_ISO) || !empty(ports:Mmac68k)
-MKISOFS_ARGS.${image}+=	-apple --macbin -map ${.CURDIR}/hfsmap.lst
-.endif
-
-# Sun (sparc, sparc64, sun3)
-
-SUN_BOOT_ARGS.${image}:=
-.if !empty(ports:Msparc*) || !empty(ports:Msun3*)	# {
-SUN_BOOT.123:=	-
-SUN_BOOT.4:=	-
-SUN_BOOT.5:=	-
-
-.if !empty(ports:Msparc)
-SUN_BOOT.123:=	${BOOTFILE.sparc}
-.endif
-
-.if !empty(ports:Msun3)					# {
-.if !defined(BOOTFILE.sun3x)
-# NetBSD >= 1.4; sun3 and sun3x are the same
-SUN_BOOT.5:=	${BOOTFILE.sun3}
-.endif
-SUN_BOOT.4:=	${BOOTFILE.sun3}
-.endif							# }
-
-.if !empty(ports:Msun3x) && defined(BOOTFILE.sun3x)
-# NetBSD < 1.4; sun3 and sun3x are separate
-SUN_BOOT.5:=	${BOOTFILE.sun3x}
-.endif
-
-.if !empty(ports:Msparc64)				# {
-.if (${SUN_BOOT.5} != "-")
-# add warning
-SUN_BOOT.5:=	${SUN_BOOT.5} ${BOOTFILE.sparc64}
-.else
-SUN_BOOT.5:=	${BOOTFILE.sparc64}
-.endif
-.endif							# }
-
-SUN_BOOT_ARGS.${image}:= ${SUN_BOOT.123} ${SUN_BOOT.123} ${SUN_BOOT.123} ${SUN_BOOT.4} ${SUN_BOOT.5}
-
-.if empty(SUN_BOOT_ARGS.${image}:N/dev/null)
-SUN_BOOT_ARGS.${image}:=
-.endif
-.endif							# }
-
 .endfor		# image in ${CD_IMAGES}		# }
 
 ##### Additional options for host OS's #####
@@ -380,16 +326,10 @@ ${STAGEDIR}/${image}/${file:C/:.*$//}: ${file:C/^.*://} USE-FILE
 ${file:C/^.*://}: .PHONY
 .endfor						# }
 
-.if !empty(BASE_PORTS.${image}:Mmacppc)
-fileprep-${image}: ${BOOTHFS}
-.endif
-
 # Size the CD image.  This is done via the following formula:
 # 1. Size the image produced by mkisofs.
-# 2. Add images added by distrib/common/sunbootcd.sh by rounding to a 320k
-#    boundary and adding each Sun image rounded to a 320k boundary.
-# 3. Add bootfile sizes rounded up to 512 bytes for pmax and vax.
-# 4. Round up to a 32k boundary, then add another 32k for TAO padding.
+# 2. Add bootfile sizes rounded up to 512 bytes for pmax and vax.
+# 3. Round up to a 32k boundary, then add another 32k for TAO padding.
 
 SGIVOLHDR.size= 4096
 
@@ -399,14 +339,6 @@ size-${image}: stage-${image} extfileprep fileprep-${image} check_mkisofs
 			-print-size . 2>&1 \
 		   | tee /dev/stderr \
 		   | ${TOOL_SED} '/=/!d;s/^[^=]*=//'` * 2048)) && \
-	if [ "${SUN_BOOT_ARGS.${image}}" != "" ]; then \
-		size=$$(($$(($$size + 327679)) / 327680 * 327680)) && \
-		bootfiles=`for f in ${SUN_BOOT_ARGS.${image}:N-:O}; do echo $$f; done | uniq` && \
-		for f in $$bootfiles; do \
-			bfsize=$$(${TOOL_STAT} -f '%z' $$f) && \
-			size=$$(($$size + $$(($$(($$bfsize + 327679)) / 327680 * 327680)))); \
-		done; \
-	fi && \
 	if [ "${BASE_PORTS.${image}:Mpmax}" != "" ]; then \
 		size=$$(($$size + $$(($$(($$(${TOOL_STAT} -f '%z' ${BOOTFILE.pmax}) + 511)) / 512 * 512)))); \
 	fi && \
@@ -434,11 +366,6 @@ ${IMAGEDIR}/${image}.iso: size-${image} check_mkisofs
 	cd ${STAGEDIR}/${image} && ${MKISOFS} -o $@ ${MKISOFS_ARGS} ${MKISOFS_ARGS.${image}} -v -v . >${IMAGEDIR}/${image}.iso.log 2>&1
 .else
 	cd ${STAGEDIR}/${image} && ${MKISOFS} -o $@ ${MKISOFS_ARGS} ${MKISOFS_ARGS.${image}} .
-.endif
-.if !empty(SUN_BOOT_ARGS.${image})
-	SUNLABEL=${TOOL_SUNLABEL:Q} \
-	    ${HOST_SH} ${NETBSDSRCDIR}/distrib/common/sunbootcd.sh \
-	    ${.TARGET} ${SUN_BOOT_ARGS.${image}}
 .endif
 .if !empty(BASE_PORTS.${image}:Mmacppc)
 	${MACPPC_IBOOTDIR}/macppc_installboot \

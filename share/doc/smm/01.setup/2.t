@@ -477,7 +477,6 @@ This is done as follows:
 .TS
 lw(2i) l.
 \fB#\fP \fImount_mfs -s 1000 -T type /dev/null /tmp\fP	(create a writable filesystem)
-(\fItype\fP is the disk type as determined from /etc/disktab)
 \fB#\fP \fIcd /tmp\fP	(connect to that directory)
 \fB#\fP \fI../dev/MAKEDEV \*(Dk#\fP	(create special files for root disk)
 (\fI\*(Dk\fP is the disk type, \fI#\fP is the unit number)
@@ -547,47 +546,6 @@ not use certain partitions or suffer minor performance degradation,
 you might want to avoid this step;
 especially if you do not know how to use
 .Xr ed (1).
-.PP
-If you choose to edit this label,
-you can fill in correct geometry information from
-.Pn /etc/disktab .
-You may also want to rework the ``e'' and ``f'' partitions used for loading
-.Pn /usr
-and
-.Pn /var .
-You should not attempt to, and
-.Xr disklabel
-will not let you, modify the ``a'', ``b'' and ``d'' partitions.
-To edit a label:
-.DS
-\fB#\fP \fIEDITOR=ed\fP
-\fB#\fP \fIexport EDITOR\fP
-\fB#\fP \fIdisklabel  -r  -e  /dev/r\fBXX#\fPd
-.DE
-where \fBXX\fP is the type and \fB#\fP is the logical drive number; e.g.
-.Pn /dev/rsd0d
-or
-.Pn /dev/rrd0d .
-Note the explicit use of the ``d'' partition.
-This partition includes the bootblock as does ``c''
-and using it allows you to change the size of ``c''.
-.PP
-If you wish to label any additional disks, run the following command for each:
-.DS
-\fB#\|\fP\fIdisklabel  -rw  \fBXX#  type\fP  \fI"optional_pack_name"\fP
-.DE
-where \fBXX#\fP is the same as in the previous command
-and \fBtype\fP is the HP300 disk device name as listed in
-.Pn /etc/disktab .
-The optional information may contain any descriptive name for the
-contents of a disk, and may be up to 16 characters long.  This procedure
-will place the label on the disk using the information found in
-.Pn /etc/disktab
-for the disk type named.
-If you have changed the disk partition sizes,
-you may wish to add entries for the modified configuration in
-.Pn /etc/disktab
-before labeling the affected disks.
 .PP
 You have now completed the HP300 specific part of the installation.
 Now proceed to the generic part of the installation
@@ -955,18 +913,6 @@ Next you should proceed to section 2.4.3 to build a disk-based root filesystem.
 There are five steps to create a disk-based root filesystem.
 .IP 1)
 Label the disk.
-.DS
-.ft CW
-# disklabel -W /dev/rrz?c		# This enables writing the label
-# disklabel -w -r -B /dev/rrz?c $DISKTYPE
-# newfs /dev/rrz?a
-\&...
-# fsck /dev/rrz?a
-\&...
-.DE
-Supported disk types are listed in
-.Pn /etc/disktab .
-.ne 1i
 .IP 2)
 Restore the root filesystem.
 .DS
@@ -1072,10 +1018,6 @@ disk sizes are always reported in units of 512-byte sectors\**.
 You can thank System V intransigence and POSIX duplicity for
 requiring that 512-byte blocks be the units that programs report.
 .FE
-The
-.Pn /etc/disktab
-file used in labelling disks and making filesystems
-specifies disk partition sizes in sectors.
 .Sh 3 "Layout considerations"
 .PP
 There are several considerations in deciding how
@@ -1291,29 +1233,6 @@ values supplied above.
 Remember that the current
 implementation limits the block size to at most 64 kbytes
 and the ratio of block size versus fragment size must be 1, 2, 4, or 8.
-.PP
-The disk geometry information used by the filesystem
-affects the block layout policies employed.  The file
-.Pn /etc/disktab ,
-as supplied, contains the data for most
-all drives supported by the system.  Before constructing
-a filesystem with
-.Xr newfs (8)
-you should label the disk (if it has not yet been labeled,
-and the driver supports labels).
-If labels cannot be used, you must instead
-specify the type of disk on which the filesystem resides;
-.Xr newfs
-then reads
-.Pn /etc/disktab
-instead of the pack label.
-This file also contains the default
-filesystem partition
-sizes, and default block and fragment sizes.  To
-override any of the default values you can modify the file,
-edit the disk label,
-or use an option to
-.Xr newfs .
 .Sh 3 "Implementing a layout"
 .PP
 To put a chosen disk layout into effect, you should use the
@@ -1479,25 +1398,6 @@ lw(2i) l.
 \fB#\fP \fIrm -r /usr/*\fP	(remove excess bootstrap binaries)
 \fB#\fP \fImount /dev/\*(Dk#p /usr\fP	(remount /usr)
 .TE
-If no disk label has been installed on the disk, the
-.Xr newfs
-command will require a third argument to specify the disk type,
-using one of the names in
-.Pn /etc/disktab .
-If the tape had been rewound or positioned incorrectly before the
-.Xr tar ,
-to extract
-.Pn /var
-it may be repositioned by the following commands.
-.DS
-\fB#\fP \fImt -f /dev/nr\*(Mt0 rew\fP
-\fB#\fP \fImt -f /dev/nr\*(Mt0 fsf 1\fP
-.DE
-The data on the second and third tape files has now been extracted.
-If you are using 6250bpi tapes, the first reel of the
-distribution is no longer needed; you should now mount the second
-reel instead.  The installation procedure continues from this
-point on the 8mm tape.
 The next step is to extract the sources.
 As previously noted,
 .Pn /usr/src

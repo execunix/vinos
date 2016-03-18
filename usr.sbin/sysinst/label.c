@@ -618,61 +618,6 @@ set_label_texts(menudesc *menu, void *arg)
 }
 
 /*
- * Check a disklabel.
- * If there are overlapping active partitions,
- * Ask the user if they want to edit the partition or give up.
- */
-int
-edit_and_check_label(partinfo *lp, int nparts, int rawpart, int bsdpart)
-{
-	static struct menu_ent *menu;
-	static int menu_no = -1;
-	static struct ptn_menu_info pi;
-	int maxpart = getmaxpartitions();
-
-	if (menu == NULL) {
-		menu = malloc((maxpart + 1) * sizeof *menu);
-		if (!menu)
-			return 1;
-	}
-
-	if (menu_no == -1) {
-		menu_no = new_menu(NULL, menu, maxpart + 1,
-			0, -1, maxpart + 2, 74,
-			MC_ALWAYS_SCROLL | MC_NOBOX | MC_DFLTEXIT,
-			set_label_texts, fmt_fspart, NULL, NULL,
-			MSG_partition_sizes_ok);
-	}
-
-	if (menu_no < 0)
-		return 1;
-
-	pi.flags = 0;
-	pm->current_cylsize = pm->dlcylsize;
-
-	for (;;) {
-		/* first give the user the option to edit the label... */
-		process_menu(menu_no, &pi);
-
-		/* User thinks the label is OK. */
-		/* check we have a single root fs */
-		if (check_one_root(lp, nparts) == 0 && partman_go == 0)
-			msg_display(MSG_must_be_one_root);
-		else 
-			/* Check for overlaps */
-			if (checkoverlap(lp, nparts, rawpart, bsdpart) == 0)
-				return 1;
-
-		/*XXX ???*/
-		msg_display_add(MSG_edit_partitions_again);
-		if (!ask_yesno(NULL))
-			return(0);
-	}
-
-	/*NOTREACHED*/
-}
-
-/*
  * Read a label from disk into a sysinst label structure.
  */
 int

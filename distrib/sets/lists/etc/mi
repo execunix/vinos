@@ -32,7 +32,6 @@
 ./etc/defaults/security.conf			etc-sys-defaults
 ./etc/defaults/weekly.conf			etc-sys-defaults
 ./etc/dhcpcd.conf				etc-dhcpcd-etc
-./etc/disktab					etc-sysutil-etc
 ./etc/dm.conf					etc-games-etc
 ./etc/dumpdates					etc-sysutil-etc
 ./etc/envsys.conf				etc-sysutil-etc

@@ -891,48 +891,6 @@ if checkyesno check_mtree; then
 	fi
 fi
 
-# Backup disklabels of available disks
-#
-if checkyesno check_disklabels; then
-		# migrate old disklabels
-	for file in $(ls -1d $backup_dir/$backup_dir/disklabel.* \
-	    $backup_dir/disklabel.* 2>/dev/null); do
-		migrate_file "$file" "$work_dir/${file##*/}"
-	done
-
-		# generate list of old disklabels, fdisks & wedges and remove them
-	ls -1d $work_dir/disklabel.* $work_dir/fdisk.* $work_dir/wedges.* 2>/dev/null |
-	    egrep -v '\.(backup|current)(,v)?$' > $LABELS
-	xargs rm < $LABELS
-
-		# generate disklabels of all disks excluding:	cd dk fd md st
-	disks=$(iostat -x | awk 'NR > 1 && $1 !~ /^[cfm]d|dk|st|nfs/ { print $1; }')
-	for i in $disks; do
-		disklabel $i > "$work_dir/disklabel.$i" 2>/dev/null
-	done
-
-		# if fdisk is available, generate fdisks for:	ed ld sd wd
-	if [ -x /sbin/fdisk ]; then
-		disks=$(iostat -x | awk 'NR > 1 && $1 ~ /^[elsw]d/ { print $1; }')
-		for i in $disks; do
-			/sbin/fdisk $i > "$work_dir/fdisk.$i" 2>/dev/null
-		done
-	fi
-
-		# if dkctl is available, generate dkctl listwedges for:	ed ld sd wd ofdisk ra rl
-	if [ -x /sbin/dkctl ]; then
-		disks=$(iostat -x | awk 'NR > 1 && $1 ~ /^[elsw]d|ofdisk|r[al]/ { print $1; }')
-		for i in $disks; do
-			/sbin/dkctl $i listwedges > "$work_dir/wedges.$i" 2>/dev/null
-		done
-	fi
-
-		# append list of new disklabels, fdisks and wedges
-	ls -1d $work_dir/disklabel.* $work_dir/fdisk.* $work_dir/wedges.* 2>/dev/null |
-	    egrep -v '\.(backup|current)(,v)?$' >> $LABELS
-	CHANGELIST="$LABELS $CHANGELIST"
-fi
-
 # Check for changes in the list of installed pkgs
 #
 if checkyesno check_pkgs && have_pkgs; then

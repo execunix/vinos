@@ -22,7 +22,7 @@ MAN=	aac.4 ac97.4 acardide.4 aceride.4 acphy.4 \
 	com.4 coram.4 crypto.4 cs80bus.4 cuda.4 cypide.4 cxdtv.4 \
 	ddb.4 ddc.4 de.4 dge.4 dk.4 dmoverio.4 \
 	dmphy.4 dpt.4 dpti.4 drm.4 drum.4 dtv.4 dtviic.4 dwctwo.4 \
-	eap.4 ebus.4 edc.4 elmc.4 emuxki.4 en.4 envsys.4 ep.4 esh.4 \
+	eap.4 ebus.4 edc.4 emuxki.4 en.4 envsys.4 ep.4 esh.4 \
 	esa.4 esiop.4 esm.4 eso.4 et.4 etherip.4 etphy.4 exphy.4 \
 	fast_ipsec.4 fd.4 filemon.4 finsio.4 flash.4 fpa.4 fms.4 fss.4 fujbp.4 fxp.4 \
 	gcscaudio.4 gem.4 genfb.4 gentbi.4 geodeide.4 \
@@ -37,7 +37,7 @@ MAN=	aac.4 ac97.4 acardide.4 aceride.4 acphy.4 \
 	jme.4 jmide.4 joy.4 \
 	kloader.4 kse.4 ksyms.4 kttcp.4 \
 	lc.4 ld.4 lii.4 lo.4 lua.4 lxtphy.4 \
-	mainbus.4 makphy.4 malo.4 mbe.4 mca.4 mcclock.4 md.4 mfb.4 \
+	mainbus.4 makphy.4 malo.4 mbe.4 mcclock.4 md.4 mfb.4 \
 	mfi.4 mhzc.4 \
 	micphy.4 midi.4 mii.4 mk48txx.4 mlx.4 mly.4 mpls.4 mpii.4 mpt.4 mpu.4 mtd.4 \
 	mtio.4 msm6242b.4 multicast.4 mvsata.4 \

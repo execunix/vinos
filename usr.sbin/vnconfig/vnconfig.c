@@ -71,13 +71,11 @@
 #include <sys/ioctl.h>
 #include <sys/mount.h>
 #include <sys/buf.h>
-#include <sys/disklabel.h>
 #include <sys/disk.h>
 #include <sys/bitops.h>
 
 #include <dev/vndvar.h>
 
-#include <disktab.h>
 #include <err.h>
 #include <dirent.h>
 #include <errno.h>
@@ -98,7 +96,6 @@ static int	verbose = 0;
 static int	readonly = 0;
 static int	force = 0;
 static int	compressed = 0;
-static char	*tabname;
 
 static void	show(int, int);
 static int	config(char *, char *, char *, int);
@@ -118,18 +115,11 @@ main(int argc, char *argv[])
 		case 'c':
 			action = VND_CONFIG;
 			break;
-		case 'f':
-			if (setdisktab(optarg) == -1)
-				usage();
-			break;
 		case 'l':
 			action = VND_GET;
 			break;
 		case 'r':
 			readonly = 1;
-			break;
-		case 't':
-			tabname = optarg;
 			break;
 		case 'u':
 			action = VND_UNCONFIG;
@@ -151,13 +141,12 @@ main(int argc, char *argv[])
 	argv += optind;
 
 	if (action == VND_CONFIG) {
-		if ((argc < 2 || argc > 3) ||
-		    (argc == 3 && tabname != NULL))
+		if (argc < 2 || argc > 3)
 			usage();
 		rv = config(argv[0], argv[1], (argc == 3) ? argv[2] : NULL,
 		    action);
 	} else if (action == VND_UNCONFIG) {
-		if (argc != 1 || tabname != NULL)
+		if (argc != 1)
 			usage();
 		rv = config(argv[0], NULL, NULL, action);
 	} else { /* VND_GET */
@@ -257,7 +246,6 @@ static int
 config(char *dev, char *file, char *geom, int action)
 {
 	struct vnd_ioctl vndio;
-	struct disklabel *lp;
 	char rdev[MAXPATHLEN + 1];
 	int fd, rv;
 
@@ -277,15 +265,6 @@ config(char *dev, char *file, char *geom, int action)
 		rv = getgeom(&vndio.vnd_geom, geom);
 		if (rv != 0)
 			errx(1, "invalid geometry: %s", geom);
-		vndio.vnd_flags = VNDIOF_HASGEOM;
-	} else if (tabname != NULL) {
-		lp = getdiskbyname(tabname);
-		if (lp == NULL)
-			errx(1, "unknown disk type: %s", tabname);
-		vndio.vnd_geom.vng_secsize = lp->d_secsize;
-		vndio.vnd_geom.vng_nsectors = lp->d_nsectors;
-		vndio.vnd_geom.vng_ntracks = lp->d_ntracks;
-		vndio.vnd_geom.vng_ncylinders = lp->d_ncylinders;
 		vndio.vnd_flags = VNDIOF_HASGEOM;
 	}
 
@@ -399,7 +378,7 @@ usage(void)
 {
 
 	(void)fprintf(stderr, "%s%s",
-	    "usage: vnconfig [-crvz] [-f disktab] [-t typename] vnode_disk"
+	    "usage: vnconfig [-crvz] [-t typename] vnode_disk"
 		" regular-file [geomspec]\n",
 	    "       vnconfig -u [-Fv] vnode_disk\n"
 	    "       vnconfig -l [vnode_disk]\n");

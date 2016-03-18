@@ -49,7 +49,6 @@ __KERNEL_RCSID(0, "$NetBSD: mainbus.c,v 1.98 2013/11/08 03:12:48 christos Exp $"
 #include "eisa.h"
 #include "isa.h"
 #include "isadma.h"
-#include "mca.h"
 #include "pnpbios.h"
 #include "acpica.h"
 #include "ipmi.h"
@@ -69,10 +68,6 @@ __KERNEL_RCSID(0, "$NetBSD: mainbus.c,v 1.98 2013/11/08 03:12:48 christos Exp $"
 
 #if NACPICA > 0
 #include <dev/acpi/acpivar.h>
-#endif
-
-#if NMCA > 0
-#include <dev/mca/mcavar.h>
 #endif
 
 #if NIPMI > 0
@@ -99,7 +94,6 @@ struct mainbus_softc {
 	device_t	sc_dev;
 	device_t	sc_ipmi;
 	device_t	sc_pci;
-	device_t	sc_mca;
 	device_t	sc_pnpbios;
 	bool		sc_acpi_present;
 	bool		sc_mpacpi_active;
@@ -116,9 +110,6 @@ union mainbus_attach_args {
 	struct pcibus_attach_args mba_pba;
 	struct eisabus_attach_args mba_eba;
 	struct isabus_attach_args mba_iba;
-#if NMCA > 0
-	struct mcabus_attach_args mba_mba;
-#endif
 #if NPNPBIOS > 0
 	struct pnpbios_attach_args mba_paa;
 #endif
@@ -176,8 +167,6 @@ mainbus_childdetached(device_t self, device_t child)
 		sc->sc_acpi = NULL;
 	if (sc->sc_ipmi == child)
 		sc->sc_ipmi = NULL;
-	if (sc->sc_mca == child)
-		sc->sc_mca = NULL;
 	if (sc->sc_pnpbios == child)
 		sc->sc_pnpbios = NULL;
 	if (sc->sc_pci == child)
@@ -293,8 +282,6 @@ mainbus_attach(device_t parent, device_t self, void *aux)
 
 	mainbus_rescan(self, "pcibus", NULL);
 
-	mainbus_rescan(self, "mcabus", NULL);
-
 	if (memcmp(ISA_HOLE_VADDR(EISA_ID_PADDR), EISA_ID, EISA_ID_LEN) == 0 &&
 	    eisa_has_been_seen == 0) {
 		mba.mba_eba.eba_iot = x86_bus_space_io;
@@ -323,7 +310,7 @@ static int
 mainbus_rescan(device_t self, const char *ifattr, const int *locators)
 {
 	struct mainbus_softc *sc = device_private(self);
-#if NACPICA > 0 || NIPMI > 0 || NMCA > 0 || NPCI > 0 || NPNPBIOS > 0
+#if NACPICA > 0 || NIPMI > 0 || NPCI > 0 || NPNPBIOS > 0
 	union mainbus_attach_args mba;
 #endif
 
@@ -424,21 +411,6 @@ mainbus_rescan(device_t self, const char *ifattr, const int *locators)
 	}
 #endif
 
-
-	if (ifattr_match(ifattr, "mcabus") && sc->sc_mca == NULL) {
-#if NMCA > 0
-	/* Note: MCA bus probe is done in i386/machdep.c */
-		if (MCA_system) {
-			mba.mba_mba.mba_iot = x86_bus_space_io;
-			mba.mba_mba.mba_memt = x86_bus_space_mem;
-			mba.mba_mba.mba_dmat = &mca_bus_dma_tag;
-			mba.mba_mba.mba_mc = NULL;
-			mba.mba_mba.mba_bus = 0;
-			sc->sc_mca = config_found_ia(self, "mcabus",
-			    &mba.mba_mba, mcabusprint);
-		}
-#endif
-	}
 	return 0;
 }
 

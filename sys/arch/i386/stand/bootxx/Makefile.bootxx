@@ -84,8 +84,7 @@ CPPFLAGS+= -DLIBSA_SINGLE_FILESYSTEM=xxfs \
 		-DLIBKERN_OPTIMISE_SPACE \
 		-D"blkdevioctl(x,y,z)=EINVAL" \
 		-D"blkdevclose(f)=0" \
-		-D"devopen(f,n,fl)=(*(fl)=(void *)n,0)" \
-		-DLIBSA_NO_DISKLABEL_MSGS
+		-D"devopen(f,n,fl)=(*(fl)=(void *)n,0)"
 
 # -DLIBSA_FS_SINGLECOMPONENT 
 

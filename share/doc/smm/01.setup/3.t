@@ -201,7 +201,6 @@ lfC c l.
 /.login	\(dg	root csh login script (moves to \f(CW/root/.login\fP)
 /.profile	\(dg	root sh startup script (moves to \f(CW/root/.profile\fP)
 /.rhosts	\(dg	for trusted machines and users (moves to \f(CW/root/.rhosts\fP)
-/etc/disktab	\(dd	in case you changed disk partition sizes
 /etc/fstab	*	disk configuration data
 /etc/ftpusers	\(dg	for local additions
 /etc/gettytab	\(dd	getty database

@@ -88,14 +88,6 @@ __KERNEL_RCSID(0, "$NetBSD: i8259.c,v 1.16 2013/11/06 20:19:03 mrg Exp $");
 #include <machine/pic.h>
 #include <machine/i8259.h>
 
-
-#ifndef __x86_64__
-#include "mca.h"
-#if NMCA > 0
-#include <machine/mca_machdep.h>                /* for MCA_system */
-#endif
-#endif
-
 static void i8259_hwmask(struct pic *, int);
 static void i8259_hwunmask(struct pic *, int);
 static void i8259_setup(struct pic *, struct cpu_info *, int, int, int);
@@ -123,15 +115,8 @@ struct pic i8259_pic = {
 void
 i8259_default_setup(void)
 {
-#if NMCA > 0
-	/* level-triggered interrupts on MCA PS/2s */
-	if (MCA_system)
-		/* reset; program device, level-triggered, four bytes */
-		outb(IO_ICU1 + PIC_ICW1, ICW1_SELECT | ICW1_LTIM | ICW1_IC4);
-	else
-#endif
-		/* reset; program device, four bytes */
-		outb(IO_ICU1 + PIC_ICW1, ICW1_SELECT | ICW1_IC4);
+	/* reset; program device, four bytes */
+	outb(IO_ICU1 + PIC_ICW1, ICW1_SELECT | ICW1_IC4);
 
 	/* starting at this vector index */
 	outb(IO_ICU1 + PIC_ICW2, ICU_OFFSET);
@@ -157,15 +142,8 @@ i8259_default_setup(void)
 	    OCW2_ILS(3 - 1));
 #endif
 
-#if NMCA > 0
-	/* level-triggered interrupts on MCA PS/2s */
-	if (MCA_system)
-		/* reset; program device, level-triggered, four bytes */
-		outb(IO_ICU2 + PIC_ICW1, ICW1_SELECT | ICW1_LTIM | ICW1_IC4);
-	else
-#endif	
-		/* reset; program device, four bytes */
-		outb(IO_ICU2 + PIC_ICW1, ICW1_SELECT | ICW1_IC4);
+	/* reset; program device, four bytes */
+	outb(IO_ICU2 + PIC_ICW1, ICW1_SELECT | ICW1_IC4);
 
 	/* staring at this vector index */
 	outb(IO_ICU2 + PIC_ICW2, ICU_OFFSET + 8);

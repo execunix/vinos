@@ -35,7 +35,6 @@ IMAGE.instk=	${IMAGE.rel}/installation/instkernel
 
 __mkimage: .USE
 	TOOL_MAKEFS=${TOOL_MAKEFS} \
-	TOOL_DISKLABEL=${TOOL_DISKLABEL} \
 	TOOL_FDISK=${TOOL_FDISK} \
 	TOOL_GZIP=${TOOL_GZIP} \
 	TOOL_MKNOD=${TOOL_MKNOD} \

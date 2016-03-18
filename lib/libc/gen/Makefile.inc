@@ -7,7 +7,7 @@
 SRCS+= 	_errno.c alarm.c alphasort.c arc4random.c assert.c asysctl.c \
 	basename.c clock.c closedir.c closefrom.c \
 	confstr.c ctermid.c ctype_.c daemon.c \
-	dehumanize_number.c devname.c dirname.c disklabel.c err.c errx.c \
+	dehumanize_number.c devname.c dirname.c err.c errx.c \
 	errc.c errlist.c errno.c execl.c execle.c execlp.c execv.c execvp.c \
 	extattr.c fmtcheck.c fmtmsg.c fnmatch.c fstab.c ftok.c \
 	fts.c ftw.c getbsize.c getcap.c getcwd.c \
@@ -55,7 +55,7 @@ MAN+=	alarm.3 arc4random.3 basename.3 bswap.3 clock.3 closefrom.3 \
 	fmtcheck.3 fmtmsg.3 fnmatch.3 fpclassify.3 fpgetmask.3 \
 	ftok.3 fts.3 ftw.3 \
 	getbsize.3 cgetcap.3 getcwd.3 getdevmajor.3 \
-	getdomainname.3 getdiskbyname.3 getfsent.3 \
+	getdomainname.3 getfsent.3 \
 	getgrent.3 getgrouplist.3 gethostname.3 getlastlogx.3 getloadavg.3 \
 	getmntinfo.3 getnetgrent.3 getpagesize.3 getpass.3 \
 	getprogname.3 getpwent.3 getttyent.3 getusershell.3 glob.3 \
@@ -116,7 +116,6 @@ MLINKS+=cgetcap.3 cgetclose.3 cgetcap.3 cgetent.3 \
 MLINKS+=getcwd.3 getwd.3
 MLINKS+=getpass.3 getpass_r.3
 MLINKS+=getpass.3 getpassfd.3
-MLINKS+=getdiskbyname.3 setdisktab.3
 MLINKS+=getdomainname.3 setdomainname.3
 MLINKS+=getfsent.3 endfsent.3 getfsent.3 getfsfile.3 getfsent.3 getfsspec.3 \
 	getfsent.3 setfsent.3

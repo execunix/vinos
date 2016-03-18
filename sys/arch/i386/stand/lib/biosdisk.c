@@ -63,10 +63,6 @@
  * the rights to redistribute these changes.
  */
 
-#if !defined(NO_DISKLABEL) || !defined(NO_GPT)
-#define FSTYPENAMES
-#endif
-
 #include <lib/libkern/libkern.h>
 #include <lib/libsa/stand.h>
 
@@ -97,7 +93,7 @@ struct biosdisk {
 	struct biosdisk_ll ll;
 	daddr_t         boff;
 	char            buf[BUFSIZE];
-#if !defined(NO_DISKLABEL) || !defined(NO_GPT)
+#if !defined(NO_GPT)
 	struct {
 		daddr_t offset;
 		daddr_t size;
@@ -181,7 +177,7 @@ alloc_biosdisk(int biosdev)
 	return d;
 }
 
-#if !defined(NO_DISKLABEL) || !defined(NO_GPT)
+#if !defined(NO_GPT)
 static void
 md5(void *hash, const void *data, size_t len)
 {
@@ -353,214 +349,7 @@ read_gpt(struct biosdisk *d)
 }
 #endif	/* !NO_GPT */
 
-#ifndef NO_DISKLABEL
-static void
-ingest_label(struct biosdisk *d, struct disklabel *lp)
-{
-	int part;
-
-	memset(d->part, 0, sizeof(d->part));
-
-	for (part = 0; part < lp->d_npartitions; part++) {
-		if (lp->d_partitions[part].p_size == 0)
-			continue;
-		if (lp->d_partitions[part].p_fstype == FS_UNUSED)
-			continue;
-		d->part[part].fstype = lp->d_partitions[part].p_fstype;
-		d->part[part].offset = lp->d_partitions[part].p_offset;
-		d->part[part].size = lp->d_partitions[part].p_size;
-	}
-}
-	
-static int
-check_label(struct biosdisk *d, daddr_t sector)
-{
-	struct disklabel *lp;
-
-	/* find partition in NetBSD disklabel */
-	if (readsects(&d->ll, sector + LABELSECTOR, 1, d->buf, 0)) {
-#ifdef DISK_DEBUG
-		printf("Error reading disklabel\n");
-#endif
-		return EIO;
-	}
-	lp = (struct disklabel *) (d->buf + LABELOFFSET);
-	if (lp->d_magic != DISKMAGIC || dkcksum(lp)) {
-#ifdef DISK_DEBUG
-		printf("warning: no disklabel in sector %"PRId64"\n", sector);
-#endif
-		return -1;
-	}
-
-	ingest_label(d, lp);
-
-#ifdef _STANDALONE
-	bi_disk.labelsector = sector + LABELSECTOR;
-	bi_disk.label.type = lp->d_type;
-	memcpy(bi_disk.label.packname, lp->d_packname, 16);
-	bi_disk.label.checksum = lp->d_checksum;
-
-	bi_wedge.matchblk = sector + LABELSECTOR;
-	bi_wedge.matchnblks = 1;
-
-	md5(bi_wedge.matchhash, d->buf, d->ll.secsize);
-#endif
-
-	return 0;
-}
-
-static int
-read_minix_subp(struct biosdisk *d, struct disklabel* dflt_lbl,
-			int this_ext, daddr_t sector)
-{
-	struct mbr_partition mbr[MBR_PART_COUNT];
-	int i;
-	int typ;
-	struct partition *p;
-
-	if (readsects(&d->ll, sector, 1, d->buf, 0)) {
-#ifdef DISK_DEBUG
-		printf("Error reading MFS sector %"PRId64"\n", sector);
-#endif
-		return EIO;
-	}
-	if ((uint8_t)d->buf[510] != 0x55 || (uint8_t)d->buf[511] != 0xAA) {
-		return -1;
-	}
-	memcpy(&mbr, MBR_PARTS(d->buf), sizeof(mbr));
-	for (i = 0; i < MBR_PART_COUNT; i++) {
-		typ = mbr[i].mbrp_type;
-		if (typ == 0)
-			continue;
-		sector = this_ext + mbr[i].mbrp_start;
-		if (dflt_lbl->d_npartitions >= MAXPARTITIONS)
-			continue;
-		p = &dflt_lbl->d_partitions[dflt_lbl->d_npartitions++];
-		p->p_offset = sector;
-		p->p_size = mbr[i].mbrp_size;
-		p->p_fstype = xlat_mbr_fstype(typ);
-	}
-	return 0;
-}
-
-static int
-read_label(struct biosdisk *d)
-{
-	struct disklabel dflt_lbl;
-	struct mbr_partition mbr[MBR_PART_COUNT];
-	struct partition *p;
-	uint32_t sector;
-	int i;
-	int error;
-	int typ;
-	uint32_t ext_base, this_ext, next_ext;
-#ifdef COMPAT_386BSD_MBRPART
-	int sector_386bsd = -1;
-#endif
-
-	memset(&dflt_lbl, 0, sizeof(dflt_lbl));
-	dflt_lbl.d_npartitions = 8;
-
-	d->boff = 0;
-
-	if (d->ll.type != BIOSDISK_TYPE_HD)
-		/* No label on floppy and CD */
-		return -1;
-
-	/*
-	 * find NetBSD Partition in DOS partition table
-	 * XXX check magic???
-	 */
-	ext_base = 0;
-	next_ext = 0;
-	for (;;) {
-		this_ext = ext_base + next_ext;
-		next_ext = 0;
-		if (readsects(&d->ll, this_ext, 1, d->buf, 0)) {
-#ifdef DISK_DEBUG
-			printf("error reading MBR sector %u\n", this_ext);
-#endif
-			return EIO;
-		}
-		memcpy(&mbr, MBR_PARTS(d->buf), sizeof(mbr));
-		/* Look for NetBSD partition ID */
-		for (i = 0; i < MBR_PART_COUNT; i++) {
-			typ = mbr[i].mbrp_type;
-			if (typ == 0)
-				continue;
-			sector = this_ext + mbr[i].mbrp_start;
-#ifdef DISK_DEBUG
-			printf("ptn type %d in sector %u\n", typ, sector);
-#endif
-                        if (typ == MBR_PTYPE_MINIX_14B) {
-				if (!read_minix_subp(d, &dflt_lbl,
-						   this_ext, sector)) {
-					/* Don't add "container" partition */
-					continue;
-				}
-			}
-			if (typ == MBR_PTYPE_NETBSD) {
-				error = check_label(d, sector);
-				if (error >= 0)
-					return error;
-			}
-			if (MBR_IS_EXTENDED(typ)) {
-				next_ext = mbr[i].mbrp_start;
-				continue;
-			}
-#ifdef COMPAT_386BSD_MBRPART
-			if (this_ext == 0 && typ == MBR_PTYPE_386BSD)
-				sector_386bsd = sector;
-#endif
-			if (this_ext != 0) {
-				if (dflt_lbl.d_npartitions >= MAXPARTITIONS)
-					continue;
-				p = &dflt_lbl.d_partitions[dflt_lbl.d_npartitions++];
-			} else
-				p = &dflt_lbl.d_partitions[i];
-			p->p_offset = sector;
-			p->p_size = mbr[i].mbrp_size;
-			p->p_fstype = xlat_mbr_fstype(typ);
-		}
-		if (next_ext == 0)
-			break;
-		if (ext_base == 0) {
-			ext_base = next_ext;
-			next_ext = 0;
-		}
-	}
-
-	sector = 0;
-#ifdef COMPAT_386BSD_MBRPART
-	if (sector_386bsd != -1) {
-		printf("old BSD partition ID!\n");
-		sector = sector_386bsd;
-	}
-#endif
-
-	/*
-	 * One of two things:
-	 * 	1. no MBR
-	 *	2. no NetBSD partition in MBR
-	 *
-	 * We simply default to "start of disk" in this case and
-	 * press on.
-	 */
-	error = check_label(d, sector);
-	if (error >= 0)
-		return error;
-
-	/*
-	 * Nothing at start of disk, return info from mbr partitions.
-	 */
-	/* XXX fill it to make checksum match kernel one */
-	dflt_lbl.d_checksum = dkcksum(&dflt_lbl);
-	ingest_label(d, &dflt_lbl);
-	return 0;
-}
-#endif /* NO_DISKLABEL */
-
-#if !defined(NO_DISKLABEL) || !defined(NO_GPT)
+#if !defined(NO_GPT)
 static int
 read_partitions(struct biosdisk *d)
 {
@@ -574,10 +363,6 @@ read_partitions(struct biosdisk *d)
 		return 0;
 
 #endif
-#ifndef NO_DISKLABEL
-	error = read_label(d);
-	
-#endif
 	return error;
 }
 #endif
@@ -590,7 +375,7 @@ biosdisk_probe(void)
 	uint64_t size;
 	int first;
 	int i;
-#if !defined(NO_DISKLABEL) || !defined(NO_GPT)
+#if !defined(NO_GPT)
 	int part;
 #endif
 
@@ -628,7 +413,7 @@ biosdisk_probe(void)
 			printf("\n");
 			break;
 		}
-#if !defined(NO_DISKLABEL) || !defined(NO_GPT)
+#if !defined(NO_GPT)
 		if (d.ll.type != BIOSDISK_TYPE_HD)
 			continue;
 
@@ -665,7 +450,7 @@ biosdisk_probe(void)
 int
 biosdisk_findpartition(int biosdev, daddr_t sector)
 {
-#if defined(NO_DISKLABEL) && defined(NO_GPT)
+#if defined(NO_GPT)
 	return 0;
 #else
 	struct biosdisk *d;
@@ -690,7 +475,7 @@ biosdisk_findpartition(int biosdev, daddr_t sector)
 
 	dealloc(d, sizeof(*d));
 	return partition;
-#endif /* NO_DISKLABEL && NO_GPT */
+#endif /* NO_GPT */
 }
 
 #ifdef _STANDALONE
@@ -745,7 +530,7 @@ biosdisk_open(struct open_file *f, ...)
 	bi_wedge.matchblk = -1;
 #endif
 
-#if !defined(NO_DISKLABEL) || !defined(NO_GPT)
+#if !defined(NO_GPT)
 	error = read_partitions(d);
 	if (error == -1) {
 		error = 0;

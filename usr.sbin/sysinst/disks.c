@@ -48,9 +48,6 @@
 #include <sys/swap.h>
 #include <ufs/ufs/dinode.h>
 #include <ufs/ffs/fs.h>
-#define FSTYPENAMES
-#include <sys/disklabel.h>
-#include <sys/disklabel_gpt.h>
 
 #include <dev/scsipi/scsipi_all.h>
 #include <sys/scsiio.h>
@@ -582,10 +579,6 @@ label_read(void)
 		incoregpt(pm, pm->oldlabel);
 	/* Set 'target' label to current label in case we don't change it */
 	memcpy(&pm->bsdlabel, &pm->oldlabel, sizeof pm->bsdlabel);
-#ifndef NO_DISKLABEL
-	if (! pm->gpt)
-		savenewlabel(pm->oldlabel, getmaxpartitions());
-#endif
 }
 
 void
@@ -631,33 +624,6 @@ fmt_fspart(menudesc *m, int ptn, void *arg)
 			p->pi_flags & PIF_MOUNT ? Yes : "",
 			p->pi_mount);
 }
-
-/*
- * Label a disk using an MD-specific string DISKLABEL_CMD for
- * to invoke disklabel.
- * if MD code does not define DISKLABEL_CMD, this is a no-op.
- *
- * i386 port uses "/sbin/disklabel -w -r", just like i386
- * miniroot scripts, though this may leave a bogus incore label.
- *
- * Sun ports should use DISKLABEL_CMD "/sbin/disklabel -w"
- * to get incore to ondisk inode translation for the Sun proms.
- */
-int
-write_disklabel (void)
-{
-	int rv = 0;
-
-#ifdef DISKLABEL_CMD
-	/* disklabel the disk */
-	rv = run_program(RUN_DISPLAY, "%s -f /tmp/disktab %s '%s'",
-	    DISKLABEL_CMD, pm->diskdev, pm->bsddiskname);
-	if (rv == 0)
-		update_wedges(pm->diskdev);
-#endif
-	return rv;
-}
-
 
 static int
 ptn_sort(const void *a, const void *b)

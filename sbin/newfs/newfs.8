@@ -286,10 +286,6 @@ If
 .Ar size
 is negative the specified size is subtracted from the default size
 (reserving space at the end of the partition).
-.It Fl T Ar disk-type
-Uses information for the specified disk from
-.Pa /etc/disktab
-instead of trying to get the information from the disk label.
 .It Fl V Ar verbose
 This controls the amount of information written to stdout:
 .Bl -tag -width 3n -offset indent -compact
@@ -387,10 +383,7 @@ must be specified instead of
 .Pa /dev/wd0a .
 .Sh SEE ALSO
 .Xr fstat 2 ,
-.Xr disktab 5 ,
 .Xr fs 5 ,
-.Xr disklabel 8 ,
-.Xr diskpart 8 ,
 .Xr dumpfs 8 ,
 .\" .Xr format 8 ,
 .Xr fsck_ffs 8 ,

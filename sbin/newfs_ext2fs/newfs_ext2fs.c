@@ -56,7 +56,6 @@ __RCSID("$NetBSD: newfs_ext2fs.c,v 1.9 2013/10/19 01:09:59 christos Exp $");
 #include <ufs/ext2fs/ext2fs.h>
 #include <ufs/ext2fs/ext2fs_dinode.h>
 
-#include <disktab.h>
 #include <err.h>
 #include <errno.h>
 #include <limits.h>

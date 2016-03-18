@@ -319,7 +319,6 @@
 ./usr/share/examples/asm
 ./usr/share/examples/asm/hello
 ./usr/share/examples/dhcp
-./usr/share/examples/disktab
 ./usr/share/examples/fstab
 ./usr/share/examples/blacklist
 ./usr/share/examples/ftpd

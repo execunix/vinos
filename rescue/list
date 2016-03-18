@@ -46,7 +46,6 @@ PROG	badsect
 PROG	brconfig
 PROG	chown		chgrp
 PROG	clri
-PROG	disklabel
 PROG	dkctl
 PROG	dmesg
 PROG	dump		rdump

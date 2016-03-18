@@ -43,7 +43,6 @@
 #  - customize: After unpacking the sets, this gets the system to
 #    a working state, e. g. by setting up /etc/rc.conf and /dev
 #  - populate: Add common goods like kernel and bootloader
-#  - make_label: Prints disklabel to stdout
 #
 
 set -e
@@ -51,7 +50,6 @@ set -e
 DIR="$(cd "$(dirname "$0")" && pwd)"
 PROG="$(basename "$0")"
 
-DISKLABEL=${TOOL_DISKLABEL:-disklabel}
 FDISK=${TOOL_FDISK:-fdisk}
 MAKEFS=${TOOL_MAKEFS:-makefs}
 MTREE=${TOOL_MTREE:-mtree}
@@ -211,9 +209,6 @@ do
 	compare="$((${newsize} * 2 * 1024))"
 done                      
 
-echo ${bar} Adding label ${bar}
-make_label > ${tmp}/label
-${DISKLABEL} -R -F ${image} ${tmp}/label
 if [ -n "${msdosid}" ]; then
 	echo ${bar} Running fdisk ${bar}
 	initsecs=$((${init} * 1024))

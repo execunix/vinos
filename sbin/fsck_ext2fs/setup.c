@@ -62,7 +62,6 @@ __RCSID("$NetBSD: setup.c,v 1.31.6.1 2015/04/14 05:15:57 snj Exp $");
 #endif
 #endif /* not lint */
 
-#define FSTYPENAMES
 #include <sys/param.h>
 #include <sys/time.h>
 #include <ufs/ext2fs/ext2fs_dinode.h>

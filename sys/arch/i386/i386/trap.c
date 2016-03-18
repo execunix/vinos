@@ -101,11 +101,6 @@ __KERNEL_RCSID(0, "$NetBSD: trap.c,v 1.272 2014/03/12 18:59:07 martin Exp $");
 #include <machine/userret.h>
 #include <machine/db_machdep.h>
 
-#include "mca.h"
-#if NMCA > 0
-#include <machine/mca_machdep.h>
-#endif
-
 #include <x86/nmi.h>
 
 #include "isa.h"
@@ -722,9 +717,6 @@ faultcommon:
 		if (kdb_trap(type, 0, frame))
 			return;
 		/* machine/parity/power fail/"kitchen sink" faults */
-#if NMCA > 0
-		mca_nmi();
-#endif
 		x86_nmi();
 	}
 

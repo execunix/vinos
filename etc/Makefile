@@ -99,13 +99,6 @@ BIN1+=	bootptab changelist csh.cshrc csh.login \
 	rc.shutdown remote rpc security security.conf services shells \
 	shrc sysctl.conf syslog.conf weekly weekly.conf wscons.conf
 
-# Use machine-specific disktab if it exists, or the MI one otherwise
-.if exists(etc.${MACHINE}/disktab)
-BIN1+=	etc.${MACHINE}/disktab
-.else
-BIN1+=	disktab
-.endif
-
 .if exists(etc.${MACHINE}/ld.so.conf) && empty(MACHINE_ARCH:M*arm*hf*)
 BIN1+=	etc.${MACHINE}/ld.so.conf
 .endif

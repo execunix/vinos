@@ -39,8 +39,6 @@ __RCSID("$NetBSD: partutil.c,v 1.12.6.1 2015/05/25 09:10:48 msaitoh Exp $");
 #include <sys/ioctl.h>
 #include <sys/stat.h>
 
-
-#include <disktab.h>
 #include <err.h>
 #include <errno.h>
 #include <fcntl.h>
@@ -91,7 +89,7 @@ dict2geom(struct disk_geom *geo, prop_dictionary_t dict)
 
 
 int
-getdiskinfo(const char *s, int fd, const char *dt, struct disk_geom *geo,
+getdiskinfo(const char *s, int fd, struct disk_geom *geo,
     struct dkwedge_info *dkw)
 {
 	struct disklabel lab;
@@ -100,12 +98,6 @@ getdiskinfo(const char *s, int fd, const char *dt, struct disk_geom *geo,
 	struct stat sb;
 	const struct partition *pp;
 	int ptn;
-
-	if (dt) {
-		lp = getdiskbyname(dt);
-		if (lp == NULL)
-			errx(1, "unknown disk type `%s'", dt);
-	}
 
 	/* Get disk description dictionary */
 	if (prop_dictionary_recv_ioctl(fd, DIOCGDISKINFO, &disk_dict)) {
@@ -175,7 +167,7 @@ getdisksize(const char *name, u_int *secsize, off_t *mediasize)
 	if ((fd = opendisk(name, O_RDONLY, buf, sizeof(buf), 0)) == -1)
 		return -1;
 
-	error = getdiskinfo(name, fd, NULL, &geo, NULL);
+	error = getdiskinfo(name, fd, &geo, NULL);
 	close(fd);
 	if (error)
 		return error;

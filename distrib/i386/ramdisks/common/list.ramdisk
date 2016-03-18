@@ -19,7 +19,6 @@ PROG	bin/sh
 PROG	bin/stty
 
 PROG	sbin/chown	bin/chgrp
-PROG	sbin/disklabel
 PROG	sbin/dmesg
 PROG	sbin/fsck
 PROG	sbin/fsck_ffs

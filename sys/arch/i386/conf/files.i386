@@ -133,7 +133,7 @@ define	pnpbiosbus {}
 #
 
 # XXX BIOS32 only if something that uses it is configured!
-device	mainbus: isabus, eisabus, mcabus, pcibus, bios32, acpibus,
+device	mainbus: isabus, eisabus, pcibus, bios32, acpibus,
 	cpubus, ioapicbus, apmbus, pnpbiosbus, ipmibus,
 	bioscall
 attach	mainbus at root
@@ -225,11 +225,6 @@ device	viapcib: isabus, i2cbus
 attach	viapcib at pci
 file	arch/i386/pci/viapcib.c		viapcib
 
-# PCI-MCA bridges
-device	pcmb: mcabus
-attach	pcmb at pci
-file	arch/i386/pci/pcmb.c		pcmb
-
 device	p64h2apic
 attach	p64h2apic at pci
 file	arch/i386/pci/p64h2apic.c	p64h2apic
@@ -280,14 +275,6 @@ file	arch/i386/isa/ahc_isa.c		ahc_isa
 
 include	"dev/eisa/files.eisa"
 file	arch/i386/eisa/eisa_machdep.c	eisa
-
-#
-# MCA-only drivers
-#
-
-device	mca {[slot = -1]} : bioscall
-include	"dev/mca/files.mca"
-file	arch/i386/mca/mca_machdep.c	mca
 
 # ISA Plug 'n Play devices
 file	arch/i386/isa/isapnp_machdep.c	isapnp

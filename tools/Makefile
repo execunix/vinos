@@ -91,7 +91,7 @@ SUBDIR += .WAIT texinfo \
 		.WAIT paxctl \
 		.WAIT fdisk \
 		.WAIT installboot \
-		pwd_mkdb strfile sunlabel vgrind zic
+		pwd_mkdb strfile vgrind zic
 SUBDIR+= stat .WAIT config
 
 .if ${MKMAN} != "no" || ${MKDOC} != "no" || ${MKHTML} != "no"
