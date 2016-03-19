@@ -897,7 +897,6 @@
 ./usr/libdata/debug/usr/sbin/named-journalprint.debug	comp-bind-bin		debug
 ./usr/libdata/debug/usr/sbin/named.debug	comp-bind-bin		debug
 ./usr/libdata/debug/usr/sbin/ncdcs.debug	comp-sysutil-root	binutils,debug
-./usr/libdata/debug/usr/sbin/ndbootd.debug	comp-bootserver-debug	debug
 ./usr/libdata/debug/usr/sbin/ndp.debug		comp-netutil-debug	inet6,debug
 ./usr/libdata/debug/usr/sbin/netgroup_mkdb.debug	comp-nis-debug		debug
 ./usr/libdata/debug/usr/sbin/nfsd.debug		comp-nfsserver-debug	debug

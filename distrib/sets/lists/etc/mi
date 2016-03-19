@@ -183,7 +183,6 @@
 ./etc/rc.d/moused				etc-sysutil-rc
 ./etc/rc.d/mrouted				etc-router-rc
 ./etc/rc.d/named				etc-bind-rc
-./etc/rc.d/ndbootd				etc-bootserver-rc
 ./etc/rc.d/network				etc-net-rc
 ./etc/rc.d/newsyslog				etc-sys-rc
 ./etc/rc.d/nfsd					etc-nfsserver-rc

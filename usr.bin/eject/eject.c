@@ -41,7 +41,6 @@ __RCSID("$NetBSD: eject.c,v 1.27 2012/07/14 20:41:27 abs Exp $");
 
 #include <sys/types.h>
 #include <sys/cdio.h>
-#include <sys/disklabel.h>
 #include <sys/ioctl.h>
 #include <sys/param.h>
 #include <sys/ucred.h>

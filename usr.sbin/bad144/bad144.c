@@ -61,7 +61,6 @@ __RCSID("$NetBSD: bad144.c,v 1.30 2013/11/03 00:48:52 christos Exp $");
 #include <sys/dkbad.h>
 #include <sys/ioctl.h>
 #include <sys/file.h>
-#include <sys/disklabel.h>
 #include <ufs/ufs/dinode.h>
 #include <ufs/ffs/fs.h>
 

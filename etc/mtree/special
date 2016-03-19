@@ -229,7 +229,6 @@
 ./etc/rc.d/moused		type=file mode=0555
 ./etc/rc.d/mrouted		type=file mode=0555
 ./etc/rc.d/named		type=file mode=0555
-./etc/rc.d/ndbootd		type=file mode=0555
 ./etc/rc.d/network		type=file mode=0555
 ./etc/rc.d/newsyslog		type=file mode=0555
 ./etc/rc.d/nfsd			type=file mode=0555

@@ -1245,7 +1245,6 @@
 ./usr/sbin/named-compilezone			base-bind-bin
 ./usr/sbin/named-journalprint			base-bind-bin
 ./usr/sbin/ncdcs				base-sysutil-root	binutils
-./usr/sbin/ndbootd				base-bootserver-bin
 ./usr/sbin/ndp					base-netutil-bin	inet6
 ./usr/sbin/netgroup_mkdb			base-nis-bin
 ./usr/sbin/nfsd					base-nfsserver-bin

@@ -348,3 +348,5 @@ disklabel
 diskname/bsddiskname
 vnconfig/vndconfig
 geomspec
+./usr/sbin/ndbootd				base-bootserver-bin
+ndbootd=NO		ndbootd_flags="-s /tftpboot /tftpboot/bootyy"

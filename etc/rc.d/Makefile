@@ -28,7 +28,7 @@ CONFIGFILES=\
 		ldconfig ldpd local lpd \
 		makemandb mdnsd mixerctl modules mopd motd mountall \
 		mountcritlocal mountcritremote mountd moused mrouted \
-		named ndbootd network newsyslog nfsd nfslocking npf ntpd \
+		named network newsyslog nfsd nfslocking npf ntpd \
 		ntpdate \
 		perusertmp pf pf_boot pflogd postfix powerd ppp pwcheck \
 		quota \
