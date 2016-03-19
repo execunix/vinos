@@ -356,22 +356,11 @@ ofdisk_ioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 	struct ofdisk_softc *of =
 		device_lookup_private(&ofdisk_cd, DISKUNIT(dev));
 	int error;
-#ifdef __HAVE_OLD_DISKLABEL
-	struct disklabel newlabel;
-#endif
 
 	switch (cmd) {
 	case DIOCGDINFO:
 		*(struct disklabel *)data = *of->sc_dk.dk_label;
 		return 0;
-#ifdef __HAVE_OLD_DISKLABEL
-	case ODIOCGDINFO:
-		newlabel = *of->sc_dk.dk_label;
-		if (newlabel.d_npartitions > OLDMAXPARTITIONS)
-			return ENOTTY;
-		memcpy(data, &newlabel, sizeof (struct olddisklabel));
-		return 0;
-#endif
 
 	case DIOCGPART:
 		((struct partinfo *)data)->disklab = of->sc_dk.dk_label;
@@ -381,20 +370,9 @@ ofdisk_ioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 
 	case DIOCWDINFO:
 	case DIOCSDINFO:
-#ifdef __HAVE_OLD_DISKLABEL
-	case ODIOCWDINFO:
-	case ODIOCSDINFO:
-#endif
 	{
 		struct disklabel *lp;
 
-#ifdef __HAVE_OLD_DISKLABEL
-		if (cmd == ODIOCSDINFO || cmd == ODIOCWDINFO) {
-			memset(&newlabel, 0, sizeof newlabel);
-			memcpy(&newlabel, data, sizeof (struct olddisklabel));
-			lp = &newlabel;
-		} else
-#endif
 		lp = (struct disklabel *)data;
 
 		if ((flag & FWRITE) == 0)
@@ -405,11 +383,7 @@ ofdisk_ioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 		error = setdisklabel(of->sc_dk.dk_label,
 		    lp, /*of->sc_dk.dk_openmask */0,
 		    of->sc_dk.dk_cpulabel);
-		if (error == 0 && cmd == DIOCWDINFO
-#ifdef __HAVE_OLD_DISKLABEL
-		    || xfer == ODIOCWDINFO
-#endif
-		    )
+		if (error == 0 && cmd == DIOCWDINFO)
 			error = writedisklabel(MAKEDISKDEV(major(dev),
 			    DISKUNIT(dev), RAW_PART), ofdisk_strategy,
 			    of->sc_dk.dk_label, of->sc_dk.dk_cpulabel);
@@ -422,14 +396,6 @@ ofdisk_ioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 	case DIOCGDEFLABEL:
 		ofdisk_getdefaultlabel(of, (struct disklabel *)data);
 		return 0;
-#ifdef __HAVE_OLD_DISKLABEL
-	case DIOCGDEFLABEL:
-		ofdisk_getdefaultlabel(of, &newlabel);
-		if (newlabel.d_npartitions > OLDMAXPARTITIONS)
-			return ENOTTY;
-		memcpy(data, &newlabel, sizeof (struct olddisklabel));
-		return 0;
-#endif
 
 	case DIOCAWEDGE:
 	    {

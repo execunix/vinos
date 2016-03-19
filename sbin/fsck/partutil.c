@@ -34,7 +34,7 @@ __RCSID("$NetBSD: partutil.c,v 1.12.6.1 2015/05/25 09:10:48 msaitoh Exp $");
 
 #include <sys/types.h>
 #include <sys/param.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/disk.h>
 #include <sys/ioctl.h>
 #include <sys/stat.h>

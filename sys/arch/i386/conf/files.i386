@@ -280,11 +280,6 @@ file	arch/i386/eisa/eisa_machdep.c	eisa
 file	arch/i386/isa/isapnp_machdep.c	isapnp
 
 #
-# VME support
-#
-include	"dev/vme/files.vme"
-
-#
 # GPIB support
 #
 include "dev/gpib/files.gpib"

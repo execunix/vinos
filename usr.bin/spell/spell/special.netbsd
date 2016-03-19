@@ -71,7 +71,6 @@ atrm
 aucat
 audioctl
 awk
-bad144
 badsect
 banner
 basename
@@ -383,7 +382,6 @@ fsck_ffs
 fsck_msdos
 fsdb
 fseek
-fsirand
 fsplit
 fstat
 fsync

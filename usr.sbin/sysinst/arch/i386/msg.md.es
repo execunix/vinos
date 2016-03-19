@@ -45,10 +45,6 @@ message md_may_remove_boot_medium
 message Keyboard_type {Tipo de teclado}
 message kb_default {es}
 
-message dobad144
-{Instalando la tabla de bloques malos ...
-}
-
 message getboottype
 {¿Le gustaria instalar el set normal de bootblocks o bootblocks por serie?
  

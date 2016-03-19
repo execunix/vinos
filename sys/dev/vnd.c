@@ -1056,9 +1056,6 @@ vndioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 	int error, part, pmask;
 	uint64_t geomsize;
 	int fflags;
-#ifdef __HAVE_OLD_DISKLABEL
-	struct disklabel newlabel;
-#endif
 	struct dkwedge_info *dkw;
 	struct dkwedge_list *dkwl;
 
@@ -1093,10 +1090,6 @@ vndioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 #endif
 	case DIOCSDINFO:
 	case DIOCWDINFO:
-#ifdef __HAVE_OLD_DISKLABEL
-	case ODIOCSDINFO:
-	case ODIOCWDINFO:
-#endif
 	case DIOCKLABEL:
 	case DIOCWLABEL:
 		if ((flag & FWRITE) == 0)
@@ -1117,12 +1110,6 @@ vndioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 	case DIOCWLABEL:
 	case DIOCGDEFLABEL:
 	case DIOCCACHESYNC:
-#ifdef __HAVE_OLD_DISKLABEL
-	case ODIOCGDINFO:
-	case ODIOCSDINFO:
-	case ODIOCWDINFO:
-	case ODIOCGDEFLABEL:
-#endif
 		if ((vnd->sc_flags & VNF_INITED) == 0)
 			return ENXIO;
 	}
@@ -1489,15 +1476,6 @@ unlock_and_exit:
 		*(struct disklabel *)data = *(vnd->sc_dkdev.dk_label);
 		break;
 
-#ifdef __HAVE_OLD_DISKLABEL
-	case ODIOCGDINFO:
-		newlabel = *(vnd->sc_dkdev.dk_label);
-		if (newlabel.d_npartitions > OLDMAXPARTITIONS)
-			return ENOTTY;
-		memcpy(data, &newlabel, sizeof (struct olddisklabel));
-		break;
-#endif
-
 	case DIOCGPART:
 		((struct partinfo *)data)->disklab = vnd->sc_dkdev.dk_label;
 		((struct partinfo *)data)->part =
@@ -1506,10 +1484,6 @@ unlock_and_exit:
 
 	case DIOCWDINFO:
 	case DIOCSDINFO:
-#ifdef __HAVE_OLD_DISKLABEL
-	case ODIOCWDINFO:
-	case ODIOCSDINFO:
-#endif
 	{
 		struct disklabel *lp;
 
@@ -1518,23 +1492,12 @@ unlock_and_exit:
 
 		vnd->sc_flags |= VNF_LABELLING;
 
-#ifdef __HAVE_OLD_DISKLABEL
-		if (cmd == ODIOCSDINFO || cmd == ODIOCWDINFO) {
-			memset(&newlabel, 0, sizeof newlabel);
-			memcpy(&newlabel, data, sizeof (struct olddisklabel));
-			lp = &newlabel;
-		} else
-#endif
 		lp = (struct disklabel *)data;
 
 		error = setdisklabel(vnd->sc_dkdev.dk_label,
 		    lp, 0, vnd->sc_dkdev.dk_cpulabel);
 		if (error == 0) {
-			if (cmd == DIOCWDINFO
-#ifdef __HAVE_OLD_DISKLABEL
-			    || cmd == ODIOCWDINFO
-#endif
-			   )
+			if (cmd == DIOCWDINFO)
 				error = writedisklabel(VNDLABELDEV(dev),
 				    vndstrategy, vnd->sc_dkdev.dk_label,
 				    vnd->sc_dkdev.dk_cpulabel);
@@ -1566,15 +1529,6 @@ unlock_and_exit:
 	case DIOCGDEFLABEL:
 		vndgetdefaultlabel(vnd, (struct disklabel *)data);
 		break;
-
-#ifdef __HAVE_OLD_DISKLABEL
-	case ODIOCGDEFLABEL:
-		vndgetdefaultlabel(vnd, &newlabel);
-		if (newlabel.d_npartitions > OLDMAXPARTITIONS)
-			return ENOTTY;
-		memcpy(data, &newlabel, sizeof (struct olddisklabel));
-		break;
-#endif
 
 	case DIOCCACHESYNC:
 		vn_lock(vnd->sc_vp, LK_EXCLUSIVE | LK_RETRY);

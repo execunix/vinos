@@ -10,7 +10,6 @@ PROG	bin/sync
 
 PROG	sbin/dkctl
 PROG	sbin/fdisk
-PROG	sbin/mbrlabel
 PROG	sbin/mount_ext2fs
 PROG	sbin/mount_ntfs
 PROG	sbin/restore	sbin/rrestore

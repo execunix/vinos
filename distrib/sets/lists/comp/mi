@@ -306,7 +306,6 @@
 ./usr/include/dev/usb/usb.h			comp-c-include
 ./usr/include/dev/usb/usbhid.h			comp-c-include
 ./usr/include/dev/usb/utoppy.h			comp-c-include
-./usr/include/dev/vme/xio.h			comp-c-include
 ./usr/include/dev/vndvar.h			comp-c-include
 ./usr/include/dev/wscons/wsconsio.h		comp-c-include
 ./usr/include/dev/wscons/wsdisplay_usl_io.h	comp-c-include
@@ -8682,21 +8681,6 @@
 ./usr/share/man/cat9/vhold.0			comp-sys-catman		.cat
 ./usr/share/man/cat9/video.0			comp-sys-catman		.cat
 ./usr/share/man/cat9/vinvalbuf.0		comp-sys-catman		.cat
-./usr/share/man/cat9/vme.0			comp-sys-catman		.cat
-./usr/share/man/cat9/vme_dmamap_create.0	comp-sys-catman		.cat
-./usr/share/man/cat9/vme_dmamap_destroy.0	comp-sys-catman		.cat
-./usr/share/man/cat9/vme_dmamem_alloc.0		comp-sys-catman		.cat
-./usr/share/man/cat9/vme_dmamem_free.0		comp-sys-catman		.cat
-./usr/share/man/cat9/vme_intr_disestablish.0	comp-sys-catman		.cat
-./usr/share/man/cat9/vme_intr_establish.0	comp-sys-catman		.cat
-./usr/share/man/cat9/vme_intr_evcnt.0		comp-sys-catman		.cat
-./usr/share/man/cat9/vme_intr_map.0		comp-sys-catman		.cat
-./usr/share/man/cat9/vme_probe.0		comp-sys-catman		.cat
-./usr/share/man/cat9/vme_space_alloc.0		comp-sys-catman		.cat
-./usr/share/man/cat9/vme_space_free.0		comp-sys-catman		.cat
-./usr/share/man/cat9/vme_space_get.0		comp-sys-catman		.cat
-./usr/share/man/cat9/vme_space_map.0		comp-sys-catman		.cat
-./usr/share/man/cat9/vme_space_unmap.0		comp-sys-catman		.cat
 ./usr/share/man/cat9/vmem.0			comp-sys-catman		.cat
 ./usr/share/man/cat9/vmem_alloc.0		comp-sys-catman		.cat
 ./usr/share/man/cat9/vmem_create.0		comp-sys-catman		.cat
@@ -14948,21 +14932,6 @@
 ./usr/share/man/html9/vhold.html		comp-sys-htmlman	html
 ./usr/share/man/html9/video.html		comp-sys-htmlman	html
 ./usr/share/man/html9/vinvalbuf.html		comp-sys-htmlman	html
-./usr/share/man/html9/vme.html			comp-sys-htmlman	html
-./usr/share/man/html9/vme_dmamap_create.html	comp-sys-htmlman	html
-./usr/share/man/html9/vme_dmamap_destroy.html	comp-sys-htmlman	html
-./usr/share/man/html9/vme_dmamem_alloc.html	comp-sys-htmlman	html
-./usr/share/man/html9/vme_dmamem_free.html	comp-sys-htmlman	html
-./usr/share/man/html9/vme_intr_disestablish.html	comp-sys-htmlman	html
-./usr/share/man/html9/vme_intr_establish.html	comp-sys-htmlman	html
-./usr/share/man/html9/vme_intr_evcnt.html	comp-sys-htmlman	html
-./usr/share/man/html9/vme_intr_map.html		comp-sys-htmlman	html
-./usr/share/man/html9/vme_probe.html		comp-sys-htmlman	html
-./usr/share/man/html9/vme_space_alloc.html	comp-sys-htmlman	html
-./usr/share/man/html9/vme_space_free.html	comp-sys-htmlman	html
-./usr/share/man/html9/vme_space_get.html	comp-sys-htmlman	html
-./usr/share/man/html9/vme_space_map.html	comp-sys-htmlman	html
-./usr/share/man/html9/vme_space_unmap.html	comp-sys-htmlman	html
 ./usr/share/man/html9/vmem.html			comp-sys-htmlman	html
 ./usr/share/man/html9/vmem_alloc.html		comp-sys-htmlman	html
 ./usr/share/man/html9/vmem_create.html		comp-sys-htmlman	html
@@ -21213,21 +21182,6 @@
 ./usr/share/man/man9/vhold.9			comp-sys-man		.man
 ./usr/share/man/man9/video.9			comp-sys-man		.man
 ./usr/share/man/man9/vinvalbuf.9		comp-sys-man		.man
-./usr/share/man/man9/vme.9			comp-sys-man		.man
-./usr/share/man/man9/vme_dmamap_create.9	comp-sys-man		.man
-./usr/share/man/man9/vme_dmamap_destroy.9	comp-sys-man		.man
-./usr/share/man/man9/vme_dmamem_alloc.9		comp-sys-man		.man
-./usr/share/man/man9/vme_dmamem_free.9		comp-sys-man		.man
-./usr/share/man/man9/vme_intr_disestablish.9	comp-sys-man		.man
-./usr/share/man/man9/vme_intr_establish.9	comp-sys-man		.man
-./usr/share/man/man9/vme_intr_evcnt.9		comp-sys-man		.man
-./usr/share/man/man9/vme_intr_map.9		comp-sys-man		.man
-./usr/share/man/man9/vme_probe.9		comp-sys-man		.man
-./usr/share/man/man9/vme_space_alloc.9		comp-sys-man		.man
-./usr/share/man/man9/vme_space_free.9		comp-sys-man		.man
-./usr/share/man/man9/vme_space_get.9		comp-sys-man		.man
-./usr/share/man/man9/vme_space_map.9		comp-sys-man		.man
-./usr/share/man/man9/vme_space_unmap.9		comp-sys-man		.man
 ./usr/share/man/man9/vmem.9			comp-sys-man		.man
 ./usr/share/man/man9/vmem_alloc.9		comp-sys-man		.man
 ./usr/share/man/man9/vmem_create.9		comp-sys-man		.man

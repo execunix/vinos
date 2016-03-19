@@ -55,12 +55,10 @@ PROG	fsck_ext2fs
 PROG	fsck_ffs
 PROG	fsck_msdos
 PROG	fsdb
-PROG	fsirand
 PROG	gpt
 PROG	ifconfig
 PROG	init		init.bak
 PROG	lmcconfig
-PROG	mbrlabel
 PROG	mknod
 PROG	modload
 PROG	modstat

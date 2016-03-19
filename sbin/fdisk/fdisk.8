@@ -55,22 +55,6 @@ stored in the first sector of the partition to be booted
 or
 .Em PBR ) .
 .Pp
-After booting,
-.Nx
-does not use the partitioning done by
-.Nm ,
-instead it uses a
-.Nx
-disklabel saved in sector 1 of the
-.Nx
-partition.
-See
-.Xr mbrlabel 8
-for a way of using information from the MBR
-to construct a
-.Nx
-disklabel.
-.Pp
 The standard MBR boot code will only boot the
 .Sq active
 partition.
@@ -642,7 +626,6 @@ partition using whole disk without prompt against 1GB disk image file
 .Xr gpt 8 ,
 .Xr installboot 8 ,
 .Xr mbr 8 ,
-.Xr mbrlabel 8
 .Sh BUGS
 The word
 .Sq partition

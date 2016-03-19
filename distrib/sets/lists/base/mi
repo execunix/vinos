@@ -382,7 +382,6 @@
 ./sbin/dhclient-script				base-dhclient-root
 ./sbin/dhcpcd					base-dhcpcd-root
 ./sbin/dkctl					base-sysutil-root
-./sbin/dkscan_bsdlabel				base-sysutil-root
 ./sbin/dmesg					base-sysutil-root
 ./sbin/drvctl					base-sysutil-root
 ./sbin/dump					base-sysutil-root
@@ -394,7 +393,6 @@
 ./sbin/fsck_ffs					base-sysutil-root
 ./sbin/fsck_msdos				base-sysutil-root
 ./sbin/fsdb					base-sysutil-root
-./sbin/fsirand					base-sysutil-root
 ./sbin/gpt					base-sysutil-root
 ./sbin/halt					base-sysutil-root
 ./sbin/ifconfig					base-netutil-root
@@ -404,7 +402,6 @@
 ./sbin/iscsictl					base-iscsi-bin		iscsi
 ./sbin/iscsid					base-iscsi-bin		iscsi
 ./sbin/luactl					base-sysutil-root
-./sbin/mbrlabel					base-sysutil-root
 ./sbin/mknod					base-sysutil-root
 ./sbin/modload					base-sysutil-root
 ./sbin/modstat					base-sysutil-root
@@ -890,7 +887,6 @@
 ./usr/include/dev/sun				base-c-usr
 ./usr/include/dev/tc				base-c-usr
 ./usr/include/dev/usb				base-c-usr
-./usr/include/dev/vme				base-c-usr
 ./usr/include/dev/wscons			base-c-usr
 ./usr/include/event2				base-c-usr
 ./usr/include/fs				base-c-usr

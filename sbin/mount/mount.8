@@ -114,13 +114,6 @@ and
 are provided, then
 .Xr fstab 5
 is not used.
-In this case, if the file system type is not specified
-via the
-.Fl t
-flag, then
-.Nm
-may determine the type from the disk label (see
-.Xr disklabel 8 ) .
 In addition, if
 .Ar special
 contains a colon
@@ -448,11 +441,6 @@ for instance, the options specific to Berkeley
 Fast File System (FFS) are described in the
 .Xr mount_ffs 8
 manual page.
-.Pp
-The particular type of file system in each partition of a disk can
-be found by examining the disk label with the
-.Xr disklabel 8
-command.
 .Sh FILES
 .Bl -tag -width /etc/fstab -compact
 .It Pa /etc/fstab
@@ -519,7 +507,6 @@ mount -t cd9660 -o nodev,nosuid /dev/cd0a /mnt
 .Xr options 4 ,
 .Xr wapbl 4 ,
 .Xr fstab 5 ,
-.Xr disklabel 8 ,
 .Xr fsck 8 ,
 .Xr mount_cd9660 8 ,
 .Xr mount_ext2fs 8 ,

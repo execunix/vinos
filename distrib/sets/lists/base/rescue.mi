@@ -39,7 +39,6 @@
 ./rescue/fsck_ffs				base-rescue-root
 ./rescue/fsck_msdos				base-rescue-root
 ./rescue/fsdb					base-rescue-root
-./rescue/fsirand				base-rescue-root
 ./rescue/ftp					base-rescue-root
 ./rescue/gpt					base-rescue-root
 ./rescue/grep					base-rescue-root
@@ -63,7 +62,6 @@
 ./rescue/lmcconfig				base-rescue-root
 ./rescue/ln					base-rescue-root
 ./rescue/ls					base-rescue-root
-./rescue/mbrlabel				base-rescue-root
 ./rescue/mkdir					base-rescue-root
 ./rescue/mknod					base-rescue-root
 ./rescue/modload				base-rescue-root

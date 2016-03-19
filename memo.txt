@@ -341,12 +341,15 @@ root@xmtbsdv3:/mnt/hdd1/vinos#
 # nbmake INSTALLWORLDDIR=/mnt/hdd1/root/ installworld
 
 /mnt/hdd1/vinos/usr.sbin/sysinst
+/mnt/hdd1/vinos/sbin/dkctl/dkctl.c:keeplabel
+/mnt/hdd1/vinos/sys/external/bsd/drm2/dist/drm/nouveau
 X:\hdd1\vinos\sys\dev\DEVNAMES
 GPT_ENT_TYPE_*
 compat_
 disklabel
+diskinfo
 diskname/bsddiskname
 vnconfig/vndconfig
 geomspec
-./usr/sbin/ndbootd				base-bootserver-bin
-ndbootd=NO		ndbootd_flags="-s /tftpboot /tftpboot/bootyy"
+DIOCSBAD: / * set kernel dkbad */
+	if (ioctl(fd, DIOCGDINFO, &dl) == -1) {

@@ -3,7 +3,7 @@
 SUBDIR=	apm ata bluetooth dec dmover dtv filemon hpc \
 	i2c i2o ic ieee1394 ir isa \
 	microcode ofw pci pckbport pcmcia pud putter sbus scsipi \
-	tc usb vme wscons
+	tc usb wscons
 
 .include <bsd.own.mk>
 

@@ -48,12 +48,6 @@
 #define DIOCGPART	_IOW('d', 104, struct partinfo)	/* get partition */
 #endif
 
-#if defined(__HAVE_OLD_DISKLABEL) && defined(_KERNEL)
-#define ODIOCGDINFO	_IOR('d', 101, struct olddisklabel)/* get */
-#define ODIOCSDINFO	_IOW('d', 102, struct olddisklabel)/* set */
-#define ODIOCWDINFO	_IOW('d', 103, struct olddisklabel)/* set, update dk */
-#endif
-
 /* do format operation, read or write */
 #define DIOCRFORMAT	_IOWR('d', 105, struct format_op)
 #define DIOCWFORMAT	_IOWR('d', 106, struct format_op)
@@ -71,10 +65,6 @@
 		/* get default label, clear label */
 #define	DIOCGDEFLABEL	_IOR('d', 114, struct disklabel)
 #define	DIOCCLRLABEL	_IO('d', 115)
-
-#if defined(__HAVE_OLD_DISKLABEL) && defined(_KERNEL)
-#define	ODIOCGDEFLABEL	_IOR('d', 114, struct olddisklabel)
-#endif
 
 		/* disk cache enable/disable */
 #define	DIOCGCACHE	_IOR('d', 116, int)	/* get cache enables */

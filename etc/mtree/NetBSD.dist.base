@@ -119,7 +119,6 @@
 ./usr/include/dev/sun
 ./usr/include/dev/tc
 ./usr/include/dev/usb
-./usr/include/dev/vme
 ./usr/include/dev/wscons
 ./usr/include/event2
 ./usr/include/fs

@@ -1268,9 +1268,6 @@ cdioctl(dev_t dev, u_long cmd, void *addr, int flag, struct lwp *l)
 	int part = CDPART(dev);
 	int error;
 	int s;
-#ifdef __HAVE_OLD_DISKLABEL
-	struct disklabel *newlabel = NULL;
-#endif
 
 	SC_DEBUG(cd->sc_periph, SCSIPI_DB2, ("cdioctl 0x%lx ", cmd));
 
@@ -1330,19 +1327,6 @@ cdioctl(dev_t dev, u_long cmd, void *addr, int flag, struct lwp *l)
 	case DIOCGDINFO:
 		*(struct disklabel *)addr = *(cd->sc_dk.dk_label);
 		return (0);
-#ifdef __HAVE_OLD_DISKLABEL
-	case ODIOCGDINFO:
-		newlabel = malloc(sizeof (*newlabel), M_TEMP, M_WAITOK);
-		if (newlabel == NULL)
-			return (EIO);
-		memcpy(newlabel, cd->sc_dk.dk_label, sizeof (*newlabel));
-		if (newlabel->d_npartitions > OLDMAXPARTITIONS)
-			error = ENOTTY;
-		else
-			memcpy(addr, newlabel, sizeof (struct olddisklabel));
-		free(newlabel, M_TEMP);
-		return error;
-#endif
 
 	case DIOCGPART:
 		((struct partinfo *)addr)->disklab = cd->sc_dk.dk_label;
@@ -1352,26 +1336,12 @@ cdioctl(dev_t dev, u_long cmd, void *addr, int flag, struct lwp *l)
 
 	case DIOCWDINFO:
 	case DIOCSDINFO:
-#ifdef __HAVE_OLD_DISKLABEL
-	case ODIOCWDINFO:
-	case ODIOCSDINFO:
-#endif
 	{
 		struct disklabel *lp;
 
 		if ((flag & FWRITE) == 0)
 			return (EBADF);
 
-#ifdef __HAVE_OLD_DISKLABEL
-		if (cmd == ODIOCSDINFO || cmd == ODIOCWDINFO) {
-			newlabel = malloc(sizeof (*newlabel), M_TEMP,
-			    M_WAITOK | M_ZERO);
-			if (newlabel == NULL)
-				return (EIO);
-			memcpy(newlabel, addr, sizeof (struct olddisklabel));
-			lp = newlabel;
-		} else
-#endif
 		lp = addr;
 
 		mutex_enter(&cd->sc_lock);
@@ -1386,10 +1356,6 @@ cdioctl(dev_t dev, u_long cmd, void *addr, int flag, struct lwp *l)
 
 		cd->flags &= ~CDF_LABELLING;
 		mutex_exit(&cd->sc_lock);
-#ifdef __HAVE_OLD_DISKLABEL
-		if (newlabel != NULL)
-			free(newlabel, M_TEMP);
-#endif
 		return (error);
 	}
 
@@ -1399,20 +1365,6 @@ cdioctl(dev_t dev, u_long cmd, void *addr, int flag, struct lwp *l)
 	case DIOCGDEFLABEL:
 		cdgetdefaultlabel(cd, &toc, addr);
 		return (0);
-
-#ifdef __HAVE_OLD_DISKLABEL
-	case ODIOCGDEFLABEL:
-		newlabel = malloc(sizeof (*newlabel), M_TEMP, M_WAITOK);
-		if (newlabel == NULL)
-			return (EIO);
-		cdgetdefaultlabel(cd, &toc, newlabel);
-		if (newlabel->d_npartitions > OLDMAXPARTITIONS)
-			error = ENOTTY;
-		else
-			memcpy(addr, newlabel, sizeof (struct olddisklabel));
-		free(newlabel, M_TEMP);
-		return error;
-#endif
 
 	case DIOCTUR: {
 		/* test unit ready */

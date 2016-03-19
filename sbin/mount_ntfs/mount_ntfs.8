@@ -142,8 +142,6 @@ read-only.
 .Xr mount 2 ,
 .Xr unmount 2 ,
 .Xr fstab 5 ,
-.Xr disklabel 8 ,
-.Xr mbrlabel 8 ,
 .Xr mount 8
 .Sh HISTORY
 Support for NTFS first appeared in
@@ -177,13 +175,8 @@ If the attempt to mount NTFS gives you an error like this:
 mount_ntfs: /dev/wd0k on /mnt: Invalid argument
 .Ed
 .Pp
-make sure that appropriate partition has correct entry in the
-disk label, particularly that the partition offset is correct.
 If the NTFS partition is the first partition on the disk, the
-offset should be '63' on i386 (see
-.Xr disklabel 8 ) .
-.Xr mbrlabel 8
-could help you to set up the disk label correctly.
+offset should be '63' on i386 .
 .Pp
 If the NTFS partition is marked as
 .Ql dynamic

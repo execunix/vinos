@@ -706,13 +706,6 @@ file	dev/pci/if_rtk_pci.c		rtk_pci
 attach	tlp at pci with tlp_pci
 file	dev/pci/if_tlp_pci.c		tlp_pci
 
-# Bit3 PCI-VME mod. 617
-device	btvmei: vmebus
-attach	btvmei at pci
-file	dev/pci/btvmei.c		btvmei
-#file	dev/pci/btvmei_dma.c		btvmei
-#file	dev/pci/btvmei_cntlrdma.c	btvmei
-
 # Alteon ACEnic Gigabit Ethernet controller
 device	ti: ether, ifnet, arp
 attach	ti at pci
@@ -732,15 +725,6 @@ file	dev/pci/if_ste.c		ste
 device	cbb: pcmciaslot
 attach	cbb at pci with cbb_pci
 file	dev/pci/pccbb.c			cbb
-
-# Tundra Universe PCI-VME adapter
-define	univ_pci
-file	dev/pci/universe_pci.c univ_pci
-
-# Bit3 PCI-VME mod. 2706
-device	btvmeii: vmebus, univ_pci
-attach	btvmeii at pci
-file	dev/pci/btvmeii.c btvmeii
 
 # VIA VT82C686A/VT8231 PM Timer and Hardware Monitor
 device	viaenv: acpipmtimer, sysmon_envsys

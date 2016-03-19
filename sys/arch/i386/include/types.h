@@ -108,7 +108,6 @@ typedef	volatile unsigned char		__cpu_simple_lock_t;
 #define	__HAVE_MD_CPU_OFFLINE
 #define	__HAVE_SYSCALL_INTERN
 #define	__HAVE_MINIMAL_EMUL
-#define	__HAVE_OLD_DISKLABEL
 #if defined(_KERNEL)
 /*
  * Processors < i586 do not have cmpxchg8b, and we compile for i486

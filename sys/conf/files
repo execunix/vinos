@@ -1170,7 +1170,6 @@ define	pcibus	{[bus = -1]}		# PCI attachment
 define	tcbus	{ }			# TurboChannel attachment
 define	usbus	{ }			# USB attachment
 define	fwbus	{ }			# IEEE 1394 attachment
-define	vmebus	{ }			# VME bus attachment
 define	acpibus	{ }			# ACPI "bus" attachment
 define	pcmciabus { [controller = -1], [socket = -1]}	# PCMCIA bus attachment
 define	cbbus	{ }			# CardBus attachment

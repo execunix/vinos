@@ -189,7 +189,6 @@
 ./usr/libdata/debug/sbin/dhclient.debug		comp-dhclient-debug	debug
 ./usr/libdata/debug/sbin/dhcpcd.debug		comp-dhcpcd-debug	debug
 ./usr/libdata/debug/sbin/dkctl.debug		comp-sysutil-debug	debug
-./usr/libdata/debug/sbin/dkscan_bsdlabel.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/dmesg.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/drvctl.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/dump.debug		comp-sysutil-debug	debug
@@ -199,7 +198,6 @@
 ./usr/libdata/debug/sbin/fsck_ffs.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/fsck_msdos.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/fsdb.debug		comp-sysutil-debug	debug
-./usr/libdata/debug/sbin/fsirand.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/gpt.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/ifconfig.debug		comp-netutil-debug	debug
 ./usr/libdata/debug/sbin/init.debug		comp-sysutil-debug	debug
@@ -207,7 +205,6 @@
 ./usr/libdata/debug/sbin/iscsictl.debug		comp-iscsi-debug	iscsi,debug
 ./usr/libdata/debug/sbin/iscsid.debug		comp-iscsi-debug	iscsi,debug
 ./usr/libdata/debug/sbin/luactl.debug		comp-sysutil-debug	debug
-./usr/libdata/debug/sbin/mbrlabel.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/mknod.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/modload.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/modstat.debug		comp-sysutil-debug	debug

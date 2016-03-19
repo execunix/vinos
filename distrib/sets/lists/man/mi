@@ -1557,7 +1557,6 @@
 ./usr/share/man/cat8/atactl.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/atrun.0			man-cron-catman		.cat
 ./usr/share/man/cat8/authpf.0			man-pf-catman		pf,.cat
-./usr/share/man/cat8/bad144.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/badsect.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/bioctl.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/boot.0			man-sysutil-catman	.cat
@@ -1600,7 +1599,6 @@
 ./usr/share/man/cat8/discard.0			man-postfix-catman	postfix,.cat
 ./usr/share/man/cat8/diskless.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/dkctl.0			man-sysutil-catman	.cat
-./usr/share/man/cat8/dkscan_bsdlabel.0		man-sysutil-catman	.cat
 ./usr/share/man/cat8/dmesg.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/dnsblog.0			man-postfix-catman	postfix,.cat
 ./usr/share/man/cat8/dnssec-dsfromkey.0		man-bind-catman		.cat
@@ -1638,7 +1636,6 @@
 ./usr/share/man/cat8/fsck_msdos.0		man-sysutil-catman	.cat
 ./usr/share/man/cat8/fsdb.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/fsinfo.0			man-sysutil-catman	.cat
-./usr/share/man/cat8/fsirand.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/fssconfig.0		man-sysutil-catman	.cat
 ./usr/share/man/cat8/ftp-proxy.0		man-pf-catman		pf,.cat
 ./usr/share/man/cat8/ftpd.0			man-netutil-catman	.cat
@@ -1737,7 +1734,6 @@
 ./usr/share/man/cat8/makewhatis.0		man-man-catman		!makemandb,.cat
 ./usr/share/man/cat8/map-mbone.0		man-netutil-catman	.cat
 ./usr/share/man/cat8/master.0			man-postfix-catman	postfix,.cat
-./usr/share/man/cat8/mbrlabel.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/mdconfig.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/mdnsd.0			man-mdns-catman		mdns,.cat
 ./usr/share/man/cat8/mdsetimage.0		man-sysutil-catman	binutils,.cat
@@ -3600,7 +3596,6 @@
 ./usr/share/man/html8/atactl.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/atrun.html		man-cron-htmlman	html
 ./usr/share/man/html8/authpf.html		man-pf-htmlman		pf,html
-./usr/share/man/html8/bad144.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/badsect.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/bioctl.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/blacklistctl.html		man-sysutil-htmlman	html
@@ -3645,7 +3640,6 @@
 ./usr/share/man/html8/discard.html		man-postfix-htmlman	postfix,html
 ./usr/share/man/html8/diskless.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/dkctl.html		man-sysutil-htmlman	html
-./usr/share/man/html8/dkscan_bsdlabel.html	man-sysutil-htmlman	html
 ./usr/share/man/html8/dmesg.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/dnsblog.html		man-postfix-htmlman	postfix,html
 ./usr/share/man/html8/dnssec-dsfromkey.html	man-bind-htmlman	html
@@ -3684,7 +3678,6 @@
 ./usr/share/man/html8/fsck_msdos.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/fsdb.html			man-sysutil-htmlman	html
 ./usr/share/man/html8/fsinfo.html		man-sysutil-htmlman	html
-./usr/share/man/html8/fsirand.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/fssconfig.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/ftp-proxy.html		man-pf-htmlman		pf,html
 ./usr/share/man/html8/ftpd.html			man-netutil-htmlman	html
@@ -3783,7 +3776,6 @@
 ./usr/share/man/html8/makewhatis.html		man-man-htmlman		!makemandb,html
 ./usr/share/man/html8/map-mbone.html		man-netutil-htmlman	html
 ./usr/share/man/html8/master.html		man-postfix-htmlman	postfix,html
-./usr/share/man/html8/mbrlabel.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/mdconfig.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/mdnsd.html		man-mdns-htmlman	mdns,html
 ./usr/share/man/html8/mdsetimage.html		man-sysutil-htmlman	binutils,html
@@ -5643,7 +5635,6 @@
 ./usr/share/man/man8/atactl.8			man-sysutil-man		.man
 ./usr/share/man/man8/atrun.8			man-cron-man		.man
 ./usr/share/man/man8/authpf.8			man-pf-man		pf,.man
-./usr/share/man/man8/bad144.8			man-sysutil-man		.man
 ./usr/share/man/man8/badsect.8			man-sysutil-man		.man
 ./usr/share/man/man8/bioctl.8			man-sysutil-man		.man
 ./usr/share/man/man8/blacklistctl.8		man-sysutil-man		.man
@@ -5688,7 +5679,6 @@
 ./usr/share/man/man8/discard.8			man-postfix-man		postfix,.man
 ./usr/share/man/man8/diskless.8			man-sysutil-man		.man
 ./usr/share/man/man8/dkctl.8			man-sysutil-man		.man
-./usr/share/man/man8/dkscan_bsdlabel.8		man-sysutil-man		.man
 ./usr/share/man/man8/dmesg.8			man-sysutil-man		.man
 ./usr/share/man/man8/dnsblog.8			man-postfix-man		postfix,.man
 ./usr/share/man/man8/dnssec-dsfromkey.8		man-bind-man		.man
@@ -5727,7 +5717,6 @@
 ./usr/share/man/man8/fsck_msdos.8		man-sysutil-man		.man
 ./usr/share/man/man8/fsdb.8			man-sysutil-man		.man
 ./usr/share/man/man8/fsinfo.8			man-sysutil-man		.man
-./usr/share/man/man8/fsirand.8			man-sysutil-man		.man
 ./usr/share/man/man8/fssconfig.8		man-sysutil-man		.man
 ./usr/share/man/man8/ftp-proxy.8		man-pf-man		pf,.man
 ./usr/share/man/man8/ftpd.8			man-netutil-man		.man
@@ -5826,7 +5815,6 @@
 ./usr/share/man/man8/makewhatis.8		man-man-man		!makemandb,.man
 ./usr/share/man/man8/map-mbone.8		man-netutil-man		.man
 ./usr/share/man/man8/master.8			man-postfix-man		postfix,.man
-./usr/share/man/man8/mbrlabel.8			man-sysutil-man		.man
 ./usr/share/man/man8/mdconfig.8			man-sysutil-man		.man
 ./usr/share/man/man8/mdnsd.8			man-mdns-man		mdns,.man
 ./usr/share/man/man8/mdsetimage.8		man-sysutil-man		binutils,.man

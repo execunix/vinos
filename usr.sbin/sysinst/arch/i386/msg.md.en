@@ -45,10 +45,6 @@ message md_may_remove_boot_medium
 message Keyboard_type {Keyboard type}
 message kb_default {}
 
-message dobad144
-{Installing the bad block table ...
-}
-
 message getboottype
 {Would you like to install the normal set of bootblocks or serial bootblocks?
 

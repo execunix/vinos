@@ -179,12 +179,6 @@ the
 parameter points to a dev_t, which is filled in by the current dump device.
 .El
 .Pp
-When swapping is enabled on a block device, the first portion of the disk is
-left unused to prevent any disklabel present from being overwritten.
-This space is allocated from the swap device when the
-.Dv SWAP_ON
-command is used.
-.Pp
 The priority of a swap device can be used to fill faster swap devices before
 slower ones.
 A priority of 0 is the highest, with larger numbers having lower priority.
@@ -248,10 +242,7 @@ A component of the path prefix is not a directory.
 The major device number of
 .Fa arg
 is out of range (this indicates no device driver exists
-for the associated hardware); or
-the block device specified by
-.Fa arg
-is not marked as a swap partition in the disklabel.
+for the associated hardware).
 .It Bq Er EPERM
 The caller is not the super-user.
 .El

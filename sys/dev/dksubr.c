@@ -266,9 +266,6 @@ dk_ioctl(struct dk_intf *di, struct dk_softc *dksc, dev_t dev,
 {
 	struct	disklabel *lp;
 	struct	disk *dk;
-#ifdef __HAVE_OLD_DISKLABEL
-	struct	disklabel newlabel;
-#endif
 	int	error = 0;
 
 	DPRINTF_FOLLOW(("dk_ioctl(%s, %p, 0x%"PRIx64", 0x%lx)\n",
@@ -278,10 +275,6 @@ dk_ioctl(struct dk_intf *di, struct dk_softc *dksc, dev_t dev,
 	switch (cmd) {
 	case DIOCSDINFO:
 	case DIOCWDINFO:
-#ifdef __HAVE_OLD_DISKLABEL
-	case ODIOCSDINFO:
-	case ODIOCWDINFO:
-#endif
 	case DIOCWLABEL:
 	case DIOCAWEDGE:
 	case DIOCDWEDGE:
@@ -302,12 +295,6 @@ dk_ioctl(struct dk_intf *di, struct dk_softc *dksc, dev_t dev,
 	case DIOCLWEDGES:
 	case DIOCMWEDGES:
 	case DIOCCACHESYNC:
-#ifdef __HAVE_OLD_DISKLABEL
-	case ODIOCGDINFO:
-	case ODIOCSDINFO:
-	case ODIOCWDINFO:
-	case ODIOCGDEFLABEL:
-#endif
 		if ((dksc->sc_flags & DKF_INITED) == 0)
 			return ENXIO;
 	}
@@ -317,15 +304,6 @@ dk_ioctl(struct dk_intf *di, struct dk_softc *dksc, dev_t dev,
 		*(struct disklabel *)data = *(dksc->sc_dkdev.dk_label);
 		break;
 
-#ifdef __HAVE_OLD_DISKLABEL
-	case ODIOCGDINFO:
-		newlabel = *(dksc->sc_dkdev.dk_label);
-		if (newlabel.d_npartitions > OLDMAXPARTITIONS)
-			return ENOTTY;
-		memcpy(data, &newlabel, sizeof (struct olddisklabel));
-		break;
-#endif
-
 	case DIOCGPART:
 		((struct partinfo *)data)->disklab = dksc->sc_dkdev.dk_label;
 		((struct partinfo *)data)->part =
@@ -334,17 +312,6 @@ dk_ioctl(struct dk_intf *di, struct dk_softc *dksc, dev_t dev,
 
 	case DIOCWDINFO:
 	case DIOCSDINFO:
-#ifdef __HAVE_OLD_DISKLABEL
-	case ODIOCWDINFO:
-	case ODIOCSDINFO:
-#endif
-#ifdef __HAVE_OLD_DISKLABEL
-		if (cmd == ODIOCSDINFO || cmd == ODIOCWDINFO) {
-			memset(&newlabel, 0, sizeof newlabel);
-			memcpy(&newlabel, data, sizeof (struct olddisklabel));
-			lp = &newlabel;
-		} else
-#endif
 		lp = (struct disklabel *)data;
 
 		dk = &dksc->sc_dkdev;
@@ -354,11 +321,7 @@ dk_ioctl(struct dk_intf *di, struct dk_softc *dksc, dev_t dev,
 		error = setdisklabel(dksc->sc_dkdev.dk_label,
 		    lp, 0, dksc->sc_dkdev.dk_cpulabel);
 		if (error == 0) {
-			if (cmd == DIOCWDINFO
-#ifdef __HAVE_OLD_DISKLABEL
-			    || cmd == ODIOCWDINFO
-#endif
-			   )
+			if (cmd == DIOCWDINFO)
 				error = writedisklabel(DKLABELDEV(dev),
 				    di->di_strategy, dksc->sc_dkdev.dk_label,
 				    dksc->sc_dkdev.dk_cpulabel);
@@ -378,15 +341,6 @@ dk_ioctl(struct dk_intf *di, struct dk_softc *dksc, dev_t dev,
 	case DIOCGDEFLABEL:
 		dk_getdefaultlabel(di, dksc, (struct disklabel *)data);
 		break;
-
-#ifdef __HAVE_OLD_DISKLABEL
-	case ODIOCGDEFLABEL:
-		dk_getdefaultlabel(di, dksc, &newlabel);
-		if (newlabel.d_npartitions > OLDMAXPARTITIONS)
-			return ENOTTY;
-		memcpy(data, &newlabel, sizeof (struct olddisklabel));
-		break;
-#endif
 
 	case DIOCAWEDGE:
 	    {

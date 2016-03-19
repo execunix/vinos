@@ -45,10 +45,6 @@ message md_may_remove_boot_medium
 message Keyboard_type {Tastaturschema}
 message kb_default {de}
 
-message dobad144
-{Installiere die Tabelle der defekten Blöcke ...
-}
-
 message getboottype
 {Möchten Sie normale oder serielle Bootblöcke installieren?
 

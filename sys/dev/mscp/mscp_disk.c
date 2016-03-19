@@ -406,9 +406,6 @@ raioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 	struct disklabel *lp, *tp;
 	struct ra_softc *ra = mscp_device_lookup(dev);
 	int error = 0;
-#ifdef __HAVE_OLD_DISKLABEL
-	struct disklabel newlabel;
-#endif
 
 	lp = ra->ra_disk.dk_label;
 
@@ -417,14 +414,6 @@ raioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 	case DIOCGDINFO:
 		memcpy(data, lp, sizeof (struct disklabel));
 		break;
-#ifdef __HAVE_OLD_DISKLABEL
-	case ODIOCGDINFO:
-		memcpy(&newlabel, lp, sizeof newlabel);
-		if (newlabel.d_npartitions > OLDMAXPARTITIONS)
-			return ENOTTY;
-		memcpy(data, &newlabel, sizeof (struct olddisklabel));
-		break;
-#endif
 
 	case DIOCGPART:
 		((struct partinfo *)data)->disklab = lp;
@@ -434,15 +423,6 @@ raioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 
 	case DIOCWDINFO:
 	case DIOCSDINFO:
-#ifdef __HAVE_OLD_DISKLABEL
-	case ODIOCWDINFO:
-	case ODIOCSDINFO:
-		if (cmd == ODIOCSDINFO || cmd == ODIOCWDINFO) {
-			memset(&newlabel, 0, sizeof newlabel);
-			memcpy(&newlabel, data, sizeof (struct olddisklabel));
-			tp = &newlabel;
-		} else
-#endif
 		tp = (struct disklabel *)data;
 
 		if ((flag & FWRITE) == 0)
@@ -450,11 +430,7 @@ raioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 		else {
 			mutex_enter(&ra->ra_disk.dk_openlock);
 			error = setdisklabel(lp, tp, 0, 0);
-			if ((error == 0) && (cmd == DIOCWDINFO
-#ifdef __HAVE_OLD_DISKLABEL
-			    || cmd == ODIOCWDINFO
-#endif
-			    )) {
+			if ((error == 0) && (cmd == DIOCWDINFO)) {
 				ra->ra_wlabel = 1;
 				error = writedisklabel(dev, rastrategy, lp,0);
 				ra->ra_wlabel = 0;
@@ -471,12 +447,6 @@ raioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 		break;
 
 	case DIOCGDEFLABEL:
-#ifdef __HAVE_OLD_DISKLABEL
-	case ODIOCGDEFLABEL:
-		if (cmd == ODIOCGDEFLABEL)
-			tp = &newlabel;
-		else
-#endif
 		tp = (struct disklabel *)data;
 		memset(tp, 0, sizeof(struct disklabel));
 		tp->d_secsize = lp->d_secsize;
@@ -488,13 +458,6 @@ raioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 		tp->d_type = DTYPE_MSCP;
 		tp->d_rpm = 3600;
 		rrmakelabel(tp, ra->ra_mediaid);
-#ifdef __HAVE_OLD_DISKLABEL
-		if (cmd == ODIOCGDEFLABEL) {
-			if (tp->d_npartitions > OLDMAXPARTITIONS)
-				return ENOTTY;
-			memcpy(data, tp, sizeof (struct olddisklabel));
-		}
-#endif
 		break;
 
 	case DIOCAWEDGE:

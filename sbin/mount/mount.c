@@ -63,7 +63,6 @@ __RCSID("$NetBSD: mount.c,v 1.99 2013/10/05 08:06:35 ast Exp $");
 #define MOUNTNAMES
 #include <fcntl.h>
 #include <sys/disk.h>
-#include <sys/disklabel.h>
 #include <sys/ioctl.h>
 
 #include "pathnames.h"

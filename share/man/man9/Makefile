@@ -54,7 +54,7 @@ MAN=	accept_filter.9 accf_data.9 accf_http.9 \
 	tcp_congctl.9 timecounter.9 time_second.9 todr.9 ts2timo.9 tvtohz.9 \
 	ucas.9 uiomove.9 ucom.9 userret.9 \
 	vattr.9 veriexec.9 vcons.9 vfs.9 vfs_hooks.9 vfsops.9 vfssubr.9 \
-	video.9 vme.9 \
+	video.9 \
 	vnfileops.9 vnode.9 vnodeops.9 vnsubr.9 \
 	ubc.9 usbd_status.9 usbdi.9 uvm.9 uvm_km.9 uvm_map.9 vmem.9 \
 	wdc.9 workqueue.9 \
@@ -823,20 +823,6 @@ MLINKS+=uvm_map.9 uvm_unmap.9 uvm_map.9 uvm_map_pageable.9 \
 	uvm_map.9 uvmspace_free.9 uvm_map.9 uvmspace_share.9 \
 	uvm_map.9 uvmspace_unshare.9
 
-MLINKS+=vme.9 vme_probe.9 \
-	vme.9 vme_space_map.9 \
-	vme.9 vme_space_unmap.9 \
-	vme.9 vme_intr_map.9 \
-	vme.9 vme_intr_establish.9 \
-	vme.9 vme_intr_disestablish.9 \
-	vme.9 vme_intr_evcnt.9 \
-	vme.9 vme_dmamap_create.9 \
-	vme.9 vme_dmamap_destroy.9 \
-	vme.9 vme_dmamem_alloc.9 \
-	vme.9 vme_dmamem_free.9 \
-	vme.9 vme_space_alloc.9 \
-	vme.9 vme_space_free.9 \
-	vme.9 vme_space_get.9
 MLINKS+=vattr.9 vattr_null.9
 MLINKS+=vfs_hooks.9 vfs_hooks_unmount.9
 MLINKS+=vfsops.9 VFS_MOUNT.9 \

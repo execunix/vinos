@@ -155,7 +155,6 @@ auvia			MI
 auxio			sparc64
 auxiotwo		sparc
 auxreg			sparc
-avmebus			atari
 awi			MI
 axe			MI
 az			MI
@@ -205,8 +204,6 @@ btms			MI
 btnmgr			hpcmips
 btsco			MI
 btuart			MI
-btvmei			MI
-btvmeii			MI
 button			hpcmips
 bwtwo			sparc
 bwtwo			sparc64
@@ -265,7 +262,6 @@ clock			amigappc
 clock			atari
 clock			cats
 clock			luna68k
-clock			mvme68k
 clock			netwinder
 clock			sparc
 clock			sparc64
@@ -778,7 +774,6 @@ lpa			vax
 lpt			MI
 lpt			amiga
 lpt			amigappc
-lpt			mvme68k
 lpt			sgimips
 lpt			sparc64
 lsi64854		MI		Attribute
@@ -816,7 +811,6 @@ mainbus			luna68k
 mainbus			mac68k
 mainbus			macppc
 mainbus			macppc		Attribute
-mainbus			mvme68k
 mainbus			netwinder
 mainbus			news68k
 mainbus			news68k
@@ -923,7 +917,6 @@ mscp			MI		Attribute
 mscpbus			MI
 msk			MI
 msiiep			sparc
-msiop			mvme68k		Attribute
 mspcic			sparc
 mt			MI
 mt			hp300
@@ -938,7 +931,6 @@ mvsata			MI
 nca			MI
 ncr5380sbc		MI		Attribute
 ncr53c9x		MI		Attribute
-ncrsc			mvme68k
 ncrscsi			atari
 ncrscsi			mac68k
 ne			MI
@@ -1034,11 +1026,9 @@ pc			arc
 pc			bebox
 pc			i386
 pc			shark
-pcc			mvme68k
 pccard			amiga
 pcconskbd		bebox
 pcconskbd		i386
-pcctwo			mvme68k
 pcdisplay		MI
 pcdisplayops		MI		Attribute
 pceb			alpha
@@ -1201,7 +1191,6 @@ sbi			vax
 sbic			acorn32		Attribute
 sbic			amiga		Attribute
 sbic			amigappc	Attribute
-sbic			mvme68k		Attribute
 sbmac			sbmips
 sbobio			sbmips
 sbp			MI
@@ -1427,7 +1416,6 @@ umodem			MI
 umodem_common		MI		Attribute
 ums			MI
 uninorth		macppc
-univ_pci		MI		Attribute
 unixbp			acorn26
 up			vax
 upc			MI
@@ -1465,13 +1453,6 @@ vidc			acorn32
 vidcaudio		acorn32
 vidcvideo		acorn32
 videomode		MI		Attribute
-vme			MI
-vme			atari
-vme			sun3
-vme_slv			MI
-vmebus			MI		Attribute
-vmepcc			mvme68k
-vmetwo			mvme68k
 vp			vax
 vr			MI
 vrbcu			hpcmips
@@ -1501,7 +1482,6 @@ wdog			evbppc
 wdog			evbsh3
 wdog			mmeye
 wds			MI
-wdsc			mvme68k
 we			MI
 wesc			amiga
 wesc			amigappc
@@ -1560,7 +1540,6 @@ zs			sparc64
 zsc			alpha
 zsc			mac68k
 zsc			macppc
-zsc			mvme68k
 zsc			news68k
 zsc			newsmips
 zsc			next68k
@@ -1575,7 +1554,6 @@ zssc			amigappc
 zstty			alpha
 zstty			mac68k
 zstty			macppc
-zstty			mvme68k
 zstty			news68k
 zstty			newsmips
 zstty			next68k

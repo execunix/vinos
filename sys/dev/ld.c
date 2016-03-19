@@ -408,9 +408,6 @@ ldioctl(dev_t dev, u_long cmd, void *addr, int32_t flag, struct lwp *l)
 {
 	struct ld_softc *sc;
 	int part, unit, error;
-#ifdef __HAVE_OLD_DISKLABEL
-	struct disklabel newlabel;
-#endif
 	struct disklabel *lp;
 
 	unit = DISKUNIT(dev);
@@ -427,15 +424,6 @@ ldioctl(dev_t dev, u_long cmd, void *addr, int32_t flag, struct lwp *l)
 		memcpy(addr, sc->sc_dk.dk_label, sizeof(struct disklabel));
 		return (0);
 
-#ifdef __HAVE_OLD_DISKLABEL
-	case ODIOCGDINFO:
-		newlabel = *(sc->sc_dk.dk_label);
-		if (newlabel.d_npartitions > OLDMAXPARTITIONS)
-			return ENOTTY;
-		memcpy(addr, &newlabel, sizeof(struct olddisklabel));
-		return (0);
-#endif
-
 	case DIOCGPART:
 		((struct partinfo *)addr)->disklab = sc->sc_dk.dk_label;
 		((struct partinfo *)addr)->part =
@@ -444,16 +432,6 @@ ldioctl(dev_t dev, u_long cmd, void *addr, int32_t flag, struct lwp *l)
 
 	case DIOCWDINFO:
 	case DIOCSDINFO:
-#ifdef __HAVE_OLD_DISKLABEL
-	case ODIOCWDINFO:
-	case ODIOCSDINFO:
-
-		if (cmd == ODIOCSDINFO || cmd == ODIOCWDINFO) {
-			memset(&newlabel, 0, sizeof newlabel);
-			memcpy(&newlabel, addr, sizeof (struct olddisklabel));
-			lp = &newlabel;
-		} else
-#endif
 		lp = (struct disklabel *)addr;
 
 		if ((flag & FWRITE) == 0)
@@ -465,11 +443,7 @@ ldioctl(dev_t dev, u_long cmd, void *addr, int32_t flag, struct lwp *l)
 		error = setdisklabel(sc->sc_dk.dk_label,
 		    lp, /*sc->sc_dk.dk_openmask : */0,
 		    sc->sc_dk.dk_cpulabel);
-		if (error == 0 && (cmd == DIOCWDINFO
-#ifdef __HAVE_OLD_DISKLABEL
-		    || cmd == ODIOCWDINFO
-#endif
-		    ))
+		if (error == 0 && (cmd == DIOCWDINFO))
 			error = writedisklabel(
 			    MAKEDISKDEV(major(dev), DISKUNIT(dev), RAW_PART),
 			    ldstrategy, sc->sc_dk.dk_label,
@@ -500,15 +474,6 @@ ldioctl(dev_t dev, u_long cmd, void *addr, int32_t flag, struct lwp *l)
 	case DIOCGDEFLABEL:
 		ldgetdefaultlabel(sc, (struct disklabel *)addr);
 		break;
-
-#ifdef __HAVE_OLD_DISKLABEL
-	case ODIOCGDEFLABEL:
-		ldgetdefaultlabel(sc, &newlabel);
-		if (newlabel.d_npartitions > OLDMAXPARTITIONS)
-			return ENOTTY;
-		memcpy(addr, &newlabel, sizeof (struct olddisklabel));
-		break;
-#endif
 
 	case DIOCCACHESYNC:
 		/*

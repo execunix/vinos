@@ -47,10 +47,6 @@ message md_may_remove_boot_medium
 message Keyboard_type {Keyboard type}
 message kb_default {pl}
 
-message dobad144
-{Instalowanie tablicy zlych blokow ...
-}
-
 message getboottype
 {Czy chcesz zainstalowac normalne bootbloki, czy te do uzycia z zewn. konsola?
 

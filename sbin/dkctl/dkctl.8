@@ -87,14 +87,6 @@ If
 is specified, the cache synchronization command will be issued even
 if the kernel does not believe that there are any dirty cache blocks
 in the disk's cache.
-.It Ic keeplabel Op Ar yes | no
-Specify to keep or drop the in-core disklabel on the last close of
-the disk device.
-(Keep if
-.Ar yes
-is specified, drop if
-.Ar no
-is specified.)
 .It Ic badsector Ar flush | list | retry
 Used for managing the kernel's bad sector list for
 .Xr wd 4

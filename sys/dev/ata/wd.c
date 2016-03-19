@@ -204,10 +204,6 @@ int   wd_setcache(struct wd_softc *, int);
 
 struct dkdriver wddkdriver = { wdstrategy, wdminphys };
 
-#ifdef HAS_BAD144_HANDLING
-static void bad144intern(struct wd_softc *);
-#endif
-
 #define	WD_QUIRK_SPLIT_MOD15_WRITE	0x0001	/* must split certain writes */
 
 #define	WD_QUIRK_FMT "\20\1SPLIT_MOD15_WRITE\2FORCE_LBA48"
@@ -1143,10 +1139,6 @@ wdgetdisklabel(struct wd_softc *wd)
 		wd->drvp->drive_flags |= ATA_DRIVE_RESET;
 		splx(s);
 	}
-#ifdef HAS_BAD144_HANDLING
-	if ((lp->d_flags & D_BADSECT) != 0)
-		bad144intern(wd);
-#endif
 }
 
 void
@@ -1194,9 +1186,6 @@ wdioctl(dev_t dev, u_long xfer, void *addr, int flag, struct lwp *l)
 	struct wd_softc *wd =
 	    device_lookup_private(&wd_cd, WDUNIT(dev));
 	int error, s;
-#ifdef __HAVE_OLD_DISKLABEL
-	struct disklabel *newlabel = NULL;
-#endif
 
 	ATADEBUG_PRINT(("wdioctl\n"), DEBUG_FUNCS);
 
@@ -1209,15 +1198,6 @@ wdioctl(dev_t dev, u_long xfer, void *addr, int flag, struct lwp *l)
 
 	error = 0;
 	switch (xfer) {
-#ifdef HAS_BAD144_HANDLING
-	case DIOCSBAD:
-		if ((flag & FWRITE) == 0)
-			return EBADF;
-		wd->sc_dk.dk_cpulabel->bad = *(struct dkbad *)addr;
-		wd->sc_dk.dk_label->d_flags |= D_BADSECT;
-		bad144intern(wd);
-		return 0;
-#endif
 #ifdef WD_SOFTBADSECT
 	case DIOCBSLIST :
 	{
@@ -1276,19 +1256,6 @@ wdioctl(dev_t dev, u_long xfer, void *addr, int flag, struct lwp *l)
 	case DIOCGDINFO:
 		*(struct disklabel *)addr = *(wd->sc_dk.dk_label);
 		return 0;
-#ifdef __HAVE_OLD_DISKLABEL
-	case ODIOCGDINFO:
-		newlabel = malloc(sizeof *newlabel, M_TEMP, M_WAITOK);
-		if (newlabel == NULL)
-			return EIO;
-		*newlabel = *(wd->sc_dk.dk_label);
-		if (newlabel->d_npartitions <= OLDMAXPARTITIONS)
-			memcpy(addr, newlabel, sizeof (struct olddisklabel));
-		else
-			error = ENOTTY;
-		free(newlabel, M_TEMP);
-		return error;
-#endif
 
 	case DIOCGPART:
 		((struct partinfo *)addr)->disklab = wd->sc_dk.dk_label;
@@ -1298,26 +1265,12 @@ wdioctl(dev_t dev, u_long xfer, void *addr, int flag, struct lwp *l)
 
 	case DIOCWDINFO:
 	case DIOCSDINFO:
-#ifdef __HAVE_OLD_DISKLABEL
-	case ODIOCWDINFO:
-	case ODIOCSDINFO:
-#endif
 	{
 		struct disklabel *lp;
 
 		if ((flag & FWRITE) == 0)
 			return EBADF;
 
-#ifdef __HAVE_OLD_DISKLABEL
-		if (xfer == ODIOCSDINFO || xfer == ODIOCWDINFO) {
-			newlabel = malloc(sizeof *newlabel, M_TEMP,
-			    M_WAITOK | M_ZERO);
-			if (newlabel == NULL)
-				return EIO;
-			memcpy(newlabel, addr, sizeof (struct olddisklabel));
-			lp = newlabel;
-		} else
-#endif
 		lp = (struct disklabel *)addr;
 
 		mutex_enter(&wd->sc_dk.dk_openlock);
@@ -1332,11 +1285,7 @@ wdioctl(dev_t dev, u_long xfer, void *addr, int flag, struct lwp *l)
 				wd->drvp->drive_flags |= ATA_DRIVE_RESET;
 				splx(s);
 			}
-			if (xfer == DIOCWDINFO
-#ifdef __HAVE_OLD_DISKLABEL
-			    || xfer == ODIOCWDINFO
-#endif
-			    )
+			if (xfer == DIOCWDINFO)
 				error = writedisklabel(WDLABELDEV(dev),
 				    wdstrategy, wd->sc_dk.dk_label,
 				    wd->sc_dk.dk_cpulabel);
@@ -1344,10 +1293,6 @@ wdioctl(dev_t dev, u_long xfer, void *addr, int flag, struct lwp *l)
 
 		wd->sc_flags &= ~WDF_LABELLING;
 		mutex_exit(&wd->sc_dk.dk_openlock);
-#ifdef __HAVE_OLD_DISKLABEL
-		if (newlabel != NULL)
-			free(newlabel, M_TEMP);
-#endif
 		return error;
 	}
 
@@ -1370,20 +1315,6 @@ wdioctl(dev_t dev, u_long xfer, void *addr, int flag, struct lwp *l)
 	case DIOCGDEFLABEL:
 		wdgetdefaultlabel(wd, (struct disklabel *)addr);
 		return 0;
-#ifdef __HAVE_OLD_DISKLABEL
-	case ODIOCGDEFLABEL:
-		newlabel = malloc(sizeof *newlabel, M_TEMP, M_WAITOK);
-		if (newlabel == NULL)
-			return EIO;
-		wdgetdefaultlabel(wd, newlabel);
-		if (newlabel->d_npartitions <= OLDMAXPARTITIONS)
-			memcpy(addr, &newlabel, sizeof (struct olddisklabel));
-		else
-			error = ENOTTY;
-		free(newlabel, M_TEMP);
-		return error;
-#endif
-
 #ifdef notyet
 	case DIOCWFORMAT:
 		if ((flag & FWRITE) == 0)
@@ -1758,32 +1689,6 @@ wddump(dev_t dev, daddr_t blkno, void *va, size_t size)
 	wddoingadump = 0;
 	return 0;
 }
-
-#ifdef HAS_BAD144_HANDLING
-/*
- * Internalize the bad sector table.
- */
-void
-bad144intern(struct wd_softc *wd)
-{
-	struct dkbad *bt = &wd->sc_dk.dk_cpulabel->bad;
-	struct disklabel *lp = wd->sc_dk.dk_label;
-	int i = 0;
-
-	ATADEBUG_PRINT(("bad144intern\n"), DEBUG_XFERS);
-
-	for (; i < NBT_BAD; i++) {
-		if (bt->bt_bad[i].bt_cyl == 0xffff)
-			break;
-		wd->sc_badsect[i] =
-		    bt->bt_bad[i].bt_cyl * lp->d_secpercyl +
-		    (bt->bt_bad[i].bt_trksec >> 8) * lp->d_nsectors +
-		    (bt->bt_bad[i].bt_trksec & 0xff);
-	}
-	for (; i < NBT_BAD+1; i++)
-		wd->sc_badsect[i] = -1;
-}
-#endif
 
 static void
 wd_params_to_properties(struct wd_softc *wd, struct ataparams *params)
