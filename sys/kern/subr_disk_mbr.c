@@ -67,7 +67,6 @@ __KERNEL_RCSID(0, "$NetBSD: subr_disk_mbr.c,v 1.46 2013/06/26 18:47:26 matt Exp 
 #include <sys/fcntl.h>
 #include <sys/conf.h>
 #include <sys/cdio.h>
-#include <sys/dkbad.h>
 #include <fs/udf/ecma167-udf.h>
 
 #include <sys/kauth.h>

@@ -39,7 +39,6 @@
 driver
 .Sh SYNOPSIS
 .Cd "options DKWEDGE_AUTODISCOVER"
-.Cd "options DKWEDGE_METHOD_BSDLABEL"
 .Cd "options DKWEDGE_METHOD_GPT"
 .Cd "options DKWEDGE_METHOD_MBR"
 .Sh DESCRIPTION
@@ -52,11 +51,9 @@ Wedges may be configured manually with
 .Xr dkctl 8
 or automatically by the kernel upon the attachment of the physical disk.
 .Sh KERNEL OPTIONS
-.Bl -tag -width DKWEDGE_METHOD_BSDLABEL
+.Bl -tag -width DKWEDGE_METHOD_XXXXX
 .It Dv DKWEDGE_AUTODISCOVER
 Automatically detect and configure wedges using any available methods.
-.It Dv DKWEDGE_METHOD_BSDLABEL
-BSD disklabel detection method.
 .It Dv DKWEDGE_METHOD_GPT
 Extensible Firmware Interface Globally Unique Identifier Partition Table
 (GPT) detection method.

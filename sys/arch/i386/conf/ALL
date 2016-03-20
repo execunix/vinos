@@ -133,9 +133,7 @@ options 	KDTRACE_HOOKS	# kernel DTrace hooks
 options 	DKWEDGE_AUTODISCOVER	# Automatically add dk(4) instances
 options 	DKWEDGE_METHOD_GPT	# Supports GPT partitions as wedges
 # The following two options can break /etc/fstab, so handle with care
-options 	DKWEDGE_METHOD_BSDLABEL	# Support disklabel entries as wedges
 options 	DKWEDGE_METHOD_MBR	# Support MBR partitions as wedges
-options 	DKWEDGE_METHOD_APPLE    # Support Apple partitions as wedges
 
 # File systems
 file-system 	FFS		# UFS
@@ -1994,7 +1992,6 @@ options DEBUG_VAL
 options DEBUG_WITH_STDIO
 options DEVSW_DEBUG
 options DEV_DEBUG
-options DISKLABEL_DEBUG
 options DISK_DEBUG
 options DL_DEBUG
 options DMAC_DEBUG

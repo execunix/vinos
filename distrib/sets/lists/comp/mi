@@ -1900,7 +1900,6 @@
 ./usr/include/sys/dir.h				comp-c-include
 ./usr/include/sys/dirent.h			comp-c-include
 ./usr/include/sys/disk.h			comp-c-include
-./usr/include/sys/dkbad.h			comp-c-include
 ./usr/include/sys/dkio.h			comp-c-include
 ./usr/include/sys/dkstat.h			comp-c-include
 ./usr/include/sys/domain.h			comp-c-include

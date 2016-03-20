@@ -26,7 +26,6 @@ _ARCH_INCS!=	${TOOL_SED} -e 's/^\#.*//' ${.CURDIR}/../headerlist
 
 _INCS=		diskinfo.h
 _SYSINCS=	bootblock.h \
-		dkbad.h \
 		exec_elf.h
 
 HOST_CPPFLAGS+=	-I${TOOLDIR}/include -I${TOOLDIR}/include/nbinclude

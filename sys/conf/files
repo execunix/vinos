@@ -80,10 +80,8 @@ defflag	opt_execfmt.h		EXEC_AOUT EXEC_COFF EXEC_ECOFF EXEC_ELF32
 				EXEC_ELF_NOTELESS
 
 defflag	opt_dkwedge.h		DKWEDGE_AUTODISCOVER
-				DKWEDGE_METHOD_BSDLABEL
 				DKWEDGE_METHOD_GPT
 				DKWEDGE_METHOD_MBR
-				DKWEDGE_METHOD_APPLE
 
 defflag	opt_veriexec.h		VERIFIED_EXEC_FP_SHA1
 				VERIFIED_EXEC_FP_SHA256
@@ -1448,8 +1446,6 @@ file	dev/clock_subr.c
 file	dev/clockctl.c			clockctl
 file	dev/dksubr.c			xbd
 file	dev/dkwedge/dk.c
-file	dev/dkwedge/dkwedge_apple.c	dkwedge_method_apple
-file	dev/dkwedge/dkwedge_bsdlabel.c	dkwedge_method_bsdlabel
 file	dev/dkwedge/dkwedge_gpt.c	dkwedge_method_gpt
 file	dev/dkwedge/dkwedge_mbr.c	dkwedge_method_mbr
 file	dev/firmload.c			firmload

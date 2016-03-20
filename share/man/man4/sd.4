@@ -176,11 +176,6 @@ They are defined in the header file
 .In disklabel.h .
 .Pp
 .Bl -tag -width DIOCSDINFO
-.\".It Dv DIOCSBAD
-.\"Usually used to set up a bad-block mapping system on the disk.
-.\".Tn SCSI
-.\"drive incorporate their own bad-block mapping so this command is not
-.\"implemented.
 .It Dv DIOCGDINFO
 Read, from the kernel, the in-core copy of the disklabel for the drive.
 This may be a fictitious disklabel if the drive has never

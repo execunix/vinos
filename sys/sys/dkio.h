@@ -57,7 +57,6 @@
 #define DIOCKLABEL	_IOW('d', 119, int)	/* keep/drop label on close? */
 #define DIOCWLABEL	_IOW('d', 109, int)	/* write en/disable label */
 
-#define DIOCSBAD	_IOW('d', 110, struct dkbad)	/* set kernel dkbad */
 #define DIOCEJECT	_IOW('d', 112, int)	/* eject removable disk */
 #define ODIOCEJECT	_IO('d', 112)		/* eject removable disk */
 #define DIOCLOCK	_IOW('d', 113, int)	/* lock/unlock pack */

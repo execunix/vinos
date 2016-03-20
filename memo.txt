@@ -351,5 +351,3 @@ diskinfo
 diskname/bsddiskname
 vnconfig/vndconfig
 geomspec
-DIOCSBAD: / * set kernel dkbad */
-	if (ioctl(fd, DIOCGDINFO, &dl) == -1) {
