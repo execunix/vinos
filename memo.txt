@@ -358,21 +358,11 @@ MKX11RADEONKMS
 CONFIG_DRM
 X11R6
 
-dkctl/wedge/dkwedge/dk_wedges
+dkctl/dkwedge/dk_wedges
 wedge/dk.4
-DKW_PTYPE_FFS
-sbin/devpubd/hooks/02-wedgenames
+DKW_PTYPE_FFS/DEBUG_WEDGE
+
+					booted_device = dv;
+					booted_partition = 0;
+	kmutex_t	dk_openlock;	/* lock on these and openmask */
 disk_strategy/getfsspecname/getfstypename/getfsent
-		/* wedges */
-#define	DIOCAWEDGE	_IOWR('d', 121, struct dkwedge_info) /* add wedge */
-#define	DIOCGWEDGEINFO	_IOR('d', 122, struct dkwedge_info)  /* get wedge inf */
-#define	DIOCDWEDGE	_IOW('d', 123, struct dkwedge_info)  /* del wedge */
-#define	DIOCLWEDGES	_IOWR('d', 124, struct dkwedge_list) /* list wedges */
-
-		/* trigger wedge auto discover */
-#define	DIOCMWEDGES	_IOR('d', 131, int)	/* make wedges */
-
-		/* disk buffer queue strategy */
-#define	DIOCGSTRATEGY	_IOR('d', 125, struct disk_strategy)
-#define	DIOCSSTRATEGY	_IOW('d', 126, struct disk_strategy)
-

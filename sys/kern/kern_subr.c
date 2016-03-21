@@ -109,7 +109,6 @@ __KERNEL_RCSID(0, "$NetBSD: kern_subr.c,v 1.214 2013/12/09 16:49:43 pooka Exp $"
 static device_t finddevice(const char *);
 static device_t getdisk(char *, int, int, dev_t *, int);
 static device_t parsedisk(char *, int, int, dev_t *);
-static const char *getwedgename(const char *, int);
 
 #ifdef TFTPROOT
 int tftproot_dhcpboot(device_t);
@@ -120,9 +119,7 @@ dev_t	dumpcdev;	/* for savecore */
 static int
 isswap(device_t dv)
 {
-	struct dkwedge_info wi;
 	struct vnode *vn;
-	int error;
 
 	if (device_class(dv) != DV_DISK || !device_is_a(dv, "dk"))
 		return 0;
@@ -130,15 +127,8 @@ isswap(device_t dv)
 	if ((vn = opendisk(dv)) == NULL)
 		return 0;
 
-	error = VOP_IOCTL(vn, DIOCGWEDGEINFO, &wi, FREAD, NOCRED);
 	VOP_CLOSE(vn, FREAD, NOCRED);
 	vput(vn);
-	if (error) {
-#ifdef DEBUG_WEDGE
-		printf("%s: Get wedge info returned %d\n", device_xname(dv), error);
-#endif
-		return 0;
-	}
 	return strcmp(wi.dkw_ptype, DKW_PTYPE_SWAP) == 0;
 }
 
@@ -157,13 +147,7 @@ int md_is_root = 0;
  */
 device_t booted_device;
 int booted_partition;
-daddr_t booted_startblk;
-uint64_t booted_nblks;
 
-/*
- * Use partition letters if it's a disk class but not a wedge.
- * XXX Check for wedge is kinda gross.
- */
 #define	DEV_USES_PARTITIONS(dv)						\
 	(device_class((dv)) == DV_DISK &&				\
 	 !device_is_a((dv), "dk"))
@@ -581,18 +565,6 @@ getdisk(char *str, int len, int defpart, dev_t *devp, int isdump)
 	return dv;
 }
 
-static const char *
-getwedgename(const char *name, int namelen)
-{
-	const char *wpfx = "wedge:";
-	const int wpfxlen = strlen(wpfx);
-
-	if (namelen < wpfxlen || strncmp(name, wpfx, wpfxlen) != 0)
-		return NULL;
-
-	return name + wpfxlen;
-}
-
 static device_t
 parsedisk(char *str, int len, int defpart, dev_t *devp)
 {
@@ -615,12 +587,7 @@ parsedisk(char *str, int len, int defpart, dev_t *devp)
 	cp = str + len - 1;
 	c = *cp;
 
-	if ((wname = getwedgename(str, len)) != NULL) {
-		if ((dv = dkwedge_find_by_wname(wname)) == NULL)
-			return NULL;
-		part = defpart;
-		goto gotdisk;
-	} else if (c >= 'a' && c <= ('a' + MAXPARTITIONS - 1)) {
+	if (c >= 'a' && c <= ('a' + MAXPARTITIONS - 1)) {
 		part = c - 'a';
 		*cp = '\0';
 	} else

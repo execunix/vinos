@@ -53,10 +53,8 @@ file system state.
 .Fn cpu_rootconf
 provides the global variables
 .Fa booted_device ,
-.Fa booted_partition ,
-.Fa booted_startblk ,
 and
-.Fa booted_nblks
+.Fa booted_partition
 and invokes the machine-independent function
 .Fa rootconf
 which
@@ -66,14 +64,7 @@ then calls the function
 to record the boot/root device and the boot partition information
 for use in machine-independent code.
 .Pp
-For disk boot, if
-.Fa booted_nblks
-is not 0, then
-.Fa booted_startblk
-and
-.Fa booted_nblks
-are supposed to specify a disk wedge that is used as the root device.
-Otherwise the
+For disk boot, the
 .Fa booted_partition
 is used.
 .Sh SEE ALSO

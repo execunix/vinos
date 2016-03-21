@@ -98,18 +98,6 @@ struct disk {
 	const struct dkdriver *dk_driver;	/* pointer to driver */
 
 	/*
-	 * Information required to be the parent of a disk wedge.
-	 */
-	kmutex_t	dk_rawlock;	/* lock on these fields */
-	u_int		dk_rawopens;	/* # of openes of rawvp */
-	struct vnode	*dk_rawvp;	/* vnode for the RAW_PART bdev */
-
-	kmutex_t	dk_openlock;	/* lock on these and openmask */
-	u_int		dk_nwedges;	/* # of configured wedges */
-					/* all wedges on this disk */
-	LIST_HEAD(, dkwedge_softc) dk_wedges;
-
-	/*
 	 * Disk label information.  Storage for the in-core disk label
 	 * must be dynamically allocated, otherwise the size of this
 	 * structure becomes machine-dependent.
@@ -279,14 +267,6 @@ the kernel believes that there is no outstanding data.
 Get bad sector list.
 .It Dv DIOCBSFLUSH
 Flush bad sector list.
-.It Dv DIOCAWEDGE "struct dkwedge_info"
-Add wedge.
-.It Dv DIOCGWEDGEINFO "struct dkwedge_info"
-Get wedge information.
-.It Dv DIOCDWEDGE "struct dkwedge_info"
-Delete wedge.
-.It Dv DIOCLWEDGES "struct dkwedge_list"
-List wedges.
 .It Dv DIOCGSTRATEGY "struct disk_strategy"
 Get disk buffer queue strategy.
 .It Dv DIOCSSTRATEGY "struct disk_strategy"

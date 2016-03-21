@@ -494,9 +494,6 @@ main(void)
 	/* Initialize the buffer cache, part 2. */
 	bufinit2();
 
-	/* Initialize the disk wedge subsystem. */
-	dkwedge_init();
-
 	/* Initialize the kernel strong PRNG. */
 	kern_cprng = cprng_strong_create("kernel", IPL_VM,
 					 CPRNG_INIT_ANY|CPRNG_REKEY_ANY);
@@ -828,71 +825,9 @@ configure3(void)
 	yield();
 }
 
-static void
-rootconf_handle_wedges(void)
-{
-	struct partinfo dpart;
-	struct partition *p;
-	struct vnode *vp;
-	daddr_t startblk;
-	uint64_t nblks;
-	device_t dev; 
-	int error;
-
-	if (booted_nblks) {
-		/*
-		 * bootloader passed geometry
-		 */
-		dev      = booted_device;
-		startblk = booted_startblk;
-		nblks    = booted_nblks;
-
-		/*
-		 * keep booted_device and booted_partition
-		 * in case the kernel doesn't identify a wedge
-		 */
-	} else {
-		/*
-		 * bootloader passed partition number
-		 *
-		 * We cannot ask the partition device directly when it is
-		 * covered by a wedge. Instead we look up the geometry in
-		 * the disklabel.
-		 */
-		vp = opendisk(booted_device);
-
-		if (vp == NULL)
-			return;
-
-		error = VOP_IOCTL(vp, DIOCGPART, &dpart, FREAD, NOCRED);
-		VOP_CLOSE(vp, FREAD, NOCRED);
-		vput(vp);
-		if (error)
-			return;
-
-		KASSERT(booted_partition >= 0
-			&& booted_partition < MAXPARTITIONS);
-
-		p = &dpart.disklab->d_partitions[booted_partition];
-
-		dev      = booted_device;
-		startblk = p->p_offset;
-		nblks    = p->p_size;
-	}
-
-	dev = dkwedge_find_partition(dev, startblk, nblks);
-	if (dev != NULL) {
-		booted_device = dev;
-		booted_partition = 0;
-	}
-}
-
 void
 rootconf(void)
 {
-	if (booted_device != NULL)
-		rootconf_handle_wedges();
-
 	setroot(booted_device, booted_partition);
 }
 

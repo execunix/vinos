@@ -299,7 +299,6 @@ findroot(void)
 			    biv->devname[len] - '0' == device_unit(dv)) {
 				booted_device = dv;
 				booted_partition = biv->devname[len + 1] - 'a';
-				booted_nblks = 0;
 				break;
 			}
 		}
@@ -359,7 +358,6 @@ findroot(void)
 			}
 			booted_device = dv;
 			booted_partition = bid->partition;
-			booted_nblks = 0;
 		}
 		deviter_release(&di);
 
@@ -399,7 +397,6 @@ findroot(void)
 				    device_is_a(dv, "cd")) {
 					booted_device = dv;
 					booted_partition = 0;
-					booted_nblks = 0;
 					break;
 				}
 			}

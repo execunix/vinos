@@ -182,13 +182,7 @@ void
 disk_init(struct disk *diskp, const char *name, const struct dkdriver *driver)
 {
 
-	/*
-	 * Initialize the wedge-related locks and other fields.
-	 */
-	mutex_init(&diskp->dk_rawlock, MUTEX_DEFAULT, IPL_NONE);
 	mutex_init(&diskp->dk_openlock, MUTEX_DEFAULT, IPL_NONE);
-	LIST_INIT(&diskp->dk_wedges);
-	diskp->dk_nwedges = 0;
 	diskp->dk_labelsector = LABELSECTOR;
 	disk_blocksize(diskp, DEV_BSIZE);
 	diskp->dk_name = name;
@@ -268,7 +262,6 @@ disk_destroy(struct disk *diskp)
 {
 
 	mutex_destroy(&diskp->dk_openlock);
-	mutex_destroy(&diskp->dk_rawlock);
 }
 
 /*

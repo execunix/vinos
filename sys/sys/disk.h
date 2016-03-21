@@ -362,16 +362,7 @@ struct disk {
 
 	const struct dkdriver *dk_driver;	/* pointer to driver */
 
-	/*
-	 * Information required to be the parent of a disk wedge.
-	 */
-	kmutex_t	dk_rawlock;	/* lock on these fields */
-	u_int		dk_rawopens;	/* # of openes of rawvp */
-	struct vnode	*dk_rawvp;	/* vnode for the RAW_PART bdev */
-
 	kmutex_t	dk_openlock;	/* lock on these and openmask */
-	u_int		dk_nwedges;	/* # of configured wedges */
-					/* all wedges on this disk */
 
 	/*
 	 * Disk label information.  Storage for the in-core disk label
