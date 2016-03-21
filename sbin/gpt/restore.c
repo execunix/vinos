@@ -38,7 +38,7 @@ __RCSID("$NetBSD: restore.c,v 1.1.2.1 2015/06/02 19:49:38 snj Exp $");
 
 #include <sys/types.h>
 #include <sys/bootblock.h>
-#include <sys/disklabel_gpt.h>
+#include <sys/diskinfo.h>
 
 #include <err.h>
 #include <stddef.h>

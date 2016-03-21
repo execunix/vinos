@@ -43,10 +43,6 @@ SUBDIR+= mount_union
 SUBDIR+= ping6 rtsol
 .endif
 
-.if (${MKISCSI} != "no")
-SUBDIR+= iscsictl iscsid
-.endif
-
 # IPsec
 SUBDIR+= setkey
 

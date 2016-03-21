@@ -46,7 +46,7 @@ __KERNEL_RCSID(0, "$NetBSD: fss.c,v 1.91 2014/07/25 08:10:35 dholland Exp $");
 #include <sys/malloc.h>
 #include <sys/buf.h>
 #include <sys/ioctl.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/device.h>
 #include <sys/disk.h>
 #include <sys/stat.h>

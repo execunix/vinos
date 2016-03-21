@@ -96,8 +96,7 @@
 #                    if ${MKCOMPAT} != "no".
 #   do-build:        builds and installs the entire system.
 #   do-x11:          builds and installs X11 if ${MKX11} != "no"; either
-#                    X11R7 from src/external/mit/xorg if ${X11FLAVOUR} == "Xorg"
-#                    or X11R6 from src/x11
+#                    X11R7 from src/external/mit/xorg
 #   do-extsrc:       builds and installs extsrc if ${MKEXTSRC} != "no".
 #   do-obsolete:     installs the obsolete sets (for the postinstall-* targets).
 #
@@ -479,11 +478,7 @@ do-build: .PHONY .MAKE
 
 do-x11: .PHONY .MAKE
 .if ${MKX11} != "no"
-.if ${X11FLAVOUR} == "Xorg"
 	${MAKEDIRTARGET} external/mit/xorg build
-.else
-	${MAKEDIRTARGET} x11 build
-.endif
 .else
 	@echo "MKX11 is not enabled"
 	@false

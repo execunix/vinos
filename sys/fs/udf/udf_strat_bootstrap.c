@@ -48,7 +48,7 @@ __KERNEL_RCSID(0, "$NetBSD: udf_strat_bootstrap.c,v 1.3.40.1 2015/01/17 12:10:54
 #include <sys/buf.h>
 #include <sys/file.h>
 #include <sys/device.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/ioctl.h>
 #include <sys/dirent.h>
 #include <sys/stat.h>

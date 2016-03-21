@@ -27,7 +27,7 @@
  */
 
 #include <sys/device.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/disk.h>
 
 #include <net/zlib.h>

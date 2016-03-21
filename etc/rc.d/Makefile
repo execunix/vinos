@@ -23,7 +23,7 @@ CONFIGFILES=\
 		gpio \
 		hostapd httpd \
 		identd ifwatchd inetd ipfilter ipfs ipmon ipnat ipsec \
-		irdaattach iscsi_target isdnd isibootd \
+		irdaattach isdnd isibootd \
 		kdc \
 		ldconfig ldpd local lpd \
 		makemandb mdnsd mixerctl modules mopd motd mountall \

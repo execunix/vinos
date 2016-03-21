@@ -33,7 +33,7 @@
 __KERNEL_RCSID(0,"$NetBSD: xlat_mbr_fstype.c,v 1.9 2013/03/02 22:04:06 christos Exp $");
 
 
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/bootblock.h>
 
 int

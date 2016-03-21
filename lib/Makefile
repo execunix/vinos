@@ -97,7 +97,6 @@ SUBDIR+=	libppath	# depends on libprop
 SUBDIR+=	libperfuse	# depends on libpuffs
 SUBDIR+=	libquota	# depends on libprop and librpcsvc
 SUBDIR+=	librefuse	# depends on libpuffs
-SUBDIR+=	libisns 	# depends on libpthread
 
 .if (${MKNPF} != "no")
 SUBDIR+=	libnpf		# depends on libprop
@@ -108,10 +107,6 @@ SUBDIR+=	../crypto/external/bsd/openssl/lib # depends on libcrypt
 .endif
 
 SUBDIR+=	../external/bsd/file/lib	# depends on libz
-
-.if (${MKISCSI} != "no")
-SUBDIR+=	../external/bsd/iscsi/lib	# depends on libpthread
-.endif
 
 SUBDIR+=	../external/bsd/libarchive/lib	# depends on libxz
 

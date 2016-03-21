@@ -61,7 +61,7 @@ __KERNEL_RCSID(0, "$NetBSD: ld_ataraid.c,v 1.39 2012/02/02 19:43:02 tls Exp $");
 #include <sys/bufq.h>
 #include <sys/dkio.h>
 #include <sys/disk.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/fcntl.h>
 #include <sys/malloc.h>
 #include <sys/vnode.h>

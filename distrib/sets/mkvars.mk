@@ -44,12 +44,8 @@ MKMANPAGES=yes
 .endif
 
 .if ${MKX11} != "no"
-. if ${X11FLAVOUR} == "Xorg"
 MKXORG:=yes
 MKX11:=no
-. else
-MKXORG:=no
-. endif
 .endif
 
 .if (!empty(MACHINE_ARCH:Mearm*))

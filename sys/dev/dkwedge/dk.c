@@ -42,7 +42,7 @@ __KERNEL_RCSID(0, "$NetBSD: dk.c,v 1.72.2.4 2015/09/08 12:02:33 martin Exp $");
 #include <sys/errno.h>
 #include <sys/pool.h>
 #include <sys/ioctl.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/disk.h>
 #include <sys/fcntl.h>
 #include <sys/buf.h>

@@ -74,8 +74,6 @@
 ./usr/lib/libisc_g.a				comp-c-debuglib		debuglib
 ./usr/lib/libisccc_g.a				comp-c-debuglib		debuglib
 ./usr/lib/libisccfg_g.a				comp-c-debuglib		debuglib
-./usr/lib/libiscsi_g.a				comp-c-debuglib		debuglib,iscsi
-./usr/lib/libisns_g.a				comp-c-debuglib		debuglib
 ./usr/lib/libkadm5clnt_g.a			comp-c-debuglib		debuglib,kerberos
 ./usr/lib/libkadm5srv_g.a			comp-c-debuglib		debuglib,kerberos
 ./usr/lib/libkafs_g.a				comp-c-debuglib		debuglib,kerberos
@@ -202,8 +200,6 @@
 ./usr/libdata/debug/sbin/ifconfig.debug		comp-netutil-debug	debug
 ./usr/libdata/debug/sbin/init.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/ipf.debug		comp-ipf-debug		ipfilter,debug
-./usr/libdata/debug/sbin/iscsictl.debug		comp-iscsi-debug	iscsi,debug
-./usr/libdata/debug/sbin/iscsid.debug		comp-iscsi-debug	iscsi,debug
 ./usr/libdata/debug/sbin/luactl.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/mknod.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/modload.debug		comp-sysutil-debug	debug
@@ -235,7 +231,6 @@
 ./usr/libdata/debug/sbin/newfs_msdos.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/newfs_udf.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/npfctl.debug		comp-npf-debug		npf,debug
-./usr/libdata/debug/sbin/pdisk.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/sbin/pfctl.debug		comp-pf-debug		pf,debug
 ./usr/libdata/debug/sbin/pflogd.debug		comp-pf-debug		pf,debug
 ./usr/libdata/debug/sbin/pfs.debug		comp-pf-debug		pf,debug
@@ -836,8 +831,6 @@
 ./usr/libdata/debug/usr/sbin/ipsend.debug	comp-ipf-debug		ipfilter,debug
 ./usr/libdata/debug/usr/sbin/iptest.debug	comp-ipf-debug		ipfilter,debug
 ./usr/libdata/debug/usr/sbin/irdaattach.debug	comp-sysutil-debug	debug
-./usr/libdata/debug/usr/sbin/iscsi-initiator.debug	comp-iscsi-debug	iscsi,debug
-./usr/libdata/debug/usr/sbin/iscsi-target.debug	comp-iscsi-debug	iscsi,debug
 ./usr/libdata/debug/usr/sbin/isdnd.debug	comp-isdn-debug		debug
 ./usr/libdata/debug/usr/sbin/isdnmonitor.debug	comp-isdn-debug		debug
 ./usr/libdata/debug/usr/sbin/isdntel.debug	comp-isdn-debug		debug

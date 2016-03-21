@@ -38,7 +38,7 @@ __RCSID("$NetBSD: boot1.c,v 1.20 2011/01/06 01:08:48 jakllsch Exp $");
 
 #include <sys/param.h>
 #include <sys/bootblock.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 
 #define XSTR(x) #x
 #define STR(x) XSTR(x)

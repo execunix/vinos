@@ -18,7 +18,6 @@ INCS=	drm.h \
 	intel_debug.h \
 	mach64_drm.h \
 	mga_drm.h \
-	nouveau_drm.h \
 	r128_drm.h \
 	r600_pci_ids.h \
 	radeon_bo.h \

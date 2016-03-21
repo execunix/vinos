@@ -48,8 +48,6 @@
 ./usr/lib/libisc_pic.a				comp-bind-piclib	picinstall
 ./usr/lib/libisccc_pic.a			comp-bind-piclib	picinstall
 ./usr/lib/libisccfg_pic.a			comp-bind-piclib	picinstall
-./usr/lib/libiscsi_pic.a			comp-c-piclib		iscsi,picinstall
-./usr/lib/libisns_pic.a				comp-isns-piclib		picinstall
 ./usr/lib/libkadm5clnt_pic.a			comp-c-piclib		kerberos,picinstall
 ./usr/lib/libkadm5srv_pic.a			comp-c-piclib		kerberos,picinstall
 ./usr/lib/libkafs_pic.a				comp-c-piclib		kerberos,picinstall

@@ -34,7 +34,7 @@ __KERNEL_RCSID(0, "$NetBSD: ata_raid_subr.c,v 1.2 2010/06/24 13:03:08 hannken Ex
 #include <sys/kernel.h>
 #include <sys/dkio.h>
 #include <sys/disk.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/fcntl.h>
 #include <sys/vnode.h>
 #include <sys/kauth.h>

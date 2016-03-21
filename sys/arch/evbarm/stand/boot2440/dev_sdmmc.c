@@ -76,7 +76,7 @@
 
 #include <sys/param.h>
 #include <sys/types.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 
 #include <netinet/in.h>
 

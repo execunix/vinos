@@ -1774,11 +1774,6 @@ include "dev/nand/files.nand"
 #
 include "dev/nor/files.nor"
 
-#
-# iscsi
-#
-include "dev/iscsi/files.iscsi"
-
 # Atheros AR9k (802.11a/g/n) driver
 defflag opt_athn.h	ATHN_DEBUG
 device	athn: arp, ether, ifnet, wlan

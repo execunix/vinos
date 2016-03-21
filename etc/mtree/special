@@ -85,9 +85,6 @@
 ./etc/ipf6.conf			type=file mode=0644 optional
 ./etc/ipnat.conf		type=file mode=0644 optional
 ./etc/ipsec.conf		type=file mode=0600 optional tags=nodiff
-./etc/iscsi			type=dir  mode=0755
-./etc/iscsi/auths		type=file mode=0600 tags=nodiff
-./etc/iscsi/targets		type=file mode=0644
 ./etc/ld.so.conf		type=file mode=0644 optional
 ./etc/localtime			type=link mode=0755
 ./etc/locate.conf		type=file mode=0644 optional
@@ -210,7 +207,6 @@
 ./etc/rc.d/ipnat		type=file mode=0555
 ./etc/rc.d/ipsec		type=file mode=0555
 ./etc/rc.d/irdaattach		type=file mode=0555
-./etc/rc.d/iscsi_target		type=file mode=0555
 ./etc/rc.d/isdnd		type=file mode=0555
 ./etc/rc.d/isibootd		type=file mode=0555
 ./etc/rc.d/kdc			type=file mode=0555

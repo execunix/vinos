@@ -73,7 +73,7 @@ __KERNEL_RCSID(0, "$NetBSD: disksubr_mbr.c,v 1.18 2013/08/13 00:04:08 matt Exp $
 #include <sys/param.h>
 #include <sys/systm.h>
 #include <sys/buf.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 
 #include "opt_mbr.h"
 

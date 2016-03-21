@@ -82,7 +82,7 @@ __KERNEL_RCSID(0, "$NetBSD: rd.c,v 1.36 2014/08/10 16:44:35 tls Exp $");
 #include <sys/conf.h>
 #include <sys/device.h>
 #include <sys/disk.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/endian.h>
 #include <sys/fcntl.h>
 #include <sys/ioctl.h>

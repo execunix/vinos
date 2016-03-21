@@ -39,7 +39,7 @@
 __RCSID("$NetBSD: resize_ffs.c,v 1.38.6.1 2015/08/06 21:13:44 snj Exp $");
 
 #include <sys/disk.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/dkio.h>
 #include <sys/ioctl.h>
 #include <sys/stat.h>

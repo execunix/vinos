@@ -87,7 +87,7 @@ __KERNEL_RCSID(0, "$NetBSD: wd33c93.c,v 1.25 2014/01/22 15:21:08 christos Exp $"
 #include <sys/systm.h>
 #include <sys/device.h>
 #include <sys/kernel.h> /* For hz */
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/buf.h>
 
 #include <dev/scsipi/scsi_all.h>

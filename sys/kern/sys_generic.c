@@ -90,7 +90,7 @@ __KERNEL_RCSID(0, "$NetBSD: sys_generic.c,v 1.129 2013/04/04 12:51:39 martin Exp
 #include <sys/syscallargs.h>
 #include <sys/ktrace.h>
 #include <sys/atomic.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 
 /*
  * Read system call.

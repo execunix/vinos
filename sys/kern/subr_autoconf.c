@@ -86,7 +86,7 @@ __KERNEL_RCSID(0, "$NetBSD: subr_autoconf.c,v 1.231.2.1 2015/03/09 08:56:01 snj 
 
 #include <sys/param.h>
 #include <sys/device.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/conf.h>
 #include <sys/kauth.h>
 #include <sys/kmem.h>

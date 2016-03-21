@@ -43,7 +43,7 @@ __KERNEL_RCSID(0, "$NetBSD: ata_raid_jmicron.c,v 1.5 2014/03/25 16:19:13 christo
 #include <sys/conf.h>
 #include <sys/device.h>
 #include <sys/disk.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/fcntl.h>
 #include <sys/malloc.h>
 #include <sys/vnode.h>

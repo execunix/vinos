@@ -39,7 +39,7 @@ __KERNEL_RCSID(0, "$NetBSD: dksubr.c,v 1.51.2.3 2015/06/01 19:19:44 snj Exp $");
 #include <sys/ioctl.h>
 #include <sys/device.h>
 #include <sys/disk.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/buf.h>
 #include <sys/bufq.h>
 #include <sys/vnode.h>

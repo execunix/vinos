@@ -40,7 +40,7 @@ __KERNEL_RCSID(0, "$NetBSD: mvsata.c,v 1.33 2014/02/17 13:41:20 kiyohara Exp $")
 #include <sys/bus.h>
 #include <sys/cpu.h>
 #include <sys/device.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/errno.h>
 #include <sys/kernel.h>
 #include <sys/malloc.h>

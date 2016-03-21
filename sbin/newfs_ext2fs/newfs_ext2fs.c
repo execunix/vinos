@@ -48,7 +48,7 @@ __RCSID("$NetBSD: newfs_ext2fs.c,v 1.9 2013/10/19 01:09:59 christos Exp $");
  */
 #include <sys/param.h>
 #include <sys/ioctl.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/disk.h>
 #include <sys/file.h>
 #include <sys/mount.h>

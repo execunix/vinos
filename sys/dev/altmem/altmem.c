@@ -32,7 +32,7 @@ __KERNEL_RCSID(0, "$NetBSD: altmem.c,v 1.4 2014/07/25 08:10:36 dholland Exp $");
 #include <sys/device.h>
 #include <sys/conf.h>
 #include <sys/buf.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/disk.h>
 
 #include <dev/altmem/altmemvar.h>

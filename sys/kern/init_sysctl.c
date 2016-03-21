@@ -45,7 +45,7 @@ __KERNEL_RCSID(0, "$NetBSD: init_sysctl.c,v 1.204 2014/08/03 09:15:21 apb Exp $"
 #include <sys/systm.h>
 #include <sys/kernel.h>
 #include <sys/unistd.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/cprng.h>
 #include <sys/vnode.h>
 #include <sys/mount.h>

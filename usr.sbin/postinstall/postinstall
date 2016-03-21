@@ -1084,21 +1084,6 @@ do_hosts()
 }
 
 #
-#	iscsi
-#
-additem iscsi "/etc/iscsi is populated"
-do_iscsi()
-{
-	[ -n "$1" ] || err 3 "USAGE: do_iscsi  fix|check"
-
-	populate_dir "${op}" true \
-	    "${SRC_DIR}/etc/iscsi" "${DEST_DIR}/etc/iscsi" 600 auths
-	populate_dir "${op}" true \
-	    "${SRC_DIR}/etc/iscsi" "${DEST_DIR}/etc/iscsi" 644 targets
-	return $?
-}
-
-#
 #	makedev
 #
 additem makedev "/dev/MAKEDEV being up to date"
@@ -1346,7 +1331,7 @@ do_rc()
 		gpio \
 		hostapd httpd \
 		identd ifwatchd inetd ipfilter ipfs ipmon ipnat ipsec \
-		irdaattach iscsi_target isdnd isibootd \
+		irdaattach isdnd isibootd \
 		kdc \
 		ldconfig ldpd local lpd \
 		makemandb mdnsd mixerctl modules mopd motd mountall \
@@ -1616,14 +1601,6 @@ do_x11()
 		msg "${_etcx11} is not a directory; skipping check"
 		return 0
 	fi
-	if [ -d "${DEST_DIR}/usr/X11R6/." ]
-	then
-		_libx11="${DEST_DIR}/usr/X11R6/lib/X11"
-		if [ ! -d "${_libx11}" ]; then
-			msg "${_libx11} is not a directory; skipping check"
-			return 0
-		fi
-	fi
 
 	_notfixed=""
 	if [ "${op}" = "fix" ]; then
@@ -1883,7 +1860,7 @@ additem catpages "remove outdated cat pages"
 do_catpages()
 {
 	failed=0
-	for manbase in /usr/share/man /usr/X11R6/man /usr/X11R7/man; do
+	for manbase in /usr/share/man /usr/X11R7/man; do
 		for sec in 1 2 3 4 5 6 7 8 9; do
 			obsolete_catpages "$1" "${DEST_DIR}${manbase}" "${sec}"
 			failed=$(( ${failed} + $? ))
@@ -2087,7 +2064,6 @@ do_obsolete()
 		obsolete_libs /lib
 		obsolete_libs /usr/lib
 		obsolete_libs /usr/lib/i18n
-		obsolete_libs /usr/X11R6/lib
 		obsolete_libs /usr/X11R7/lib
 		[ "$MACHINE" = "amd64" ] && obsolete_libs /usr/lib/i386
 		[ "$MACHINE" = "sparc64" ] && obsolete_libs /usr/lib/sparc

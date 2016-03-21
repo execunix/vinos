@@ -87,7 +87,7 @@ __RCSID("$NetBSD: newfs.c,v 1.111.10.2 2015/07/30 15:36:03 snj Exp $");
  */
 #include <sys/param.h>
 #include <sys/ioctl.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/disk.h>
 #include <sys/file.h>
 #include <sys/mount.h>

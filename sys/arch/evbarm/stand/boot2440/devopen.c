@@ -27,7 +27,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 #include <sys/param.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 
 #include <netinet/in.h>
 

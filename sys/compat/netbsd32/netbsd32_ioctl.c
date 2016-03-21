@@ -41,7 +41,7 @@ __KERNEL_RCSID(0, "$NetBSD: netbsd32_ioctl.c,v 1.69.4.1 2015/08/02 11:29:10 mart
 #include <sys/proc.h>
 #include <sys/socketvar.h>
 #include <sys/audioio.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/dkio.h>
 #include <sys/ataio.h>
 #include <sys/sockio.h>

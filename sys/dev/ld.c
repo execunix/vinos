@@ -45,7 +45,7 @@ __KERNEL_RCSID(0, "$NetBSD: ld.c,v 1.75.2.2 2014/11/11 10:42:22 martin Exp $");
 #include <sys/buf.h>
 #include <sys/bufq.h>
 #include <sys/endian.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/disk.h>
 #include <sys/dkio.h>
 #include <sys/stat.h>

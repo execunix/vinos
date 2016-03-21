@@ -35,7 +35,7 @@ __KERNEL_RCSID(0, "$NetBSD: init_sysctl_base.c,v 1.3 2014/02/25 18:30:11 pooka E
 #include <sys/param.h>
 #include <sys/sysctl.h>
 #include <sys/kernel.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 
 static int sysctl_setlen(SYSCTLFN_PROTO);
 

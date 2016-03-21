@@ -49,7 +49,7 @@ __KERNEL_RCSID(0, "$NetBSD: udf_subr.c,v 1.125.2.1 2015/02/16 21:25:35 martin Ex
 #include <sys/buf.h>
 #include <sys/file.h>
 #include <sys/device.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/ioctl.h>
 #include <sys/malloc.h>
 #include <sys/dirent.h>

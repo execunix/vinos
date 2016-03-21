@@ -82,7 +82,7 @@ __KERNEL_RCSID(0, "$NetBSD: ffs_vfsops.c,v 1.299.2.3 2015/01/28 18:34:11 martin 
 #include <sys/disk.h>
 #include <sys/mbuf.h>
 #include <sys/file.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/ioctl.h>
 #include <sys/errno.h>
 #include <sys/kmem.h>

@@ -165,10 +165,6 @@
 ./usr/lib/oabi/libisccc.so.8.2			base-compat-shlib	compat,pic
 ./usr/lib/oabi/libisccfg.so.8			base-compat-shlib	compat,pic
 ./usr/lib/oabi/libisccfg.so.8.2			base-compat-shlib	compat,pic
-./usr/lib/oabi/libiscsi.so.2			base-compat-shlib	compat,pic,iscsi
-./usr/lib/oabi/libiscsi.so.2.0			base-compat-shlib	compat,pic,iscsi
-./usr/lib/oabi/libisns.so.0			base-compat-shlib	compat,pic
-./usr/lib/oabi/libisns.so.0.0			base-compat-shlib	compat,pic
 ./usr/lib/oabi/libkadm5clnt.so.13		base-compat-shlib	compat,pic,kerberos
 ./usr/lib/oabi/libkadm5clnt.so.13.0		base-compat-shlib	compat,pic,kerberos
 ./usr/lib/oabi/libkadm5srv.so.14		base-compat-shlib	compat,pic,kerberos

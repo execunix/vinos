@@ -383,9 +383,6 @@ intelfb* 	at intelfbbus?
 radeon* 	at pci? dev ? function ?
 radeondrmkmsfb* at radeonfbbus?
 
-#nouveau* 	at pci? dev ? function ?
-#nouveaufb* 	at nouveaufbbus?
-
 # Cryptographic Devices
 
 # PCI cryptographic devices

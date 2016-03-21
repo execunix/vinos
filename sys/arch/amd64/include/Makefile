@@ -5,6 +5,7 @@ INCSDIR= /usr/include/amd64
 INCS=	ansi.h aout_machdep.h asm.h \
 	bootinfo.h bswap.h byte_swap.h \
 	cdefs.h cpu.h \
+	diskinfo.h \
 	elf_machdep.h endian.h endian_machdep.h \
 	float.h fpu.h frame.h frame_regs.h \
 	gdt.h \

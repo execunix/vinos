@@ -48,7 +48,7 @@ __KERNEL_RCSID(0, "$NetBSD: udf_readwrite.c,v 1.11 2011/06/12 03:35:55 rmind Exp
 #include <sys/buf.h>
 #include <sys/file.h>
 #include <sys/device.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/ioctl.h>
 #include <sys/malloc.h>
 #include <sys/dirent.h>

@@ -74,7 +74,7 @@ __RCSID("$NetBSD: swapctl.c,v 1.39 2013/01/01 19:01:10 dsl Exp $");
 #include <sys/swap.h>
 #include <sys/sysctl.h>
 #include <sys/disk.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 
 #include <unistd.h>
 #include <err.h>

@@ -15,10 +15,10 @@ CPPFLAGS+=-I${NETBSDSRCDIR}/usr.bin/who -DSUPPORT_UTMPX -DSUPPORT_UTMP
 DPADD+=	${LIBRPCSVC}
 LDADD+=	-lrpcsvc
 
-.if exists(/usr/X11R6)
-XINCDIR=	/usr/X11R6/include
-XLIBDIR=	/usr/X11R6/lib
-.endif
+#.if exists(/usr/X11R6)
+#XINCDIR=	/usr/X11R6/include
+#XLIBDIR=	/usr/X11R6/lib
+#.endif
 
 #.if defined(XINCDIR) && exists($(XINCDIR)/X11/extensions/xidle.h)
 #CPPFLAGS+=	-I$(XINCDIR) -DXIDLE

@@ -48,7 +48,6 @@ device-major flash     char 199 block 199  flash
 device-major dtv       char 200            dtv
 device-major iic       char 201            iic
 device-major filemon   char 202            filemon
-device-major iscsi     char 203            iscsi
 device-major tpm       char 204		   tpm
 device-major mfi       char 205		   mfi
 device-major seeprom   char 206		   seeprom

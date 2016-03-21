@@ -48,7 +48,7 @@ __KERNEL_RCSID(0, "$NetBSD: udf_strat_direct.c,v 1.12 2013/10/30 08:41:38 mrg Ex
 #include <sys/buf.h>
 #include <sys/file.h>
 #include <sys/device.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/ioctl.h>
 #include <sys/malloc.h>
 #include <sys/dirent.h>

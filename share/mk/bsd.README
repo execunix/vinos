@@ -222,10 +222,6 @@ MKINFO		If "no", don't build or install Info documentation from
 MKIPFILTER	If "no", don't build or install the IP Filter programs and LKM.
 		Default: yes
 
-MKISCSI		If "no", don't build or install iSCSI library or applications
-		(depends on libpthread.)
-		Default: yes
-
 MKKDEBUG	If "yes", force building of kernel symbol info and creation
 		of netbsd.gdb in all kernel builds, independently of the
 		settings for "makeoptions DEBUG" in the kernel config file.
@@ -363,21 +359,18 @@ MKUPDATE 	If not "no", 'make install' only installs targets that are
 		installed counterparts.
 		Default: no
 
-MKX11		If not "no", depending on the value of ${X11FLAVOUR},
-		'make build' also descends into either src/x11 (XFree86) or
+MKX11		If not "no", 'make build' also descends into either
 		src/external/mit/xorg (modular Xorg) to cross-build X11 and
 		automatically enables creation of X sets.
 		Default: no
 
-MKX11FONTS	If not "no", if ${X11FLAVOUR} is "Xorg", do not build or
-		install the X fonts.  The xfont set is still created but
-		will be empty.
+MKX11FONTS	If not "no", do not build or install the X fonts.
+		The xfont set is still created but will be empty.
 		Default: yes
 
-MKX11MOTIF:	If "yes" and ${X11FLAVOUR} is "Xorg", build the native X11
-		libGLw with Motif stubs.  If Motif is not installed in the
-		default location /usr/pkg, the location can be specified
-		using the X11MOTIFPATH variable.
+MKX11MOTIF:	If "yes", build the native X11 libGLw with Motif stubs.
+		If Motif is not installed in the default location /usr/pkg,
+		the location can be specified using the X11MOTIFPATH variable.
 		Default: no
 
 MKX11RADEONKMS	If "no", build the xf86-video-ati 6.x driver (the last one
@@ -449,11 +442,6 @@ USE_PIGZGZIP	If "no", use the host "gzip" program to compress things.
 		Otherwise, build tools/pigz, set TOOL_GZIP=${TOOL_PIGZ},
 		and use nbpigz to compress things.
 		Default: "no".
-
-X11FLAVOUR	Set to "Xorg" or "XFree86", depending on whether to build
-		XFree86 or modular Xorg.  Only matters if MKX11!=no.
-		Default: "Xorg" on amd64, i386, macppc, shark and sparc64,
-		"XFree86" on everything else.
 
 COPTS.lib<lib>
 OBJCOPTS.lib<lib>
@@ -612,8 +600,7 @@ X11SRCDIR.<package>
 		The path to the xorg src tree for the specificed package>.
 		[${X11SRCDIR}/external/mit/xorg/<package>/dist]
 
-X11ROOTDIR	Root directory of the X11 installation.  [/usr/X11R6 or
-		[/usr/X11R7]
+X11ROOTDIR	Root directory of the X11 installation.  [/usr/X11R7]
 
 X11BINDIR	X11 bin directory.  [${X11ROOTDIR}/bin]
 
@@ -749,8 +736,6 @@ TOOL_CRUNCHGEN		Generate crunched binary build environment.  [crunchgen]
 TOOL_CTAGS		Create a tags file.  [ctags]
 
 TOOL_DB			Manipulate db(3) databases.  [db]
-
-TOOL_DISKLABEL		Read and write disk pack label.  [disklabel]
 
 TOOL_EQN		Format equations for groff.  [eqn]
 

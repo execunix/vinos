@@ -60,7 +60,7 @@ __KERNEL_RCSID(0, "$NetBSD: subr_disk_mbr.c,v 1.46 2013/06/26 18:47:26 matt Exp 
 #include <sys/systm.h>
 #include <sys/buf.h>
 #include <sys/bootblock.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/disk.h>
 #include <sys/syslog.h>
 #include <sys/vnode.h>

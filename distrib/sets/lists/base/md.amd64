@@ -154,10 +154,6 @@
 ./usr/lib/i386/libisccc.so.8.2			base-compat-shlib	compat,pic
 ./usr/lib/i386/libisccfg.so.8			base-compat-shlib	compat,pic
 ./usr/lib/i386/libisccfg.so.8.2			base-compat-shlib	compat,pic
-./usr/lib/i386/libiscsi.so.2			base-compat-shlib	compat,pic,iscsi
-./usr/lib/i386/libiscsi.so.2.0			base-compat-shlib	compat,pic,iscsi
-./usr/lib/i386/libisns.so.0			base-compat-shlib	compat,pic
-./usr/lib/i386/libisns.so.0.0			base-compat-shlib	compat,pic
 ./usr/lib/i386/libkadm5clnt.so.13		base-compat-shlib	compat,pic,kerberos
 ./usr/lib/i386/libkadm5clnt.so.13.0		base-compat-shlib	compat,pic,kerberos
 ./usr/lib/i386/libkadm5srv.so.14		base-compat-shlib	compat,pic,kerberos

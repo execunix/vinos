@@ -43,7 +43,7 @@ __KERNEL_RCSID(0, "$NetBSD: uvm_swap.c,v 1.172 2014/07/25 08:10:40 dholland Exp 
 #include <sys/conf.h>
 #include <sys/proc.h>
 #include <sys/namei.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/errno.h>
 #include <sys/kernel.h>
 #include <sys/vnode.h>

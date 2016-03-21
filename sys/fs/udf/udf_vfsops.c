@@ -49,7 +49,7 @@ __KERNEL_RCSID(0, "$NetBSD: udf_vfsops.c,v 1.67 2014/04/16 18:55:19 maxv Exp $")
 #include <sys/buf.h>
 #include <sys/file.h>
 #include <sys/device.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/ioctl.h>
 #include <sys/malloc.h>
 #include <sys/dirent.h>

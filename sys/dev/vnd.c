@@ -108,7 +108,7 @@ __KERNEL_RCSID(0, "$NetBSD: vnd.c,v 1.232.2.3 2015/01/28 19:16:21 martin Exp $")
 #include <sys/bufq.h>
 #include <sys/malloc.h>
 #include <sys/ioctl.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/device.h>
 #include <sys/disk.h>
 #include <sys/stat.h>

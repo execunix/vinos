@@ -40,7 +40,7 @@ __KERNEL_RCSID(0, "$NetBSD: x86_autoconf.c,v 1.71.2.1 2014/10/30 12:14:37 martin
 #include <sys/param.h>
 #include <sys/systm.h>
 #include <sys/device.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/conf.h>
 #include <sys/malloc.h>
 #include <sys/vnode.h>

@@ -26,13 +26,6 @@ LISTS+=		${.CURDIR}/list.${f}
 .endif
 .endfor
 
-.for f in pdisk
-PROG_${f}!=	cd ${NETBSDSRCDIR}/external/bsd/${f}/bin && ${MAKE} -V PROG
-.if (${PROG_${f}} != "")
-LISTS+=		${.CURDIR}/list.${f}
-.endif
-.endfor
-
 .if ${USE_INET6} != "no"
 LISTS+=		${.CURDIR}/list.inet6
 .endif

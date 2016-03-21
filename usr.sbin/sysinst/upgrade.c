@@ -79,8 +79,6 @@ do_upgrade(void)
 	/*
 	 * Save X symlink, ...
 	 */
-	if (save_X("/usr/X11R6"))
-		return;
 	if (save_X("/usr/X11R7"))
 		return;
 
@@ -108,7 +106,6 @@ do_upgrade(void)
 	if (!md_post_extract() == 0)
 		return;
 
-	merge_X("/usr/X11R6");
 	merge_X("/usr/X11R7");
 
 	sanity_check();

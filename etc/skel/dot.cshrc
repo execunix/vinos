@@ -32,7 +32,7 @@ setenv	EDITOR	vi
 #setenv	PRINTER	change-this-to-a-printer
 
 # Set the search path for programs.
-set path = (~/bin /bin /sbin /usr/{bin,sbin,X11R7/bin,X11R6/bin,pkg/{,s}bin,games} \
+set path = (~/bin /bin /sbin /usr/{bin,sbin,X11R7/bin,pkg/{,s}bin,games} \
 	    /usr/local/{,s}bin)
 
 if ($?prompt) then

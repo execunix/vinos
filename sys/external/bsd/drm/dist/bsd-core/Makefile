@@ -1,6 +1,6 @@
 SHARED=		../shared-core
 
-SUBDIR = drm mach64 mga r128 radeon savage sis tdfx i915 #nouveau
+SUBDIR = drm mach64 mga r128 radeon savage sis tdfx i915
 
 .include <bsd.obj.mk>
 

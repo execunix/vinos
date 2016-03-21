@@ -55,7 +55,7 @@ __KERNEL_RCSID(0, "$NetBSD: cd9660_vfsops.c,v 1.89 2014/07/09 08:43:54 maxv Exp 
 #include <sys/mount.h>
 #include <sys/buf.h>
 #include <sys/file.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/device.h>
 #include <sys/ioctl.h>
 #include <sys/cdio.h>

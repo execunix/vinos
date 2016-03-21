@@ -64,7 +64,7 @@ __KERNEL_RCSID(0, "$NetBSD: sd.c,v 1.308.2.1 2014/11/11 10:36:41 martin Exp $");
 #include <sys/malloc.h>
 #include <sys/errno.h>
 #include <sys/device.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/disk.h>
 #include <sys/proc.h>
 #include <sys/conf.h>

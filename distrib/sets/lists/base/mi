@@ -65,7 +65,6 @@
 ./etc/X11/proxymngr				base-x11-root
 ./etc/X11/rstart				base-x11-root
 ./etc/X11/rstart/commands			base-x11-root
-./etc/X11/rstart/commands/x11r6			base-x11-root
 ./etc/X11/rstart/contexts			base-x11-root
 ./etc/X11/twm					base-x11-root
 ./etc/X11/xdm					base-x11-root
@@ -76,7 +75,6 @@
 ./etc/fonts					base-x11-root
 ./etc/fonts/conf.avail				base-x11-root
 ./etc/fonts/conf.d				base-x11-root
-./etc/iscsi					base-sysutil-root
 ./etc/kerberosV					base-krb5-root
 ./etc/mail					base-postfix-bin
 ./etc/mtree					base-sys-root
@@ -399,8 +397,6 @@
 ./sbin/init					base-sysutil-root
 ./sbin/ipf					base-ipf-root		ipfilter
 ./sbin/ipppctl					base-netutil-root
-./sbin/iscsictl					base-iscsi-bin		iscsi
-./sbin/iscsid					base-iscsi-bin		iscsi
 ./sbin/luactl					base-sysutil-root
 ./sbin/mknod					base-sysutil-root
 ./sbin/modload					base-sysutil-root
@@ -436,7 +432,6 @@
 ./sbin/newfs_udf				base-sysutil-root
 ./sbin/nologin					base-sysutil-root
 ./sbin/npfctl					base-npf-bin		npf
-./sbin/pdisk					base-sysutil-root
 ./sbin/pfctl					base-pf-root		pf
 ./sbin/pflogd					base-pf-root		pf
 ./sbin/pfs						base-pf-root		pf
@@ -874,7 +869,6 @@
 ./usr/include/dev/ieee1394			base-c-usr
 ./usr/include/dev/ir				base-c-usr
 ./usr/include/dev/isa				base-c-usr
-./usr/include/dev/iscsi				base-c-usr		iscsi
 ./usr/include/dev/ofw				base-c-usr
 ./usr/include/dev/pci				base-c-usr
 ./usr/include/dev/pci/hdaudio			base-c-usr
@@ -1182,8 +1176,6 @@
 ./usr/sbin/ipsend				base-ipf-bin		ipfilter
 ./usr/sbin/iptest				base-ipf-bin		ipfilter
 ./usr/sbin/irdaattach				base-sysutil-bin
-./usr/sbin/iscsi-initiator			base-iscsi-bin		iscsi
-./usr/sbin/iscsi-target				base-iscsi-bin		iscsi
 ./usr/sbin/isdnd				base-isdn-bin
 ./usr/sbin/isdnmonitor				base-isdn-bin
 ./usr/sbin/isdntel				base-isdn-bin

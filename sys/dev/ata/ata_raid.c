@@ -48,7 +48,7 @@ __KERNEL_RCSID(0, "$NetBSD: ata_raid.c,v 1.35 2012/10/27 17:18:14 chs Exp $");
 #include <sys/conf.h>
 #include <sys/device.h>
 #include <sys/disk.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/fcntl.h>
 #include <sys/malloc.h>
 #include <sys/vnode.h>

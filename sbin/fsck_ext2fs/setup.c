@@ -68,7 +68,7 @@ __RCSID("$NetBSD: setup.c,v 1.31.6.1 2015/04/14 05:15:57 snj Exp $");
 #include <ufs/ext2fs/ext2fs.h>
 #include <sys/stat.h>
 #include <sys/ioctl.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/file.h>
 
 #include <errno.h>

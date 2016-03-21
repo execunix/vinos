@@ -45,7 +45,7 @@ __KERNEL_RCSID(0, "$NetBSD: dkwedge_mbr.c,v 1.7.14.1 2014/11/11 10:31:16 martin 
 #include <sys/malloc.h>
 
 #include <sys/bootblock.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 
 typedef struct mbr_args {
 	struct disk	*pdk;

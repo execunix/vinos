@@ -53,7 +53,7 @@ __KERNEL_RCSID(0, "$NetBSD: spiflash.c,v 1.15 2014/07/25 08:10:39 dholland Exp $
 #include <sys/file.h>
 #include <sys/ioctl.h>
 #include <sys/disk.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/buf.h>
 #include <sys/bufq.h>
 #include <sys/uio.h>

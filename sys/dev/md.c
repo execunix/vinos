@@ -59,7 +59,7 @@ __KERNEL_RCSID(0, "$NetBSD: md.c,v 1.71 2014/07/25 08:10:35 dholland Exp $");
 #include <sys/stat.h>
 #include <sys/proc.h>
 #include <sys/conf.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 
 #include <uvm/uvm_extern.h>
 

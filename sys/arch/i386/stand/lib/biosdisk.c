@@ -69,8 +69,7 @@
 #include <sys/types.h>
 #include <sys/md5.h>
 #include <sys/param.h>
-#include <sys/disklabel.h>
-#include <sys/disklabel_gpt.h>
+#include <sys/diskinfo.h>
 #include <sys/uuid.h>
 
 #include <fs/cd9660/iso.h>

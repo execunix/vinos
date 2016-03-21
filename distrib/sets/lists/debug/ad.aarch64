@@ -93,8 +93,6 @@
 ./usr/libdata/debug/usr/lib/eabi/libisc.so.8.2.debug		comp-bind-debug	debug,compat
 ./usr/libdata/debug/usr/lib/eabi/libisccc.so.8.2.debug	comp-bind-debug	debug,compat
 ./usr/libdata/debug/usr/lib/eabi/libisccfg.so.8.2.debug	comp-bind-debug	debug,compat
-./usr/libdata/debug/usr/lib/eabi/libiscsi.so.2.0.debug	comp-iscsi-debug	iscsi,debug,compat
-./usr/libdata/debug/usr/lib/eabi/libisns.so.0.0.debug	comp-isns-debug	debug,compat
 ./usr/libdata/debug/usr/lib/eabi/libkadm5clnt.so.13.0.debug	comp-compat-shlib	compat,pic,kerberos,debug
 ./usr/libdata/debug/usr/lib/eabi/libkadm5srv.so.14.0.debug	comp-compat-shlib	compat,pic,kerberos,debug
 ./usr/libdata/debug/usr/lib/eabi/libkafs.so.12.0.debug		comp-compat-shlib	compat,pic,kerberos,debug
@@ -218,8 +216,6 @@
 #./usr/libdata/debug/usr/lib/eabihf/libisc.so.8.2.debug		comp-bind-debug	debug,compat
 #./usr/libdata/debug/usr/lib/eabihf/libisccc.so.8.2.debug	comp-bind-debug	debug,compat
 #./usr/libdata/debug/usr/lib/eabihf/libisccfg.so.8.2.debug	comp-bind-debug	debug,compat
-#./usr/libdata/debug/usr/lib/eabihf/libiscsi.so.2.0.debug	comp-iscsi-debug	iscsi,debug,compat
-#./usr/libdata/debug/usr/lib/eabihf/libisns.so.0.0.debug	comp-isns-debug	debug,compat
 #./usr/libdata/debug/usr/lib/eabihf/libkadm5clnt.so.13.0.debug	comp-compat-shlib	compat,pic,kerberos,debug
 #./usr/libdata/debug/usr/lib/eabihf/libkadm5srv.so.14.0.debug	comp-compat-shlib	compat,pic,kerberos,debug
 #./usr/libdata/debug/usr/lib/eabihf/libkafs.so.12.0.debug		comp-compat-shlib	compat,pic,kerberos,debug
@@ -344,8 +340,6 @@
 ./usr/libdata/debug/usr/lib/oabi/libisc.so.8.2.debug		comp-bind-debug	debug,compat
 ./usr/libdata/debug/usr/lib/oabi/libisccc.so.8.2.debug		comp-bind-debug	debug,compat
 ./usr/libdata/debug/usr/lib/oabi/libisccfg.so.8.2.debug		comp-bind-debug	debug,compat
-./usr/libdata/debug/usr/lib/oabi/libiscsi.so.2.0.debug		comp-iscsi-debug	iscsi,debug,compat
-./usr/libdata/debug/usr/lib/oabi/libisns.so.0.0.debug		comp-isns-debug	debug,compat
 ./usr/libdata/debug/usr/lib/oabi/libkadm5clnt.so.13.0.debug	comp-compat-shlib	compat,pic,kerberos,debug
 ./usr/libdata/debug/usr/lib/oabi/libkadm5srv.so.14.0.debug	comp-compat-shlib	compat,pic,kerberos,debug
 ./usr/libdata/debug/usr/lib/oabi/libkafs.so.12.0.debug		comp-compat-shlib	compat,pic,kerberos,debug

@@ -256,8 +256,4 @@ SUBDIR+=	cxdtv
 SUBDIR+=	emdtv
 .endif
 
-.if (${MKISCSI} != "no")
-SUBDIR+=	iscsi
-.endif
-
 .include <bsd.subdir.mk>

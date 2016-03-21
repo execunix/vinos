@@ -516,8 +516,6 @@ etc-extsrc-rc	startup scripts for externally added programs
 etc-games-etc	configuration file for games
 etc-games-scores	empty score files for games
 etc-ipf-rc	startup script for IP filter
-etc-iscsi-etc	configuration files for the NetBSD iSCSI target
-etc-iscsi-rc	startup script for the NetBSD iSCSI target
 etc-isdn-rc	startup script for ISDN (Integrated Services Digital Network) network connectivity utilities
 etc-krb5-rc	startup script for the Kerberos V authentication service 
 etc-libsaslc-etc	configuration file for SASL C library
@@ -611,8 +609,6 @@ man-hesiod-man	manual pages source for the HESIOD network information system
 man-info-share	required file system structure for GNU texinfo documentation
 man-ipf-catman	formatted manual pages for the IPfilter packet filtering software
 man-ipf-man	manual pages source for the IPfilter packet filtering software
-man-iscsi-catman	formatted manual pages for NetBSD iSCSI target
-man-iscsi-man	manual pages source for NetBSD iSCSI target
 man-isdn-catman	formatted manual pages for ISDN (Integrated Services Data Networking) support
 man-isdn-man	manual pages source for ISDN (Integrated Services Data Networking) support
 man-krb5-catman	formatted manual pages for the Kerberos V network authentication system

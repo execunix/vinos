@@ -79,7 +79,7 @@ __KERNEL_RCSID(0, "$NetBSD: ext2fs_vfsops.c,v 1.183.2.2 2015/01/17 12:10:55 mart
 #include <sys/device.h>
 #include <sys/mbuf.h>
 #include <sys/file.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/ioctl.h>
 #include <sys/errno.h>
 #include <sys/pool.h>

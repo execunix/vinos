@@ -33,7 +33,7 @@ __KERNEL_RCSID(0, "$NetBSD: ahcisata_core.c,v 1.51 2014/02/24 12:19:05 jmcneill 
 #include <sys/param.h>
 #include <sys/kernel.h>
 #include <sys/systm.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/proc.h>
 #include <sys/buf.h>
 

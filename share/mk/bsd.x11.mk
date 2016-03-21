@@ -29,7 +29,6 @@ X11FLAGS.CONNECTION+=	-DIPv6
 .endif
 
 #	 EXT_DEFINES
-.if ${X11FLAVOUR} == "Xorg"
 X11FLAGS.BASE_EXTENSION=	-DMITMISC -DXTEST -DXTRAP -DXSYNC -DXCMISC \
 				-DXRECORD -DMITSHM -DBIGREQS -DXF86VIDMODE \
 				-DXF86MISC -DDPMSExtension -DEVI \
@@ -62,12 +61,6 @@ X11INCS.DIX=		-I${X11INCSDIR}/freetype2  \
 			-I$(X11SRCDIR.xorg-server)/randr \
 			-I$(X11SRCDIR.xorg-server)/fb \
 			-I$(X11SRCDIR.xorg-server)/../include
-.else
-X11FLAGS.EXTENSION=	-DMITMISC -DXTEST -DXTRAP -DXSYNC -DXCMISC -DXRECORD \
-			-DMITSHM -DBIGREQS -DXF86MISC -DDBE -DDPMSExtension \
-			-DEVI -DSCREENSAVER -DXV -DXVMC -DGLXEXT \
-			-DGLX_USE_MESA -DFONTCACHE -DRES
-.endif
 
 X11FLAGS.DRI=		-DGLXEXT -DXF86DRI -DGLX_DIRECT_RENDERING \
 			-DGLX_USE_DLOPEN -DGLX_USE_MESA
@@ -88,18 +81,11 @@ X11FLAGS.SERVER=	-DSHAPE -DXKB -DLBX -DXAPPGROUP -DXCSECURITY \
 X11FLAGS.OS_DEFINES=	-DDDXOSINIT -DSERVER_LOCK -DDDXOSFATALERROR \
 			-DDDXOSVERRORF -DDDXTIME -DUSB_HID
 
-.if !(${MACHINE} == "acorn32"	|| \
-    (${MACHINE} == "alpha"  && ${X11FLAVOUR} != "Xorg")	|| \
-    ${MACHINE} == "amiga"	|| \
-    ${MACHINE} == "pmax"	|| \
-    ${MACHINE} == "sun3"	|| \
-    ${MACHINE} == "vax")
 #	EXT_DEFINES
 X11FLAGS.EXTENSION+=	-DXF86VIDMODE
 
 #	ServerDefines
 X11FLAGS.SERVER+=	-DXINPUT -DXFreeXDGA -DXF86VIDMODE
-.endif
 
 .if ${MACHINE_ARCH} == "alpha"	|| \
     ${MACHINE_ARCH} == "sparc64" || \
@@ -127,7 +113,6 @@ X11FLAGS.LOADABLE=	-DXFree86LOADER -DIN_MODULE -DXFree86Module \
 .endif
   
 # XXX FIX ME
-.if ${X11FLAVOUR} == "Xorg"
 XVENDORNAMESHORT=	'"X.Org"'
 XVENDORNAME=		'"The X.Org Foundation"'
 XORG_RELEASE=		'"Release 1.10.6"'
@@ -137,7 +122,6 @@ XLOCALE.DEFINES=	-DXLOCALEDIR=\"${X11LIBDIR}/locale\" \
 
 # XXX oh yeah, fix me later
 XORG_VERSION_CURRENT="(((1) * 10000000) + ((10) * 100000) + ((6) * 1000) + 0)"
-.endif
 
 PRINT_PACKAGE_VERSION=	awk '/^PACKAGE_VERSION=/ {			\
 				match($$1, "([0-9]+\\.)+[0-9]+");	\
@@ -407,12 +391,6 @@ _X11MANTRANSFORM= \
 	${X11EXTRAMANTRANSFORMS}
 
 # Note the escaping trick for _X11MANTRANSFORM using % to replace spaces
-.if ${X11FLAVOUR} != "Xorg"
-X11VERSION=	"XFree86 4.5.0"
-X11MANCPP?=	yes
-_X11MANTRANSFORM+= \
-	__vendorversion__	${X11VERSION:C/ /%/gW}
-.else
 XORGVERSION=	'"X Version 11"'
 X11MANCPP?=	no
 _X11MANTRANSFORM+= \
@@ -423,7 +401,6 @@ _X11MANTRANSFORM+= \
 	__xorgversion__		${XORGVERSION:C/ /%/gW} \
 	__XSERVERNAME__		Xorg \
 	__xservername__		Xorg
-.endif
 
 _X11MANTRANSFORMCMD=	${TOOL_SED} -e 's/\\$$/\\ /' ${.IMPSRC}
 

@@ -57,7 +57,7 @@ doopenclose(dev_t dev, int flags, int fmt, int class, int type)
 	return pud_request(dev, &pc_oc, sizeof(pc_oc), class, type);
 }
 
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 /*
  * XXX: this is not "reentrant".  But then again, partinfo isn't
  * exactly safe in any case.

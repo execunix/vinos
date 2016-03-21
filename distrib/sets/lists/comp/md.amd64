@@ -453,14 +453,6 @@
 ./usr/lib/i386/libisccfg.so			comp-sys-shlib		compat,pic
 ./usr/lib/i386/libisccfg_p.a			comp-c-proflib		compat,profile
 ./usr/lib/i386/libisccfg_pic.a			comp-c-piclib		compat,pic,picinstall
-./usr/lib/i386/libiscsi.a			comp-c-lib		compat,iscsi
-./usr/lib/i386/libiscsi.so			base-sys-shlib		compat,pic,iscsi
-./usr/lib/i386/libiscsi_p.a			comp-c-proflib		compat,profile,iscsi
-./usr/lib/i386/libiscsi_pic.a			comp-c-piclib		compat,pic,iscsi,picinstall
-./usr/lib/i386/libisns.a		comp-c-lib	compat
-./usr/lib/i386/libisns.so		comp-sys-shlib	compat
-./usr/lib/i386/libisns_p.a		comp-c-proflib	compat,profile
-./usr/lib/i386/libisns_pic.a		comp-c-piclib	compat,pic,picinstall
 ./usr/lib/i386/libkadm5clnt.a			comp-c-lib		compat,kerberos
 ./usr/lib/i386/libkadm5clnt.so			comp-sys-shlib		compat,pic,kerberos
 ./usr/lib/i386/libkadm5clnt_p.a			comp-c-proflib		compat,profile,kerberos

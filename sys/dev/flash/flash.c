@@ -54,7 +54,7 @@ __KERNEL_RCSID(0, "$NetBSD: flash.c,v 1.12 2014/07/25 08:10:36 dholland Exp $");
 #include <sys/buf.h>
 #include <sys/bufq.h>
 #include <sys/disk.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/malloc.h>
 #include <sys/reboot.h>
 

@@ -45,8 +45,6 @@
 ./etc/hosts.equiv				etc-netutil-etc
 ./etc/hosts.lpd					etc-lpr-etc
 ./etc/inetd.conf				etc-netutil-etc
-./etc/iscsi/auths				etc-iscsi-etc		iscsi
-./etc/iscsi/targets				etc-iscsi-etc		iscsi
 ./etc/localtime					etc-sys-etc
 ./etc/locate.conf				etc-sys-etc
 ./etc/login.conf				etc-sys-etc
@@ -162,7 +160,6 @@
 ./etc/rc.d/ipnat				etc-ipf-rc
 ./etc/rc.d/ipsec				etc-net-rc
 ./etc/rc.d/irdaattach				etc-sys-rc
-./etc/rc.d/iscsi_target				etc-iscsi-rc
 ./etc/rc.d/isdnd				etc-isdn-rc
 ./etc/rc.d/isibootd				etc-bootserver-rc
 ./etc/rc.d/kdc					etc-krb5-rc

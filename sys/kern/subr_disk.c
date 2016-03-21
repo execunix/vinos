@@ -74,7 +74,7 @@ __KERNEL_RCSID(0, "$NetBSD: subr_disk.c,v 1.103.4.2 2015/06/01 19:19:44 snj Exp 
 #include <sys/kmem.h>
 #include <sys/buf.h>
 #include <sys/syslog.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/disk.h>
 #include <sys/sysctl.h>
 #include <lib/libkern/libkern.h>

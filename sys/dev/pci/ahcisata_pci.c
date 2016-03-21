@@ -33,7 +33,7 @@ __KERNEL_RCSID(0, "$NetBSD: ahcisata_pci.c,v 1.36 2014/03/29 19:28:24 christos E
 #include <sys/param.h>
 #include <sys/kernel.h>
 #include <sys/systm.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/pmf.h>
 
 #include <dev/pci/pcivar.h>

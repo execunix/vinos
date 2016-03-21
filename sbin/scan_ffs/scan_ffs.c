@@ -38,7 +38,7 @@ __RCSID("$NetBSD: scan_ffs.c,v 1.25 2013/06/23 22:03:34 dholland Exp $");
 
 #include <sys/types.h>
 #include <sys/param.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/dkio.h>
 #include <sys/ioctl.h>
 #include <sys/fcntl.h>

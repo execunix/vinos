@@ -55,7 +55,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/cdio.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/dkio.h>
 #include <sys/param.h>
 #include <sys/queue.h>

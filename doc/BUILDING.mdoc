@@ -757,17 +757,6 @@ The main X11R6 source is found in
 if that exists; otherwise
 .Pa /usr/xsrc .
 .
-.It Sy X11FLAVOUR
-The style of X11 cross-built, set to either
-.Dq Xorg
-or
-.Dq XFree86 .
-.DFLT
-.Dq Xorg
-on amd64, i386, macppc, shark and sparc64 platforms,
-.Dq XFree86
-on everything else.
-.
 .El
 .
 .Ss \*qmake\*q variables for full builds
@@ -1279,7 +1268,7 @@ to boot
 up to multi-user mode, including all files
 which should be extracted during installation,
 .Nx
-disklabel, bootloaders, etc.
+fdisk, bootloaders, etc.
 .Pp
 The live image is suitable for use as a disk image in
 virtual machine environments such as QEMU,

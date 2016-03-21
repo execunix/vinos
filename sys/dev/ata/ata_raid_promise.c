@@ -43,7 +43,7 @@ __KERNEL_RCSID(0, "$NetBSD: ata_raid_promise.c,v 1.11 2008/03/18 20:46:36 cube E
 #include <sys/conf.h>
 #include <sys/device.h>
 #include <sys/disk.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/fcntl.h>
 #include <sys/malloc.h>
 #include <sys/vnode.h>

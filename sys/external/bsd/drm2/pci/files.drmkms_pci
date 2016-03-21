@@ -15,5 +15,4 @@ file	external/bsd/drm2/pci/drmfb_pci.c		drmfb_pci
 
 include "external/bsd/drm2/i915drm/files.i915drmkms"
 include "external/bsd/drm2/radeon/files.radeon"
-include "external/bsd/drm2/nouveau/files.nouveau"
 #...

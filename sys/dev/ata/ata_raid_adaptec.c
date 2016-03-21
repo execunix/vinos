@@ -43,7 +43,7 @@ __KERNEL_RCSID(0, "$NetBSD: ata_raid_adaptec.c,v 1.9 2008/09/15 11:44:50 tron Ex
 #include <sys/conf.h>
 #include <sys/device.h>
 #include <sys/disk.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/fcntl.h>
 #include <sys/malloc.h>
 #include <sys/vnode.h>

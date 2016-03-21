@@ -2,6 +2,7 @@
 
 INCSDIR= /usr/include/evbarm64
 
-INCS=	intr.h
+INCS=	diskinfo.h \
+	intr.h
 
 .include <bsd.kinc.mk>

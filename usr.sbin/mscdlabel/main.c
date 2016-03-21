@@ -39,7 +39,7 @@
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <sys/cdio.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/param.h>
 #include <err.h>
 #include <util.h>

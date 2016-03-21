@@ -40,10 +40,10 @@ __RCSID("$NetBSD: migrate.c,v 1.14.4.1 2015/06/02 19:49:38 snj Exp $");
 #include <sys/param.h>
 #ifdef HAVE_NBTOOL_CONFIG_H
 #include <nbinclude/sys/bootblock.h>
-#include <nbinclude/sys/disklabel.h>
+#include <nbinclude/diskinfo.h>
 #else
 #include <sys/bootblock.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #endif
 
 #include <err.h>

@@ -73,8 +73,6 @@
 ./usr/lib/i386/libisc_g.a			comp-c-debuglib		compat,debuglib
 ./usr/lib/i386/libisccc_g.a			comp-c-debuglib		compat,debuglib
 ./usr/lib/i386/libisccfg_g.a			comp-c-debuglib		compat,debuglib
-./usr/lib/i386/libiscsi_g.a			comp-c-debuglib		compat,debuglib,iscsi
-./usr/lib/i386/libisns_g.a			comp-c-debuglib		compat,debuglib
 ./usr/lib/i386/libkadm5clnt_g.a			comp-c-debuglib		compat,debuglib,kerberos
 ./usr/lib/i386/libkadm5srv_g.a			comp-c-debuglib		compat,debuglib,kerberos
 ./usr/lib/i386/libkafs_g.a			comp-c-debuglib		compat,debuglib,kerberos
@@ -213,8 +211,6 @@
 ./usr/libdata/debug/usr/lib/i386/libisc.so.8.2.debug	comp-compat-shlib	compat,pic,debug
 ./usr/libdata/debug/usr/lib/i386/libisccc.so.8.2.debug	comp-compat-shlib	compat,pic,debug
 ./usr/libdata/debug/usr/lib/i386/libisccfg.so.8.2.debug	comp-compat-shlib	compat,pic,debug
-./usr/libdata/debug/usr/lib/i386/libiscsi.so.2.0.debug	comp-compat-shlib	compat,pic,debug,iscsi
-./usr/libdata/debug/usr/lib/i386/libisns.so.0.0.debug	comp-compat-shlib	compat,pic,debug
 ./usr/libdata/debug/usr/lib/i386/libkadm5clnt.so.13.0.debug	comp-compat-shlib	compat,pic,kerberos,debug
 ./usr/libdata/debug/usr/lib/i386/libkadm5srv.so.14.0.debug	comp-compat-shlib	compat,pic,kerberos,debug
 ./usr/libdata/debug/usr/lib/i386/libkafs.so.12.0.debug	comp-compat-shlib	compat,pic,kerberos,debug

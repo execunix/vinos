@@ -20,7 +20,6 @@
 ./etc/X11/proxymngr
 ./etc/X11/rstart
 ./etc/X11/rstart/commands
-./etc/X11/rstart/commands/x11r6
 ./etc/X11/rstart/contexts
 ./etc/X11/twm
 ./etc/X11/xdm
@@ -32,7 +31,6 @@
 ./etc/fonts
 ./etc/fonts/conf.avail
 ./etc/fonts/conf.d
-./etc/iscsi
 ./etc/kerberosV
 ./etc/mail
 ./etc/mtree

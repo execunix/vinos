@@ -143,7 +143,7 @@ __KERNEL_RCSID(0, "$NetBSD: init_main.c,v 1.458.2.2 2015/03/09 08:56:01 snj Exp 
 #include <sys/fstrans.h>
 #include <sys/tty.h>
 #include <sys/conf.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/buf.h>
 #include <sys/device.h>
 #include <sys/exec.h>

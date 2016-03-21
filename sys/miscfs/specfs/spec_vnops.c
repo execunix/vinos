@@ -74,7 +74,7 @@ __KERNEL_RCSID(0, "$NetBSD: spec_vnops.c,v 1.145 2014/07/25 08:20:53 dholland Ex
 #include <sys/ioctl.h>
 #include <sys/poll.h>
 #include <sys/file.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/lockf.h>
 #include <sys/tty.h>
 #include <sys/kauth.h>

@@ -88,7 +88,7 @@ __RCSID("$NetBSD: mkfs.c,v 1.122 2014/04/26 14:15:08 martin Exp $");
 #include <ufs/ffs/fs.h>
 #include <ufs/ffs/ffs_extern.h>
 #include <sys/ioctl.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 
 #include <err.h>
 #include <errno.h>

@@ -33,7 +33,7 @@ __KERNEL_RCSID(0, "$NetBSD: subr_disk_open.c,v 1.11 2012/10/27 17:18:39 chs Exp 
 #include <sys/conf.h>
 #include <sys/device.h>
 #include <sys/disk.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/fcntl.h>
 #include <sys/kauth.h>
 #include <sys/vnode.h>

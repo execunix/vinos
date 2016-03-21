@@ -66,7 +66,7 @@ __RCSID("$NetBSD: fdisk.c,v 1.150 2014/04/04 16:15:30 christos Exp $");
 #include <util.h>
 #include <zlib.h>
 #else
-#include <nbinclude/sys/diskinfo.h>
+#include <nbinclude/diskinfo.h>
 #include <nbinclude/sys/bootblock.h>
 /* We enforce -F, so none of these possibly undefined items can be needed */
 #define opendisk(path, fl, buf, buflen, cooked) (-1)

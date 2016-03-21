@@ -50,7 +50,7 @@ __KERNEL_RCSID(0, "$NetBSD: umass_isdata.c,v 1.29.4.1 2015/05/16 04:06:05 snj Ex
 #include <sys/buf.h>
 #include <sys/device.h>
 #include <sys/proc.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/malloc.h>
 
 #include <dev/usb/usb.h>

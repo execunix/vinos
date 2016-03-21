@@ -77,7 +77,7 @@ __KERNEL_RCSID(0, "$NetBSD: if_se.c,v 1.87 2014/07/25 08:10:38 dholland Exp $");
 #include <sys/malloc.h>
 #include <sys/errno.h>
 #include <sys/device.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/disk.h>
 #include <sys/proc.h>
 #include <sys/conf.h>

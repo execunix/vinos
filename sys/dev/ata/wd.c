@@ -70,7 +70,7 @@ __KERNEL_RCSID(0, "$NetBSD: wd.c,v 1.412.2.1 2014/11/11 10:36:41 martin Exp $");
 #include <sys/uio.h>
 #include <sys/malloc.h>
 #include <sys/device.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/disk.h>
 #include <sys/syslog.h>
 #include <sys/proc.h>

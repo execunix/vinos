@@ -89,7 +89,7 @@ __KERNEL_RCSID(0, "$NetBSD: mscp_disk.c,v 1.81 2014/07/25 08:10:37 dholland Exp 
 #include <sys/bufq.h>
 #include <sys/device.h>
 #include <sys/disk.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/ioctl.h>
 #include <sys/stat.h>
 #include <sys/fcntl.h>

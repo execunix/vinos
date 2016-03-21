@@ -87,7 +87,7 @@ __KERNEL_RCSID(0, "$NetBSD: siisata.c,v 1.27 2013/08/08 17:38:56 bouyer Exp $");
 #include <sys/kernel.h>
 #include <sys/systm.h>
 #include <sys/syslog.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/buf.h>
 #include <sys/proc.h>
 

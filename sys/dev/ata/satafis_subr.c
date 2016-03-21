@@ -56,7 +56,7 @@ __KERNEL_RCSID(0, "$NetBSD: satafis_subr.c,v 1.7 2012/07/22 17:57:57 jakllsch Ex
 #include <sys/param.h>
 #include <sys/systm.h>
 
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 
 #include <dev/ata/atareg.h>
 #include <dev/ata/atavar.h>

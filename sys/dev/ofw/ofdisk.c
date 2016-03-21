@@ -38,7 +38,7 @@ __KERNEL_RCSID(0, "$NetBSD: ofdisk.c,v 1.47 2014/07/25 08:10:37 dholland Exp $")
 #include <sys/buf.h>
 #include <sys/device.h>
 #include <sys/conf.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/disk.h>
 #include <sys/fcntl.h>
 #include <sys/ioctl.h>

@@ -44,7 +44,7 @@ __KERNEL_RCSID(0, "$NetBSD: dkwedge_gpt.c,v 1.12.34.1 2014/11/11 10:31:16 martin
 #include <sys/vnode.h>
 #include <sys/malloc.h>
 
-#include <sys/disklabel_gpt.h>
+#include <sys/diskinfo.h>
 #include <sys/uuid.h>
 
 /* UTF-8 encoding stuff */

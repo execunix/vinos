@@ -91,8 +91,6 @@
 ./usr/libdata/debug/usr/lib/libisc.so.8.2.debug		comp-bind-debug	debug
 ./usr/libdata/debug/usr/lib/libisccc.so.8.2.debug	comp-bind-debug	debug
 ./usr/libdata/debug/usr/lib/libisccfg.so.8.2.debug	comp-bind-debug	debug
-./usr/libdata/debug/usr/lib/libiscsi.so.2.0.debug	comp-iscsi-debug	iscsi,debug
-./usr/libdata/debug/usr/lib/libisns.so.0.0.debug	comp-isns-debug	debug
 ./usr/libdata/debug/usr/lib/libkadm5clnt.so.13.0.debug	comp-krb5-debug	kerberos,debug
 ./usr/libdata/debug/usr/lib/libkadm5srv.so.14.0.debug	comp-krb5-debug	kerberos,debug
 ./usr/libdata/debug/usr/lib/libkafs.so.12.0.debug	comp-krb5-debug	kerberos,debug

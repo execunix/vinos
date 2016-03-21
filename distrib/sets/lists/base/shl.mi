@@ -292,12 +292,6 @@
 ./usr/lib/libisccfg.so				base-bind-shlib
 ./usr/lib/libisccfg.so.8			base-bind-shlib
 ./usr/lib/libisccfg.so.8.2			base-bind-shlib
-./usr/lib/libiscsi.so				base-iscsi-shlib	iscsi
-./usr/lib/libiscsi.so.2				base-iscsi-shlib	iscsi
-./usr/lib/libiscsi.so.2.0			base-iscsi-shlib	iscsi
-./usr/lib/libisns.so				base-isns-shlib	
-./usr/lib/libisns.so.0				base-isns-shlib	
-./usr/lib/libisns.so.0.0			base-isns-shlib	
 ./usr/lib/libkadm5clnt.so			base-krb5-shlib		kerberos
 ./usr/lib/libkadm5clnt.so.13			base-krb5-shlib		kerberos
 ./usr/lib/libkadm5clnt.so.13.0			base-krb5-shlib		kerberos

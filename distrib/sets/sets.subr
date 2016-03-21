@@ -215,7 +215,6 @@ SUBST="${SUBST};s#@MACHINE@#${MACHINE}#g"
 #	inet6			${MKINET6} != no
 #	info			${MKINFO} != no
 #	ipfilter		${MKIPFILTER} != no
-#	iscsi			${MKISCSI} != no
 #	kerberos		${MKKERBEROS} != no
 #	kmod			${MKKMOD} != no
 #	ldap			${MKLDAP} != no
@@ -242,9 +241,8 @@ SUBST="${SUBST};s#@MACHINE@#${MACHINE}#g"
 #	softfloat		${MKSOFTFLOAT} != no
 #	ssp			${HAVE_SSP} != no
 #	tpm			${MKTPM} != no
-#	x11			${MKX11} != no && ${X11FLAVOUR} != "Xorg"
 #	x11radeonkms		${MKX11} != no && ${MKX11RADEONKMS} != no
-#	xorg			${MKX11} != no && ${X11FLAVOUR} == "Xorg"
+#	xorg			${MKX11} != no
 #	xorg_server		${MKXORG_SERVER} != no
 #	yp			${MKYP} != no
 #

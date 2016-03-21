@@ -103,7 +103,7 @@ __KERNEL_RCSID(0, "$NetBSD: fd.c,v 1.105 2014/08/10 16:44:35 tls Exp $");
 #include <sys/file.h>
 #include <sys/ioctl.h>
 #include <sys/device.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/disk.h>
 #include <sys/buf.h>
 #include <sys/bufq.h>

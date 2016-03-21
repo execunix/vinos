@@ -32,9 +32,9 @@
 #include <string.h>
 #include <inttypes.h>
 #ifndef HAVE_NBTOOL_CONFIG_H
-#include <sys/disklabel_gpt.h>
+#include <sys/diskinfo.h>
 #else
-#include <nbinclude/sys/disklabel_gpt.h>
+#include <nbinclude/diskinfo.h>
 #endif
 
 /*

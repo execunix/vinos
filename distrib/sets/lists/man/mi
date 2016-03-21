@@ -1482,7 +1482,6 @@
 ./usr/share/man/cat5/stab.0			man-sys-catman		.cat
 ./usr/share/man/cat5/sysctl.conf.0		man-sys-catman		.cat
 ./usr/share/man/cat5/syslog.conf.0		man-sysutil-catman	.cat
-./usr/share/man/cat5/targets.0			man-iscsi-catman	iscsi,.cat
 ./usr/share/man/cat5/termcap.0			man-sys-catman		.cat
 ./usr/share/man/cat5/terminfo.0			man-sys-catman		.cat
 ./usr/share/man/cat5/texinfo.0			man-texinfo-catman	.cat
@@ -1687,10 +1686,6 @@
 ./usr/share/man/cat8/ipwctl.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/irda.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/irdaattach.0		man-sysutil-catman	.cat
-./usr/share/man/cat8/iscsi-initiator.0		man-iscsi-catman	iscsi,.cat
-./usr/share/man/cat8/iscsi-target.0		man-iscsi-catman	iscsi,.cat
-./usr/share/man/cat8/iscsictl.0			man-iscsi-catman	iscsi,.cat
-./usr/share/man/cat8/iscsid.0			man-iscsi-catman	iscsi,.cat
 ./usr/share/man/cat8/isdnd.0			man-isdn-catman		.cat
 ./usr/share/man/cat8/isdnmonitor.0		man-isdn-catman		.cat
 ./usr/share/man/cat8/isdntel.0			man-isdn-catman		.cat
@@ -1839,7 +1834,6 @@
 ./usr/share/man/cat8/paxctl.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/pcictl.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/pcnfsd.0			man-nfsserver-catman	.cat
-./usr/share/man/cat8/pdisk.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/perfused.0			man-perfuse-catman	.cat
 ./usr/share/man/cat8/pfctl.0			man-pf-catman		pf,.cat
 ./usr/share/man/cat8/pflogd.0			man-pf-catman		pf,.cat
@@ -3521,7 +3515,6 @@
 ./usr/share/man/html5/stab.html			man-sys-htmlman		html
 ./usr/share/man/html5/sysctl.conf.html		man-sys-htmlman		html
 ./usr/share/man/html5/syslog.conf.html		man-sysutil-htmlman	html
-./usr/share/man/html5/targets.html		man-iscsi-htmlman	iscsi,html
 ./usr/share/man/html5/termcap.html		man-sys-htmlman		html
 ./usr/share/man/html5/terminfo.html		man-sys-htmlman		html
 ./usr/share/man/html5/texinfo.html		man-texinfo-htmlman	html
@@ -3729,10 +3722,6 @@
 ./usr/share/man/html8/ipwctl.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/irda.html			man-sysutil-htmlman	html
 ./usr/share/man/html8/irdaattach.html		man-sysutil-htmlman	html
-./usr/share/man/html8/iscsi-initiator.html	man-iscsi-htmlman	iscsi,html
-./usr/share/man/html8/iscsi-target.html		man-iscsi-htmlman	iscsi,html
-./usr/share/man/html8/iscsictl.html		man-iscsi-htmlman	iscsi,html
-./usr/share/man/html8/iscsid.html		man-iscsi-htmlman	iscsi,html
 ./usr/share/man/html8/isdnd.html		man-isdn-htmlman	html
 ./usr/share/man/html8/isdnmonitor.html		man-isdn-htmlman	html
 ./usr/share/man/html8/isdntel.html		man-isdn-htmlman	html
@@ -3881,7 +3870,6 @@
 ./usr/share/man/html8/paxctl.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/pcictl.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/pcnfsd.html		man-nfsserver-htmlman	html
-./usr/share/man/html8/pdisk.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/perfused.html		man-perfuse-htmlman	html
 ./usr/share/man/html8/pfctl.html		man-pf-htmlman		pf,html
 ./usr/share/man/html8/pflogd.html		man-pf-htmlman		pf,html
@@ -5560,7 +5548,6 @@
 ./usr/share/man/man5/stab.5			man-sys-man		.man
 ./usr/share/man/man5/sysctl.conf.5		man-sys-man		.man
 ./usr/share/man/man5/syslog.conf.5		man-sysutil-man		.man
-./usr/share/man/man5/targets.5			man-iscsi-man		iscsi,.man
 ./usr/share/man/man5/termcap.5			man-sys-man		.man
 ./usr/share/man/man5/terminfo.5			man-sys-man		.man
 ./usr/share/man/man5/texinfo.5			man-texinfo-man		.man
@@ -5768,10 +5755,6 @@
 ./usr/share/man/man8/ipwctl.8			man-sysutil-man		.man
 ./usr/share/man/man8/irda.8			man-sysutil-man		.man
 ./usr/share/man/man8/irdaattach.8		man-sysutil-man		.man
-./usr/share/man/man8/iscsi-initiator.8		man-iscsi-man		iscsi,.man
-./usr/share/man/man8/iscsi-target.8		man-iscsi-man		iscsi,.man
-./usr/share/man/man8/iscsictl.8			man-iscsi-man		iscsi,.man
-./usr/share/man/man8/iscsid.8			man-iscsi-man		iscsi,.man
 ./usr/share/man/man8/isdnd.8			man-isdn-man		.man
 ./usr/share/man/man8/isdnmonitor.8		man-isdn-man		.man
 ./usr/share/man/man8/isdntel.8			man-isdn-man		.man
@@ -5920,7 +5903,6 @@
 ./usr/share/man/man8/paxctl.8			man-sysutil-man		.man
 ./usr/share/man/man8/pcictl.8			man-sysutil-man		.man
 ./usr/share/man/man8/pcnfsd.8			man-nfsserver-man	.man
-./usr/share/man/man8/pdisk.8			man-sysutil-man		.man
 ./usr/share/man/man8/perfused.8			man-perfuse-man		.man
 ./usr/share/man/man8/pfctl.8			man-pf-man		pf,.man
 ./usr/share/man/man8/pflogd.8			man-pf-man		pf,.man

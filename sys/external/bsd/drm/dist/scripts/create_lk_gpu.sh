@@ -40,7 +40,7 @@ rm sis_ds.[ch]
 rm amd*.[ch]
 rm radeon_ms*.[ch]
 
-for i in radeon mach64 r128 mga i915 i810 via savage sis xgi nouveau tdfx ffb imagine
+for i in radeon mach64 r128 mga i915 i810 via savage sis xgi tdfx ffb imagine
 do
 mkdir ./$i
 mv $i*.[ch] $i/
@@ -51,7 +51,6 @@ mv r600*.[ch] radeon/
 mv ObjectID.h radeon/
 mv atom*.[ch] radeon/
 
-mv nv*.[ch] nouveau/
 mv intel*.[ch] i915/
 mv dvo*.[ch] i915/
 

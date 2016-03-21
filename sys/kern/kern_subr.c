@@ -93,7 +93,7 @@ __KERNEL_RCSID(0, "$NetBSD: kern_subr.c,v 1.214 2013/12/09 16:49:43 pooka Exp $"
 #include <sys/reboot.h>
 #include <sys/conf.h>
 #include <sys/disk.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/queue.h>
 #include <sys/fcntl.h>
 #include <sys/kauth.h>

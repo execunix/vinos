@@ -80,8 +80,6 @@
 ./@MODULEDIR@/if_smsc/if_smsc.kmod		base-kernel-modules	kmod
 ./@MODULEDIR@/iic				base-kernel-modules	kmod
 ./@MODULEDIR@/iic/iic.kmod			base-kernel-modules	kmod
-./@MODULEDIR@/iscsi				base-kernel-modules	kmod,iscsi
-./@MODULEDIR@/iscsi/iscsi.kmod			base-kernel-modules	kmod,iscsi
 ./@MODULEDIR@/kernfs				base-kernel-modules	kmod
 ./@MODULEDIR@/kernfs/kernfs.kmod		base-kernel-modules	kmod
 ./@MODULEDIR@/ksem				base-obsolete		obsolete

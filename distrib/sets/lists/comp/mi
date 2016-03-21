@@ -260,10 +260,6 @@
 ./usr/include/dev/isa/satlinkio.h		comp-c-include
 ./usr/include/dev/isa/spkrio.h			comp-c-include
 ./usr/include/dev/isa/wtreg.h			comp-c-include
-./usr/include/dev/iscsi/iscsi.h			comp-c-include		iscsi
-./usr/include/dev/iscsi/iscsi_ioctl.h		comp-c-include		iscsi
-./usr/include/dev/iscsi/iscsi_perf.h		comp-c-include		iscsi
-./usr/include/dev/iscsi/iscsi_test.h		comp-c-include		iscsi
 ./usr/include/dev/keylock.h			comp-c-include
 ./usr/include/dev/kttcpio.h			comp-c-include
 ./usr/include/dev/lockstat.h			comp-c-include
@@ -1301,9 +1297,6 @@
 ./usr/include/iconv.h				comp-c-include
 ./usr/include/ifaddrs.h				comp-c-include
 ./usr/include/inttypes.h			comp-c-include
-./usr/include/iscsi.h				comp-c-include		iscsi
-./usr/include/isns.h				comp-c-include	
-./usr/include/isns_defs.h			comp-c-include	
 ./usr/include/iso646.h				comp-c-include
 ./usr/include/isofs/cd9660/cd9660_extern.h	comp-c-include
 ./usr/include/isofs/cd9660/cd9660_mount.h	comp-c-include
@@ -2271,10 +2264,6 @@
 ./usr/lib/libisccc_p.a				comp-bind-proflib	profile
 ./usr/lib/libisccfg.a				comp-bind-lib
 ./usr/lib/libisccfg_p.a				comp-bind-proflib	profile
-./usr/lib/libiscsi.a				comp-iscsi-lib		iscsi
-./usr/lib/libiscsi_p.a				comp-iscsi-proflib	profile,iscsi
-./usr/lib/libisns.a		comp-isns-lib	
-./usr/lib/libisns_p.a		comp-isns-proflib	profile
 ./usr/lib/libkadm5clnt.a			comp-krb5-lib		kerberos
 ./usr/lib/libkadm5clnt_p.a			comp-krb5-proflib	profile,kerberos
 ./usr/lib/libkadm5srv.a				comp-krb5-lib		kerberos
@@ -2447,8 +2436,6 @@
 ./usr/libdata/lint/llib-lisc.ln			comp-bind-lintlib	lint
 ./usr/libdata/lint/llib-lisccc.ln		comp-bind-lintlib	lint
 ./usr/libdata/lint/llib-lisccfg.ln		comp-bind-lintlib	lint
-./usr/libdata/lint/llib-liscsi.ln		comp-c-lintlib		lint,iscsi
-./usr/libdata/lint/llib-lisns.ln		comp-isns-lintlib	lint
 ./usr/libdata/lint/llib-lkdc.ln			comp-krb5-lintlib	lint,kerberos
 ./usr/libdata/lint/llib-lkvm.ln			comp-c-lintlib		lint
 ./usr/libdata/lint/llib-ll.ln			comp-c-lintlib		lint
@@ -5137,7 +5124,6 @@
 ./usr/share/man/cat3/isnan.0			comp-c-catman		.cat
 ./usr/share/man/cat3/isnanf.0			comp-c-catman		.cat
 ./usr/share/man/cat3/isnormal.0			comp-c-catman		.cat
-./usr/share/man/cat3/isns.0			comp-isns-catman		.cat
 ./usr/share/man/cat3/iso646.0			comp-c-catman		.cat
 ./usr/share/man/cat3/isprint.0			comp-c-catman		.cat
 ./usr/share/man/cat3/ispunct.0			comp-c-catman		.cat
@@ -5685,7 +5671,6 @@
 ./usr/share/man/cat3/libarchive.0		comp-c-catman		.cat
 ./usr/share/man/cat3/libarchive_internals.0	comp-c-catman		.cat
 ./usr/share/man/cat3/libblacklist.0		comp-c-catman		.cat
-./usr/share/man/cat3/libiscsi.0			comp-c-catman		iscsi,.cat
 ./usr/share/man/cat3/libmagic.0			comp-c-catman		.cat
 ./usr/share/man/cat3/libmj.0			comp-c-catman		crypto,.cat
 ./usr/share/man/cat3/libnetpgp.0		comp-c-catman		crypto,.cat
@@ -11387,8 +11372,6 @@
 ./usr/share/man/html3/isnan.html		comp-c-htmlman		html
 ./usr/share/man/html3/isnanf.html		comp-c-htmlman		html
 ./usr/share/man/html3/isnormal.html		comp-c-htmlman		html
-./usr/share/man/html3/isns.html			comp-c-htmlman		html
-./usr/share/man/html3/isns.html		comp-isns-htmlman		.html
 ./usr/share/man/html3/iso646.html		comp-c-htmlman		html
 ./usr/share/man/html3/isprint.html		comp-c-htmlman		html
 ./usr/share/man/html3/ispunct.html		comp-c-htmlman		html
@@ -11936,7 +11919,6 @@
 ./usr/share/man/html3/libarchive.html		comp-c-htmlman		html
 ./usr/share/man/html3/libarchive_internals.html	comp-c-htmlman		html
 ./usr/share/man/html3/libblacklist.html		comp-c-html		html
-./usr/share/man/html3/libiscsi.html		comp-c-htmlman		iscsi,html
 ./usr/share/man/html3/libmagic.html		comp-c-htmlman		html
 ./usr/share/man/html3/libmj.html		comp-c-htmlman		crypto,html
 ./usr/share/man/html3/libnetpgp.html		comp-c-htmlman		crypto,html
@@ -17638,7 +17620,6 @@
 ./usr/share/man/man3/isnan.3			comp-c-man		.man
 ./usr/share/man/man3/isnanf.3			comp-c-man		.man
 ./usr/share/man/man3/isnormal.3			comp-c-man		.man
-./usr/share/man/man3/isns.3		comp-isns-man		.man
 ./usr/share/man/man3/iso646.3			comp-c-man		.man
 ./usr/share/man/man3/isprint.3			comp-c-man		.man
 ./usr/share/man/man3/ispunct.3			comp-c-man		.man
@@ -18186,7 +18167,6 @@
 ./usr/share/man/man3/libarchive.3		comp-c-man		.man
 ./usr/share/man/man3/libarchive_internals.3	comp-c-man		.man
 ./usr/share/man/man3/libblacklist.3		comp-c-man		.man
-./usr/share/man/man3/libiscsi.3			comp-c-man		iscsi,.man
 ./usr/share/man/man3/libmagic.3			comp-c-man		.man
 ./usr/share/man/man3/libmj.3			comp-c-man		crypto,.man
 ./usr/share/man/man3/libnetpgp.3		comp-c-man		crypto,.man

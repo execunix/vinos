@@ -14,9 +14,6 @@ SUBDIR+= pkg_install
 .if (${MKIPFILTER} != "no")
 SUBDIR+=ipf
 .endif
-.if (${MKISCSI} != "no")
-SUBDIR+= iscsi 
-.endif
 .if (${MKLDAP} != "no")
 SUBDIR+= openldap
 .endif
@@ -24,6 +21,6 @@ SUBDIR+= openldap
 SUBDIR+= libc++
 .endif
 
-SUBDIR+= blacklist pdisk dhcp nvi ppp smbfs
+SUBDIR+= blacklist dhcp nvi ppp smbfs
 
 .include <bsd.subdir.mk>

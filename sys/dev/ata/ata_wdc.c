@@ -68,7 +68,7 @@ __KERNEL_RCSID(0, "$NetBSD: ata_wdc.c,v 1.103 2013/02/03 20:13:27 jakllsch Exp $
 #include <sys/bufq.h>
 #include <sys/malloc.h>
 #include <sys/device.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/syslog.h>
 #include <sys/proc.h>
 

@@ -482,12 +482,6 @@ Indicates whether the
 programs, headers and other components will be built and installed.
 .DFLTy
 .
-.It Sy MKISCSI
-.YorN
-Indicates whether the iSCSI library and applications are
-built and installed.
-.DFLTy
-.
 .It Sy MKKERBEROS
 .YorN
 Indicates whether the Kerberos v5 infrastructure
@@ -783,11 +777,8 @@ This also has implications on full builds (see next subsection).
 .YorN
 Indicates whether X11 is built and installed
 (by descending into
-.Pa src/x11
-or
 .Pa src/external/mit/xorg
-depending on the value of
-.Sy X11FLAVOUR ) .
+) .
 .DFLTn
 .Pp
 .
@@ -1004,22 +995,6 @@ otherwise (to preserve traditional semantics of the
 .Aq bsd.*.mk
 .Xr make 1
 include files).
-.
-.It Sy X11FLAVOUR
-Picks which X11 distribution to cross-build with
-.Nx .
-Set to either
-.Dq Xorg
-or
-.Dq XFree86 .
-Only relevant if
-.Sy MKX11!=no .
-.Pp
-.Em Default :
-.Dq Xorg
-on alpha, i386, macppc, shark and sparc64 platforms.
-.Dq XFree86
-on everything else.
 .
 .El
 .

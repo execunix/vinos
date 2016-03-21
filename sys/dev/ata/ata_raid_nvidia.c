@@ -41,7 +41,7 @@ __KERNEL_RCSID(0, "$NetBSD: ata_raid_nvidia.c,v 1.2 2014/03/25 16:19:13 christos
 #include <sys/conf.h>
 #include <sys/device.h>
 #include <sys/disk.h>
-#include <sys/disklabel.h>
+#include <sys/diskinfo.h>
 #include <sys/fcntl.h>
 #include <sys/malloc.h>
 #include <sys/vnode.h>
