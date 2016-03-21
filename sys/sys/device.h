@@ -416,8 +416,7 @@ extern uint64_t booted_nblks;		/* and the size of that wedge */
 
 struct vnode *opendisk(device_t);
 int getdisksize(struct vnode *, uint64_t *, unsigned int *);
-struct dkwedge_info;
-int getdiskinfo(struct vnode *, struct dkwedge_info *);
+int getdiskinfo(struct vnode *);
 
 void	config_init(void);
 int	config_init_component(struct cfdriver *const*,

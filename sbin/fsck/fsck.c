@@ -548,7 +548,6 @@ mangle(char *opts, int *argcp, const char ** volatile *argvp, int *maxargcp)
 static const char *
 getfslab(const char *str)
 {
-	static struct dkwedge_info dkw;
 	struct disklabel dl;
 	int fd;
 	char p;
@@ -558,13 +557,6 @@ getfslab(const char *str)
 	/* deduce the file system type from the disk label */
 	if ((fd = open(str, O_RDONLY)) == -1)
 		err(1, "cannot open `%s'", str);
-
-	/* First check to see if it's a wedge. */
-	if (ioctl(fd, DIOCGWEDGEINFO, &dkw) == 0) {
-		/* Yup, this is easy. */
-		(void) close(fd);
-		return (dkw.dkw_ptype);
-	}
 
 	if (ioctl(fd, DIOCGDINFO, &dl) == -1)
 		err(1, "cannot get disklabel for `%s'", str);

@@ -53,11 +53,10 @@ in various ways.
 It is used by specifying a disk to manipulate, the command
 to perform, and any arguments the command may require.
 .Ar device
-is the disk (wdN, sdN, ...) containing the wedges unless noted otherwise.
+is the disk (wdN, sdN, ...).
 If
 .Nm
-is called without any command, it displays strategy, cache, and all of
-the wedges of the specified device.
+is called without any command, it displays strategy and cache of the specified device.
 .Sh COMMANDS
 The following commands are supported:
 .Bl -tag -width XXstrategyXXnameXX
@@ -106,56 +105,6 @@ This option
 .Em can only
 be used with character devices.
 .El
-.It Ic addwedge Ar name Ar startblk Ar blkcnt Ar ptype
-Define a
-.Dq wedge
-on the specified disk starting at block number
-.Ar startblk
-and spanning
-.Ar blkcnt
-blocks.
-You need to create the partition first with
-.Xr fdisk 8
-or
-.Xr gpt 8 ,
-.Nm
-will just name it.
-The wedge will have the volume name
-.Ar name
-and the partition type
-.Ar ptype .
-Valid choices for ptype would be
-.Ar unused ,
-.Ar swap ,
-.Ar ffs ,
-.Ar ext2fs ,
-.Ar cd9660 ,
-.Ar msdos ,
-.Ar ntfs ,
-and
-.Ar cgd .
-.Pp
-The device name of the virtual block device assigned to the wedge will be
-displayed after the wedge has been successfully created.
-See
-.Xr dk 4
-for more information about disk wedges.
-.It Ic delwedge Ar dk
-Delete the wedge specified by its device name
-.Ar dk
-from the specified disk.
-.It Ic getwedgeinfo
-Display information about the specified disk wedge.
-.Ar device
-in this case is the wedge name.
-.It Ic listwedges
-List all of the wedges configured on the specified disk.
-.It Ic makewedges
-Delete all wedges configured on the specified disk, and autodiscover
-the wedges again.
-Wedges that are in use are not deleted and conflicting
-or overlapping wedges are not created.
-You need to list wedges to find out what has changed.
 .It Ic strategy Op Ar name
 Get and set the disk I/O scheduler (buffer queue strategy) on the
 drive.
@@ -172,16 +121,6 @@ To get the list of supported schedulers, use the following command:
 $ sysctl kern.bufq.strategies
 .Ed
 .El
-.Pp
-Note: The
-.Ic addwedge
-and
-.Ic delwedge
-commands only modify the in-kernel representation of disks; for
-modifying information on the disks themselves, refer to
-.Xr fdisk 8
-or
-.Xr gpt 8 .
 .Sh SEE ALSO
 .Xr ioctl 2 ,
 .Xr dk 4 ,

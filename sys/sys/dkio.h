@@ -82,12 +82,6 @@
 #define	DIOCBSLIST	_IOWR('d', 119, struct disk_badsecinfo)	/* get list */
 #define	DIOCBSFLUSH	_IO('d', 120)			/* flush list */
 
-		/* wedges */
-#define	DIOCAWEDGE	_IOWR('d', 121, struct dkwedge_info) /* add wedge */
-#define	DIOCGWEDGEINFO	_IOR('d', 122, struct dkwedge_info)  /* get wedge inf */
-#define	DIOCDWEDGE	_IOW('d', 123, struct dkwedge_info)  /* del wedge */
-#define	DIOCLWEDGES	_IOWR('d', 124, struct dkwedge_list) /* list wedges */
-
 		/* disk buffer queue strategy */
 #define	DIOCGSTRATEGY	_IOR('d', 125, struct disk_strategy)
 #define	DIOCSSTRATEGY	_IOW('d', 126, struct disk_strategy)
@@ -100,9 +94,6 @@
 
 /* 129 was DIOCGDISCARDPARAMS during 6.99 */
 /* 130 was DIOCDISCARD during 6.99 */
-
-		/* trigger wedge auto discover */
-#define	DIOCMWEDGES	_IOR('d', 131, int)	/* make wedges */
 
 		/* query disk geometry */
 #define	DIOCGSECTORSIZE	_IOR('d', 133, u_int)	/* sector size in bytes */

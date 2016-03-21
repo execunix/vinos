@@ -349,7 +349,7 @@ GPT_ENT_TYPE_*
 compat_
 MKX11/MKXORG/XSERVER_XFREE86
 disklabel/TOOL_DISKLABEL
-diskinfo/pdisk/dkwedge
+diskinfo/pdisk
 diskname/bsddiskname
 vnconfig/vndconfig
 geomspec
@@ -357,3 +357,21 @@ iSCSI/dmover
 MKX11RADEONKMS
 CONFIG_DRM
 X11R6
+
+dkctl/wedge/dkwedge/dk_wedges
+wedge/dk.4
+sbin/devpubd/hooks/02-wedgenames
+disk_strategy/getfsspecname/getfstypename/getfsent
+		/* wedges */
+#define	DIOCAWEDGE	_IOWR('d', 121, struct dkwedge_info) /* add wedge */
+#define	DIOCGWEDGEINFO	_IOR('d', 122, struct dkwedge_info)  /* get wedge inf */
+#define	DIOCDWEDGE	_IOW('d', 123, struct dkwedge_info)  /* del wedge */
+#define	DIOCLWEDGES	_IOWR('d', 124, struct dkwedge_list) /* list wedges */
+
+		/* trigger wedge auto discover */
+#define	DIOCMWEDGES	_IOR('d', 131, int)	/* make wedges */
+
+		/* disk buffer queue strategy */
+#define	DIOCGSTRATEGY	_IOR('d', 125, struct disk_strategy)
+#define	DIOCSSTRATEGY	_IOW('d', 126, struct disk_strategy)
+

@@ -130,12 +130,6 @@ options 	KDTRACE_HOOKS	# kernel DTrace hooks
 # Compatibility options
 options 	COMPAT_NETBSD32 # NetBSD 32-bit
 
-# Wedge support
-options 	DKWEDGE_AUTODISCOVER	# Automatically add dk(4) instances
-options 	DKWEDGE_METHOD_GPT	# Supports GPT partitions as wedges
-# The following two options can break /etc/fstab, so handle with care
-options 	DKWEDGE_METHOD_MBR	# Support MBR partitions as wedges
-
 # File systems
 file-system 	FFS		# UFS
 file-system 	EXT2FS		# second extended file system (linux)

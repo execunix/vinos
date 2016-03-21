@@ -62,11 +62,6 @@ __RCSID("$NetBSD: dkctl.c,v 1.20.20.1 2014/11/11 10:36:40 martin Exp $");
 #define	YES	1
 #define	NO	0
 
-/* I don't think nl_langinfo is suitable in this case */
-#define	YES_STR	"yes"
-#define	NO_STR	"no"
-#define YESNO_ARG	YES_STR " | " NO_STR
-
 #ifndef PRIdaddr
 #define PRIdaddr PRId64
 #endif
@@ -88,20 +83,11 @@ static const	char *dvname;			/* device name */
 static char	dvname_store[MAXPATHLEN];	/* for opendisk(3) */
 static const	char *cmdname;			/* command user issued */
 
-static int dkw_sort(const void *, const void *);
-static int yesno(const char *);
-
 static void	disk_getcache(int, char *[]);
 static void	disk_setcache(int, char *[]);
 static void	disk_synccache(int, char *[]);
-static void	disk_keeplabel(int, char *[]);
 static void	disk_badsectors(int, char *[]);
 
-static void	disk_addwedge(int, char *[]);
-static void	disk_delwedge(int, char *[]);
-static void	disk_getwedgeinfo(int, char *[]);
-static void	disk_listwedges(int, char *[]);
-static void	disk_makewedges(int, char *[]);
 static void	disk_strategy(int, char *[]);
 
 static struct command commands[] = {
@@ -120,40 +106,10 @@ static struct command commands[] = {
 	  disk_synccache,
 	  O_RDWR },
 
-	{ "keeplabel",
-	  YESNO_ARG,
-	  disk_keeplabel,
-	  O_RDWR },
-
 	{ "badsector",
 	  "flush | list | retry",
 	   disk_badsectors,
 	   O_RDWR },
-
-	{ "addwedge",
-	  "name startblk blkcnt ptype",
-	  disk_addwedge,
-	  O_RDWR },
-
-	{ "delwedge",
-	  "dk",
-	  disk_delwedge,
-	  O_RDWR },
-
-	{ "getwedgeinfo",
-	  "",
-	  disk_getwedgeinfo,
-	  O_RDONLY },
-
-	{ "listwedges",
-	  "",
-	  disk_listwedges,
-	  O_RDONLY },
-
-	{ "makewedges",
-	  "",
-	  disk_makewedges,
-	  O_RDWR },
 
 	{ "strategy",
 	  "[name]",
@@ -252,12 +208,6 @@ showall(void)
 
 	printf("cache:\n");
 	cmdname = "getcache";
-	run(0, NULL);
-
-	putchar('\n');
-
-	printf("wedges:\n");
-	cmdname = "listwedges";
 	run(0, NULL);
 }
 
@@ -372,26 +322,6 @@ disk_synccache(int argc, char *argv[])
 	if (ioctl(fd, DIOCCACHESYNC, &force) == -1)
 		err(1, "%s: sync cache", dvname);
 }
-
-static void
-disk_keeplabel(int argc, char *argv[])
-{
-	int keep;
-	int yn;
-
-	if (argc != 1)
-		usage();
-
-	yn = yesno(argv[0]);
-	if (yn < 0)
-		usage();
-
-	keep = yn == YES;
-
-	if (ioctl(fd, DIOCKLABEL, &keep) == -1)
-		err(1, "%s: keep label", dvname);
-}
-
 
 static void
 disk_badsectors(int argc, char *argv[])
@@ -539,172 +469,4 @@ disk_badsectors(int argc, char *argv[])
 			}
 		}
 	}
-}
-
-static void
-disk_addwedge(int argc, char *argv[])
-{
-	struct dkwedge_info dkw;
-	char *cp;
-	daddr_t start;
-	uint64_t size;
-
-	if (argc != 4)
-		usage();
-
-	/* XXX Unicode: dkw_wname is supposed to be utf-8 */
-	if (strlcpy((char *)dkw.dkw_wname, argv[0], sizeof(dkw.dkw_wname)) >=
-	    sizeof(dkw.dkw_wname))
-		errx(1, "Wedge name too long; max %zd characters",
-		    sizeof(dkw.dkw_wname) - 1);
-
-	if (strlcpy(dkw.dkw_ptype, argv[3], sizeof(dkw.dkw_ptype)) >=
-	    sizeof(dkw.dkw_ptype))
-		errx(1, "Wedge partition type too long; max %zd characters",
-		    sizeof(dkw.dkw_ptype) - 1);
-
-	errno = 0;
-	start = strtoll(argv[1], &cp, 0);
-	if (*cp != '\0')
-		errx(1, "Invalid start block: %s", argv[1]);
-	if (errno == ERANGE && (start == LLONG_MAX ||
-				start == LLONG_MIN))
-		errx(1, "Start block out of range.");
-	if (start < 0)
-		errx(1, "Start block must be >= 0.");
-
-	errno = 0;
-	size = strtoull(argv[2], &cp, 0);
-	if (*cp != '\0')
-		errx(1, "Invalid block count: %s", argv[2]);
-	if (errno == ERANGE && (size == ULLONG_MAX))
-		errx(1, "Block count out of range.");
-
-	dkw.dkw_offset = start;
-	dkw.dkw_size = size;
-
-	if (ioctl(fd, DIOCAWEDGE, &dkw) == -1)
-		err(1, "%s: addwedge", dvname);
-	else
-		printf("%s created successfully.\n", dkw.dkw_devname);
-
-}
-
-static void
-disk_delwedge(int argc, char *argv[])
-{
-	struct dkwedge_info dkw;
-
-	if (argc != 1)
-		usage();
-
-	if (strlcpy(dkw.dkw_devname, argv[0], sizeof(dkw.dkw_devname)) >=
-	    sizeof(dkw.dkw_devname))
-		errx(1, "Wedge dk name too long; max %zd characters",
-		    sizeof(dkw.dkw_devname) - 1);
-
-	if (ioctl(fd, DIOCDWEDGE, &dkw) == -1)
-		err(1, "%s: delwedge", dvname);
-}
-
-static void
-disk_getwedgeinfo(int argc, char *argv[])
-{
-	struct dkwedge_info dkw;
-
-	if (argc != 0)
-		usage();
-
-	if (ioctl(fd, DIOCGWEDGEINFO, &dkw) == -1)
-		err(1, "%s: getwedgeinfo", dvname);
-
-	printf("%s at %s: %s\n", dkw.dkw_devname, dkw.dkw_parent,
-	    dkw.dkw_wname);	/* XXX Unicode */
-	printf("%s: %"PRIu64" blocks at %"PRId64", type: %s\n",
-	    dkw.dkw_devname, dkw.dkw_size, dkw.dkw_offset, dkw.dkw_ptype);
-}
-
-static void
-disk_listwedges(int argc, char *argv[])
-{
-	struct dkwedge_info *dkw;
-	struct dkwedge_list dkwl;
-	size_t bufsize;
-	u_int i;
-
-	if (argc != 0)
-		usage();
-
-	dkw = NULL;
-	dkwl.dkwl_buf = dkw;
-	dkwl.dkwl_bufsize = 0;
-
-	for (;;) {
-		if (ioctl(fd, DIOCLWEDGES, &dkwl) == -1)
-			err(1, "%s: listwedges", dvname);
-		if (dkwl.dkwl_nwedges == dkwl.dkwl_ncopied)
-			break;
-		bufsize = dkwl.dkwl_nwedges * sizeof(*dkw);
-		if (dkwl.dkwl_bufsize < bufsize) {
-			dkw = realloc(dkwl.dkwl_buf, bufsize);
-			if (dkw == NULL)
-				errx(1, "%s: listwedges: unable to "
-				    "allocate wedge info buffer", dvname);
-			dkwl.dkwl_buf = dkw;
-			dkwl.dkwl_bufsize = bufsize;
-		}
-	}
-
-	if (dkwl.dkwl_nwedges == 0) {
-		printf("%s: no wedges configured\n", dvname);
-		return;
-	}
-
-	qsort(dkw, dkwl.dkwl_nwedges, sizeof(*dkw), dkw_sort);
-
-	printf("%s: %u wedge%s:\n", dvname, dkwl.dkwl_nwedges,
-	    dkwl.dkwl_nwedges == 1 ? "" : "s");
-	for (i = 0; i < dkwl.dkwl_nwedges; i++) {
-		printf("%s: %s, %"PRIu64" blocks at %"PRId64", type: %s\n",
-		    dkw[i].dkw_devname,
-		    dkw[i].dkw_wname,	/* XXX Unicode */
-		    dkw[i].dkw_size, dkw[i].dkw_offset, dkw[i].dkw_ptype);
-	}
-}
-
-static void
-disk_makewedges(int argc, char *argv[])
-{
-	int bits;
-
-	if (argc != 0)
-		usage();
-
-	if (ioctl(fd, DIOCMWEDGES, &bits) == -1)
-		err(1, "%s: makewedges", dvname);
-	else
-		printf("successfully scanned %s.\n", dvname);
-}
-
-static int
-dkw_sort(const void *a, const void *b)
-{
-	const struct dkwedge_info *dkwa = a, *dkwb = b;
-	const daddr_t oa = dkwa->dkw_offset, ob = dkwb->dkw_offset;
-
-	return (oa < ob) ? -1 : (oa > ob) ? 1 : 0;
-}
-
-/*
- * return YES, NO or -1.
- */
-static int
-yesno(const char *p)
-{
-
-	if (!strcmp(p, YES_STR))
-		return YES;
-	if (!strcmp(p, NO_STR))
-		return NO;
-	return -1;
 }

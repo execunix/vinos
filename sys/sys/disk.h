@@ -161,58 +161,6 @@ struct vnode;
  *	</dict>
  */
 
-/*
- * dkwedge_info:
- *
- *	Information needed to configure (or query configuration of) a
- *	disk wedge.
- */
-struct dkwedge_info {
-	char		dkw_devname[16];/* device-style name (e.g. "dk0") */
-	uint8_t		dkw_wname[128];	/* wedge name (Unicode, UTF-8) */
-	char		dkw_parent[16];	/* parent disk device name */
-	daddr_t		dkw_offset;	/* LBA offset of wedge in parent */
-	uint64_t	dkw_size;	/* size of wedge in blocks */
-	char		dkw_ptype[32];	/* partition type string */
-};
-
-/*
- * dkwedge_list:
- *
- *	Structure used to query a list of wedges.
- */
-struct dkwedge_list {
-	void		*dkwl_buf;	/* storage for dkwedge_info array */
-	size_t		dkwl_bufsize;	/* size of that buffer */
-	u_int		dkwl_nwedges;	/* total number of wedges */
-	u_int		dkwl_ncopied;	/* number actually copied */
-};
-
-#ifdef _KERNEL
-/*
- * dkwedge_discovery_method:
- *
- *	Structure used to describe partition map parsing schemes
- *	used for wedge autodiscovery.
- */
-struct dkwedge_discovery_method {
-					/* link in wedge driver's list */
-	LIST_ENTRY(dkwedge_discovery_method) ddm_list;
-	const char	*ddm_name;	/* name of this method */
-	int		ddm_priority;	/* search priority */
-	int		(*ddm_discover)(struct disk *, struct vnode *);
-};
-
-#define	DKWEDGE_DISCOVERY_METHOD_DECL(name, prio, discover)		\
-static struct dkwedge_discovery_method name ## _ddm = {			\
-	{ NULL, NULL },							\
-	#name,								\
-	prio,								\
-	discover							\
-};									\
-__link_set_add_data(dkwedge_methods, name ## _ddm)
-#endif /* _KERNEL */
-
 /* Some common partition types */
 #define	DKW_PTYPE_UNKNOWN	""
 #define	DKW_PTYPE_UNUSED	"unused"
@@ -424,7 +372,6 @@ struct disk {
 	kmutex_t	dk_openlock;	/* lock on these and openmask */
 	u_int		dk_nwedges;	/* # of configured wedges */
 					/* all wedges on this disk */
-	LIST_HEAD(, dkwedge_softc) dk_wedges;
 
 	/*
 	 * Disk label information.  Storage for the in-core disk label
@@ -502,18 +449,6 @@ void	disk_blocksize(struct disk *, int);
 struct disk *disk_find(const char *);
 int	disk_ioctl(struct disk *, u_long, void *, int, struct lwp *);
 void	disk_set_info(device_t, struct disk *, const char *);
-
-void	dkwedge_init(void);
-int	dkwedge_add(struct dkwedge_info *);
-int	dkwedge_del(struct dkwedge_info *);
-void	dkwedge_delall(struct disk *);
-int	dkwedge_list(struct disk *, struct dkwedge_list *, struct lwp *);
-void	dkwedge_discover(struct disk *);
-int	dkwedge_read(struct disk *, struct vnode *, daddr_t, void *, size_t);
-device_t dkwedge_find_by_wname(const char *);
-const char *dkwedge_get_parent_name(dev_t);
-void	dkwedge_print_wnames(void);
-device_t dkwedge_find_partition(device_t, daddr_t, uint64_t);
 #endif
 
 #endif /* _SYS_DISK_H_ */

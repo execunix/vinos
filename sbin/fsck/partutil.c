@@ -89,50 +89,16 @@ dict2geom(struct disk_geom *geo, prop_dictionary_t dict)
 
 
 int
-getdiskinfo(const char *s, int fd, struct disk_geom *geo,
-    struct dkwedge_info *dkw)
+getdiskinfo(const char *s, int fd, struct disk_geom *geo)
 {
 	struct disklabel lab;
 	struct disklabel *lp = &lab;
 	prop_dictionary_t disk_dict, geom_dict;
 	struct stat sb;
-	const struct partition *pp;
 	int ptn;
 
-	/* Get disk description dictionary */
-	if (prop_dictionary_recv_ioctl(fd, DIOCGDISKINFO, &disk_dict)) {
-		/*
-		 * Ask for disklabel if DIOCGDISKINFO failed. This is
-		 * compatibility call and can be removed when all devices
-		 * will support DIOCGDISKINFO.
-		 * cgd, ccd pseudo disk drives doesn't support DIOCGDDISKINFO
-		 */
-		if (ioctl(fd, DIOCGDINFO, lp) == -1) {
-			warn("DIOCGDINFO on %s failed", s);
-			return -1;
-		}
-		label2geom(geo, lp);
-	} else {
-		geom_dict = prop_dictionary_get(disk_dict, "geometry");
-		dict2geom(geo, geom_dict);
-	}
-
-	/* Get info about partition/wedge */
-	if (ioctl(fd, DIOCGWEDGEINFO, dkw) != -1) {
-		/* DIOCGWEDGEINFO didn't fail, we're done */
-		return 0;
-	}
-
-	if (ioctl(fd, DIOCGDINFO, lp) == -1) {
-		err(1, "Please implement DIOCGWEDGEINFO or "
-		    "DIOCGDINFO for disk device %s", s);
-	}
-
-	if (dkw == NULL)
-		return 0;
-
-	/* DIOCGDINFO didn't fail */
-	(void)memset(dkw, 0, sizeof(*dkw));
+	geom_dict = prop_dictionary_get(disk_dict, "geometry");
+	dict2geom(geo, geom_dict);
 
 	if (stat(s, &sb) == -1)
 		return 0;
@@ -141,18 +107,6 @@ getdiskinfo(const char *s, int fd, struct disk_geom *geo,
 	if ((unsigned)ptn >= lp->d_npartitions ||
 	    (devminor_t)ptn != DISKPART(sb.st_rdev))
 		return 0;
-
-	pp = &lp->d_partitions[ptn];
-	if (ptn != getrawpartition()) {
-		dkw->dkw_offset = pp->p_offset;
-		dkw->dkw_size = pp->p_size;
-	} else {
-		dkw->dkw_offset = 0;
-		dkw->dkw_size = geo->dg_secperunit;
-	}
-	dkw->dkw_parent[0] = '*';
-	strlcpy(dkw->dkw_ptype, getfstypename(pp->p_fstype),
-	    sizeof(dkw->dkw_ptype));
 
 	return 0;
 }

@@ -450,7 +450,6 @@ int	set_swap(const char *, partinfo *);
 int	check_swap(const char *, int);
 char *bootxx_name(void);
 void label_read(void);
-int get_dkwedges(struct dkwedge_info **, const char *);
 const char *get_gptfs_by_id(int);
 
 

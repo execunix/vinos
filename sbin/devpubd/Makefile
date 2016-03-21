@@ -13,7 +13,7 @@ SCRIPTS=	devpubd-run-hooks
 SCRIPTSDIR_devpubd-run-hooks=	/libexec
 
 .PATH: ${.CURDIR}/hooks
-HOOKS=		01-makedev 02-wedgenames
+HOOKS=		01-makedev
 SCRIPTS+=	${HOOKS:C,^,hooks/,}
 .for f in ${HOOKS}
 SCRIPTSDIR_hooks/${f}=	/libexec/devpubd-hooks

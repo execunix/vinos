@@ -4836,8 +4836,6 @@
 ./usr/share/man/cat3/getfsent.0			comp-c-catman		.cat
 ./usr/share/man/cat3/getfsfile.0		comp-c-catman		.cat
 ./usr/share/man/cat3/getfsspec.0		comp-c-catman		.cat
-./usr/share/man/cat3/getfsspecname.0		comp-c-catman		.cat
-./usr/share/man/cat3/getfstypename.0		comp-c-catman		.cat
 ./usr/share/man/cat3/getgrent.0			comp-c-catman		.cat
 ./usr/share/man/cat3/getgrent_r.0		comp-c-catman		.cat
 ./usr/share/man/cat3/getgrgid.0			comp-c-catman		.cat
@@ -11083,8 +11081,6 @@
 ./usr/share/man/html3/getfsent.html		comp-c-htmlman		html
 ./usr/share/man/html3/getfsfile.html		comp-c-htmlman		html
 ./usr/share/man/html3/getfsspec.html		comp-c-htmlman		html
-./usr/share/man/html3/getfsspecname.html	comp-c-htmlman		html
-./usr/share/man/html3/getfstypename.html	comp-c-htmlman		html
 ./usr/share/man/html3/getgrent.html		comp-c-htmlman		html
 ./usr/share/man/html3/getgrent_r.html		comp-c-htmlman		html
 ./usr/share/man/html3/getgrgid.html		comp-c-htmlman		html
@@ -17331,8 +17327,6 @@
 ./usr/share/man/man3/getfsent.3			comp-c-man		.man
 ./usr/share/man/man3/getfsfile.3		comp-c-man		.man
 ./usr/share/man/man3/getfsspec.3		comp-c-man		.man
-./usr/share/man/man3/getfsspecname.3		comp-c-man		.man
-./usr/share/man/man3/getfstypename.3		comp-c-man		.man
 ./usr/share/man/man3/getgrent.3			comp-c-man		.man
 ./usr/share/man/man3/getgrent_r.3		comp-c-man		.man
 ./usr/share/man/man3/getgrgid.3			comp-c-man		.man

@@ -1254,52 +1254,6 @@ get_gptfs_by_id(int filesystem)
 	return NULL;
 }
 
-/* from dkctl.c */
-static int
-get_dkwedges_sort(const void *a, const void *b)
-{
-	const struct dkwedge_info *dkwa = a, *dkwb = b;
-	const daddr_t oa = dkwa->dkw_offset, ob = dkwb->dkw_offset;
-	return (oa < ob) ? -1 : (oa > ob) ? 1 : 0;
-}
-
-int
-get_dkwedges(struct dkwedge_info **dkw, const char *diskdev)
-{
-	int fd;
-	char buf[STRSIZE];
-	size_t bufsize;
-	struct dkwedge_list dkwl;
-
-	*dkw = NULL;
-	dkwl.dkwl_buf = *dkw;
-	dkwl.dkwl_bufsize = 0;
-	fd = opendisk(diskdev, O_RDONLY, buf, STRSIZE, 0);
-	if (fd < 0)
-		return -1;
-
-	for (;;) {
-		if (ioctl(fd, DIOCLWEDGES, &dkwl) == -1)
-			return -2;
-		if (dkwl.dkwl_nwedges == dkwl.dkwl_ncopied)
-			break;
-		bufsize = dkwl.dkwl_nwedges * sizeof(**dkw);
-		if (dkwl.dkwl_bufsize < bufsize) {
-			*dkw = realloc(dkwl.dkwl_buf, bufsize);
-			if (*dkw == NULL)
-				return -3;
-			dkwl.dkwl_buf = *dkw;
-			dkwl.dkwl_bufsize = bufsize;
-		}
-	}
-
-	if (dkwl.dkwl_nwedges > 0 && *dkw != NULL)
-		qsort(*dkw, dkwl.dkwl_nwedges, sizeof(**dkw), get_dkwedges_sort);
-
-	close(fd);
-	return dkwl.dkwl_nwedges;
-}
-
 /* XXX: rewrite */
 static int
 incoregpt(pm_devs_t *pm_cur, partinfo *lp)
@@ -1308,15 +1262,6 @@ incoregpt(pm_devs_t *pm_cur, partinfo *lp)
 	unsigned int p_num;
 	uint64_t p_start, p_size;
 	char *textbuf, *t, *tt, p_type[STRSIZE];
-	struct dkwedge_info *dkw;
-
-	num = get_dkwedges(&dkw, pm_cur->diskdev);
-	if (dkw != NULL) {
-		for (i = 0; i < num && i < MAX_WEDGES; i++)
-			run_program(RUN_SILENT, "dkctl %s delwedge %s",
-				pm_cur->diskdev, dkw[i].dkw_devname);
-		free (dkw);
-	}
 
 	if (collect(T_OUTPUT, &textbuf, "gpt show -u %s 2>/dev/null", pm_cur->diskdev) < 1)
 		return -1;

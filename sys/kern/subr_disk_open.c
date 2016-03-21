@@ -92,7 +92,6 @@ int
 getdisksize(struct vnode *vp, uint64_t *numsecp, unsigned int *secsizep)
 {
 	struct partinfo dpart;
-	struct dkwedge_info dkw;
 	struct disk *pdk;
 	unsigned int secsize;
 	uint64_t numsec;
@@ -102,16 +101,6 @@ getdisksize(struct vnode *vp, uint64_t *numsecp, unsigned int *secsizep)
 	if (error == 0) {
 		secsize = dpart.disklab->d_secsize;
 		numsec  = dpart.part->p_size;
-	} else {
-		error = VOP_IOCTL(vp, DIOCGWEDGEINFO, &dkw, FREAD, NOCRED);
-		if (error == 0) {
-			pdk = disk_find(dkw.dkw_parent);
-			if (pdk != NULL) {
-				secsize = DEV_BSIZE << pdk->dk_blkshift;
-				numsec  = dkw.dkw_size;
-			} else
-				error = ENODEV;
-		}
 	}
 
 	if (error == 0 &&
@@ -135,31 +124,14 @@ getdisksize(struct vnode *vp, uint64_t *numsecp, unsigned int *secsizep)
 }
 
 int
-getdiskinfo(struct vnode *vp, struct dkwedge_info *dkw)
+getdiskinfo(struct vnode *vp)
 {
 	struct partinfo dpart;
 	int error;
 	dev_t dev = vp->v_specnode->sn_rdev;
 
-	if (VOP_IOCTL(vp, DIOCGWEDGEINFO, dkw, FREAD, NOCRED) == 0)
-		return 0;
-	
 	if ((error = VOP_IOCTL(vp, DIOCGPART, &dpart, FREAD, NOCRED)) != 0)
 		return error;
-
-	snprintf(dkw->dkw_devname, sizeof(dkw->dkw_devname), "%s%" PRId32 "%c",
-	    devsw_blk2name(major(dev)), DISKUNIT(dev), (char)DISKPART(dev) +
-	    'a');
-
-	dkw->dkw_wname[0] = '\0';
-
-	strlcpy(dkw->dkw_parent, dkw->dkw_devname, sizeof(dkw->dkw_parent));
-
-	dkw->dkw_size = dpart.part->p_size;
-	dkw->dkw_offset = dpart.part->p_offset;
-
-	strlcpy(dkw->dkw_ptype, getfstypename(dpart.part->p_fstype),
-	    sizeof(dkw->dkw_ptype));
 
 	return 0;
 }

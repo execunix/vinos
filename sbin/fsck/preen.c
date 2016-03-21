@@ -278,7 +278,6 @@ finddisk(const char *name)
 	size_t len, dlen;
 	struct diskentry *d;
 	char buf[MAXPATHLEN];
-	struct dkwedge_info dkw;
 	int fd;
 
 	if ((fd = opendisk(name, O_RDONLY, buf, sizeof(buf), 0)) != -1) {

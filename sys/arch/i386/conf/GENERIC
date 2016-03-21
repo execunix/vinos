@@ -126,12 +126,6 @@ options 	DDB_HISTORY_SIZE=512	# enable history editing in DDB
 
 # Compatibility options
 
-# Wedge support
-options 	DKWEDGE_AUTODISCOVER	# Automatically add dk(4) instances
-options 	DKWEDGE_METHOD_GPT	# Supports GPT partitions as wedges
-# The following three options can break /etc/fstab, so handle with care
-#options 	DKWEDGE_METHOD_MBR	# Support MBR partitions as wedges
-
 # File systems
 file-system	FFS		# UFS
 file-system	MFS		# memory file system

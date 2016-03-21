@@ -549,9 +549,6 @@ finddevice(const char *name)
 {
 	const char *wname;
 
-	if ((wname = getwedgename(name, strlen(name))) != NULL)
-		return dkwedge_find_by_wname(wname);
-
 	return device_find_by_xname(name);
 }
 
@@ -574,7 +571,6 @@ getdisk(char *str, int len, int defpart, dev_t *devp, int isdump)
 				printf(" %s", device_xname(dv));
 		}
 		deviter_release(&di);
-		dkwedge_print_wnames();
 		if (isdump)
 			printf(" none");
 #if defined(DDB)
