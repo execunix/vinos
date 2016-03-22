@@ -43,9 +43,6 @@ __RCSID("$NetBSD: biosboot.c,v 1.7.4.1 2015/06/02 19:49:38 snj Exp $");
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/ioctl.h>
-#ifdef DIOCGWEDGEINFO
-#include <sys/disk.h>
-#endif
 #include <sys/param.h>
 #include <sys/bootblock.h>
 
@@ -270,9 +267,6 @@ biosboot(int fd)
 int
 cmd_biosboot(int argc, char *argv[])
 {
-#ifdef DIOCGWEDGEINFO
-	struct dkwedge_info dkw;
-#endif
 	struct stat sb;
 	char devpath[MAXPATHLEN];
 	char *dev, *p;
@@ -320,18 +314,6 @@ cmd_biosboot(int argc, char *argv[])
 			goto next;
 		if (fstat(fd, &sb) == -1)
 			goto close;
-
-#ifdef DIOCGWEDGEINFO
-		if ((sb.st_mode & S_IFMT) != S_IFREG &&
-		    ioctl(fd, DIOCGWEDGEINFO, &dkw) != -1) {
-			if (entry > 0)
-				/* wedges and indexes are mutually exclusive */
-				usage_biosboot();
-			dev = dkw.dkw_parent;
-			start = dkw.dkw_offset;
-			size = dkw.dkw_size;
-		}
-#endif
 	close:
 		close(fd);
 

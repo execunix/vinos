@@ -157,10 +157,6 @@ ofdisk_attach(device_t parent, device_t self, void *aux)
 
 	if (strcmp(child, "floppy") == 0)
 		of->sc_flags |= OFDF_ISFLOPPY;
-	else {
-		/* Discover wedges on this disk. */
-		dkwedge_discover(&of->sc_dk);
-	}
 }
 
 int
@@ -177,15 +173,6 @@ ofdisk_open(dev_t dev, int flags, int fmt, struct lwp *lwp)
 	part = DISKPART(dev);
 
 	mutex_enter(&of->sc_dk.dk_openlock);
-
-	/*
-	 * If there are wedges, and this is not RAW_PART, then we
-	 * need to fail.
-	 */
-	if (of->sc_dk.dk_nwedges != 0 && part != RAW_PART) {
-		error = EBUSY;
-		goto bad1;
-	}
 
 	if (!of->sc_ihandle) {
 		if ((l = OF_package_to_path(of->sc_phandle, path,
@@ -396,48 +383,6 @@ ofdisk_ioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 	case DIOCGDEFLABEL:
 		ofdisk_getdefaultlabel(of, (struct disklabel *)data);
 		return 0;
-
-	case DIOCAWEDGE:
-	    {
-	    	struct dkwedge_info *dkw = (void *) data;
-
-		if (OFDISK_FLOPPY_P(of))
-			return (ENOTTY);
-
-		if ((flag & FWRITE) == 0)
-			return (EBADF);
-
-		/* If the ioctl happens here, the parent is us. */
-		strlcpy(dkw->dkw_parent, device_xname(of->sc_dev),
-			sizeof(dkw->dkw_parent));
-		return (dkwedge_add(dkw));
-	    }
-
-	case DIOCDWEDGE:
-	    {
-	    	struct dkwedge_info *dkw = (void *) data;
-
-		if (OFDISK_FLOPPY_P(of))
-			return (ENOTTY);
-
-		if ((flag & FWRITE) == 0)
-			return (EBADF);
-
-		/* If the ioctl happens here, the parent is us. */
-		strlcpy(dkw->dkw_parent, device_xname(of->sc_dev),
-			sizeof(dkw->dkw_parent));
-		return (dkwedge_del(dkw));
-	    }
-
-	case DIOCLWEDGES:
-	    {
-	    	struct dkwedge_list *dkwl = (void *) data;
-
-		if (OFDISK_FLOPPY_P(of))
-			return (ENOTTY);
-
-		return (dkwedge_list(&of->sc_dk, dkwl, l));
-	    }
 
 	default:
 		return ENOTTY;

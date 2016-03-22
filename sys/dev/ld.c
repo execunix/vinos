@@ -247,9 +247,6 @@ ldenddetach(struct ld_softc *sc)
 		vdevgone(cmaj, mn, mn, VCHR);
 	}
 
-	/* Delete all of our wedges. */
-	dkwedge_delall(&sc->sc_dk);
-
 	/* Detach from the disk list. */
 	disk_detach(&sc->sc_dk);
 	disk_destroy(&sc->sc_dk);
@@ -487,48 +484,6 @@ ldioctl(dev_t dev, u_long cmd, void *addr, int32_t flag, struct lwp *l)
 		else
 			error = 0;	/* XXX Error out instead? */
 		break;
-
-	case DIOCAWEDGE:
-	    {
-	    	struct dkwedge_info *dkw = (void *) addr;
-
-		if ((flag & FWRITE) == 0)
-			return (EBADF);
-
-		/* If the ioctl happens here, the parent is us. */
-		strlcpy(dkw->dkw_parent, device_xname(sc->sc_dv),
-			sizeof(dkw->dkw_parent));
-		return (dkwedge_add(dkw));
-	    }
-
-	case DIOCDWEDGE:
-	    {
-	    	struct dkwedge_info *dkw = (void *) addr;
-
-		if ((flag & FWRITE) == 0)
-			return (EBADF);
-
-		/* If the ioctl happens here, the parent is us. */
-		strlcpy(dkw->dkw_parent, device_xname(sc->sc_dv),
-			sizeof(dkw->dkw_parent));
-		return (dkwedge_del(dkw));
-	    }
-
-	case DIOCLWEDGES:
-	    {
-	    	struct dkwedge_list *dkwl = (void *) addr;
-
-		return (dkwedge_list(&sc->sc_dk, dkwl, l));
-	    }
-
-	case DIOCMWEDGES:
-	    {
-	    	if ((flag & FWRITE) == 0)
-			return (EBADF);
-
-		dkwedge_discover(&sc->sc_dk);
-		return 0;
-	    }
 
 	case DIOCGSTRATEGY:
 	    {
@@ -901,6 +856,6 @@ ld_set_geometry(struct ld_softc *ld)
 static void
 ld_config_interrupts(device_t d)
 {
-	struct ld_softc *sc = device_private(d);
-	dkwedge_discover(&sc->sc_dk);
+	//struct ld_softc *sc = device_private(d);
+	//dkwedge_discover(&sc->sc_dk);
 }

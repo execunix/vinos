@@ -347,11 +347,6 @@ vndopen(dev_t dev, int flags, int mode, struct lwp *l)
 	part = DISKPART(dev);
 	pmask = (1 << part);
 
-	if (sc->sc_dkdev.dk_nwedges != 0 && part != RAW_PART) {
-		error = EBUSY;
-		goto done;
-	}
-
 	if (sc->sc_flags & VNF_INITED) {
 		if ((sc->sc_dkdev.dk_openmask & ~(1<<RAW_PART)) != 0) {
 			/*
@@ -1015,9 +1010,6 @@ vnddoclear(struct vnd_softc *vnd, int pmask, int minor, bool force)
 		return EBUSY;
 	}
 
-	/* Delete all of our wedges */
-	dkwedge_delall(&vnd->sc_dkdev);
-
 	/*
 	 * XXX vndclear() might call vndclose() implicitly;
 	 * release lock to avoid recursion
@@ -1056,8 +1048,6 @@ vndioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 	int error, part, pmask;
 	uint64_t geomsize;
 	int fflags;
-	struct dkwedge_info *dkw;
-	struct dkwedge_list *dkwl;
 
 #ifdef DEBUG
 	if (vnddebug & VDB_FOLLOW)
@@ -1365,9 +1355,6 @@ vndioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 
 		pathbuf_destroy(pb);
 
-		/* Discover wedges on this disk */
-		dkwedge_discover(&vnd->sc_dkdev);
-
 		break;
 
 close_and_exit:
@@ -1536,40 +1523,6 @@ unlock_and_exit:
 		    FSYNC_WAIT | FSYNC_DATAONLY | FSYNC_CACHE, 0, 0);
 		VOP_UNLOCK(vnd->sc_vp);
 		return error;
-
-	case DIOCAWEDGE:
-		dkw = (void *) data;
-
-		if ((flag & FWRITE) == 0)
-			return EBADF;
-
-		/* If the ioctl happens here, the parent is us. */
-		strlcpy(dkw->dkw_parent, device_xname(vnd->sc_dev),
-		    sizeof(dkw->dkw_parent));
-		return dkwedge_add(dkw);
-
-	case DIOCDWEDGE:
-		dkw = (void *) data;
-
-		if ((flag & FWRITE) == 0)
-			return EBADF;
-
-		/* If the ioctl happens here, the parent is us. */
-		strlcpy(dkw->dkw_parent, device_xname(vnd->sc_dev),
-		    sizeof(dkw->dkw_parent));
-		return dkwedge_del(dkw);
-
-	case DIOCLWEDGES:
-		dkwl = (void *) data;
-
-		return dkwedge_list(&vnd->sc_dkdev, dkwl, l);
-
-	case DIOCMWEDGES:
-		if ((flag & FWRITE) == 0)
-			return EBADF;
-
-		dkwedge_discover(&vnd->sc_dkdev);
-		return 0;
 
 	default:
 		return ENOTTY;

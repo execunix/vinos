@@ -108,7 +108,6 @@ const struct uuid GET_nbsd_swap = GPT_ENT_TYPE_NETBSD_SWAP;
 
 #ifdef _STANDALONE
 static struct btinfo_bootdisk bi_disk;
-static struct btinfo_bootwedge bi_wedge;
 #endif
 
 #define MBR_PARTS(buf) ((char *)(buf) + offsetof(struct mbr_sector, mbr_parts))
@@ -240,13 +239,6 @@ check_gpt(struct biosdisk *d, daddr_t sector)
 
 	if (gpth.hdr_lba_self != sector)
 		return -1;
-
-#ifdef _STANDALONE
-	bi_wedge.matchblk = sector;
-	bi_wedge.matchnblks = 1;
-
-	md5(bi_wedge.matchhash, d->buf, d->ll.secsize);
-#endif
 
 	sectors = sizeof(d->buf)/d->ll.secsize; /* sectors per buffer */
 	entries = sizeof(d->buf)/gpth.hdr_entsz; /* entries per buffer */
@@ -492,7 +484,6 @@ add_biosdisk_bootinfo(void)
 		return;
 
 	BI_ADD(&bi_disk, BTINFO_BOOTDISK, sizeof(bi_disk));
-	BI_ADD(&bi_wedge, BTINFO_BOOTWEDGE, sizeof(bi_wedge));
 
 	done = true;
 
@@ -524,9 +515,6 @@ biosdisk_open(struct open_file *f, ...)
 	bi_disk.biosdev = d->ll.dev;
 	bi_disk.partition = partition;
 	bi_disk.labelsector = -1;
-
-	bi_wedge.biosdev = d->ll.dev;
-	bi_wedge.matchblk = -1;
 #endif
 
 #if !defined(NO_GPT)
@@ -548,11 +536,6 @@ biosdisk_open(struct open_file *f, ...)
 	}
 
 	d->boff = d->part[partition].offset;
-
-#ifdef _STANDALONE
-	bi_wedge.startblk = d->part[partition].offset;
-	bi_wedge.nblks = d->part[partition].size;
-#endif
 
 nolabel:
 #endif

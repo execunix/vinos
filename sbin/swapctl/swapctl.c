@@ -158,7 +158,6 @@ __dead static	void do_fstab(int);
 static	int check_fstab(void);
 static	void do_localdevs(int);
 static	void do_localdisk(const char *, int);
-static	int do_wedgesofdisk(int fd, int);
 static	int do_partitionsofdisk(const char *, int fd, int);
 __dead static	void usage(void);
 __dead static	void swapon_command(int, char **);
@@ -586,65 +585,9 @@ do_localdisk(const char *disk, int add)
 	if ((fd = opendisk(disk, O_RDONLY, dvname, sizeof(dvname), 0)) == -1)
 		return;
 
-	if (!do_wedgesofdisk(fd, add))
-		do_partitionsofdisk(disk, fd, add);
+	do_partitionsofdisk(disk, fd, add);
 
 	close(fd);
-}
-
-static int
-do_wedgesofdisk(int fd, int add)
-{
-	char devicename[MAXPATHLEN];
-	struct dkwedge_info *dkw;
-	struct dkwedge_list dkwl;
-	size_t bufsize;
-	u_int i;
-
-	dkw = NULL;
-	dkwl.dkwl_buf = dkw;
-	dkwl.dkwl_bufsize = 0;
-
-	for (;;) {
-		if (ioctl(fd, DIOCLWEDGES, &dkwl) == -1)
-			return 0;
-		if (dkwl.dkwl_nwedges == dkwl.dkwl_ncopied)
-			break;
-		bufsize = dkwl.dkwl_nwedges * sizeof(*dkw);
-		if (dkwl.dkwl_bufsize < bufsize) {
-			dkw = realloc(dkwl.dkwl_buf, bufsize);
-			if (dkw == NULL)
-				return 0;
-			dkwl.dkwl_buf = dkw;
-			dkwl.dkwl_bufsize = bufsize;
-		}
-	}
-
-	for (i = 0; i < dkwl.dkwl_ncopied; i++) {
-		if (strcmp(dkw[i].dkw_ptype, DKW_PTYPE_SWAP) != 0)
-			continue;
-		snprintf(devicename, sizeof(devicename), "%s%s", _PATH_DEV,
-		    dkw[i].dkw_devname);
-		devicename[sizeof(devicename)-1] = '\0';
-
-		if (add) {
-			if (add_swap(devicename, pri)) {
-				printf(
-			    	"%s: adding %s as swap device at priority 0\n",
-				    getprogname(), devicename);
-			}
-		} else {
-			if (delete_swap(devicename)) {
-				printf(
-				    "%s: removing %s as swap device\n",
-				    getprogname(), devicename);
-			}
-		}
-
-	}
-
-	free(dkw);
-	return dkwl.dkwl_nwedges != 0;
 }
 
 static int

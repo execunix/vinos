@@ -121,7 +121,6 @@ int
 main(int argc, char *argv[])
 {
 	struct disk_geom geo;
-	struct dkwedge_info dkw;
 	struct statvfs *mp;
 	struct stat sb;
 	int ch, fsi, fso, len, n, Fflag, Iflag, Zflag;
@@ -220,7 +219,6 @@ main(int argc, char *argv[])
 		usage();
 
 	memset(&sb, 0, sizeof(sb));
-	memset(&dkw, 0, sizeof(dkw));
 	special = argv[0];
 	if (Fflag) {
 		int fl;
@@ -284,27 +282,13 @@ main(int argc, char *argv[])
 			}
 		}
 
-		if (getdiskinfo(special, fsi, disktype, &geo, &dkw) == -1)
+		if (getdiskinfo(special, fsi, disktype, &geo) == -1)
 			errx(EXIT_FAILURE, lmsg, special);
 
 		if (sectorsize == 0) {
 			sectorsize = geo.dg_secsize;
 			if (sectorsize <= 0)
 				errx(EXIT_FAILURE, "no default sector size");
-		}
-
-		if (dkw.dkw_parent[0]) {
-			if (dkw.dkw_size == 0)
-				errx(EXIT_FAILURE,
-				    "%s partition is unavailable", special);
-
-			if (!Iflag) {
-				static const char m[] =
-				    "%s partition type is not `%s' (or use -I)";
-				if (strcmp(dkw.dkw_ptype, DKW_PTYPE_EXT2FS))
-					errx(EXIT_FAILURE, m,
-					    special, "Linux Ext2");
-			}
 		}
 	}
 
@@ -313,18 +297,10 @@ main(int argc, char *argv[])
 	if (fssize <= 0) {
 		if (sb.st_size != 0)
 			fssize += sb.st_size / sectorsize;
-		else
-			fssize += dkw.dkw_size;
 		if (fssize <= 0)
 			errx(EXIT_FAILURE,
 			    "Unable to determine file system size");
 	}
-
-	if (dkw.dkw_parent[0] && fssize > dkw.dkw_size)
-		errx(EXIT_FAILURE,
-		    "size %" PRIu64 " exceeds maximum file system size on "
-		    "`%s' of %" PRIu64 " sectors",
-		    fssize, special, dkw.dkw_size);
 
 	/* XXXLUKEM: only ftruncate() regular files ? (dsl: or at all?) */
 	if (Fflag && fso != -1

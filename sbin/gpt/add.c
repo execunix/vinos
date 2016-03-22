@@ -181,9 +181,6 @@ add(int fd)
 	gpt_write(fd, tpg);
 
 	printf("Partition %d added, use:\n", i + 1);
-	printf("\tdkctl %s addwedge <wedgename> %" PRIu64 " %" PRIu64
-	    " <type>\n", device_arg, map->map_start, map->map_size);
-	printf("to create a wedge for it\n");
 }
 
 int

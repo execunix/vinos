@@ -178,20 +178,9 @@ altmemstrategy(struct buf *bp)
 static int
 altmemioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 {
-	struct altmem_softc *sc = device_lookup_private(&altmem_cd, DISKUNIT(dev));
-	struct dkwedge_info *dkw;
+	//struct altmem_softc *sc = device_lookup_private(&altmem_cd, DISKUNIT(dev));
 
 	switch (cmd) {
-	case DIOCGWEDGEINFO:
-		dkw = (void *)data;
-		strlcpy(dkw->dkw_devname, device_xname(sc->sc_dev),
-		    sizeof(dkw->dkw_devname));
-		strlcpy(dkw->dkw_wname, "altmem", sizeof(dkw->dkw_wname));
-		dkw->dkw_parent[0] = '\0';
-		dkw->dkw_offset = 0;
-		dkw->dkw_size = sc->sc_size >> DEV_BSHIFT;
-		strcpy(dkw->dkw_ptype, DKW_PTYPE_UNUSED);
-		break;
 	default:
 		return ENOTTY;
 	}

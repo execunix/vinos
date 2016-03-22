@@ -832,9 +832,8 @@ getbpbinfo(int fd, const char *fname, const char *dtype, int iflag,
 	u_int size;
 #ifndef MAKEFS
 	struct disk_geom geo;
-	struct dkwedge_info dkw;
 
-	if (!create && getdiskinfo(fname, fd, NULL, &geo, &dkw) != -1) {
+	if (!create && getdiskinfo(fname, fd, NULL, &geo) != -1) {
 	    sector_size = geo.dg_secsize = 512;
 	    nsectors = geo.dg_nsectors = 63;
 	    ntracks = geo.dg_ntracks = 255;

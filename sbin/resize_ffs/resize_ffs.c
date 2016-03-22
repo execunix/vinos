@@ -2087,15 +2087,12 @@ checkonly(void)
 static off_t
 get_dev_size(char *dev_name)
 {
-	struct dkwedge_info dkw;
 	struct partition *pp;
 	struct disklabel lp;
 	struct stat st;
 	size_t ptn;
 
-	/* Get info about partition/wedge */
-	if (ioctl(fd, DIOCGWEDGEINFO, &dkw) != -1)
-		return dkw.dkw_size;
+	/* Get info about partition */
 	if (ioctl(fd, DIOCGDINFO, &lp) != -1) {
 		ptn = strchr(dev_name, '\0')[-1] - 'a';
 		if (ptn >= lp.d_npartitions)

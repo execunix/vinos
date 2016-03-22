@@ -84,7 +84,6 @@ setup(const char *dev, const char *origdev)
 	long cg, size, asked, i, j;
 	long bmapsize;
 	struct disk_geom geo;
-	struct dkwedge_info dkw;
 	off_t sizepb;
 	struct stat statb;
 	struct fs proto;
@@ -142,7 +141,7 @@ setup(const char *dev, const char *origdev)
 	} else {
 		fd = fsreadfd;
 	}
-	if (!forceimage && getdiskinfo(origdev, fd, NULL, &geo, &dkw) != -1)
+	if (!forceimage && getdiskinfo(origdev, fd, NULL, &geo) != -1)
 		dev_bsize = secsize = geo.dg_secsize;
 	else
 		dev_bsize = secsize = DEV_BSIZE;
@@ -902,21 +901,11 @@ badsb(int listerr, const char *s)
 static int
 calcsb(const char *dev, int devfd, struct fs *fs)
 {
-	struct dkwedge_info dkw;
 	struct disk_geom geo;
 	int i, nspf;
 
-	if (getdiskinfo(dev, fsreadfd, NULL, &geo, &dkw) == -1)
+	if (getdiskinfo(dev, fsreadfd, NULL, &geo) == -1)
 		pfatal("%s: CANNOT FIGURE OUT FILE SYSTEM PARTITION\n", dev);
-	if (dkw.dkw_parent[0] == '\0') {
-		pfatal("%s: CANNOT FIGURE OUT FILE SYSTEM PARTITION\n", dev);
-		return (0);
-	}
-	if (strcmp(dkw.dkw_ptype, DKW_PTYPE_FFS)) {
-		pfatal("%s: NOT LABELED AS A BSD FILE SYSTEM (%s)\n",
-		    dev, dkw.dkw_ptype);
-		return (0);
-	}
 	if (geo.dg_secsize == 0) {
 		pfatal("%s: CANNOT FIGURE OUT SECTOR SIZE\n", dev);
 		return 0;

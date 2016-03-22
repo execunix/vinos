@@ -336,9 +336,6 @@ sdattach(device_t parent, device_t self, void *aux)
 	rnd_attach_source(&sd->rnd_source, device_xname(sd->sc_dev),
 			  RND_TYPE_DISK, RND_FLAG_DEFAULT);
 
-	/* Discover wedges on this disk. */
-	dkwedge_discover(&sd->sc_dk);
-
 	/*
 	 * Disk insertion and removal times can be a useful source
 	 * of entropy, though the estimator should never _count_
@@ -372,9 +369,6 @@ sddetach(device_t self, int flags)
 
 	/* kill any pending restart */
 	callout_stop(&sd->sc_callout);
-
-	/* Delete all of our wedges. */
-	dkwedge_delall(&sd->sc_dk);
 
 	s = splbio();
 
@@ -425,15 +419,6 @@ sdopen(dev_t dev, int flag, int fmt, struct lwp *l)
 	part = SDPART(dev);
 
 	mutex_enter(&sd->sc_dk.dk_openlock);
-
-	/*
-	 * If there are wedges, and this is not RAW_PART, then we
-	 * need to fail.
-	 */
-	if (sd->sc_dk.dk_nwedges != 0 && part != RAW_PART) {
-		error = EBUSY;
-		goto bad1;
-	}
 
 	periph = sd->sc_periph;
 	adapt = periph->periph_channel->chan_adapter;
@@ -1169,48 +1154,6 @@ sdioctl(dev_t dev, u_long cmd, void *addr, int flag, struct lwp *l)
 				sd->flags &= ~(SDF_FLUSHING|SDF_DIRTY);
 		}
 		return (error);
-
-	case DIOCAWEDGE:
-	    {
-	    	struct dkwedge_info *dkw = (void *) addr;
-
-		if ((flag & FWRITE) == 0)
-			return (EBADF);
-
-		/* If the ioctl happens here, the parent is us. */
-		strlcpy(dkw->dkw_parent, device_xname(sd->sc_dev),
-			sizeof(dkw->dkw_parent));
-		return (dkwedge_add(dkw));
-	    }
-
-	case DIOCDWEDGE:
-	    {
-	    	struct dkwedge_info *dkw = (void *) addr;
-
-		if ((flag & FWRITE) == 0)
-			return (EBADF);
-
-		/* If the ioctl happens here, the parent is us. */
-		strlcpy(dkw->dkw_parent, device_xname(sd->sc_dev),
-			sizeof(dkw->dkw_parent));
-		return (dkwedge_del(dkw));
-	    }
-
-	case DIOCLWEDGES:
-	    {
-	    	struct dkwedge_list *dkwl = (void *) addr;
-
-		return (dkwedge_list(&sd->sc_dk, dkwl, l));
-	    }
-
-	case DIOCMWEDGES:
-	    {
-		if ((flag & FWRITE) == 0)
-			return (EBADF);
-
-		dkwedge_discover(&sd->sc_dk);
-		return 0;
-	    }
 
 	case DIOCGSTRATEGY:
 	    {

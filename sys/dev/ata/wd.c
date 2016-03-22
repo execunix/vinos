@@ -407,9 +407,6 @@ out:
 	rnd_attach_source(&wd->rnd_source, device_xname(wd->sc_dev),
 			  RND_TYPE_DISK, RND_FLAG_DEFAULT);
 
-	/* Discover wedges on this disk. */
-	dkwedge_discover(&wd->sc_dk);
-
 	if (!pmf_device_register1(self, wd_suspend, NULL, wd_shutdown))
 		aprint_error_dev(self, "couldn't establish power handler\n");
 }
@@ -449,9 +446,6 @@ wddetach(device_t self, int flags)
 		vdevgone(bmaj, mn, mn, VBLK);
 		vdevgone(cmaj, mn, mn, VCHR);
 	}
-
-	/* Delete all of our wedges. */
-	dkwedge_delall(&sc->sc_dk);
 
 	s = splbio();
 
@@ -928,15 +922,6 @@ wdopen(dev_t dev, int flag, int fmt, struct lwp *l)
 	mutex_enter(&wd->sc_dk.dk_openlock);
 
 	/*
-	 * If there are wedges, and this is not RAW_PART, then we
-	 * need to fail.
-	 */
-	if (wd->sc_dk.dk_nwedges != 0 && part != RAW_PART) {
-		error = EBUSY;
-		goto bad1;
-	}
-
-	/*
 	 * If this is the first open of this device, add a reference
 	 * to the adapter.
 	 */
@@ -1410,46 +1395,6 @@ wdioctl(dev_t dev, u_long xfer, void *addr, int flag, struct lwp *l)
 		wi_free(wi);
 		return(error1);
 		}
-
-	case DIOCAWEDGE:
-	    {
-	    	struct dkwedge_info *dkw = (void *) addr;
-
-		if ((flag & FWRITE) == 0)
-			return (EBADF);
-
-		/* If the ioctl happens here, the parent is us. */
-		strcpy(dkw->dkw_parent, device_xname(wd->sc_dev));
-		return (dkwedge_add(dkw));
-	    }
-
-	case DIOCDWEDGE:
-	    {
-	    	struct dkwedge_info *dkw = (void *) addr;
-
-		if ((flag & FWRITE) == 0)
-			return (EBADF);
-
-		/* If the ioctl happens here, the parent is us. */
-		strcpy(dkw->dkw_parent, device_xname(wd->sc_dev));
-		return (dkwedge_del(dkw));
-	    }
-
-	case DIOCLWEDGES:
-	    {
-	    	struct dkwedge_list *dkwl = (void *) addr;
-
-		return (dkwedge_list(&wd->sc_dk, dkwl, l));
-	    }
-
-	case DIOCMWEDGES:
-	    {
-	    	if ((flag & FWRITE) == 0)
-			return (EBADF);
-
-		dkwedge_discover(&wd->sc_dk);
-		return 0;
-	    }
 
 	case DIOCGSTRATEGY:
 	    {

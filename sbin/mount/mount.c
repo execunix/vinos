@@ -705,7 +705,6 @@ mangle(char *options, int *argcp, const char ** volatile *argvp, int *maxargcp)
 static const char *
 getfslab(const char *str)
 {
-	static struct dkwedge_info dkw;
 	struct disklabel dl;
 	int fd;
 	int part;
@@ -733,13 +732,6 @@ getfslab(const char *str)
 		/* Silently fail here - mount call can display error */
 		if ((fd = open(buf, O_RDONLY)) == -1)
 			return (NULL);
-	}
-
-	/* Check to see if this is a wedge. */
-	if (ioctl(fd, DIOCGWEDGEINFO, &dkw) == 0) {
-		/* Yup, this is easy. */
-		(void) close(fd);
-		return (dkw.dkw_ptype);
 	}
 
 	if (ioctl(fd, DIOCGDINFO, &dl) == -1) {

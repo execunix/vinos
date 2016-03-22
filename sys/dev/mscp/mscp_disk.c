@@ -234,15 +234,6 @@ raopen(dev_t dev, int flag, int fmt, struct lwp *l)
 	mutex_enter(&ra->ra_disk.dk_openlock);
 
 	/*
-	 * If there are wedges, and this is not RAW_PART, then we
-	 * need to fail.
-	 */
-	if (ra->ra_disk.dk_nwedges != 0 && part != RAW_PART) {
-		error = EBUSY;
-		goto bad1;
-	}
-
-	/*
 	 * If this is the first open; we must first try to put
 	 * the disk online (and read the label).
 	 */
@@ -459,39 +450,6 @@ raioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 		tp->d_rpm = 3600;
 		rrmakelabel(tp, ra->ra_mediaid);
 		break;
-
-	case DIOCAWEDGE:
-	    {
-	    	struct dkwedge_info *dkw = (void *) data;
-
-		if ((flag & FWRITE) == 0)
-			return (EBADF);
-
-		/* If the ioctl happens here, the parent is us. */
-		strlcpy(dkw->dkw_parent, device_xname(ra->ra_dev),
-			sizeof(dkw->dkw_parent));
-		return (dkwedge_add(dkw));
-	    }
-
-	case DIOCDWEDGE:
-	    {
-	    	struct dkwedge_info *dkw = (void *) data;
-
-		if ((flag & FWRITE) == 0)
-			return (EBADF);
-
-		/* If the ioctl happens here, the parent is us. */
-		strlcpy(dkw->dkw_parent, device_xname(ra->ra_dev),
-			sizeof(dkw->dkw_parent));
-		return (dkwedge_del(dkw));
-	    }
-
-	case DIOCLWEDGES:
-	    {
-	    	struct dkwedge_list *dkwl = (void *) data;
-
-		return (dkwedge_list(&ra->ra_disk, dkwl, l));
-	    }
 
 	default:
 		error = ENOTTY;

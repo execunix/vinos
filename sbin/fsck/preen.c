@@ -277,14 +277,6 @@ finddisk(const char *name)
 	const char *p;
 	size_t len, dlen;
 	struct diskentry *d;
-	char buf[MAXPATHLEN];
-	int fd;
-
-	if ((fd = opendisk(name, O_RDONLY, buf, sizeof(buf), 0)) != -1) {
-		if (ioctl(fd, DIOCGWEDGEINFO, &dkw) != -1)
-			name = dkw.dkw_parent;
-		(void)close(fd);
-	}
 
 	for (dlen = len = strlen(name), p = name + len - 1; p >= name; --p)
 		if (isdigit((unsigned char)*p)) {

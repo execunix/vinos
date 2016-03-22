@@ -200,62 +200,6 @@ matchbiosdisks(void)
 
 /*
  * Helper function for findroot():
- * Return non-zero if wedge device matches bootinfo.
- */
-static int
-match_bootwedge(device_t dv, struct btinfo_bootwedge *biw)
-{
-	MD5_CTX ctx;
-	struct vnode *tmpvn;
-	int error;
-	uint8_t bf[DEV_BSIZE];
-	uint8_t hash[16];
-	int found = 0;
-	daddr_t blk;
-	uint64_t nblks;
-
-	/*
-	 * If the boot loader didn't specify the sector, abort.
-	 */
-	if (biw->matchblk == -1) {
-		DPRINTF(("%s: no sector specified for %s\n", __func__,
-			device_xname(dv)));
-		return 0;
-	}
-
-	if ((tmpvn = opendisk(dv)) == NULL) {
-		DPRINTF(("%s: can't open %s\n", __func__, device_xname(dv)));
-		return 0;
-	}
-
-	MD5Init(&ctx);
-	for (blk = biw->matchblk, nblks = biw->matchnblks;
-	     nblks != 0; nblks--, blk++) {
-		error = vn_rdwr(UIO_READ, tmpvn, (void *) bf,
-		    sizeof(bf), blk * DEV_BSIZE, UIO_SYSSPACE,
-		    0, NOCRED, NULL, NULL);
-		if (error) {
-			printf("%s: unable to read block %" PRId64 " "
-			    "of dev %s (%d)\n", __func__,
-			    blk, device_xname(dv), error);
-			goto closeout;
-		}
-		MD5Update(&ctx, bf, sizeof(bf));
-	}
-	MD5Final(hash, &ctx);
-
-	/* Compare with the provided hash. */
-	found = memcmp(biw->matchhash, hash, sizeof(hash)) == 0;
-	DPRINTF(("%s: %s found=%d\n", __func__, device_xname(dv), found));
-
- closeout:
-	VOP_CLOSE(tmpvn, FREAD, NOCRED);
-	vput(tmpvn);
-	return found;
-}
-
-/*
- * Helper function for findroot():
  * Return non-zero if disk device matches bootinfo.
  */
 static int
@@ -320,7 +264,6 @@ findroot(void)
 {
 	struct btinfo_rootdevice *biv;
 	struct btinfo_bootdisk *bid;
-	struct btinfo_bootwedge *biw;
 	struct btinfo_biosgeom *big;
 	device_t dv;
 	deviter_t di;
@@ -368,49 +311,6 @@ findroot(void)
 	}
 
 	bid = lookup_bootinfo(BTINFO_BOOTDISK);
-	biw = lookup_bootinfo(BTINFO_BOOTWEDGE);
-
-	if (biw != NULL) {
-		/*
-		 * Scan all disk devices for ones that match the passed data.
-		 * Don't break if one is found, to get possible multiple
-		 * matches - for problem tracking.  Use the first match anyway
-		 * because lower devices numbers are more likely to be the
-		 * boot device.
-		 */
-		for (dv = deviter_first(&di, DEVITER_F_ROOT_FIRST);
-		     dv != NULL;
-		     dv = deviter_next(&di)) {
-			if (is_valid_disk(dv)) {
-				/*
-				 * Don't trust BIOS device numbers, try
-				 * to match the information passed by the
-				 * boot loader instead.
-				 */
-				if ((biw->biosdev & 0x80) == 0 ||
-				    match_bootwedge(dv, biw) == 0)
-				    	continue;
-				goto bootwedge_found;
-			}
-
-			continue;
- bootwedge_found:
-			if (booted_device) {
-				dmatch(__func__, dv);
-				continue;
-			}
-			booted_device = dv;
-			booted_partition = bid != NULL ? bid->partition : 0;
-			booted_nblks = biw->nblks;
-			booted_startblk = biw->startblk;
-		}
-		deviter_release(&di);
-
-		DPRINTF(("%s: BTINFO_BOOTWEDGE %s\n", __func__,
-		    booted_device ? device_xname(booted_device) : "not found"));
-		if (booted_nblks)
-			return;
-	}
 
 	if (bid != NULL) {
 		/*

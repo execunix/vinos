@@ -99,15 +99,6 @@ dk_open(struct dk_intf *di, struct dk_softc *dksc, dev_t dev,
 	mutex_enter(&dk->dk_openlock);
 	part = DISKPART(dev);
 
-	/*
-	 * If there are wedges, and this is not RAW_PART, then we
-	 * need to fail.
-	 */
-	if (dk->dk_nwedges != 0 && part != RAW_PART) {
-		ret = EBUSY;
-		goto done;
-	}
-
 	pmask = 1 << part;
 
 	/*
@@ -276,8 +267,6 @@ dk_ioctl(struct dk_intf *di, struct dk_softc *dksc, dev_t dev,
 	case DIOCSDINFO:
 	case DIOCWDINFO:
 	case DIOCWLABEL:
-	case DIOCAWEDGE:
-	case DIOCDWEDGE:
 		if ((flag & FWRITE) == 0)
 			return EBADF;
 	}
@@ -290,10 +279,6 @@ dk_ioctl(struct dk_intf *di, struct dk_softc *dksc, dev_t dev,
 	case DIOCGPART:
 	case DIOCWLABEL:
 	case DIOCGDEFLABEL:
-	case DIOCAWEDGE:
-	case DIOCDWEDGE:
-	case DIOCLWEDGES:
-	case DIOCMWEDGES:
 	case DIOCCACHESYNC:
 		if ((dksc->sc_flags & DKF_INITED) == 0)
 			return ENXIO;
@@ -341,46 +326,6 @@ dk_ioctl(struct dk_intf *di, struct dk_softc *dksc, dev_t dev,
 	case DIOCGDEFLABEL:
 		dk_getdefaultlabel(di, dksc, (struct disklabel *)data);
 		break;
-
-	case DIOCAWEDGE:
-	    {
-	    	struct dkwedge_info *dkw = (void *)data;
-
-		if ((flag & FWRITE) == 0)
-			return (EBADF);
-
-		/* If the ioctl happens here, the parent is us. */
-		strcpy(dkw->dkw_parent, dksc->sc_dkdev.dk_name);
-		return (dkwedge_add(dkw));
-	    }
-
-	case DIOCDWEDGE:
-	    {
-	    	struct dkwedge_info *dkw = (void *)data;
-
-		if ((flag & FWRITE) == 0)
-			return (EBADF);
-
-		/* If the ioctl happens here, the parent is us. */
-		strcpy(dkw->dkw_parent, dksc->sc_dkdev.dk_name);
-		return (dkwedge_del(dkw));
-	    }
-
-	case DIOCLWEDGES:
-	    {
-	    	struct dkwedge_list *dkwl = (void *)data;
-
-		return (dkwedge_list(&dksc->sc_dkdev, dkwl, l));
-	    }
-
-	case DIOCMWEDGES:
-	    {
-		if ((flag & FWRITE) == 0)
-			return (EBADF);
-
-	    	dkwedge_discover(&dksc->sc_dkdev);
-		return 0;
-	    }
 
 	case DIOCGSTRATEGY:
 	    {

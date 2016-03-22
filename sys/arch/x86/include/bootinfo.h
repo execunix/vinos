@@ -34,10 +34,9 @@
 #define BTINFO_BIOSGEOM		7
 #define BTINFO_SYMTAB		8
 #define BTINFO_MEMMAP		9
-#define	BTINFO_BOOTWEDGE	10
-#define BTINFO_MODULELIST	11
-#define BTINFO_FRAMEBUFFER	12
-#define BTINFO_USERCONFCOMMANDS	13
+#define BTINFO_MODULELIST	10
+#define BTINFO_FRAMEBUFFER	11
+#define BTINFO_USERCONFCOMMANDS	12
 
 #ifndef _LOCORE
 
@@ -66,16 +65,6 @@ struct btinfo_bootdisk {
 	int biosdev;
 	int partition;
 };
-
-struct btinfo_bootwedge {
-	struct btinfo_common common;
-	int biosdev;
-	daddr_t startblk;
-	uint64_t nblks;
-	daddr_t matchblk;
-	uint64_t matchnblks;
-	uint8_t matchhash[16];	/* MD5 hash */
-} __packed;
 
 struct btinfo_netif {
 	struct btinfo_common common;

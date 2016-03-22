@@ -360,6 +360,7 @@ X11R6
 
 dkctl/wedge/dkwedge/dk_wedges
 wedge/dk.4
+DKW_PTYPE_FFS
 sbin/devpubd/hooks/02-wedgenames
 disk_strategy/getfsspecname/getfstypename/getfsent
 		/* wedges */
