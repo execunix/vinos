@@ -73,30 +73,10 @@ struct disk_desc {
 	uint	dd_totsec;
 };
 
-/* gpt(8) use different filesystem names.
-   So, we cant use ./common/lib/libutil/getfstypename.c */
-struct gptfs_t {
-    const char *name;
-    int id;
-    uuid_t uuid;
-};
-static const struct gptfs_t gpt_filesystems[] = {
-    { "swap", FS_SWAP, GPT_ENT_TYPE_NETBSD_SWAP, },
-    { "ffs", FS_BSDFFS, GPT_ENT_TYPE_NETBSD_FFS, },
-    { "linux", FS_EX2FS, GPT_ENT_TYPE_LINUX_DATA, },
-    { "windows,", FS_MSDOS, GPT_ENT_TYPE_MS_BASIC_DATA, },
-    { "ufs", FS_OTHER, GPT_ENT_TYPE_APPLE_UFS, },
-    { "efi", FS_OTHER, GPT_ENT_TYPE_EFI, },
-    { "bios", FS_OTHER, GPT_ENT_TYPE_BIOS, },
-    { NULL, -1, GPT_ENT_TYPE_UNUSED, },
-};
-
 /* Local prototypes */
 static int foundffs(struct data *, size_t);
 static int fsck_preen(const char *, int, const char *);
 static void fixsb(const char *, const char *, char);
-static bool is_gpt(const char *);
-static int incoregpt(pm_devs_t *, partinfo *);
 
 #ifndef DISK_NAMES
 #define DISK_NAMES "wd", "sd", "ld"
@@ -529,8 +509,7 @@ find_disks(const char *doingwhat)
 		/* Use as a default disk if the user has the sets on a local disk */
 		strlcpy(localfs_dev, disk->dd_name, sizeof localfs_dev);
 
-		pm->gpt = is_gpt(pm->diskdev);
-		pm->no_mbr = disk->dd_no_mbr || pm->gpt;
+		pm->no_mbr = disk->dd_no_mbr;
 		pm->sectorsize = disk->dd_secsize;
 		pm->dlcyl = disk->dd_cyl;
 		pm->dlhead = disk->dd_head;
@@ -573,10 +552,7 @@ label_read(void)
 
 	/* Get existing/default label */
 	memset(&pm->oldlabel, 0, sizeof pm->oldlabel);
-	if (!have_gpt || !pm->gpt)
-		incorelabel(pm->diskdev, pm->oldlabel);
-	else
-		incoregpt(pm, pm->oldlabel);
+	incorelabel(pm->diskdev, pm->oldlabel);
 	/* Set 'target' label to current label in case we don't change it */
 	memcpy(&pm->bsdlabel, &pm->oldlabel, sizeof pm->bsdlabel);
 }
@@ -669,12 +645,7 @@ make_filesystems(void)
 			/* No mount point */
 			continue;
 
-		if (pm->isspecial) {
-			asprintf(&dev, "%s", pm->diskdev);
-			ptn = 0 - 'a';
-		} else {
-			asprintf(&dev, "%s%c", pm->diskdev, 'a' + ptn);
-		}
+		asprintf(&dev, "%s%c", pm->diskdev, 'a' + ptn);
 		if (dev == NULL)
 			return (ENOMEM);
 		asprintf(&devdev, "/dev/%s", dev);
@@ -808,10 +779,7 @@ make_fstab(void)
 			
 			if (dev != NULL)
 				free(dev);
-			if (pm_i->isspecial)
-				asprintf(&dev, "%s", pm_i->diskdev);
-			else
-				asprintf(&dev, "%s%c", pm_i->diskdev, 'a' + i);
+			asprintf(&dev, "%s%c", pm_i->diskdev, 'a' + i);
 			if (dev == NULL)
 				return (ENOMEM);
 
@@ -835,8 +803,6 @@ make_fstab(void)
 				fstype = "msdos";
 				break;
 			case FS_SWAP:
-				if (pm_i->isspecial)
-					continue;
 				if (swap_dev == -1) {
 					swap_dev = i;
 					dump_dev = ",dp";
@@ -870,9 +836,6 @@ make_fstab(void)
 			   pm_i->bsdlabel[i].pi_flags & PIF_NOEXEC ? ",noexec" : "",
 			   pm_i->bsdlabel[i].pi_flags & PIF_NOSUID ? ",nosuid" : "",
 			   dump_freq, fsck_pass);
-	 		if (pm_i->isspecial)
-	 			/* Special device (such as dk*) have only one partition */
-	 			break;
 		}
 		/* Simple install, only one disk */
 		if (!partman_go)
@@ -1037,7 +1000,7 @@ static int
 mount_root(void)
 {
 	int	error;
-	int ptn = (pm->isspecial)? 0 - 'a' : pm->rootpart;
+	int ptn = pm->rootpart;
 
 	error = fsck_preen(pm->diskdev, ptn, "ffs");
 	if (error != 0)
@@ -1227,98 +1190,3 @@ bootxx_name(void)
 	return bootxx;
 }
 #endif
-
-static int
-get_fsid_by_gptuuid(const char *str)
-{
-	int i;
-	uuid_t uuid;
-	uint32_t status;
-
-	uuid_from_string(str, &uuid, &status);
-	if (status == uuid_s_ok) {
-		for (i = 0; gpt_filesystems[i].id > 0; i++)
-			if (uuid_equal(&uuid, &(gpt_filesystems[i].uuid), NULL))
-				return gpt_filesystems[i].id;
-	}
-	return FS_OTHER;
-}
-
-const char *
-get_gptfs_by_id(int filesystem)
-{
-	int i;
-	for (i = 0; gpt_filesystems[i].id > 0; i++)
-		if (filesystem == gpt_filesystems[i].id)
-			return gpt_filesystems[i].name;
-	return NULL;
-}
-
-/* XXX: rewrite */
-static int
-incoregpt(pm_devs_t *pm_cur, partinfo *lp)
-{
-	int i, num;
-	unsigned int p_num;
-	uint64_t p_start, p_size;
-	char *textbuf, *t, *tt, p_type[STRSIZE];
-
-	if (collect(T_OUTPUT, &textbuf, "gpt show -u %s 2>/dev/null", pm_cur->diskdev) < 1)
-		return -1;
-
-	(void)strtok(textbuf, "\n"); /* ignore first line */
-	while ((t = strtok(NULL, "\n")) != NULL) {
-		i = 0; p_start = 0; p_size = 0; p_num = 0; strcpy(p_type, ""); /* init */
-		while ((tt = strsep(&t, " \t")) != NULL) {
-			if (strlen(tt) == 0)
-				continue;
-			if (i == 0)
-				p_start = strtouq(tt, NULL, 10);
-			if (i == 1)
-				p_size = strtouq(tt, NULL, 10);
-			if (i == 2)
-				p_num = strtouq(tt, NULL, 10);
-			if (i > 2 || (i == 2 && p_num == 0))
-				if (
-					strcmp(tt, "GPT") &&
-					strcmp(tt, "part") &&
-					strcmp(tt, "-")
-					)
-						strncat(p_type, tt, STRSIZE);
-			i++;
-		}
-		if (p_start == 0 || p_size == 0)
-			continue;
-		else if (! strcmp(p_type, "Pritable"))
-			pm_cur->ptstart = p_start + p_size;
-		else if (! strcmp(p_type, "Sectable"))
-			pm_cur->ptsize = p_start - pm_cur->ptstart - 1;
-		else if (p_num == 0 && strlen(p_type) > 0)
-			/* Utilitary entry (PMBR, etc) */
-			continue;
-		else if (p_num == 0) {
-			/* Free space */
-			continue;
-		} else {
-			/* Usual partition */
-			lp[p_num].pi_size = p_size;
-			lp[p_num].pi_offset = p_start;
-			lp[p_num].pi_fstype = get_fsid_by_gptuuid(p_type);
-		}
-	}
-	free(textbuf);
-
-	return 0;
-}
-
-static bool
-is_gpt(const char *dev)
-{
-	check_available_binaries();
-
-	if (!have_gpt)
-		return false;
-
-	return !run_program(RUN_SILENT | RUN_ERROR_OK,
-		"sh -c 'gpt show %s |grep -e Pri\\ GPT\\ table'", dev);
-}

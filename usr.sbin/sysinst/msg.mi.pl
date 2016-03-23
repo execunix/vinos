@@ -1013,8 +1013,6 @@ message enable_ntpd {Wlacz ntpd}
 message run_ntpdate {uruchom ntpdate podczas startu systemu}
 message enable_mdnsd {Wlacz mdnsd}
 message enable_xdm {Enable xdm}
-message enable_lvm {Enable lvm}
-message enable_raid {Enable raidframe}
 message add_a_user {Add a user}
 message configmenu {Skonfiguruj dodatkowe elementy w razie potrzeby.}
 message doneconfig {Konfiguracja zakonczona}
@@ -1049,15 +1047,12 @@ Sprawdz sciezke pakietow i sprobuj ponownie.}
 message failed {Nie powiodlo sie}
 
 message notsupported {Operacja nie jest obs³ugiwana!}
-message askfsmountadv {Montowania lub "raid" lub "lvm"?}
 message partman {Partycje rozszerzone}
 message editbsdpart {Edytuj partycje BSD}
 message editmbr {Edytowaæ i zapisywaæ MBR}
 message switchgpt {Prze³±cz na GPT}
 message switchmbr {Prze³±cz na MBR}
 message renamedisk {Ustaw nazwê dysku}
-message fmtasraid {Format jak RAID}
-message fmtaslvm {Format jak LVM PV}
 message encrypt {Szyfrowanie}
 message setbootable {Bootable flaga}
 message erase {Bezpieczne kasowanie}
@@ -1085,9 +1080,6 @@ message noroot {No partycja zdefiniowana, nie mo¿e kontynuowaæ \n}
 message wannaunblock {Urz±dzenie jest zablokowane. Czy chcesz, aby zmusiæ go odblokowaæ i kontynuowaæ?}
 message wannatry {Czy chcesz spróbowaæ?}
 message create_cnd {Utwórz wirtualnego obraz dysku (VND)}
-message create_vg {Utwórz grupê woluminów (LVM VG)}
-message create_lv {      Utwórz wolumin logiczny}
-message create_raid {Utwórz oprogramowania RAID}
 message updpmlist {Aktualizuj listê urz±dzeñ}
 message savepm {Zapisz zmiany}
 message pmblocked {ZABLOK.}
@@ -1104,32 +1096,8 @@ message invaliddev {Nieprawid³owy urz±dzenie!}
 message avdisks {Dostêpne dysków:}
 message nofreedev {Nie mo¿na przydzieliæ wêze³!}
 message partman_header
-{Partition Manager. Wszystkie dyski, partycje oraz itp. tam wy¶wietlane.
-Pocz±tkowo sprawiaj± partycji MBR, a nastêpnie dokonaæ BSD etykietê.
-Je¶li chcesz korzystaæ z RAID, LVM lub CGD, wykonaj nastêpuj±ce kroki:
-1) Tworzenie partycji BSD z potrzebnego typu;
-2) Utwórz RAID / LVM VG / CGD korzystania z tych partycji; 3) Zapisz go;
-4) Tworzenie partycji dla RAID / CGD lub Logical Volumes dla LVM.}
+{Partition Manager. Wszystkie dyski, partycje oraz wy¶wietlane.}
 
-message raid_menufmt {   raid%d (level %1d) on %-34s %11uM}
-message raid_err_menufmt {   EMPTY RAID!}
-message raid_disks_fmt {Dyski: %33s}
-message raid_spares_fmt {Czê¶ci zamienne: %23s}
-message raid_level_fmt {Poziom RAID:     %23d}
-message raid_numrow_fmt {numRow:          %23d}
-message raid_numcol_fmt {numCol:          %23d}
-message raid_numspare_fmt {numSpare:        %23d}
-message raid_sectpersu_fmt {sectPerSU:        %22d}
-message raid_superpar_fmt {SUsPerParityUnit: %22d}
-message raid_superrec_fmt {SUsPerReconUnit:  %22d}
-message raid_nomultidim {Tablice wielowymiarowe nie s± obs³ugiwane!}
-message raid_numrow_ask {numRow?}
-message raid_numcol_ask {numCol?}
-message raid_numspare_ask {numSpare?}
-message raid_sectpersu_ask {sectPerSU?}
-message raid_superpar_ask {SUsPerParityUnit?}
-message raid_superrec_ask {SUsPerReconUnit?}
-message raid_disks {Dyski w RAID:}
 message vnd_err_menufmt {   ¦CIE¯KA NIE ZDEFINIOWANE!}
 message vnd_assgn_menufmt {   vnd%1d na %-51s ASSIGN}
 message vnd_menufmt {   vnd%1d na %-45s %11uM}
@@ -1148,40 +1116,6 @@ message vnd_bps_ask {Bajtów na sektor?}
 message vnd_spt_ask {Sektory na ¶cie¿kê?}
 message vnd_tpc_ask {Utwory na cylinder?}
 message vnd_cyl_ask {Cylindry}
-message lvm_disks {Dyski w VG:}
-message lvm_menufmt {   %-44s %20sM}
-message lvm_err_menufmt {   EMPTY VG!}
-message lvm_disks_fmt {PV's: %34s}
-message lvm_name_fmt {Nazwa: %33s}
-message lvm_maxlv_fmt {MaxLogicalVolumes:  %20s}
-message lvm_maxpv_fmt {MaxPhysicalVolumes: %20s}
-message lvm_extsiz_fmt {PhysicalExtentSize: %20s}
-message lvm_name_ask {Nazwa?}
-message lvm_maxlv_ask {MaxLogicalVolumes?}
-message lvm_maxpv_ask {MaxPhysicalVolumes?}
-message lvm_extsiz_ask {PhysicalExtentSize (MB)?}
-message lvmlv_menufmt {      Wolumin logiczny%-34s %11uM}
-message lvmlv_name_fmt {Nazwa: %33s}
-message lvmlv_size_fmt {Rozmiar: %30dM}
-message lvmlv_ro_fmt {Read-only:       %23s}
-message lvmlv_cont_fmt {S±siaduj±cy:     %23s}
-message lvmlv_extnum_fmt {LogicalExtentsNumber: %18s}
-message lvmlv_minor_fmt {Mniejsza liczba: %23s}
-message lvmlv_mirrors_fmt {Mirrors:     %27d}
-message lvmlv_regsiz_fmt {MirrorLogRegionSize:  %18s}
-message lvmlv_pers_fmt {Trwa³e drobne numer:  %18s}
-message lvmlv_readahsect_fmt {ReadAheadSectors ceny: %17s}
-message lvmlv_stripes_fmt {Stripes:     %27s}
-message lvmlv_stripesiz_fmt {StripeSize:  %27s}
-message lvmlv_zero_fmt {Zerowanie pierwszej KB: %16s}
-message lvmlv_name_ask {Nazwa?}
-message lvmlv_size_ask {Rozmiar (MB)?}
-message lvmlv_extnum_ask {LogicalExtentsNumber?}
-message lvmlv_minor_ask {Mniejsza liczba?}
-message lvmlv_mirrors_ask {Mirrors?}
-message lvmlv_regsiz_ask {MirrorLogRegionSize?}
-message lvmlv_readahsect_ask {ReadAheadSectors?}
-message lvmlv_stripes_ask {Stripes?}
 
 message addusername {8 character username to add}
 message addusertowheel {Do you wish to add this user to group wheel?}

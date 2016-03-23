@@ -67,7 +67,6 @@ static bool	ld_suspend(device_t, const pmf_qual_t *);
 static bool	ld_shutdown(device_t, int);
 static void	ldstart(struct ld_softc *, struct buf *);
 static void	ld_set_geometry(struct ld_softc *);
-static void	ld_config_interrupts (device_t);
 static int	ldlastclose(device_t);
 
 extern struct	cfdriver ld_cd;
@@ -172,9 +171,6 @@ ldattach(struct ld_softc *sc)
 		    "couldn't establish power handler\n");
 
 	bufq_alloc(&sc->sc_bufq, BUFQ_DISK_DEFAULT_STRAT, BUFQ_SORT_RAWBLOCK);
-
-	/* Discover wedges on this disk. */
-	config_interrupts(sc->sc_dv, ld_config_interrupts);
 }
 
 int
@@ -851,11 +847,4 @@ ld_set_geometry(struct ld_softc *ld)
 	dg->dg_ncylinders = ld->sc_ncylinders;
 
 	disk_set_info(ld->sc_dv, &ld->sc_dk, NULL);
-}
-
-static void
-ld_config_interrupts(device_t d)
-{
-	//struct ld_softc *sc = device_private(d);
-	//dkwedge_discover(&sc->sc_dk);
 }

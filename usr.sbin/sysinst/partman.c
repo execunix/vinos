@@ -46,7 +46,7 @@
 
 /* flags whether to offer the respective options (depending on helper
    programs available on install media */
-int have_vnd, have_gpt, have_dk;
+int have_vnd, have_dk;
 
 /* XXX: replace all MAX_* defines with vars that depend on kernel settings */
 #define MAX_ENTRIES 96
@@ -67,47 +67,6 @@ typedef struct vnds_t {
 } vnds_t;
 vnds_t vnds[MAX_VND];
 
-#define MAX_LVM_VG 16
-#define MAX_LVM_PV 255
-#define MAX_LVM_LV 255
-typedef struct pv_t {
-	pm_devs_t *pm;
-	char pm_name[SSTRSIZE];
-	int pm_part;
-	int metadatasize;
-	int metadatacopies;
-	int labelsector;
-	int setphysicalvolumesize;
-} pv_t;
-typedef struct lv_t {
-	int blocked;
-	int size;
-	char name[SSTRSIZE];
-	int readonly;
-	int contiguous;
-	char extents[SSTRSIZE];
-	int minor;
-	int mirrors;
-	int regionsize;
-	int persistent;
-	int readahead;
-	int stripes;
-	int stripesize;
-	int zero;
-} lv_t;
-typedef struct lvms_t {
-	int enabled;
-	int blocked;
-	char name[SSTRSIZE];
-	int maxlogicalvolumes;
-	int maxphysicalvolumes;
-	int physicalextentsize;
-	uint total_size;
-	pv_t pv[MAX_LVM_PV];
-	lv_t lv[MAX_LVM_LV];
-} lvms_t;
-lvms_t lvms[MAX_LVM_VG];
-
 typedef struct structinfo_t {
 	int max;
 	uint entry_size;
@@ -117,7 +76,7 @@ typedef struct structinfo_t {
 	void *entry_blocked;
 	void *entry_node;
 } structinfo_t;
-structinfo_t vnds_t_info, lvms_t_info, lv_t_info;
+structinfo_t vnds_t_info;
 
 typedef struct pm_upddevlist_adv_t {
 	const char *create_msg;
@@ -142,26 +101,12 @@ enum { /* VND menu enum */
 	PMV_MENU_REMOVE, PMV_MENU_END
 };
 
-enum { /* LVM menu enum */
-	PML_MENU_PV, PML_MENU_NAME, PML_MENU_MAXLOGICALVOLUMES,
-	PML_MENU_MAXPHYSICALVOLUMES, PML_MENU_PHYSICALEXTENTSIZE, 
-	PML_MENU_REMOVE, PML_MENU_END
-};
-
-enum { /* LVM submenu (logical volumes) enum */
-	PMLV_MENU_NAME, PMLV_MENU_SIZE, PMLV_MENU_READONLY, PMLV_MENU_CONTIGUOUS,
-	PMLV_MENU_EXTENTS, PMLV_MENU_MINOR, PMLV_MENU_PERSISTENT,
-	PMLV_MENU_MIRRORS, PMLV_MENU_REGIONSIZE, PMLV_MENU_READAHEAD,
-	PMLV_MENU_STRIPES, PMLV_MENU_STRIPESIZE, PMLV_MENU_ZERO, 
-	PMLV_MENU_REMOVE, PMLV_MENU_END
-};
-
 part_entry_t pm_dev_list(int);
 static int pm_mount(pm_devs_t *, int);
 static int pm_upddevlist(menudesc *, void *);
 static void pm_select(pm_devs_t *);
 
-/* Universal menu for VND/LVM entry edit */
+/* Universal menu for VND entry edit */
 static int
 pm_edit(int menu_entries_count, void (*menu_fmt)(menudesc *, int, void *),
 	int (*action)(menudesc *, void *), int (*check_fun)(void *),
@@ -206,16 +151,9 @@ pm_getdevstring(char *buf, int len, pm_devs_t *pm_cur, int num)
 {
 	int i;
 
-	if (pm_cur->isspecial)
-		snprintf(buf, len, "%s", pm_cur->diskdev);
-	else if (num + 'a' < 'a' || num + 'a' > 'a' + MAXPARTITIONS)
+	if (num + 'a' < 'a' || num + 'a' > 'a' + MAXPARTITIONS)
 		snprintf(buf, len, "%sd", pm_cur->diskdev);
-	else if (pm_cur->gpt) {
-		for (i = 0; i < MAX_WEDGES; i++)
-			if (wedges[i].pm == pm_cur &&
-				wedges[i].ptn == num)
-				snprintf(buf, len, "dk%d", i); // XXX: xxx
-	} else
+	else
 		snprintf(buf, len, "%s%c", pm_cur->diskdev, num + 'a');
 
 	return;
@@ -235,12 +173,6 @@ pm_dev_list(int type)
 	SLIST_FOREACH(pm_i, &pm_head, l)
 		for (i = 0; i < MAXPARTITIONS; i++) {
 			ok = 0;
-			switch (type) {
-				case PM_LVM_T:
-					if (pm_i->bsdlabel[i].lvmpv)
-						ok = 1;
-					break;
-			}
 			if (ok && pm_partusage(pm_i, i, 0) == 0) {
 				disk_entries[num_devs].dev_ptr = pm_i;
 				disk_entries[num_devs].dev_num = i;
@@ -565,717 +497,6 @@ pm_vnd_commit(void)
 }
 
 /***
- LVM
- ***/
-
-/* Add lvm logical volumes to pm list */
-/* XXX: rewrite */
-static int
-pm_lvm_find(void)
-{
-	int i, ii, already_found;
-	char dev[STRSIZE];
-	pm_devs_t *pm_i;
-
-	for (i = 0; i < MAX_LVM_VG; i++) {
-		if (! lvms[i].blocked)
-			continue;
-		for (ii = 0; ii < MAX_LVM_LV; ii++) {
-			if (! lvms[i].lv[ii].blocked || lvms[i].lv[ii].size < 1)
-				continue;
-			snprintf(dev, STRSIZE, "%s/%s", lvms[i].name, lvms[i].lv[ii].name);
-			already_found = 0;
-			SLIST_FOREACH(pm_i, &pm_head, l)
-				if (!already_found && strcmp(pm_i->diskdev, dev) == 0) {
-					pm_i->found = 1;
-					already_found = 1;
-				}
-			if (already_found)
-				/* We already added this device, skipping */
-				continue;
-			pm_new->found = 1;
-			pm_new->isspecial = 1;
-			pm_new->refdev = &lvms[i].lv[ii];
-			pm_new->sectorsize = 1;
-			pm_new->dlcylsize = MEG;
-			pm_new->bsdlabel[0].pi_size = MEG * lvms[i].lv[ii].size;
-			strlcpy(pm_new->diskdev, dev, SSTRSIZE);
-			strlcpy(pm_new->diskdev_descr, dev, STRSIZE);
-
-			if (SLIST_EMPTY(&pm_head))
-				 SLIST_INSERT_HEAD(&pm_head, pm_new, l);
-			else
-				 SLIST_INSERT_AFTER(pm_i, pm_new, l);
-			pm_new = malloc(sizeof (pm_devs_t));
-			memset(pm_new, 0, sizeof *pm_new);
-		}
-	}
-	return 0;
-}
-
-static int
-pm_lvm_disk_add(menudesc *m, void *arg)
-{
-	int i;
-	lvms_t *dev_ptr = arg;
-	part_entry_t disk_entrie = pm_dev_list(PM_LVM_T);
-	if (disk_entrie.retvalue < 0)
-		return disk_entrie.retvalue;
-
-	for (i = 0; i < MAX_LVM_PV; i++)
-		if (dev_ptr->pv[i].pm == NULL) {
-			dev_ptr->pv[i].pm = disk_entrie.dev_ptr;
-			dev_ptr->pv[i].pm_part = disk_entrie.dev_num;
-			strlcpy(dev_ptr->pv[i].pm_name, disk_entrie.fullname, SSTRSIZE);
-			break;
-		}
-	return 0;
-}
-
-static int
-pm_lvm_disk_del(menudesc *m, void *arg)
-{
-	int i, retvalue = -1, num_devs = 0;
-	int menu_no;
-	lvms_t *dev_ptr = arg;
-	menu_ent menu_entries[MAX_LVM_PV];
-	part_entry_t submenu_args[MAX_LVM_PV];
-
-	for (i = 0; i < MAX_LVM_PV; i++) {
-		if (dev_ptr->pv[i].pm == NULL)
-			continue;
-		menu_entries[num_devs] = (struct menu_ent) {
-			.opt_name = dev_ptr->pv[i].pm_name,
-			.opt_action = set_menu_select,
-			.opt_menu = OPT_NOMENU,
-			.opt_flags = OPT_EXIT,
-		};
-		submenu_args[num_devs].dev_num = i;
-		num_devs++;
-	}
-
-	menu_no = new_menu(MSG_lvm_disks,
-		menu_entries, num_devs, -1, -1, (num_devs+1<3)?3:num_devs+1, 13,
-		MC_SCROLL | MC_NOCLEAR, NULL, NULL, NULL, NULL, NULL);
-	if (menu_no == -1)
-		return -1;
-	process_menu(menu_no, &retvalue);
-	free_menu(menu_no);
-
-	if (retvalue < 0 || retvalue >= num_devs)
-		return -1;
-
-	dev_ptr->pv[submenu_args[retvalue].dev_num].pm = NULL;
-
-	return 0;
-}
-
-static void
-pm_lvm_menufmt(menudesc *m, int opt, void *arg)
-{
-	int i, ok = 0, used_size = 0;
-	char buf1[STRSIZE]; buf1[0] = '\0';
-	char buf2[STRSIZE]; buf2[0] = '\0';
-	lvms_t *dev_ptr = ((part_entry_t *)arg)[opt].dev_ptr;
-
-	if (dev_ptr->enabled == 0)
-		return;
-	snprintf(buf1, STRSIZE, "VG '%s' on ", dev_ptr->name);
-	for (i = 0; i < MAX_LVM_PV; i++)
-		if (dev_ptr->pv[i].pm != NULL) {
-			strncat(buf1, dev_ptr->pv[i].pm_name, STRSIZE);
-			strncat(buf1, " ", STRSIZE);
-			ok = 1;
-		}
-	for (i = 0; i < MAX_LVM_LV; i++)
-		used_size += dev_ptr->lv[i].size;
-	if (ok) {
-		snprintf(buf2, STRSIZE, "%d/%u",
-			dev_ptr->total_size - used_size, dev_ptr->total_size);
-		wprintw(m->mw, msg_string(MSG_lvm_menufmt), buf1, buf2);
-	} else
-		wprintw(m->mw, "%s", msg_string(MSG_lvm_err_menufmt));
-	return;
-}
-
-static void
-pm_lvm_edit_menufmt(menudesc *m, int opt, void *arg)
-{
-	int i;
-	char buf[STRSIZE];
-	lvms_t *dev_ptr = arg;
-	strlcpy(buf, msg_string(MSG_auto), STRSIZE);
-
-	switch (opt) {
-		case PML_MENU_PV:
-			buf[0] = '\0';
-			for (i = 0; i < MAX_LVM_PV; i++)
-				if (dev_ptr->pv[i].pm != NULL)
-					snprintf(buf, STRSIZE, "%s %s", buf, dev_ptr->pv[i].pm_name);
-			wprintw(m->mw, msg_string(MSG_lvm_disks_fmt), buf);
-			break;
-		case PML_MENU_NAME:
-			wprintw(m->mw, msg_string(MSG_lvm_name_fmt), dev_ptr->name);
-			break;
-		case PML_MENU_MAXLOGICALVOLUMES:
-			if (dev_ptr->maxlogicalvolumes > 0)
-				snprintf(buf, STRSIZE, "%d", dev_ptr->maxlogicalvolumes);
-			wprintw(m->mw, msg_string(MSG_lvm_maxlv_fmt), buf);
-			break;
-		case PML_MENU_MAXPHYSICALVOLUMES:
-			if (dev_ptr->maxphysicalvolumes > 0)
-				snprintf(buf, STRSIZE, "%d", dev_ptr->maxphysicalvolumes);
-			wprintw(m->mw, msg_string(MSG_lvm_maxpv_fmt), buf);
-			break;
-		case PML_MENU_PHYSICALEXTENTSIZE:
-			if (dev_ptr->physicalextentsize > 0)
-				snprintf(buf, STRSIZE, "%dM", dev_ptr->physicalextentsize);
-			wprintw(m->mw, msg_string(MSG_lvm_extsiz_fmt), buf);
-			break;
-	}
-	return;
-}
-
-static int
-pm_lvm_set_value(menudesc *m, void *arg)
-{
-	char buf[STRSIZE];
-	const char *msg_to_show = NULL;
-	int *out_var = NULL;
-	lvms_t *dev_ptr = arg;
-
-	static menu_ent menuent_disk_adddel[] = {
-	    {MSG_add, OPT_NOMENU, OPT_EXIT, pm_lvm_disk_add}, 
-	    {MSG_remove, OPT_NOMENU, OPT_EXIT, pm_lvm_disk_del}
-	};
-	static int menu_disk_adddel = -1;
-	if (menu_disk_adddel == -1) {
-		menu_disk_adddel = new_menu(NULL, menuent_disk_adddel, nelem(menuent_disk_adddel),
-			-1, -1, 0, 10, MC_NOCLEAR, NULL, NULL, NULL, NULL, NULL);
-	}
-
-	switch (m->cursel) {
-		case PML_MENU_PV:
-			process_menu(menu_disk_adddel, arg);
-			return 0;
-		case PML_MENU_NAME:
-			msg_prompt_win(MSG_lvm_name_ask, -1, 18, 0, 0, dev_ptr->name, dev_ptr->name, SSTRSIZE);
-			return 0;
-		case PML_MENU_MAXLOGICALVOLUMES:
-			msg_to_show = MSG_lvm_maxlv_ask;
-			out_var = &(dev_ptr->maxlogicalvolumes);			
-			break;
-		case PML_MENU_MAXPHYSICALVOLUMES:
-			msg_to_show = MSG_lvm_maxpv_ask;
-			out_var = &(dev_ptr->maxphysicalvolumes);
-			break;
-		case PML_MENU_PHYSICALEXTENTSIZE:
-			msg_to_show = MSG_lvm_extsiz_ask;
-			out_var = &(dev_ptr->physicalextentsize);
-			break;
-		case PML_MENU_REMOVE:
-			dev_ptr->enabled = 0;
-			return 0;
-	}
-	if (out_var == NULL || msg_to_show == NULL)
-		return -1;
-	snprintf(buf, SSTRSIZE, "%d", *out_var);
-	msg_prompt_win(msg_to_show, -1, 18, 0, 0, buf, buf, SSTRSIZE);
-	if (atoi(buf) >= 0)
-		*out_var = atoi(buf);
-	return 0;
-}
-
-static void
-pm_lvm_init(void *arg, void* none)
-{
-	lvms_t *dev_ptr = arg;
-
-	memset(dev_ptr, 0, sizeof *dev_ptr);
-	*dev_ptr = (struct lvms_t) {
-		.enabled = 1,
-		.blocked = 0,
-		.maxlogicalvolumes = MAX_LVM_PV,
-		.maxphysicalvolumes = MAX_LVM_LV,
-		.physicalextentsize = -1,
-	};
-	sprintf(dev_ptr->name, "vg%.2d", rand()%100);
-	return;
-}
-
-static int
-pm_lvm_check(void *arg)
-{
-	int i, ok = 0;
-	lvms_t *dev_ptr = arg;
-	dev_ptr->total_size = 0;
-
-	for (i = 0; i < MAX_LVM_PV; i++)
-		if (dev_ptr->pv[i].pm != NULL) {
-			ok = 1;
-			dev_ptr->total_size += dev_ptr->pv[i].pm->
-						bsdlabel[dev_ptr->pv[i].pm_part].pi_size /
-						(MEG / dev_ptr->pv[i].pm->sectorsize);
-		}
-	if (! ok)
-		dev_ptr->enabled = 0;
-	return dev_ptr->enabled;
-}
-
-static void
-pm_lvmlv_menufmt(menudesc *m, int opt, void *arg)
-{
-	char buf[STRSIZE];
-	lv_t *dev_ptr = ((part_entry_t *)arg)[opt].dev_ptr;
-
-	if (dev_ptr->size > 0) {
-		snprintf(buf, STRSIZE, "'%s'", dev_ptr->name);
-		wprintw(m->mw, msg_string(MSG_lvmlv_menufmt), buf, dev_ptr->size);
-	}
-	return;
-}
-
-static void
-pm_lvmlv_edit_menufmt(menudesc *m, int opt, void *arg)
-{
-
-	lv_t *dev_ptr = arg;
-	char buf[STRSIZE];
-	strlcpy(buf, msg_string(MSG_auto), STRSIZE);
-
-	switch (opt) {
-		case PMLV_MENU_NAME:
-			wprintw(m->mw, msg_string(MSG_lvmlv_name_fmt), dev_ptr->name);
-			break;
-		case PMLV_MENU_SIZE:
-			wprintw(m->mw, msg_string(MSG_lvmlv_size_fmt), dev_ptr->size);
-			break;
-		case PMLV_MENU_READONLY:
-			wprintw(m->mw, msg_string(MSG_lvmlv_ro_fmt),
-				dev_ptr->readonly? msg_string(MSG_Yes) : msg_string(MSG_No));
-			break;
-		case PMLV_MENU_CONTIGUOUS:
-			wprintw(m->mw, msg_string(MSG_lvmlv_cont_fmt),
-				dev_ptr->contiguous? msg_string(MSG_Yes) : msg_string(MSG_No));
-			break;
-		case PMLV_MENU_EXTENTS:
-			wprintw(m->mw, msg_string(MSG_lvmlv_extnum_fmt),
-				(strlen(dev_ptr->extents) > 0)? dev_ptr->extents : msg_string(MSG_auto));
-			break;
-		case PMLV_MENU_MINOR:
-			if (dev_ptr->minor > 0)
-				snprintf(buf, STRSIZE, "%dK", dev_ptr->minor);
-			wprintw(m->mw, msg_string(MSG_lvmlv_minor_fmt), buf);
-			break;
-		case PMLV_MENU_MIRRORS:
-			wprintw(m->mw, msg_string(MSG_lvmlv_mirrors_fmt), dev_ptr->mirrors);
-			break;
-		case PMLV_MENU_REGIONSIZE:
-			if (dev_ptr->regionsize > 0)
-				snprintf(buf, STRSIZE, "%dM", dev_ptr->regionsize);
-			wprintw(m->mw, msg_string(MSG_lvmlv_regsiz_fmt), buf);
-			break;
-		case PMLV_MENU_PERSISTENT:
-			wprintw(m->mw, msg_string(MSG_lvmlv_pers_fmt),
-				dev_ptr->persistent ? msg_string(MSG_Yes) : msg_string(MSG_No));
-			break;
-		case PMLV_MENU_READAHEAD:
-			if (dev_ptr->readahead > 0)
-				snprintf(buf, STRSIZE, "%d", dev_ptr->readahead);
-			wprintw(m->mw, msg_string(MSG_lvmlv_readahsect_fmt), buf);
-			break;
-		case PMLV_MENU_STRIPES:
-			if (dev_ptr->stripes > 0)
-				snprintf(buf, STRSIZE, "%d", dev_ptr->stripes);
-			wprintw(m->mw, msg_string(MSG_lvmlv_stripes_fmt), buf);
-			break;
-		case PMLV_MENU_STRIPESIZE:
-			if (dev_ptr->stripesize > 0)
-				snprintf(buf, STRSIZE, "%dK", dev_ptr->stripesize);
-			wprintw(m->mw, msg_string(MSG_lvmlv_stripesiz_fmt), buf);
-			break;
-		case PMLV_MENU_ZERO:
-			wprintw(m->mw, msg_string(MSG_lvmlv_zero_fmt),
-				dev_ptr->zero? msg_string(MSG_Yes) : msg_string(MSG_No));
-			break;
-	}
-	return;
-}
-
-static int
-pm_lvmlv_set_value(menudesc *m, void *arg)
-{
-	char buf[STRSIZE];
-	const char *msg_to_show = NULL;
-	int *out_var = NULL;
-	lv_t *dev_ptr = arg;
-
-	switch (m->cursel) {
-		case PMLV_MENU_NAME:
-			msg_prompt_win(MSG_lvmlv_name_ask, -1, 18, 0, 0, dev_ptr->name, dev_ptr->name,
-				SSTRSIZE);
-			return 0;
-		case PMLV_MENU_SIZE:
-			msg_to_show = MSG_lvmlv_size_ask;
-			out_var = &(dev_ptr->size);
-			break;
-		case PMLV_MENU_READONLY:
-			dev_ptr->readonly = !dev_ptr->readonly;
-			return 0;
-		case PMLV_MENU_CONTIGUOUS:
-			dev_ptr->contiguous = !dev_ptr->contiguous;
-			return 0;
-		case PMLV_MENU_EXTENTS:
-			msg_prompt_win(MSG_lvmlv_extnum_ask, -1, 18, 0, 0,
-				dev_ptr->extents, dev_ptr->extents, SSTRSIZE);
-			return 0;
-		case PMLV_MENU_MINOR:
-			msg_to_show = MSG_lvmlv_minor_ask;
-			out_var = &(dev_ptr->minor);
-			break;
-		case PMLV_MENU_MIRRORS:
-			msg_to_show = MSG_lvmlv_mirrors_ask;
-			out_var = &(dev_ptr->mirrors);
-			break;
-		case PMLV_MENU_REGIONSIZE:
-			msg_to_show = MSG_lvmlv_regsiz_ask;
-			out_var = &(dev_ptr->regionsize);
-			break;
-		case PMLV_MENU_PERSISTENT:
-			dev_ptr->persistent = !dev_ptr->persistent;
-			return 0;
-		case PMLV_MENU_READAHEAD:
-			msg_to_show = MSG_lvmlv_readahsect_ask;
-			out_var = &(dev_ptr->readahead);
-			break;
-		case PMLV_MENU_STRIPES:
-			msg_to_show = MSG_lvmlv_stripes_ask;
-			out_var = &(dev_ptr->stripes);
-			break;
-		case PMLV_MENU_STRIPESIZE:
-			if (dev_ptr->stripesize << 1 > 512)
-				dev_ptr->stripesize = 4;	
-			else
-				dev_ptr->stripesize <<= 1;
-			return 0;
-		case PMLV_MENU_ZERO:
-			dev_ptr->zero = !dev_ptr->zero;
-			return 0;
-		case PMLV_MENU_REMOVE:
-			dev_ptr->size = 0;
-			return 0;
-	}
-	if (out_var == NULL || msg_to_show == NULL)
-		return -1;
-	snprintf(buf, SSTRSIZE, "%d", *out_var);
-	msg_prompt_win(msg_to_show, -1, 18, 0, 0, buf, buf, SSTRSIZE);
-	if (atoi(buf) >= 0)
-		*out_var = atoi(buf);
-	return 0;
-}
-
-static void
-pm_lvmlv_init(void *arg, void *none)
-{
-	lv_t *dev_ptr = arg;
-	memset(dev_ptr, 0, sizeof *(dev_ptr));
-	*dev_ptr = (struct lv_t) {
-		.blocked = 0,
-		.size = 1024,
-		.stripesize = 64,
-	};
-	sprintf (dev_ptr->name, "lvol%.2d", rand()%100);
-	return;
-}
-
-static int
-pm_lvmlv_check(void *arg)
-{
-	lv_t *dev_ptr = arg;
-	if (dev_ptr->size > 0 && strlen(dev_ptr->name) > 0)
-		return 1;
-	else {
-		dev_ptr->size = 0;
-		return 0;
-	}
-}
-
-static int
-pm_lvm_commit(void)
-{
-	int i, ii, error;
-	uint used_size = 0;
-	char params[STRSIZE*3];
-	char devs[STRSIZE*3];
-
-	for (i = 0; i < MAX_LVM_VG; i++) {
-		/* Stage 0: checks */
-		if (! pm_lvm_check(&lvms[i]))
-			continue;
-		for (ii = 0; ii < MAX_LVM_LV; ii++)
-			used_size += lvms[i].lv[ii].size;
-		if (used_size > lvms[i].total_size)
-			continue;
-
-		params[0] = '\0';
-		devs[0] = '\0';
-		error = 0;
-		/* Stage 1: creating Physical Volumes (PV's) */
-		for (ii = 0; ii < MAX_LVM_PV && ! error; ii++)
-			if (lvms[i].pv[ii].pm != NULL) {
-				run_program(RUN_SILENT | RUN_ERROR_OK, 
-										"lvm pvremove -ffy /dev/r%s",
-										(char*)lvms[i].pv[ii].pm_name);
-				error += run_program(RUN_DISPLAY | RUN_PROGRESS,
-										"lvm pvcreate -ffy /dev/r%s",
-										(char*)lvms[i].pv[ii].pm_name);
-				if (error)
-					break;
-				snprintf(devs, STRSIZE*3, "%s /dev/r%s", devs, (char*)lvms[i].pv[ii].pm_name);
-			}
-		if (error)
-			continue;
-		/* Stage 2: creating Volume Groups (VG's) */
-		if (lvms[i].maxlogicalvolumes > 0)
-			snprintf(params, STRSIZE*3, "%s -l %d", params, lvms[i].maxlogicalvolumes);
-		if (lvms[i].maxphysicalvolumes > 0)
-			snprintf(params, STRSIZE*3, "%s -p %d", params, lvms[i].maxphysicalvolumes);
-		if (lvms[i].physicalextentsize > 0)
-			snprintf(params, STRSIZE*3, "%s -s %d", params, lvms[i].physicalextentsize);
-		error += run_program(RUN_DISPLAY | RUN_PROGRESS, "lvm vgcreate %s %s %s",
-							params, lvms[i].name, devs);
-		if (error)
-			continue;
-		/* Stage 3: creating Logical Volumes (LV's) */
-		for (ii = 0; ii < MAX_LVM_LV; ii++) {
-			if (lvms[i].lv[ii].size <= 0)
-				continue;
-
-			params[0] = '\0';
-			snprintf(params, STRSIZE*3, "%s -C %c", params, lvms[i].lv[ii].contiguous?'y':'n');
-			snprintf(params, STRSIZE*3, "%s -M %c", params, lvms[i].lv[ii].persistent?'y':'n');
-			snprintf(params, STRSIZE*3, "%s -p %s", params, lvms[i].lv[ii].readonly?"r":"rw");
-			snprintf(params, STRSIZE*3, "%s -Z %c", params, lvms[i].lv[ii].zero?'y':'n');
-			if (strlen(lvms[i].lv[ii].name) > 0)
-				snprintf(params, STRSIZE*3, "%s -n %s", params, lvms[i].lv[ii].name);
-			if (strlen(lvms[i].lv[ii].extents) > 0)
-				snprintf(params, STRSIZE*3, "%s -l %s", params, lvms[i].lv[ii].extents);
-			if (lvms[i].lv[ii].minor > 0)
-				snprintf(params, STRSIZE*3, "%s --minor %d", params, lvms[i].lv[ii].minor);
-			if (lvms[i].lv[ii].mirrors > 0) {
-				snprintf(params, STRSIZE*3, "%s -m %d", params, lvms[i].lv[ii].mirrors);
-				if (lvms[i].lv[ii].regionsize > 0)
-					snprintf(params, STRSIZE*3, "%s -R %d", params, lvms[i].lv[ii].regionsize);
-			}
-			if (lvms[i].lv[ii].readahead > 0)
-				snprintf(params, STRSIZE*3, "%s -r %d", params, lvms[i].lv[ii].readahead);
-			if (lvms[i].lv[ii].stripes > 0) {
-				snprintf(params, STRSIZE*3, "%s -i %d", params, lvms[i].lv[ii].stripes);
-				if (lvms[i].lv[ii].stripesize > 0)
-					snprintf(params, STRSIZE*3, "%s -I %d", params, lvms[i].lv[ii].stripesize);
-			}
-			snprintf(params, STRSIZE*3, "%s -L %uM", params, lvms[i].lv[ii].size);
-			error += run_program(RUN_DISPLAY | RUN_PROGRESS, "lvm lvcreate %s %s",
-									params, lvms[i].name);
-		}
-		if (! error) {
-			lvms[i].blocked = 1;
-			for (ii = 0; ii < MAX_LVM_PV; ii++)
-				if (lvms[i].pv[ii].pm != NULL)
-					lvms[i].pv[ii].pm->blocked++;
-			for (ii = 0; ii < MAX_LVM_LV; ii++)
-				if (lvms[i].lv[ii].size > 0)
-					lvms[i].lv[ii].blocked = 1;
-		}
-	}
-
-	return 0;
-}
-
-/***
- GPT
- ***/
-
-int
-pm_gpt_convert(pm_devs_t *pm_cur)
-{
-	int i, error = 0;
-
-	msg_display(MSG_removepartswarn);
-	if (!ask_noyes(NULL))
-		return -1;
-
-	if (! pm_cur->gpt)
-		error = run_program(RUN_DISPLAY | RUN_PROGRESS, "gpt create -f %s", 
-				pm_cur->diskdev);
-	else {
-		error = run_program(RUN_DISPLAY | RUN_PROGRESS, "gpt destroy %s", 
-				pm_cur->diskdev);
-		for (i = 0; i < MAX_WEDGES; i++)
-			if (wedges[i].pm == pm_cur)
-				wedges[i].pm = NULL;
-	}
-	if (!error) {
-		pm_cur->gpt = !pm_cur->gpt;
-		pm_select(pm_cur);
-		label_read();
-	}
-	return error;
-}
-
-static int
-pm_wedge_getfree(void)
-{
-	int i;
-	for (i = 0; i < MAX_WEDGES; i++)
-		if (! wedges[i].allocated && wedges[i].pm == NULL)
-			return i;
-	return -1;
-}
-
-void
-pm_wedges_fill(pm_devs_t *pm_cur)
-{
-	int i, current;
-
-	for (i = 0; i < MAX_WEDGES; i++)
-		if (wedges[i].pm == pm_cur && ! wedges[i].allocated)
-			wedges[i].pm = NULL;
-
-	for (i = 0; i < min(MAXPARTITIONS,MAX_WEDGES); i++)
-		if (pm_cur->bsdlabel[i].pi_fstype != FS_UNUSED) {
-			current = pm_wedge_getfree();
-			if (current < 0) {
-				process_menu(MENU_ok, deconst(MSG_limitcount));
-				return;
-			}
-			wedges[current].pm = pm_cur;
-			wedges[current].ptn = i;
-		}
-	return;
-}
-
-static int
-pm_wedge_create(int num, pm_devs_t **pm_dk)
-{
-	int i, ii, hackerr, error;
-	partinfo *p = &(wedges[num].pm->bsdlabel[wedges[num].ptn]);
-
-	if (num > MAX_WEDGES)
-		return -1;
-
-	/* There is no ability to use required dkX device, so that's a hack */
-	for (i = 0; i < num; i++)
-		if (! wedges[i].allocated) {
-			hackerr = 1;
-			for (ii = 0; hackerr && ii < 3; ii++)
-				hackerr = run_program(RUN_SILENT | RUN_ERROR_OK,
-					"dkctl %s addwedge HACK%d %d %d unused",
-					wedges[num].pm->diskdev,
-					rand()%33, rand()%33, 0);
-			wedges[i].todel = 1;
-		}
-	
-	run_program(RUN_SILENT | RUN_ERROR_OK,
-					"dkctl %s listwedges", wedges[num].pm->diskdev);
-
-	error = run_program(RUN_DISPLAY | RUN_PROGRESS,
-			"dkctl %s addwedge dk%d %u %u %s",
-			wedges[num].pm->diskdev,
-			num,
-			p->pi_offset,
-			p->pi_size,
-			getfstypename(p->pi_fstype));
-	if (!error) {
-		wedges[num].allocated = 1;
-		wedges[num].pm->blocked++;
-		if (pm_dk != NULL) {
-			*pm_dk = malloc(sizeof(pm_devs_t));
-			memset(*pm_dk, 0, sizeof **pm_dk);
-			memcpy(&(*pm_dk)->bsdlabel[0], p, sizeof (*pm_dk)->bsdlabel[0]);
-			(*pm_dk)->found = -1;
-			(*pm_dk)->isspecial = 1;
-			(*pm_dk)->sectorsize = 512; /* XXX: xxx */
-			(*pm_dk)->dlcylsize = MEG;
-			(*pm_dk)->refdev = wedges[num].pm;
-			snprintf((*pm_dk)->diskdev, SSTRSIZE, "dk%d", num);
-			snprintf((*pm_dk)->diskdev_descr, STRSIZE, "   %s (%s)",
-				(*pm_dk)->diskdev, getfstypename(p->pi_fstype));
-		}
-	} else
-		if (logfp)
-			fprintf(logfp, "Cannot create wedge dk%d for %s.\n",
-				num, wedges[num].pm->diskdev);
-
-	/* Hack, see above */
-	for (i = 0; i < num; i ++)
-		if (! wedges[i].allocated && wedges[i].todel) {
-			hackerr = run_program(RUN_SILENT | RUN_ERROR_OK,
-				"dkctl %s delwedge dk%d", wedges[num].pm->diskdev, i);
-			wedges[i].todel = 0;
-		}
-
-	return error;
-}
-
-static int
-pm_gpt_commit(void)
-{
-	uint i, error;
-	pm_devs_t *pm_i, *pm_dk = NULL;
-	char fstype[STRSIZE]; fstype[0] = '\0';
-	partinfo *p;
-
-	SLIST_FOREACH(pm_i, &pm_head, l)
-		if (pm_i->gpt && pm_i->unsaved)
-			run_program(RUN_DISPLAY | RUN_PROGRESS,
-				"gpt remove -a %s",
-				pm_i->diskdev);
-
-	for (i = 0; i < MAX_WEDGES; i++) {
-		if (wedges[i].pm == NULL ||
-			! wedges[i].pm->unsaved ||
-			wedges[i].ptn < 0)
-			continue;
-		error = 0;
-		p = &(wedges[i].pm->bsdlabel[wedges[i].ptn]);
-		if (wedges[i].pm->gpt) {
-			if (get_gptfs_by_id(p->pi_fstype) != NULL)
-				snprintf(fstype, STRSIZE, "-t %s", get_gptfs_by_id(p->pi_fstype));
-			error += run_program(RUN_DISPLAY | RUN_PROGRESS,
-				"gpt add -i %u -b %u -s %u %s %s",
-				wedges[i].ptn + 1,
-				p->pi_offset, p->pi_size,
-				fstype, wedges[i].pm->diskdev);
-		}
-		
-		if (error || wedges[i].allocated) {
-			if (logfp && error)
-				fprintf(logfp, "Cannot create GPT partition #%d on %s\n",
-					i, wedges[i].pm->diskdev);
-			continue;
-		}
-
-		error += pm_wedge_create(i, &pm_dk);
-		if (pm_dk != NULL) {
-			/* Create file system on wedge and add it to list */
-			pm_select(pm_dk);
-			make_filesystems();
-			SLIST_INSERT_AFTER(wedges[i].pm, pm_dk, l);
-			memset(p, 0, sizeof *p);
-			if (error)
-				return -1;
-		}
-	}
-
-	SLIST_FOREACH(pm_i, &pm_head, l)
-		if (pm_i->gpt && pm_i->unsaved)
-			pm_i->unsaved = 0;
-
-	return 0;
-}
-
-/***
  Partman generic functions 
  ***/
 
@@ -1314,16 +535,6 @@ pm_partusage(pm_devs_t *pm_cur, int part_num, int do_del)
 		return retvalue;
 	}
 
-	for (i = 0; i < MAX_LVM_VG; i++)
-		for (ii = 0; ii < MAX_LVM_PV; ii++)
-			if (lvms[i].enabled &&
-				lvms[i].pv[ii].pm == pm_cur &&
-				lvms[i].pv[ii].pm_part == part_num) {
-					if (do_del)
-						lvms[i].pv[ii].pm = NULL;
-					return 1;
-			}
-
 	return 0;
 }
 
@@ -1355,8 +566,7 @@ pm_make_bsd_partitions(pm_devs_t *pm_cur)
 	pm_cur->bootable = (pm_cur->bsdlabel[pm_cur->rootpart].pi_flags & PIF_MOUNT) ?
 		1 : 0;
 	for (i = 0; i < MAXPARTITIONS; i++)
-		if (pm_cur->bsdlabel[i].pi_fstype != baklabel[i].pi_fstype ||
-				pm_cur->bsdlabel[i].lvmpv != baklabel[i].lvmpv)
+		if (pm_cur->bsdlabel[i].pi_fstype != baklabel[i].pi_fstype)
 			pm_partusage(pm_cur, i, 1);
 }
 
@@ -1365,7 +575,6 @@ pm_setfstype(pm_devs_t *pm_cur, int part_num, int fstype)
 {
 	pm_cur->bsdlabel[part_num].pi_mount[0] = '\0';
 	pm_cur->bsdlabel[part_num].pi_flags = 0;
-	pm_cur->bsdlabel[part_num].lvmpv = 0;
 	pm_cur->bsdlabel[part_num].pi_fstype = fstype;
 	return;	
 }
@@ -1468,8 +677,6 @@ pm_mountall(void)
 			}
 			mnts[num_devs].on = pm_i->bsdlabel[i].pi_mount;
 			if (strcmp(pm_i->bsdlabel[i].pi_mount, "/") == 0) {
-				if (pm_i->isspecial)
-					pm_i->bootable = 1;
 				/* Use disk with / as a default if the user has 
 				the sets on a local disk */
 				strlcpy(localfs_dev, pm_i->diskdev, SSTRSIZE);
@@ -1553,19 +760,7 @@ pm_unconfigure(pm_devs_t *pm_cur)
 			((vnds_t*)pm_cur->refdev)->pm->blocked--;
 			((vnds_t*)pm_cur->refdev)->blocked = 0;
  		}
-	} else if (! strncmp(pm_cur->diskdev, "dk", 2)) {
-		if (pm_cur->refdev == NULL)
-			return -2;
-		error = run_program(RUN_DISPLAY | RUN_PROGRESS, "dkctl %s delwedge %s",
-			((pm_devs_t*)pm_cur->refdev)->diskdev, pm_cur->diskdev);
-		if (! error) {
-			if (pm_cur->refdev != NULL && ((pm_devs_t*)pm_cur->refdev)->blocked > 0)
-				((pm_devs_t*)pm_cur->refdev)->blocked--;
-			sscanf(pm_cur->diskdev, "dk%d", &num);
-			if (num >= 0 && num < MAX_WEDGES)
-				wedges[num].allocated = 0;
-		}
-	} /* XXX: lvm */
+	}
 	else
 		error = run_program(RUN_DISPLAY | RUN_PROGRESS, "eject -t disk /dev/%sd",
 			pm_cur->diskdev);
@@ -1609,40 +804,24 @@ pm_commit(menudesc *m, void *arg)
 	if (m != NULL && arg != NULL)
 		((part_entry_t *)arg)[0].retvalue = m->cursel + 1;
 
-	pm_gpt_commit();
-
 	SLIST_FOREACH(pm_i, &pm_head, l) {
 		if (! pm_i->unsaved)
 			continue;
 		pm_select(pm_i);
 
-		if (pm_i->isspecial) {
-			if (make_filesystems() != 0) {
-				if (logfp)
-					fprintf(logfp, "Special disk %s preparing error\n", pm_i->diskdev);
-				continue;
-			}
-			pm_i->unsaved = 0;
-		} else if (! pm_i->gpt) {
-			if (
-				set_swap_if_low_ram(pm->diskdev, pm->bsdlabel) != 0 || 
-				make_filesystems() != 0     /* Create filesystems with newfs */
-			) {
-				/* Oops, something failed... */
-				if (logfp)
-					fprintf(logfp, "Disk %s preparing error\n", pm_i->diskdev);
-				continue;
-			}
-			pm_i->unsaved = 0;
+		if (
+			set_swap_if_low_ram(pm->diskdev, pm->bsdlabel) != 0 || 
+			make_filesystems() != 0     /* Create filesystems with newfs */
+		) {
+			/* Oops, something failed... */
+			if (logfp)
+				fprintf(logfp, "Disk %s preparing error\n", pm_i->diskdev);
+			continue;
 		}
+		pm_i->unsaved = 0;
 	}
 
 	/* Call all functions that may create new devices */
-	if ((retcode = pm_lvm_commit()) != 0) {
-		if (logfp)
-			fprintf(logfp, "LVM configuring error #%d\n", retcode);
-		return -1;
-	}
 	if ((retcode = pm_vnd_commit()) != 0) {
 		if (logfp)
 			fprintf(logfp, "VND configuring error #%d\n", retcode);
@@ -1661,25 +840,13 @@ pm_savebootsector(void)
 	pm_devs_t *pm_i;
 	SLIST_FOREACH(pm_i, &pm_head, l)
 		if (pm_i->bootable) {
-			if (pm_i->gpt && ! pm_i->isspecial) {
-				if (pm_i->rootpart < 0 ||
-					run_program(RUN_DISPLAY | RUN_PROGRESS,
-					"gpt biosboot -i %d %s",
-					pm_i->rootpart + 1, pm_i->diskdev) != 0) {
-			 		if (logfp)
-						fprintf(logfp, "Error writting GPT bootsector to %s\n",
-							pm_i->diskdev);
-					continue;
-				}
-			} else {
-				pm_select(pm_i);
-			 	if (
-				    md_post_newfs() != 0) {
-		 			if (logfp)
-						fprintf(logfp, "Error writting bootsector to %s\n",
-							pm_i->diskdev);
-					continue;
-				}
+			pm_select(pm_i);
+			if (
+			    md_post_newfs() != 0) {
+				if (logfp)
+					fprintf(logfp, "Error writting bootsector to %s\n",
+						pm_i->diskdev);
+				continue;
 			}
 		}
 	return 0;
@@ -1695,9 +862,7 @@ pm_submenu(menudesc *m, void *arg)
 
 	switch (((part_entry_t *)arg)[m->cursel].type) {
 		case PM_DISK_T:
-		case PM_WEDGE_T:
 		case PM_PART_T:
-		case PM_SPEC_T:
 			if (((part_entry_t *)arg)[m->cursel].dev_ptr != NULL) {
 				pm_cur = ((part_entry_t *)arg)[m->cursel].dev_ptr;
 				if (pm_cur == NULL) 
@@ -1716,37 +881,16 @@ pm_submenu(menudesc *m, void *arg)
 
 	switch (((part_entry_t *)arg)[m->cursel].type) {
 		case PM_DISK_T:
-			if (pm_cur != NULL && pm_cur->gpt) {
-				process_menu(MENU_pmgptentry, &part_num);
-				pm_wedges_fill(pm_cur);
-			} else {
-				process_menu(MENU_pmdiskentry, &part_num);
-			}
+			process_menu(MENU_pmdiskentry, &part_num);
 			break;
-		case PM_WEDGE_T:
 		case PM_PART_T:
 			part_num = ((part_entry_t *)arg)[m->cursel].dev_num;
-			process_menu(MENU_pmpartentry, &part_num);
-			if (pm_cur != NULL && pm_cur->gpt)
-				pm_wedges_fill(pm_cur);
-			break;
-		case PM_SPEC_T:
-			part_num = 0;
 			process_menu(MENU_pmpartentry, &part_num);
 			break;
 		case PM_VND_T:
 			return pm_edit(PMV_MENU_END, pm_vnd_edit_menufmt,
 				pm_vnd_set_value, pm_vnd_check, pm_vnd_init,
 				NULL, ((part_entry_t *)arg)[m->cursel].dev_ptr, 0, &vnds_t_info);
-		case PM_LVM_T:
-			return pm_edit(PML_MENU_END, pm_lvm_edit_menufmt,
-				pm_lvm_set_value, pm_lvm_check, pm_lvm_init,
-				NULL, ((part_entry_t *)arg)[m->cursel].dev_ptr, 0, &lvms_t_info);
-		case PM_LVMLV_T:
-			return pm_edit(PMLV_MENU_END, pm_lvmlv_edit_menufmt,
-				pm_lvmlv_set_value, pm_lvmlv_check, pm_lvmlv_init,
-				NULL, ((part_entry_t *)arg)[m->cursel].dev_ptr,
-				((part_entry_t *)arg)[m->cursel].dev_ptr_delta, &lv_t_info);
 	}
 	return 0;
 }
@@ -1772,24 +916,8 @@ pm_menufmt(menudesc *m, int opt, void *arg)
 				dev_status = msg_string(MSG_pmused);
 			wprintw(m->mw, "%-33.32s %-22.21s %12.12s",
 				pm_cur->diskdev_descr,
-				(pm_cur->gpt) ?
-					msg_string(MSG_pmgptdisk) :
-					pm_cur->bsddiskname,
+				pm_cur->bsddiskname,
 				dev_status);
-			break;
-		case PM_WEDGE_T:
-			part_num = ((part_entry_t *)arg)[opt].wedge_num;
-			snprintf(buf, STRSIZE, "dk%d: %s",
-				part_num,
-				wedges[part_num].pm->bsdlabel[wedges[part_num].ptn].pi_mount);
-			wprintw(m->mw, "   %-30.29s %-22.21s %11uM",
-				buf,
-				(wedges[part_num].pm->bsdlabel[wedges[part_num].ptn].lvmpv) ? 
-					"lvm pv" :
-					getfslabelname(wedges[part_num].pm->bsdlabel[wedges[part_num].
-						ptn].pi_fstype),
-				wedges[part_num].pm->bsdlabel[wedges[part_num].ptn].pi_size /
-					(MEG / pm_cur->sectorsize));
 			break;
 		case PM_PART_T:
 			snprintf(buf, STRSIZE, "%s%c: %s %s",
@@ -1803,26 +931,11 @@ pm_menufmt(menudesc *m, int opt, void *arg)
 						"" : msg_string(MSG_pmunused));
 			wprintw(m->mw, "   %-30.29s %-22.21s %11uM",
 				buf,
-				(pm_cur->bsdlabel[part_num].lvmpv) ? 
-					"lvm pv" :
-					getfslabelname(pm_cur->bsdlabel[part_num].pi_fstype),
+				getfslabelname(pm_cur->bsdlabel[part_num].pi_fstype),
 				pm_cur->bsdlabel[part_num].pi_size / (MEG / pm_cur->sectorsize));
-			break;
-		case PM_SPEC_T:
-			snprintf(buf, STRSIZE, "%s: %s",
-				pm_cur->diskdev_descr, pm_cur->bsdlabel[0].pi_mount);
-			wprintw(m->mw, "%-33.32s %-22.21s %11uM", buf,
-				getfslabelname(pm_cur->bsdlabel[0].pi_fstype),
-				pm_cur->bsdlabel[0].pi_size / (MEG / pm_cur->sectorsize));
 			break;
 		case PM_VND_T:
 			pm_vnd_menufmt(m, opt, arg);
-			break;
-		case PM_LVM_T:
-			pm_lvm_menufmt(m, opt, arg);
-			break;
-		case PM_LVMLV_T:
-			pm_lvmlv_menufmt(m, opt, arg);
 			break;
 	}
 	return;
@@ -1845,7 +958,6 @@ pm_upddevlist(menudesc *m, void *arg)
 			pm_i->found = 0;
 	/* Detect all present devices */
 	(void)find_disks("partman");
-	pm_lvm_find();
 	pm_clean();
 
 	if (m == NULL || arg == NULL)
@@ -1856,33 +968,17 @@ pm_upddevlist(menudesc *m, void *arg)
 		m->opts[i].opt_action = pm_submenu;
 		((part_entry_t *)arg)[i].dev_ptr = pm_i;
 		((part_entry_t *)arg)[i].dev_num = -1;
-		if (pm_i->isspecial)
-			((part_entry_t *)arg)[i].type = PM_SPEC_T;
-		else {
+		{
 			((part_entry_t *)arg)[i].type = PM_DISK_T;
-			if (pm_i->gpt) {
-				pm_wedges_fill(pm_i);
-				for (ii = 0; ii < MAX_WEDGES; ii++)
-					if (wedges[ii].pm == pm_i) {
-						i++;
-						m->opts[i].opt_name = NULL;
-						m->opts[i].opt_action = pm_submenu;
-						((part_entry_t *)arg)[i].dev_ptr = pm_i;
-						((part_entry_t *)arg)[i].dev_num = wedges[ii].ptn;
-						((part_entry_t *)arg)[i].wedge_num = ii;
-						((part_entry_t *)arg)[i].type = PM_WEDGE_T;
-					}
-			} else {
-				for (ii = 0; ii < MAXPARTITIONS; ii++)
-					if (pm_i->bsdlabel[ii].pi_fstype != FS_UNUSED) {
-						i++;
-						m->opts[i].opt_name = NULL;
-						m->opts[i].opt_action = pm_submenu;
-						((part_entry_t *)arg)[i].dev_ptr = pm_i;
-						((part_entry_t *)arg)[i].dev_num = ii;
-						((part_entry_t *)arg)[i].type = PM_PART_T;
-					}
-			}
+			for (ii = 0; ii < MAXPARTITIONS; ii++)
+				if (pm_i->bsdlabel[ii].pi_fstype != FS_UNUSED) {
+					i++;
+					m->opts[i].opt_name = NULL;
+					m->opts[i].opt_action = pm_submenu;
+					((part_entry_t *)arg)[i].dev_ptr = pm_i;
+					((part_entry_t *)arg)[i].dev_num = ii;
+					((part_entry_t *)arg)[i].type = PM_PART_T;
+				}
 		}
 		i++;
 	}
@@ -1932,7 +1028,6 @@ check_available_binaries()
 	did_test = 1;
 
 	have_vnd = binary_available("vnconfig");
-	have_gpt = binary_available("gpt");
 	have_dk = binary_available("dkctl");
 }
 
@@ -1948,9 +1043,6 @@ partman(void)
 	if (firstrun) {
 		check_available_binaries();
 
-		if (!have_gpt)
-			remove_gpt_options();
-
 		vnds_t_info = (structinfo_t) {
 			.max = MAX_VND,
 			.entry_size = sizeof vnds[0],
@@ -1959,25 +1051,8 @@ partman(void)
 			.entry_blocked = &(vnds[0].blocked),
 			.entry_node = &(vnds[0].node),
 		};
-		lvms_t_info = (structinfo_t) {
-			.max = MAX_LVM_VG,
-			.entry_size = sizeof lvms[0],
-			.entry_first = &lvms[0],
-			.entry_enabled = &(lvms[0].enabled),
-			.entry_blocked = &(lvms[0].blocked),
-			.entry_node = NULL,
-		};
-		lv_t_info = (structinfo_t) {
-			.max = MAX_LVM_LV,
-			.entry_size = sizeof lvms[0].lv[0], 
-			.entry_first = &lvms[0].lv[0],
-			.entry_enabled = &(lvms[0].lv[0].size),
-			.entry_blocked = &(lvms[0].lv[0].blocked),
-			.parent_size = sizeof lvms[0],
-		};
 
 		memset(&vnds, 0, sizeof vnds);
-		memset(&lvms, 0, sizeof lvms);
 		cursel = 0;
 		changed = 0;
 		firstrun = 0;

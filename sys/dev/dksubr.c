@@ -109,7 +109,6 @@ dk_open(struct dk_intf *di, struct dk_softc *dksc, dev_t dev,
 		if (dk->dk_openmask == 0) {
 			dk_getdisklabel(di, dksc, dev);
 		}
-		/* XXX re-discover wedges? */
 	}
 
 	/* Fail if we can't find the partition. */

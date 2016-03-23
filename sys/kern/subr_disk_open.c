@@ -60,8 +60,7 @@ opendisk(device_t dv)
 	 * Fake a temporary vnode for the disk, open it, and read
 	 * and hash the sectors.
 	 */
-	dev = device_is_a(dv, "dk") ? makedev(bmajor, unit) :
-	    MAKEDISKDEV(bmajor, unit, RAW_PART);
+	dev = MAKEDISKDEV(bmajor, unit, RAW_PART);
 	if (bdevvp(dev, &tmpvn))
 		panic("%s: can't alloc vnode for %s", __func__,
 		    device_xname(dv));

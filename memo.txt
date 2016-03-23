@@ -358,11 +358,6 @@ MKX11RADEONKMS
 CONFIG_DRM
 X11R6
 
-dkctl/dkwedge/dk_wedges
-wedge/dk.4
-DKW_PTYPE_FFS/DEBUG_WEDGE
-
-					booted_device = dv;
-					booted_partition = 0;
-	kmutex_t	dk_openlock;	/* lock on these and openmask */
+wedge
+DKW_PTYPE_FFS
 disk_strategy/getfsspecname/getfstypename/getfsent

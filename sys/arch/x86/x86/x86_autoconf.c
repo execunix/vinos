@@ -85,8 +85,7 @@ is_valid_disk(device_t dv)
 	if (device_class(dv) != DV_DISK)
 		return (0);
 	
-	return (device_is_a(dv, "dk") ||
-		device_is_a(dv, "sd") ||
+	return (device_is_a(dv, "sd") ||
 		device_is_a(dv, "wd") ||
 		device_is_a(dv, "ld") ||
 		device_is_a(dv, "ed"));
@@ -209,11 +208,6 @@ match_bootdisk(device_t dv, struct btinfo_bootdisk *bid)
 	int error;
 	struct disklabel label;
 	int found = 0;
-
-	if (device_is_a(dv, "dk")) {
-		DPRINTF(("%s: dk %s\n", __func__, device_xname(dv)));
-		return 0;
-	}
 
 	/*
 	 * A disklabel is required here.  The boot loader doesn't refuse

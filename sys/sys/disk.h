@@ -161,19 +161,6 @@ struct vnode;
  *	</dict>
  */
 
-/* Some common partition types */
-#define	DKW_PTYPE_UNKNOWN	""
-#define	DKW_PTYPE_UNUSED	"unused"
-#define	DKW_PTYPE_SWAP		"swap"
-#define	DKW_PTYPE_FFS		"ffs"
-#define	DKW_PTYPE_FAT		"msdos"
-#define	DKW_PTYPE_OTHER		"other"
-#define	DKW_PTYPE_ISO9660	"cd9660"
-#define	DKW_PTYPE_BOOT		"boot"
-#define	DKW_PTYPE_EXT2FS	"ext2fs"
-#define	DKW_PTYPE_NTFS		"ntfs"
-#define	DKW_PTYPE_UDF		"udf"
-
 /*
  * Disk geometry dictionary.
  *

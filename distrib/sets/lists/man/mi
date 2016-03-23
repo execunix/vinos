@@ -722,8 +722,7 @@
 ./usr/share/man/cat4/de.0			man-sys-catman		.cat
 ./usr/share/man/cat4/depca.0			man-sys-catman		.cat
 ./usr/share/man/cat4/dge.0			man-sys-catman		.cat
-./usr/share/man/cat4/dk.0			man-sys-catman		.cat
-./usr/share/man/cat4/dmoverio.0			man-sys-catman          .cat
+./usr/share/man/cat4/dmoverio.0			man-sys-catman		.cat
 ./usr/share/man/cat4/dmphy.0			man-sys-catman		.cat
 ./usr/share/man/cat4/dpt.0			man-sys-catman		.cat
 ./usr/share/man/cat4/dpti.0			man-sys-catman		.cat
@@ -2753,7 +2752,6 @@
 ./usr/share/man/html4/de.html			man-sys-htmlman		html
 ./usr/share/man/html4/depca.html		man-sys-htmlman		html
 ./usr/share/man/html4/dge.html			man-sys-htmlman		html
-./usr/share/man/html4/dk.html			man-sys-htmlman		html
 ./usr/share/man/html4/dmoverio.html		man-sys-htmlman		html
 ./usr/share/man/html4/dmphy.html		man-sys-htmlman		html
 ./usr/share/man/html4/dpt.html			man-sys-htmlman		html
@@ -4785,7 +4783,6 @@
 ./usr/share/man/man4/de.4			man-sys-man		.man
 ./usr/share/man/man4/depca.4			man-sys-man		.man
 ./usr/share/man/man4/dge.4			man-sys-man		.man
-./usr/share/man/man4/dk.4			man-sys-man		.man
 ./usr/share/man/man4/dmoverio.4			man-sys-man		.man
 ./usr/share/man/man4/dmphy.4			man-sys-man		.man
 ./usr/share/man/man4/dpt.4			man-sys-man		.man

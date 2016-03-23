@@ -323,28 +323,22 @@ md_post_newfs(void)
 	if (ret)
 		return ret;
 
-        bootxx_filename = bootxx_name();                                                 
-        if (bootxx_filename != NULL) {                                                   
+	bootxx_filename = bootxx_name();
+	if (bootxx_filename != NULL) {
 		snprintf(boot_options, sizeof boot_options,
 		    "console=%s,speed=%u", consoles[boottype.bp_consdev],
 		    boottype.bp_conspeed);
-		if (pm->isspecial) {
-                	ret = run_program(RUN_DISPLAY | RUN_NO_CLEAR,                 
-                	    "/usr/sbin/installboot -o %s /dev/r%s %s",
-			    boot_options, pm->diskdev, bootxx_filename); 
-		} else {
-                	ret = run_program(RUN_DISPLAY | RUN_NO_CLEAR,                 
-                	    "/usr/sbin/installboot -o %s /dev/r%s%c %s",
+		ret = run_program(RUN_DISPLAY | RUN_NO_CLEAR,
+			    "/usr/sbin/installboot -o %s /dev/r%s%c %s",
 			    boot_options, pm->diskdev, 'a' + pm->rootpart,
 			    bootxx_filename); 
-		}
-                free(bootxx_filename);                                                   
-        } else                                                                  
-                ret = -1;                                                     
-                                                                                
-        if (ret != 0)                                                         
-                process_menu(MENU_ok,                                           
-                    deconst("Warning: disk is probably not bootable"));         
+		free(bootxx_filename);
+	} else
+		ret = -1;
+
+	if (ret != 0)
+		process_menu(MENU_ok,
+		deconst("Warning: disk is probably not bootable"));
 
 	return ret;
 }

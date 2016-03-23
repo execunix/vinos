@@ -113,16 +113,6 @@ remove_color_options()
 	remove_sub_menu(MENU_colors);
 }
 
-void
-remove_gpt_options()
-{
-	/*
-	 * No GPT available, remove the following menu entries:
-	 */
-	remove_menu_option(MENU_pmdiskentry, MSG_switchgpt);
-	remove_menu_option(MENU_pmpartentry, MSG_switchgpt);
-}
-
 }
 
 default y=12, no exit, scrollable;
@@ -593,8 +583,6 @@ menu pmdiskentry, x=50, y=5, exit, default exit;
 	option MSG_editmbr,		exit, action { md_get_info();
 											md_write_mbr();
 											memset(&pm->bsdlabel, 0, sizeof pm->bsdlabel);};
-	option MSG_switchgpt,	exit, action { if (pm_gpt_convert(pm) == 0)
-												pm_partusage(pm, -1, 1); };
 	option MSG_renamedisk,	exit, action { pm->unsaved = 1; pm_rename(pm); };
 	option MSG_setbootable,	exit, action { pm->unsaved = 1;
 											pm->bootable = !pm->bootable; };
@@ -608,10 +596,8 @@ menu pmpartentry, x=50, y=5, exit, default exit;
 	option MSG_edit,		exit, action { 
 									pm->unsaved = 1;
 									int tpfs = pm->bsdlabel[*(int*)arg].pi_fstype;
-									int tplvm = pm->bsdlabel[*(int*)arg].lvmpv;
 									pm_editpart(*(int*)arg);
-									if (tpfs != pm->bsdlabel[*(int*)arg].pi_fstype ||
-										tplvm != pm->bsdlabel[*(int*)arg].lvmpv)
+									if (tpfs != pm->bsdlabel[*(int*)arg].pi_fstype)
 										/* Oops, partition type changed */
 										pm_partusage(pm, *(int*)arg, 1);
 								};
@@ -620,23 +606,8 @@ menu pmpartentry, x=50, y=5, exit, default exit;
 	option MSG_Delete_partition,	exit, action {
 									pm->unsaved = 1;
 									pm_partusage(pm, *(int*)arg, 1);
-									if (pm->isspecial)
-										pm_unconfigure(pm);
-									else
-										pm->bsdlabel[*(int*)arg].pi_fstype = FS_UNUSED;
+									pm->bsdlabel[*(int*)arg].pi_fstype = FS_UNUSED;
 									};
-
-menu pmgptentry, x=50, y=8, exit, default exit;
-	option MSG_editbsdpart, exit, action { pm_make_bsd_partitions(pm); };
-	option MSG_switchmbr,	exit, action { if (pm_gpt_convert(pm) == 0)
-												pm_partusage(pm, -1, 1); };
-	option MSG_setbootable,	exit, action { pm->unsaved = 1;
-												pm->bootable = !pm->bootable; };
-	option MSG_erase,		next menu shred_modes;
-	option MSG_undo,		exit, action { label_read(); pm->unsaved = 0;
-											pm_partusage(pm, -1, 1); };
-	option MSG_unconfig,	exit, action { if (pm_unconfigure(pm) == 0)
-												pm_partusage(pm, -1, 1); };
 
 menu shred_modes, x=50, y=5, exit, default exit;
 	option MSG_fillzeros,	exit,

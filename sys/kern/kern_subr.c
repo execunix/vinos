@@ -121,7 +121,7 @@ isswap(device_t dv)
 {
 	struct vnode *vn;
 
-	if (device_class(dv) != DV_DISK || !device_is_a(dv, "dk"))
+	if (device_class(dv) != DV_DISK)
 		return 0;
 
 	if ((vn = opendisk(dv)) == NULL)
@@ -148,9 +148,7 @@ int md_is_root = 0;
 device_t booted_device;
 int booted_partition;
 
-#define	DEV_USES_PARTITIONS(dv)						\
-	(device_class((dv)) == DV_DISK &&				\
-	 !device_is_a((dv), "dk"))
+#define	DEV_USES_PARTITIONS(dv)		(device_class((dv)) == DV_DISK)
 
 void
 setroot(device_t bootdv, int bootpartition)
@@ -404,11 +402,6 @@ setroot(device_t bootdv, int bootpartition)
 			rootdv = dv;
 			goto haveroot;
 		}
-
-		if (rootdev == NODEV &&
-		    device_class(dv) == DV_DISK && device_is_a(dv, "dk") &&
-		    (majdev = devsw_name2blk(device_xname(dv), NULL, 0)) >= 0)
-			rootdev = makedev(majdev, device_unit(dv));
 
 		rootdevname = devsw_blk2name(major(rootdev));
 		if (rootdevname == NULL) {

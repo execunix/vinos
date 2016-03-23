@@ -17,7 +17,6 @@ device-major pps       char 164		   pps
 device-major ptm       char 165		   pty
 device-major atabus    char 166		   atabus	vector=4
 device-major drvctl    char 167		   drvctl	single
-device-major dk        char 168 block 168
 device-major tap       char 169		   tap		vector=4
 device-major veriexec  char 170		   veriexec
 device-major fw        char 171		   ieee1394if

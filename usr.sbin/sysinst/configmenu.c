@@ -70,7 +70,6 @@ enum {
 	CONFIGOPT_NTPDATE,
 	CONFIGOPT_MDNSD,
 	CONFIGOPT_XDM,
-	CONFIGOPT_LVM,
 	CONFIGOPT_ADDUSER,
 	CONFIGOPT_LAST
 };
@@ -96,7 +95,6 @@ configinfo config_list[] = {
 	{MSG_run_ntpdate, CONFIGOPT_NTPDATE, "ntpdate", toggle_rcvar, NULL},
 	{MSG_enable_mdnsd, CONFIGOPT_MDNSD, "mdnsd", toggle_rcvar, NULL},
 	{MSG_enable_xdm, CONFIGOPT_XDM, "xdm", toggle_rcvar, NULL},
-	{MSG_enable_lvm, CONFIGOPT_LVM, "lvm", toggle_rcvar, NULL},
 	{MSG_add_a_user, CONFIGOPT_ADDUSER, NULL, add_new_user, ""},
 	{NULL,		CONFIGOPT_LAST,	NULL, NULL, NULL}
 };

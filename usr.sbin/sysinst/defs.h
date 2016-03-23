@@ -225,7 +225,6 @@ typedef struct _partinfo {
     const char *mnt_opts;
     const char *fsname;
     char mounted[MOUNTLEN];
-    int lvmpv; /* should we use partition as LVM PV? */
 } partinfo;	/* Single partition from a disklabel */
 
 struct ptn_info {
@@ -285,7 +284,6 @@ typedef struct pm_devs_t {
     int found; /* Flag to delete unplugged and unconfigured devices */
     int blocked; /* Device is busy and cannot be changed */
     void *refdev; /* If device is blocked thats is a pointers to a parent dev */
-    int isspecial; /* LVM LV or DK device that doesnot accept disklabel */
     char diskdev[SSTRSIZE]; /* Actual name of the disk. */
     char diskdev_descr[STRSIZE];
     int bootable;
@@ -293,7 +291,6 @@ typedef struct pm_devs_t {
     char bsddiskname[DISKNAME_SIZE];
     partinfo oldlabel[MAXPARTITIONS]; /* What we found on the disk */
     partinfo bsdlabel[MAXPARTITIONS]; /* What we want it to look like */
-    int gpt;
     int no_mbr; /* set for raid (etc) */
     int rootpart; /* partition we install into */
     const char *disktype; /* ST506, SCSI, ... */
@@ -311,25 +308,14 @@ typedef struct pm_devs_t {
 pm_devs_t *pm; /* Pointer to currend device with which we work */
 pm_devs_t *pm_new; /* Pointer for next allocating device in find_disks() */
 
-#define MAX_WEDGES 16 /* num of dk* devices */
-typedef struct pm_wedge_t {
-    int allocated;
-    int todel;
-    pm_devs_t *pm;
-    int ptn;
-} pm_wedge_t;
-pm_wedge_t wedges[MAX_WEDGES];
-
 /* Generic structure for partman */
 typedef struct {
     int retvalue;
     int dev_num;
-    int wedge_num;
     void *dev_ptr;
     int dev_ptr_delta;
     char fullname[SSTRSIZE];
-    enum {PM_DISK_T=1, PM_PART_T, PM_WEDGE_T, PM_SPEC_T,
-        PM_VND_T, PM_LVM_T, PM_LVMLV_T} type;
+    enum {PM_DISK_T=1, PM_PART_T, PM_VND_T} type;
 } part_entry_t;
 
 /* Relative file name for storing a distribution. */
@@ -412,7 +398,6 @@ char dist_postfix[SSTRSIZE];
 
 /* needed prototypes */
 void remove_color_options(void);
-void remove_gpt_options(void);
 
 /* Machine dependent functions .... */
 void	md_init(void);
@@ -450,7 +435,6 @@ int	set_swap(const char *, partinfo *);
 int	check_swap(const char *, int);
 char *bootxx_name(void);
 void label_read(void);
-const char *get_gptfs_by_id(int);
 
 
 /* from label.c */
@@ -583,13 +567,11 @@ void pm_rename(pm_devs_t *);
 int pm_shred(pm_devs_t *, int, int);
 void pm_umount(pm_devs_t *, int);
 int pm_unconfigure(pm_devs_t *);
-int pm_gpt_convert(pm_devs_t *);
-void pm_wedges_fill(pm_devs_t *);
 void pm_make_bsd_partitions(pm_devs_t *);
 
 /* flags whether to offer the respective options (depending on helper
    programs available on install media */
-int have_vnd, have_gpt, have_dk;
+int have_vnd, have_dk;
 /* initialize above variables */
 void check_available_binaries(void);
 

@@ -1007,8 +1007,6 @@ message enable_ntpd {Enable ntpd}
 message run_ntpdate {Run ntpdate at boot}
 message enable_mdnsd {Enable mdnsd}
 message enable_xdm {Enable xdm}
-message enable_lvm {Enable lvm}
-message enable_raid {Enable raidframe}
 message add_a_user {Add a user}
 message configmenu {Configure the additional items as needed.}
 message doneconfig {Finished configuring}
@@ -1038,15 +1036,12 @@ exist.  Please check the package path and try again.}
 message failed {Failed}
 
 message notsupported {Operation not supported!}
-message askfsmountadv {Mountpoint or 'raid' or 'lvm'?}
 message partman {Extended partitioning}
 message editbsdpart {Edit BSD partitions}
 message editmbr {Edit and save MBR}
 message switchgpt {Switch to GPT}
 message switchmbr {Switch to MBR}
 message renamedisk {Set disk name}
-message fmtasraid {Format as RAID}
-message fmtaslvm {Format as LVM PV}
 message encrypt {Encrypt}
 message setbootable {Bootable flag}
 message erase {Safe erase}
@@ -1076,9 +1071,6 @@ Device is blocked.  Editing it may cause problems.
 Do you want to force unblock it and continue?}
 message wannatry {Do you want to try?}
 message create_cnd {Create virtual disk image (VND)}
-message create_vg {Create volume group (LVM VG)}
-message create_lv {      Create logical volume}
-message create_raid {Create software RAID}
 message updpmlist {Update device list}
 message savepm {Save changes}
 message pmblocked {BLOCKED}
@@ -1095,31 +1087,9 @@ message invaliddev {Invalid device!}
 message avdisks {Available disks:}
 message nofreedev {Cannot allocate device node!}
 message partman_header
-{This is the extended partition manager.  All disks, partitions, etc. are
-listed below.  MBR partitions, if desired, must be created before editing
-the disklabel.  To use RAID, LVM, or CGD: 1) Create BSD partitions with the
-appropriate type; 2) Create RAID/LVM VG/CGD using these partitions; 3) Save
-changes; 4) Create partitions for RAID/CGD or Logical Volumes for LVM.}
+{This is the extended partition manager.  All disks, partitions are
+listed below.}
 
-message raid_menufmt {   raid%d (level %1d) on %-34s %11uM}
-message raid_err_menufmt {   EMPTY RAID!}
-message raid_disks_fmt {Disks: %33s}
-message raid_spares_fmt {Spares: %32s}
-message raid_level_fmt {RAID level:       %22d}
-message raid_numrow_fmt {numRow:           %22d}
-message raid_numcol_fmt {numCol:           %22d}
-message raid_numspare_fmt {numSpare:         %22d}
-message raid_sectpersu_fmt {sectPerSU:        %22d}
-message raid_superpar_fmt {SUsPerParityUnit: %22d}
-message raid_superrec_fmt {SUsPerReconUnit:  %22d}
-message raid_nomultidim {Multi-dimensional arrays are NOT supported!}
-message raid_numrow_ask {numRow?}
-message raid_numcol_ask {numCol?}
-message raid_numspare_ask {numSpare?}
-message raid_sectpersu_ask {sectPerSU?}
-message raid_superpar_ask {SUsPerParityUnit?}
-message raid_superrec_ask {SUsPerReconUnit?}
-message raid_disks {Disks in RAID:}
 message vnd_err_menufmt {   PATH NOT DEFINED!}
 message vnd_assgn_menufmt {   vnd%1d on %-51s ASSIGN}
 message vnd_menufmt {   vnd%1d on %-45s %11uM}
@@ -1138,40 +1108,6 @@ message vnd_bps_ask {Bytes per Sector?}
 message vnd_spt_ask {Sectors per Track?}
 message vnd_tpc_ask {Tracks per Cylinder?}
 message vnd_cyl_ask {Cylinders?}
-message lvm_disks {Disks in VG:}
-message lvm_menufmt {   %-44s %20sM}
-message lvm_err_menufmt {   EMPTY VG!}
-message lvm_disks_fmt {PV's: %34s}
-message lvm_name_fmt {Name: %34s}
-message lvm_maxlv_fmt {MaxLogicalVolumes:  %20s}
-message lvm_maxpv_fmt {MaxPhysicalVolumes: %20s}
-message lvm_extsiz_fmt {PhysicalExtentSize: %20s}
-message lvm_name_ask {Name?}
-message lvm_maxlv_ask {MaxLogicalVolumes?}
-message lvm_maxpv_ask {MaxPhysicalVolumes?}
-message lvm_extsiz_ask {PhysicalExtentSize (MB)?}
-message lvmlv_menufmt {      Logical volume %-35s %11uM}
-message lvmlv_name_fmt {Name: %34s}
-message lvmlv_size_fmt {Size: %33dM}
-message lvmlv_ro_fmt {Read-only:   %27s}
-message lvmlv_cont_fmt {Contiguous:  %27s}
-message lvmlv_extnum_fmt {LogicalExtentsNumber: %18s}
-message lvmlv_minor_fmt {Minor number: %26s}
-message lvmlv_mirrors_fmt {Mirrors:     %27d}
-message lvmlv_regsiz_fmt {MirrorLogRegionSize:  %18s}
-message lvmlv_pers_fmt {Persistent minor number:  %14s}
-message lvmlv_readahsect_fmt {ReadAheadSectors:     %18s}
-message lvmlv_stripes_fmt {Stripes:     %27s}
-message lvmlv_stripesiz_fmt {StripeSize:  %27s}
-message lvmlv_zero_fmt {Zeroing of the first KB:   %13s}
-message lvmlv_name_ask {Name?}
-message lvmlv_size_ask {Size (MB)?}
-message lvmlv_extnum_ask {LogicalExtentsNumber?}
-message lvmlv_minor_ask {Minor number?}
-message lvmlv_mirrors_ask {Mirrors?}
-message lvmlv_regsiz_ask {MirrorLogRegionSize?}
-message lvmlv_readahsect_ask {ReadAheadSectors?}
-message lvmlv_stripes_ask {Stripes?}
 
 message addusername {8 character username to add}
 message addusertowheel {Do you wish to add this user to group wheel?}
