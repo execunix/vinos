@@ -41,17 +41,13 @@
 #define RAW_PART		2	/* raw partition: XX?c */
 
 #if HAVE_NBTOOL_CONFIG_H
-#include <nbinclude/sys/dkbad.h>
 #include <nbinclude/sys/bootblock.h>
 #else
-#include <sys/dkbad.h>
 #include <sys/bootblock.h>
 #endif /* HAVE_NBTOOL_CONFIG_H */
 
 struct cpu_disklabel {
 	struct mbr_partition mbrparts[MBR_PART_COUNT];
-#define __HAVE_DISKLABEL_DKBAD
-	struct dkbad bad;
 };
 
 #ifdef _KERNEL

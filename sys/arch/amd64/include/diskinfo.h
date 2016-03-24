@@ -55,13 +55,9 @@
 
 #ifndef __ASSEMBLER__
 #if HAVE_NBTOOL_CONFIG_H
-#include <nbinclude/sys/dkbad.h>
 #else
-#include <sys/dkbad.h>
 #endif /* HAVE_NBTOOL_CONFIG_H */
 struct cpu_disklabel {
-#define __HAVE_DISKLABEL_DKBAD
-	struct dkbad bad;
 };
 #endif
 

@@ -353,7 +353,7 @@ diskname/bsddiskname
 xscale/caddr_t
 vnd_x
 swstrategy/v_type
-_LOCORE/dkbad.h
+_LOCORE/dkbad/cpu_disklabel
 
 iSCSI/dmover
 MKX11RADEONKMS
