@@ -570,8 +570,8 @@ nas# gpt show wd3
   3907029167           1         Sec GPT header
 nas# gpt add -s 10486224 -t swap -i 1 wd3
 Partition added, use:
-        dkctl rwd3d addwedge dk<N> 34 10486224 <type>
-to create a wedge for it
+        dkctl rwd3d addwedge_x dk<N> 34 10486224 <type>
+to create a wedge_x for it
 nas# gpt label -i 1 -l swap_1 wd3
 parition 1 on rwd3d labeled swap_1
 nas# gpt show wd3

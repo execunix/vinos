@@ -130,7 +130,6 @@ SRCDIRS	usr.sbin
 PROG	chroot
 PROG	dumpfs
 PROG	installboot
-PROG	vnconfig
 
 SRCDIRS	games
 

@@ -502,8 +502,6 @@
 ./usr/share/man/cat1/view.0			man-util-catman		.cat
 ./usr/share/man/cat1/vis.0			man-util-catman		.cat
 ./usr/share/man/cat1/vmstat.0			man-util-catman		.cat
-./usr/share/man/cat1/vndcompress.0		man-util-catman		.cat
-./usr/share/man/cat1/vnduncompress.0		man-util-catman		.cat
 ./usr/share/man/cat1/w.0			man-util-catman		.cat
 ./usr/share/man/cat1/wait.0			man-util-catman		.cat
 ./usr/share/man/cat1/wall.0			man-util-catman		.cat
@@ -1270,7 +1268,6 @@
 ./usr/share/man/cat4/vlan.0			man-sys-catman		.cat
 ./usr/share/man/cat4/vmmon.0			man-sys-catman		.cat
 ./usr/share/man/cat4/vmnet.0			man-sys-catman		.cat
-./usr/share/man/cat4/vnd.0			man-sys-catman		.cat
 ./usr/share/man/cat4/voodoofb.0			man-sys-catman		.cat
 ./usr/share/man/cat4/vr.0			man-sys-catman		.cat
 ./usr/share/man/cat4/vte.0			man-sys-catman		.cat
@@ -2020,8 +2017,6 @@
 ./usr/share/man/cat8/vipw.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/virecover.0		man-sysutil-catman	.cat
 ./usr/share/man/cat8/virtual.0			man-postfix-catman	postfix,.cat
-./usr/share/man/cat8/vnconfig.0			man-sysutil-catman	.cat
-./usr/share/man/cat8/vndconfig.0		man-sysutil-catman	.cat
 ./usr/share/man/cat8/wakeonlan.0		man-netutil-catman	.cat
 ./usr/share/man/cat8/wdogctl.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/wiconfig.0			man-netutil-catman	.cat
@@ -2532,8 +2527,6 @@
 ./usr/share/man/html1/view.html			man-util-htmlman	html
 ./usr/share/man/html1/vis.html			man-util-htmlman	html
 ./usr/share/man/html1/vmstat.html		man-util-htmlman	html
-./usr/share/man/html1/vndcompress.html		man-util-htmlman	html
-./usr/share/man/html1/vnduncompress.html	man-util-htmlman	html
 ./usr/share/man/html1/w.html			man-util-htmlman	html
 ./usr/share/man/html1/wait.html			man-util-htmlman	html
 ./usr/share/man/html1/wall.html			man-util-htmlman	html
@@ -3300,7 +3293,6 @@
 ./usr/share/man/html4/vlan.html			man-sys-htmlman		html
 ./usr/share/man/html4/vmmon.html		man-sys-htmlman		html
 ./usr/share/man/html4/vmnet.html		man-sys-htmlman		html
-./usr/share/man/html4/vnd.html			man-sys-htmlman		html
 ./usr/share/man/html4/voodoofb.html		man-sys-htmlman		html
 ./usr/share/man/html4/vr.html			man-sys-htmlman		html
 ./usr/share/man/html4/vte.html			man-sys-htmlman		html
@@ -4051,8 +4043,6 @@
 ./usr/share/man/html8/vipw.html			man-sysutil-htmlman	html
 ./usr/share/man/html8/virecover.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/virtual.html		man-postfix-htmlman	postfix,html
-./usr/share/man/html8/vnconfig.html		man-sysutil-htmlman	html
-./usr/share/man/html8/vndconfig.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/wakeonlan.html		man-netutil-htmlman	html
 ./usr/share/man/html8/wdogctl.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/wiconfig.html		man-netutil-htmlman	html
@@ -4563,8 +4553,6 @@
 ./usr/share/man/man1/view.1			man-util-man		.man
 ./usr/share/man/man1/vis.1			man-util-man		.man
 ./usr/share/man/man1/vmstat.1			man-util-man		.man
-./usr/share/man/man1/vndcompress.1		man-util-man		.man
-./usr/share/man/man1/vnduncompress.1		man-util-man		.man
 ./usr/share/man/man1/w.1			man-util-man		.man
 ./usr/share/man/man1/wait.1			man-util-man		.man
 ./usr/share/man/man1/wall.1			man-util-man		.man
@@ -5331,7 +5319,6 @@
 ./usr/share/man/man4/vlan.4			man-sys-man		.man
 ./usr/share/man/man4/vmmon.4			man-sys-man		.man
 ./usr/share/man/man4/vmnet.4			man-sys-man		.man
-./usr/share/man/man4/vnd.4			man-sys-man		.man
 ./usr/share/man/man4/voodoofb.4			man-sys-man		.man
 ./usr/share/man/man4/vr.4			man-sys-man		.man
 ./usr/share/man/man4/vte.4			man-sys-man		.man
@@ -6082,8 +6069,6 @@
 ./usr/share/man/man8/vipw.8			man-sysutil-man		.man
 ./usr/share/man/man8/virecover.8		man-sysutil-man		.man
 ./usr/share/man/man8/virtual.8			man-postfix-man		postfix,.man
-./usr/share/man/man8/vnconfig.8			man-sysutil-man		.man
-./usr/share/man/man8/vndconfig.8		man-sysutil-man		.man
 ./usr/share/man/man8/wakeonlan.8		man-netutil-man		.man
 ./usr/share/man/man8/wdogctl.8			man-sysutil-man		.man
 ./usr/share/man/man8/wiconfig.8			man-netutil-man		.man

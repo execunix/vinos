@@ -60,13 +60,14 @@ __RCSID("$NetBSD: fdisk.c,v 1.150 2014/04/04 16:15:30 christos Exp $");
 #include <vis.h>
 
 #if !HAVE_NBTOOL_CONFIG_H
+#include <sys/diskinfo.h>
 #include <sys/bootblock.h>
 #include <sys/ioctl.h>
 #include <sys/sysctl.h>
 #include <util.h>
 #include <zlib.h>
 #else
-#include <nbinclude/diskinfo.h>
+#include <nbinclude/sys/diskinfo.h>
 #include <nbinclude/sys/bootblock.h>
 /* We enforce -F, so none of these possibly undefined items can be needed */
 #define opendisk(path, fl, buf, buflen, cooked) (-1)

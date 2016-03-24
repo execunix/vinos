@@ -45,7 +45,7 @@ struct ifinfo {
 	int dadcount;
 	struct timeval timer;
 	struct timeval expire;
-	int errors;		/* # of errors we've got - detect wedge */
+	int errors;		/* # of errors we've got - detect wedge_x */
 
 	int racnt;		/* total # of valid RAs it have got */
 

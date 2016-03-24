@@ -204,7 +204,7 @@ biosboot(int fd)
 			    (char *)utf16_to_utf8(ent->ent_name)) == 0)
 				break;
 
-		/* next, partition as could be specified by wedge */
+		/* next, partition as could be specified by wedge_x */
 		if (entry < 1 && label == NULL && size > 0 &&
 		    m->map_start == start && m->map_size == (off_t)size)
 			break;
@@ -306,7 +306,7 @@ cmd_biosboot(int argc, char *argv[])
 		size = 0;
 
 		/*
-		 * If a dk wedge was specified, loader should be
+		 * If a dk wedge_x was specified, loader should be
 		 * installed onto parent device
 		 */
 		if ((fd = opendisk(dev, O_RDONLY, devpath, sizeof(devpath), 0))

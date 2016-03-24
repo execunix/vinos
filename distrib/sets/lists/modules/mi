@@ -190,8 +190,6 @@
 ./@MODULEDIR@/union/union.kmod			base-kernel-modules	kmod
 ./@MODULEDIR@/usbverbose			base-kernel-modules	kmod
 ./@MODULEDIR@/usbverbose/usbverbose.kmod	base-kernel-modules	kmod
-./@MODULEDIR@/vnd 				base-kernel-modules	kmod
-./@MODULEDIR@/vnd/vnd.kmod		        base-kernel-modules	kmod
 ./@MODULEDIR@/zlib				base-kernel-modules     kmod
 ./@MODULEDIR@/zlib/zlib.kmod			base-kernel-modules     kmod
 ./etc/mtree/set.modules				modules-sys-root	kmod

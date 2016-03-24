@@ -87,7 +87,6 @@ SUBDIR+=	udf
 SUBDIR+=	umap
 SUBDIR+=	union
 SUBDIR+=	usbverbose
-SUBDIR+=	vnd
 SUBDIR+=	zlib
 SUBDIR+=	tprof
 .if (defined(NOTYET))

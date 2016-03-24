@@ -133,7 +133,6 @@
 ./rescue/umount					base-rescue-root
 ./rescue/veriexecctl				base-rescue-root
 ./rescue/vi					base-rescue-root
-./rescue/vnconfig				base-rescue-root
 ./rescue/wdogctl				base-rescue-root
 ./rescue/wsconsctl				base-rescue-root
 ./rescue/zcat					base-rescue-root

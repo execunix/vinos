@@ -5858,7 +5858,7 @@ uLong ZEXPORT adler32(uLong adler, const Bytef *buf, uInt len)
 #if defined(_KERNEL)
 
 /*
- * NetBSD module glue - this code is required for the vnd and swcrypto
+ * NetBSD module glue - this code is required for the swcrypto
  * pseudo-devices.
  */
 #include <sys/module.h>

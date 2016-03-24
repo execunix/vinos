@@ -76,8 +76,6 @@ __KERNEL_RCSID(0, "$NetBSD: netbsd32_ioctl.c,v 1.69.4.1 2015/08/02 11:29:10 mart
 #include <compat/netbsd32/netbsd32_ioctl.h>
 #include <compat/netbsd32/netbsd32_syscallargs.h>
 
-#include <dev/vndvar.h>
-
 /* convert to/from different structures */
 
 static inline void
@@ -202,36 +200,6 @@ netbsd32_to_atareq(struct netbsd32_atareq *s32p, struct atareq *p, u_long cmd)
 	p->timeout = s32p->timeout;
 	p->retsts = s32p->retsts;
 	p->error = s32p->error;
-}
-
-static inline void
-netbsd32_to_vnd_ioctl(struct netbsd32_vnd_ioctl *s32p, struct vnd_ioctl *p, u_long cmd)
-{
-
-	p->vnd_file = (char *)NETBSD32PTR64(s32p->vnd_file);
-	p->vnd_flags = s32p->vnd_flags;
-	p->vnd_geom = s32p->vnd_geom;
-	p->vnd_osize = s32p->vnd_osize;
-	p->vnd_size = s32p->vnd_size;
-}
-
-static inline void
-netbsd32_to_vnd_user(struct netbsd32_vnd_user *s32p, struct vnd_user *p, u_long cmd)
-{
-
-	p->vnu_unit = s32p->vnu_unit;
-	p->vnu_dev = s32p->vnu_dev;
-	p->vnu_ino = s32p->vnu_ino;
-}
-
-static inline void
-netbsd32_to_vnd_ioctl50(struct netbsd32_vnd_ioctl50 *s32p, struct vnd_ioctl50 *p, u_long cmd)
-{
-
-	p->vnd_file = (char *)NETBSD32PTR64(s32p->vnd_file);
-	p->vnd_flags = s32p->vnd_flags;
-	p->vnd_geom = s32p->vnd_geom;
-	p->vnd_size = s32p->vnd_size;
 }
 
 static inline void
@@ -525,34 +493,6 @@ netbsd32_from_atareq(struct atareq *p, struct netbsd32_atareq *s32p, u_long cmd)
 	s32p->timeout = p->timeout;
 	s32p->retsts = p->retsts;
 	s32p->error = p->error;
-}
-
-static inline void
-netbsd32_from_vnd_ioctl(struct vnd_ioctl *p, struct netbsd32_vnd_ioctl *s32p, u_long cmd)
-{
-
-	s32p->vnd_flags = p->vnd_flags;
-	s32p->vnd_geom = p->vnd_geom;
-	s32p->vnd_osize = p->vnd_osize;
-	s32p->vnd_size = p->vnd_size;
-}
-
-static inline void
-netbsd32_from_vnd_user(struct vnd_user *p, struct netbsd32_vnd_user *s32p, u_long cmd)
-{
-
-	s32p->vnu_unit = p->vnu_unit;
-	s32p->vnu_dev = p->vnu_dev;
-	s32p->vnu_ino = p->vnu_ino;
-}
-
-static inline void
-netbsd32_from_vnd_ioctl50(struct vnd_ioctl50 *p, struct netbsd32_vnd_ioctl50 *s32p, u_long cmd)
-{
-
-	s32p->vnd_flags = p->vnd_flags;
-	s32p->vnd_geom = p->vnd_geom;
-	s32p->vnd_size = p->vnd_size;
 }
 
 static inline void
@@ -992,21 +932,6 @@ netbsd32_ioctl(struct lwp *l, const struct netbsd32_ioctl_args *uap, register_t 
 
 	case SIOCGETSGCNT32:
 		IOCTL_STRUCT_CONV_TO(SIOCGETSGCNT, sioc_sg_req);
-
-	case VNDIOCSET32:
-		IOCTL_STRUCT_CONV_TO(VNDIOCSET, vnd_ioctl);
-
-	case VNDIOCCLR32:
-		IOCTL_STRUCT_CONV_TO(VNDIOCCLR, vnd_ioctl);
-
-	case VNDIOCGET32:
-		IOCTL_STRUCT_CONV_TO(VNDIOCGET, vnd_user);
-
-	case VNDIOCSET5032:
-		IOCTL_STRUCT_CONV_TO(VNDIOCSET50, vnd_ioctl50);
-
-	case VNDIOCCLR5032:
-		IOCTL_STRUCT_CONV_TO(VNDIOCCLR50, vnd_ioctl50);
 
 	case ENVSYS_GETDICTIONARY32:
 		IOCTL_STRUCT_CONV_TO(ENVSYS_GETDICTIONARY, plistref);

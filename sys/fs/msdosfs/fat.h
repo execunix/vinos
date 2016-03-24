@@ -77,7 +77,7 @@
  * If the filesystem is on floppy we've got a 12 bit FAT filesystem, otherwise
  * 16 bit. We check the d_type field in the disklabel struct while mounting
  * and store the result in the pm_fatentrysize. Note that this kind of
- * detection gets flakey when mounting a vnd-device.
+ * detection gets flakey when mounting a vnd_x-device.
  */
 #define	FAT12(pmp)	(pmp->pm_fatmask == FAT12_MASK)
 #define	FAT16(pmp)	(pmp->pm_fatmask == FAT16_MASK)

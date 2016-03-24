@@ -1090,25 +1090,6 @@ message partman_header
 {This is the extended partition manager.  All disks, partitions are
 listed below.}
 
-message vnd_err_menufmt {   PATH NOT DEFINED!}
-message vnd_assgn_menufmt {   vnd%1d on %-51s ASSIGN}
-message vnd_menufmt {   vnd%1d on %-45s %11uM}
-message vnd_path_fmt {File path: %29s}
-message vnd_assgn_fmt {Assign exist image: %20s}
-message vnd_size_fmt {Size:            %22sM}
-message vnd_ro_fmt {Read-only:        %22s}
-message vnd_geom_fmt {Set geometry by hand: %18s}
-message vnd_bps_fmt {Bytes per Sector:     %18s}
-message vnd_spt_fmt {Sectors per Track:    %18s}
-message vnd_tpc_fmt {Tracks per Cylinder:  %18s}
-message vnd_cyl_fmt {Cylinders:        %22s}
-message vnd_path_ask {File path?}
-message vnd_size_ask {Size (MB)?}
-message vnd_bps_ask {Bytes per Sector?}
-message vnd_spt_ask {Sectors per Track?}
-message vnd_tpc_ask {Tracks per Cylinder?}
-message vnd_cyl_ask {Cylinders?}
-
 message addusername {8 character username to add}
 message addusertowheel {Do you wish to add this user to group wheel?}
 

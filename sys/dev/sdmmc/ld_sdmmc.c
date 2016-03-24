@@ -133,7 +133,7 @@ ld_sdmmc_attach(device_t parent, device_t self, void *aux)
 
 	/*
 	 * It is avoided that the error occurs when the card attaches it,
-	 * when wedge is supported.
+	 * when wedge_x is supported.
 	 */
 	config_pending_incr(self);
 	if (kthread_create(PRI_NONE, KTHREAD_MPSAFE, NULL,

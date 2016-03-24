@@ -1182,16 +1182,6 @@ This sets the default value of the
 .Em kern.module.autoload
 .Xr sysctl 3
 variable which may be changed at run time.
-.It Cd options VND_COMPRESSION
-Enables the
-.Xr vnd 4
-driver to also handle compressed images.
-See
-.Xr vndcompress 1 ,
-.Xr vnd 4
-and
-.Xr vnconfig 8
-for more information.
 .It Cd options SPLDEBUG
 Help the kernel programmer find bugs related to the interrupt priority
 level.
@@ -2669,7 +2659,6 @@ bolded
 .Xr ktrace 1 ,
 .Xr pmc 1 ,
 .Xr quota 1 ,
-.Xr vndcompress 1 ,
 .Xr gettimeofday 2 ,
 .Xr i386_get_mtrr 2 ,
 .Xr i386_iopl 2 ,
@@ -2697,7 +2686,6 @@ bolded
 .Xr pcmcia 4 ,
 .Xr ppp 4 ,
 .Xr userconf 4 ,
-.Xr vnd 4 ,
 .Xr wscons 4 ,
 .Xr config 5 ,
 .Xr edquota 8 ,

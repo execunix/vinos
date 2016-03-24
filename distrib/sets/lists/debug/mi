@@ -609,7 +609,6 @@
 ./usr/libdata/debug/usr/bin/videoctl.debug	comp-video-debug	debug
 ./usr/libdata/debug/usr/bin/vis.debug		comp-util-debug		debug
 ./usr/libdata/debug/usr/bin/vmstat.debug	comp-util-debug		debug
-./usr/libdata/debug/usr/bin/vndcompress.debug	comp-util-debug		debug
 ./usr/libdata/debug/usr/bin/w.debug		comp-util-debug		debug
 ./usr/libdata/debug/usr/bin/wall.debug		comp-util-debug		debug
 ./usr/libdata/debug/usr/bin/wc.debug		comp-util-debug		debug
@@ -1013,7 +1012,6 @@
 ./usr/libdata/debug/usr/sbin/user.debug		comp-sysutil-debug	debug
 ./usr/libdata/debug/usr/sbin/veriexecgen.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/usr/sbin/vipw.debug		comp-sysutil-debug	debug
-./usr/libdata/debug/usr/sbin/vnconfig.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/usr/sbin/wakeonlan.debug	comp-netutil-debug	debug
 ./usr/libdata/debug/usr/sbin/wiconfig.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/usr/sbin/wire-test.debug	comp-netutil-debug	debug

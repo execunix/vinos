@@ -1161,25 +1161,6 @@ message nofreedev {Kann nicht zugewiesen werden Geräteknoten!}
 message partman_header
 {Partition Manager. Alle Festplatten, Partitionen angezeigt.}
 
-message vnd_err_menufmt {   PATH nicht definiert!}
-message vnd_assgn_menufmt {   vnd%1d auf %-50s ASSIGN}
-message vnd_menufmt {   vnd%1d auf %-44s %11uM}
-message vnd_path_fmt {Dateipfad: %29s}
-message vnd_assgn_fmt {Weisen Sie existieren Bild: %12s}
-message vnd_size_fmt {Größe:           %22sM}
-message vnd_ro_fmt {Nur lesen:        %22s}
-message vnd_geom_fmt {Stellen Sie Geometrie von Hand: %8s}
-message vnd_bps_fmt {Byte pro Sektor:      %18s}
-message vnd_spt_fmt {Sektoren pro Spur:    %18s}
-message vnd_tpc_fmt {Spuren pro Zylinder:  %18s}
-message vnd_cyl_fmt {Zylinder:         %22s}
-message vnd_path_ask {Dateipfad?}
-message vnd_size_ask {Größe (MB)?}
-message vnd_bps_ask {Byte pro Sektor?}
-message vnd_spt_ask {Sektoren pro Spur?}
-message vnd_tpc_ask {Spuren pro Zylinder?}
-message vnd_cyl_ask {Zylinder?}
-
 message addusername {8 character username to add}
 message addusertowheel {Do you wish to add this user to group wheel?}
 

@@ -267,7 +267,7 @@ udf_update_trackinfo(struct udf_mount *ump, struct mmc_trackinfo *ti)
 	ti->track_start    = 0;
 	ti->packet_size    = 1;
 
-	/* TODO support for resizable vnd */
+	/* TODO support for resizable vnd_x */
 	ti->track_size    = di->last_possible_lba;
 	ti->next_writable = di->last_possible_lba;
 	ti->last_recorded = ti->next_writable;

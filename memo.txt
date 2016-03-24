@@ -341,8 +341,7 @@ root@xmtbsdv3:/mnt/hdd1/vinos#
 # nbmake INSTALLWORLDDIR=/mnt/hdd1/root/ installworld
 
 /mnt/hdd1/vinos/usr.sbin/sysinst
-/mnt/hdd1/vinos/sbin/dkctl/dkctl.c:keeplabel
-/mnt/hdd1/vinos/sys/external/bsd/drm2/dist/drm/nouveau
+/mnt/hdd1/vinos/sbin/dkctl/dkctl.c
 X:\hdd1\vinos\sys\dev\DEVNAMES
 USE_KERNEL_RCSIDS
 GPT_ENT_TYPE_*
@@ -351,13 +350,17 @@ MKX11/MKXORG/XSERVER_XFREE86
 disklabel/TOOL_DISKLABEL
 diskinfo/pdisk
 diskname/bsddiskname
-vnconfig/vndconfig
-geomspec
+xscale/caddr_t
+vnd_x
+swstrategy/v_type
+_LOCORE/dkbad.h
+
 iSCSI/dmover
 MKX11RADEONKMS
 CONFIG_DRM
 X11R6
 
-wedge
+wedge_x
 DKW_PTYPE_FFS
-disk_strategy/getfsspecname/getfstypename/getfsent
+disk_strategy/getfsspecname/getfsent
+pseudo-device 	dm			# device-mapper disk driver

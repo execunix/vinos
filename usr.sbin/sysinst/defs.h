@@ -315,7 +315,7 @@ typedef struct {
     void *dev_ptr;
     int dev_ptr_delta;
     char fullname[SSTRSIZE];
-    enum {PM_DISK_T=1, PM_PART_T, PM_VND_T} type;
+    enum {PM_DISK_T=1, PM_PART_T} type;
 } part_entry_t;
 
 /* Relative file name for storing a distribution. */
@@ -560,7 +560,6 @@ int	target_mounted(void);
 /* from partman.c */
 int partman(void);
 int pm_partusage(pm_devs_t *, int, int);
-int pm_getrefdev(pm_devs_t *);
 void pm_setfstype(pm_devs_t *, int, int);
 int pm_editpart(int);
 void pm_rename(pm_devs_t *);
@@ -568,12 +567,6 @@ int pm_shred(pm_devs_t *, int, int);
 void pm_umount(pm_devs_t *, int);
 int pm_unconfigure(pm_devs_t *);
 void pm_make_bsd_partitions(pm_devs_t *);
-
-/* flags whether to offer the respective options (depending on helper
-   programs available on install media */
-int have_vnd, have_dk;
-/* initialize above variables */
-void check_available_binaries(void);
 
 /* from aout2elf.c */
 int move_aout_libs(void);

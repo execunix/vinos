@@ -34,7 +34,7 @@ is taken as the current.
 3.1:	Rename to /usr/mdec/boot.
 	Leave space in bootxx for FAT32 BPB and MBR partition table.
 	Keep MBR's existing BPB and partition table when installing bootxx.
-3.2:	Add support for passing boot wedge information to the kernel.
+3.2:	Add support for passing boot wedge_x information to the kernel.
 3.3:	Add support for cd9660 file system.
 5.0:	Support for boot menu, modules.
 5.1:	Change boot messages to replace build date with kernel version.

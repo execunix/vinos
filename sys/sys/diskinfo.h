@@ -34,9 +34,6 @@
 #ifndef _SYS_DISKLABEL_H_
 #define	_SYS_DISKLABEL_H_
 
-/*
- * We need <machine/types.h> for __HAVE_OLD_DISKLABEL
- */
 #ifndef _LOCORE
 #include <sys/types.h>
 #endif
@@ -52,7 +49,7 @@
 #undef MAXPARTITIONS
 #define MAXPARTITIONS		MAXMAXPARTITIONS
 #else
-#include <machine/disklabel.h>
+#include <machine/diskinfo.h>
 #endif /* HAVE_NBTOOL_CONFIG_H */
 
 /*
@@ -66,32 +63,14 @@
 #endif
 
 /*
- * Ports can switch their MAXPARTITIONS once, as follows:
- *
- * - define OLDMAXPARTITIONS in <machine/disklabel.h> as the old number
- * - define MAXPARTITIONS as the new number
- * - define DISKUNIT, DISKPART and DISKMINOR macros in <machine/disklabel.h>
- *   as appropriate for the port (see the i386 one for an example).
- * - define __HAVE_OLD_DISKLABEL in <machine/types.h>
- */
-
-#if defined(_KERNEL) && defined(__HAVE_OLD_DISKLABEL) && \
-	   (MAXPARTITIONS < OLDMAXPARTITIONS)
-#error "can only grow disklabel size"
-#endif
-
-
-/*
  * Translate between device numbers and major/disk unit/disk partition.
  */
-#ifndef __HAVE_OLD_DISKLABEL
 #if !HAVE_NBTOOL_CONFIG_H
 #define	DISKUNIT(dev)	(minor(dev) / MAXPARTITIONS)
 #define	DISKPART(dev)	(minor(dev) % MAXPARTITIONS)
 #define	DISKMINOR(unit, part) \
     (((unit) * MAXPARTITIONS) + (part))
 #endif /* !HAVE_NBTOOL_CONFIG_H */
-#endif
 #define	MAKEDISKDEV(maj, unit, part) \
     (makedev((maj), DISKMINOR((unit), (part))))
 
@@ -202,62 +181,6 @@ struct disklabel {
 	} d_partitions[MAXPARTITIONS];	/* actually may be more */
 };
 
-#if defined(__HAVE_OLD_DISKLABEL) && !HAVE_NBTOOL_CONFIG_H
-/*
- * Same as above, but with OLDMAXPARTITIONS partitions. For use in
- * the old DIOC* ioctl calls.
- */
-struct olddisklabel {
-	uint32_t d_magic;
-	uint16_t d_type;
-	uint16_t d_subtype;
-	char	  d_typename[16];
-	union {
-		char	un_d_packname[16];
-		struct {
-			char *un_d_boot0;
-			char *un_d_boot1;
-		} un_b;
-	} d_un;
-	uint32_t d_secsize;
-	uint32_t d_nsectors;
-	uint32_t d_ntracks;
-	uint32_t d_ncylinders;
-	uint32_t d_secpercyl;
-	uint32_t d_secperunit;
-	uint16_t d_sparespertrack;
-	uint16_t d_sparespercyl;
-	uint32_t d_acylinders;
-	uint16_t d_rpm;
-	uint16_t d_interleave;
-	uint16_t d_trackskew;
-	uint16_t d_cylskew;
-	uint32_t d_headswitch;
-	uint32_t d_trkseek;
-	uint32_t d_flags;
-	uint32_t d_drivedata[NDDATA];
-	uint32_t d_spare[NSPARE];
-	uint32_t d_magic2;
-	uint16_t d_checksum;
-	uint16_t d_npartitions;
-	uint32_t d_bbsize;
-	uint32_t d_sbsize;
-	struct	opartition {
-		uint32_t p_size;
-		uint32_t p_offset;
-		union {
-			uint32_t fsize;
-			uint32_t cdsession;
-		} __partition_u2;
-		uint8_t p_fstype;
-		uint8_t p_frag;
-		union {
-			uint16_t cpg;
-			uint16_t sgs;
-		} __partition_u1;
-	} d_partitions[OLDMAXPARTITIONS];
-};
-#endif /* __HAVE_OLD_DISKLABEL */
 #else /* _LOCORE */
 	/*
 	 * offsets for asm boot files.
@@ -298,13 +221,12 @@ x(HPIB,		7,	"HP-IB")	/* CS/80 on HP-IB */ \
 x(HPFL,		8,	"HP-FL")	/* HP Fiber-link */ \
 x(TYPE_9,	9,	"type 9") \
 x(FLOPPY,	10,	"floppy")	/* floppy */ \
-x(VND,		12,	"vnd")		/* uvnode pseudo-disk */ \
-x(ATAPI,	13,	"ATAPI")	/* ATAPI */ \
-x(LD,		15,	"ld")		/* logical disk */ \
-x(JFS2,		16,	"jfs")		/* IBM JFS2 */ \
-x(VINUM,	18,	"vinum")	/* vinum volume */ \
-x(FLASH,	19,	"flash")	/* flash memory devices */ \
-x(DM,           20,     "dm")           /* device-mapper pseudo-disk devices */\
+x(ATAPI,	11,	"ATAPI")	/* ATAPI */ \
+x(LD,		12,	"ld")		/* logical disk */ \
+x(JFS2,		13,	"jfs")		/* IBM JFS2 */ \
+x(VINUM,	14,	"vinum")	/* vinum volume */ \
+x(FLASH,	15,	"flash")	/* flash memory devices */ \
+x(DM,		16,	"dm")		/* device-mapper pseudo-disk devices */\
     
 #ifndef _LOCORE
 #define DKTYPE_NUMS(tag, number, name) __CONCAT(DTYPE_,tag=number),
@@ -447,5 +369,142 @@ int	 bounds_check_with_mediasize(struct buf *, int, uint64_t);
 #include <sys/cdefs.h>
 
 #endif
+
+/*
+ * Definitions for the EFI GUID Partition Table disk partitioning scheme.
+ *
+ * NOTE: As EFI is an Intel specification, all fields are stored in
+ * little-endian byte-order.
+ */
+
+/*
+ * GUID Partition Table Header
+ */
+struct gpt_hdr {
+	int8_t		hdr_sig[8];	/* identifies GUID Partition Table */
+	uint32_t	hdr_revision;	/* GPT specification revsion */
+	uint32_t	hdr_size;	/* size of GPT Header */
+	uint32_t	hdr_crc_self;	/* CRC32 of GPT Header */
+	uint32_t	hdr__rsvd0;	/* must be zero */
+	uint64_t	hdr_lba_self;	/* LBA that contains this Header */
+	uint64_t	hdr_lba_alt;	/* LBA of backup GPT Header */
+	uint64_t	hdr_lba_start;	/* first LBA usable for partitions */
+	uint64_t	hdr_lba_end;	/* last LBA usable for partitions */
+	uint8_t		hdr_guid[16];	/* GUID to identify the disk */
+	uint64_t	hdr_lba_table;	/* first LBA of GPE array */
+	uint32_t	hdr_entries;	/* number of entries in GPE array */
+	uint32_t	hdr_entsz;	/* size of each GPE */
+	uint32_t	hdr_crc_table;	/* CRC32 of GPE array */
+	/*
+	 * The remainder of the block that contains the GPT Header
+	 * is reserved by EFI for future GPT Header expansion, and
+	 * must be zero.
+	 */
+};
+
+#define	GPT_HDR_SIG		"EFI PART"
+#define	GPT_HDR_REVISION	0x00010000	/* 1.0 */
+
+#define	GPT_HDR_BLKNO		1
+
+#define	GPT_HDR_SIZE		0x5c
+
+/*
+ * GUID Partition Entry
+ */
+struct gpt_ent {
+	uint8_t		ent_type[16];	/* partition type GUID */
+	uint8_t		ent_guid[16];	/* unique partition GUID */
+	uint64_t	ent_lba_start;	/* start of partition */
+	uint64_t	ent_lba_end;	/* end of partition */
+	uint64_t	ent_attr;	/* partition attributes */
+	uint16_t	ent_name[36];	/* partition name in UNICODE-16 */
+};
+
+#define	GPT_ENT_ATTR_REQUIRED_PARTITION		(1ULL << 0)
+					/* required for platform to function */
+#define	GPT_ENT_ATTR_NO_BLOCK_IO_PROTOCOL	(1ULL << 1)
+					/* UEFI won't recognize file system */
+#define	GPT_ENT_ATTR_LEGACY_BIOS_BOOTABLE	(1ULL << 2)
+					/* legacy BIOS boot partition */
+/* The following three entries are from FreeBSD. */
+#define GPT_ENT_ATTR_BOOTME			(1ULL << 59)
+					/* indicates a bootable partition */
+#define GPT_ENT_ATTR_BOOTONCE			(1ULL << 58)
+				/* attempt to boot this partition only once */
+#define GPT_ENT_ATTR_BOOTFAILED			(1ULL << 57)
+		/* partition that was marked bootonce but failed to boot */
+
+/*
+ * Partition types defined by the EFI specification:
+ *
+ *	GPT_ENT_TYPE_UNUSED		Unused Entry
+ *	GPT_ENT_TYPE_EFI		EFI System Partition
+ *	GPT_ENT_TYPE_MBR		Partition containing legacy MBR
+ */
+#define	GPT_ENT_TYPE_UNUSED		\
+	{0x00000000,0x0000,0x0000,0x00,0x00,{0x00,0x00,0x00,0x00,0x00,0x00}}
+#define	GPT_ENT_TYPE_EFI		\
+	{0xc12a7328,0xf81f,0x11d2,0xba,0x4b,{0x00,0xa0,0xc9,0x3e,0xc9,0x3b}}
+#define	GPT_ENT_TYPE_MBR		\
+	{0x024dee41,0x33e7,0x11d3,0x9d,0x69,{0x00,0x08,0xc7,0x81,0xf3,0x9f}}
+
+/*
+ * Partition types defined by other operating systems.
+ */
+#define	GPT_ENT_TYPE_NETBSD_SWAP	\
+	{0x49f48d32,0xb10e,0x11dc,0xb9,0x9b,{0x00,0x19,0xd1,0x87,0x96,0x48}}
+#define	GPT_ENT_TYPE_NETBSD_FFS		\
+	{0x49f48d5a,0xb10e,0x11dc,0xb9,0x9b,{0x00,0x19,0xd1,0x87,0x96,0x48}}
+#define	GPT_ENT_TYPE_NETBSD_LFS		\
+	{0x49f48d82,0xb10e,0x11dc,0xb9,0x9b,{0x00,0x19,0xd1,0x87,0x96,0x48}}
+
+#define	GPT_ENT_TYPE_FREEBSD		\
+	{0x516e7cb4,0x6ecf,0x11d6,0x8f,0xf8,{0x00,0x02,0x2d,0x09,0x71,0x2b}}
+#define	GPT_ENT_TYPE_FREEBSD_SWAP	\
+	{0x516e7cb5,0x6ecf,0x11d6,0x8f,0xf8,{0x00,0x02,0x2d,0x09,0x71,0x2b}}
+#define	GPT_ENT_TYPE_FREEBSD_UFS	\
+	{0x516e7cb6,0x6ecf,0x11d6,0x8f,0xf8,{0x00,0x02,0x2d,0x09,0x71,0x2b}}
+#define	GPT_ENT_TYPE_FREEBSD_VINUM	\
+	{0x516e7cb8,0x6ecf,0x11d6,0x8f,0xf8,{0x00,0x02,0x2d,0x09,0x71,0x2b}}
+#define GPT_ENT_TYPE_FREEBSD_ZFS	\
+	{0x516e7cba,0x6ecf,0x11d6,0x8f,0xf8,{0x00,0x02,0x2d,0x09,0x71,0x2b}}
+/*
+ * The following are unused but documented here to avoid reuse.
+ *
+ *      GPT_ENT_TYPE_FREEBSD_UFS2	\
+ *	{0x516e7cb7,0x6ecf,0x11d6,0x8f,0xf8,{0x00,0x02,0x2d,0x09,0x71,0x2b}}
+ */
+
+#define	GPT_ENT_TYPE_MS_RESERVED	\
+	{0xe3c9e316,0x0b5c,0x4db8,0x81,0x7d,{0xf9,0x2d,0xf0,0x02,0x15,0xae}}
+#define	GPT_ENT_TYPE_MS_BASIC_DATA	\
+	{0xebd0a0a2,0xb9e5,0x4433,0x87,0xc0,{0x68,0xb6,0xb7,0x26,0x99,0xc7}}
+#define	GPT_ENT_TYPE_MS_LDM_METADATA	\
+	{0x5808c8aa,0x7e8f,0x42e0,0x85,0xd2,{0xe1,0xe9,0x04,0x34,0xcf,0xb3}}
+#define	GPT_ENT_TYPE_MS_LDM_DATA	\
+	{0xaf9b60a0,0x1431,0x4f62,0xbc,0x68,{0x33,0x11,0x71,0x4a,0x69,0xad}}
+
+/*
+ * Linux originally used GPT_ENT_TYPE_MS_BASIC_DATA in place of
+ * GPT_ENT_TYPE_LINUX_DATA.
+ */
+#define	GPT_ENT_TYPE_LINUX_DATA		\
+	{0x0fc63daf,0x8483,0x4772,0x8e,0x79,{0x3d,0x69,0xd8,0x47,0x7d,0xe4}}
+#define	GPT_ENT_TYPE_LINUX_SWAP		\
+	{0x0657fd6d,0xa4ab,0x43c4,0x84,0xe5,{0x09,0x33,0xc8,0x4b,0x4f,0x4f}}
+#define	GPT_ENT_TYPE_LINUX_LVM		\
+	{0xe6d6d379,0xf507,0x44c2,0xa2,0x3c,{0x23,0x8f,0x2a,0x3d,0xf9,0x28}}
+
+#define	GPT_ENT_TYPE_APPLE_HFS		\
+	{0x48465300,0x0000,0x11aa,0xaa,0x11,{0x00,0x30,0x65,0x43,0xec,0xac}}
+#define	GPT_ENT_TYPE_APPLE_UFS		\
+	{0x55465300,0x0000,0x11aa,0xaa,0x11,{0x00,0x30,0x65,0x43,0xec,0xac}}
+
+/*
+ * Used by GRUB 2.
+ */
+#define	GPT_ENT_TYPE_BIOS		\
+	{0x21686148,0x6449,0x6e6f,0x74,0x4e,{0x65,0x65,0x64,0x45,0x46,0x49}}
 
 #endif /* !_SYS_DISKLABEL_H_ */

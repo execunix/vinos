@@ -82,7 +82,7 @@ static void fixsb(const char *, const char *, char);
 #define DISK_NAMES "wd", "sd", "ld"
 #endif
 
-static const char *disk_names[] = { DISK_NAMES, "vnd", NULL };
+static const char *disk_names[] = { DISK_NAMES, NULL };
 
 static bool tmpfs_on_var_shm(void);
 
@@ -314,7 +314,6 @@ get_descr(struct disk_desc *dd)
 	/* try SCSI */
 	if (get_descr_scsi(dd, fd))
 		goto done;
-	/* XXX: get description from vnd... */
 
 done:
 	if (fd >= 0)
@@ -437,9 +436,9 @@ find_disks(const char *doingwhat)
 	/* Kill typeahead, it won't be what the user had in mind */
 	fpurge(stdin);
 
-	/* partman_go: <0 - we want to see menu with extended partitioning
-				  ==0 - we want to see simple select disk menu
-				   >0 - we do not want to see any menus, just detect all disks */
+	/* partman_go:   <0 - we want to see menu with extended partitioning
+			==0 - we want to see simple select disk menu
+			 >0 - we do not want to see any menus, just detect all disks */
 	if (partman_go <= 0) {
 		if (numdisks == 0) {
 			/* No disks found! */
@@ -472,11 +471,11 @@ find_disks(const char *doingwhat)
 		}
 		if (partman_go < 0 && selected_disk == numdisks) {
 			partman_go = 1;
-	    	return -2;
+			return -2;
 		} else
 			partman_go = 0;
 		if (selected_disk < 0 || selected_disk >= numdisks)
-	    	return -1;
+			return -1;
 	}
 
 	/* Fill pm struct with device(s) info */
@@ -529,7 +528,7 @@ find_disks(const char *doingwhat)
 
 		label_read();
 		if (partman_go) {
-			pm_getrefdev(pm_new);
+			pm_new->refdev = NULL;
 			if (SLIST_EMPTY(&pm_head) || pm_last == NULL)
 				 SLIST_INSERT_HEAD(&pm_head, pm_new, l);
 			else
@@ -548,8 +547,6 @@ find_disks(const char *doingwhat)
 void
 label_read(void)
 {
-	check_available_binaries();
-
 	/* Get existing/default label */
 	memset(&pm->oldlabel, 0, sizeof pm->oldlabel);
 	incorelabel(pm->diskdev, pm->oldlabel);

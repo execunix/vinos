@@ -1098,25 +1098,6 @@ message nofreedev {Nie mo¿na przydzieliæ wêze³!}
 message partman_header
 {Partition Manager. Wszystkie dyski, partycje oraz wy¶wietlane.}
 
-message vnd_err_menufmt {   ¦CIE¯KA NIE ZDEFINIOWANE!}
-message vnd_assgn_menufmt {   vnd%1d na %-51s ASSIGN}
-message vnd_menufmt {   vnd%1d na %-45s %11uM}
-message vnd_path_fmt {¦cie¿ka: %31s}
-message vnd_assgn_fmt {Przypisywanie istnieæ obraz: %11s}
-message vnd_size_fmt {Rozmiar: %30sM}
-message vnd_ro_fmt {Tylko do odczytu:   %20s}
-message vnd_geom_fmt {Ustaw geometriê rêcznie: %15s}
-message vnd_bps_fmt {Bajtów na sektorów: %20s}
-message vnd_spt_fmt {Sektory na ¶cie¿ki: %20s}
-message vnd_tpc_fmt {Utwory na cylinder: %20s}
-message vnd_cyl_fmt {Si³owniki:          %20s}
-message vnd_path_ask {File Path?}
-message vnd_size_ask {Rozmiar (MB)?}
-message vnd_bps_ask {Bajtów na sektor?}
-message vnd_spt_ask {Sektory na ¶cie¿kê?}
-message vnd_tpc_ask {Utwory na cylinder?}
-message vnd_cyl_ask {Cylindry}
-
 message addusername {8 character username to add}
 message addusertowheel {Do you wish to add this user to group wheel?}
 message Delete_partition

@@ -30,7 +30,7 @@
  * Generate an in-core disklabel for a CD, containing entries for
  * previous data tracks (supposed to be of previous sessions).
  * TODO:
- *  - support simulation of multisession CDs in a vnd(4) disk
+ *  - support simulation of multisession CDs in a vnd_x(4) disk
  */
 
 #include <stdio.h>
@@ -146,7 +146,7 @@ main(argc, argv)
 	/*
 	 * Get the TOC: first try to read a real one from a CD drive.
 	 * If this fails we might have something else keeping an ISO image
-	 * (eg. vnd(4) or plain file).
+	 * (eg. vnd_x(4) or plain file).
 	 */
 	if (getcdtoc(fd) < 0 && getfaketoc(fd) < 0)
 		exit(2);

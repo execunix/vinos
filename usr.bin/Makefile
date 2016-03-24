@@ -31,7 +31,7 @@ SUBDIR= apply asa at audio audiocfg \
 	tr true tset tsort tty ul uname unexpand unifdef \
 	uniq units unvis unzip usbhidaction usbhidctl users utoppya \
 	uudecode uuencode uuidgen vacation vgrind videoctl vis \
-	vmstat vndcompress w \
+	vmstat w \
 	wall wc what whereis who whois \
 	write xargs xinstall xlint xstr yes
 

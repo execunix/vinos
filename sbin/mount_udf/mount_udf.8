@@ -99,11 +99,9 @@ The default owner is the user nobody.
 .El
 .Sh SEE ALSO
 .Xr mount 2 ,
-.Xr vnd 4 ,
 .Xr fstab 5 ,
 .Xr mount 8 ,
 .Xr umount 8 ,
-.Xr vnconfig 8
 .Sh NOTES
 UDF is a file system defined by the OSTA standardization group and
 is tailored for data interchange on optical discs (like CDs and
@@ -125,18 +123,6 @@ Both open and closed media are supported so
 there is no need to close discs or sessions.
 .Pp
 All current UDF versions up to version 2.60 are supported.
-.Pp
-Hard disk partitions and
-.Xr vnd 4
-devices may also be mounted.
-Note when mounting a
-.Xr vnd 4
-device it might be necessary to specify the file image sector size
-in the
-.Pa geomspec
-when creating the
-.Xr vnd 4
-device or the disc sector size will be used.
 .Sh BUGS
 Write support for UDF version 2.50 is not completely mature and UDF version
 2.01 should be used if possible; this is also the default format.

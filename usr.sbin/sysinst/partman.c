@@ -44,39 +44,8 @@
 #include "msg_defs.h"
 #include "menu_defs.h"
 
-/* flags whether to offer the respective options (depending on helper
-   programs available on install media */
-int have_vnd, have_dk;
-
 /* XXX: replace all MAX_* defines with vars that depend on kernel settings */
 #define MAX_ENTRIES 96
-
-#define MAX_VND 4
-typedef struct vnds_t {
-	int enabled;
-	int blocked;
-	int node;
-	char filepath[STRSIZE];
-	int size;
-	int readonly;
-	int is_exist;
-	int manual_geom;
-	int secsize, nsectors, ntracks, ncylinders;
-	int pm_part;    /* Used only for */
-	pm_devs_t *pm;  /* referring device */
-} vnds_t;
-vnds_t vnds[MAX_VND];
-
-typedef struct structinfo_t {
-	int max;
-	uint entry_size;
-	uint parent_size;
-	void *entry_first;
-	void *entry_enabled;
-	void *entry_blocked;
-	void *entry_node;
-} structinfo_t;
-structinfo_t vnds_t_info;
 
 typedef struct pm_upddevlist_adv_t {
 	const char *create_msg;
@@ -95,56 +64,10 @@ struct {
 int cursel; /* Number of selected entry in main menu */
 int changed; /* flag indicating that we have unsaved changes */
 
-enum { /* VND menu enum */
-	PMV_MENU_FILEPATH, PMV_MENU_EXIST, PMV_MENU_SIZE, PMV_MENU_RO, PMV_MENU_MGEOM,
-	PMV_MENU_SECSIZE, PMV_MENU_NSECTORS, PMV_MENU_NTRACKS, PMV_MENU_NCYLINDERS,
-	PMV_MENU_REMOVE, PMV_MENU_END
-};
-
 part_entry_t pm_dev_list(int);
 static int pm_mount(pm_devs_t *, int);
 static int pm_upddevlist(menudesc *, void *);
 static void pm_select(pm_devs_t *);
-
-/* Universal menu for VND entry edit */
-static int
-pm_edit(int menu_entries_count, void (*menu_fmt)(menudesc *, int, void *),
-	int (*action)(menudesc *, void *), int (*check_fun)(void *),
-	void (*entry_init)(void *, void *),	void *entry_init_arg,
-	void *dev_ptr, int dev_ptr_delta, structinfo_t *s)
-{
-	int i, ok = 0;
-
-	if (dev_ptr == NULL) {
-		/* We should create new device */
-		for (i = 0; i < s->max && !ok; i++)
-			if (*(int*)((char*)s->entry_enabled + dev_ptr_delta + s->entry_size * i) == 0) {
-				dev_ptr = (char*)s->entry_first + dev_ptr_delta + s->entry_size * i;
-				entry_init(dev_ptr, entry_init_arg);
-				ok = 1;
-			}
-		if (!ok) {
-			/* We do not have free device slots */
-			process_menu(MENU_ok, deconst(MSG_limitcount));
-			return -1;
-		}
-	}
-
-	menu_ent menu_entries[menu_entries_count];
-	for (i = 0; i < menu_entries_count - 1; i++)
-		menu_entries[i] = (menu_ent) {NULL, OPT_NOMENU, 0, action};
-	menu_entries[i] = (menu_ent) {MSG_fremove, OPT_NOMENU, OPT_EXIT, action};
-
-	int menu_no = -1;
-	menu_no = new_menu(NULL, menu_entries, menu_entries_count,
-		-1, -1, 0, 40, MC_NOCLEAR | MC_SCROLL,
-		NULL, menu_fmt, NULL, NULL, MSG_DONE);
-	
-	process_menu(menu_no, dev_ptr);
-	free_menu(menu_no);
-
-	return check_fun(dev_ptr);
-}
 
 static void
 pm_getdevstring(char *buf, int len, pm_devs_t *pm_cur, int num)
@@ -203,324 +126,9 @@ pm_dev_list(int type)
 	return disk_entries[dev_num];
 }
 
-/* Get unused vnd* device */
-static int
-pm_manage_getfreenode(void *node, const char *d, structinfo_t *s)
-{
-	int i, ii, ok;
-	char buf[SSTRSIZE];
-	pm_devs_t *pm_i;
-
-	*(int*)node = -1;
-	for (i = 0; i < s->max; i++) {
-		ok = 1;
-		/* Check that node is not already reserved */
-		for (ii = 0; ii < s->max; ii++)
-			if (*(int*)((char*)s->entry_node + s->entry_size * ii) == i) {
-				ok = 0;
-				break;
-			}
-		if (! ok)
-			continue;
-		/* Check that node is not in the device list */
-		snprintf(buf, SSTRSIZE, "%s%d", d, i);
-		SLIST_FOREACH(pm_i, &pm_head, l)
-			if (! strcmp(pm_i->diskdev, buf)) {
-				ok = 0;
-				break;
-			}
-		if (ok) {
-			*(int*)node = i;
-			return i;
-		}
-	}
-	process_menu(MENU_ok, deconst(MSG_nofreedev));
-	return -1;
-}
-
-/***
- VND
- ***/
-
-static void
-pm_vnd_menufmt(menudesc *m, int opt, void *arg)
-{
-	vnds_t *dev_ptr = ((part_entry_t *)arg)[opt].dev_ptr;
-
-	if (dev_ptr->enabled == 0)
-		return;
-	if (strlen(dev_ptr->filepath) < 1)
-		wprintw(m->mw, "%s", msg_string(MSG_vnd_err_menufmt));
-	else if (dev_ptr->is_exist)
-		wprintw(m->mw, msg_string(MSG_vnd_assgn_menufmt),
-			dev_ptr->node, dev_ptr->filepath);
-	else 
-		wprintw(m->mw, msg_string(MSG_vnd_menufmt),
-			dev_ptr->node, dev_ptr->filepath, dev_ptr->size);
-	return;
-}
-
-static void
-pm_vnd_edit_menufmt(menudesc *m, int opt, void *arg)
-{
-	vnds_t *dev_ptr = arg;
-	char buf[SSTRSIZE];
-	strcpy(buf, "-");
-
-	switch (opt) {
-		case PMV_MENU_FILEPATH:
-			wprintw(m->mw, msg_string(MSG_vnd_path_fmt), dev_ptr->filepath);
-			break;
-		case PMV_MENU_EXIST:
-			wprintw(m->mw, msg_string(MSG_vnd_assgn_fmt),
-				dev_ptr->is_exist? msg_string(MSG_Yes) : msg_string(MSG_No));
-			break;
-		case PMV_MENU_SIZE:
-			if (!dev_ptr->is_exist)
-				snprintf(buf, SSTRSIZE, "%d", dev_ptr->size);
-			wprintw(m->mw, msg_string(MSG_vnd_size_fmt), buf);
-			break;
-		case PMV_MENU_RO:
-			wprintw(m->mw, msg_string(MSG_vnd_ro_fmt),
-				dev_ptr->readonly? msg_string(MSG_Yes) : msg_string(MSG_No));
-			break;
-		case PMV_MENU_MGEOM:
-			if (!dev_ptr->is_exist)
-				snprintf(buf, SSTRSIZE, "%s",
-					dev_ptr->manual_geom? msg_string(MSG_Yes) : msg_string(MSG_No));
-			wprintw(m->mw, msg_string(MSG_vnd_geom_fmt), buf);
-			break;
-		case PMV_MENU_SECSIZE:
-			if (dev_ptr->manual_geom && !dev_ptr->is_exist)
-				snprintf(buf, SSTRSIZE, "%d", dev_ptr->secsize);
-			wprintw(m->mw, msg_string(MSG_vnd_bps_fmt), buf);
-			break;
-		case PMV_MENU_NSECTORS:
-			if (dev_ptr->manual_geom && !dev_ptr->is_exist)
-				snprintf(buf, SSTRSIZE, "%d", dev_ptr->nsectors);
-			wprintw(m->mw, msg_string(MSG_vnd_spt_fmt), buf);
-			break;
-		case PMV_MENU_NTRACKS:
-			if (dev_ptr->manual_geom && !dev_ptr->is_exist)
-				snprintf(buf, SSTRSIZE, "%d", dev_ptr->ntracks);
-			wprintw(m->mw, msg_string(MSG_vnd_tpc_fmt), buf);
-			break;
-		case PMV_MENU_NCYLINDERS:
-			if (dev_ptr->manual_geom && !dev_ptr->is_exist)
-				snprintf(buf, SSTRSIZE, "%d", dev_ptr->ncylinders);
-			wprintw(m->mw, msg_string(MSG_vnd_cyl_fmt), buf);
-			break;
-	}
-	return;
-}
-
-static int
-pm_vnd_set_value(menudesc *m, void *arg)
-{
-	vnds_t *dev_ptr = arg;
-	char buf[STRSIZE];
-	const char *msg_to_show = NULL;
-	int *out_var = NULL;
-	
-	switch (m->cursel) {
-		case PMV_MENU_FILEPATH:
-			msg_prompt_win(MSG_vnd_path_ask, -1, 18, 0, 0, dev_ptr->filepath,
-				dev_ptr->filepath, STRSIZE);
-			if (dev_ptr->filepath[0] != '/') {
-				strlcpy(buf, dev_ptr->filepath, MOUNTLEN);
-				snprintf(dev_ptr->filepath, MOUNTLEN, "/%s", buf);
-			}
-			if (dev_ptr->filepath[strlen(dev_ptr->filepath) - 1] == '/')
-				dev_ptr->filepath[strlen(dev_ptr->filepath) - 1] = '\0';
-			return 0;
-		case PMV_MENU_EXIST:
-			dev_ptr->is_exist = !dev_ptr->is_exist;
-			return 0;
-		case PMV_MENU_SIZE:
-			if (dev_ptr->is_exist)
-				return 0;
-			msg_to_show = MSG_vnd_size_ask;
-			out_var = &(dev_ptr->size);
-			break;
-		case PMV_MENU_RO:
-			dev_ptr->readonly = !dev_ptr->readonly;
-			return 0;
-		case PMV_MENU_MGEOM:
-			if (dev_ptr->is_exist)
-				return 0;
-			dev_ptr->manual_geom = !dev_ptr->manual_geom;
-			return 0;
-		case PMV_MENU_SECSIZE:
-			if (!dev_ptr->manual_geom || dev_ptr->is_exist)
-				return 0;
-			msg_to_show = MSG_vnd_bps_ask;
-			out_var = &(dev_ptr->secsize);
-			break;
-		case PMV_MENU_NSECTORS:
-			if (!dev_ptr->manual_geom || dev_ptr->is_exist)
-				return 0;
-			msg_to_show = MSG_vnd_spt_ask;
-			out_var = &(dev_ptr->nsectors);
-			break;
-		case PMV_MENU_NTRACKS:
-			if (!dev_ptr->manual_geom || dev_ptr->is_exist)
-				return 0;
-			msg_to_show = MSG_vnd_tpc_ask;
-			out_var = &(dev_ptr->ntracks);
-			break;
-		case PMV_MENU_NCYLINDERS:
-			if (!dev_ptr->manual_geom || dev_ptr->is_exist)
-				return 0;
-			msg_to_show = MSG_vnd_cyl_ask;
-			out_var = &(dev_ptr->ncylinders);
-			break;
-		case PMV_MENU_REMOVE:
-			dev_ptr->enabled = 0;
-			return 0;
-	}
-	if (out_var == NULL || msg_to_show == NULL)
-		return -1;
-	snprintf(buf, SSTRSIZE, "%d", *out_var);
-	msg_prompt_win(msg_to_show, -1, 18, 0, 0, buf, buf, SSTRSIZE);
-	if (atoi(buf) >= 0)
-		*out_var = atoi(buf);
-	return 0;
-}
-
-static void
-pm_vnd_init(void *arg, void *none)
-{
-	vnds_t *dev_ptr = arg;
-	memset(dev_ptr, 0, sizeof(*dev_ptr));
-	*dev_ptr = (struct vnds_t) {
-		.enabled = 1,
-		.blocked = 0,
-		.filepath[0] = '\0',
-		.is_exist = 0,
-		.size = 1024,
-		.readonly = 0,
-		.manual_geom = 0,
-		.secsize = 512,
-		.nsectors = 18,
-		.ntracks = 2,
-		.ncylinders = 80
-	};
-	return;
-}
-
-static int
-pm_vnd_check(void *arg)
-{
-	vnds_t *dev_ptr = arg;
-
-	if (dev_ptr->blocked)
-		return 0;
-	if (strlen(dev_ptr->filepath) < 1 ||
-			dev_ptr->size < 1)
-		dev_ptr->enabled = 0;
-	else {
-		pm_manage_getfreenode(&(dev_ptr->node), "vnd", &vnds_t_info);
-		if (dev_ptr->node < 0)
-			dev_ptr->enabled = 0;
-	}
-	return dev_ptr->enabled;
-}
-
-/* XXX: vnconfig always return 0? */
-static int
-pm_vnd_commit(void)
-{
-	int i, ii, error, part_suit = -1;
-	char r_o[3], buf[MOUNTLEN+3], resultpath[STRSIZE]; 
-	pm_devs_t *pm_i, *pm_suit = NULL;
-
-	for (i = 0; i < MAX_VND; i++) {
-		error = 0;
-		if (! pm_vnd_check(&vnds[i]))
-			continue;
-
-		/* Trying to assign target device */
-		SLIST_FOREACH(pm_i, &pm_head, l)
-			for (ii = 0; ii < 6; ii++) {
-				strcpy(buf, pm_i->bsdlabel[ii].pi_mount);
-				if (buf[strlen(buf)-1] != '/')
-					sprintf(buf,"%s/", buf);
-				printf("%s\n",buf);
-				if (strstr(vnds[i].filepath, buf) == vnds[i].filepath)
-					if (part_suit < 0 || pm_suit == NULL ||
-						strlen(buf) > strlen(pm_suit->bsdlabel[part_suit].pi_mount)) {
-						part_suit = ii;
-						pm_suit = pm_i;
-					}
-			}
-		if (part_suit < 0 || pm_suit == NULL || 
-			pm_suit->bsdlabel[part_suit].mnt_opts == NULL ||
-			! (pm_suit->bsdlabel[part_suit].pi_flags & PIF_MOUNT))
-			continue;
-		
-		/* Mounting assigned partition and try to get real file path*/
-		if (pm_mount(pm_suit, part_suit) != 0)
-			continue;
-		snprintf(resultpath, STRSIZE, "%s/%s",
-			pm_suit->bsdlabel[part_suit].mounted,
-			&(vnds[i].filepath[strlen(pm_suit->bsdlabel[part_suit].pi_mount)]));
-
-		strcpy(r_o, vnds[i].readonly?"-r":"");
-		/* If this is a new image */
-		if (!vnds[i].is_exist) {
-			run_program(RUN_DISPLAY | RUN_PROGRESS, "mkdir -p %s ", dirname(resultpath));
-			error += run_program(RUN_DISPLAY | RUN_PROGRESS,
-						"dd if=/dev/zero of=%s bs=1m count=%d progress=100 msgfmt=human",
-						resultpath, vnds[i].size);
-		}
-		if (error)
-			continue;
-		/* If this is a new image with manual geometry */
-		if (!vnds[i].is_exist && vnds[i].manual_geom)
-			error += run_program(RUN_DISPLAY | RUN_PROGRESS,
-						"vnconfig %s vnd%d %s %d %d %d %d", r_o, vnds[i].node,
-						resultpath, vnds[i].secsize, vnds[i].nsectors,
-						vnds[i].ntracks, vnds[i].ncylinders);
-		/* If this is a existing image or image without manual geometry */
-		else
-			error += run_program(RUN_DISPLAY | RUN_PROGRESS, "vnconfig %s vnd%d %s",
-						r_o, vnds[i].node, resultpath);
-
-		if (! error) {
-			vnds[i].blocked = 1;
-			vnds[i].pm_part = part_suit;
-			vnds[i].pm = pm_suit;
-			vnds[i].pm->blocked++;
-		}
-	}
-	return 0;
-}
-
 /***
  Partman generic functions 
  ***/
-
-int
-pm_getrefdev(pm_devs_t *pm_cur)
-{
-	int i, dev_num;
-	char dev[SSTRSIZE]; dev[0] = '\0';
-
-	pm_cur->refdev = NULL;
- 	if (! strncmp(pm_cur->diskdev, "vnd", 3)) {
- 		dev_num = pm_cur->diskdev[3] - '0';
- 		for (i = 0; i < MAX_VND; i++)
-			if (vnds[i].blocked && vnds[i].node == dev_num) {
-				pm_cur->refdev = &vnds[i];
-				pm_getdevstring(dev, SSTRSIZE, vnds[i].pm, vnds[i].pm_part);
-				snprintf(pm_cur->diskdev_descr, STRSIZE, "%s (%s, %s)",
-					pm_cur->diskdev_descr, dev, vnds[i].filepath);
-				break;
-			}
-	} else
-		return -1;
-	return 0;
-}
 
 /* Detect that partition is in use */
 int
@@ -753,17 +361,9 @@ pm_umount(pm_devs_t *pm_cur, int part_num)
 int
 pm_unconfigure(pm_devs_t *pm_cur)
 {
-	int error = 0, num = 0;
-	if (! strncmp(pm_cur->diskdev, "vnd", 3)) {
-		error = run_program(RUN_DISPLAY | RUN_PROGRESS, "vnconfig -u %s", pm_cur->diskdev);
- 		if (! error && pm_cur->refdev != NULL) {
-			((vnds_t*)pm_cur->refdev)->pm->blocked--;
-			((vnds_t*)pm_cur->refdev)->blocked = 0;
- 		}
-	}
-	else
-		error = run_program(RUN_DISPLAY | RUN_PROGRESS, "eject -t disk /dev/%sd",
-			pm_cur->diskdev);
+	int error = 0;
+	error = run_program(RUN_DISPLAY | RUN_PROGRESS, "eject -t disk /dev/%sd",
+		pm_cur->diskdev);
 	if (!error)
 		pm_cur->found = 0;
 	return error;
@@ -799,7 +399,6 @@ pm_needsave(void)
 static int
 pm_commit(menudesc *m, void *arg)
 {
-	int retcode;
 	pm_devs_t *pm_i;
 	if (m != NULL && arg != NULL)
 		((part_entry_t *)arg)[0].retvalue = m->cursel + 1;
@@ -821,12 +420,6 @@ pm_commit(menudesc *m, void *arg)
 		pm_i->unsaved = 0;
 	}
 
-	/* Call all functions that may create new devices */
-	if ((retcode = pm_vnd_commit()) != 0) {
-		if (logfp)
-			fprintf(logfp, "VND configuring error #%d\n", retcode);
-		return -1;
-	}
 	if (m != NULL && arg != NULL)
 		pm_upddevlist(m, arg);
 	if (logfp)
@@ -887,10 +480,6 @@ pm_submenu(menudesc *m, void *arg)
 			part_num = ((part_entry_t *)arg)[m->cursel].dev_num;
 			process_menu(MENU_pmpartentry, &part_num);
 			break;
-		case PM_VND_T:
-			return pm_edit(PMV_MENU_END, pm_vnd_edit_menufmt,
-				pm_vnd_set_value, pm_vnd_check, pm_vnd_init,
-				NULL, ((part_entry_t *)arg)[m->cursel].dev_ptr, 0, &vnds_t_info);
 	}
 	return 0;
 }
@@ -933,9 +522,6 @@ pm_menufmt(menudesc *m, int opt, void *arg)
 				buf,
 				getfslabelname(pm_cur->bsdlabel[part_num].pi_fstype),
 				pm_cur->bsdlabel[part_num].pi_size / (MEG / pm_cur->sectorsize));
-			break;
-		case PM_VND_T:
-			pm_vnd_menufmt(m, opt, arg);
 			break;
 	}
 	return;
@@ -1018,19 +604,6 @@ pm_menuout(menudesc *m, void *arg)
 	cursel = m->cursel;
 }
 
-/* initialize have_* variables */
-void
-check_available_binaries()
-{
-	static int did_test = false;
-
-	if (did_test) return;
-	did_test = 1;
-
-	have_vnd = binary_available("vnconfig");
-	have_dk = binary_available("dkctl");
-}
-
 /* Main partman function */
 int
 partman(void)
@@ -1041,18 +614,6 @@ partman(void)
 	part_entry_t args[MAX_ENTRIES];
 
 	if (firstrun) {
-		check_available_binaries();
-
-		vnds_t_info = (structinfo_t) {
-			.max = MAX_VND,
-			.entry_size = sizeof vnds[0],
-			.entry_first = &vnds[0],
-			.entry_enabled = &(vnds[0].enabled),
-			.entry_blocked = &(vnds[0].blocked),
-			.entry_node = &(vnds[0].node),
-		};
-
-		memset(&vnds, 0, sizeof vnds);
 		cursel = 0;
 		changed = 0;
 		firstrun = 0;

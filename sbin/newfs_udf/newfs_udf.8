@@ -137,17 +137,6 @@ with the default UDF version :
 newfs_udf -P "Encyclopedia:copy-nr-1" -L "volume 2" /dev/rcd0d
 .Ed
 .Pp
-Create a 4.8 GiB sparse file and configure it using
-.Xr vnconfig 8
-to be a 2048 sector size disc and create a new UDF file system on
-.Pa /dev/rvnd0d
-:
-.Bd -literal -offset indent
-dd if=/dev/zero of=bigdisk.2048.udf seek=9999999 count=1
-vnconfig -c vnd0 bigdisk.2048.udf 2048/1/1/1
-newfs_udf -L bigdisk /dev/rvnd0d
-.Ed
-.Pp
 Create a 2 GiB file and create a new UDF file system on it using the default
 512 byte sector size :
 .Bd -literal -offset indent

@@ -1312,8 +1312,6 @@ file	dev/ic/dm9000.c			dme
 
 # legitimate pseudo-devices
 #
-defpseudodev vnd:	disk
-defflag opt_vnd.h	VND_COMPRESSION
 defpseudodev md:	disk
 defpseudodev fss:	disk
 
@@ -1456,7 +1454,6 @@ file	dev/radio.c			radio			needs-flag
 file	dev/rndpseudo.c			rnd			needs-flag
 file	dev/sequencer.c			sequencer		needs-flag
 file	dev/video.c			video			needs-flag
-file	dev/vnd.c			vnd
 file	kern/bufq_disksort.c		bufq_disksort
 file	kern/bufq_fcfs.c		bufq_fcfs
 file	kern/bufq_priocscan.c		bufq_priocscan
@@ -1694,7 +1691,7 @@ file	net/route.c
 file	net/rtbl.c
 file	net/rtsock.c
 file	net/slcompress.c		sl | ppp | strip | (irip & irip_vj)
-file	net/zlib.c			(ppp & ppp_deflate) | opencrypto | vnd_compression | kdtrace_hooks
+file	net/zlib.c			(ppp & ppp_deflate) | opencrypto | kdtrace_hooks
 file	netinet/accf_data.c		accf_data
 file	netinet/accf_http.c		accf_http
 file	netinet/cpu_in_cksum.c		(inet | inet6) & !cpu_in_cksum

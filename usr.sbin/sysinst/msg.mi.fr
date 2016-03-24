@@ -1200,25 +1200,6 @@ message nofreedev {Impossible d'allouer noeud de périphérique!}
 message partman_header
 {Gestionnaire de partition. Tous les disques, les partitions affiché.}
 
-message vnd_err_menufmt {   PATH NOT DEFINED!}
-message vnd_assgn_menufmt {   vnd%1d sur %-50s ASSIGN}
-message vnd_menufmt {   vnd%1d sur %-44s %11uM}
-message vnd_path_fmt {Chemin du fichier: %20s}
-message vnd_assgn_fmt {Attribuer existent image: %14s}
-message vnd_size_fmt {Taille:            %20sM}
-message vnd_ro_fmt {Read-only:          %20s}
-message vnd_geom_fmt {Définir la géométrie à la main: %8s}
-message vnd_bps_fmt {Octets par secteur: %20s}
-message vnd_spt_fmt {Secteurs par piste: %20s}
-message vnd_tpc_fmt {Pistes par cylindre: %19s}
-message vnd_cyl_fmt {Cylindres:          %20s}
-message vnd_path_ask {Chemin du fichier?}
-message vnd_size_ask {Taille (MB)?}
-message vnd_bps_ask {Octets par secteur?}
-message vnd_spt_ask {Secteurs par piste?}
-message vnd_tpc_ask {Pistes par cylindre?}
-message vnd_cyl_ask {Cylindres}
-
 message addusername {Nom d'utilisateur (8 caractères)}
 message addusertowheel {Ajouter cet utilisateur au groupe "wheel" ?}
 message Delete_partition

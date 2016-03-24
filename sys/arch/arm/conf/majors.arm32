@@ -21,7 +21,6 @@ device-major	ofcons		char 15			ofcons
 device-major	wd		char 16  block 16	wd
 device-major	fd		char 17  block 17	fdc
 device-major	md		char 18  block 18	md
-device-major	vnd		char 19  block 19	vnd
 
 device-major	sd		char 24  block 24	sd
 device-major	st		char 25  block 25	st

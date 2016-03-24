@@ -302,7 +302,6 @@
 ./usr/include/dev/usb/usb.h			comp-c-include
 ./usr/include/dev/usb/usbhid.h			comp-c-include
 ./usr/include/dev/usb/utoppy.h			comp-c-include
-./usr/include/dev/vndvar.h			comp-c-include
 ./usr/include/dev/wscons/wsconsio.h		comp-c-include
 ./usr/include/dev/wscons/wsdisplay_usl_io.h	comp-c-include
 ./usr/include/dev/wscons/wsksymdef.h		comp-c-include

@@ -812,8 +812,6 @@
 ./usr/bin/view					base-util-bin
 ./usr/bin/vis					base-util-bin
 ./usr/bin/vmstat				base-util-bin
-./usr/bin/vndcompress				base-util-bin
-./usr/bin/vnduncompress				base-util-bin
 ./usr/bin/w					base-util-bin
 ./usr/bin/wall					base-util-bin
 ./usr/bin/wc					base-util-bin
@@ -1369,8 +1367,6 @@
 ./usr/sbin/usermod				base-sysutil-bin
 ./usr/sbin/veriexecgen				base-sysutil-bin
 ./usr/sbin/vipw					base-sysutil-bin
-./usr/sbin/vnconfig				base-sysutil-bin
-./usr/sbin/vndconfig				base-sysutil-bin
 ./usr/sbin/wakeonlan				base-netutil-bin
 ./usr/sbin/wiconfig				base-sysutil-bin
 ./usr/sbin/wire-test				base-netutil-bin

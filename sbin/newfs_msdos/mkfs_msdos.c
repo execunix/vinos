@@ -819,7 +819,7 @@ getbpbinfo(int fd, const char *fname, const char *dtype, int iflag,
 #ifndef MAKEFS
     int maxpartitions = getmaxpartitions();
 
-    // XXX: Does not work with wedges
+    // XXX: Does not work with wedge_x
     if (s2 && *s2 >= 'a' && *s2 <= 'a' + maxpartitions - 1) {
 	part = *s2++ - 'a';
     }

@@ -183,8 +183,6 @@ pseudo-device	pty			# pseudo-terminals
 #pseudo-device	strip		
 pseudo-device	tun		
 pseudo-device	tap			# virtual Ethernet
-pseudo-device	vnd		
-#options 	VND_COMPRESSION		# compressed vnd(4)
 #pseudo-device	gre			# generic L3 over IP tunnel
 pseudo-device	gif			# IPv[46] over IPv[46] tunnel (RFC1933)
 #pseudo-device	faith			# IPv[46] tcp relay translation i/f

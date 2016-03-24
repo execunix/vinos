@@ -656,16 +656,6 @@ You'll also need to either set up a new NFS share point or an FTP server
 for the distribution files, as they won't fit inside the miniroot
 file system.
 .Pp
-.(disp
-.No # Ic "gunzip miniroot.fs.gz"
-.No # Ic "vnconfig -c /dev/vnd0c /path/to/miniroot.fs"
-.No # Ic "mount -o ro /dev/vnd0c /export/client/root"
-.No # Ic "ls /export/client/root"
- .profile     dist/        install.md   mnt/         sbin/        usr/
- bin/         etc/         install.sub  mnt2/        tmp/         var/
- dev/         install*     kern/        netbsd*      upgrade*
-.disp)
-.Pp
 If there are no files present in your exported directory, then
 something is wrong.
 .Pp

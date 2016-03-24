@@ -1142,25 +1142,6 @@ message nofreedev {No se puede asignar nodo de dispositivo!}
 message partman_header
 {Partition Manager. Todos los discos, particiones muestra allí.}
 
-message vnd_err_menufmt {   CAMINO NO DEFINIDO!}
-message vnd_assgn_menufmt {   vnd%1d en %-51s ASSIGN}
-message vnd_menufmt {   vnd%1d en %-45s %11uM}
-message vnd_path_fmt {Ruta del archivo: %22s}
-message vnd_assgn_fmt {Asignar existe la imagen: %14s}
-message vnd_size_fmt {Tamaño:          %22sM}
-message vnd_ro_fmt {Sólo lectura:     %22s}
-message vnd_geom_fmt {Establecer la geometría de la mano: %4s}
-message vnd_bps_fmt {Bytes por sector:     %18s}
-message vnd_spt_fmt {Sectores por pista:   %18s}
-message vnd_tpc_fmt {Pistas por cilindro:  %18s}
-message vnd_cyl_fmt {Cilindros:        %22s}
-message vnd_path_ask {Ruta de acceso?}
-message vnd_size_ask {Tamaño (MB)?}
-message vnd_bps_ask {Bytes por sector?}
-message vnd_spt_ask {Sectores por pista?}
-message vnd_tpc_ask {Pistas por cilindro?}
-message vnd_cyl_ask {Cilindros}
-
 message addusername {8 character username to add}
 message addusertowheel {Do you wish to add this user to group wheel?}
 message Delete_partition

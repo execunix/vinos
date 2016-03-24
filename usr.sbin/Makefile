@@ -29,7 +29,7 @@ SUBDIR=	ac accton acpitools altq apm apmd arp \
 	srtconfig sti sup sysinst syslogd \
 	tcpdchk tcpdmatch tcpdrop timed tpctl tprof traceroute trpt \
 	unlink usbdevs user \
-	videomode vipw veriexecgen vnconfig \
+	videomode vipw veriexecgen \
 	wakeonlan wiconfig wlanctl wsconscfg wsfontload wsmoused wsmuxctl \
 	zdump zic
 

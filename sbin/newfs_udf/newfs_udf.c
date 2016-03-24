@@ -147,7 +147,7 @@ udf_write_sector(void *sector, uint64_t location)
  * disc/file image. Special care needs to be taken for devices that are only
  * strict overwritable i.e. only in packet size chunks
  *
- * XXX support for growing vnd?
+ * XXX support for growing vnd_x?
  */
 
 int
@@ -368,7 +368,7 @@ udf_update_trackinfo(struct mmc_discinfo *di, struct mmc_trackinfo *ti)
 	ti->track_start    = 0;
 	ti->packet_size    = emul_packetsize;
 
-	/* TODO support for resizable vnd */
+	/* TODO support for resizable vnd_x */
 	ti->track_size    = di->last_possible_lba;
 	ti->next_writable = di->last_possible_lba;
 	ti->last_recorded = ti->next_writable;
@@ -740,7 +740,7 @@ main(int argc, char **argv)
 			break;
 		case 's' :
 			/* support for files, set file size */
-			/* XXX support for formatting recordables on vnd/file? */
+			/* XXX support for formatting recordables on vnd_x/file? */
 			if (dehumanize_number(optarg, &setsize) < 0) {
 				perror("can't parse size argument");
 				return EXIT_FAILURE;

@@ -1541,9 +1541,6 @@ pseudo-device	md			# memory disk device (ramdisk)
 options 	MEMORY_DISK_HOOKS	# enable root ramdisk
 options 	MEMORY_DISK_DYNAMIC	# loaded via kernel module(7)
 
-pseudo-device	vnd			# disk-like interface to files
-options 	VND_COMPRESSION		# compressed vnd(4)
-
 # network pseudo-devices
 pseudo-device	bpfilter		# Berkeley packet filter
 #pseudo-device	carp			# Common Address Redundancy Protocol
