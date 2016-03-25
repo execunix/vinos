@@ -105,7 +105,7 @@ main(int argc, char *argv[])
 	char *mountpoint;
 	int just_estimate = 0;
 	char labelstr[LBLSIZE];
-	char buf[MAXPATHLEN], rbuf[MAXPATHLEN];
+	char rbuf[MAXPATHLEN];
 	char *new_time_format;
 	char *snap_backup = NULL;
 
@@ -401,11 +401,9 @@ main(int argc, char *argv[])
 	mountpoint = NULL;
 	mntinfo = mntinfosearch(disk);
 	if ((dt = fstabsearch(disk)) != NULL) {
-		if (getfsspecname(buf, sizeof(buf), dt->fs_spec) == NULL)
-			quit("%s (%s)", buf, strerror(errno));
-		if (getdiskrawname(rbuf, sizeof(rbuf), buf) == NULL)
+		if (getdiskrawname(rbuf, sizeof(rbuf), dt->fs_spec) == NULL)
 			quit("Can't get disk raw name for `%s' (%s)",
-			    buf, strerror(errno));
+			    dt->fs_spec, strerror(errno));
 		disk = rbuf;
 		mountpoint = dt->fs_file;
 		msg("Found %s on %s in %s\n", disk, mountpoint, _PATH_FSTAB);

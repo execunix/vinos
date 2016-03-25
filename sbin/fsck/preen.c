@@ -112,10 +112,6 @@ checkfstab(int flags, int maxrun, void *(*docheck)(struct fstab *),
 			if ((auxarg = (*docheck)(fs)) == NULL)
 				continue;
 			fsspec = fs->fs_spec;
-			if (fsspec == NULL) {
-				warn("%s", fs->fs_file);
-				return FSCK_EXIT_CHECK_FAILED;
-			}
 			name = blockcheck(fsspec);
 			if (flags & CHECK_DEBUG)
 				printf("pass %d, name %s\n", passno, name);

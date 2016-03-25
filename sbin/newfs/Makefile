@@ -4,7 +4,7 @@
 .include <bsd.own.mk>
 
 PROG=	newfs
-SRCS=	dkcksum.c newfs.c mkfs.c ffs_bswap.c partutil.c
+SRCS=	newfs.c mkfs.c ffs_bswap.c partutil.c
 SRCS+=	pathadj.c quota2_subr.c
 MAN=	newfs.8 mount_mfs.8
 

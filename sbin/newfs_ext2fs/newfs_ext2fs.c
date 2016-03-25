@@ -112,7 +112,6 @@ uint	density;		/* number of bytes per inode */
 uint	num_inodes;		/* number of inodes (overrides density) */
 char	*volname = NULL;	/* volume name */
 
-static char *disktype = NULL;
 static char device[MAXPATHLEN];
 
 static const char lmsg[] = "%s: can't read disk label";
@@ -282,7 +281,7 @@ main(int argc, char *argv[])
 			}
 		}
 
-		if (getdiskinfo(special, fsi, disktype, &geo) == -1)
+		if (getdiskinfo(special, fsi, &geo) == -1)
 			errx(EXIT_FAILURE, lmsg, special);
 
 		if (sectorsize == 0) {

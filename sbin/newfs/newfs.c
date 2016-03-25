@@ -121,7 +121,6 @@ __RCSID("$NetBSD: newfs.c,v 1.111.10.2 2015/07/30 15:36:03 snj Exp $");
 #include <mountprog.h>
 #endif
 
-#include "dkcksum.h"
 #include "extern.h"
 #include "partutil.h"
 
@@ -139,13 +138,7 @@ static uid_t mfs_user(const char *);
 static int64_t strsuftoi64(const char *, const char *, int64_t, int64_t, int *);
 static void usage(void) __dead;
 
-#define	COMPAT			/* allow non-labeled disks */
-
-#ifdef COMPAT
-const char lmsg[] = "%s: can't read disk label; disk type must be specified";
-#else
 const char lmsg[] = "%s: can't read disk label";
-#endif
 
 /*
  * The following two constants set the default block and fragment sizes.
@@ -218,8 +211,6 @@ int	mntflags = 0;		/* flags to be passed to mount */
 u_long	memleft;		/* virtual memory available */
 caddr_t	membase;		/* start address of memory based filesystem */
 int	needswap;		/* Filesystem not in native byte order */
-char	*disktype = NULL;
-int	unlabeled;
 int	quotas = 0;
 
 char	device[MAXPATHLEN];
@@ -233,7 +224,6 @@ main(int argc, char *argv[])
 	int ch, fsi, fso, len, n, Fflag, Iflag, Zflag;
 	const char *s1, *special, *raw;
 	char *s2;
-	char specname[MAXPATHLEN];
 	char rawname[MAXPATHLEN];
 	const char *opstring;
 	int byte_sized = 0;
@@ -308,11 +298,6 @@ main(int argc, char *argv[])
 				errx(1, "sector size `%s' is not a power of 2.",
 				    optarg);
 			break;
-#ifdef COMPAT
-		case 'T':
-			disktype = optarg;
-			break;
-#endif
 		case 'V':
 			verbosity = strsuftoi64("verbose", optarg, 0, 4, NULL);
 			break;
@@ -473,9 +458,7 @@ main(int argc, char *argv[])
 				fso = fsi;
 		}
 	} else {	/* !Fflag && !mfs */
-		raw = getfsspecname(specname, sizeof(specname), special);
-		if (raw == NULL)
-			err(1, "%s: %s", special, specname);
+		raw = special;
 		special = getdiskrawname(rawname, sizeof(rawname), raw);
 		if (special == NULL)
 			special = raw;
@@ -518,13 +501,8 @@ main(int argc, char *argv[])
 			}
 		}
 
-#ifdef COMPAT
-		if (disktype == NULL)
-			disktype = argv[1];
-#endif
-		if (getdiskinfo(special, fsi, disktype, &geo) == -1)
+		if (getdiskinfo(special, fsi, &geo) == -1)
 			errx(1, lmsg, special);
-		unlabeled = disktype != NULL;
 
 		if (sectorsize == 0) {
 			sectorsize = geo.dg_secsize;
@@ -785,9 +763,6 @@ struct help_strings {
 			    "parameters" },
 	{ NEWFS,	"-O N\t\tfilesystem format: 0 => 4.3BSD, 1 => FFSv1, 2 => FFSv2" },
 	{ NEWFS,	"-S secsize\tsector size" },
-#ifdef COMPAT
-	{ NEWFS,	"-T disktype\tdisk type" },
-#endif
 	{ BOTH,		"-V verbose\toutput verbosity: 0 ==> none, 4 ==> max" },
 	{ NEWFS,	"-Z \t\tpre-zero the image file" },
 	{ BOTH,		"-a maxcontig\tmaximum contiguous blocks" },
@@ -820,16 +795,11 @@ usage(void)
 	if (mfs) {
 		fprintf(stderr,
 		    "usage: %s [ fsoptions ] special-device mount-point\n",
-			getprogname());
+		    getprogname());
 	} else
 		fprintf(stderr,
-		    "usage: %s [ fsoptions ] special-device%s\n",
-		    getprogname(),
-#ifdef COMPAT
-		    " [disk-type]");
-#else
-		    "");
-#endif
+		    "usage: %s [ fsoptions ] special-device\n",
+		    getprogname());
 	fprintf(stderr, "where fsoptions are:\n");
 
 	match = mfs ? MFS_MOUNT : NEWFS;

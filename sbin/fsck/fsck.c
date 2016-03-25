@@ -100,7 +100,6 @@ main(int argc, char *argv[])
 	const char *vfstype = NULL;
 	char globopt[3];
 	int ret = FSCK_EXIT_OK;
-	char buf[MAXPATHLEN];
 
 	globopt[0] = '-';
 	globopt[2] = '\0';
@@ -214,8 +213,6 @@ main(int argc, char *argv[])
 
 		if (fs) {
 			spec = fs->fs_spec;
-			if (spec == NULL)
-				err(FSCK_EXIT_CHECK_FAILED, "%s", buf);
 			type = fs->fs_vfstype;
 			if (BADTYPE(fs->fs_type))
 				errx(FSCK_EXIT_CHECK_FAILED,

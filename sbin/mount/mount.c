@@ -185,8 +185,6 @@ main(int argc, char *argv[])
 					mntfromname = mntbuf->f_mntfromname;
 				} else
 					mntfromname = fs->fs_spec;
-				if (mntfromname == NULL)
-					err(EXIT_FAILURE, "%s", fs->fs_file);
 				if (mountfs(fs->fs_vfstype, mntfromname,
 				    fs->fs_file, init_flags, options,
 				    fs->fs_mntops, !forceall, NULL, 0))
@@ -270,8 +268,6 @@ out:
 			fstypename  = fs->fs_vfstype;
 			mountopts   = fs->fs_mntops;
 		}
-		if (mntfromname == NULL)
-			err(EXIT_FAILURE, "%s", fs->fs_file);
 		rval = mountfs(fstypename, mntfromname,
 		    mntonname, init_flags, options, mountopts, 0, NULL, 0);
 		break;
@@ -282,8 +278,6 @@ out:
 		 * specified ala Sun.
 		 */
 		mntfromname = argv[0];
-		if (mntfromname == NULL)
-			err(EXIT_FAILURE, "%s", argv[0]);
 		if (vfslist == NULL) {
 			if (strpbrk(argv[0], ":@") != NULL) {
 				fprintf(stderr, "WARNING: autoselecting nfs "

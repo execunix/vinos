@@ -223,8 +223,6 @@ retry:
 		goto retry;
 	} else if ((fsp = getfsfile(newname)) != 0 && !retried) {
 		newname = fsp->fs_spec;
-		if (newname == NULL)
-			perr("%s", buf);
 		retried++;
 		goto retry;
 	}

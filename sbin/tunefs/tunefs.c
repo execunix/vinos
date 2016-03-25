@@ -588,16 +588,14 @@ bread(daddr_t blk, char *buffer, int cnt, const char *file)
 static int
 openpartition(const char *name, int flags, char *device, size_t devicelen)
 {
-	char		rawspec[MAXPATHLEN], xbuf[MAXPATHLEN], *p;
+	char		rawspec[MAXPATHLEN], *p;
 	struct fstab	*fs;
 	int		fd, oerrno;
 
 	fs = getfsfile(name);
 	if (fs) {
 		const char *fsspec;
-		fsspec = getfsspecname(xbuf, sizeof(xbuf), fs->fs_spec);
-		if (fsspec == NULL)
-			err(4, "%s", xbuf);
+		fsspec = fs->fs_spec;
 		if ((p = strrchr(fsspec, '/')) != NULL) {
 			snprintf(rawspec, sizeof(rawspec), "%.*s/r%s",
 			    (int)(p - fsspec), fsspec, p + 1);

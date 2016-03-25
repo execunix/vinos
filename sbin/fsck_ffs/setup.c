@@ -141,7 +141,7 @@ setup(const char *dev, const char *origdev)
 	} else {
 		fd = fsreadfd;
 	}
-	if (!forceimage && getdiskinfo(origdev, fd, NULL, &geo) != -1)
+	if (!forceimage && getdiskinfo(origdev, fd, &geo) != -1)
 		dev_bsize = secsize = geo.dg_secsize;
 	else
 		dev_bsize = secsize = DEV_BSIZE;
@@ -904,7 +904,7 @@ calcsb(const char *dev, int devfd, struct fs *fs)
 	struct disk_geom geo;
 	int i, nspf;
 
-	if (getdiskinfo(dev, fsreadfd, NULL, &geo) == -1)
+	if (getdiskinfo(dev, fsreadfd, &geo) == -1)
 		pfatal("%s: CANNOT FIGURE OUT FILE SYSTEM PARTITION\n", dev);
 	if (geo.dg_secsize == 0) {
 		pfatal("%s: CANNOT FIGURE OUT SECTOR SIZE\n", dev);

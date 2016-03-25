@@ -446,12 +446,9 @@ static int
 add_swap(char *path, int priority)
 {
 	struct stat sb;
-	char buf[MAXPATHLEN];
 	char *spec;
 
-	if (getfsspecname(buf, sizeof(buf), path) == NULL)
-		goto oops;
-	spec = buf;
+	spec = path;
 
 	if (stat(spec, &sb) < 0)
 		goto oops;
@@ -485,12 +482,9 @@ oops:
 static int
 delete_swap(char *path)
 {
-	char buf[MAXPATHLEN];
 	char *spec;
 
-	if (getfsspecname(buf, sizeof(buf), path) == NULL)
-		err(1, "%s", path);
-	spec = buf;
+	spec = path;
 
 	if (nflag)
 		return 1;
@@ -521,12 +515,9 @@ set_dumpdev1(char *spec)
 static void
 set_dumpdev(char *path)
 {
-	char buf[MAXPATHLEN];
 	char *spec;
 
-	if (getfsspecname(buf, sizeof(buf), path) == NULL)
-		err(1, "%s", path);
-	spec = buf;
+	spec = path;
 
 	return set_dumpdev1(spec);
 }
@@ -665,14 +656,9 @@ do_fstab(int add)
 #define PRIORITYEQ	"priority="
 #define NFSMNTPT	"nfsmntpt="
 	while ((fp = getfsent()) != NULL) {
-		char buf[MAXPATHLEN];
 		char *spec, *fsspec;
 
-		if (getfsspecname(buf, sizeof(buf), fp->fs_spec) == NULL) {
-			warn("%s", buf);
-			continue;
-		}
-		fsspec = spec = buf;
+		fsspec = spec = fp->fs_spec;
 		cmd[0] = '\0';
 
 		if (strcmp(fp->fs_type, "dp") == 0 && add) {
