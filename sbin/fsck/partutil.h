@@ -33,7 +33,7 @@
 
 __BEGIN_DECLS
 struct disk_geom;
-int getdiskinfo(const char *, int, const char *, struct disk_geom *);
+int getdiskinfo(const char *, int, struct disk_geom *);
 int getdisksize(const char *, u_int *, off_t *);
 __END_DECLS
 

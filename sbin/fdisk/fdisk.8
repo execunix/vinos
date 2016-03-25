@@ -171,8 +171,7 @@ flag.
 If not specified the BIOS geometry will be obtained using sysctl (i386 and
 amd64) or by solving the simultaenous equations from the existing partition
 information.
-If that fails then either the geometry from the disklabel or 63 sectors and
-16 heads is used.
+If that fails then the geometry as 63 sectors and 16 heads is used.
 For modern disks larger than about 8GB, and where the BIOS is configured
 to use LBA-Assisted translation, a setting of
 .Fl b Ar 1023/255/63
@@ -286,11 +285,6 @@ If the optional arguments are not provided, they stay as before or
 use the same defaults as the interactive mode, if new.
 This flag requires the use of a partition selection flag
 .Pq Fl 0 , 1 , 2 , 3 , No or Fl E Ar number .
-.It Fl T Ar disktype
-Use the disklabel
-.Ar disktype
-instead of the disklabel on
-.Ar device .
 .It Fl u
 Update partition data, including
 .Em id , start , No and Em size .
@@ -375,7 +369,7 @@ When called with no arguments, it prints the partition table.
 An example follows:
 .Bd -literal
     Disk: /dev/rwd0d
-    NetBSD disklabel disk geometry:
+    NetBSD disk geometry:
     cylinders: 16383, heads: 16, sectors/track: 63 (1008 sectors/cylinder)
     total sectors: 40032696
 
@@ -622,7 +616,6 @@ partition using whole disk without prompt against 1GB disk image file
 .Dl Ic fdisk -f -a -u -0 -s 169/63/2097089 -F diskimg
 .Sh SEE ALSO
 .Xr boot 8 ,
-.Xr disklabel 8 ,
 .Xr gpt 8 ,
 .Xr installboot 8 ,
 .Xr mbr 8 ,

@@ -350,17 +350,17 @@ MKX11/MKXORG/XSERVER_XFREE86
 disklabel/TOOL_DISKLABEL
 diskinfo/pdisk
 diskname/bsddiskname
+fdisk.disktype
 xscale/caddr_t
 vnd_x
-swstrategy/v_type
+wedge_x
+DKW_PTYPE_FFS
 _LOCORE/dkbad/cpu_disklabel
+disk_strategy/getfsspecname/getfsent
+pseudo-device 	dm			# device-mapper disk driver
+swstrategy/v_type
 
 iSCSI/dmover
 MKX11RADEONKMS
 CONFIG_DRM
 X11R6
-
-wedge_x
-DKW_PTYPE_FFS
-disk_strategy/getfsspecname/getfsent
-pseudo-device 	dm			# device-mapper disk driver

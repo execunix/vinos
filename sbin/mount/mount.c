@@ -63,6 +63,7 @@ __RCSID("$NetBSD: mount.c,v 1.99 2013/10/05 08:06:35 ast Exp $");
 #define MOUNTNAMES
 #include <fcntl.h>
 #include <sys/disk.h>
+#include <sys/diskinfo.h>
 #include <sys/ioctl.h>
 
 #include "pathnames.h"
@@ -107,7 +108,7 @@ main(int argc, char *argv[])
 	int all, ch, forceall, i, init_flags, mntsize, rval;
 	char *options;
 	const char *mountopts, *fstypename;
-	char canonical_path_buf[MAXPATHLEN], buf[MAXPATHLEN];
+	char canonical_path_buf[MAXPATHLEN];
 	char *canonical_path;
 
 	/* started as "mount" */
@@ -184,10 +185,8 @@ main(int argc, char *argv[])
 					mntfromname = mntbuf->f_mntfromname;
 				} else
 					mntfromname = fs->fs_spec;
-				mntfromname = getfsspecname(buf, sizeof(buf),
-				    mntfromname);
 				if (mntfromname == NULL)
-					err(EXIT_FAILURE, "%s", buf);
+					err(EXIT_FAILURE, "%s", fs->fs_file);
 				if (mountfs(fs->fs_vfstype, mntfromname,
 				    fs->fs_file, init_flags, options,
 				    fs->fs_mntops, !forceall, NULL, 0))
@@ -271,9 +270,8 @@ out:
 			fstypename  = fs->fs_vfstype;
 			mountopts   = fs->fs_mntops;
 		}
-		mntfromname = getfsspecname(buf, sizeof(buf), mntfromname);
 		if (mntfromname == NULL)
-			err(EXIT_FAILURE, "%s", buf);
+			err(EXIT_FAILURE, "%s", fs->fs_file);
 		rval = mountfs(fstypename, mntfromname,
 		    mntonname, init_flags, options, mountopts, 0, NULL, 0);
 		break;
@@ -283,9 +281,9 @@ out:
 		 * a ':' or a '@' then assume that an NFS filesystem is being
 		 * specified ala Sun.
 		 */
-		mntfromname = getfsspecname(buf, sizeof(buf), argv[0]);
+		mntfromname = argv[0];
 		if (mntfromname == NULL)
-			err(EXIT_FAILURE, "%s", buf);
+			err(EXIT_FAILURE, "%s", argv[0]);
 		if (vfslist == NULL) {
 			if (strpbrk(argv[0], ":@") != NULL) {
 				fprintf(stderr, "WARNING: autoselecting nfs "

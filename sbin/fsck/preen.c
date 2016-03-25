@@ -108,13 +108,12 @@ checkfstab(int flags, int maxrun, void *(*docheck)(struct fstab *),
 			return FSCK_EXIT_CHECK_FAILED;
 		}
 		while ((fs = getfsent()) != 0) {
-			char buf[MAXPATHLEN];
 			const char *fsspec;
 			if ((auxarg = (*docheck)(fs)) == NULL)
 				continue;
-			fsspec = getfsspecname(buf, sizeof(buf), fs->fs_spec);
+			fsspec = fs->fs_spec;
 			if (fsspec == NULL) {
-				warn("%s", buf);
+				warn("%s", fs->fs_file);
 				return FSCK_EXIT_CHECK_FAILED;
 			}
 			name = blockcheck(fsspec);

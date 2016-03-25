@@ -52,24 +52,6 @@ __RCSID("$NetBSD: partutil.c,v 1.12.6.1 2015/05/25 09:10:48 msaitoh Exp $");
 #include "partutil.h"
 
 /*
- * Convert disklabel geometry info to disk_geom.
- */
-static void
-label2geom(struct disk_geom *geo, const struct disklabel *lp)
-{
-	geo->dg_secperunit = lp->d_secperunit;
-	geo->dg_secsize = lp->d_secsize;
-	geo->dg_nsectors = lp->d_nsectors;
-	geo->dg_ntracks = lp->d_ntracks;
-	geo->dg_ncylinders = lp->d_ncylinders;
-	geo->dg_secpercyl = lp->d_secpercyl;
-	geo->dg_pcylinders = lp->d_ncylinders;
-	geo->dg_sparespertrack = lp->d_sparespertrack;
-	geo->dg_sparespercyl = lp->d_sparespercyl;
-	geo->dg_acylinders = lp->d_acylinders;
-}
-
-/*
  * Set what we need to know about disk geometry.
  */
 static void
@@ -97,6 +79,11 @@ getdiskinfo(const char *s, int fd, struct disk_geom *geo)
 	struct stat sb;
 	int ptn;
 
+	/* Get disk description dictionary */
+	if (prop_dictionary_recv_ioctl(fd, DIOCGDISKINFO, &disk_dict)) {
+		warn("DIOCGDISKINFO on %s failed", s);
+		return -1;
+	}
 	geom_dict = prop_dictionary_get(disk_dict, "geometry");
 	dict2geom(geo, geom_dict);
 
@@ -121,7 +108,7 @@ getdisksize(const char *name, u_int *secsize, off_t *mediasize)
 	if ((fd = opendisk(name, O_RDONLY, buf, sizeof(buf), 0)) == -1)
 		return -1;
 
-	error = getdiskinfo(name, fd, &geo, NULL);
+	error = getdiskinfo(name, fd, &geo);
 	close(fd);
 	if (error)
 		return error;

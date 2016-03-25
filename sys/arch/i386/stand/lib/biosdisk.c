@@ -63,6 +63,10 @@
  * the rights to redistribute these changes.
  */
 
+#if !defined(NO_GPT)
+#define FSTYPENAMES
+#endif
+
 #include <lib/libkern/libkern.h>
 #include <lib/libsa/stand.h>
 

@@ -48,6 +48,8 @@
 #include <sys/swap.h>
 #include <ufs/ufs/dinode.h>
 #include <ufs/ffs/fs.h>
+#define FSTYPENAMES
+#include <sys/diskinfo.h>
 
 #include <dev/scsipi/scsipi_all.h>
 #include <sys/scsiio.h>

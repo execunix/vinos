@@ -43,7 +43,10 @@ __RCSID("$NetBSD: fsck.c,v 1.51.10.1 2014/11/11 10:21:26 martin Exp $");
 #include <sys/mount.h>
 #include <sys/queue.h>
 #include <sys/wait.h>
+#define FSTYPENAMES
+#define FSCKNAMES
 #include <sys/disk.h>
+#include <sys/diskinfo.h>
 #include <sys/ioctl.h>
 
 #include <err.h>
@@ -193,31 +196,24 @@ main(int argc, char *argv[])
 
 
 	for (; argc--; argv++) {
-		const char *spec, *spec2, *mntpt, *type, *cp;
+		const char *spec, *mntpt, *type, *cp;
 		char	device[MAXPATHLEN];
 
 		spec = mntpt = *argv;
-		spec2 = getfsspecname(buf, sizeof(buf), spec);
-		if (spec2 == NULL)
-			spec2 = spec;
 
-		cp = strrchr(spec2, '/');
+		cp = strrchr(spec, '/');
 		if (cp == 0) {
-			(void)snprintf(device, sizeof(device), "%s%s",
-				_PATH_DEV, spec2);
-			spec2 = device;
+			snprintf(device, sizeof(device), "%s%s",
+				_PATH_DEV, spec);
+			spec = device;
 		}
 
 		fs = getfsfile(spec);
 		if (fs == NULL)
 		    fs = getfsspec(spec);
-		if (fs == NULL && spec != spec2) {
-		    fs = getfsspec(spec2);
-		    spec = spec2;
-		}
 
 		if (fs) {
-			spec = getfsspecname(buf, sizeof(buf), fs->fs_spec);
+			spec = fs->fs_spec;
 			if (spec == NULL)
 				err(FSCK_EXIT_CHECK_FAILED, "%s", buf);
 			type = fs->fs_vfstype;
