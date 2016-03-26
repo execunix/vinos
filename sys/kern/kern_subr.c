@@ -129,7 +129,8 @@ isswap(device_t dv)
 
 	VOP_CLOSE(vn, FREAD, NOCRED);
 	vput(vn);
-	return strcmp(wi.dkw_ptype, DKW_PTYPE_SWAP) == 0;
+	//return strcmp(wi.dkw_ptype, DKW_PTYPE_SWAP) == 0;
+	return 0;
 }
 
 /*
@@ -524,8 +525,6 @@ setroot(device_t bootdv, int bootpartition)
 static device_t
 finddevice(const char *name)
 {
-	const char *wname;
-
 	return device_find_by_xname(name);
 }
 
@@ -562,7 +561,6 @@ static device_t
 parsedisk(char *str, int len, int defpart, dev_t *devp)
 {
 	device_t dv;
-	const char *wname;
 	char *cp, c;
 	int majdev, part;
 	if (len == 0)
@@ -589,8 +587,7 @@ parsedisk(char *str, int len, int defpart, dev_t *devp)
 	dv = finddevice(str);
 	if (dv != NULL) {
 		if (device_class(dv) == DV_DISK) {
- gotdisk:
-			majdev = devsw_name2blk(device_xname(dv), NULL, 0);
+ 			majdev = devsw_name2blk(device_xname(dv), NULL, 0);
 			if (majdev < 0)
 				panic("parsedisk");
 			if (DEV_USES_PARTITIONS(dv))

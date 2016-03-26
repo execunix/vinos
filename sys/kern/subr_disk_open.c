@@ -91,7 +91,6 @@ int
 getdisksize(struct vnode *vp, uint64_t *numsecp, unsigned int *secsizep)
 {
 	struct partinfo dpart;
-	struct disk *pdk;
 	unsigned int secsize;
 	uint64_t numsec;
 	int error;
@@ -127,7 +126,6 @@ getdiskinfo(struct vnode *vp)
 {
 	struct partinfo dpart;
 	int error;
-	dev_t dev = vp->v_specnode->sn_rdev;
 
 	if ((error = VOP_IOCTL(vp, DIOCGPART, &dpart, FREAD, NOCRED)) != 0)
 		return error;

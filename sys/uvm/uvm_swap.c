@@ -708,7 +708,6 @@ swap_on(struct lwp *l, struct swapdev *sdp)
 	int error, npages, nblocks, size;
 	long addr;
 	vmem_addr_t result;
-	struct vattr va;
 	dev_t dev;
 	UVMHIST_FUNC("swap_on"); UVMHIST_CALLED(pdhist);
 

@@ -452,14 +452,6 @@ readdisklabel(dev_t dev, void (*strat)(struct buf *), struct disklabel *lp,
 	if (rval == SCAN_CONTINUE) {
 		rval = scan_iso_vrs(&a);
 	}
-#if 0
-	/*
-	 * Save sector where we found the label for the 'don't overwrite
-	 * the label' check in bounds_check_with_label.
-	 */
-	if (rval == SCAN_FOUND)
-		xxx->label_sector = a.label_sector;
-#endif
 
 	brelse(a.bp, 0);
 	if (rval == SCAN_ERROR || rval == SCAN_CONTINUE)
