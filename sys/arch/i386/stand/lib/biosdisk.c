@@ -179,7 +179,7 @@ alloc_biosdisk(int biosdev)
 	return d;
 }
 
-#if !defined(NO_GPT)
+#if 0//!defined(NO_GPT)
 static void
 md5(void *hash, const void *data, size_t len)
 {

@@ -15,7 +15,7 @@ AFLAGS.realprot.S= ${${ACTIVE_CC} == "clang":?-no-integrated-as:}
 
 CPPFLAGS= -I$S/lib/libsa ${I386CPPFLAGS} ${I386MISCCPPFLAGS}
 #CPPFLAGS+= -DDISK_DEBUG
-#CPPFLAGS+= -DNO_GPT
+CPPFLAGS+= -DNO_GPT
 #CPPFLAGS+= -DSAVE_MEMORY
 
 SRCS= pcio.c conio.S comio.S comio_direct.c biosvideomode.S
