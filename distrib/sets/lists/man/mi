@@ -1768,7 +1768,6 @@
 ./usr/share/man/cat8/moused.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/mrinfo.0			man-netutil-catman	.cat
 ./usr/share/man/cat8/mrouted.0			man-router-catman	.cat
-./usr/share/man/cat8/mscdlabel.0		man-sysutil-catman	.cat
 ./usr/share/man/cat8/mtrace.0			man-netutil-catman	.cat
 ./usr/share/man/cat8/mtree.0			man-sysutil-catman	.cat
 ./usr/share/man/cat8/named-checkconf.0		man-bind-catman		.cat
@@ -3797,7 +3796,6 @@
 ./usr/share/man/html8/moused.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/mrinfo.html		man-netutil-htmlman	html
 ./usr/share/man/html8/mrouted.html		man-router-htmlman	html
-./usr/share/man/html8/mscdlabel.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/mtrace.html		man-netutil-htmlman	html
 ./usr/share/man/html8/mtree.html		man-sysutil-htmlman	html
 ./usr/share/man/html8/named-checkconf.html	man-bind-htmlman	html
@@ -5823,7 +5821,6 @@
 ./usr/share/man/man8/moused.8			man-sysutil-man		.man
 ./usr/share/man/man8/mrinfo.8			man-netutil-man		.man
 ./usr/share/man/man8/mrouted.8			man-router-man		.man
-./usr/share/man/man8/mscdlabel.8		man-sysutil-man		.man
 ./usr/share/man/man8/mtrace.8			man-netutil-man		.man
 ./usr/share/man/man8/mtree.8			man-sysutil-man		.man
 ./usr/share/man/man8/named-checkconf.8		man-bind-man		.man

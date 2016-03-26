@@ -878,7 +878,6 @@
 ./usr/libdata/debug/usr/sbin/moused.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/usr/sbin/mrinfo.debug	comp-router-debug	debug
 ./usr/libdata/debug/usr/sbin/mrouted.debug	comp-router-debug	debug
-./usr/libdata/debug/usr/sbin/mscdlabel.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/usr/sbin/mtrace.debug	comp-netutil-debug	debug
 ./usr/libdata/debug/usr/sbin/mtree.debug	comp-sysutil-debug	debug
 ./usr/libdata/debug/usr/sbin/named-checkconf.debug	comp-bind-bin		debug

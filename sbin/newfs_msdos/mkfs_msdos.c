@@ -837,7 +837,7 @@ getbpbinfo(int fd, const char *fname, const char *dtype, int iflag,
 	    sector_size = geo.dg_secsize = 512;
 	    nsectors = geo.dg_nsectors = 63;
 	    ntracks = geo.dg_ntracks = 255;
-	    size = dkw.dkw_size;
+	    size = geo.dg_nsectors;//dkw.dkw_size;
 	} else
 #endif
 	{

@@ -37,6 +37,7 @@ __KERNEL_RCSID(0, "$NetBSD: autoconf.c,v 1.17 2014/05/10 20:12:16 reinoud Exp $"
 #include <sys/param.h>
 #include <sys/systm.h>
 #include <sys/reboot.h>
+#include <sys/diskinfo.h>
 #include <sys/device.h>
 #include <sys/conf.h>
 #include <sys/kernel.h>

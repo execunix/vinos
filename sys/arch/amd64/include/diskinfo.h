@@ -1,4 +1,4 @@
-/*	$NetBSD: disklabel.h,v 1.10 2011/08/30 12:39:52 bouyer Exp $	*/
+/*	$NetBSD: diskinfo.h,v 1.10 2011/08/30 12:39:52 bouyer Exp $	*/
 
 /*
  * Copyright (c) 1994 Christopher G. Demetriou
@@ -63,7 +63,7 @@ struct cpu_disklabel {
 
 #else	/*	__x86_64__	*/
 
-#include <i386/disklabel.h>
+#include <i386/diskinfo.h>
 
 #endif	/*	__x86_64__	*/
 

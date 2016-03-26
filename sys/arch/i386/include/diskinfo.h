@@ -1,4 +1,4 @@
-/*	$NetBSD: disklabel.h,v 1.16 2011/08/30 12:39:55 bouyer Exp $	*/
+/*	$NetBSD: diskinfo.h,v 1.16 2011/08/30 12:39:55 bouyer Exp $	*/
 
 /*
  * Copyright (c) 1994 Christopher G. Demetriou

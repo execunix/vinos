@@ -153,31 +153,6 @@ checkoverlap(partinfo *lp, int nparts, int rawpart, int bsdpart)
 }
 
 static int
-check_one_root(partinfo *lp, int nparts)
-{
-	int part;
-	int foundroot = 0;
-
-	for (part = 0; part < nparts; lp++, part++) {
-#if 0
-		if (!PI_ISBSDFS(lp))
-			continue;
-#endif
-		if (!(lp->pi_flags & PIF_MOUNT))
-			continue;
-		if (strcmp(lp->pi_mount, "/") != 0)
-			continue;
-		if (foundroot)
-			/* Duplicate */
-			return 0;
-		foundroot = 1;
-		/* Save partition number, a few things need to know it */
-		pm->rootpart = part;
-	}
-	return foundroot;
-}
-
-static int
 edit_fs_start(menudesc *m, void *arg)
 {
 	partinfo *p = arg;
@@ -558,63 +533,6 @@ set_ptn_label(menudesc *m, int opt, void *arg)
 		wprintw(m->mw, msg_string(MSG_mountpt_fmt), p->pi_mount);
 		break;
 	}
-}
-
-static int
-show_all_unused(menudesc *m, void *arg)
-{
-	struct ptn_menu_info *pi = arg;
-
-	pi->flags |= PIF_SHOW_UNUSED;
-	return 0;
-}
-
-static void
-set_label_texts(menudesc *menu, void *arg)
-{
-	struct ptn_menu_info *pi = arg;
-	menu_ent *m;
-	int ptn, show_unused_ptn;
-	int rawptn = getrawpartition();
-	int maxpart = getmaxpartitions();
-
-	msg_display(MSG_fspart);
-	msg_table_add(MSG_fspart_header, multname, multname, multname);
-
-	for (show_unused_ptn = 0, ptn = 0; ptn < maxpart; ptn++) {
-		m = &menu->opts[ptn];
-		m->opt_menu = OPT_NOMENU;
-		m->opt_name = NULL;
-		m->opt_action = edit_ptn;
-		if (ptn == rawptn
-#ifdef PART_BOOT
-		    || ptn == PART_BOOT
-#endif
-		    || ptn == PART_C) {
-			m->opt_flags = OPT_IGNORE;
-		} else {
-			m->opt_flags = 0;
-			if (pm->bsdlabel[ptn].pi_fstype == FS_UNUSED)
-				continue;
-		}
-		show_unused_ptn = ptn + 2;
-	}
-
-	if (!(pi->flags & PIF_SHOW_UNUSED) && ptn > show_unused_ptn) {
-		ptn = show_unused_ptn;
-		m = &menu->opts[ptn];
-		m->opt_name = MSG_show_all_unused_partitions;
-		m->opt_action = show_all_unused;
-		ptn++;
-	}
-
-	m = &menu->opts[ptn];
-	m->opt_menu = MENU_sizechoice; 
-	m->opt_flags = OPT_SUB; 
-	m->opt_action = NULL;
-	m->opt_name = MSG_askunits;
-
-	menu->numopts = ptn + 1;
 }
 
 /*

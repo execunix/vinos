@@ -260,7 +260,6 @@ file	usr.sbin/mopd/common/Makefile	: 1.10
 file	usr.sbin/mopd/mopd/Makefile	: 1.9
 file	usr.sbin/mopd/mopprobe/Makefile	: 1.7
 file	usr.sbin/makefs/Makefile	: 1.17
-file	usr.sbin/mscdlabel/Makefile	: 1.5
 file	usr.sbin/pkg_install/add/Makefile : 1.7
 file	usr.sbin/pkg_install/create/Makefile : 1.5
 file	usr.sbin/pkg_install/lib/Makefile : 1.28

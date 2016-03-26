@@ -254,9 +254,6 @@ message fspart_header	/* XXX abbreviations (or change fspart_row below) */
 message fspart_row
 {%9lu %9lu %10lu %-10s %-7s %-9s %s}
 
-message show_all_unused_partitions
-{Pokaz wszystkie nieuzywane partycje}
-
 message partition_sizes_ok
 {Rozmiary partycji w porzadku}
 

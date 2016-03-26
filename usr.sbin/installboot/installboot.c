@@ -110,7 +110,6 @@ main(int argc, char *argv[])
 	const char	*op;
 	ib_flags	unsupported_flags;
 #if !HAVE_NBTOOL_CONFIG_H
-	char		specname[MAXPATHLEN];
 	char		rawname[MAXPATHLEN];
 	const char	*special, *raw;
 #endif
@@ -239,9 +238,7 @@ main(int argc, char *argv[])
 	}
 
 #if !HAVE_NBTOOL_CONFIG_H
-	special = getfsspecname(specname, sizeof(specname), argv[0]);
-	if (special == NULL)
-		err(1, "%s: %s", argv[0], specname);
+	special = argv[0];
 	raw = getdiskrawname(rawname, sizeof(rawname), special);
 	if (raw != NULL)
 		special = raw;

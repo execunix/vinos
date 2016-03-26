@@ -102,6 +102,7 @@ __KERNEL_RCSID(0, "$NetBSD: disksubr.c,v 1.25 2014/04/25 20:17:28 martin Exp $")
 #include <sys/param.h>
 #include <sys/systm.h>
 #include <sys/buf.h>
+#include <sys/diskinfo.h>
 #include <sys/syslog.h>
 #include <sys/device.h>
 #include <sys/disk.h>

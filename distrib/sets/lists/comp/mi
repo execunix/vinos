@@ -7562,7 +7562,6 @@
 ./usr/share/man/cat9/bluetooth.0		comp-sys-catman		.cat
 ./usr/share/man/cat9/boothowto.0		comp-sys-catman		.cat
 ./usr/share/man/cat9/boottime.0			comp-sys-catman		.cat
-./usr/share/man/cat9/bounds_check_with_label.0	comp-sys-catman		.cat
 ./usr/share/man/cat9/bpf.0			comp-sys-catman		.cat
 ./usr/share/man/cat9/bread.0			comp-sys-catman		.cat
 ./usr/share/man/cat9/breada.0			comp-sys-catman		.cat
@@ -13808,7 +13807,6 @@
 ./usr/share/man/html9/bluetooth.html		comp-sys-htmlman	html
 ./usr/share/man/html9/boothowto.html		comp-sys-htmlman	html
 ./usr/share/man/html9/boottime.html		comp-sys-htmlman	html
-./usr/share/man/html9/bounds_check_with_label.html	comp-sys-htmlman	html
 ./usr/share/man/html9/bpf.html			comp-sys-htmlman	html
 ./usr/share/man/html9/bread.html		comp-sys-htmlman	html
 ./usr/share/man/html9/breada.html		comp-sys-htmlman	html
@@ -20054,7 +20052,6 @@
 ./usr/share/man/man9/bluetooth.9		comp-sys-man		.man
 ./usr/share/man/man9/boothowto.9		comp-sys-man		.man
 ./usr/share/man/man9/boottime.9			comp-sys-man		.man
-./usr/share/man/man9/bounds_check_with_label.9	comp-sys-man		.man
 ./usr/share/man/man9/bpf.9			comp-sys-man		.man
 ./usr/share/man/man9/bread.9			comp-sys-man		.man
 ./usr/share/man/man9/breada.9			comp-sys-man		.man

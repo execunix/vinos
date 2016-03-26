@@ -1,4 +1,4 @@
-/*	$NetBSD: disklabel.h,v 1.12 2013/05/27 07:37:20 msaitoh Exp $	*/
+/*	$NetBSD: diskinfo.h,v 1.12 2013/05/27 07:37:20 msaitoh Exp $	*/
 
 /*
  * Copyright (c) 1994 Mark Brinicombe.
@@ -36,7 +36,7 @@
  *
  * RiscBSD kernel project
  *
- * disklabel.h
+ * diskinfo.h
  *
  * machine specific disk label info
  *

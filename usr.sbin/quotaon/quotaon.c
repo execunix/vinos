@@ -135,18 +135,13 @@ main(int argc, char *argv[])
 
 	setfsent();
 	while ((fs = getfsent()) != NULL) {
-		char buf[MAXPATHLEN];
 		const char *fsspec;
 		if ((strcmp(fs->fs_vfstype, "ffs")/* &&
 		     strcmp(fs->fs_vfstype, "lfs")*/) ||
 		    strcmp(fs->fs_type, FSTAB_RW))
 			continue;
 
-		fsspec = getfsspecname(buf, sizeof(buf), fs->fs_spec);
-		if (fsspec == NULL) {
-			warn("%s", buf);
-			continue;
-		}
+		fsspec = fs->fs_spec;
 		if (!aflag) {
 			if ((argnum = oneof(fs->fs_file, argv, argc)) < 0 &&
 			    (argnum = oneof(fsspec, argv, argc)) < 0) {

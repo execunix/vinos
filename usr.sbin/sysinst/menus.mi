@@ -84,24 +84,6 @@ remove_sub_menu(int menuID)
 	}
 }
 
-static void
-remove_menu_option(int menuID, const char *option)
-{
-
-	for (int j = 0; j < menu_def[menuID].numopts; j++) {
-		if (menu_def[menuID].opts[j].opt_name == option) {
-			for (int k = j + 1; k < menu_def[menuID].numopts;
-			    k++) {
-				menu_def[menuID].opts[k-1] =
-				    menu_def[menuID].opts[k];
-			}
-			menu_def[menuID].numopts--;
-			return;
-
-		}
-	}
-}
-
 void
 remove_color_options()
 {

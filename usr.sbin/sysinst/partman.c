@@ -50,7 +50,6 @@
 typedef struct pm_upddevlist_adv_t {
 	const char *create_msg;
 	int pe_type;
-	structinfo_t *s;
 	int sub_num;
 	struct pm_upddevlist_adv_t *sub;
 } pm_upddevlist_adv_t;
@@ -65,15 +64,12 @@ int cursel; /* Number of selected entry in main menu */
 int changed; /* flag indicating that we have unsaved changes */
 
 part_entry_t pm_dev_list(int);
-static int pm_mount(pm_devs_t *, int);
 static int pm_upddevlist(menudesc *, void *);
 static void pm_select(pm_devs_t *);
 
 static void
 pm_getdevstring(char *buf, int len, pm_devs_t *pm_cur, int num)
 {
-	int i;
-
 	if (num + 'a' < 'a' || num + 'a' > 'a' + MAXPARTITIONS)
 		snprintf(buf, len, "%sd", pm_cur->diskdev);
 	else
@@ -134,7 +130,7 @@ pm_dev_list(int type)
 int
 pm_partusage(pm_devs_t *pm_cur, int part_num, int do_del)
 {
-	int i, ii, retvalue = 0;
+	int i, retvalue = 0;
 
 	if (part_num < 0) {
 		/* Check all partitions on device */
@@ -312,35 +308,6 @@ pm_mountall(void)
 			return error;
 	}
 	return 0;
-}
-
-/* Mount partition bypassing ordinary order */
-static int
-pm_mount(pm_devs_t *pm_cur, int part_num)
-{
-	int error = 0;
-	char buf[MOUNTLEN];
-
-	if (strlen(pm_cur->bsdlabel[part_num].mounted) > 0)
-		return 0;
-
-	snprintf(buf, MOUNTLEN, "/tmp/%s%c", pm_cur->diskdev, part_num + 'a');
-	if (! dir_exists_p(buf))
-		run_program(RUN_DISPLAY | RUN_PROGRESS, "/bin/mkdir -p %s", buf);
-	if (pm_cur->bsdlabel[part_num].pi_flags & PIF_MOUNT &&
-		pm_cur->bsdlabel[part_num].mnt_opts != NULL &&
-		strlen(pm_cur->bsdlabel[part_num].mounted) < 1)
-		error += run_program(RUN_DISPLAY | RUN_PROGRESS, "/sbin/mount %s /dev/%s%c %s",
-				pm_cur->bsdlabel[part_num].mnt_opts,
-				pm_cur->diskdev, part_num + 'a', buf);
-
-	if (error)
-		pm_cur->bsdlabel[part_num].mounted[0] = '\0';
-	else {
-		strlcpy(pm_cur->bsdlabel[part_num].mounted, buf, MOUNTLEN);
-		pm_cur->blocked++;
-	}
-	return error;
 }
 
 void

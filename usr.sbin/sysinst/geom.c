@@ -35,6 +35,7 @@
 /* Modified by Philip A. Nelson for use in sysinst. */
 
 #include <sys/param.h>
+#include <sys/diskinfo.h>
 #include <sys/ioctl.h>
 #include <fcntl.h>
 #include <unistd.h>

@@ -1,4 +1,4 @@
-/*	$NetBSD: disklabel.h,v 1.116 2013/11/05 00:36:02 msaitoh Exp $	*/
+/*	$NetBSD: diskinfo.h,v 1.116 2013/11/05 00:36:02 msaitoh Exp $	*/
 
 /*
  * Copyright (c) 1987, 1988, 1993
@@ -28,7 +28,7 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  *
- *	@(#)disklabel.h	8.2 (Berkeley) 7/10/94
+ *	@(#)diskinfo.h	8.2 (Berkeley) 7/10/94
  */
 
 #ifndef _SYS_DISKLABEL_H_

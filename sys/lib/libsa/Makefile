@@ -37,7 +37,7 @@ SRCS+=	memcmp.c memcpy.c memmove.c memset.c strchr.c
 SRCS+=	bcopy.c bzero.c	# Remove me eventually.
 
 # io routines
-SRCS+=	closeall.c dev.c disklabel.c dkcksum.c ioctl.c nullfs.c stat.c fstat.c
+SRCS+=	closeall.c dev.c dkcksum.c ioctl.c nullfs.c stat.c fstat.c
 SRCS+=	close.c lseek.c open.c read.c write.c
 .if (${SA_USE_CREAD} == "yes")
 CPPFLAGS+= -D__INTERNAL_LIBSA_CREAD

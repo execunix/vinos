@@ -350,6 +350,7 @@ MKX11/MKXORG/XSERVER_XFREE86
 disklabel/TOOL_DISKLABEL
 diskinfo/pdisk
 diskname/bsddiskname
+bounds_check_with_label
 fdisk.disktype
 xscale/caddr_t
 vnd_x

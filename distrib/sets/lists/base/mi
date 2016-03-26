@@ -1221,7 +1221,6 @@
 ./usr/sbin/moused				base-sysutil-bin
 ./usr/sbin/mrinfo				base-router-bin
 ./usr/sbin/mrouted				base-router-bin
-./usr/sbin/mscdlabel				base-sysutil-bin
 ./usr/sbin/mtrace				base-netutil-bin
 ./usr/sbin/mtree				base-sysutil-bin
 ./usr/sbin/named				base-bind-bin

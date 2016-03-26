@@ -40,6 +40,7 @@
 /* System includes needed for this. */
 #include <sys/queue.h>
 #include <sys/types.h>
+#include <sys/diskinfo.h>
 #include <sys/disk.h>
 
 const char *getfslabelname(uint8_t);
@@ -83,6 +84,9 @@ deconst(const void *p)
 #define RUN_PROGRESS	0x0080		/* Output is just progess test */
 #define RUN_NO_CLEAR	0x0100		/* Leave program output after error */
 #define RUN_XFER_DIR	0x0200		/* cd to xfer_dir in child */
+
+/* for layoutkind */
+enum { LY_SETNEW, LY_USEEXIST };
 
 /* Installation sets */
 enum {

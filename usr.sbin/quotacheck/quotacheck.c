@@ -250,12 +250,7 @@ main(int argc, char *argv[])
 		err(1, "%s: can't open", FSTAB);
 	while ((fs = getfsent()) != NULL) {
 		const char *fsspec;
-		char buf[MAXPATHLEN];
-		fsspec = getfsspecname(buf, sizeof(buf), fs->fs_spec);
-		if (fsspec == NULL) {
-			warn("%s", buf);
-			continue;
-		}
+		fsspec = fs->fs_spec;
 		if (((argnum = oneof(fs->fs_file, argv, argc)) >= 0 ||
 		    (argnum = oneof(fsspec, argv, argc)) >= 0) &&
 		    (auxdata = needchk(fs)) &&

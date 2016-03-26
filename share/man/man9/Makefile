@@ -15,7 +15,7 @@ MAN=	accept_filter.9 accf_data.9 accf_http.9 \
 	cpu_startup.9 cpu_switchto.9 cpufreq.9 \
 	csf.9 ctod.9 \
 	curproc.9 \
-	delay.9 disk.9 ddc.9 disklabel.9 dofileread.9 \
+	delay.9 disk.9 ddc.9 dofileread.9 \
 	dopowerhooks.9 do_setresuid.9 doshutdownhooks.9 driver.9 \
 	edid.9 errno.9 ethersubr.9 evcnt.9 extattr.9 extent.9 \
 	fetch.9 file.9 fileassoc.9 filedesc.9 firmload.9 flash.9 \
@@ -273,8 +273,6 @@ MLINKS+=delay.9 DELAY.9
 MLINKS+=disk.9 disk_attach.9 disk.9 disk_detach.9 \
 	disk.9 disk_busy.9 disk.9 disk_unbusy.9 disk.9 disk_find.9 \
 	disk.9 disk_init.9 disk.9 disk_destroy.9 disk.9 disk_begindetach.9
-MLINKS+=disklabel.9 readdisklabel.9 disklabel.9 writedisklabel.9 \
-	disklabel.9 setdisklabel.9 disklabel.9 bounds_check_with_label.9
 MLINKS+=dofileread.9 dofilewrite.9 \
 	dofileread.9 dofilereadv.9 \
 	dofileread.9 dofilewritev.9

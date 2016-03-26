@@ -1,4 +1,4 @@
-/* $NetBSD: disklabel.h,v 1.1 2014/08/10 05:47:38 matt Exp $ */
+/* $NetBSD: diskinfo.h,v 1.1 2014/08/10 05:47:38 matt Exp $ */
 
 /*-
  * Copyright (c) 2014 The NetBSD Foundation, Inc.
@@ -65,7 +65,7 @@ int	mbr_label_locate(dev_t, void (*)(struct buf *),
 
 #elif defined(__arm__)
 
-#include <arm/disklabel.h>
+#include <arm/diskinfo.h>
 
 #endif
 

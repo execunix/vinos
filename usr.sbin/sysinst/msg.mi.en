@@ -256,9 +256,6 @@ message fspart_header
 message fspart_row
 {%9lu %9lu %9lu %-10s %-5s %-5s %s}
 
-message show_all_unused_partitions
-{Show all unused partitions}
-
 message partition_sizes_ok
 {Partition sizes ok}
 
