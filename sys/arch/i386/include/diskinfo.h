@@ -34,24 +34,10 @@
 #define _I386_DISKLABEL_H_
 
 #define LABELUSESMBR		1	/* use MBR partitionning */
-#define	LABELSECTOR		1	/* sector containing label */
-#define	LABELOFFSET		0	/* offset of label in sector */
-#define	MAXPARTITIONS		16	/* number of partitions */
-#define	OLDMAXPARTITIONS 	8	/* number of partitions before 1.6 */
-#define	RAW_PART		3	/* raw partition: XX?d (XXX) */
-
-/*
- * We use the highest bit of the minor number for the partition number.
- * This maintains backward compatibility with device nodes created before
- * MAXPARTITIONS was increased.
- */
-#define __I386_MAXDISKS	((1 << 20) / MAXPARTITIONS)
-#define DISKUNIT(dev)	((minor(dev) / OLDMAXPARTITIONS) % __I386_MAXDISKS)
-#define DISKPART(dev)	((minor(dev) % OLDMAXPARTITIONS) + \
-    ((minor(dev) / (__I386_MAXDISKS * OLDMAXPARTITIONS)) * OLDMAXPARTITIONS))
-#define	DISKMINOR(unit, part) \
-    (((unit) * OLDMAXPARTITIONS) + ((part) % OLDMAXPARTITIONS) + \
-     ((part) / OLDMAXPARTITIONS) * (__I386_MAXDISKS * OLDMAXPARTITIONS))
+#define LABELSECTOR		1	/* sector containing label */
+#define LABELOFFSET		0	/* offset of label in sector */
+#define MAXPARTITIONS		8	/* number of partitions */
+#define RAW_PART		3	/* raw partition: XX?d (XXX) */
 
 /* Pull in MBR partition definitions. */
 #if HAVE_NBTOOL_CONFIG_H
@@ -61,9 +47,6 @@
 #endif /* HAVE_NBTOOL_CONFIG_H */
 
 #ifndef __ASSEMBLER__
-#if HAVE_NBTOOL_CONFIG_H
-#else
-#endif /* HAVE_NBTOOL_CONFIG_H */
 struct cpu_disklabel {
 };
 #endif

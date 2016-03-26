@@ -46,30 +46,13 @@
 #ifndef _ARM_DISKLABEL_H_
 #define _ARM_DISKLABEL_H_
 
-#ifndef LABELUSESMBR
 #define LABELUSESMBR		1	/* use MBR partitionning */
-#endif
 #define LABELSECTOR		1	/* sector containing label */
 #define LABELOFFSET		0	/* offset of label in sector */
-#define MAXPARTITIONS		16	/* number of partitions */
-#define OLDMAXPARTITIONS	8	/* old number of partitions */
-#ifndef RAW_PART
-#define RAW_PART		2	/* raw partition: XX?c */
-#endif
+#define MAXPARTITIONS		8	/* number of partitions */
+#define RAW_PART		3	/* raw partition: XX?c */
 
-/*
- * We use the highest bit of the minor number for the partition number.
- * This maintains backward compatibility with device nodes created before
- * MAXPARTITIONS was increased.
- */
-#define	__ARM_MAXDISKS	((1 << 20) / MAXPARTITIONS)
-#define	DISKUNIT(dev)	((minor(dev) / OLDMAXPARTITIONS) % __ARM_MAXDISKS)
-#define	DISKPART(dev)	((minor(dev) % OLDMAXPARTITIONS) + \
-    ((minor(dev) / (__ARM_MAXDISKS * OLDMAXPARTITIONS)) * OLDMAXPARTITIONS))
-#define	DISKMINOR(unit, part) \
-    (((unit) * OLDMAXPARTITIONS) + ((part) % OLDMAXPARTITIONS) + \
-     ((part) / OLDMAXPARTITIONS) * (__ARM_MAXDISKS * OLDMAXPARTITIONS))
-
+/* Pull in MBR partition definitions. */
 #if HAVE_NBTOOL_CONFIG_H
 #include <nbinclude/sys/bootblock.h>
 #else

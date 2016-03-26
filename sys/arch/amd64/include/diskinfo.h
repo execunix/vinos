@@ -33,19 +33,12 @@
 #ifndef _X86_64_DISKLABEL_H_
 #define _X86_64_DISKLABEL_H_
 
-#if defined(__x86_64__) || defined(HAVE_NBTOOL_CONFIG_H)
-
 #define LABELUSESMBR		1	/* use MBR partitionning */
-#define	LABELSECTOR		1	/* sector containing label */
-#define	LABELOFFSET		0	/* offset of label in sector */
-#define	MAXPARTITIONS		16	/* number of partitions */
-#define	RAW_PART		3	/* raw partition: XX?d (XXX) */
+#define LABELSECTOR		1	/* sector containing label */
+#define LABELOFFSET		0	/* offset of label in sector */
+#define MAXPARTITIONS		8	/* number of partitions */
+#define RAW_PART		3	/* raw partition: XX?d (XXX) */
 
-/*
- * We use the highest bit of the minor number for the partition number.
- * This maintains backward compatibility with device nodes created before
- * MAXPARTITIONS was increased.
- */
 /* Pull in MBR partition definitions. */
 #if HAVE_NBTOOL_CONFIG_H
 #include <nbinclude/sys/bootblock.h>
@@ -54,17 +47,8 @@
 #endif /* HAVE_NBTOOL_CONFIG_H */
 
 #ifndef __ASSEMBLER__
-#if HAVE_NBTOOL_CONFIG_H
-#else
-#endif /* HAVE_NBTOOL_CONFIG_H */
 struct cpu_disklabel {
 };
 #endif
-
-#else	/*	__x86_64__	*/
-
-#include <i386/diskinfo.h>
-
-#endif	/*	__x86_64__	*/
 
 #endif /* _X86_64_DISKLABEL_H_ */

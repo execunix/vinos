@@ -147,12 +147,12 @@ typedef	__caddr_t	caddr_t;	/* core address */
 #endif
 #endif
 
-#ifdef __daddr_t
-typedef	__daddr_t	daddr_t;	/* disk address */
-#undef __daddr_t
-#else
+//#ifdef __daddr_t
+//typedef	__daddr_t	daddr_t;	/* disk address */
+//#undef __daddr_t
+//#else
 typedef	int64_t		daddr_t;	/* disk address */
-#endif
+//#endif
 
 typedef	uint64_t	dev_t;		/* device number */
 typedef	uint32_t	fixpt_t;	/* fixed point number */

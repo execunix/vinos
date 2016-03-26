@@ -32,49 +32,25 @@
  */
 
 #ifndef _SYS_DISKLABEL_H_
-#define	_SYS_DISKLABEL_H_
+#define _SYS_DISKLABEL_H_
 
 #ifndef _LOCORE
 #include <sys/types.h>
 #endif
 
-/*
- * Each disk has a label which includes information about the hardware
- * disk geometry, filesystem partitions, and drive specific information.
- * The location of the label, as well as the number of partitions the
- * label can describe and the number of the "whole disk" (raw)
- * partition are machine dependent.
- */
-#if HAVE_NBTOOL_CONFIG_H
-#undef MAXPARTITIONS
-#define MAXPARTITIONS		MAXMAXPARTITIONS
-#else
 #include <machine/diskinfo.h>
-#endif /* HAVE_NBTOOL_CONFIG_H */
-
-/*
- * The absolute maximum number of disk partitions allowed.
- * This is the maximum value of MAXPARTITIONS for which 'struct disklabel'
- * is <= DEV_BSIZE bytes long.  If MAXPARTITIONS is greater than this, beware.
- */
-#define	MAXMAXPARTITIONS	22
-#if MAXPARTITIONS > MAXMAXPARTITIONS
-#warning beware: MAXPARTITIONS bigger than MAXMAXPARTITIONS
-#endif
 
 /*
  * Translate between device numbers and major/disk unit/disk partition.
  */
-#if !HAVE_NBTOOL_CONFIG_H
-#define	DISKUNIT(dev)	(minor(dev) / MAXPARTITIONS)
-#define	DISKPART(dev)	(minor(dev) % MAXPARTITIONS)
-#define	DISKMINOR(unit, part) \
+#define DISKUNIT(dev)	(minor(dev) / MAXPARTITIONS)
+#define DISKPART(dev)	(minor(dev) % MAXPARTITIONS)
+#define DISKMINOR(unit, part) \
     (((unit) * MAXPARTITIONS) + (part))
-#endif /* !HAVE_NBTOOL_CONFIG_H */
-#define	MAKEDISKDEV(maj, unit, part) \
+#define MAKEDISKDEV(maj, unit, part) \
     (makedev((maj), DISKMINOR((unit), (part))))
 
-#define	DISKMAGIC	((uint32_t)0x82564557)	/* The disk magic number */
+#define DISKMAGIC	((uint32_t)0x82564557)	/* The disk magic number */
 
 #ifndef _LOCORE
 struct disklabel {

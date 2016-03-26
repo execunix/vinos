@@ -356,7 +356,7 @@ xscale/caddr_t
 vnd_x
 wedge_x
 DKW_PTYPE_FFS
-_LOCORE/dkbad/cpu_disklabel
+_LOCORE/dkbad/cpu_disklabel/mbr_label
 disk_strategy/getfsspecname/getfsent
 pseudo-device 	dm			# device-mapper disk driver
 swstrategy/v_type
