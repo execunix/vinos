@@ -352,15 +352,15 @@ diskinfo/pdisk
 diskname/bsddiskname
 bounds_check_with_label
 fdisk.disktype
-xscale/caddr_t
+getfsent
 vnd_x
 wedge_x
-DKW_PTYPE_FFS
+DKW_PTYPE_FFS/USE_MBR
 _LOCORE/dkbad/cpu_disklabel/mbr_label
-disk_strategy/getfsspecname/getfsent
-pseudo-device 	dm			# device-mapper disk driver
-swstrategy/v_type
+dm # device-mapper disk driver
 
+sun/sparc/sparc64/ebus/sbus/be/hme/qe/qec/xbox
+xscale/CPU_SHEEVA
 iSCSI/dmover
 MKX11RADEONKMS
 CONFIG_DRM

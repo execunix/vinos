@@ -367,7 +367,7 @@ void	arm1136_sleep_rev0		(int);	/* for errata 336501 */
 
 #if defined(CPU_ARM9) || defined(CPU_ARM9E) || defined(CPU_ARM10) || \
     defined(CPU_SA110) || defined(CPU_SA1100) || defined(CPU_SA1110) || \
-    defined(CPU_FA526) || defined(CPU_XSCALE) || defined(CPU_SHEEVA)
+    defined(CPU_FA526) || defined(CPU_SHEEVA)
 
 void	armv4_tlb_flushID	(void);
 void	armv4_tlb_flushI	(void);
@@ -382,46 +382,6 @@ void	ixp12x0_drain_readbuf	(void);
 void	ixp12x0_context_switch	(u_int);
 void	ixp12x0_setup		(char *);
 #endif
-
-#if defined(CPU_XSCALE)
-void	xscale_cpwait		(void);
-
-void	xscale_cpu_sleep	(int);
-
-u_int	xscale_control		(u_int, u_int);
-
-void	xscale_setttb		(u_int, bool);
-
-void	xscale_tlb_flushID_SE	(vaddr_t);
-
-void	xscale_cache_flushID	(void);
-void	xscale_cache_flushI	(void);
-void	xscale_cache_flushD	(void);
-void	xscale_cache_flushD_SE	(vaddr_t);
-
-void	xscale_cache_cleanID	(void);
-void	xscale_cache_cleanD	(void);
-void	xscale_cache_cleanD_E	(u_int);
-
-void	xscale_cache_clean_minidata (void);
-
-void	xscale_cache_purgeID	(void);
-void	xscale_cache_purgeID_E	(u_int);
-void	xscale_cache_purgeD	(void);
-void	xscale_cache_purgeD_E	(u_int);
-
-void	xscale_cache_syncI	(void);
-void	xscale_cache_cleanID_rng (vaddr_t, vsize_t);
-void	xscale_cache_cleanD_rng	(vaddr_t, vsize_t);
-void	xscale_cache_purgeID_rng (vaddr_t, vsize_t);
-void	xscale_cache_purgeD_rng	(vaddr_t, vsize_t);
-void	xscale_cache_syncI_rng	(vaddr_t, vsize_t);
-void	xscale_cache_flushD_rng	(vaddr_t, vsize_t);
-
-void	xscale_context_switch	(u_int);
-
-void	xscale_setup		(char *);
-#endif	/* CPU_XSCALE */
 
 #if defined(CPU_SHEEVA)
 void	sheeva_dcache_wbinv_range (vaddr_t, vsize_t);

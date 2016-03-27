@@ -112,9 +112,7 @@
 ./usr/include/dev/pci
 ./usr/include/dev/pckbc
 ./usr/include/dev/pcmcia
-./usr/include/dev/sbus
 ./usr/include/dev/scsipi
-./usr/include/dev/sun
 ./usr/include/dev/tc
 ./usr/include/dev/usb
 ./usr/include/dev/wscons
@@ -880,7 +878,6 @@
 ./usr/share/man/cat8/newsmips
 ./usr/share/man/cat8/next68k
 ./usr/share/man/cat8/ofppc
-./usr/share/man/cat8/playstation2
 ./usr/share/man/cat8/pmax
 ./usr/share/man/cat8/prep
 ./usr/share/man/cat8/sandpoint
@@ -992,7 +989,6 @@
 ./usr/share/man/html8/newsmips
 ./usr/share/man/html8/next68k
 ./usr/share/man/html8/ofppc
-./usr/share/man/html8/playstation2
 ./usr/share/man/html8/pmax
 ./usr/share/man/html8/prep
 ./usr/share/man/html8/sandpoint
@@ -1104,7 +1100,6 @@
 ./usr/share/man/man8/newsmips
 ./usr/share/man/man8/next68k
 ./usr/share/man/man8/ofppc
-./usr/share/man/man8/playstation2
 ./usr/share/man/man8/pmax
 ./usr/share/man/man8/prep
 ./usr/share/man/man8/sandpoint

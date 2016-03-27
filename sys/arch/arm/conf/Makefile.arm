@@ -51,7 +51,6 @@ CFLAGS+=	 -mfloat-abi=soft
 CPPFLAGS.cpufunc_asm_armv4.S+=	-mcpu=arm8
 CPPFLAGS.cpufunc_asm_armv6.S+=	-mcpu=arm1136j-s
 CPPFLAGS.cpufunc_asm_arm11.S+=	-mcpu=arm1136j-s
-CPPFLAGS.cpufunc_asm_xscale.S+=	-mcpu=xscale
 
 ##
 ## (3) libkern and compat

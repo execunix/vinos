@@ -62,10 +62,6 @@ __RCSID("$NetBSD: screenblank.c,v 1.29 2011/08/30 20:33:30 joerg Exp $");
 
 #include <dev/wscons/wsconsio.h>
 
-#ifdef HAVE_FBIO
-#include <dev/sun/fbio.h>
-#endif
-
 #include "pathnames.h"
 
 static u_long	setvideo = WSDISPLAYIO_SVIDEO;		/* "set video" ioctl */
@@ -164,32 +160,6 @@ main(int argc, char *argv[])
 	kbd = _PATH_WSKBD;
 	mouse = _PATH_WSMOUSE;
 	display = _PATH_WSDISPLAY;
-
-#ifdef HAVE_FBIO
-	/*
-	 * If a display device wasn't specified, check to see which we
-	 * have.  If we can't open the WSCONS display, fall back to fbio.
-	 */
-	if (!fflag) {
-		int fd;
-
-		if ((fd = open(display, O_RDONLY, 0666)) == -1)
-			setvideo = FBIOSVIDEO;
-		else
-			(void) close(fd);
-	}
-
-	/*
-	 * Do this here so that -f ... args above can influence us.
-	 */
-	if (setvideo == FBIOSVIDEO) {
-		videoon = FBVIDEO_ON;
-		videooff = FBVIDEO_OFF;
-		kbd = _PATH_KEYBOARD;
-		mouse = _PATH_MOUSE;
-		display = _PATH_FB;
-	}
-#endif
 
 	/*
 	 * Add the default framebuffer device if necessary.
@@ -292,25 +262,6 @@ add_dev(const char *path, int isfb)
 		warn("Can't stat `%s'", path);
 		return;
 	}
-
-#ifdef HAVE_FBIO
-	/*
-	 * We default to WSCONS.  If this is a frame buffer
-	 * device, check to see if it responds to the old
-	 * Sun-style fbio ioctls.  If so, switch to fbio mode.
-	 */
-	if (isfb && setvideo != FBIOSVIDEO) {
-		int onoff, fd;
-
-		if ((fd = open(path, O_RDWR, 0666)) == -1) {
-			warn("Can't open `%s'", path);
-			return;
-		}
-		if ((ioctl(fd, FBIOGVIDEO, &onoff)) == 0)
-			setvideo = FBIOSVIDEO;
-		(void)close(fd);
-	}
-#endif
 
 	/* Create the entry... */
 	dsp = malloc(sizeof(struct dev_stat));

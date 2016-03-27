@@ -164,11 +164,6 @@ file	dev/usb/aubtfwl.c		aubtfwl
 # Capture devices
 #
 
-# Sony PLAYSTATION(R) Eye
-device	pseye: videobus
-attach	pseye at usbifif
-file	dev/usb/pseye.c			pseye
-
 # USB Video Class capture devices
 device	uvideo: videobus
 attach	uvideo at usbifif

@@ -653,7 +653,6 @@
 ./usr/share/man/cat4/bba.0			man-sys-catman		.cat
 ./usr/share/man/cat4/bce.0			man-sys-catman		.cat
 ./usr/share/man/cat4/bcsp.0			man-sys-catman		.cat
-./usr/share/man/cat4/be.0			man-sys-catman		.cat
 ./usr/share/man/cat4/bge.0			man-sys-catman		.cat
 ./usr/share/man/cat4/bha.0			man-sys-catman		.cat
 ./usr/share/man/cat4/bicc.0			man-sys-catman		.cat
@@ -682,7 +681,6 @@
 ./usr/share/man/cat4/cardbus.0			man-sys-catman		.cat
 ./usr/share/man/cat4/cardslot.0			man-sys-catman		.cat
 ./usr/share/man/cat4/carp.0			man-sys-catman		.cat
-./usr/share/man/cat4/cas.0			man-sys-catman		.cat
 ./usr/share/man/cat4/cbb.0			man-sys-catman		.cat
 ./usr/share/man/cat4/cd.0			man-sys-catman		.cat
 ./usr/share/man/cat4/cdce.0			man-sys-catman		.cat
@@ -734,7 +732,6 @@
 ./usr/share/man/cat4/ea.0			man-sys-catman		.cat
 ./usr/share/man/cat4/eap.0			man-sys-catman		.cat
 ./usr/share/man/cat4/eb.0			man-sys-catman		.cat
-./usr/share/man/cat4/ebus.0			man-sys-catman		.cat
 ./usr/share/man/cat4/ec.0			man-sys-catman		.cat
 ./usr/share/man/cat4/edc.0			man-sys-catman		.cat
 ./usr/share/man/cat4/ef.0			man-sys-catman		.cat
@@ -786,7 +783,6 @@
 ./usr/share/man/cat4/fxp.0			man-sys-catman		.cat
 ./usr/share/man/cat4/g760a.0			man-sys-catman		.cat
 ./usr/share/man/cat4/gcscaudio.0		man-sys-catman		.cat
-./usr/share/man/cat4/gem.0			man-sys-catman		.cat
 ./usr/share/man/cat4/genfb.0			man-sys-catman		.cat
 ./usr/share/man/cat4/gentbi.0			man-sys-catman		.cat
 ./usr/share/man/cat4/geodeide.0			man-sys-catman		.cat
@@ -814,7 +810,6 @@
 ./usr/share/man/cat4/hilid.0			man-sys-catman		.cat
 ./usr/share/man/cat4/hilkbd.0			man-sys-catman		.cat
 ./usr/share/man/cat4/hilms.0			man-sys-catman		.cat
-./usr/share/man/cat4/hme.0			man-sys-catman		.cat
 ./usr/share/man/cat4/hpacel.0			man-sys-catman		.cat
 ./usr/share/man/cat4/hpqlb.0			man-sys-catman		.cat
 ./usr/share/man/cat4/hptide.0			man-sys-catman		.cat
@@ -1043,7 +1038,6 @@
 ./usr/share/man/cat4/ppbus.0			man-sys-catman		.cat
 ./usr/share/man/cat4/ppp.0			man-sys-catman		.cat
 ./usr/share/man/cat4/pppoe.0			man-sys-catman		.cat
-./usr/share/man/cat4/pseye.0			man-sys-catman		.cat
 ./usr/share/man/cat4/ptcd.0			man-sys-catman		.cat
 ./usr/share/man/cat4/ptm.0			man-sys-catman		.cat
 ./usr/share/man/cat4/pty.0			man-sys-catman		.cat
@@ -1053,8 +1047,6 @@
 ./usr/share/man/cat4/pwdog.0			man-sys-catman		.cat
 ./usr/share/man/cat4/px.0			man-sys-catman		.cat
 ./usr/share/man/cat4/pxg.0			man-sys-catman		.cat
-./usr/share/man/cat4/qe.0			man-sys-catman		.cat
-./usr/share/man/cat4/qec.0			man-sys-catman		.cat
 ./usr/share/man/cat4/qsphy.0			man-sys-catman		.cat
 ./usr/share/man/cat4/r128drm.0			man-sys-catman		.cat
 ./usr/share/man/cat4/radeondrm.0		man-sys-catman		.cat
@@ -1086,7 +1078,6 @@
 ./usr/share/man/cat4/sb.0			man-sys-catman		.cat
 ./usr/share/man/cat4/sbp.0			man-sys-catman		.cat
 ./usr/share/man/cat4/sbt.0			man-sys-catman		.cat
-./usr/share/man/cat4/sbus.0			man-sys-catman		.cat
 ./usr/share/man/cat4/sc.0			man-sys-catman		.cat
 ./usr/share/man/cat4/scc.0			man-sys-catman		.cat
 ./usr/share/man/cat4/schide.0			man-sys-catman		.cat
@@ -1316,7 +1307,6 @@
 ./usr/share/man/cat4/x86/tprof_pmi.0		man-sys-catman		.cat
 ./usr/share/man/cat4/x86/vmt.0			man-sys-catman		.cat
 ./usr/share/man/cat4/x86/vmx.0			man-sys-catman		.cat
-./usr/share/man/cat4/xbox.0			man-sys-catman		.cat
 ./usr/share/man/cat4/xc3028.0			man-sys-catman		.cat
 ./usr/share/man/cat4/xc5k.0			man-sys-catman		.cat
 ./usr/share/man/cat4/xge.0			man-sys-catman		.cat
@@ -2677,7 +2667,6 @@
 ./usr/share/man/html4/bba.html			man-sys-htmlman		html
 ./usr/share/man/html4/bce.html			man-sys-htmlman		html
 ./usr/share/man/html4/bcsp.html			man-sys-htmlman		html
-./usr/share/man/html4/be.html			man-sys-htmlman		html
 ./usr/share/man/html4/bge.html			man-sys-htmlman		html
 ./usr/share/man/html4/bha.html			man-sys-htmlman		html
 ./usr/share/man/html4/bicc.html			man-sys-htmlman		html
@@ -2706,7 +2695,6 @@
 ./usr/share/man/html4/cardbus.html		man-sys-htmlman		html
 ./usr/share/man/html4/cardslot.html		man-sys-htmlman		html
 ./usr/share/man/html4/carp.html			man-sys-htmlman		html
-./usr/share/man/html4/cas.html			man-sys-htmlman		html
 ./usr/share/man/html4/cbb.html			man-sys-htmlman		html
 ./usr/share/man/html4/cd.html			man-sys-htmlman		html
 ./usr/share/man/html4/cdce.html			man-sys-htmlman		html
@@ -2758,7 +2746,6 @@
 ./usr/share/man/html4/ea.html			man-sys-htmlman		html
 ./usr/share/man/html4/eap.html			man-sys-htmlman		html
 ./usr/share/man/html4/eb.html			man-sys-htmlman		html
-./usr/share/man/html4/ebus.html			man-sys-htmlman		html
 ./usr/share/man/html4/ec.html			man-sys-htmlman		html
 ./usr/share/man/html4/edc.html			man-sys-htmlman		html
 ./usr/share/man/html4/ef.html			man-sys-htmlman		html
@@ -2810,7 +2797,6 @@
 ./usr/share/man/html4/fxp.html			man-sys-htmlman		html
 ./usr/share/man/html4/g760a.html		man-sys-htmlman		html
 ./usr/share/man/html4/gcscaudio.html		man-sys-htmlman		html
-./usr/share/man/html4/gem.html			man-sys-htmlman		html
 ./usr/share/man/html4/genfb.html		man-sys-htmlman		html
 ./usr/share/man/html4/gentbi.html		man-sys-htmlman		html
 ./usr/share/man/html4/geodeide.html		man-sys-htmlman		html
@@ -2838,7 +2824,6 @@
 ./usr/share/man/html4/hilid.html		man-sys-htmlman		html
 ./usr/share/man/html4/hilkbd.html		man-sys-htmlman		html
 ./usr/share/man/html4/hilms.html		man-sys-htmlman		html
-./usr/share/man/html4/hme.html			man-sys-htmlman		html
 ./usr/share/man/html4/hpacel.html		man-sys-htmlman		html
 ./usr/share/man/html4/hpqlb.html		man-sys-htmlman		html
 ./usr/share/man/html4/hptide.html		man-sys-htmlman		html
@@ -3067,7 +3052,6 @@
 ./usr/share/man/html4/ppbus.html		man-sys-htmlman		html
 ./usr/share/man/html4/ppp.html			man-sys-htmlman		html
 ./usr/share/man/html4/pppoe.html		man-sys-htmlman		html
-./usr/share/man/html4/pseye.html		man-sys-htmlman		html
 ./usr/share/man/html4/ptcd.html			man-sys-htmlman		html
 ./usr/share/man/html4/ptm.html			man-sys-htmlman		html
 ./usr/share/man/html4/pty.html			man-sys-htmlman		html
@@ -3077,8 +3061,6 @@
 ./usr/share/man/html4/pwdog.html		man-sys-htmlman		html
 ./usr/share/man/html4/px.html			man-sys-htmlman		html
 ./usr/share/man/html4/pxg.html			man-sys-htmlman		html
-./usr/share/man/html4/qe.html			man-sys-htmlman		html
-./usr/share/man/html4/qec.html			man-sys-htmlman		html
 ./usr/share/man/html4/qsphy.html		man-sys-htmlman		html
 ./usr/share/man/html4/r128drm.html		man-sys-htmlman		html
 ./usr/share/man/html4/radeondrm.html		man-sys-htmlman		html
@@ -3110,7 +3092,6 @@
 ./usr/share/man/html4/sb.html			man-sys-htmlman		html
 ./usr/share/man/html4/sbp.html			man-sys-htmlman		html
 ./usr/share/man/html4/sbt.html			man-sys-htmlman		html
-./usr/share/man/html4/sbus.html			man-sys-htmlman		html
 ./usr/share/man/html4/sc.html			man-sys-htmlman		html
 ./usr/share/man/html4/scc.html			man-sys-htmlman		html
 ./usr/share/man/html4/schide.html		man-sys-htmlman		html
@@ -3340,7 +3321,6 @@
 ./usr/share/man/html4/x86/tprof_pmi.html	man-sys-htmlman		html
 ./usr/share/man/html4/x86/vmt.html		man-sys-htmlman		html
 ./usr/share/man/html4/x86/vmx.html		man-sys-htmlman		html
-./usr/share/man/html4/xbox.html			man-sys-htmlman		html
 ./usr/share/man/html4/xc3028.html		man-sys-htmlman		html
 ./usr/share/man/html4/xc5k.html			man-sys-htmlman		html
 ./usr/share/man/html4/xge.html			man-sys-htmlman		html
@@ -4702,7 +4682,6 @@
 ./usr/share/man/man4/bba.4			man-sys-man		.man
 ./usr/share/man/man4/bce.4			man-sys-man		.man
 ./usr/share/man/man4/bcsp.4			man-sys-man		.man
-./usr/share/man/man4/be.4			man-sys-man		.man
 ./usr/share/man/man4/bge.4			man-sys-man		.man
 ./usr/share/man/man4/bha.4			man-sys-man		.man
 ./usr/share/man/man4/bicc.4			man-sys-man		.man
@@ -4731,7 +4710,6 @@
 ./usr/share/man/man4/cardbus.4			man-sys-man		.man
 ./usr/share/man/man4/cardslot.4			man-sys-man		.man
 ./usr/share/man/man4/carp.4			man-sys-man		.man
-./usr/share/man/man4/cas.4			man-sys-man		.man
 ./usr/share/man/man4/cbb.4			man-sys-man		.man
 ./usr/share/man/man4/cd.4			man-sys-man		.man
 ./usr/share/man/man4/cdce.4			man-sys-man		.man
@@ -4783,7 +4761,6 @@
 ./usr/share/man/man4/ea.4			man-sys-man		.man
 ./usr/share/man/man4/eap.4			man-sys-man		.man
 ./usr/share/man/man4/eb.4			man-sys-man		.man
-./usr/share/man/man4/ebus.4			man-sys-man		.man
 ./usr/share/man/man4/ec.4			man-sys-man		.man
 ./usr/share/man/man4/edc.4			man-sys-man		.man
 ./usr/share/man/man4/ef.4			man-sys-man		.man
@@ -4835,7 +4812,6 @@
 ./usr/share/man/man4/fxp.4			man-sys-man		.man
 ./usr/share/man/man4/g760a.4			man-sys-man		.man
 ./usr/share/man/man4/gcscaudio.4		man-sys-man		.man
-./usr/share/man/man4/gem.4			man-sys-man		.man
 ./usr/share/man/man4/genfb.4			man-sys-man		.man
 ./usr/share/man/man4/gentbi.4			man-sys-man		.man
 ./usr/share/man/man4/geodeide.4			man-sys-man		.man
@@ -4863,7 +4839,6 @@
 ./usr/share/man/man4/hilid.4			man-sys-man		.man
 ./usr/share/man/man4/hilkbd.4			man-sys-man		.man
 ./usr/share/man/man4/hilms.4			man-sys-man		.man
-./usr/share/man/man4/hme.4			man-sys-man		.man
 ./usr/share/man/man4/hpacel.4			man-sys-man		.man
 ./usr/share/man/man4/hpqlb.4			man-sys-man		.man
 ./usr/share/man/man4/hptide.4			man-sys-man		.man
@@ -5092,7 +5067,6 @@
 ./usr/share/man/man4/ppbus.4			man-sys-man		.man
 ./usr/share/man/man4/ppp.4			man-sys-man		.man
 ./usr/share/man/man4/pppoe.4			man-sys-man		.man
-./usr/share/man/man4/pseye.4			man-sys-man		.man
 ./usr/share/man/man4/ptcd.4			man-sys-man		.man
 ./usr/share/man/man4/ptm.4			man-sys-man		.man
 ./usr/share/man/man4/pty.4			man-sys-man		.man
@@ -5102,8 +5076,6 @@
 ./usr/share/man/man4/pwdog.4			man-sys-man		.man
 ./usr/share/man/man4/px.4			man-sys-man		.man
 ./usr/share/man/man4/pxg.4			man-sys-man		.man
-./usr/share/man/man4/qe.4			man-sys-man		.man
-./usr/share/man/man4/qec.4			man-sys-man		.man
 ./usr/share/man/man4/qsphy.4			man-sys-man		.man
 ./usr/share/man/man4/r128drm.4			man-sys-man		.man
 ./usr/share/man/man4/radeondrm.4		man-sys-man		.man
@@ -5135,7 +5107,6 @@
 ./usr/share/man/man4/sb.4			man-sys-man		.man
 ./usr/share/man/man4/sbp.4			man-sys-man		.man
 ./usr/share/man/man4/sbt.4			man-sys-man		.man
-./usr/share/man/man4/sbus.4			man-sys-man		.man
 ./usr/share/man/man4/sc.4			man-sys-man		.man
 ./usr/share/man/man4/scc.4			man-sys-man		.man
 ./usr/share/man/man4/schide.4			man-sys-man		.man
@@ -5365,7 +5336,6 @@
 ./usr/share/man/man4/x86/tprof_pmi.4		man-sys-man		.man
 ./usr/share/man/man4/x86/vmt.4			man-sys-man		.man
 ./usr/share/man/man4/x86/vmx.4			man-sys-man		.man
-./usr/share/man/man4/xbox.4			man-sys-man		.man
 ./usr/share/man/man4/xc3028.4			man-sys-man		.man
 ./usr/share/man/man4/xc5k.4			man-sys-man		.man
 ./usr/share/man/man4/xge.4			man-sys-man		.man

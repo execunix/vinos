@@ -8,7 +8,7 @@ MKIMAGE= ${NETBSDSRCDIR}/distrib/utils/embedded/mkimage
 # If you change the list of distributed kernels, don't forget
 # to update the release documentation in distrib/notes/common/contents
 EVBARM_BOARDS=
-.for i in armv4 xscale armv5t armv6 armv7
+.for i in armv4 armv5t armv6 armv7
 EVBARM_BOARDS.${i}=
 .endfor
 
@@ -46,16 +46,16 @@ __mkimage: .USE
 	    -S ${NETBSDSRCDIR} ${MKI_OPTS.${.TARGET}} \
 	    ${IMAGE.dir}/${.TARGET:S/smp_//}.img.gz
 
-ARCHES.arm=		armv4 xscale armv5t armv6 armv7
-ARCHES.armeb=		armv4 xscale armv5t armv6
-ARCHES.earm=		xscale armv5t armv6 armv7
-ARCHES.earmeb=		xscale armv5t armv6
+ARCHES.arm=		armv4 armv5t armv6 armv7
+ARCHES.armeb=		armv4 armv5t armv6
+ARCHES.earm=		armv5t armv6 armv7
+ARCHES.earmeb=		armv5t armv6
 ARCHES.earmhf=		armv6hf armv7hf
 ARCHES.earmhfeb=	armv6hf
 ARCHES.earmv4=		armv4
 ARCHES.earmv4eb=	armv4
-ARCHES.earmv5=		xscale armv5t
-ARCHES.earmv5eb=	xscale armv5t
+ARCHES.earmv5=		armv5t
+ARCHES.earmv5eb=	armv5t
 ARCHES.earmv6=		armv6
 ARCHES.earmv6hf=	armv6hf
 ARCHES.earmv6eb=	armv6

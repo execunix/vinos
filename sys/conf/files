@@ -653,16 +653,6 @@ device	depca { }: le24
 file	dev/ic/depca.c			depca
 attach	le at depca with le_depca
 
-# Sun HME Ethernet controllers
-#
-device	hme: arp, ether, ifnet, mii
-file	dev/ic/hme.c			hme
-
-# Sun GEM Ethernet controllers
-#
-device	gem: arp, ether, ifnet, mii
-file	dev/ic/gem.c			gem
-
 # Synopsis Designware GMAC core, as found on allwinner a20
 # and other SoCs
 device	awge: arp, ether, ifnet, mii
@@ -695,12 +685,6 @@ file	dev/ic/tropic.c			tr
 define	ncr5380sbc
 file	dev/ic/ncr5380sbc.c		ncr5380sbc
 device	nca: scsi, ncr5380sbc
-
-# Sun sc PAL SCSI Bus Controller
-#
-define	sunscpal
-file	dev/ic/sunscpal.c		sunscpal
-device	ssc: scsi, sunscpal
 
 # DEC FDDI Chipset
 #

@@ -29,12 +29,6 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifdef HAVE_FBIO
-#define	_PATH_KEYBOARD		"/dev/kbd"
-#define _PATH_MOUSE		"/dev/mouse"
-#define _PATH_FB		"/dev/fb"
-#endif
-
 #define	_PATH_WSKBD		"/dev/wskbd"
 #define	_PATH_WSMOUSE		"/dev/wsmouse"
 #define	_PATH_WSDISPLAY		"/dev/ttyE0"

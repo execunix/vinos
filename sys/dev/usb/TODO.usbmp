@@ -149,7 +149,6 @@ driver testing:		STATUS
   - uyap
   - udsbr
   - ugen		mostly done
-  - pseye		working
   - uvideo
   - auvitek		? (must take kernel lock for scsipi)
   - emdtv		? (must take kernel lock for scsipi)

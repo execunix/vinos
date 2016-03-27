@@ -15,9 +15,6 @@ defparam opt_kernbase.h	KERNBASE
 # delay before cpu_reset() for reboot.
 defparam		CPURESET_DELAY
 
-# Obsolete Xbox support
-obsolete defflag	XBOX
-
 # VM86 emulation
 defflag			VM86
 

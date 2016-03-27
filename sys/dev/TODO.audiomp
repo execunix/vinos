@@ -4,7 +4,6 @@ arch/amiga/dev/aucc.c		done		port-amiga
 arch/amiga/dev/repulse.c	done
 arch/amiga/dev/toccata.c	done
 arch/arm/iomd/vidcaudio.c	done		port-acorn32
-arch/arm/xscale/pxa2x0_ac97.c	done
 arch/dreamcast/dev/g2/aica.c	done		port-dreamcast
 arch/hppa/gsc/harmony.c		done		port-hppa
 arch/hpcmips/vr/vraiu.c		done
@@ -17,7 +16,6 @@ arch/sparc/dev/audioamd.c	done
 arch/x68k/dev/vs.c		done		port-x68k
 arch/zaurus/dev/zaudio.c	done		port-zaurus
 dev/bluetooth/btsco.c		done		port-i386
-dev/ebus/cs4231_ebus.c		done		port-sparc64
 dev/ic/interwave.c		done
 dev/ic/mpu.c			done
 dev/ic/opl.c			done
@@ -52,8 +50,6 @@ dev/pci/hdaudio/hdafg.c		done		port-i386, port-amd64
 dev/pci/neo.c			done
 dev/pci/sv.c			done
 dev/pci/yds.c			done
-dev/sbus/cs4231_sbus.c		done		port-sparc, port-sparc64
-dev/sbus/dbri.c			done		port-sparc
 dev/tc/bba.c			done
 dev/usb/uaudio.c		done		port-amd64, port-i386
 dev/usb/umidi.c			done		port-i386, port-amd64

@@ -11,24 +11,24 @@ MAN=	aac.4 ac97.4 acardide.4 aceride.4 acphy.4 \
 	ath.4 athn.4 atphy.4 atppc.4 attimer.4 atw.4 \
 	auacer.4 audio.4 audiocs.4 auich.4 \
 	auixp.4 autri.4 auvia.4 awi.4 azalia.4 \
-	battery_pmu.4 bba.4 bce.4 bcsp.4 be.4 bge.4 bnx.4 bha.4 \
+	battery_pmu.4 bba.4 bce.4 bcsp.4 bge.4 bnx.4 bha.4 \
 	bio.4 bktr.4 bluetooth.4 bmtphy.4 bpf.4 bpfjit.4 \
 	brgphy.4 bridge.4 bthidev.4 bthub.4 btkbd.4 \
 	btmagic.4 btms.4 btsco.4 btuart.4 \
 	bwi.4 \
-	cac.4 cardbus.4 carp.4 cas.4 cd.4 \
+	cac.4 cardbus.4 carp.4 cd.4 \
 	cec.4 cfb.4 ch.4 chipsfb.4 ciphy.4 ciss.4 clcs.4 clct.4 \
 	clockctl.4 cmdide.4 cmpci.4 cms.4 cnw.4 \
 	com.4 coram.4 crypto.4 cs80bus.4 cuda.4 cypide.4 cxdtv.4 \
 	ddb.4 ddc.4 de.4 dge.4 dmoverio.4 \
 	dmphy.4 dpt.4 dpti.4 drm.4 drum.4 dtv.4 dtviic.4 dwctwo.4 \
-	eap.4 ebus.4 edc.4 emuxki.4 en.4 envsys.4 ep.4 esh.4 \
+	eap.4 edc.4 emuxki.4 en.4 envsys.4 ep.4 esh.4 \
 	esa.4 esiop.4 esm.4 eso.4 et.4 etherip.4 etphy.4 exphy.4 \
 	fast_ipsec.4 fd.4 filemon.4 finsio.4 flash.4 fpa.4 fms.4 fss.4 fujbp.4 fxp.4 \
-	gcscaudio.4 gem.4 genfb.4 gentbi.4 geodeide.4 \
+	gcscaudio.4 genfb.4 gentbi.4 geodeide.4 \
 	glxtphy.4 gpib.4 gpio.4 gpiolock.4 gpiopwm.4 gpiosim.4 gre.4 \
 	gphyter.4 gsip.4 \
-	hdaudio.4 hifn.4 hme.4 hpacel.4 hpqlb.4 hptide.4 hythygtemp.4 \
+	hdaudio.4 hifn.4 hpacel.4 hpqlb.4 hptide.4 hythygtemp.4 \
 	ibmcd.4 ibmhawk.4 ichsmb.4 icmp.4 icp.4 icsphy.4 iee.4 ieee80211.4 \
 	ifmedia.4 igmafb.4 igphy.4 igsfb.4 iha.4 ihphy.4 iic.4 inet.4 ikphy.4 \
 	inphy.4 intersil7170.4 \
@@ -47,11 +47,11 @@ MAN=	aac.4 ac97.4 acardide.4 aceride.4 acphy.4 \
 	pad.4 pas.4 pcdisplay.4 pcf8563rtc.4 pciide.4 pckbc.4 pckbd.4 pcn.4 \
 	pcppi.4 pcscp.4 pcweasel.4 pdcide.4 pdcsata.4 piixide.4 piixpcib.4 \
 	piixpm.4 pim.4 plip.4 pms.4 pmu.4 pnaphy.4 ppbus.4 ppp.4 pppoe.4 \
-	pseye.4 ptcd.4 ptm.4 pty.4 puc.4 pud.4 puffs.4 pwdog.4 px.4 pxg.4 \
-	qe.4 qec.4 qsphy.4 \
+	ptcd.4 ptm.4 pty.4 puc.4 pud.4 puffs.4 pwdog.4 px.4 pxg.4 \
+	qsphy.4 \
 	ral.4 ray.4 rcons.4 rdcphy.4 re.4 rgephy.4 rlphy.4 \
 	rnd.4 route.4 rs5c372rtc.4 rtk.4 rtsx.4 rtw.4 rum.4 run.4 \
-	s390rtc.4 satalink.4 sbus.4 scc.4 schide.4 \
+	s390rtc.4 satalink.4 scc.4 schide.4 \
 	scsi.4 sd.4 se.4 seeprom.4 sem.4 \
 	ses.4 sf.4 sfb.4 sgsmix.4 shb.4 shmif.4 \
 	shpcic.4 siisata.4 siop.4 sip.4 siside.4 sk.4 sl.4 slide.4 \
@@ -67,7 +67,7 @@ MAN=	aac.4 ac97.4 acardide.4 aceride.4 acphy.4 \
 	virtio.4 vlan.4 vmmon.4 vmnet.4 voodoofb.4 vr.4 vte.4 \
 	wapbl.4 wb.4 wbsio.4 wd.4 wdc.4 wi.4 wm.4 wpi.4 \
 	wscons.4 wsdisplay.4 wsfont.4 wskbd.4 wsmouse.4 wsmux.4 \
-	xbox.4 xge.4 \
+	xge.4 \
 	yds.4 ym.4 \
 	zero.4 zstty.4 zyd.4
 

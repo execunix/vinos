@@ -55,11 +55,6 @@ __KERNEL_RCSID(0, "$NetBSD: netbsd32_ioctl.c,v 1.69.4.1 2015/08/02 11:29:10 mart
 #include <sys/wdog.h>
 #include <sys/clockctl.h>
 
-#ifdef __sparc__
-#include <dev/sun/fbio.h>
-#include <machine/openpromio.h>
-#endif
-
 #include <net/if.h>
 #include <net/route.h>
 

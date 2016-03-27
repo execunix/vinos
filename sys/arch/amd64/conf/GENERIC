@@ -697,7 +697,6 @@ uk*	at atapibus? drive ? flags 0x0000	# ATAPI unknown
 #iwn*	at pci? dev ? function ?	# Intel PRO/Wireless 4965AGN
 #ixg*	at pci? dev ? function ?	# Intel 8259x 10 gigabit
 #jme*	at pci? dev ? function ?	# JMicron JMC2[56]0 ethernet
-#hme*	at pci? dev ? function ?	# Sun Microelectronics STP2002-STQ
 #le*	at pci? dev ? function ?	# PCnet-PCI Ethernet
 #lii*	at pci? dev ? function ?	# Atheros L2 Fast-Ethernet
 #lmc*	at pci? dev ? function ?	# Lan Media Corp SSI/HSSI/DS3
@@ -1076,7 +1075,6 @@ midi*	at pcppi?		# MIDI interface to the PC speaker
 #cxdtv*	at pci? dev ? function ?	# Conexant CX2388[0-3] PCI TV
 #emdtv*	at uhub?			# Empia EM28xx USB TV
 #cir*	at emdtv?
-#pseye*	at uhub?			# Sony PLAYSTATION(R) Eye webcam
 #uvideo* at uhub?			# USB Video Class capture devices
 
 #video*	at videobus?			# Analog capture interface

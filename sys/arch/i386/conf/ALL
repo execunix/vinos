@@ -526,13 +526,11 @@ genfb*		at pci? dev ? function ?
 gffb*		at pci? dev ? function ?
 igsfb*		at pci? dev ? function ?
 machfb* 	at pci? dev ? function ?
-pm2fb*		at pci? dev ? function ?
 r128fb* 	at pci? dev ? function ?
 radeonfb*	at pci? dev ? function ?
 tga*		at pci? dev ? function ?	# DEC ZLXp-E[123] Graphics
 unichromefb*	at pci? dev ? function ?	# VIA Unichrome framebuffer console
 voodoofb*	at pci? dev ? function ?
-wcfb*	at pci? dev ? function ?
 wsdisplay*	at wsemuldisplaydev?
 
 # DRI legacy drivers
@@ -949,7 +947,6 @@ bce*	at pci? dev ? function ?	# Broadcom 4401 10/100 Ethernet
 bge*	at pci? dev ? function ?	# Broadcom 570x gigabit Ethernet
 bnx*	at pci? dev ? function ?	# Broadcom NetXtremeII gigabit Ethernet
 bwi*	at pci? dev ? function ?	# Broadcom BCM43xx wireless
-cas*	at pci? dev ? function ?	# Sun Cassini/Cassini+ Ethernet
 dge*	at pci? dev ? function ?	# Intel 82597 10GbE LR
 en*	at pci? dev ? function ?	# ENI/Adaptec ATM
 ep*	at pci? dev ? function ?	# 3Com 3c59x
@@ -959,9 +956,7 @@ et*	at pci? dev ? function ?	# Agere/LSI ET1310/ET1301 Gigabit
 ex*	at pci? dev ? function ?	# 3Com 3c90x[BC]
 fpa*	at pci? dev ? function ?	# DEC DEFPA FDDI
 fxp*	at pci? dev ? function ?	# Intel EtherExpress PRO 10+/100B
-gem*	at pci? dev ? function ?	# Apple GMAC and Sun ERI gigabit enet
 gsip*	at pci? dev ? function ?	# NS83820 Gigabit Ethernet
-hme*	at pci? dev ? function ?	# Sun Microelectronics STP2002-STQ
 ipw*	at pci? dev ? function ?	# Intel PRO/Wireless 2100
 iwi*	at pci? dev ? function ?	# Intel PRO/Wireless 2200BG
 iwn*	at pci? dev ? function ?	# Intel PRO/Wireless 4965AGN
@@ -1468,7 +1463,6 @@ radio*	at sf2r?
 
 # Video capture devices
 
-pseye*	at uhub?		# Sony PLAYSTATION(R) Eye webcam
 uvideo* at uhub?		# USB Video Class capture devices
 auvitek* at uhub?		# Auvitek AU0828 video capture devices
 emdtv*	at uhub?		# Empia EM28xx video capture devices
@@ -2264,7 +2258,6 @@ options SPPDEBUG
 options SSCOM_DEBUG
 options STIDEBUG
 options STP4020_DEBUG
-options SUNSCPAL_DEBUG
 options SYNAPTICSDEBUG
 options SYSCALL_DEBUG
 options SYSCTL_DEBUG_CREATE

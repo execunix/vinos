@@ -284,7 +284,6 @@
 ./usr/include/dev/pcmcia/if_rayreg.h		comp-c-include
 ./usr/include/dev/pud/pud_msgif.h		comp-c-include
 ./usr/include/dev/putter/putter.h		comp-c-include
-./usr/include/dev/sbus/mbppio.h			comp-c-include
 ./usr/include/dev/scsipi/scsi_all.h		comp-c-include
 ./usr/include/dev/scsipi/scsi_disk.h		comp-c-include
 ./usr/include/dev/scsipi/scsi_spc.h		comp-c-include

@@ -873,9 +873,7 @@
 ./usr/include/dev/pcmcia			base-c-usr
 ./usr/include/dev/pud				base-c-usr
 ./usr/include/dev/putter			base-c-usr
-./usr/include/dev/sbus				base-c-usr
 ./usr/include/dev/scsipi			base-c-usr
-./usr/include/dev/sun				base-c-usr
 ./usr/include/dev/tc				base-c-usr
 ./usr/include/dev/usb				base-c-usr
 ./usr/include/dev/wscons			base-c-usr
@@ -3521,7 +3519,6 @@
 ./usr/share/man/cat8/newsmips			base-man-share
 ./usr/share/man/cat8/next68k			base-man-share
 ./usr/share/man/cat8/ofppc			base-man-share
-./usr/share/man/cat8/playstation2		base-man-share
 ./usr/share/man/cat8/pmax			base-man-share
 ./usr/share/man/cat8/prep			base-man-share
 ./usr/share/man/cat8/sandpoint			base-man-share
@@ -3633,7 +3630,6 @@
 ./usr/share/man/html8/newsmips			base-man-share
 ./usr/share/man/html8/next68k			base-man-share
 ./usr/share/man/html8/ofppc			base-man-share
-./usr/share/man/html8/playstation2		base-man-share
 ./usr/share/man/html8/pmax			base-man-share
 ./usr/share/man/html8/prep			base-man-share
 ./usr/share/man/html8/sandpoint			base-man-share
@@ -3746,7 +3742,6 @@
 ./usr/share/man/man8/newsmips			base-man-share
 ./usr/share/man/man8/next68k			base-man-share
 ./usr/share/man/man8/ofppc			base-man-share
-./usr/share/man/man8/playstation2		base-man-share
 ./usr/share/man/man8/pmax			base-man-share
 ./usr/share/man/man8/prep			base-man-share
 ./usr/share/man/man8/sandpoint			base-man-share

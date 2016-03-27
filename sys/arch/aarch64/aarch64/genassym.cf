@@ -68,7 +68,6 @@ define	VM_MAXUSER_ADDRESS	VM_MAXUSER_ADDRESS
 #define	DOMAIN_CLIENT		DOMAIN_CLIENT
 #define	L1_S_PROTO_generic	L1_S_PROTO_generic
 #define	L1_S_PROTO_armv7	L1_S_PROTO_armv7
-#define	L1_S_PROTO_xscale	L1_S_PROTO_xscale
 #if ARM_NMMUS == 1
 #define	L1_S_PROTO		L1_S_PROTO
 #endif
