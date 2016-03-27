@@ -202,7 +202,6 @@ x(LD,		12,	"ld")		/* logical disk */ \
 x(JFS2,		13,	"jfs")		/* IBM JFS2 */ \
 x(VINUM,	14,	"vinum")	/* vinum volume */ \
 x(FLASH,	15,	"flash")	/* flash memory devices */ \
-x(DM,		16,	"dm")		/* device-mapper pseudo-disk devices */\
     
 #ifndef _LOCORE
 #define DKTYPE_NUMS(tag, number, name) __CONCAT(DTYPE_,tag=number),

@@ -347,21 +347,18 @@ USE_KERNEL_RCSIDS
 GPT_ENT_TYPE_*
 compat_
 MKX11/MKXORG/XSERVER_XFREE86
-disklabel/TOOL_DISKLABEL
+MKX11RADEONKMS/CONFIG_DRM/X11R6
+
 diskinfo/pdisk
 diskname/bsddiskname
+disklabel/TOOL_DISKLABEL
+dkbad/_LOCORE/cpu_disklabel/mbr_label
 bounds_check_with_label
-fdisk.disktype
-getfsent
+fdisk.disktype/getfsent
 vnd_x
 wedge_x
 DKW_PTYPE_FFS/USE_MBR
-_LOCORE/dkbad/cpu_disklabel/mbr_label
-dm # device-mapper disk driver
+KAUTH_SYSTEM_DEVMAPPER/libdm
 
 sun/sparc/sparc64/ebus/sbus/be/hme/qe/qec/xbox
-xscale/CPU_SHEEVA
-iSCSI/dmover
-MKX11RADEONKMS
-CONFIG_DRM
-X11R6
+xscale/CPU_SHEEVA/iSCSI/dmover

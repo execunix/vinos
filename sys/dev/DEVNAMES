@@ -139,7 +139,6 @@ audio			MI
 audio			MI		Attribute
 audioamd		MI
 audiobell		MI		Attribute
-audiocs			MI
 aue			MI
 augpio			evbmips
 auich			MI
@@ -341,7 +340,6 @@ dhu			MI
 diic			powerpc
 dio			hp300
 dl			MI
-dm			MI
 dma			MI
 dma			sun3
 dmac			newsmips

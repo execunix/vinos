@@ -864,11 +864,6 @@ file	dev/ic/am7930.c			am7930
 device	arcofi: audiobus, auconv, mulaw
 file	dev/ic/arcofi.c			arcofi
 
-# SPARC `SUNW,audiocs'
-#
-device	audiocs: audiobus, auconv, ad1848
-file	dev/ic/cs4231.c			audiocs
-
 # AC-97 CODECs
 #
 define	ac97
