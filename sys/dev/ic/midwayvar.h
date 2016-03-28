@@ -52,35 +52,12 @@
 				/* largest possible NRX (depends on RAM size) */
 
 
-#if defined(__NetBSD__) || defined(__OpenBSD__) || defined(__bsdi__)
+#if defined(__NetBSD__)
 #define EN_INTR_TYPE int
 #define EN_INTR_RET(X) return(X)
-#if defined(__NetBSD__) || defined(__OpenBSD__)
 #define EN_IOCTL_CMDT u_long
-#elif defined(__bsdi__)
-#define EN_IOCTL_CMDT int
-#endif
-
-#elif defined(__FreeBSD__)
-
-#define EN_INTR_TYPE void
-#define EN_INTR_RET(X) return
-#define EN_IOCTL_CMDT int
-
-struct device {
-  char dv_xname[IFNAMSIZ];
-};
-
-#define DV_IFNET 1
-
-struct cfdriver {
-  int zero;
-  char *name;
-  int one;
-  int cd_ndevs;
-  void *cd_devs[NEN];
-};
-
+#else
+x
 #endif
 
 #if 1 /* for ATM_PVCEXT */

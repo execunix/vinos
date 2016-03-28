@@ -359,24 +359,19 @@ MKUPDATE 	If not "no", 'make install' only installs targets that are
 		installed counterparts.
 		Default: no
 
-MKX11		If not "no", 'make build' also descends into either
-		src/external/mit/xorg (modular Xorg) to cross-build X11 and
-		automatically enables creation of X sets.
+MKX11		If not "no", 'make build' also descends into
+		src/external/mit/xorg to cross-build X11 and automatically
+		enables creation of X sets.
 		Default: no
 
-MKX11FONTS	If not "no", do not build or install the X fonts.
-		The xfont set is still created but will be empty.
+MKX11FONTS	If not "no", do not build or install the X fonts.  The xfont
+		set is still created but will be empty.
 		Default: yes
 
-MKX11MOTIF:	If "yes", build the native X11 libGLw with Motif stubs.
-		If Motif is not installed in the default location /usr/pkg,
-		the location can be specified using the X11MOTIFPATH variable.
+MKX11MOTIF:	If "yes", build the native X11 libGLw with Motif stubs.  If
+		Motif is not installed in the default location /usr/pkg, the
+		location can be specified using the X11MOTIFPATH variable.
 		Default: no
-
-MKX11RADEONKMS	If "no", build the xf86-video-ati 6.x driver (the last one
-		with user-mode switching support), otherwise build the
-		kernek-mode switching (KMS) requiring driver.
-		Default: yes on i386 and amd64, no elsewhere.
 
 MKRADEONFIRMWARE If "no", install the /libdata/firmware/radeon directory,
 		which is necessary for the radeon DRM driver.
@@ -590,8 +585,6 @@ NLSMODE		Native Language Support files mode.  [${NONBINMODE}]
 
 X11SRCDIR	The path to the xsrc tree.  [${NETBSDSRCDIR}/../xsrc,
 		if that exists; otherwise /usr/xsrc]
-
-X11SRCDIR.xc	The path to the (old) X11 xc src tree.  [${X11SRCDIR}/xfree/xc]
 
 X11SRCDIR.local	The path to the local X11 src tree.  [${X11SRCDIR}/local]
 
@@ -1709,9 +1702,9 @@ SUBDIR		For all of the directories listed in ${SUBDIR}, the
 =-=-=-=-=   bsd.x11.mk   =-=-=-=-=
 
 The include file <bsd.x11.mk> contains parameters and targets for
-cross-building X11 from ${X11SRCDIR.xc} / ${X11MITSRCDIR.*}.
-It should be included after the general Makefile contents but before
-the include files such as <bsd.prog.mk> and <bsd.lib.mk>.
+cross-building X11 from ${X11SRCDIR.<package>}.  It should be included
+after the general Makefile contents but before the include files such as
+<bsd.prog.mk> and <bsd.lib.mk>.
 
 It provides the following targets:
 	.man.1 .man.3 .man.4 .man.5 .man.7:

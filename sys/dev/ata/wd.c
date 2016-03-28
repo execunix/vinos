@@ -911,7 +911,7 @@ wdopen(dev_t dev, int flag, int fmt, struct lwp *l)
 	if (wd == NULL)
 		return (ENXIO);
 
-	if (! device_is_active(wd->sc_dev))
+	if (!device_is_active(wd->sc_dev))
 		return (ENODEV);
 
 	if (wd->sc_capacity == 0)

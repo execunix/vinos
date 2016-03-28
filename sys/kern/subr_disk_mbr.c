@@ -130,7 +130,6 @@ read_sector(mbr_args_t *a, uint sector, int count)
 /*
  * Scan MBR for partitions, call 'action' routine for each.
  */
-
 static int
 scan_mbr(mbr_args_t *a, int (*actn)(mbr_args_t *, mbr_partition_t *, int, uint))
 {
@@ -141,10 +140,6 @@ scan_mbr(mbr_args_t *a, int (*actn)(mbr_args_t *, mbr_partition_t *, int, uint))
 	int rval;
 	int i;
 	int j;
-#ifdef COMPAT_386BSD_MBRPART
-	int dp_386bsd = -1;
-	int ap_386bsd = -1;
-#endif
 
 	ext_base = 0;
 	this_ext = 0;
@@ -162,34 +157,29 @@ scan_mbr(mbr_args_t *a, int (*actn)(mbr_args_t *, mbr_partition_t *, int, uint))
 		/*
 		 * If this is a protective MBR, bail now.
 		 */
-		if (mbr->mbr_parts[0].mbrp_type == MBR_PTYPE_PMBR
-		    && mbr->mbr_parts[1].mbrp_type == MBR_PTYPE_UNUSED
-		    && mbr->mbr_parts[2].mbrp_type == MBR_PTYPE_UNUSED
-		    && mbr->mbr_parts[3].mbrp_type == MBR_PTYPE_UNUSED)
+		if (mbr->mbr_parts[0].mbrp_type == MBR_PTYPE_PMBR &&
+		    mbr->mbr_parts[1].mbrp_type == MBR_PTYPE_UNUSED &&
+		    mbr->mbr_parts[2].mbrp_type == MBR_PTYPE_UNUSED &&
+		    mbr->mbr_parts[3].mbrp_type == MBR_PTYPE_UNUSED)
 			return SCAN_CONTINUE;
 
 		/* Copy data out of buffer so action can use bp */
 		memcpy(ptns, &mbr->mbr_parts, sizeof ptns);
 
 		/* Look for drivers and skip them */
-		if (ext_base == 0 && ptns[0].mbrp_type == MBR_PTYPE_DM6_DDO) {
+		if (ext_base == 0 &&
+		    ptns[0].mbrp_type == MBR_PTYPE_DM6_DDO &&
+		    ptns[1].mbrp_type == MBR_PTYPE_UNUSED &&
+		    ptns[2].mbrp_type == MBR_PTYPE_UNUSED &&
+		    ptns[3].mbrp_type == MBR_PTYPE_UNUSED) {
 			/* We've found a DM6 DDO partition type (used by
 			 * the Ontrack Disk Manager drivers).
 			 *
 			 * Ensure that there are no other partitions in the
 			 * MBR and jump to the real partition table (stored
 			 * in the first sector of the second track). */
-			bool ok = true;
-
-			for (i = 1; i < MBR_PART_COUNT; i++)
-				if (ptns[i].mbrp_type != MBR_PTYPE_UNUSED)
-					ok = false;
-
-			if (ok) {
-				this_ext = le32toh(a->lp->d_secpercyl /
-				    a->lp->d_ntracks);
-				continue;
-			}
+			this_ext = le32toh(a->lp->d_secpercyl / a->lp->d_ntracks);
+			continue;
 		}
 
 		/* look for NetBSD partition */
@@ -212,19 +202,6 @@ scan_mbr(mbr_args_t *a, int (*actn)(mbr_args_t *, mbr_partition_t *, int, uint))
 				next_ext = le32toh(dp->mbrp_start);
 				continue;
 			}
-#ifdef COMPAT_386BSD_MBRPART
-			if (dp->mbrp_type == MBR_PTYPE_386BSD) {
-				/*
-				 * If more than one matches, take last,
-				 * as NetBSD install tool does.
-				 */
-				if (this_ext == 0) {
-					dp_386bsd = i;
-					ap_386bsd = j;
-				}
-				continue;
-			}
-#endif
 			rval = (*actn)(a, dp, j, this_ext);
 			if (rval != SCAN_CONTINUE)
 				return rval;
@@ -241,10 +218,8 @@ scan_mbr(mbr_args_t *a, int (*actn)(mbr_args_t *, mbr_partition_t *, int, uint))
 			break;
 		this_ext = next_ext;
 	}
-#ifdef COMPAT_386BSD_MBRPART
-	if (this_ext == 0 && dp_386bsd != -1)
-		return (*actn)(a, &ptns[dp_386bsd], ap_386bsd, 0);
-#endif
+	if (a->found_mbr)
+		return SCAN_FOUND;
 	return SCAN_CONTINUE;
 }
 
@@ -306,7 +281,6 @@ scan_iso_vrs_session(mbr_args_t *a, uint32_t first_sector,
 /*
  * Scan for ISO Volume Recognition Sequences
  */
-
 static int
 scan_iso_vrs(mbr_args_t *a)
 {
@@ -410,44 +384,31 @@ readdisklabel(dev_t dev, void (*strat)(struct buf *), struct disklabel *lp,
 	if (lp->d_secperunit == 0)
 		lp->d_secperunit = 0x1fffffff;
 	a.secperunit = lp->d_secperunit;
-	lp->d_npartitions = RAW_PART + 1;
-	for (i = 0; i < RAW_PART; i++) {
-		lp->d_partitions[i].p_size = 0;
-		lp->d_partitions[i].p_offset = 0;
-	}
-	if (lp->d_partitions[RAW_PART].p_size == 0)
-		lp->d_partitions[RAW_PART].p_size = lp->d_secperunit;
-	lp->d_partitions[RAW_PART].p_offset = 0;
 
 	/*
 	 * Set partition 'a' to be the whole disk.
 	 * Cleared if we find an mbr or a netbsd label.
 	 */
-	lp->d_partitions[0].p_size = lp->d_partitions[RAW_PART].p_size;
+	lp->d_partitions[0].p_size = lp->d_secperunit;
 	lp->d_partitions[0].p_fstype = FS_BSDFFS;
+	lp->d_npartitions = 1;
+	for (i = 1; i < MAXPARTITIONS; i++) {
+		lp->d_partitions[i].p_size = 0;
+		lp->d_partitions[i].p_offset = 0;
+	}
 
 	/*
-	 * Get a buffer big enough to read a disklabel in and initialize it
-	 * make it three sectors long for the validate_label(); see comment at
-	 * start of file.
+	 * Get a buffer to read a disklabel in and initialize it
 	 */
-	a.bp = geteblk(SCANBLOCKS * (int)lp->d_secsize);
+	a.bp = geteblk((int)lp->d_secsize);
 	a.bp->b_dev = dev;
 
-	if (osdep)
-		/*
-		 * Scan mbr searching for netbsd partition and saving
-		 * bios partition information to use if the netbsd one
-		 * is absent.
-		 */
-		rval = scan_mbr(&a, look_netbsd_part);
-	else
-		rval = SCAN_CONTINUE;
-
-	if (rval == SCAN_CONTINUE) {
-		/* Look at start of disk */
-		rval = validate_label(&a, 0);
-	}
+	/*
+	 * Scan mbr searching for netbsd partition and saving
+	 * bios partition information to use if the netbsd one
+	 * is absent.
+	 */
+	rval = scan_mbr(&a, look_netbsd_part);
 
 	if (rval == SCAN_CONTINUE) {
 		rval = scan_iso_vrs(&a);
@@ -462,64 +423,16 @@ readdisklabel(dev_t dev, void (*strat)(struct buf *), struct disklabel *lp,
 static int
 look_netbsd_part(mbr_args_t *a, mbr_partition_t *dp, int slot, uint ext_base)
 {
-	struct partition *pp;
-	int ptn_base = ext_base + le32toh(dp->mbrp_start);
-	int rval;
+	int n = a->lp->d_npartitions++;
 
-	if (
-#ifdef COMPAT_386BSD_MBRPART
-	    dp->mbrp_type == MBR_PTYPE_386BSD ||
-#endif
-	    dp->mbrp_type == MBR_PTYPE_NETBSD) {
-		rval = validate_label(a, ptn_base);
+	a->lp->d_partitions[n].p_size = dp->mbrp_size;
+	a->lp->d_partitions[n].p_offset = dp->mbrp_start;
+	a->lp->d_partitions[n].p_fstype = dp->mbrp_type;
 
-#if RAW_PART == 3
-		/* Put actual location where we found the label into ptn 2 */
-		if (rval == SCAN_FOUND || a->lp->d_partitions[2].p_size == 0) {
-			a->lp->d_partitions[2].p_size = le32toh(dp->mbrp_size);
-			a->lp->d_partitions[2].p_offset = ptn_base;
-		}
-#endif
-
-		/* If we got a netbsd label look no further */
-		if (rval == SCAN_FOUND)
-			return rval;
-	}
-
-	/* Install main partitions into e..h and extended into i+ */
-	if (ext_base == 0)
-		slot += 4;
-	else {
-		slot = 4 + MBR_PART_COUNT;
-		pp = &a->lp->d_partitions[slot];
-		for (; slot < MAXPARTITIONS; pp++, slot++) {
-			/* This gets called twice - avoid duplicates */
-			if (pp->p_offset == ptn_base &&
-			    pp->p_size == le32toh(dp->mbrp_size))
-				break;
-			if (pp->p_size == 0)
-				break;
-		}
-	}
-
-	if (slot < MAXPARTITIONS) {
-		/* Stop 'a' being the entire disk */
-		a->lp->d_partitions[0].p_size = 0;
-		a->lp->d_partitions[0].p_fstype = 0;
-
-		/* save partition info */
-		pp = &a->lp->d_partitions[slot];
-		pp->p_offset = ptn_base;
-		pp->p_size = le32toh(dp->mbrp_size);
-		pp->p_fstype = xlat_mbr_fstype(dp->mbrp_type);
-
-		if (slot >= a->lp->d_npartitions)
-			a->lp->d_npartitions = slot + 1;
-	}
-
-	return SCAN_CONTINUE;
+	if (a->lp->d_npartitions < MAXPARTITIONS)
+		return SCAN_CONTINUE;
+	return SCAN_FOUND;
 }
-
 
 static int
 validate_label(mbr_args_t *a, uint label_sector)

@@ -129,15 +129,6 @@ PRINT_PACKAGE_VERSION=	awk '/^PACKAGE_VERSION=/ {			\
 			} END { print version }'
 
 
-# Extract X11VERSION
-PRINTX11VERSION=${TOOL_AWK} ' \
-		     /^\#define XF86_VERSION_MAJOR/ {major = $$3} \
-		     /^\#define XF86_VERSION_MINOR/ {minor = $$3} \
-		     /^\#define XF86_VERSION_PATCH/ {patch = $$3} \
-		     /^\#define XF86_VERSION_SNAP/ {snap = $$3} \
-		     END { print "((("major") * 10000000) + (("minor") * 100000) + (("patch") * 1000) + "snap")"}' \
-		     ${X11SRCDIR.xc}/xf86Version.h
-
 # Commandline to convert 'XCOMM' comments and 'XHASH' to '#', among other
 # things. Transformed from the "CppSedMagic" macro from "Imake.rules".
 #
@@ -329,15 +320,14 @@ ${_pkg}.pc: ${PKGDIST.${_pkg}}/configure Makefile
 		s,@abi_extension@,2.0,; \
 		s,@abi_font@,0.6,; \
 		s,@fchown_define@,-DHAS_FCHOWN,; \
-		s,@sticky_bit_define@,-DHAS_STICKY_DIR_BIT," \
+		s,@sticky_bit_define@,-DHAS_STICKY_DIR_BIT,;" \
 		-e "s,@PKG_CONFIG_LIBS@,${PKG_CONFIG_LIBS},; \
 		s,@PACKAGE@,${PKGDIST},; \
 		s,@PKGCONFIG_REQUIRES@,${PKGCONFIG_REQUIRES},; \
 		s,@PKGCONFIG_REQUIRES_PRIVATELY@,${PKGCONFIG_REQUIRES_PRIVATELY},; \
 		s,@ERRORDBDIR@,${X11LIBDIR},; \
 		s,@EXPAT_CFLAGS@,,; \
-		s,@FREETYPE_CFLAGS@,-I${X11ROOTDIR}/include/freetype2 -I${X11ROOTDIR}/include,; \
-		s,@SDK_REQUIRED_MODULES@,xproto >= 7.0.17 randrproto >= 1.2.99.3 renderproto >= 0.11 xextproto >= 7.1.99 inputproto >= 1.9.99.902 kbproto >= 1.0.3 fontsproto," \
+		s,@FREETYPE_CFLAGS@,-I${X11ROOTDIR}/include/freetype2 -I${X11ROOTDIR}/include,;" \
 		-e '/^Libs:/ s%-L\([^ 	]*\)%-Wl,-rpath,\1 &%g' \
 		< ${.IMPSRC} > ${.TARGET}.tmp && \
 	mv -f ${.TARGET}.tmp ${.TARGET}

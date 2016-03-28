@@ -131,7 +131,7 @@ struct {
 #define LBUF 100
 static char lbuf[LBUF];
 
-static const char *disk = _PATH_DEFDISK;
+static const char *devdisk = _PATH_DEFDISK;
 
 static struct disklabel disklabel;		/* disk parameters */
 
@@ -531,13 +531,13 @@ out:				 errx(EXIT_FAILURE, "Invalid sector size %zd",
 		usage();
 
 	if (argc > 0)
-		disk = argv[0];
+		devdisk = argv[0];
 	else if (!F_flag) {
 		/* Default to boot device */
-		initvar_disk(&disk);
+		initvar_disk(&devdisk);
 	}
 
-	if (!F_flag && stat(disk, &sb) == 0 && S_ISREG(sb.st_mode))
+	if (!F_flag && stat(devdisk, &sb) == 0 && S_ISREG(sb.st_mode))
 		F_flag = 1;
 
 	if (open_disk(B_flag || a_flag || i_flag || u_flag) < 0)
@@ -1289,7 +1289,7 @@ get_bios_geometry(void)
 		goto out;
 	}
 
-	get_diskname(disk, diskname, sizeof diskname);
+	get_diskname(devdisk, diskname, sizeof diskname);
 
 	for (i = 0; i < dl->dl_nnativedisks; i++) {
 		nip = &dl->dl_nativedisks[i];
@@ -2363,7 +2363,7 @@ print_geometry(void)
 {
 
 	if (sh_flag) {
-		printf("DISK=%s\n", disk);
+		printf("DISK=%s\n", devdisk);
 		printf("DLCYL=%d\nDLHEAD=%d\nDLSEC=%d\nDLSIZE=%"PRIdaddr"\n",
 			cylinders, heads, sectors, disksectors);
 		printf("BCYL=%d\nBHEAD=%d\nBSEC=%d\nBDLSIZE=%"PRIdaddr"\n",
@@ -2373,7 +2373,7 @@ print_geometry(void)
 	}
 
 	/* Not sh_flag */
-	printf("Disk: %s\n", disk);
+	printf("Disk: %s\n", devdisk);
 	printf("NetBSD disklabel disk geometry:\n");
 	printf("cylinders: %d, heads: %d, sectors/track: %d "
 	    "(%d sectors/cylinder)\ntotal sectors: %"PRIdaddr", "
@@ -2500,7 +2500,7 @@ open_disk(int update)
 	int flags = update && disk_file == NULL ? O_RDWR : O_RDONLY;
 
 	if (!F_flag) {
-		fd = opendisk(disk, flags, namebuf, sizeof(namebuf), 0);
+		fd = opendisk(devdisk, flags, namebuf, sizeof(namebuf), 0);
 		if (fd < 0) {
 			if (errno == ENODEV)
 				warnx("%s is not a character device", namebuf);
@@ -2508,11 +2508,11 @@ open_disk(int update)
 				warn("cannot opendisk %s", namebuf);
 			return (-1);
 		}
-		disk = namebuf;
+		devdisk = namebuf;
 	} else {
-		fd = open(disk, flags, 0);
+		fd = open(devdisk, flags, 0);
 		if (fd == -1) {
-			warn("cannot open %s", disk);
+			warn("cannot open %s", devdisk);
 			return -1;
 		}
 	}
@@ -2617,7 +2617,7 @@ get_params(void)
 		}
 		if (st.st_size % 512 != 0) {
 			warnx("%s size (%lld) is not divisible "
-			    "by sector size (%d)", disk, (long long)st.st_size,
+			    "by sector size (%d)", devdisk, (long long)st.st_size,
 			    512);
 		}
 		disklabel.d_secperunit = st.st_size / 512;

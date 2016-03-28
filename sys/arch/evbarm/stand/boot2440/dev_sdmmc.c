@@ -191,6 +191,33 @@ static void sdmmc_print_cid(struct sdmmc_cid*);
 static void sdmmc_dump_command(struct sdmmc_softc*, struct sdmmc_command*);
 #endif
 
+static char nolabel[] = "no disk label";
+static char corruptedlabel[] = "disk label corrupted";
+
+static char *
+getdisklabel(const char *buf, struct disklabel *lp)
+{
+	const struct disklabel *dlp, *elp;
+	char *msg = NULL;
+
+	elp = (const void *)(buf + DEV_BSIZE - sizeof(*dlp));
+	for (dlp = (const void *)buf; dlp <= elp;
+	    dlp = (const void *)((const char *)dlp + sizeof(long))) {
+		if (dlp->d_magic != DISKMAGIC || dlp->d_magic2 != DISKMAGIC) {
+			if (msg == NULL)
+				msg = nolabel;
+		} else if (dlp->d_npartitions > MAXPARTITIONS ||
+			   dkcksum(dlp) != 0) {
+			msg = corruptedlabel;
+		} else {
+			(void)memcpy(lp, dlp, sizeof *lp);
+			msg = NULL;
+			break;
+		}
+	}
+	return msg;
+}
+
 int
 sdmmc_open(struct open_file *of, ...)
 {

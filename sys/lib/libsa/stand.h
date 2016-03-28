@@ -245,7 +245,6 @@ void	setheap(void *, void *);
 void	*alloc(size_t) __compactcall;
 void	dealloc(void *, size_t) __compactcall;
 struct	disklabel;
-char	*getdisklabel(const char *, struct disklabel *);
 int	dkcksum(const struct disklabel *);
 
 void	printf(const char *, ...)
