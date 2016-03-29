@@ -1065,13 +1065,11 @@ sdioctl(dev_t dev, u_long cmd, void *addr, int flag, struct lwp *l)
 		sd->flags |= SDF_LABELLING;
 
 		error = setdisklabel(sd->sc_dk.dk_label,
-		    lp, /*sd->sc_dk.dk_openmask : */0,
-		    sd->sc_dk.dk_cpulabel);
+		    lp, /*sd->sc_dk.dk_openmask : */0);
 		if (error == 0) {
 			if (cmd == DIOCWDINFO)
 				error = writedisklabel(SDLABELDEV(dev),
-				    sdstrategy, sd->sc_dk.dk_label,
-				    sd->sc_dk.dk_cpulabel);
+				    sdstrategy, sd->sc_dk.dk_label);
 		}
 
 		sd->flags &= ~SDF_LABELLING;
@@ -1264,8 +1262,6 @@ sdgetdisklabel(struct sd_softc *sd)
 	struct disklabel *lp = sd->sc_dk.dk_label;
 	const char *errstring;
 
-	memset(sd->sc_dk.dk_cpulabel, 0, sizeof(struct cpu_disklabel));
-
 	sdgetdefaultlabel(sd, lp);
 
 	if (lp->d_secpercyl == 0) {
@@ -1277,7 +1273,7 @@ sdgetdisklabel(struct sd_softc *sd)
 	 * Call the generic disklabel extraction routine
 	 */
 	errstring = readdisklabel(MAKESDDEV(0, device_unit(sd->sc_dev),
-	    RAW_PART), sdstrategy, lp, sd->sc_dk.dk_cpulabel);
+	    RAW_PART), sdstrategy, lp);
 	if (errstring) {
 		aprint_error_dev(sd->sc_dev, "%s\n", errstring);
 		return EIO;

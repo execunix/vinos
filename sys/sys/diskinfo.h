@@ -326,14 +326,9 @@ void	 diskerr(const struct buf *, const char *, const char *, int,
 	    int, const struct disklabel *);
 u_int	 dkcksum(struct disklabel *);
 u_int	 dkcksum_sized(struct disklabel *, size_t);
-int	 setdisklabel(struct disklabel *, struct disklabel *, u_long,
-	    struct cpu_disklabel *);
-const char *readdisklabel(dev_t, void (*)(struct buf *),
-	    struct disklabel *, struct cpu_disklabel *);
-int	 writedisklabel(dev_t, void (*)(struct buf *), struct disklabel *,
-	    struct cpu_disklabel *);
-const char *convertdisklabel(struct disklabel *, void (*)(struct buf *),
-    struct buf *, uint32_t);
+int	 setdisklabel(struct disklabel *, struct disklabel *, u_long);
+const char *readdisklabel(dev_t, void (*)(struct buf *), struct disklabel *);
+int	 writedisklabel(dev_t, void (*)(struct buf *), struct disklabel *);
 int	 bounds_check_with_label(struct disk *, struct buf *, int);
 int	 bounds_check_with_mediasize(struct buf *, int, uint64_t);
 #endif

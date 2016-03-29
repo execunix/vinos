@@ -366,8 +366,7 @@ scan_iso_vrs(mbr_args_t *a)
  * Returns null on success and an error string on failure.
  */
 const char *
-readdisklabel(dev_t dev, void (*strat)(struct buf *), struct disklabel *lp,
-    struct cpu_disklabel *osdep)
+readdisklabel(dev_t dev, void (*strat)(struct buf *), struct disklabel *lp)
 {
 	int rval;
 	int i;
@@ -483,9 +482,6 @@ validate_label(mbr_args_t *a, uint label_sector)
 	switch (a->action) {
 	case READ_LABEL:
 		*a->lp = *dlp;
-		if ((a->msg = convertdisklabel(a->lp, a->strat, a->bp,
-		                              a->secperunit)) != NULL)
-			return SCAN_ERROR;
 		a->label_sector = label_sector;
 		return SCAN_FOUND;
 	case UPDATE_LABEL:
@@ -514,8 +510,7 @@ validate_label(mbr_args_t *a, uint label_sector)
  * before setting it.
  */
 int
-setdisklabel(struct disklabel *olp, struct disklabel *nlp, u_long openmask,
-    struct cpu_disklabel *osdep)
+setdisklabel(struct disklabel *olp, struct disklabel *nlp, u_long openmask)
 {
 	int i;
 	struct partition *opp, *npp;
@@ -566,8 +561,7 @@ setdisklabel(struct disklabel *olp, struct disklabel *nlp, u_long openmask,
  * Write disk label back to device after modification.
  */
 int
-writedisklabel(dev_t dev, void (*strat)(struct buf *), struct disklabel *lp,
-    struct cpu_disklabel *osdep)
+writedisklabel(dev_t dev, void (*strat)(struct buf *), struct disklabel *lp)
 {
 	mbr_args_t a;
 
@@ -579,8 +573,8 @@ writedisklabel(dev_t dev, void (*strat)(struct buf *), struct disklabel *lp,
 	a.bp = geteblk(SCANBLOCKS * (int)lp->d_secsize);
 	a.bp->b_dev = dev;
 
-	/* osdep => we expect an mbr with label in netbsd ptn */
-	a.action = osdep != NULL ? WRITE_LABEL : UPDATE_LABEL;
+	/* WRITE_LABEL => we expect an mbr with label in netbsd ptn */
+	a.action = WRITE_LABEL/*UPDATE_LABEL*/;
 
 	/* Write/update the label to every netbsd mbr partition */
 	scan_mbr(&a, write_netbsd_label);

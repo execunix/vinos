@@ -12,7 +12,6 @@ RELOC=		0x100
 SRCS= main.c devopen.c exec.c
 
 CPPFLAGS+= -DSLOW	# for libz
-CPPFLAGS+= -DCOMPAT_386BSD_MBRPART
 CPPFLAGS+= -DXMS
 CPPFLAGS+= -DLIBSA_ENABLE_LS_OP
 #uncomment if there are problems with memory detection

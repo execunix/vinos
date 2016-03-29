@@ -200,9 +200,7 @@ disk_attach(struct disk *diskp)
 	 * Allocate and initialize the disklabel structures.
 	 */
 	diskp->dk_label = kmem_zalloc(sizeof(struct disklabel), KM_SLEEP);
-	diskp->dk_cpulabel = kmem_zalloc(sizeof(struct cpu_disklabel),
-	    KM_SLEEP);
-	if ((diskp->dk_label == NULL) || (diskp->dk_cpulabel == NULL))
+	if (diskp->dk_label == NULL)
 		panic("disk_attach: can't allocate storage for disklabel");
 
 	/*
@@ -254,7 +252,6 @@ disk_detach(struct disk *diskp)
 	 * Free the space used by the disklabel structures.
 	 */
 	kmem_free(diskp->dk_label, sizeof(*diskp->dk_label));
-	kmem_free(diskp->dk_cpulabel, sizeof(*diskp->dk_cpulabel));
 }
 
 void
@@ -430,69 +427,6 @@ disk_read_sectors(void (*strat)(struct buf *), const struct disklabel *lp,
 	bp->b_cylinder = sector / lp->d_secpercyl;
 	(*strat)(bp);
 	return biowait(bp);
-}
-
-const char *
-convertdisklabel(struct disklabel *lp, void (*strat)(struct buf *),
-    struct buf *bp, uint32_t secperunit)
-{
-	struct partition rp, *altp, *p;
-	int geom_ok;
-
-	memset(&rp, 0, sizeof(rp));
-	rp.p_size = secperunit;
-	rp.p_fstype = FS_UNUSED;
-
-	/* If we can seek to d_secperunit - 1, believe the disk geometry. */
-	if (secperunit != 0 &&
-	    disk_read_sectors(strat, lp, bp, secperunit - 1, 1) == 0)
-		geom_ok = 1;
-	else
-		geom_ok = 0;
-
-#if 0
-	printf("%s: secperunit (%" PRIu32 ") %s\n", __func__,
-	    secperunit, geom_ok ? "ok" : "not ok");
-#endif
-
-	p = &lp->d_partitions[RAW_PART];
-	if (RAW_PART == 'c' - 'a')
-		altp = &lp->d_partitions['d' - 'a'];
-	else
-		altp = &lp->d_partitions['c' - 'a'];
-
-	if (lp->d_npartitions > RAW_PART && p->p_offset == 0 && p->p_size != 0)
-		;	/* already a raw partition */
-	else if (lp->d_npartitions > MAX('c', 'd') - 'a' &&
-		 altp->p_offset == 0 && altp->p_size != 0) {
-		/* alternate partition ('c' or 'd') is suitable for raw slot,
-		 * swap with 'd' or 'c'.
-		 */
-		rp = *p;
-		*p = *altp;
-		*altp = rp;
-	} else if (lp->d_npartitions <= RAW_PART &&
-	           lp->d_npartitions > 'c' - 'a') {
-		/* No raw partition is present, but the alternate is present.
-		 * Copy alternate to raw partition.
-		 */
-		lp->d_npartitions = RAW_PART + 1;
-		*p = *altp;
-	} else if (!geom_ok)
-		return "no raw partition and disk reports bad geometry";
-	else if (lp->d_npartitions <= RAW_PART) {
-		memset(&lp->d_partitions[lp->d_npartitions], 0,
-		    sizeof(struct partition) * (RAW_PART - lp->d_npartitions));
-		*p = rp;
-		lp->d_npartitions = RAW_PART + 1;
-	} else if (lp->d_npartitions < MAXPARTITIONS) {
-		memmove(p + 1, p,
-		    sizeof(struct partition) * (lp->d_npartitions - RAW_PART));
-		*p = rp;
-		lp->d_npartitions++;
-	} else
-		return "no raw partition and partition table is full";
-	return NULL;
 }
 
 /*

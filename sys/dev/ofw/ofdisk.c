@@ -368,12 +368,11 @@ ofdisk_ioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 		mutex_enter(&of->sc_dk.dk_openlock);
 
 		error = setdisklabel(of->sc_dk.dk_label,
-		    lp, /*of->sc_dk.dk_openmask */0,
-		    of->sc_dk.dk_cpulabel);
+		    lp, /*of->sc_dk.dk_openmask */0);
 		if (error == 0 && cmd == DIOCWDINFO)
 			error = writedisklabel(MAKEDISKDEV(major(dev),
 			    DISKUNIT(dev), RAW_PART), ofdisk_strategy,
-			    of->sc_dk.dk_label, of->sc_dk.dk_cpulabel);
+			    of->sc_dk.dk_label);
 
 		mutex_exit(&of->sc_dk.dk_openlock);
 
@@ -488,8 +487,7 @@ ofdisk_getdisklabel(dev_t dev)
 		lp->d_checksum = dkcksum(lp);
 	} else {
 		errmes = readdisklabel(MAKEDISKDEV(major(dev),
-		    unit, RAW_PART), ofdisk_strategy, lp,
-		    of->sc_dk.dk_cpulabel);
+		    unit, RAW_PART), ofdisk_strategy, lp);
 		if (errmes != NULL)
 			printf("%s: %s\n", device_xname(of->sc_dev), errmes);
 	}

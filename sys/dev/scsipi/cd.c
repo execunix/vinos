@@ -1348,8 +1348,7 @@ cdioctl(dev_t dev, u_long cmd, void *addr, int flag, struct lwp *l)
 		cd->flags |= CDF_LABELLING;
 
 		error = setdisklabel(cd->sc_dk.dk_label,
-		    lp, /*cd->sc_dk.dk_openmask : */0,
-		    cd->sc_dk.dk_cpulabel);
+		    lp, /*cd->sc_dk.dk_openmask : */0);
 		if (error == 0) {
 			/* XXX ? */
 		}
@@ -1725,8 +1724,6 @@ cdgetdisklabel(struct cd_softc *cd)
 	const char *errstring;
 	int bmajor;
 
-	memset(cd->sc_dk.dk_cpulabel, 0, sizeof(struct cpu_disklabel));
-
 	cdgetdefaultlabel(cd, &toc, lp);
 
 	/*
@@ -1737,7 +1734,7 @@ cdgetdisklabel(struct cd_softc *cd)
 	bmajor = devsw_name2blk(device_xname(cd->sc_dev), NULL, 0);
 	errstring = readdisklabel(MAKECDDEV(bmajor,
 	    device_unit(cd->sc_dev), RAW_PART),
-	    cdstrategy, lp, cd->sc_dk.dk_cpulabel);
+	    cdstrategy, lp);
 
 	/* if all went OK, we are passed a NULL error string */
 	if (errstring == NULL)
@@ -1745,7 +1742,6 @@ cdgetdisklabel(struct cd_softc *cd)
 
 	/* Reset to default label -- after printing error and the warning */
 	aprint_error_dev(cd->sc_dev, "%s\n", errstring);
-	memset(cd->sc_dk.dk_cpulabel, 0, sizeof(struct cpu_disklabel));
 	cdgetdefaultlabel(cd, &toc, lp);
 }
 

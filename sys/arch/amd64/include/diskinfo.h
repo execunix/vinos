@@ -46,9 +46,4 @@
 #include <sys/bootblock.h>
 #endif /* HAVE_NBTOOL_CONFIG_H */
 
-#ifndef __ASSEMBLER__
-struct cpu_disklabel {
-};
-#endif
-
 #endif /* _X86_64_DISKLABEL_H_ */

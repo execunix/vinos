@@ -220,10 +220,6 @@ defflag opt_sysctl.h		SYSCTL_DISALLOW_CREATE SYSCTL_DISALLOW_KWRITE
 # Not entirely MI, but present on multiple arch's
 #
 
-# PC-style MBR handling
-#
-defflag	opt_mbr.h		COMPAT_386BSD_MBRPART
-
 #
 # debugging options
 #

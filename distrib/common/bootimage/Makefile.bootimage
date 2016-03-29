@@ -359,7 +359,7 @@ ${IMGBASE}.img:	${TARGETFS} ${WORKLABEL}
 	${DD} if=/dev/zero of=${WORKSWAP} seek=$$((${SWAPSECTORS} - 1)) count=1
 	${CAT} ${WORKSWAP} >> ${WORKIMG}
 .endif
-	${TOOL_DISKLABEL} -R -F ${WORKIMG} ${WORKLABEL}
+#	${TOOL_DISKLABEL} -R -F ${WORKIMG} ${WORKLABEL}
 	mv ${WORKIMG} ${.TARGET}
 
 

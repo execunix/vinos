@@ -955,9 +955,8 @@ wdopen(dev_t dev, int flag, int fmt, struct lwp *l)
 	}
 
 	/* Check that the partition exists. */
-	if (part != RAW_PART &&
-	    (part >= wd->sc_dk.dk_label->d_npartitions ||
-	     wd->sc_dk.dk_label->d_partitions[part].p_fstype == FS_UNUSED)) {
+	if (part >= wd->sc_dk.dk_label->d_npartitions ||
+	    wd->sc_dk.dk_label->d_partitions[part].p_fstype == FS_UNUSED) {
 		error = ENXIO;
 		goto bad2;
 	}
@@ -1085,8 +1084,6 @@ wdgetdisklabel(struct wd_softc *wd)
 
 	ATADEBUG_PRINT(("wdgetdisklabel\n"), DEBUG_FUNCS);
 
-	memset(wd->sc_dk.dk_cpulabel, 0, sizeof(struct cpu_disklabel));
-
 	wdgetdefaultlabel(wd, lp);
 
 	wd->sc_badsect[0] = -1;
@@ -1097,8 +1094,7 @@ wdgetdisklabel(struct wd_softc *wd)
 		splx(s);
 	}
 	errstring = readdisklabel(MAKEWDDEV(0, device_unit(wd->sc_dev),
-				  RAW_PART), wdstrategy, lp,
-				  wd->sc_dk.dk_cpulabel);
+				  RAW_PART), wdstrategy, lp);
 	if (errstring) {
 		/*
 		 * This probably happened because the drive's default
@@ -1112,7 +1108,7 @@ wdgetdisklabel(struct wd_softc *wd)
 			splx(s);
 		}
 		errstring = readdisklabel(MAKEWDDEV(0, device_unit(wd->sc_dev),
-		    RAW_PART), wdstrategy, lp, wd->sc_dk.dk_cpulabel);
+		    RAW_PART), wdstrategy, lp);
 	}
 	if (errstring) {
 		aprint_error_dev(wd->sc_dev, "%s\n", errstring);
@@ -1262,8 +1258,7 @@ wdioctl(dev_t dev, u_long xfer, void *addr, int flag, struct lwp *l)
 		wd->sc_flags |= WDF_LABELLING;
 
 		error = setdisklabel(wd->sc_dk.dk_label,
-		    lp, /*wd->sc_dk.dk_openmask : */0,
-		    wd->sc_dk.dk_cpulabel);
+		    lp, /*wd->sc_dk.dk_openmask : */0);
 		if (error == 0) {
 			if (wd->drvp->state > RESET) {
 				s = splbio();
@@ -1272,8 +1267,7 @@ wdioctl(dev_t dev, u_long xfer, void *addr, int flag, struct lwp *l)
 			}
 			if (xfer == DIOCWDINFO)
 				error = writedisklabel(WDLABELDEV(dev),
-				    wdstrategy, wd->sc_dk.dk_label,
-				    wd->sc_dk.dk_cpulabel);
+				    wdstrategy, wd->sc_dk.dk_label);
 		}
 
 		wd->sc_flags &= ~WDF_LABELLING;

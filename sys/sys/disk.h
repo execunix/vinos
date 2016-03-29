@@ -93,7 +93,6 @@
 struct buf;
 struct disk;
 struct disklabel;
-struct cpu_disklabel;
 struct lwp;
 struct vnode;
 
@@ -358,7 +357,6 @@ struct disk {
 	 */
 	daddr_t		dk_labelsector;		/* sector containing label */
 	struct disklabel *dk_label;	/* label */
-	struct cpu_disklabel *dk_cpulabel;
 };
 
 struct dkdriver {

@@ -136,16 +136,6 @@ mbr_label_read(dev_t dev,
 			if (mbrp[i].mbrp_type == MBR_PTYPE_NETBSD)
 				ourmbrp = &mbrp[i];
 		}
-#ifdef COMPAT_386BSD_MBRPART
-		/* didn't find it -- look for 386BSD partition */
-		for (i = 0; !ourmbrp && i < MBR_PART_COUNT; i++) {
-			if (mbrp[i].mbrp_type == MBR_PTYPE_386BSD) {
-				printf("WARNING: old BSD partition ID!\n");
-				ourmbrp = &mbrp[i];
-				break;
-			}
-		}
-#endif
 		pp = &lp->d_partitions['e' - 'a'];
 		for (i = 0; i < MBR_PART_COUNT; i++, mbrp++, pp++) {
 			if ((i == 0 && mbrp->mbrp_type == MBR_PTYPE_PMBR)
@@ -256,15 +246,6 @@ mbr_label_locate(dev_t dev,
 		if (mbrp[i].mbrp_type == MBR_PTYPE_NETBSD)
 			ourmbrp = &mbrp[i];
 	}
-#ifdef COMPAT_386BSD_MBRPART
-	/* didn't find it -- look for 386BSD partition */
-	for (i = 0; !ourmbrp && i < MBR_PART_COUNT; i++) {
-		if (mbrp[i].mbrp_type == MBR_PTYPE_386BSD) {
-			printf("WARNING: old BSD partition ID!\n");
-			ourmbrp = &mbrp[i];
-		}
-	}
-#endif
 	if (!ourmbrp) {
 		rv = 0;			/* XXX allow easy clobber? */
 		goto out;

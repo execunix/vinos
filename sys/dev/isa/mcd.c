@@ -602,8 +602,7 @@ mcdioctl(dev_t dev, u_long cmd, void *addr, int flag, struct lwp *l)
 		sc->flags |= MCDF_LABELLING;
 
 		error = setdisklabel(sc->sc_dk.dk_label,
-		    lp, /*sc->sc_dk.dk_openmask : */0,
-		    sc->sc_dk.dk_cpulabel);
+		    lp, /*sc->sc_dk.dk_openmask : */0);
 		if (error == 0) {
 		}
 
@@ -764,8 +763,6 @@ void
 mcdgetdisklabel(struct mcd_softc *sc)
 {
 	struct disklabel *lp = sc->sc_dk.dk_label;
-
-	memset(sc->sc_dk.dk_cpulabel, 0, sizeof(struct cpu_disklabel));
 
 	mcdgetdefaultlabel(sc, lp);
 }

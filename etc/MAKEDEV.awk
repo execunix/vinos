@@ -110,6 +110,7 @@ BEGIN {
 
 	# tbd
 	diskpartitions = 8
+	RAWDISK_OFF = 3
 	MKDISK = "makedisk_p" diskpartitions	# routine to create disk devs
 	DISKMINOROFFSET = diskpartitions
 	RAWDISK_NAME = sprintf("%c", 97 + RAWDISK_OFF)		# a+offset

@@ -441,8 +441,6 @@ rdgetinfo(struct rd_softc *sc)
 	struct partition *pi;
 	const char *msg;
 
-	memset(sc->sc_dk.dk_cpulabel, 0, sizeof(struct cpu_disklabel));
-
 	rdgetdefaultlabel(sc, lp);
 
 	/*
@@ -996,21 +994,18 @@ rdioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 		if ((flag & FWRITE) == 0)
 			return (EBADF);
 		return (setdisklabel(lp, (struct disklabel *)data,
-		    (sc->sc_flags & RDF_WLABEL) ? 0 : sc->sc_dk.dk_openmask,
-		    (struct cpu_disklabel *)0));
+		    (sc->sc_flags & RDF_WLABEL) ? 0 : sc->sc_dk.dk_openmask));
 
 	case DIOCWDINFO:
 		if ((flag & FWRITE) == 0)
 			return (EBADF);
 		error = setdisklabel(lp, (struct disklabel *)data,
-		    (sc->sc_flags & RDF_WLABEL) ? 0 : sc->sc_dk.dk_openmask,
-		    (struct cpu_disklabel *)0);
+		    (sc->sc_flags & RDF_WLABEL) ? 0 : sc->sc_dk.dk_openmask);
 		if (error)
 			return (error);
 		flags = sc->sc_flags;
 		sc->sc_flags = RDF_ALIVE | RDF_WLABEL;
-		error = writedisklabel(RDLABELDEV(dev), rdstrategy, lp,
-		    (struct cpu_disklabel *)0);
+		error = writedisklabel(RDLABELDEV(dev), rdstrategy, lp);
 		sc->sc_flags = flags;
 		return (error);
 

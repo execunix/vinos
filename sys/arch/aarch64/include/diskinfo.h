@@ -46,23 +46,6 @@
 #include <sys/bootblock.h>
 #endif /* HAVE_NBTOOL_CONFIG_H */
 
-struct cpu_disklabel {
-	struct mbr_partition mbrparts[MBR_PART_COUNT];
-};
-
-#ifdef _KERNEL
-struct buf;
-struct disklabel;
-
-/* for readdisklabel.  rv != 0 -> matches, msg == NULL -> success */
-int	mbr_label_read(dev_t, void (*)(struct buf *), struct disklabel *,
-	    struct cpu_disklabel *, const char **, int *, int *);
-
-/* for writedisklabel.  rv == 0 -> dosen't match, rv > 0 -> success */
-int	mbr_label_locate(dev_t, void (*)(struct buf *),
-	    struct disklabel *, struct cpu_disklabel *, int *, int *);
-#endif /* _KERNEL */
-
 #elif defined(__arm__)
 
 #include <arm/diskinfo.h>

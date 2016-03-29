@@ -434,13 +434,11 @@ ldioctl(dev_t dev, u_long cmd, void *addr, int32_t flag, struct lwp *l)
 		sc->sc_flags |= LDF_LABELLING;
 
 		error = setdisklabel(sc->sc_dk.dk_label,
-		    lp, /*sc->sc_dk.dk_openmask : */0,
-		    sc->sc_dk.dk_cpulabel);
+		    lp, /*sc->sc_dk.dk_openmask : */0);
 		if (error == 0 && (cmd == DIOCWDINFO))
 			error = writedisklabel(
 			    MAKEDISKDEV(major(dev), DISKUNIT(dev), RAW_PART),
-			    ldstrategy, sc->sc_dk.dk_label,
-			    sc->sc_dk.dk_cpulabel);
+			    ldstrategy, sc->sc_dk.dk_label);
 
 		sc->sc_flags &= ~LDF_LABELLING;
 		mutex_exit(&sc->sc_dk.dk_openlock);
@@ -715,7 +713,7 @@ ldgetdisklabel(struct ld_softc *sc)
 
 	/* Call the generic disklabel extraction routine. */
 	errstring = readdisklabel(MAKEDISKDEV(0, device_unit(sc->sc_dv),
-	    RAW_PART), ldstrategy, sc->sc_dk.dk_label, sc->sc_dk.dk_cpulabel);
+	    RAW_PART), ldstrategy, sc->sc_dk.dk_label);
 	if (errstring != NULL)
 		printf("%s: %s\n", device_xname(sc->sc_dv), errstring);
 

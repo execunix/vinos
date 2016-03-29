@@ -302,13 +302,11 @@ dk_ioctl(struct dk_intf *di, struct dk_softc *dksc, dev_t dev,
 		mutex_enter(&dk->dk_openlock);
 		dksc->sc_flags |= DKF_LABELLING;
 
-		error = setdisklabel(dksc->sc_dkdev.dk_label,
-		    lp, 0, dksc->sc_dkdev.dk_cpulabel);
+		error = setdisklabel(dksc->sc_dkdev.dk_label, lp, 0);
 		if (error == 0) {
 			if (cmd == DIOCWDINFO)
 				error = writedisklabel(DKLABELDEV(dev),
-				    di->di_strategy, dksc->sc_dkdev.dk_label,
-				    dksc->sc_dkdev.dk_cpulabel);
+				    di->di_strategy, dksc->sc_dkdev.dk_label);
 		}
 
 		dksc->sc_flags &= ~DKF_LABELLING;
@@ -455,16 +453,14 @@ void
 dk_getdisklabel(struct dk_intf *di, struct dk_softc *dksc, dev_t dev)
 {
 	struct	 disklabel *lp = dksc->sc_dkdev.dk_label;
-	struct	 cpu_disklabel *clp = dksc->sc_dkdev.dk_cpulabel;
 	struct disk_geom *dg = &dksc->sc_dkdev.dk_geom;
 	struct	 partition *pp;
 	int	 i;
 	const char	*errstring;
 
-	memset(clp, 0x0, sizeof(*clp));
 	dk_getdefaultlabel(di, dksc, lp);
 	errstring = readdisklabel(DKLABELDEV(dev), di->di_strategy,
-	    dksc->sc_dkdev.dk_label, dksc->sc_dkdev.dk_cpulabel);
+	    dksc->sc_dkdev.dk_label);
 	if (errstring) {
 		dk_makedisklabel(di, dksc);
 		if (dksc->sc_flags & DKF_WARNLABEL)
