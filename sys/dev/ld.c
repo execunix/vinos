@@ -565,8 +565,7 @@ ldstrategy(struct buf *bp)
 		    sc->sc_disksize512) <= 0)
 			goto done;
 	} else {
-		if (bounds_check_with_label(&sc->sc_dk, bp,
-		    (sc->sc_flags & (LDF_WLABEL | LDF_LABELLING)) != 0) <= 0)
+		if (bounds_check_with_label(&sc->sc_dk, bp) <= 0)
 			goto done;
 	}
 

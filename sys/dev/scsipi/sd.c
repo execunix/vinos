@@ -700,8 +700,7 @@ sdstrategy(struct buf *bp)
 		    sd->params.disksize512) <= 0)
 			goto done;
 	} else {
-		if (bounds_check_with_label(&sd->sc_dk, bp,
-		    (sd->flags & (SDF_WLABEL|SDF_LABELLING)) != 0) <= 0)
+		if (bounds_check_with_label(&sd->sc_dk, bp) <= 0)
 			goto done;
 	}
 

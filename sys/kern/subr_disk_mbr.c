@@ -71,10 +71,6 @@ __KERNEL_RCSID(0, "$NetBSD: subr_disk_mbr.c,v 1.46 2013/06/26 18:47:26 matt Exp 
 
 #include <sys/kauth.h>
 
-#ifdef _KERNEL_OPT
-#include "opt_mbr.h"
-#endif /* _KERNEL_OPT */
-
 typedef struct mbr_partition mbr_partition_t;
 
 /*
@@ -386,10 +382,9 @@ readdisklabel(dev_t dev, void (*strat)(struct buf *), struct disklabel *lp)
 
 	/*
 	 * Set partition 'a' to be the whole disk.
-	 * Cleared if we find an mbr or a netbsd label.
 	 */
 	lp->d_partitions[0].p_size = lp->d_secperunit;
-	lp->d_partitions[0].p_fstype = FS_BSDFFS;
+	lp->d_partitions[0].p_fstype = FS_UNUSED/*FS_BSDFFS*/;
 	lp->d_npartitions = 1;
 	for (i = 1; i < MAXPARTITIONS; i++) {
 		lp->d_partitions[i].p_size = 0;

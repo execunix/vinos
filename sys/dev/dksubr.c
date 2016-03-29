@@ -169,7 +169,6 @@ void
 dk_strategy(struct dk_intf *di, struct dk_softc *dksc, struct buf *bp)
 {
 	int	s;
-	int	wlabel;
 	daddr_t	blkno;
 
 	DPRINTF_FOLLOW(("dk_strategy(%s, %p, %p)\n",
@@ -192,9 +191,8 @@ dk_strategy(struct dk_intf *di, struct dk_softc *dksc, struct buf *bp)
 		return;
 	}
 
-	wlabel = dksc->sc_flags & (DKF_WLABEL|DKF_LABELLING);
 	if (DISKPART(bp->b_dev) != RAW_PART &&
-	    bounds_check_with_label(&dksc->sc_dkdev, bp, wlabel) <= 0) {
+	    bounds_check_with_label(&dksc->sc_dkdev, bp) <= 0) {
 		biodone(bp);
 		return;
 	}

@@ -329,7 +329,7 @@ u_int	 dkcksum_sized(struct disklabel *, size_t);
 int	 setdisklabel(struct disklabel *, struct disklabel *, u_long);
 const char *readdisklabel(dev_t, void (*)(struct buf *), struct disklabel *);
 int	 writedisklabel(dev_t, void (*)(struct buf *), struct disklabel *);
-int	 bounds_check_with_label(struct disk *, struct buf *, int);
+int	 bounds_check_with_label(struct disk *, struct buf *);
 int	 bounds_check_with_mediasize(struct buf *, int, uint64_t);
 #endif
 #endif /* _LOCORE */

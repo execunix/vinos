@@ -351,11 +351,11 @@ bounds_check_with_mediasize(struct buf *bp, int secsize, uint64_t mediasize)
  * if needed, and signal errors or early completion.
  */
 int
-bounds_check_with_label(struct disk *dk, struct buf *bp, int wlabel)
+bounds_check_with_label(struct disk *dk, struct buf *bp)
 {
 	struct disklabel *lp = dk->dk_label;
 	struct partition *p = lp->d_partitions + DISKPART(bp->b_dev);
-	uint64_t p_size, p_offset, labelsector;
+	uint64_t p_size;
 	int64_t sz;
 
 	if (bp->b_blkno < 0) {
@@ -371,13 +371,6 @@ bounds_check_with_label(struct disk *dk, struct buf *bp, int wlabel)
 	}
 
 	p_size = (uint64_t)p->p_size << dk->dk_blkshift;
-	p_offset = (uint64_t)p->p_offset << dk->dk_blkshift;
-#if RAW_PART == 3
-	labelsector = lp->d_partitions[2].p_offset;
-#else
-	labelsector = lp->d_partitions[RAW_PART].p_offset;
-#endif
-	labelsector = (labelsector + dk->dk_labelsector) << dk->dk_blkshift;
 
 	sz = howmany((int64_t)bp->b_bcount, DEV_BSIZE);
 
@@ -400,14 +393,6 @@ bounds_check_with_label(struct disk *dk, struct buf *bp, int wlabel)
 		}
 		/* Otherwise, truncate request. */
 		bp->b_bcount = sz << DEV_BSHIFT;
-	}
-
-	/* Overwriting disk label? */
-	if (bp->b_blkno + p_offset <= labelsector &&
-	    bp->b_blkno + p_offset + sz > labelsector &&
-	    (bp->b_flags & B_READ) == 0 && !wlabel) {
-		bp->b_error = EROFS;
-		return -1;
 	}
 
 	/* calculate cylinder for disksort to order transfers with */

@@ -617,8 +617,7 @@ cdstrategy(struct buf *bp)
 		    cd->params.disksize512) <= 0)
 			goto done;
 	} else {
-		if (bounds_check_with_label(&cd->sc_dk, bp,
-		    (cd->flags & (CDF_WLABEL|CDF_LABELLING)) != 0) <= 0)
+		if (bounds_check_with_label(&cd->sc_dk, bp) <= 0)
 			goto done;
 	}
 

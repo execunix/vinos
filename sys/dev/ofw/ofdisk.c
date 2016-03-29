@@ -284,7 +284,7 @@ ofdisk_strategy(struct buf *bp)
 		(int(*)(int, void*, int))OF_write;
 
 	if (DISKPART(bp->b_dev) != RAW_PART) {
-		if (bounds_check_with_label(&of->sc_dk, bp, 0) <= 0) {
+		if (bounds_check_with_label(&of->sc_dk, bp) <= 0) {
 			bp->b_resid = bp->b_bcount;
 			goto done;
 		}

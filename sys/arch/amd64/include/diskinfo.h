@@ -37,7 +37,7 @@
 #define LABELSECTOR		1	/* sector containing label */
 #define LABELOFFSET		0	/* offset of label in sector */
 #define MAXPARTITIONS		8	/* number of partitions */
-#define RAW_PART		3	/* raw partition: XX?d (XXX) */
+#define RAW_PART		0	/* raw partition: XX?a (XXX) */
 
 /* Pull in MBR partition definitions. */
 #if HAVE_NBTOOL_CONFIG_H

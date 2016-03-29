@@ -122,7 +122,6 @@ struct ra_softc {
 	u_long	ra_mediaid;	/* media id */
 	int	ra_hwunit;	/* Hardware unit number */
 	int	ra_havelabel;	/* true if we have a label */
-	int	ra_wlabel;	/* label sector is currently writable */
 };
 
 #define rx_softc ra_softc
@@ -244,10 +243,6 @@ raopen(dev_t dev, int flag, int fmt, struct lwp *l)
 		}
 	}
 
-	/* If the disk has no label; allow writing everywhere */
-	if (ra->ra_havelabel == 0)
-		ra->ra_wlabel = 1;
-
 	if (part >= ra->ra_disk.dk_label->d_npartitions) {
 		error = ENXIO;
 		goto bad1;
@@ -314,7 +309,6 @@ raclose(dev_t dev, int flags, int fmt, struct lwp *l)
 			    "raclose", 0);
 		splx(s);
 		ra->ra_state = DK_CLOSED;
-		ra->ra_wlabel = 0;
 	}
 #endif
 	mutex_exit(&ra->ra_disk.dk_openlock);
@@ -360,7 +354,7 @@ rastrategy(struct buf *bp)
 	 * Determine the size of the transfer, and make sure it is
 	 * within the boundaries of the partition.
 	 */
-	if (bounds_check_with_label(&ra->ra_disk, bp, ra->ra_wlabel) <= 0)
+	if (bounds_check_with_label(&ra->ra_disk, bp) <= 0)
 		goto done;
 
 	/* Make some statistics... /bqt */
@@ -422,9 +416,7 @@ raioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 			mutex_enter(&ra->ra_disk.dk_openlock);
 			error = setdisklabel(lp, tp, 0, 0);
 			if ((error == 0) && (cmd == DIOCWDINFO)) {
-				ra->ra_wlabel = 1;
 				error = writedisklabel(dev, rastrategy, lp,0);
-				ra->ra_wlabel = 0;
 			}
 			mutex_exit(&ra->ra_disk.dk_openlock);
 		}
@@ -433,8 +425,6 @@ raioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 	case DIOCWLABEL:
 		if ((flag & FWRITE) == 0)
 			error = EBADF;
-		else
-			ra->ra_wlabel = 1;
 		break;
 
 	case DIOCGDEFLABEL:

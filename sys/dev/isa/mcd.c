@@ -474,8 +474,7 @@ mcdstrategy(struct buf *bp)
 	 * If end of partition, just return.
 	 */
 	if (MCDPART(bp->b_dev) != RAW_PART &&
-	    bounds_check_with_label(&sc->sc_dk, bp,
-	    (sc->flags & (MCDF_WLABEL|MCDF_LABELLING)) != 0) <= 0)
+	    bounds_check_with_label(&sc->sc_dk, bp) <= 0)
 		goto done;
 
 	/*

@@ -530,8 +530,7 @@ wdstrategy(struct buf *bp)
 		    wd->sc_capacity) <= 0)
 			goto done;
 	} else {
-		if (bounds_check_with_label(&wd->sc_dk, bp,
-		    (wd->sc_flags & (WDF_WLABEL|WDF_LABELLING)) != 0) <= 0)
+		if (bounds_check_with_label(&wd->sc_dk, bp) <= 0)
 			goto done;
 	}
 
@@ -955,8 +954,9 @@ wdopen(dev_t dev, int flag, int fmt, struct lwp *l)
 	}
 
 	/* Check that the partition exists. */
-	if (part >= wd->sc_dk.dk_label->d_npartitions ||
-	    wd->sc_dk.dk_label->d_partitions[part].p_fstype == FS_UNUSED) {
+	if (part != RAW_PART &&
+	    (part >= wd->sc_dk.dk_label->d_npartitions ||
+	     wd->sc_dk.dk_label->d_partitions[part].p_fstype == FS_UNUSED)) {
 		error = ENXIO;
 		goto bad2;
 	}
@@ -1063,7 +1063,7 @@ wdgetdefaultlabel(struct wd_softc *wd, struct disklabel *lp)
 
 	lp->d_partitions[RAW_PART].p_offset = 0;
 	lp->d_partitions[RAW_PART].p_size =
-	    lp->d_secperunit * (lp->d_secsize / DEV_BSIZE);
+		lp->d_secperunit * (lp->d_secsize / DEV_BSIZE);
 	lp->d_partitions[RAW_PART].p_fstype = FS_UNUSED;
 	lp->d_npartitions = RAW_PART + 1;
 
