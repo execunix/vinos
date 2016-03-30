@@ -1052,29 +1052,9 @@ sdioctl(dev_t dev, u_long cmd, void *addr, int flag, struct lwp *l)
 
 	case DIOCWDINFO:
 	case DIOCSDINFO:
-	{
-		struct disklabel *lp;
-
 		if ((flag & FWRITE) == 0)
 			return (EBADF);
-
-		lp = (struct disklabel *)addr;
-
-		mutex_enter(&sd->sc_dk.dk_openlock);
-		sd->flags |= SDF_LABELLING;
-
-		error = setdisklabel(sd->sc_dk.dk_label,
-		    lp, /*sd->sc_dk.dk_openmask : */0);
-		if (error == 0) {
-			if (cmd == DIOCWDINFO)
-				error = writedisklabel(SDLABELDEV(dev),
-				    sdstrategy, sd->sc_dk.dk_label);
-		}
-
-		sd->flags &= ~SDF_LABELLING;
-		mutex_exit(&sd->sc_dk.dk_openlock);
-		return (error);
-	}
+		return (0);
 
 	case DIOCKLABEL:
 		if (*(int *)addr)

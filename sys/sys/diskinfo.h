@@ -38,7 +38,16 @@
 #include <sys/types.h>
 #endif
 
-#include <machine/diskinfo.h>
+#define LABELUSESMBR		1	/* use MBR partitionning */
+#define MAXPARTITIONS		8	/* number of partitions */
+#define RAW_PART		0	/* raw partition: XX?a (XXX) */
+
+/* Pull in MBR partition definitions. */
+#if HAVE_NBTOOL_CONFIG_H
+#include <nbinclude/sys/bootblock.h>
+#else
+#include <sys/bootblock.h>
+#endif /* HAVE_NBTOOL_CONFIG_H */
 
 /*
  * Translate between device numbers and major/disk unit/disk partition.
@@ -156,18 +165,6 @@ struct disklabel {
 #define	p_sgs	__partition_u1.sgs
 	} d_partitions[MAXPARTITIONS];	/* actually may be more */
 };
-
-#else /* _LOCORE */
-	/*
-	 * offsets for asm boot files.
-	 */
-	.set	d_secsize,40
-	.set	d_nsectors,44
-	.set	d_ntracks,48
-	.set	d_ncylinders,52
-	.set	d_secpercyl,56
-	.set	d_secperunit,60
-	.set	d_end_,148+(MAXPARTITIONS*16)
 #endif /* _LOCORE */
 
 /*
@@ -326,9 +323,7 @@ void	 diskerr(const struct buf *, const char *, const char *, int,
 	    int, const struct disklabel *);
 u_int	 dkcksum(struct disklabel *);
 u_int	 dkcksum_sized(struct disklabel *, size_t);
-int	 setdisklabel(struct disklabel *, struct disklabel *, u_long);
 const char *readdisklabel(dev_t, void (*)(struct buf *), struct disklabel *);
-int	 writedisklabel(dev_t, void (*)(struct buf *), struct disklabel *);
 int	 bounds_check_with_label(struct disk *, struct buf *);
 int	 bounds_check_with_mediasize(struct buf *, int, uint64_t);
 #endif

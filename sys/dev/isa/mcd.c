@@ -589,26 +589,9 @@ mcdioctl(dev_t dev, u_long cmd, void *addr, int flag, struct lwp *l)
 
 	case DIOCWDINFO:
 	case DIOCSDINFO:
-	{
-		struct disklabel *lp;
-
 		if ((flag & FWRITE) == 0)
 			return EBADF;
-
-		lp = addr;
-
-		mutex_enter(&sc->sc_lock);
-		sc->flags |= MCDF_LABELLING;
-
-		error = setdisklabel(sc->sc_dk.dk_label,
-		    lp, /*sc->sc_dk.dk_openmask : */0);
-		if (error == 0) {
-		}
-
-		sc->flags &= ~MCDF_LABELLING;
-		mutex_exit(&sc->sc_lock);
-		return error;
-	}
+		return 0;
 
 	case DIOCWLABEL:
 		return EBADF;

@@ -73,21 +73,6 @@ __KERNEL_RCSID(0, "$NetBSD: subr_disk_mbr.c,v 1.46 2013/06/26 18:47:26 matt Exp 
 
 typedef struct mbr_partition mbr_partition_t;
 
-/*
- * We allocate a buffer 3 sectors large, and look in all....
- * That means we find labels written by other ports with different offsets.
- * LABELSECTOR and LABELOFFSET are only used if the disk doesn't have a label.
- */
-#define SCANBLOCKS 3
-#define DISKLABEL_SIZE 404
-#if LABELSECTOR*DEV_BSIZE + LABELOFFSET > SCANBLOCKS*DEV_BSIZE - DISKLABEL_SIZE
-#if _MACHINE != ews4800mips /* XXX: fail silently, ews4800mips LABELSECTOR */
-#error Invalid LABELSECTOR or LABELOFFSET
-#endif
-#endif
-
-#define MBR_LABELSECTOR	1
-
 #define SCAN_CONTINUE	0
 #define SCAN_FOUND	1
 #define SCAN_ERROR	2
@@ -98,19 +83,9 @@ typedef struct mbr_args {
 	struct buf	*bp;
 	const char	*msg;
 	int		error;
-	int		written;	/* number of times we wrote label */
 	int		found_mbr;	/* set if disk has a valid mbr */
-	uint		label_sector;	/* where we found the label */
-	int		action;
 	uint32_t	secperunit;
-#define READ_LABEL	1
-#define UPDATE_LABEL	2
-#define WRITE_LABEL	3
 } mbr_args_t;
-
-static int validate_label(mbr_args_t *, uint);
-static int look_netbsd_part(mbr_args_t *, mbr_partition_t *, int, uint);
-static int write_netbsd_label(mbr_args_t *, mbr_partition_t *, int, uint);
 
 static int
 read_sector(mbr_args_t *a, uint sector, int count)
@@ -123,11 +98,25 @@ read_sector(mbr_args_t *a, uint sector, int count)
 	return error;
 }
 
+static int
+look_mbr_part(mbr_args_t *a, mbr_partition_t *dp, int slot, uint ext_base)
+{
+	int n = a->lp->d_npartitions++;
+
+	a->lp->d_partitions[n].p_size = dp->mbrp_size;
+	a->lp->d_partitions[n].p_offset = dp->mbrp_start;
+	a->lp->d_partitions[n].p_fstype = dp->mbrp_type;
+
+	if (a->lp->d_npartitions < MAXPARTITIONS)
+		return SCAN_CONTINUE;
+	return SCAN_FOUND;
+}
+
 /*
- * Scan MBR for partitions, call 'action' routine for each.
+ * Scan MBR for partitions
  */
 static int
-scan_mbr(mbr_args_t *a, int (*actn)(mbr_args_t *, mbr_partition_t *, int, uint))
+scan_mbr(mbr_args_t *a)
 {
 	mbr_partition_t ptns[MBR_PART_COUNT];
 	mbr_partition_t *dp;
@@ -159,7 +148,7 @@ scan_mbr(mbr_args_t *a, int (*actn)(mbr_args_t *, mbr_partition_t *, int, uint))
 		    mbr->mbr_parts[3].mbrp_type == MBR_PTYPE_UNUSED)
 			return SCAN_CONTINUE;
 
-		/* Copy data out of buffer so action can use bp */
+		/* Copy data out of buffer */
 		memcpy(ptns, &mbr->mbr_parts, sizeof ptns);
 
 		/* Look for drivers and skip them */
@@ -198,7 +187,7 @@ scan_mbr(mbr_args_t *a, int (*actn)(mbr_args_t *, mbr_partition_t *, int, uint))
 				next_ext = le32toh(dp->mbrp_start);
 				continue;
 			}
-			rval = (*actn)(a, dp, j, this_ext);
+			rval = look_mbr_part(a, dp, j, this_ext);
 			if (rval != SCAN_CONTINUE)
 				return rval;
 			j++;
@@ -371,7 +360,6 @@ readdisklabel(dev_t dev, void (*strat)(struct buf *), struct disklabel *lp)
 	memset(&a, 0, sizeof a);
 	a.lp = lp;
 	a.strat = strat;
-	a.action = READ_LABEL;
 
 	/* minimal requirements for architypal disk label */
 	if (lp->d_secsize == 0)
@@ -402,7 +390,7 @@ readdisklabel(dev_t dev, void (*strat)(struct buf *), struct disklabel *lp)
 	 * bios partition information to use if the netbsd one
 	 * is absent.
 	 */
-	rval = scan_mbr(&a, look_netbsd_part);
+	rval = scan_mbr(&a);
 
 	if (rval == SCAN_CONTINUE) {
 		rval = scan_iso_vrs(&a);
@@ -412,187 +400,4 @@ readdisklabel(dev_t dev, void (*strat)(struct buf *), struct disklabel *lp)
 	if (rval == SCAN_ERROR || rval == SCAN_CONTINUE)
 		return a.msg;
 	return NULL;
-}
-
-static int
-look_netbsd_part(mbr_args_t *a, mbr_partition_t *dp, int slot, uint ext_base)
-{
-	int n = a->lp->d_npartitions++;
-
-	a->lp->d_partitions[n].p_size = dp->mbrp_size;
-	a->lp->d_partitions[n].p_offset = dp->mbrp_start;
-	a->lp->d_partitions[n].p_fstype = dp->mbrp_type;
-
-	if (a->lp->d_npartitions < MAXPARTITIONS)
-		return SCAN_CONTINUE;
-	return SCAN_FOUND;
-}
-
-static int
-validate_label(mbr_args_t *a, uint label_sector)
-{
-	struct disklabel *dlp;
-	char *dlp_lim, *dlp_byte;
-	int error;
-
-	/* Next, dig out disk label */
-	if (read_sector(a, label_sector, SCANBLOCKS)) {
-		a->msg = "disk label read failed";
-		return SCAN_ERROR;
-	}
-
-	/* Locate disk label within block and validate */
-	/*
-	 * XXX (dsl) This search may be a waste of time, a lot of other i386
-	 * code assumes the label is at offset LABELOFFSET (=0) in the sector.
-	 *
-	 * If we want to support disks from other netbsd ports, then the
-	 * code should also allow for a shorter label nearer the end of
-	 * the disk sector, and (IIRC) labels within 8k of the disk start.
-	 */
-	dlp = (void *)a->bp->b_data;
-	dlp_lim = (char *)a->bp->b_data + a->bp->b_bcount - sizeof *dlp;
-	for (;; dlp = (void *)((char *)dlp + sizeof(long))) {
-		if ((char *)dlp > dlp_lim) {
-			if (a->action != WRITE_LABEL)
-				return SCAN_CONTINUE;
-			/* Write at arch. dependent default location */
-			dlp_byte = (char *)a->bp->b_data + LABELOFFSET;
-			if (label_sector)
-				dlp_byte += MBR_LABELSECTOR * a->lp->d_secsize;
-			else
-				dlp_byte += LABELSECTOR * a->lp->d_secsize;
-			dlp = (void *)dlp_byte;
-			break;
-		}
-		if (dlp->d_magic != DISKMAGIC || dlp->d_magic2 != DISKMAGIC)
-			continue;
-		if (dlp->d_npartitions > MAXPARTITIONS || dkcksum(dlp) != 0) {
-			a->msg = "disk label corrupted";
-			continue;
-		}
-		break;
-	}
-
-	switch (a->action) {
-	case READ_LABEL:
-		*a->lp = *dlp;
-		a->label_sector = label_sector;
-		return SCAN_FOUND;
-	case UPDATE_LABEL:
-	case WRITE_LABEL:
-		*dlp = *a->lp;
-		a->bp->b_oflags &= ~BO_DONE;
-		a->bp->b_flags &= ~B_READ;
-		a->bp->b_flags |= B_WRITE;
-		(*a->strat)(a->bp);
-		error = biowait(a->bp);
-		if (error != 0) {
-			a->error = error;
-			a->msg = "disk label write failed";
-			return SCAN_ERROR;
-		}
-		a->written++;
-		/* Write label to all mbr partitions */
-		return SCAN_CONTINUE;
-	default:
-		return SCAN_ERROR;
-	}
-}
-
-/*
- * Check new disk label for sensibility
- * before setting it.
- */
-int
-setdisklabel(struct disklabel *olp, struct disklabel *nlp, u_long openmask)
-{
-	int i;
-	struct partition *opp, *npp;
-
-	/* sanity clause */
-	if (nlp->d_secpercyl == 0 || nlp->d_secsize == 0
-		|| (nlp->d_secsize % DEV_BSIZE) != 0)
-			return (EINVAL);
-
-	/* special case to allow disklabel to be invalidated */
-	if (nlp->d_magic == 0xffffffff) {
-		*olp = *nlp;
-		return (0);
-	}
-
-	if (nlp->d_magic != DISKMAGIC || nlp->d_magic2 != DISKMAGIC ||
-	    dkcksum(nlp) != 0)
-		return (EINVAL);
-
-	/* XXX missing check if other dos partitions will be overwritten */
-
-	while (openmask != 0) {
-		i = ffs(openmask) - 1;
-		openmask &= ~(1 << i);
-		if (i > nlp->d_npartitions)
-			return (EBUSY);
-		opp = &olp->d_partitions[i];
-		npp = &nlp->d_partitions[i];
-		/*
-		 * Copy internally-set partition information
-		 * if new label doesn't include it.		XXX
-		 */
-		if (npp->p_fstype == FS_UNUSED && opp->p_fstype != FS_UNUSED) {
-			*npp = *opp;
-			continue;
-		}
-		if (npp->p_offset != opp->p_offset || npp->p_size < opp->p_size)
-			return (EBUSY);
-	}
- 	nlp->d_checksum = 0;
- 	nlp->d_checksum = dkcksum(nlp);
-	*olp = *nlp;
-	return (0);
-}
-
-
-/*
- * Write disk label back to device after modification.
- */
-int
-writedisklabel(dev_t dev, void (*strat)(struct buf *), struct disklabel *lp)
-{
-	mbr_args_t a;
-
-	memset(&a, 0, sizeof a);
-	a.lp = lp;
-	a.strat = strat;
-
-	/* get a buffer and initialize it */
-	a.bp = geteblk(SCANBLOCKS * (int)lp->d_secsize);
-	a.bp->b_dev = dev;
-
-	/* WRITE_LABEL => we expect an mbr with label in netbsd ptn */
-	a.action = WRITE_LABEL/*UPDATE_LABEL*/;
-
-	/* Write/update the label to every netbsd mbr partition */
-	scan_mbr(&a, write_netbsd_label);
-
-	/* Old write the label at the start of the volume on disks that
-	 * don't have a valid mbr (always update an existing one) */
-	a.action = a.found_mbr ? UPDATE_LABEL : WRITE_LABEL;
-	validate_label(&a, 0);
-
-	if (a.written == 0 && a.error == 0)
-		a.error = ESRCH;
-
-	brelse(a.bp, 0);
-	return a.error;
-}
-
-static int
-write_netbsd_label(mbr_args_t *a, mbr_partition_t *dp, int slot, uint ext_base)
-{
-	int ptn_base = ext_base + le32toh(dp->mbrp_start);
-
-	if (dp->mbrp_type != MBR_PTYPE_NETBSD)
-		return SCAN_CONTINUE;
-
-	return validate_label(a, ptn_base);
 }

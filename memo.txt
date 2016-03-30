@@ -352,7 +352,7 @@ MKX11RADEONKMS/CONFIG_DRM
 diskinfo/pdisk
 diskname/bsddiskname
 disklabel/TOOL_DISKLABEL
-dkbad/_LOCORE/cpu_disklabel/mbr_label
+dkbad/_LOCORE/mbr_label
 LDF_WLABEL/LDF_LABELLING
 bounds_check_with_label
 fdisk.disktype/getfsent

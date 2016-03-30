@@ -24,7 +24,6 @@
 ./usr/include/arm/cdefs.h			comp-c-include
 ./usr/include/arm/cpu.h				comp-c-include
 ./usr/include/arm/cpuconf.h			comp-c-include
-./usr/include/arm/diskinfo.h			comp-c-include
 ./usr/include/arm/elf_machdep.h			comp-c-include
 ./usr/include/arm/endian.h			comp-c-include
 ./usr/include/arm/endian_machdep.h		comp-c-include
@@ -65,7 +64,6 @@
 ./usr/include/arm/vmparam.h			comp-c-include
 ./usr/include/arm/wchar_limits.h		comp-c-include
 ./usr/include/evbarm				comp-c-include
-./usr/include/evbarm/diskinfo.h			comp-c-include
 ./usr/include/evbarm/intr.h			comp-c-include
 ./usr/include/gcc-4.5/arm_neon.h		comp-c-include		gcccmds,gcc=45
 ./usr/include/gcc-4.5/mmintrin.h		comp-c-include		gcccmds,gcc=45

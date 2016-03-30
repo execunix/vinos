@@ -2,7 +2,6 @@
 
 .PATH: ../../arm/include/common
 
-INCS+=	diskinfo.h \
-	intr.h
+INCS+=	intr.h
 
 .include <bsd.kinc.mk>

@@ -5,7 +5,6 @@ INCSDIR= /usr/include/aarch64
 INCS=	ansi.h aout_machdep.h armreg.h asm.h \
 	bswap.h byte_swap.h \
 	cdefs.h cpu.h \
-	diskinfo.h \
 	elf_machdep.h endian.h endian_machdep.h \
 	fenv.h float.h frame.h \
 	ieee.h ieeefp.h \

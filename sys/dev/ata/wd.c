@@ -1246,34 +1246,9 @@ wdioctl(dev_t dev, u_long xfer, void *addr, int flag, struct lwp *l)
 
 	case DIOCWDINFO:
 	case DIOCSDINFO:
-	{
-		struct disklabel *lp;
-
 		if ((flag & FWRITE) == 0)
 			return EBADF;
-
-		lp = (struct disklabel *)addr;
-
-		mutex_enter(&wd->sc_dk.dk_openlock);
-		wd->sc_flags |= WDF_LABELLING;
-
-		error = setdisklabel(wd->sc_dk.dk_label,
-		    lp, /*wd->sc_dk.dk_openmask : */0);
-		if (error == 0) {
-			if (wd->drvp->state > RESET) {
-				s = splbio();
-				wd->drvp->drive_flags |= ATA_DRIVE_RESET;
-				splx(s);
-			}
-			if (xfer == DIOCWDINFO)
-				error = writedisklabel(WDLABELDEV(dev),
-				    wdstrategy, wd->sc_dk.dk_label);
-		}
-
-		wd->sc_flags &= ~WDF_LABELLING;
-		mutex_exit(&wd->sc_dk.dk_openlock);
-		return error;
-	}
+		return 0;
 
 	case DIOCKLABEL:
 		if (*(int *)addr)

@@ -34,7 +34,7 @@
 #ifndef HAVE_NBTOOL_CONFIG_H
 #include <sys/diskinfo.h>
 #else
-#include <nbinclude/diskinfo.h>
+#include <nbinclude/sys/diskinfo.h>
 #endif
 
 /*

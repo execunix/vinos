@@ -401,7 +401,6 @@ ldioctl(dev_t dev, u_long cmd, void *addr, int32_t flag, struct lwp *l)
 {
 	struct ld_softc *sc;
 	int part, unit, error;
-	struct disklabel *lp;
 
 	unit = DISKUNIT(dev);
 	part = DISKPART(dev);
@@ -425,24 +424,9 @@ ldioctl(dev_t dev, u_long cmd, void *addr, int32_t flag, struct lwp *l)
 
 	case DIOCWDINFO:
 	case DIOCSDINFO:
-		lp = (struct disklabel *)addr;
-
 		if ((flag & FWRITE) == 0)
 			return (EBADF);
-
-		mutex_enter(&sc->sc_dk.dk_openlock);
-		sc->sc_flags |= LDF_LABELLING;
-
-		error = setdisklabel(sc->sc_dk.dk_label,
-		    lp, /*sc->sc_dk.dk_openmask : */0);
-		if (error == 0 && (cmd == DIOCWDINFO))
-			error = writedisklabel(
-			    MAKEDISKDEV(major(dev), DISKUNIT(dev), RAW_PART),
-			    ldstrategy, sc->sc_dk.dk_label);
-
-		sc->sc_flags &= ~LDF_LABELLING;
-		mutex_exit(&sc->sc_dk.dk_openlock);
-		break;
+		return 0;
 
 	case DIOCKLABEL:
 		if ((flag & FWRITE) == 0)

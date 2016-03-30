@@ -651,14 +651,6 @@ Max number of undo structures in system.
 .El
 .It Li kern.job_control ( KERN_JOB_CONTROL )
 Return 1 if job control is available on this system, otherwise\ 0.
-.It Li kern.labeloffset ( KERN_LABELOFFSET )
-The offset within the sector specified by
-.Dv KERN_LABELSECTOR
-of the
-.Xr disklabel 5 .
-.It Li kern.labelsector ( KERN_LABELSECTOR )
-The sector number containing the
-.Xr disklabel 5 .
 .It Li kern.login_name_max ( KERN_LOGIN_NAME_MAX )
 The size of the storage required for a login name, in bytes,
 including the terminating NUL.

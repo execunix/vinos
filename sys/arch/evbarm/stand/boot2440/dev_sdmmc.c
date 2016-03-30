@@ -355,10 +355,10 @@ sdmmc_getdisklabel(struct sdmmc_softc *sc)
 	else {
 		sector = bsdp->mbrp_start;
 		if (sdmmc_strategy(&sc->partitions[0], F_READ,
-				   sector + LABELSECTOR, DEV_BSIZE,
+				   sector, DEV_BSIZE,
 				   buf, &rsize))
 			return EOFFSET;
-		msg = getdisklabel((char *)buf + LABELOFFSET, &sc->sc_label);
+		msg = getdisklabel((char *)buf, &sc->sc_label);
 		if (msg != NULL)
 			printf("getdisklabel: %s\n", msg);
 	}

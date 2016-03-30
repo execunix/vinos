@@ -598,10 +598,7 @@ rdstrategy(struct buf *bp)
 		/*
 		 * Check for write to write protected label
 		 */
-		if (bn + offset <= LABELSECTOR &&
-#if LABELSECTOR != 0
-		    bn + offset + sz > LABELSECTOR &&
-#endif
+		if (bn + offset <= 0 &&
 		    !(bp->b_flags & B_READ) && !(sc->sc_flags & RDF_WLABEL)) {
 			bp->b_error = EROFS;
 			goto done;
@@ -991,23 +988,10 @@ rdioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 		return (0);
 
 	case DIOCSDINFO:
-		if ((flag & FWRITE) == 0)
-			return (EBADF);
-		return (setdisklabel(lp, (struct disklabel *)data,
-		    (sc->sc_flags & RDF_WLABEL) ? 0 : sc->sc_dk.dk_openmask));
-
 	case DIOCWDINFO:
 		if ((flag & FWRITE) == 0)
 			return (EBADF);
-		error = setdisklabel(lp, (struct disklabel *)data,
-		    (sc->sc_flags & RDF_WLABEL) ? 0 : sc->sc_dk.dk_openmask);
-		if (error)
-			return (error);
-		flags = sc->sc_flags;
-		sc->sc_flags = RDF_ALIVE | RDF_WLABEL;
-		error = writedisklabel(RDLABELDEV(dev), rdstrategy, lp);
-		sc->sc_flags = flags;
-		return (error);
+		return (0);
 
 	case DIOCGDEFLABEL:
 		rdgetdefaultlabel(sc, (struct disklabel *)data);

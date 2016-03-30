@@ -1408,21 +1408,9 @@ fdioctl(dev_t dev, u_long cmd, void *addr, int flag, struct lwp *l)
 		return 0;
 
 	case DIOCWDINFO:
-	{
-		struct disklabel *lp;
-
 		if ((flag & FWRITE) == 0)
 			return EBADF;
-
-		lp = (struct disklabel *)addr;
-
-		error = setdisklabel(&buffer, lp, 0, NULL);
-		if (error)
-			return error;
-
-		error = writedisklabel(dev, fdstrategy, &buffer, NULL);
-		return error;
-	}
+		return 0;
 
 	case FDIOCGETFORMAT:
 		form_parms = (struct fdformat_parms *)addr;

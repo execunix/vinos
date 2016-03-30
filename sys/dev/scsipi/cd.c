@@ -1335,27 +1335,9 @@ cdioctl(dev_t dev, u_long cmd, void *addr, int flag, struct lwp *l)
 
 	case DIOCWDINFO:
 	case DIOCSDINFO:
-	{
-		struct disklabel *lp;
-
 		if ((flag & FWRITE) == 0)
 			return (EBADF);
-
-		lp = addr;
-
-		mutex_enter(&cd->sc_lock);
-		cd->flags |= CDF_LABELLING;
-
-		error = setdisklabel(cd->sc_dk.dk_label,
-		    lp, /*cd->sc_dk.dk_openmask : */0);
-		if (error == 0) {
-			/* XXX ? */
-		}
-
-		cd->flags &= ~CDF_LABELLING;
-		mutex_exit(&cd->sc_lock);
-		return (error);
-	}
+		return (0);
 
 	case DIOCWLABEL:
 		return (EBADF);

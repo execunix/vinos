@@ -122,7 +122,6 @@ __KERNEL_RCSID(0, "$NetBSD: disksubr.c,v 1.25 2014/04/25 20:17:28 martin Exp $")
  *
  * Returns null on success and an error string on failure.
  */
-
 const char *
 readdisklabel(dev_t dev, void (*strat)(struct buf *),
 		struct disklabel *lp)
@@ -169,7 +168,7 @@ readdisklabel(dev_t dev, void (*strat)(struct buf *),
 
 	/* next, dig out disk label */
 
-	bp->b_blkno = netbsdpartoff + LABELSECTOR;
+	bp->b_blkno = netbsdpartoff;
 	bp->b_cylinder = bp->b_blkno / lp->d_secpercyl;
 	bp->b_bcount = lp->d_secsize;
 	bp->b_flags |= B_READ;
@@ -204,131 +203,6 @@ readdisklabel(dev_t dev, void (*strat)(struct buf *),
 done:
 	brelse(bp, 0);
 	return (msg);
-}
-
-
-/*
- * Check new disk label for sensibility
- * before setting it.
- */
-
-int
-setdisklabel(struct disklabel *olp, struct disklabel *nlp, u_long openmask)
-{
-	int i;
-	struct partition *opp, *npp;
-
-	/* sanity clause */
-
-	if (nlp->d_secpercyl == 0 || nlp->d_secsize == 0
-	    || (nlp->d_secsize % DEV_BSIZE) != 0)
-		return(EINVAL);
-
-	/* special case to allow disklabel to be invalidated */
-
-	if (nlp->d_magic == 0xffffffff) {
-		*olp = *nlp;
-		return (0);
-	}
-
-	if (nlp->d_magic != DISKMAGIC || nlp->d_magic2 != DISKMAGIC
-	    || dkcksum(nlp) != 0)
-		return (EINVAL);
-
-	/* XXX add check if other acorn/dos partitions will be overwritten */
-
-	while (openmask != 0) {
-		i = ffs(openmask) - 1;
-		openmask &= ~(1 << i);
-		if (nlp->d_npartitions <= i)
-			return (EBUSY);
-		opp = &olp->d_partitions[i];
-		npp = &nlp->d_partitions[i];
-		if (npp->p_offset != opp->p_offset || npp->p_size < opp->p_size)
-			return (EBUSY);
-		/*
-		 * Copy internally-set partition information
-		 * if new label doesn't include it.		XXX
-		 */
-		if (npp->p_fstype == FS_UNUSED && opp->p_fstype != FS_UNUSED) {
-			npp->p_fstype = opp->p_fstype;
-			npp->p_fsize = opp->p_fsize;
-			npp->p_frag = opp->p_frag;
-			npp->p_cpg = opp->p_cpg;
-		}
-	}
-
-	nlp->d_checksum = 0;
-	nlp->d_checksum = dkcksum(nlp);
-	*olp = *nlp;
-	return (0);
-}
-
-
-/*
- * Write disk label back to device after modification.
- */
- 
-int
-writedisklabel(dev_t dev, void (*strat)(struct buf *),
-	struct disklabel *lp)
-{
-	struct buf *bp;
-	struct disklabel *dlp;
-	int cyl, netbsdpartoff;
-	int error = 0;
-
-	/* get a buffer and initialize it */
-
-	bp = geteblk((int)lp->d_secsize);
-	bp->b_dev = dev;
-
-	/* do netbsd partitions in the process of getting disklabel? */
-
-	netbsdpartoff = 0;
-	cyl = LABELSECTOR / lp->d_secpercyl;
-
-	/* writelabel: */
-
-#ifdef DEBUG_LABEL
-	printf("%s: Reading disklabel addr=%08x\n", __func__,
-	     netbsdpartoff * DEV_BSIZE);
-#endif
-
-	/* next, dig out disk label */
-
-	bp->b_blkno = netbsdpartoff + LABELSECTOR;
-	bp->b_cylinder = cyl;
-	bp->b_bcount = lp->d_secsize;
-	bp->b_oflags &= ~(BO_DONE);
-	bp->b_flags |= B_READ;
-	(*strat)(bp);
-
-	/* if successful, locate disk label within block and validate */
-
-	if ((error = biowait(bp)))
-		goto done;
-	for (dlp = (struct disklabel *)bp->b_data;
-	    dlp <= (struct disklabel *)((char *)bp->b_data + lp->d_secsize
-		- sizeof(*dlp));
-	    dlp = (struct disklabel *)((char *)dlp + sizeof(long))) {
-		if (dlp->d_magic == DISKMAGIC && dlp->d_magic2 == DISKMAGIC &&
-		    dkcksum(dlp) == 0) {
-			*dlp = *lp;
-			bp->b_flags &= ~(B_READ);
-			bp->b_oflags &= ~(BO_DONE);
-			bp->b_flags |= B_WRITE;
-			(*strat)(bp);
-			error = biowait(bp);
-			goto done;
-		}
-	}
-
-	error = ESRCH;
-
-done:
-	brelse(bp, 0);
-	return (error);
 }
 
 /* End of disksubr.c */

@@ -40,7 +40,7 @@ __RCSID("$NetBSD: migrate.c,v 1.14.4.1 2015/06/02 19:49:38 snj Exp $");
 #include <sys/param.h>
 #ifdef HAVE_NBTOOL_CONFIG_H
 #include <nbinclude/sys/bootblock.h>
-#include <nbinclude/diskinfo.h>
+#include <nbinclude/sys/diskinfo.h>
 #else
 #include <sys/bootblock.h>
 #include <sys/diskinfo.h>
@@ -61,14 +61,8 @@ __RCSID("$NetBSD: migrate.c,v 1.14.4.1 2015/06/02 19:49:38 snj Exp $");
  * The values are valid for amd64, i386 and ia64 disklabels.
  * XXX: use disklabel_params from disklabel.c
  */
-#ifndef LABELOFFSET
-#define	LABELOFFSET	0
-#endif
-#ifndef LABELSECTOR
-#define	LABELSECTOR	1
-#endif
 #ifndef RAW_PART
-#define	RAW_PART	3
+#define	RAW_PART	0
 #endif
 
 /* FreeBSD filesystem types that don't match corresponding NetBSD types */
@@ -97,8 +91,8 @@ migrate_disklabel(int fd, off_t start, struct gpt_ent *ent)
 	off_t ofs, rawofs;
 	int i;
 
-	buf = gpt_read(fd, start + LABELSECTOR, 1);
-	dl = (void*)(buf + LABELOFFSET);
+	buf = gpt_read(fd, start, 1);
+	dl = (void*)(buf);
 
 	if (le32toh(dl->d_magic) != DISKMAGIC ||
 	    le32toh(dl->d_magic2) != DISKMAGIC) {
@@ -171,8 +165,8 @@ migrate_netbsd_disklabel(int fd, off_t start, struct gpt_ent *ent)
 	off_t ofs, rawofs;
 	int i;
 
-	buf = gpt_read(fd, start + LABELSECTOR, 1);
-	dl = (void*)(buf + LABELOFFSET);
+	buf = gpt_read(fd, start, 1);
+	dl = (void*)(buf);
 
 	if (le32toh(dl->d_magic) != DISKMAGIC ||
 	    le32toh(dl->d_magic2) != DISKMAGIC) {

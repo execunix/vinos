@@ -408,18 +408,8 @@ raioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 
 	case DIOCWDINFO:
 	case DIOCSDINFO:
-		tp = (struct disklabel *)data;
-
 		if ((flag & FWRITE) == 0)
 			error = EBADF;
-		else {
-			mutex_enter(&ra->ra_disk.dk_openlock);
-			error = setdisklabel(lp, tp, 0, 0);
-			if ((error == 0) && (cmd == DIOCWDINFO)) {
-				error = writedisklabel(dev, rastrategy, lp,0);
-			}
-			mutex_exit(&ra->ra_disk.dk_openlock);
-		}
 		break;
 
 	case DIOCWLABEL:

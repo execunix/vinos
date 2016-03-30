@@ -357,27 +357,9 @@ ofdisk_ioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 
 	case DIOCWDINFO:
 	case DIOCSDINFO:
-	{
-		struct disklabel *lp;
-
-		lp = (struct disklabel *)data;
-
 		if ((flag & FWRITE) == 0)
 			return EBADF;
-
-		mutex_enter(&of->sc_dk.dk_openlock);
-
-		error = setdisklabel(of->sc_dk.dk_label,
-		    lp, /*of->sc_dk.dk_openmask */0);
-		if (error == 0 && cmd == DIOCWDINFO)
-			error = writedisklabel(MAKEDISKDEV(major(dev),
-			    DISKUNIT(dev), RAW_PART), ofdisk_strategy,
-			    of->sc_dk.dk_label);
-
-		mutex_exit(&of->sc_dk.dk_openlock);
-
-		return error;
-	}
+		return 0;
 
 	case DIOCGDEFLABEL:
 		ofdisk_getdefaultlabel(of, (struct disklabel *)data);

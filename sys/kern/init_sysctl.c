@@ -441,14 +441,14 @@ SYSCTL_SETUP(sysctl_kern_setup, "sysctl kern subtree setup")
 		       CTLFLAG_PERMANENT|CTLFLAG_IMMEDIATE,
 		       CTLTYPE_INT, "labelsector",
 		       SYSCTL_DESCR("Sector number containing the disklabel"),
-		       NULL, LABELSECTOR, NULL, 0,
+		       NULL, 0/*LABELSECTOR*/, NULL, 0,
 		       CTL_KERN, KERN_LABELSECTOR, CTL_EOL);
 	sysctl_createv(clog, 0, NULL, NULL,
 		       CTLFLAG_PERMANENT|CTLFLAG_IMMEDIATE,
 		       CTLTYPE_INT, "labeloffset",
 		       SYSCTL_DESCR("Offset of the disklabel within the "
 				    "sector"),
-		       NULL, LABELOFFSET, NULL, 0,
+		       NULL, 0/*LABELOFFSET*/, NULL, 0,
 		       CTL_KERN, KERN_LABELOFFSET, CTL_EOL);
 	sysctl_createv(clog, 0, NULL, NULL,
 		       CTLFLAG_PERMANENT|CTLFLAG_IMMEDIATE,

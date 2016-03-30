@@ -252,8 +252,6 @@ int
 dk_ioctl(struct dk_intf *di, struct dk_softc *dksc, dev_t dev,
 	    u_long cmd, void *data, int flag, struct lwp *l)
 {
-	struct	disklabel *lp;
-	struct	disk *dk;
 	int	error = 0;
 
 	DPRINTF_FOLLOW(("dk_ioctl(%s, %p, 0x%"PRIx64", 0x%lx)\n",
@@ -294,22 +292,7 @@ dk_ioctl(struct dk_intf *di, struct dk_softc *dksc, dev_t dev,
 
 	case DIOCWDINFO:
 	case DIOCSDINFO:
-		lp = (struct disklabel *)data;
-
-		dk = &dksc->sc_dkdev;
-		mutex_enter(&dk->dk_openlock);
-		dksc->sc_flags |= DKF_LABELLING;
-
-		error = setdisklabel(dksc->sc_dkdev.dk_label, lp, 0);
-		if (error == 0) {
-			if (cmd == DIOCWDINFO)
-				error = writedisklabel(DKLABELDEV(dev),
-				    di->di_strategy, dksc->sc_dkdev.dk_label);
-		}
-
-		dksc->sc_flags &= ~DKF_LABELLING;
-		mutex_exit(&dk->dk_openlock);
-		break;
+		return 0;
 
 	case DIOCWLABEL:
 		if (*(int *)data != 0)

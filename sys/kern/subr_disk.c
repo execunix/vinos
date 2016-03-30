@@ -183,7 +183,6 @@ disk_init(struct disk *diskp, const char *name, const struct dkdriver *driver)
 {
 
 	mutex_init(&diskp->dk_openlock, MUTEX_DEFAULT, IPL_NONE);
-	diskp->dk_labelsector = LABELSECTOR;
 	disk_blocksize(diskp, DEV_BSIZE);
 	diskp->dk_name = name;
 	diskp->dk_driver = driver;

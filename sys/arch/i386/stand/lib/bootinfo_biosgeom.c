@@ -27,7 +27,7 @@
  */
 
 #include <sys/types.h>
-#include <machine/diskinfo.h>
+#include <sys/diskinfo.h>
 #include <machine/cpu.h>
 
 #include <lib/libkern/libkern.h>

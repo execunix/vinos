@@ -102,7 +102,6 @@ struct disk {
 	 * must be dynamically allocated, otherwise the size of this
 	 * structure becomes machine-dependent.
 	 */
-	daddr_t		dk_labelsector;		/* sector containing label */
 	struct disklabel *dk_label;	/* label */
 };
 .Ed
