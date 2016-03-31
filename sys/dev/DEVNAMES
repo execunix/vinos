@@ -1489,7 +1489,6 @@ wt			MI
 xafb			newsmips
 xasc			pmax
 xb			alpha
-xbd			xen
 xcfb			pmax
 xd			MI
 xd			sun3
@@ -1497,9 +1496,6 @@ xdc			MI
 xdc			sun3
 xe			next68k
 xel			x68k
-xencons			xen
-xenevt			xen
-xennet			xen
 xge			MI
 xhci			MI
 xi			MI

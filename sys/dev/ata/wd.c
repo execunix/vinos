@@ -1260,10 +1260,6 @@ wdioctl(dev_t dev, u_long xfer, void *addr, int flag, struct lwp *l)
 	case DIOCWLABEL:
 		if ((flag & FWRITE) == 0)
 			return EBADF;
-		if (*(int *)addr)
-			wd->sc_flags |= WDF_WLABEL;
-		else
-			wd->sc_flags &= ~WDF_WLABEL;
 		return 0;
 
 	case DIOCGDEFLABEL:

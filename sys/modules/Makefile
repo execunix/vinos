@@ -18,7 +18,6 @@ SUBDIR+=	compat
 SUBDIR+=	coredump
 SUBDIR+=	dbcool
 SUBDIR+=	des
-SUBDIR+=	dk_subr
 SUBDIR+=	ext2fs
 SUBDIR+=	exec_script
 SUBDIR+=	fdesc

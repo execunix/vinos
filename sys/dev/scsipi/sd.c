@@ -1066,10 +1066,6 @@ sdioctl(dev_t dev, u_long cmd, void *addr, int flag, struct lwp *l)
 	case DIOCWLABEL:
 		if ((flag & FWRITE) == 0)
 			return (EBADF);
-		if (*(int *)addr)
-			sd->flags |= SDF_WLABEL;
-		else
-			sd->flags &= ~SDF_WLABEL;
 		return (0);
 
 	case DIOCLOCK:

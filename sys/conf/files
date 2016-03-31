@@ -1413,7 +1413,6 @@ file	dev/auvolconv.c			auvolconv
 file	dev/bio.c			bio			needs-flag
 file	dev/clock_subr.c
 file	dev/clockctl.c			clockctl
-file	dev/dksubr.c			xbd
 file	dev/firmload.c			firmload
 file	dev/fss.c			fss
 file	dev/keylock.c			keylock

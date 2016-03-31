@@ -84,7 +84,7 @@
  * On i386, we allow "wd"  ST-506/IDE disks,  "sd" scsi disks, "ld" logical
  * disks, "ed" IBM ESDI disks
  */
-#define DISK_NAMES "wd", "sd", "ld", "ed", "xbd:no_mbr"
+#define DISK_NAMES "wd", "sd", "ld", "ed"
 
 #define _PATH_MBR	DEFAULT_BOOTDIR "/" DEFAULT_BOOTCODE
 #define _PATH_BOOTSEL	DEFAULT_BOOTDIR "/" DEFAULT_BOOTSELCODE

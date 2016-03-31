@@ -89,7 +89,7 @@
  * On amd64, we allow "wd"  ST-506/IDE disks,  "sd" scsi disks, "ld" logical
  * disks.
  */
-#define DISK_NAMES "wd", "sd", "ld", "xbd:no_mbr"
+#define DISK_NAMES "wd", "sd", "ld"
 
 #define _PATH_MBR	DEFAULT_BOOTDIR "/" DEFAULT_BOOTCODE
 #define _PATH_BOOTSEL	DEFAULT_BOOTDIR "/" DEFAULT_BOOTSELCODE

@@ -32,8 +32,6 @@
 
 #include <net/zlib.h>
 
-#include <dev/dkvar.h>
-
 #include <dev/wscons/wsconsio.h>
 #include <net80211/ieee80211_ioctl.h>
 

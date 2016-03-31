@@ -116,7 +116,7 @@ __RCSID("$NetBSD: fdisk.c,v 1.150 2014/04/04 16:15:30 christos Exp $");
 #endif
 
 #ifndef _PATH_DEFDISK
-#define _PATH_DEFDISK	"/dev/rwd0d"
+#define _PATH_DEFDISK	"/dev/wd0a"
 #endif
 
 struct {

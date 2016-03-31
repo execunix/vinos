@@ -48,8 +48,6 @@ struct wd_softc {
 	int openings;
 	struct ataparams sc_params;/* drive characteristics found */
 	int sc_flags;
-#define	WDF_WLABEL	0x004 /* label is writable */
-#define	WDF_LABELLING	0x008 /* writing label */
 /*
  * XXX Nothing resets this yet, but disk change sensing will when ATA-4 is
  * more fully implemented.

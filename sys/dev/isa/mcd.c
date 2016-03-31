@@ -134,8 +134,6 @@ struct mcd_softc {
 
 	const char	*type;
 	int	flags;
-#define	MCDF_WLABEL	0x04	/* label is writable */
-#define	MCDF_LABELLING	0x08	/* writing label */
 #define	MCDF_LOADED	0x10	/* parameters loaded */
 	short	status;
 	short	audio_status;

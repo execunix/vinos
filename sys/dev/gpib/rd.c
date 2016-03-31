@@ -126,7 +126,6 @@ struct	rd_softc {
 #define RDF_OPENING	0x08
 #define RDF_CLOSING	0x10
 #define RDF_WANTED	0x20
-#define RDF_WLABEL	0x40
 
 	u_int16_t sc_type;
 	u_int8_t *sc_addr;
@@ -548,7 +547,7 @@ rdclose(dev_t dev, int flag, int mode, struct lwp *l)
 			(void) tsleep(&sc->sc_tab, PRIBIO, "rdclose", 0);
 		}
 		splx(s);
-		sc->sc_flags &= ~(RDF_CLOSING | RDF_WLABEL);
+		sc->sc_flags &= ~RDF_CLOSING;
 		wakeup((void *)sc);
 	}
 	return (0);
@@ -599,7 +598,7 @@ rdstrategy(struct buf *bp)
 		 * Check for write to write protected label
 		 */
 		if (bn + offset <= 0 &&
-		    !(bp->b_flags & B_READ) && !(sc->sc_flags & RDF_WLABEL)) {
+		    !(bp->b_flags & B_READ)) {
 			bp->b_error = EROFS;
 			goto done;
 		}
@@ -981,10 +980,6 @@ rdioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 	case DIOCWLABEL:
 		if ((flag & FWRITE) == 0)
 			return (EBADF);
-		if (*(int *)data)
-			sc->sc_flags |= RDF_WLABEL;
-		else
-			sc->sc_flags &= ~RDF_WLABEL;
 		return (0);
 
 	case DIOCSDINFO:

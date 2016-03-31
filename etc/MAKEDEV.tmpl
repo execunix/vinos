@@ -78,7 +78,6 @@
 #	rl*	UNIBUS RL02
 #	rx*	MSCP floppy disk (RX33/50/...)
 #	up*	other UNIBUS devices (e.g. on Emulex SC-21V controller)
-#	xbd*	Xen virtual disks
 #	xd*	Xylogic 753/7053 disks
 #	xy*	Xylogic 450/451 disks
 #
@@ -143,7 +142,6 @@
 #	dhu*    UNIBUS DHU11 (vax)
 #	dmz*    UNIBUS DMZ32 (vax)
 #	dl*	UNIBUS DL11 (vax)
-#	xencons	Xen virtual console
 #
 # Terminal multiplexors:
 #	dc*	4 channel serial interface (keyboard, mouse, modem, printer)
@@ -284,7 +282,6 @@
 #	view*	generic interface to graphic displays (Amiga)
 #	wsfont*	console font control
 #	wsmux*	wscons event multiplexor
-#	xenevt	Xen event interface
 #
 # Trusted Computing devices
 #	tpm	Trusted Platform Module
@@ -1007,16 +1004,8 @@ wsmux[0-9]*)
 	mkdev wsmuxctl$unit c %wsmux_chr% $(($unit + 128)) 200
 	;;
 
-xenevt)
-	mkdev xenevt c %xenevt_chr% 0
-	;;
-
 xsd_kva)
 	mkdev xsd_kva c %xenevt_chr% 1
-	;;
-
-xencons)
-	mkdev xencons c %xencons_chr% 0
 	;;
 
 ttyEstat)
@@ -1142,11 +1131,6 @@ ed[0-9]*)
 
 ofdisk[0-9]*)
 	name=ofdisk; unit=${i#ofdisk}; blk=%ofdisk_blk%; chr=%ofdisk_chr%
-	%MKDISK% $name $unit $blk $chr
-	;;
-
-xbd[0-9]*)
-	name=xbd; unit=${i#xbd}; blk=%xbd_blk%; chr=%xbd_chr%
 	%MKDISK% $name $unit $blk $chr
 	;;
 

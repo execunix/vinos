@@ -64,8 +64,6 @@ struct ld_softc {
 
 /* sc_flags */
 #define	LDF_ENABLED	0x001		/* device enabled */
-#define	LDF_WLABEL	0x008		/* label is writable */
-#define	LDF_LABELLING	0x010		/* writing label */
 #define	LDF_DRAIN	0x020		/* maxqueuecnt has changed; drain */
 #define	LDF_DETACH	0x040		/* detach pending */
 #define	LDF_KLABEL	0x080		/* keep label on close */

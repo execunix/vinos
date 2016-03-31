@@ -440,10 +440,6 @@ ldioctl(dev_t dev, u_long cmd, void *addr, int32_t flag, struct lwp *l)
 	case DIOCWLABEL:
 		if ((flag & FWRITE) == 0)
 			return (EBADF);
-		if (*(int *)addr)
-			sc->sc_flags |= LDF_WLABEL;
-		else
-			sc->sc_flags &= ~LDF_WLABEL;
 		break;
 
 	case DIOCGDEFLABEL:

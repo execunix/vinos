@@ -32,8 +32,6 @@ struct cd_softc {
 	kmutex_t sc_lock;
 
 	int flags;
-#define	CDF_WLABEL	0x04		/* label is writable */
-#define	CDF_LABELLING	0x08		/* writing label */
 #define	CDF_ANCIENT	0x10		/* disk is ancient; for minphys */
 
 	struct scsipi_periph *sc_periph;
