@@ -245,8 +245,7 @@ main(int argc, char **argv)
 		usage();
 
 	if (cdname == NULL) {
-		snprintf(defdev, sizeof(defdev), "cd0%c",
-		    'a' + getrawpartition());
+		snprintf(defdev, sizeof(defdev), "cd0%c", 'a');
 		cdname = defdev;
 	}
 

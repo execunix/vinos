@@ -12,8 +12,8 @@ LIB=	util
 CPPFLAGS+=-DLIBC_SCCS -I${.CURDIR}
 LINTFLAGS+=-w
 SRCS+=	efun.c \
-	getbootfile.c getbyteorder.c getmaxpartitions.c \
-	getmntopts.c getrawpartition.c getdiskrawname.c \
+	getbootfile.c getbyteorder.c \
+	getmntopts.c getdiskrawname.c \
 	if_media.c \
 	login.c loginx.c login_cap.c login_tty.c logout.c logoutx.c \
 	logwtmp.c logwtmpx.c opendisk.c parsedate.y \
@@ -24,7 +24,7 @@ SRCS+=	efun.c \
 
 MAN=	efun.3 \
 	getbootfile.3 getbyteorder.3 \
-	getmaxpartitions.3 getmntopts.3 getrawpartition.3 \
+	getmntopts.3 \
 	getdiskrawname.3 \
 	login.3 login_cap.3 loginx.3 \
 	opendisk.3 openpty.3 parsedate.3 pidfile.3 pidlock.3 \

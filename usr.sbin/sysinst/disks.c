@@ -586,7 +586,7 @@ fmt_fspart(menudesc *m, int ptn, void *arg)
 	if (ptn == PART_BOOT)
 		desc = msg_string(MSG_Boot_partition_cant_change);
 #endif
-	if (ptn == getrawpartition())
+	if (ptn == 0)
 		desc = msg_string(MSG_Whole_disk_cant_change);
 	else {
 		if (ptn == PART_C)
@@ -614,7 +614,7 @@ make_filesystems(void)
 	int ptn;
 	int ptn_order[nelem(pm->bsdlabel)];
 	int error = 0;
-	unsigned int maxpart = getmaxpartitions();
+	unsigned int maxpart = MAXPARTITIONS;
 	char *newfs = NULL, *dev = NULL, *devdev = NULL;
 	partinfo *lbl;
 
@@ -770,7 +770,7 @@ make_fstab(void)
 	}
 	SLIST_FOREACH(pm_i, &pm_head, l) {
 		onlyonediskinfstab:
-		for (i = 0; i < getmaxpartitions(); i++) {
+		for (i = 0; i < MAXPARTITIONS; i++) {
 			const char *s = "";
 			const char *mp = pm_i->bsdlabel[i].pi_mount;
 			const char *fstype = "ffs";

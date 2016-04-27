@@ -80,9 +80,7 @@ with a suffix of
 .Sq Em X ,
 where
 .Sq Em X
-represents the raw partition of the device, as determined by
-.Xr getrawpartition 3 ,
-usually
+represents the raw partition of the device, usually
 .Dq c .
 .El
 .Pp
@@ -143,10 +141,7 @@ to one of the following values:
 .It Bq Er EINVAL
 .Dv O_CREAT
 was set in
-.Fa flags ,
-or
-.Xr getrawpartition 3
-didn't return a valid partition.
+.Fa flags .
 .It Bq Er EFAULT
 .Fa buf
 was the
@@ -163,8 +158,7 @@ to any value specified by the
 .Xr open 2
 function.
 .Sh SEE ALSO
-.Xr open 2 ,
-.Xr getrawpartition 3
+.Xr open 2
 .Sh HISTORY
 The
 .Fn opendisk

@@ -296,7 +296,7 @@ nick2dev(const char *nn)
 	return NULL;
 }
 
-/* "floppy5" -> "/dev/rfd5c".  Static buffer. */
+/* "floppy5" -> "/dev/rfd5a".  Static buffer. */
 static char *
 nick2rdev(const char *nn)
 {
@@ -313,9 +313,6 @@ nick2rdev(const char *nn)
 			    nicknames[n].devname, devnum);
 			if ((nicknames[n].type & TYPEMASK) != TAPE) {
 				(void)strcat(dev_name, "a");
-				if ((nicknames[n].type & FLOPPY) != FLOPPY)
-					dev_name[strlen(dev_name) - 1]
-					    += getrawpartition();
 			}
 			return dev_name;
 		}

@@ -73,8 +73,6 @@ char	       *flags_to_string(unsigned long, const char *);
 pid_t		forkpty(int *, char *, struct termios *, struct winsize *);
 const char     *getbootfile(void);
 int		getbyteorder(void);
-int		getmaxpartitions(void);
-int		getrawpartition(void);
 const char     *getdiskrawname(char *, size_t, const char *);
 const char     *getdiskcookedname(char *, size_t, const char *);
 #ifndef __LIBC12_SOURCE__

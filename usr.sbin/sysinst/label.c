@@ -551,9 +551,7 @@ incorelabel(const char *dkname, partinfo *lp)
 		return -1;
 
 	touchwin(stdscr);
-	maxpart = getmaxpartitions();
-	if (maxpart > MAXPARTITIONS)
-		maxpart = MAXPARTITIONS;
+	maxpart = MAXPARTITIONS;
 	if (maxpart > lab.d_npartitions)
 		maxpart = lab.d_npartitions;
 
@@ -670,7 +668,7 @@ getpartoff(uint32_t defpartstart)
 	int partn;
 	const char *errmsg = "\n";
 
-	maxpartc = 'a' + getmaxpartitions() - 1;
+	maxpartc = 'a' + MAXPARTITIONS;
 	for (;;) {
 		snprintf(defsize, sizeof defsize, "%d", defpartstart/sizemult);
 		msg_prompt_win(MSG_label_offset, -1, 13, 70, 9,
@@ -718,7 +716,7 @@ getpartsize(uint32_t partstart, uint32_t defpartsize)
 	uint32_t fsptend = pm->ptstart + pm->ptsize;
 	int partn;
 
-	maxpartc = 'a' + getmaxpartitions() - 1;
+	maxpartc = 'a' + MAXPARTITIONS;
 	for (;;) {
 		snprintf(dsize, sizeof dsize, "%d", defpartsize/sizemult);
 		msg_prompt_win(MSG_label_size, -1, 12, 70, 9,
