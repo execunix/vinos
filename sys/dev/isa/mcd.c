@@ -594,10 +594,6 @@ mcdioctl(dev_t dev, u_long cmd, void *addr, int flag, struct lwp *l)
 	case DIOCWLABEL:
 		return EBADF;
 
-	case DIOCGDEFLABEL:
-		mcdgetdefaultlabel(sc, addr);
-		return 0;
-
 	case CDIOCPLAYTRACKS:
 		return mcd_playtracks(sc, addr);
 	case CDIOCPLAYMSF:

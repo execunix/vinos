@@ -1100,10 +1100,6 @@ sdioctl(dev_t dev, u_long cmd, void *addr, int flag, struct lwp *l)
 		return ((periph->periph_flags & PERIPH_REMOVABLE) == 0 ?
 		    ENOTTY : scsipi_start(periph, SSS_STOP|SSS_LOEJ, 0));
 
-	case DIOCGDEFLABEL:
-		sdgetdefaultlabel(sd, (struct disklabel *)addr);
-		return (0);
-
 	case DIOCGCACHE:
 		return (sd_getcache(sd, (int *) addr));
 

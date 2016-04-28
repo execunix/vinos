@@ -349,19 +349,17 @@ compat_
 MKX11/MKXORG/XSERVER_XFREE86
 MKX11RADEONKMS/CONFIG_DRM
 
+disklabel/TOOL_DISKLABEL
 diskinfo/pdisk
 diskname/bsddiskname
-disklabel/TOOL_DISKLABEL
+getdiskrawname
+getdiskcookedname
+*getdefaultlabel
 _LOCORE/mbr_label
 bounds_check_with_label
 fdisk.disktype/getfsent
-CPU_DISKINFO
+CPU_DISKINFO/USE_DISKLIST
 vnd_x
 wedge_x
 DKW_PTYPE_FFS/USE_MBR
 KAUTH_SYSTEM_DEVMAPPER/libdm
-
-sun/sparc/sparc64/ebus/sbus/be/hme/qe/qec/xbox
-xscale/CPU_SHEEVA/iSCSI/dmover
-
-XEN/Xen/xbd/xenevt/xennet/xencons/hypervisor/autoconf/domU

@@ -295,7 +295,6 @@ typedef struct pm_devs_t {
     char bsddiskname[DISKNAME_SIZE];
     partinfo oldlabel[MAXPARTITIONS]; /* What we found on the disk */
     partinfo bsdlabel[MAXPARTITIONS]; /* What we want it to look like */
-    int no_mbr; /* set for raid (etc) */
     int rootpart; /* partition we install into */
     const char *disktype; /* ST506, SCSI, ... */
     const char *doessf;
@@ -448,7 +447,7 @@ void	set_bsize(partinfo *, int);
 void	set_fsize(partinfo *, int);
 void	set_ptype(partinfo *, int, int);
 int edit_ptn(menudesc *, void *);
-int checkoverlap(partinfo *, int, int, int);
+int checkoverlap(partinfo *, int);
 
 /* from install.c */
 void	do_install(void);
@@ -461,8 +460,7 @@ void	get_disk_info(char *);
 void	set_disk_info(char *);
 
 /* from geom.c */
-int	get_geom(const char *, struct disklabel *);
-int	get_real_geom(const char *, struct disklabel *);
+int	get_label(const char *, struct disklabel *);
 
 /* from net.c */
 extern int network_up;

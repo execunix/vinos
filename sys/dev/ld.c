@@ -442,10 +442,6 @@ ldioctl(dev_t dev, u_long cmd, void *addr, int32_t flag, struct lwp *l)
 			return (EBADF);
 		break;
 
-	case DIOCGDEFLABEL:
-		ldgetdefaultlabel(sc, (struct disklabel *)addr);
-		break;
-
 	case DIOCCACHESYNC:
 		/*
 		 * XXX Do we really need to care about having a writable

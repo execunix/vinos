@@ -1342,10 +1342,6 @@ cdioctl(dev_t dev, u_long cmd, void *addr, int flag, struct lwp *l)
 	case DIOCWLABEL:
 		return (EBADF);
 
-	case DIOCGDEFLABEL:
-		cdgetdefaultlabel(cd, &toc, addr);
-		return (0);
-
 	case DIOCTUR: {
 		/* test unit ready */
 		error = scsipi_test_unit_ready(cd->sc_periph, XS_CTL_SILENT);

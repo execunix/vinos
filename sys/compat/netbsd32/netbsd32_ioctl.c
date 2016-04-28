@@ -743,7 +743,6 @@ netbsd32_ioctl(struct lwp *l, const struct netbsd32_ioctl_args *uap, register_t 
 		case DIOCGDINFO:
 		case DIOCWDINFO:
 		case DIOCSDINFO:
-		case DIOCGDEFLABEL:
 			com = ncom;
 			if (IOCPARM_LEN(DIOCGDINFO32) < IOCPARM_LEN(DIOCGDINFO))
 				alloc_size32 = IOCPARM_LEN(DIOCGDINFO);

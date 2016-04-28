@@ -80,9 +80,6 @@ md_get_info(void)
 	if (boardtype == BOARD_TYPE_RPI)
 		return set_bios_geom_with_mbr_guess();
 
-	if (pm->no_mbr)
-		return 1;
-
 	if (read_mbr(pm->diskdev, &mbr) < 0)
 		memset(&mbr.mbr, 0, sizeof(mbr.mbr)-2);
 
@@ -158,9 +155,6 @@ md_check_partitions(void)
 int
 md_write_mbr(void)
 {
-	if (pm->no_mbr)
-		return 0;
-
 	msg_display(MSG_dofdisk);
 
 	/* write edited MBR onto disk. */

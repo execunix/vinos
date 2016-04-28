@@ -589,7 +589,6 @@ sys_ioctl(struct lwp *l, const struct sys_ioctl_args *uap, register_t *retval)
 		case DIOCGDINFO:
 		case DIOCWDINFO:
 		case DIOCSDINFO:
-		case DIOCGDEFLABEL:
 			com = ncom = IOCFIXUP(ocom);
 			zero_last = DISKLABELLENDIFF;
 			size -= DISKLABELLENDIFF;
@@ -601,7 +600,6 @@ sys_ioctl(struct lwp *l, const struct sys_ioctl_args *uap, register_t *retval)
 		case DIOCGDINFO:
 		case DIOCWDINFO:
 		case DIOCSDINFO:
-		case DIOCGDEFLABEL:
 			com = ncom;
 			if (IOCPARM_LEN(DIOCGDINFO32) < IOCPARM_LEN(DIOCGDINFO))
 				alloc_size = IOCPARM_LEN(DIOCGDINFO);

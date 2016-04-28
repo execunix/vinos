@@ -44,10 +44,11 @@
 
 #include "defs.h"
 
-static int
-get_label(const char *disk, struct disklabel *l, unsigned long cmd)
+int
+get_label(const char *disk, struct disklabel *l)
 {
 	char diskpath[MAXPATHLEN];
+	unsigned long cmd;
 	int fd;
 	int sv_errno;
 
@@ -56,6 +57,7 @@ get_label(const char *disk, struct disklabel *l, unsigned long cmd)
 	if (fd < 0) 
 		return 0;
 
+	cmd = DIOCGDINFO;
 	if (ioctl(fd, cmd, l) < 0) {
 		sv_errno = errno;
 		(void)close(fd);
@@ -64,18 +66,4 @@ get_label(const char *disk, struct disklabel *l, unsigned long cmd)
 	}
 	(void)close(fd);
 	return 1;
-}
-
-int
-get_geom(const char *disk, struct disklabel *l)
-{
-
-	return get_label(disk, l, DIOCGDEFLABEL);
-}
-
-int
-get_real_geom(const char *disk, struct disklabel *l)
-{
-
-	return get_label(disk, l, DIOCGDINFO);
 }

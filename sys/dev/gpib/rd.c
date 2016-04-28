@@ -987,10 +987,6 @@ rdioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 		if ((flag & FWRITE) == 0)
 			return (EBADF);
 		return (0);
-
-	case DIOCGDEFLABEL:
-		rdgetdefaultlabel(sc, (struct disklabel *)data);
-		return (0);
 	}
 	return (EINVAL);
 }

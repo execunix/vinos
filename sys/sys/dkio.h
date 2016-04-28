@@ -61,10 +61,6 @@
 #define ODIOCEJECT	_IO('d', 112)		/* eject removable disk */
 #define DIOCLOCK	_IOW('d', 113, int)	/* lock/unlock pack */
 
-		/* get default label, clear label */
-#define	DIOCGDEFLABEL	_IOR('d', 114, struct disklabel)
-#define	DIOCCLRLABEL	_IO('d', 115)
-
 		/* disk cache enable/disable */
 #define	DIOCGCACHE	_IOR('d', 116, int)	/* get cache enables */
 #define	DIOCSCACHE	_IOW('d', 117, int)	/* set cache enables */

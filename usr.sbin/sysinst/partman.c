@@ -207,7 +207,7 @@ pm_editpart(int part_num)
 	partinfo backup = pm->bsdlabel[part_num];
 
 	edit_ptn(&(struct menudesc){.cursel = part_num}, NULL);
-	if (checkoverlap(pm->bsdlabel, MAXPARTITIONS, PART_D, PART_C)) {
+	if (checkoverlap(pm->bsdlabel, MAXPARTITIONS)) {
 		msg_display_add(MSG_cantsave);
 		process_menu(MENU_ok, NULL);
 		pm->bsdlabel[part_num] = backup;

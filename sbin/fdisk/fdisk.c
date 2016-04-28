@@ -71,9 +71,6 @@ __RCSID("$NetBSD: fdisk.c,v 1.150 2014/04/04 16:15:30 christos Exp $");
 #include <nbinclude/sys/bootblock.h>
 /* We enforce -F, so none of these possibly undefined items can be needed */
 #define opendisk(path, fl, buf, buflen, cooked) (-1)
-#ifndef DIOCGDEFLABEL
-#define DIOCGDEFLABEL 0
-#endif
 #ifndef DIOCGDINFO
 #define DIOCGDINFO 0
 #endif
@@ -2626,12 +2623,9 @@ get_params(void)
 		disklabel.d_ntracks = dos_heads;
 		disklabel.d_secsize = 512;
 		disklabel.d_nsectors = dos_sectors;
-	} else if (ioctl(fd, DIOCGDEFLABEL, &disklabel) == -1) {
-		warn("DIOCGDEFLABEL");
-		if (ioctl(fd, DIOCGDINFO, &disklabel) == -1) {
-			warn("DIOCGDINFO");
-			return (-1);
-		}
+	} else if (ioctl(fd, DIOCGDINFO, &disklabel) == -1) {
+		warn("DIOCGDINFO");
+		return (-1);
 	}
 
 	disksectors = disklabel.d_secperunit;

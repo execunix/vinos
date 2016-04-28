@@ -67,7 +67,6 @@
 struct disk_desc {
 	char	dd_name[SSTRSIZE];
 	char	dd_descr[70];
-	uint	dd_no_mbr;
 	uint	dd_cyl;
 	uint	dd_head;
 	uint	dd_sec;
@@ -381,16 +380,10 @@ get_disks(struct disk_desc *dd)
 	for (xd = disk_names; *xd != NULL; xd++) {
 		for (i = 0; i < MAX_DISKS; i++) {
 			strlcpy(dd->dd_name, *xd, sizeof dd->dd_name - 2);
-			cp = strchr(dd->dd_name, ':');
-			if (cp != NULL)
-				dd->dd_no_mbr = !strcmp(cp, ":no_mbr");
-			else {
-				dd->dd_no_mbr = 0;
-				cp = strchr(dd->dd_name, 0);
-			}
+			cp = strchr(dd->dd_name, 0);
 
 			snprintf(cp, 2 + 1, "%d", i);
-			if (!get_geom(dd->dd_name, &l)) {
+			if (!get_label(dd->dd_name, &l)) {
 				if (errno == ENOENT)
 					break;
 				continue;
@@ -510,7 +503,6 @@ find_disks(const char *doingwhat)
 		/* Use as a default disk if the user has the sets on a local disk */
 		strlcpy(localfs_dev, disk->dd_name, sizeof localfs_dev);
 
-		pm->no_mbr = disk->dd_no_mbr;
 		pm->sectorsize = disk->dd_secsize;
 		pm->dlcyl = disk->dd_cyl;
 		pm->dlhead = disk->dd_head;

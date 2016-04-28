@@ -1262,9 +1262,6 @@ wdioctl(dev_t dev, u_long xfer, void *addr, int flag, struct lwp *l)
 			return EBADF;
 		return 0;
 
-	case DIOCGDEFLABEL:
-		wdgetdefaultlabel(wd, (struct disklabel *)addr);
-		return 0;
 #ifdef notyet
 	case DIOCWFORMAT:
 		if ((flag & FWRITE) == 0)

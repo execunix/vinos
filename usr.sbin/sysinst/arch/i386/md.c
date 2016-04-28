@@ -95,9 +95,6 @@ md_get_info(void)
 #define	NETBSD_NAMED	0x0400
 #define	ACTIVE_NAMED	0x0800
 
-	if (pm->no_mbr)
-		return 1;
-
 	if (read_mbr(pm->diskdev, &mbr) < 0)
 		memset(&mbr.mbr, 0, sizeof mbr.mbr - 2);
 	get_bios_info(pm->diskdev);
@@ -252,9 +249,6 @@ md_check_partitions(void)
 int
 md_write_mbr(void)
 {
-	if (pm->no_mbr)
-		return 0;
-
 	msg_display(MSG_dofdisk);
 
 	/* write edited MBR onto disk. */
@@ -498,9 +492,6 @@ md_upgrade_mbrtype(void)
 {
 	struct mbr_partition *mbrp;
 	int i, netbsdpart = -1, oldbsdpart = -1, oldbsdcount = 0;
-
-	if (pm->no_mbr)
-		return;
 
 	if (read_mbr(pm->diskdev, &mbr) < 0)
 		return;

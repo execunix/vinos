@@ -417,20 +417,6 @@ raioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 			error = EBADF;
 		break;
 
-	case DIOCGDEFLABEL:
-		tp = (struct disklabel *)data;
-		memset(tp, 0, sizeof(struct disklabel));
-		tp->d_secsize = lp->d_secsize;
-		tp->d_nsectors = lp->d_nsectors;
-		tp->d_ntracks = lp->d_ntracks;
-		tp->d_ncylinders = lp->d_ncylinders;
-		tp->d_secpercyl = lp->d_secpercyl;
-		tp->d_secperunit = lp->d_secperunit;
-		tp->d_type = DTYPE_MSCP;
-		tp->d_rpm = 3600;
-		rrmakelabel(tp, ra->ra_mediaid);
-		break;
-
 	default:
 		error = ENOTTY;
 		break;

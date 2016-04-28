@@ -361,10 +361,6 @@ ofdisk_ioctl(dev_t dev, u_long cmd, void *data, int flag, struct lwp *l)
 			return EBADF;
 		return 0;
 
-	case DIOCGDEFLABEL:
-		ofdisk_getdefaultlabel(of, (struct disklabel *)data);
-		return 0;
-
 	default:
 		return ENOTTY;
 	}

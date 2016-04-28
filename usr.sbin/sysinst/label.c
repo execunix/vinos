@@ -62,39 +62,21 @@ struct ptn_menu_info {
 /*
  * local prototypes
  */
-static int boringpart(partinfo *, int, int, int);
 static uint32_t getpartoff(uint32_t);
 static uint32_t getpartsize(uint32_t, uint32_t);
 
-static int	checklabel(partinfo *, int, int, int, int *, int *);
+static int	checkovpart(partinfo *, int, int *, int *);
 static int	atofsb(const char *, uint32_t *, uint32_t *);
 
 
 /*
- * Return 1 if partition i in lp should be ignored when checking
- * for overlapping partitions.
- */
-static int
-boringpart(partinfo *lp, int i, int rawpart, int bsdpart)
-{
-
-	if (i == rawpart || i == bsdpart ||
-	    lp[i].pi_fstype == FS_UNUSED || lp[i].pi_size == 0)
-		return 1;
-	return 0;
-}
-
-
-
-/*
- * Check a sysinst label structure for overlapping partitions.
+ * Check a sysinst partinfo structure for overlapping partitions.
  * Returns 0 if no overlapping partition found, nonzero otherwise.
  * Sets reference arguments ovly1 and ovly2 to the indices of
  * overlapping partitions if any are found.
  */
 static int
-checklabel(partinfo *lp, int nparts, int rawpart, int bsdpart,
-	int *ovly1, int *ovly2)
+checkovpart(partinfo *lp, int nparts, int *ovly1, int *ovly2)
 {
 	int i;
 	int j;
@@ -107,7 +89,7 @@ checklabel(partinfo *lp, int nparts, int rawpart, int bsdpart,
 		uint32_t istart, istop;
 
 		/* skip unused or reserved partitions */
-		if (boringpart(lp, i, rawpart, bsdpart))
+		if (ip->pi_fstype == FS_UNUSED || ip->pi_size == 0)
 			continue;
 
 		/*
@@ -122,7 +104,7 @@ checklabel(partinfo *lp, int nparts, int rawpart, int bsdpart,
 			uint32_t jstart, jstop;
 
 			/* skip unused or reserved partitions */
-			if (boringpart(lp, j, rawpart, bsdpart))
+			if (jp->pi_fstype == FS_UNUSED || jp->pi_size == 0)
 				continue;
 
 			jstart = jp->pi_offset;
@@ -142,10 +124,10 @@ checklabel(partinfo *lp, int nparts, int rawpart, int bsdpart,
 }
 
 int
-checkoverlap(partinfo *lp, int nparts, int rawpart, int bsdpart)
+checkoverlap(partinfo *lp, int nparts)
 {
 	int i, j;
-	if (checklabel(lp, nparts, rawpart, bsdpart, &i, &j)) {
+	if (checkovpart(lp, nparts, &i, &j)) {
 		msg_display(MSG_partitions_overlap,'a'+i,'a'+j);
 		return 1;
 	}
@@ -547,7 +529,7 @@ incorelabel(const char *dkname, partinfo *lp)
 	int fd;
 	char buf[64];
 
-	if (get_real_geom(dkname, &lab) == 0)
+	if (get_label(dkname, &lab) == 0)
 		return -1;
 
 	touchwin(stdscr);
