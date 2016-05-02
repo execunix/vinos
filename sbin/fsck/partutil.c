@@ -51,41 +51,19 @@ __RCSID("$NetBSD: partutil.c,v 1.12.6.1 2015/05/25 09:10:48 msaitoh Exp $");
 
 #include "partutil.h"
 
-/*
- * Set what we need to know about disk geometry.
- */
-static void
-dict2geom(struct disk_geom *geo, prop_dictionary_t dict)
-{
-	(void)memset(geo, 0, sizeof(struct disk_geom));
-	prop_dictionary_get_int64(dict, "sectors-per-unit",
-	    &geo->dg_secperunit);
-	prop_dictionary_get_uint32(dict, "sector-size", &geo->dg_secsize);
-	prop_dictionary_get_uint32(dict, "sectors-per-track",
-	    &geo->dg_nsectors);
-	prop_dictionary_get_uint32(dict, "tracks-per-cylinder",
-	    &geo->dg_ntracks);
-	prop_dictionary_get_uint32(dict, "cylinders-per-unit",
-	    &geo->dg_ncylinders);
-}
-
-
 int
 getdiskinfo(const char *s, int fd, struct disk_geom *geo)
 {
 	struct disklabel lab;
 	struct disklabel *lp = &lab;
-	prop_dictionary_t disk_dict, geom_dict;
 	struct stat sb;
 	int ptn;
 
 	/* Get disk description dictionary */
-	if (prop_dictionary_recv_ioctl(fd, DIOCGDISKINFO, &disk_dict)) {
+	if (ioctl(fd, DIOCGDISKINFO, geo) == -1) {
 		warn("DIOCGDISKINFO on %s failed", s);
 		return -1;
 	}
-	geom_dict = prop_dictionary_get(disk_dict, "geometry");
-	dict2geom(geo, geom_dict);
 
 	if (stat(s, &sb) == -1)
 		return 0;

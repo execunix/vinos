@@ -108,7 +108,7 @@ BEGIN {
 	}
 	close(cfgfile)
 
-	# tbd
+	# tbdv
 	diskpartitions = 8
 	RAWDISK_OFF = 0
 	MKDISK = "makedisk_p" diskpartitions	# routine to create disk devs

@@ -400,7 +400,6 @@ out:
 	/*
 	 * Initialize and attach the disk structure.
 	 */
-	/* we fill in dk_info later */
 	disk_init(&wd->sc_dk, device_xname(wd->sc_dev), &wddkdriver);
 	disk_attach(&wd->sc_dk);
 	wd->sc_wdc_bio.lp = wd->sc_dk.dk_label;

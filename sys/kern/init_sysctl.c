@@ -451,12 +451,6 @@ SYSCTL_SETUP(sysctl_kern_setup, "sysctl kern subtree setup")
 		       NULL, 0/*LABELOFFSET*/, NULL, 0,
 		       CTL_KERN, KERN_LABELOFFSET, CTL_EOL);
 	sysctl_createv(clog, 0, NULL, NULL,
-		       CTLFLAG_PERMANENT|CTLFLAG_IMMEDIATE,
-		       CTLTYPE_INT, "labelusesmbr",
-		       SYSCTL_DESCR("disklabel is inside MBR partition"),
-		       NULL, LABELUSESMBR, NULL, 0,
-		       CTL_KERN, CTL_CREATE, CTL_EOL);
-	sysctl_createv(clog, 0, NULL, NULL,
 		       CTLFLAG_PERMANENT,
 		       CTLTYPE_NODE, "lwp",
 		       SYSCTL_DESCR("System-wide LWP information"),

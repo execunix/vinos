@@ -160,7 +160,6 @@ fss_attach(device_t parent, device_t self, void *aux)
 	cv_init(&sc->sc_cache_cv, "cowwait");
 	bufq_alloc(&sc->sc_bufq, "fcfs", 0);
 	sc->sc_dkdev = malloc(sizeof(*sc->sc_dkdev), M_DEVBUF, M_WAITOK);
-	sc->sc_dkdev->dk_info = NULL;
 	disk_init(sc->sc_dkdev, device_xname(self), NULL);
 	if (!pmf_device_register(self, NULL, NULL))
 		aprint_error_dev(self, "couldn't establish power handler\n");

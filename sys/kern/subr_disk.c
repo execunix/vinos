@@ -240,14 +240,6 @@ disk_detach(struct disk *diskp)
 	iostat_free(diskp->dk_stats);
 
 	/*
-	 * Release the disk-info dictionary.
-	 */
-	if (diskp->dk_info) {
-		prop_object_release(diskp->dk_info);
-		diskp->dk_info = NULL;
-	}
-
-	/*
 	 * Free the space used by the disklabel structures.
 	 */
 	kmem_free(diskp->dk_label, sizeof(*diskp->dk_label));
@@ -426,13 +418,10 @@ disk_ioctl(struct disk *diskp, u_long cmd, void *data, int flag,
 	switch (cmd) {
 	case DIOCGDISKINFO:
 	    {
-		struct plistref *pref = (struct plistref *) data;
+		struct disk_geom *dg = (struct disk_geom *)data;
 
-		if (diskp->dk_info == NULL)
-			error = ENOTSUP;
-		else
-			error = prop_dictionary_copyout_ioctl(pref, cmd,
-							diskp->dk_info);
+		//error = ENOTSUP;
+		memcpy(dg, &diskp->dk_geom, sizeof diskp->dk_geom);
 		break;
 	    }
 
@@ -488,47 +477,4 @@ disk_set_info(device_t dev, struct disk *dk, const char *type)
 #endif
 		dg->dg_secsize = DEV_BSIZE;
 	}
-
-	prop_dictionary_t disk_info, odisk_info, geom;
-
-	disk_info = prop_dictionary_create();
-	geom = prop_dictionary_create();
-
-	prop_dictionary_set_uint64(geom, "sectors-per-unit",
-	    dg->dg_secperunit);
-
-	prop_dictionary_set_uint32(geom, "sector-size", dg->dg_secsize);
-
-	if (dg->dg_nsectors)
-		prop_dictionary_set_uint16(geom, "sectors-per-track",
-		    dg->dg_nsectors);
-
-	if (dg->dg_ntracks)
-		prop_dictionary_set_uint16(geom, "tracks-per-cylinder",
-		    dg->dg_ntracks);
-
-	if (dg->dg_ncylinders)
-		prop_dictionary_set_uint64(geom, "cylinders-per-unit",
-		    dg->dg_ncylinders);
-
-	prop_dictionary_set(disk_info, "geometry", geom);
-
-	if (type)
-		prop_dictionary_set_cstring_nocopy(disk_info, "type", type);
-
-	prop_object_release(geom);
-
-	odisk_info = dk->dk_info;
-	dk->dk_info = disk_info;
-
-	if (dev)
-		prop_dictionary_set(device_properties(dev), "disk-info",
-		    disk_info);
-
-	/*
-	 * Don't release disk_info here; we keep a reference to it.
-	 * disk_detach() will release it when we go away.
-	 */
-	if (odisk_info)
-		prop_object_release(odisk_info);
 }

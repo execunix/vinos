@@ -83,7 +83,7 @@
 #define	DIOCSSTRATEGY	_IOW('d', 126, struct disk_strategy)
 
 		/* get disk-info dictionary */
-#define	DIOCGDISKINFO	_IOR('d', 127, struct plistref)
+#define	DIOCGDISKINFO	_IOR('d', 127, struct disk_geom)
 
 
 #define	DIOCTUR		_IOR('d', 128, int)	/* test unit ready */

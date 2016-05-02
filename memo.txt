@@ -340,6 +340,7 @@ root@xmtbsdv3:/mnt/hdd1/vinos#
 ##############################################################################
 # nbmake INSTALLWORLDDIR=/mnt/hdd1/root/ installworld
 
+# tbdv
 /mnt/hdd1/vinos/usr.sbin/sysinst
 /mnt/hdd1/vinos/sbin/dkctl/dkctl.c
 X:\hdd1\vinos\sys\dev\DEVNAMES
@@ -349,6 +350,7 @@ compat_
 MKX11/MKXORG/XSERVER_XFREE86
 MKX11RADEONKMS/CONFIG_DRM
 
+# tbrm
 disklabel/TOOL_DISKLABEL
 diskinfo/pdisk
 diskname/bsddiskname
@@ -363,3 +365,4 @@ vnd_x
 wedge_x
 DKW_PTYPE_FFS/USE_MBR
 KAUTH_SYSTEM_DEVMAPPER/libdm
+prop_dictionary

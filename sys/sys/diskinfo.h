@@ -38,7 +38,6 @@
 #include <sys/types.h>
 #endif
 
-#define LABELUSESMBR		1	/* use MBR partitionning */
 #define MAXPARTITIONS		8	/* number of partitions */
 #define RAW_PART		0	/* raw partition: XX?a (XXX) */
 

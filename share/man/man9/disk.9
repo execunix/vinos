@@ -81,7 +81,6 @@ structure, which is defined as follows:
 struct disk {
 	TAILQ_ENTRY(disk) dk_link;	/* link in global disklist */
 	const char	*dk_name;	/* disk name */
-	prop_dictionary_t dk_info;	/* reference to disk-info dictionary */
 	int		dk_bopenmask;	/* block devices open */
 	int		dk_copenmask;	/* character devices open */
 	int		dk_openmask;	/* composite (bopen|copen) */
@@ -261,7 +260,7 @@ Flush bad sector list.
 Get disk buffer queue strategy.
 .It Dv DIOCSSTRATEGY "struct disk_strategy"
 Set disk buffer queue strategy.
-.It Dv DIOCGDISKINFO "struct plistref"
+.It Dv DIOCGDISKINFO "struct disk_geom"
 Get disk-info dictionary.
 .It Dv DIOCGMEDIASIZE "off_t"
 Get disk size in bytes.
