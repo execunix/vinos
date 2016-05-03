@@ -429,8 +429,6 @@ ofdisk_getdefaultlabel(struct ofdisk_softc *of, struct disklabel *lp)
 	lp->d_partitions[RAW_PART].p_size = lp->d_secperunit;
 	lp->d_npartitions = RAW_PART + 1;
 
-	lp->d_magic = DISKMAGIC;
-	lp->d_magic2 = DISKMAGIC;
 	lp->d_checksum = dkcksum(lp);
 }
 

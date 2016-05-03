@@ -1209,7 +1209,6 @@ sdgetdefaultlabel(struct sd_softc *sd, struct disklabel *lp)
 	else
 		lp->d_secperunit = sd->params.disksize;
 	lp->d_rpm = sd->params.rot_rate;
-	lp->d_interleave = 1;
 	lp->d_flags = sd->sc_periph->periph_flags & PERIPH_REMOVABLE ?
 	    D_REMOVABLE : 0;
 
@@ -1218,8 +1217,6 @@ sdgetdefaultlabel(struct sd_softc *sd, struct disklabel *lp)
 	lp->d_partitions[RAW_PART].p_fstype = FS_UNUSED;
 	lp->d_npartitions = RAW_PART + 1;
 
-	lp->d_magic = DISKMAGIC;
-	lp->d_magic2 = DISKMAGIC;
 	lp->d_checksum = dkcksum(lp);
 }
 

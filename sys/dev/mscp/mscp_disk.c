@@ -941,8 +941,7 @@ rrmakelabel(struct disklabel *dl, long type)
 	dl->d_partitions[0].p_size = dl->d_partitions[2].p_size =
 	    dl->d_secperunit;
 	dl->d_partitions[0].p_offset = dl->d_partitions[2].p_offset = 0;
-	dl->d_interleave = dl->d_headswitch = 1;
-	dl->d_magic = dl->d_magic2 = DISKMAGIC;
+
 	dl->d_checksum = dkcksum(dl);
 }
 

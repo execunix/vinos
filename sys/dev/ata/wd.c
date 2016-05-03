@@ -1057,7 +1057,6 @@ wdgetdefaultlabel(struct wd_softc *wd, struct disklabel *lp)
 	else
 		lp->d_secperunit = wd->sc_capacity;
 	lp->d_rpm = 3600;
-	lp->d_interleave = 1;
 	lp->d_flags = 0;
 
 	lp->d_partitions[RAW_PART].p_offset = 0;
@@ -1066,8 +1065,6 @@ wdgetdefaultlabel(struct wd_softc *wd, struct disklabel *lp)
 	lp->d_partitions[RAW_PART].p_fstype = FS_UNUSED;
 	lp->d_npartitions = RAW_PART + 1;
 
-	lp->d_magic = DISKMAGIC;
-	lp->d_magic2 = DISKMAGIC;
 	lp->d_checksum = dkcksum(lp);
 }
 

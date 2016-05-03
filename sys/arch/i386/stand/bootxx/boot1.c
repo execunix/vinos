@@ -93,9 +93,7 @@ boot1(uint32_t biosdev, uint64_t *sector)
 	 * Nothing at the start of the MBR partition, fallback on
 	 * partition 'a' from the disklabel in this MBR partition.
 	 */
-	if (ptn_disklabel.d_magic != DISKMAGIC ||
-	    ptn_disklabel.d_magic2 != DISKMAGIC ||
-	    ptn_disklabel.d_partitions[0].p_fstype == FS_UNUSED)
+	if (ptn_disklabel.d_partitions[0].p_fstype == FS_UNUSED)
 		goto done;
 	bios_sector = ptn_disklabel.d_partitions[0].p_offset;
 	*sector = bios_sector;

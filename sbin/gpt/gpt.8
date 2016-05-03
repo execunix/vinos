@@ -320,49 +320,6 @@ The
 .Fl l Ar label
 option is used to specify the label in the command line.
 The label is assumed to be encoded in UTF-8.
-.\" ==== migrate ====
-.It Nm Ic migrate Oo Fl fs Oc Ar device ...
-The
-.Ic migrate
-command allows the user to migrate an MBR-based disk partitioning into a
-GPT-based partitioning.
-By default, the MBR is not migrated when it contains partitions of an unknown
-type.
-This can be overridden with the
-.Fl f
-option.
-Specifying the
-.Fl f
-option will cause unknown partitions to be ignored and any data in it
-to be lost.
-.Pp
-The
-.Fl s
-option prevents migrating
-.Bx
-disk labels into GPT partitions by creating
-the GPT equivalent of a slice.
-Note that the
-.Fl s
-option isn't applicable to
-.Nx
-partitions.
-.Pp
-The
-.Ic migrate
-command requires space at the beginning and the end of the device outside
-any partitions to store the GPTs.
-Space is required for the GPT header
-.Pq which takes one sector
-and the GPT partition table.
-See the
-.Fl p
-option
-for the size of the GPT partition table.
-By default, just about all devices have a minimum of 62 sectors free at the
-beginning of the device, but don't have any free space at the end.
-For the default GPT partition table size on a 512 byte sector size device,
-33 sectors at the end of the device would need to be freed.
 .\" ==== recover ====
 .It Nm Ic recover Ar device ...
 The

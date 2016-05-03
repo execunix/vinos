@@ -1664,7 +1664,6 @@ cdgetdefaultlabel(struct cd_softc *cd, struct cd_formatted_toc *toc,
 	strncpy(lp->d_packname, "fictitious", 16);
 	lp->d_secperunit = cd->params.disksize;
 	lp->d_rpm = 300;
-	lp->d_interleave = 1;
 	lp->d_flags = D_REMOVABLE | D_SCSI_MMC;
 
 	if (cdreadmsaddr(cd, toc, &lastsession) != 0)
@@ -1681,8 +1680,6 @@ cdgetdefaultlabel(struct cd_softc *cd, struct cd_formatted_toc *toc,
 
 	lp->d_npartitions = RAW_PART + 1;
 
-	lp->d_magic = DISKMAGIC;
-	lp->d_magic2 = DISKMAGIC;
 	lp->d_checksum = dkcksum(lp);
 }
 

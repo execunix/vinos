@@ -184,10 +184,8 @@ readdisklabel(dev_t dev, void (*strat)(struct buf *),
 	    dlp <= (struct disklabel *)((char *)bp->b_data + lp->d_secsize
 		- sizeof(*dlp));
 	    dlp = (struct disklabel *)((char *)dlp + sizeof(long))) {
-		if (dlp->d_magic != DISKMAGIC || dlp->d_magic2 != DISKMAGIC) {
-			continue;
-		} else if (dlp->d_npartitions > MAXPARTITIONS ||
-			   dkcksum(dlp) != 0)
+		if (dlp->d_npartitions > MAXPARTITIONS ||
+		    dkcksum(dlp) != 0)
 			msg = "disk label corrupted";
 		else {
 			*lp = *dlp;

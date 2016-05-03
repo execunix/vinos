@@ -191,7 +191,6 @@ static void sdmmc_print_cid(struct sdmmc_cid*);
 static void sdmmc_dump_command(struct sdmmc_softc*, struct sdmmc_command*);
 #endif
 
-static char nolabel[] = "no disk label";
 static char corruptedlabel[] = "disk label corrupted";
 
 static char *
@@ -203,11 +202,8 @@ getdisklabel(const char *buf, struct disklabel *lp)
 	elp = (const void *)(buf + DEV_BSIZE - sizeof(*dlp));
 	for (dlp = (const void *)buf; dlp <= elp;
 	    dlp = (const void *)((const char *)dlp + sizeof(long))) {
-		if (dlp->d_magic != DISKMAGIC || dlp->d_magic2 != DISKMAGIC) {
-			if (msg == NULL)
-				msg = nolabel;
-		} else if (dlp->d_npartitions > MAXPARTITIONS ||
-			   dkcksum(dlp) != 0) {
+		if (dlp->d_npartitions > MAXPARTITIONS ||
+		    dkcksum(dlp) != 0) {
 			msg = corruptedlabel;
 		} else {
 			(void)memcpy(lp, dlp, sizeof *lp);
@@ -315,14 +311,11 @@ sdmmc_getdisklabel(struct sdmmc_softc *sc)
 		else
 		lp->d_secperunit = wd->sc_capacity;*/
 		lp->d_rpm = 3600;
-		lp->d_interleave = 1;
 		lp->d_flags = 0;
 		lp->d_partitions[RAW_PART].p_offset = 0;
 		lp->d_partitions[RAW_PART].p_size =
 			lp->d_secperunit * (lp->d_secsize / DEV_BSIZE);
 		lp->d_partitions[RAW_PART].p_fstype = FS_UNUSED;
-		lp->d_magic = DISKMAGIC;
-		lp->d_magic2 = DISKMAGIC;
 		lp->d_checksum = dkcksum(lp);
 
 		dp = (struct mbr_partition *)(buf + MBR_PART_OFFSET);

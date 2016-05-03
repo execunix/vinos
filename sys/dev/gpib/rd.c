@@ -1009,7 +1009,6 @@ rdgetdefaultlabel(struct rd_softc *sc, struct disklabel *lp)
 	strncpy(lp->d_typename, rdidentinfo[type].ri_desc, 16);
 	strncpy(lp->d_packname, "fictitious", 16);
 	lp->d_rpm = 3000;
-	lp->d_interleave = 1;
 	lp->d_flags = 0;
 
 	lp->d_partitions[RAW_PART].p_offset = 0;
@@ -1018,8 +1017,6 @@ rdgetdefaultlabel(struct rd_softc *sc, struct disklabel *lp)
 	lp->d_partitions[RAW_PART].p_fstype = FS_UNUSED;
 	lp->d_npartitions = RAW_PART + 1;
 
-	lp->d_magic = DISKMAGIC;
-	lp->d_magic2 = DISKMAGIC;
 	lp->d_checksum = dkcksum(lp);
 }
 

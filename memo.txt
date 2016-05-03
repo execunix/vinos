@@ -354,6 +354,7 @@ MKX11RADEONKMS/CONFIG_DRM
 disklabel/TOOL_DISKLABEL
 diskinfo/pdisk
 diskname/bsddiskname
+disktab
 getdiskrawname
 getdiskcookedname
 *getdefaultlabel

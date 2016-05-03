@@ -481,14 +481,9 @@ gpt_open(const char *dev)
 		goto close;
 
 	if ((sb.st_mode & S_IFMT) != S_IFREG) {
-#ifdef DIOCGSECTORSIZE
 		if ((secsz == 0 && ioctl(fd, DIOCGSECTORSIZE, &secsz) == -1) ||
 		    (mediasz == 0 && ioctl(fd, DIOCGMEDIASIZE, &mediasz) == -1))
 			goto close;
-#else
-		if (getdisksize(device_name, &secsz, &mediasz) == -1)
-			goto close;
-#endif
 		if (secsz == 0 || mediasz == 0)
 			errx(1, "Please specify sector/media size");
 	} else {
@@ -555,7 +550,6 @@ static struct {
 	{ cmd_destroy, "destroy" },
 	{ NULL, "help" },
 	{ cmd_label, "label" },
-	{ cmd_migrate, "migrate" },
 	{ cmd_recover, "recover" },
 	{ cmd_remove, "remove" },
 	{ NULL, "rename" },
@@ -577,7 +571,7 @@ usage(void)
 {
 	extern const char addmsg1[], addmsg2[], biosbootmsg[];
 	extern const char createmsg[], destroymsg[], labelmsg1[], labelmsg2[];
-	extern const char labelmsg3[], migratemsg[], recovermsg[], removemsg1[];
+	extern const char labelmsg3[], recovermsg[], removemsg1[];
 	extern const char removemsg2[], resizemsg[], resizediskmsg[];
 	extern const char setmsg[], showmsg[], typemsg1[];
 	extern const char typemsg2[], typemsg3[], unsetmsg[];
@@ -614,7 +608,6 @@ usage(void)
 	    "       %s\n"
 	    "       %s\n"
 	    "       %s\n"
-	    "       %s\n"
 	    "       %s\n",
 	    addmsg1, addmsg2,
 #ifndef HAVE_NBTOOL_CONFIG_H
@@ -622,7 +615,7 @@ usage(void)
 #endif
 	    biosbootmsg, createmsg, destroymsg,
 	    labelmsg1, labelmsg2, labelmsg3,
-	    migratemsg, recovermsg,
+	    recovermsg,
 	    removemsg1, removemsg2,
 	    resizemsg, resizediskmsg,
 #ifndef HAVE_NBTOOL_CONFIG_H

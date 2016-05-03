@@ -713,7 +713,6 @@ mcdgetdefaultlabel(struct mcd_softc *sc, struct disklabel *lp)
 	strncpy(lp->d_packname, "fictitious", 16);
 	lp->d_secperunit = sc->disksize;
 	lp->d_rpm = 300;
-	lp->d_interleave = 1;
 	lp->d_flags = D_REMOVABLE;
 
 	lp->d_partitions[0].p_offset = 0;
@@ -726,8 +725,6 @@ mcdgetdefaultlabel(struct mcd_softc *sc, struct disklabel *lp)
 	lp->d_partitions[RAW_PART].p_fstype = FS_ISO9660;
 	lp->d_npartitions = RAW_PART + 1;
 
-	lp->d_magic = DISKMAGIC;
-	lp->d_magic2 = DISKMAGIC;
 	lp->d_checksum = dkcksum(lp);
 }
 

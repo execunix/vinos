@@ -561,7 +561,6 @@ md_set_disklabel(struct md_softc *sc)
 	lp->d_type = DTYPE_UNKNOWN;
 	strncpy(lp->d_packname, "fictitious", sizeof(lp->d_packname));
 	lp->d_rpm = 3600;
-	lp->d_interleave = 1;
 	lp->d_flags = 0;
 
 	pp = &lp->d_partitions[0];
@@ -575,8 +574,7 @@ md_set_disklabel(struct md_softc *sc)
 	pp->p_fstype = FS_UNUSED;
 
 	lp->d_npartitions = RAW_PART+1;
-	lp->d_magic = DISKMAGIC;
-	lp->d_magic2 = DISKMAGIC;
+
 	lp->d_checksum = dkcksum(lp);
 }
 

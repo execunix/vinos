@@ -59,9 +59,9 @@ getdiskinfo(const char *s, int fd, struct disk_geom *geo)
 	struct stat sb;
 	int ptn;
 
-	/* Get disk description dictionary */
-	if (ioctl(fd, DIOCGDISKINFO, geo) == -1) {
-		warn("DIOCGDISKINFO on %s failed", s);
+	/* Get disk geometry */
+	if (ioctl(fd, DIOCGDISKGEOM, geo) == -1) {
+		warn("DIOCGDISKGEOM on %s failed", s);
 		return -1;
 	}
 

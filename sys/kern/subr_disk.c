@@ -416,7 +416,7 @@ disk_ioctl(struct disk *diskp, u_long cmd, void *data, int flag,
 	int error = 0;
 
 	switch (cmd) {
-	case DIOCGDISKINFO:
+	case DIOCGDISKGEOM:
 	    {
 		struct disk_geom *dg = (struct disk_geom *)data;
 
