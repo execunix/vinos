@@ -1,3 +1,8 @@
+Ubuntu 20.04.5 LTS
+. bldenv.sh
+nbmake -j8 release
+nbmake iso-image
+
 ##############################################################################
 $ ./build.sh -U -x -r -n -m amd64 -j4 release
 echo ===> build.sh command:    ./build.sh -U -x -r -n -m amd64 -j4 release
@@ -12,6 +17,7 @@ cd /tmp/nbbuild9325
 env CC=cc CPPFLAGS= CFLAGS=-O LDFLAGS= /bin/sh /mnt/hdd1/vinos/tools/make/configure
 /bin/sh buildmake.sh
 cd /mnt/hdd1/vinos
+
 rm -f usr.bin/make/*.o usr.bin/make/lst.lib/*.o
 echo ===> MAKECONF file:       $MAKECONF (File not found)
 /tmp/nbbuild9325/nbmake -m /mnt/hdd1/vinos/share/mk obj NOSUBDIR=
@@ -85,7 +91,7 @@ echo ===> build.sh ended:      Thu Jan  7 21:12:47 KST 2016
 	echo ===> Successful make release
 	echo ===> build.sh ended:      Thu Jan  7 21:12:47 KST 2016
 ===> .
-$ 
+$
 
 ##############################################################################
 $ env
@@ -112,7 +118,7 @@ BUILDSEED=NetBSD-7
 $
 
 ##############################################################################
-root@xmtbsdv3:/mnt/hdd1/vinos# . bldenv.sh 
+root@xmtbsdv3:/mnt/hdd1/vinos# . bldenv.sh
 
 bash: Missing operation to perform.
 
@@ -242,7 +248,7 @@ root@xmtbsdv3:/mnt/hdd1/vinos#
 root@xmtbsdv3:/mnt/hdd1/vinos#
 root@xmtbsdv3:/mnt/hdd1/vinos# nbmake installworld
 installsets ===> distrib/sets	(with: INSTALLDIR=/ INSTALLSETS=)
-cd /mnt/hdd1/vinos/distrib/sets &&  DESTDIR=/mnt/hdd1/vinos/../tmp/mnt/hdd1/vinos/destdir.amd64  MACHINE=amd64  MACHINE_ARCH=x86_64  AWK=/mnt/hdd1/vinos/../tmp/mnt/hdd1/vinos/tooldir.NetBSD-7.0-amd64/bin/nbawk  CKSUM=/mnt/hdd1/vinos/../tmp/mnt/hdd1/vinos/tooldir.NetBSD-7.0-amd64/bin/nbcksum  DB=/mnt/hdd1/vinos/../tmp/mnt/hdd1/vinos/tooldir.NetBSD-7.0-amd64/bin/nbdb  HOST_SH=/bin/bash  MAKE=nbmake  MKTEMP=/mnt/hdd1/vinos/../tmp/mnt/hdd1/vinos/tooldir.NetBSD-7.0-amd64/bin/nbmktemp  MTREE=/mnt/hdd1/vinos/../tmp/mnt/hdd1/vinos/tooldir.NetBSD-7.0-amd64/bin/nbmtree  PAX=/mnt/hdd1/vinos/../tmp/mnt/hdd1/vinos/tooldir.NetBSD-7.0-amd64/bin/nbpax  COMPRESS_PROGRAM=gzip  GZIP=-n  PKG_CREATE=/mnt/hdd1/vinos/../tmp/mnt/hdd1/vinos/tooldir.NetBSD-7.0-amd64/bin/nbpkg_create  SED=/mnt/hdd1/vinos/../tmp/mnt/hdd1/vinos/tooldir.NetBSD-7.0-amd64/bin/nbsed  TSORT=/mnt/hdd1/vinos/../tmp/mnt/hdd1/vinos/tooldir.NetBSD-7.0-amd64/bin/nbtsort\ -q  /bin/bash ./maketars -d /mnt/hdd1/vinos/../tmp/mnt/hdd1/vinos/destdir.amd64   -M /mnt/hdd1/vinos/../tmp/mnt/hdd1/vinos/destdir.amd64/METALOG.sanitised -N /mnt/hdd1/vinos/etc  -L base,x -i / 
+cd /mnt/hdd1/vinos/distrib/sets &&  DESTDIR=/mnt/hdd1/vinos/../tmp/mnt/hdd1/vinos/destdir.amd64  MACHINE=amd64  MACHINE_ARCH=x86_64  AWK=/mnt/hdd1/vinos/../tmp/mnt/hdd1/vinos/tooldir.NetBSD-7.0-amd64/bin/nbawk  CKSUM=/mnt/hdd1/vinos/../tmp/mnt/hdd1/vinos/tooldir.NetBSD-7.0-amd64/bin/nbcksum  DB=/mnt/hdd1/vinos/../tmp/mnt/hdd1/vinos/tooldir.NetBSD-7.0-amd64/bin/nbdb  HOST_SH=/bin/bash  MAKE=nbmake  MKTEMP=/mnt/hdd1/vinos/../tmp/mnt/hdd1/vinos/tooldir.NetBSD-7.0-amd64/bin/nbmktemp  MTREE=/mnt/hdd1/vinos/../tmp/mnt/hdd1/vinos/tooldir.NetBSD-7.0-amd64/bin/nbmtree  PAX=/mnt/hdd1/vinos/../tmp/mnt/hdd1/vinos/tooldir.NetBSD-7.0-amd64/bin/nbpax  COMPRESS_PROGRAM=gzip  GZIP=-n  PKG_CREATE=/mnt/hdd1/vinos/../tmp/mnt/hdd1/vinos/tooldir.NetBSD-7.0-amd64/bin/nbpkg_create  SED=/mnt/hdd1/vinos/../tmp/mnt/hdd1/vinos/tooldir.NetBSD-7.0-amd64/bin/nbsed  TSORT=/mnt/hdd1/vinos/../tmp/mnt/hdd1/vinos/tooldir.NetBSD-7.0-amd64/bin/nbtsort\ -q  /bin/bash ./maketars -d /mnt/hdd1/vinos/../tmp/mnt/hdd1/vinos/destdir.amd64   -M /mnt/hdd1/vinos/../tmp/mnt/hdd1/vinos/destdir.amd64/METALOG.sanitised -N /mnt/hdd1/vinos/etc  -L base,x -i /
 Copying set base
 Copying set comp
 Copying set games
@@ -334,7 +340,7 @@ Note that this may overwrite local changes.
    ================================
 make installworld started at:  Sun Feb 28 05:25:59 KST 2016
 make installworld finished at: Sun Feb 28 05:38:23 KST 2016
-root@xmtbsdv3:/mnt/hdd1/vinos# 
+root@xmtbsdv3:/mnt/hdd1/vinos#
 
 
 ##############################################################################

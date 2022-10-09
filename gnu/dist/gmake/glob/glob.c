@@ -51,7 +51,7 @@
 #define GLOB_INTERFACE_VERSION 1
 #if !defined _LIBC && defined __GNU_LIBRARY__ && __GNU_LIBRARY__ > 1
 # include <gnu-versions.h>
-# if _GNU_GLOB_INTERFACE_VERSION == GLOB_INTERFACE_VERSION
+# if _GNU_GLOB_INTERFACE_VERSION >= GLOB_INTERFACE_VERSION
 #  define ELIDE_CODE
 # endif
 #endif
